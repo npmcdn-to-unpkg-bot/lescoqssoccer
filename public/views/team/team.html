@@ -1,0 +1,28 @@
+<section id="directives-team" ng-controller="TeamController">
+	<div class="team" id="team">
+		
+		<h3 class="heading"> Meet...the Team</h3>
+		<p class="desc">They are really nice</p>
+							
+		<div class="team_members">
+			<div class="wrap">
+				<div id="owl-demo" class="owl-carousel">
+					<div class="item" ng-repeat="user in users">	
+						<div class="carousel" ng-controller="Modal" ng-click="open('team/teamMember.html')">
+							<img data-ng-src="{{user.avatar}}" alt="Image {{user.name}}"/>
+			  	    	    <div class="caption-info">
+			  	    	    	 <div class="caption-info-head">
+			  	    	    	 	<div class="caption-info-head-left">
+				  	    	    	 	<h4><a href="#">{{user.name}}</a></h4>
+				  	    	    	 	<span>{{user.surname}}</span>
+			  	    	    	 	</div>
+			  	    	    	 	<div class="clear"> </div>
+			  	    	    	</div>
+			  	    	    </div>
+					  	</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,21 @@
+<section data-ng-controller="ArticlesController" data-ng-init="find()" class="col-md-6">
+	<div id="modal" class="btn-group" ng-controller="Modal">
+        <button class="btn btn-default" ng-click="open('articles/create.html', 'ArticlesController')">Ajouter un article</button>
+    </div>
+	<ul class="articles unstyled">
+		<li data-ng-repeat="article in articles">
+			<div class="articleItem">
+			    <div class="date">
+			    	<strong>{{article.created | date:'dd'}}</strong>
+			    	<span>{{article.created | date:'MMMM yyyy'}}</span>
+			    </div>
+			    <p>
+			    	<a data-ng-href="#!/articles/{{article._id}}">{{article.title}}</a><br>
+			    	{{article.content}}
+			    </p>
+			    <p style="font-style:italic">de {{article.user.name}}</p>
+			</div>
+		</li>
+	</ul>
+	<h1 data-ng-hide="!articles || articles.length">No articles yet. <br> Why don't you <a href="/#!/articles/create">Create One</a>?</h1>
+</section>
