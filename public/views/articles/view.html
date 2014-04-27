@@ -1,14 +1,14 @@
-<section data-ng-controller="ArticlesController" data-ng-init="findOne()">
-    <span>{{article.created | date:'medium'}}</span>/
-    <span>{{article.user.name}}</span>
-    <h2>{{article.title}}</h2>
-    <div data-ng-show="global.user._id == article.user._id">
-        <a class="btn" href="/#!/articles/{{article._id}}/edit">
+<section data-ng-controller="ArticlesController">
+    <h2>{{items.selected.title}}</h2>
+    <div>{{items.selected.content}}</div>
+    <div data-ng-show="global.user._id == items.selected.user._id">
+        <a class="btn" ng-click="items.showEditionForm()" style="padding-left: 0;">
         	<i class="glyphicon glyphicon-edit"></i>
         </a> 
-        <a class="btn" data-ng-click="remove();">
-            <i class="glyphicon glyphicon-trash"></i>
-        </a>
+        <div id="modal" ng-controller="Modal" style="display: inline-block;">
+            <a class="btn" data-ng-click="open('articles/delete.html', 'ArticlesDeleteController')">
+                <i class="glyphicon glyphicon-trash"></i>
+            </a>
+        </div>
     </div>
-    <div>{{article.content}}</div>
 </section>

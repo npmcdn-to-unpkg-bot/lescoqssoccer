@@ -5,7 +5,7 @@ angular.module('mean').config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
         when('/articles', {
-            templateUrl: 'views/articles/list.html'
+            templateUrl: 'views/articles/wreader.html'
         }).
         when('/articles/create', {
             templateUrl: 'views/articles/create.html'

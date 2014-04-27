@@ -1,7 +1,9 @@
 'use strict';
 
-angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', 'Global', 'Articles', function ($scope, $routeParams, $location, Global, Articles) {
+angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', 'Global', 'Articles', 'items', 'scroll', function ($scope, $routeParams, $location, Global, Articles, items, scroll) {
+    
     $scope.global = Global;
+    $scope.items = items;
 
     $scope.create = function() {
         var article = new Articles({
@@ -9,24 +11,21 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
             content: this.content
         });
         article.$save(function(response) {
-            $location.path('articles/' + response._id);
+            $scope.items.getItemsFromDataStore();
         });
-
-        this.title = '';
-        this.content = '';
     };
 
     $scope.remove = function(article) {
         if (article) {
-            article.$remove();
-
-            for (var i in $scope.articles) {
+            article.$remove(function(response){
+              for (var i in $scope.articles) {
                 if ($scope.articles[i] === article) {
                     $scope.articles.splice(i, 1);
                 }
-            }
-        }
-        else {
+              }
+              $scope.items.getItemsFromDataStore(true);
+            });
+        } else {
             $scope.article.$remove();
             $location.path('articles');
         }
@@ -50,23 +49,30 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
         });
     };
 
-    $scope.findOne = function() {
-        Articles.get({
-            articleId: $routeParams.articleId
-        }, function(article) {
-            $scope.article = article;
-        });
+    $scope.findOne = function(articleId) {
+        if(articleId){
+          Articles.get({
+              articleId: articleId
+          }, function(article) {
+              $scope.article = article;
+          });
+        }
     };
 
-    /***
-    Modal buttons
-    ***/
-    $scope.ok = function () {
-        this.create();
-        $close();
+    $scope.refresh = function() {
+      
     };
 
-    $scope.cancel = function () {
-        $dismiss('cancel');
+    $scope.handleSpace = function() {
+      if (!scroll.pageDown()) {
+        items.next();
+      }
     };
+
+    $scope.$watch('items.selectedIdx', function(newVal) {
+      if (newVal !== null) {
+        scroll.toCurrent();
+        $scope.findOne(items.selected.id);
+      }
+    });
 }]);
