@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('mean.agenda').controller('UserEventController', ['$scope', '$modalInstance', '$routeParams', '$location', 'Global', 'UserEvent', function ($scope, $modalInstance, $routeParams, $location, Global, UserEvent) {
+    
     $scope.global = Global;
     $scope.userEvents = [];
 
     $scope.create = function(userEvent) {
 
-        userEvent.uuid = guid();
         userEvent.$save(function(response) { 
             $scope.userEvents.push(response.userEvent);
         });

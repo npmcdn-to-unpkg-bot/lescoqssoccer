@@ -5,7 +5,7 @@ angular.module('mean').config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
         when('/articles', {
-            templateUrl: 'views/articles/wreader.html'
+            templateUrl: 'views/articles/list.html'
         }).
         when('/articles/create', {
             templateUrl: 'views/articles/create.html'
@@ -43,3 +43,13 @@ angular.module('mean').config(['$locationProvider',
         $locationProvider.hashPrefix('!');
     }
 ]);
+
+angular.module('mean').config(['$translateProvider', function($translateProvider) {
+    
+    $translateProvider.useStaticFilesLoader({
+      prefix: 'translations/translation_',
+      suffix: '.json'
+    });
+
+    $translateProvider.preferredLanguage('fr');
+}]);

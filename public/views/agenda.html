@@ -1,11 +1,11 @@
-<section class="col-md-4">
+<section class="col-md-4" ng-controller="agendaController">
   
   <div class="alert alert-info ng-binding">
       <a class="close" ng-click="remove($index)">
         <i class="glyphicon glyphicon-remove"></i>
       </a>
       <b> 
-        <label class="ng-pristine ng-valid">Mon Agenda</label>
+        <label class="ng-pristine ng-valid">{{'personnal_agenda' | translate}}</label>
       </b> 
   </div>
   <div class="alert alert-info ng-binding">
@@ -13,34 +13,34 @@
         <i class="glyphicon glyphicon-remove"></i>
       </a>
       <b>
-        <label class="ng-pristine ng-valid">Agenda de la communauté</label>
+        <label class="ng-pristine ng-valid">{{'community_agenda' | translate}}</label>
       </b> 
   </div>
 
-  <h2>Détails de l'évènement</h2>
+  <h2>{{'event_details' | translate}}</h2>
   <form class="form-horizontal" role="form">
     <div class="form-group">
-        <label for="title" class="col-md-2 control-label">Titre</label>
+        <label for="title" class="col-md-2 control-label">{{'title' | translate}}</label>
       <div class="col-md-10">
-        <input type="text" class="form-control" data-ng-model="title" id="title" placeholder="Titre de l'évènement" required>
+        <input type="text" class="form-control" data-ng-model="title" id="title" placeholder="{{translation.title}}" required>
       </div>
     </div>
     <div class="form-group">
-        <label for="title" class="col-md-2 control-label">Contenu</label>
+        <label for="title" class="col-md-2 control-label">{{'content' | translate}}</label>
       <div class="col-md-10">
-        <textarea class="form-control" data-ng-model="content" id="content" placeholder="Contenu de l'évènement" required style="min-height:100px;"></textarea>
+        <textarea class="form-control" data-ng-model="content" id="content" placeholder="{{translation.content}}" required style="min-height:100px;"></textarea>
       </div>
     </div>
     <div class="form-group">
-        <label for="startDate" class="col-md-2 control-label">Début</label>
+        <label for="startDate" class="col-md-2 control-label">{{'startdate' | translate}}</label>
         <div class="col-md-10">
-          <input type="text" class="form-control" data-ng-model="startDate" id="startDate" placeholder="Date de début" required>
+          <input type="text" class="form-control" data-ng-model="startDate" id="startDate" placeholder="{{translation.startdate}}" required>
         </div>
     </div>
     <div class="form-group">
-        <label for="endDate" class="col-md-2 control-label">Fin</label>
+        <label for="endDate" class="col-md-2 control-label">{{'enddate' | translate}}</label>
         <div class="col-md-10">
-          <input type="text" class="form-control" data-ng-model="endDate" id="endDate" placeholder="Date de fin" required>
+          <input type="text" class="form-control" data-ng-model="endDate" id="endDate" placeholder="{{translation.enddate}}" required>
         </div>
     </div>
   </form>
