@@ -37,7 +37,7 @@ blockquote, q {quotes: none;}
 blockquote:before, blockquote:after,
 q:before, q:after {content: '';content: none;}
 table {border-collapse: collapse;border-spacing: 0;}
-input, textarea {-webkit-appearance: none;border-radius: 0;}
+input:not([type="radio"], [type="checkbox"]), textarea {-webkit-appearance: none;border-radius: 0;}
 textarea { overflow: auto; }
 /* Global */
 body {
