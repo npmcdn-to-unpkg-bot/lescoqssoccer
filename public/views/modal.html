@@ -19,26 +19,46 @@
 			<div class="form-group">
 				<div>
 				    <label for="title" class="col-md-2 control-label">Début</label>
-			        <div class="col-md-10">
+			        <div class="col-md-4">
 			            <p class="input-group">
-			              <input type="text" class="form-control" datepicker-popup="{{format}}" data-ng-model="startDate" is-open="$parent.openedStartDate" min="minDate" max="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" show-button-bar="false"/>
+			              <input type="text" class="form-control" datepicker-popup="{{format}}" data-ng-model="start" is-open="$parent.openedStartDate" min="minDate" max="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" show-button-bar="false"/>
 			              <span class="input-group-btn">
-			                <button class="btn btn-default" ng-click="open($event, 'startDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+			                <button class="btn btn-default" ng-click="open($event, 'start')"><i class="glyphicon glyphicon-calendar"></i></button>
+			              </span>
+			            </p>
+			        </div>
+			    </div>
+			    <div>
+				    <label for="title" class="col-md-2 control-label">Fin</label>
+			        <div class="col-md-4">
+			            <p class="input-group">
+			              <input type="text" class="form-control" datepicker-popup="{{format}}" data-ng-model="end" is-open="$parent.openedEndDate" min="minDate" max="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" show-button-bar="false"/>
+			              <span class="input-group-btn">
+			                <button class="btn btn-default" ng-click="open($event, 'end')"><i class="glyphicon glyphicon-calendar"></i></button>
 			              </span>
 			            </p>
 			        </div>
 			    </div>
 			</div>
 			<div class="form-group">
-				<div>
-				    <label for="title" class="col-md-2 control-label">Fin</label>
-			        <div class="col-md-10">
+				<div lass="col-md-10">
+				    <label for="title" class="col-md-2 control-label">Localisation</label>
+				     <!-- search/go to current location -->
+				     <div class="col-md-10" style="margin-bottom: 15px;">
 			            <p class="input-group">
-			              <input type="text" class="form-control" datepicker-popup="{{format}}" data-ng-model="endDate" is-open="$parent.openedEndDate" min="maxDate" max="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" show-button-bar="false"/>
+			              <input type="text" class="form-control" ng-model="search"/>
 			              <span class="input-group-btn">
-			                <button class="btn btn-default" ng-click="open($event, 'endDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+				            <button class="btn" type="button" ng-click="geoCode()" ng-disabled="search.length == 0" title="search" >
+				              &nbsp;<i class="glyphicon glyphicon-search"></i>
+				            </button>
+				            <button class="btn" type="button" ng-click="gotoCurrentLocation()" title="current location">
+				              &nbsp;<i class="glyphicon glyphicon-home"></i>
+				            </button>
 			              </span>
 			            </p>
+			        </div>
+				    <div class="col-md-12">
+			        	<google-map center="map.center" zoom="map.zoom"></google-map>
 			        </div>
 			    </div>
 			</div>
@@ -70,7 +90,7 @@
 					</div>
 			    </div>
 			</div>
-	    </form>
+	    </form>	
     </section>
 </div>
 <div class="modal-footer">

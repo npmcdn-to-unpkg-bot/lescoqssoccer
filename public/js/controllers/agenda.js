@@ -3,60 +3,70 @@
 angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeParams', '$location', 'Global', 'UserEvent', function ($scope, $routeParams, $location, Global, UserEvent) {
     
     $scope.global = Global;
-
-    var date = new Date();
-    var d = date.getDate();
-    var m = date.getMonth();
-    var y = date.getFullYear();
+    $scope.selectedEvent;
+    $scope.selectedDate;
 
     $scope.loadEvent = function(){
       $scope.events = [];
       UserEvent.query(function(userEvents) {
         angular.forEach(userEvents,function(userEvent, key){
-          $scope.events.push({
-              title: userEvent.content,
-              start: userEvent.startDate,
-              end: userEvent.endDate
-            });
+          $scope.events.push(userEvent);
         });
-          
-        $scope.eventSources = [$scope.events];
       });
     };
 
     /* alert on eventClick */
-    $scope.alertEventOnClick = function( date, allDay, jsEvent, view ){
-       // $scope.alertMessage = ('Day Clicked ' + date);
-       $scope.addEvent(date);
+    $scope.alertEventOnClick = function(date, allDay, jsEvent, view ){
+      $scope.selectedEvent = undefined;
+      $scope.add(date);
     };
 
-    $scope.alertOnEventClick = function( event, allDay, jsEvent, view ){
-        this.startDate = event.startDate;
-        var $modalScope = angular.element('#modal').scope();
-        $modalScope.open('modal.html', 'UserEventController');
+    $scope.alertOnEventClick = function(event, allDay, jsEvent, view ){
+        $scope.selectedEvent = event;
     };
 
     /* alert on Drop */
     $scope.alertOnDrop = function(event, dayDelta, minuteDelta, allDay, revertFunc, jsEvent, ui, view){
-        // $scope.alertMessage = ('Event Droped to make dayDelta ' + dayDelta);
+        $scope.update = event;
     };
 
     /* alert on Resize */
     $scope.alertOnResize = function(event, dayDelta, minuteDelta, revertFunc, jsEvent, ui, view ){
-        // $scope.alertMessage = ('Event Resized to make dayDelta ' + minuteDelta);
+        $scope.update = event;
     };
 
     /* add custom event*/
-    $scope.addEvent = function(startDate) {
-      
-      this.startDate = startDate;
+    $scope.add = function(start) {
+      $scope.selectedDate = start;
       var $modalScope = angular.element('#modal').scope();
       $modalScope.open('modal.html', 'UserEventController');
     };
 
+    $scope.update = function(userEvent){
+      if (userEvent) {
+        userEvent.$update(function() {
+          for (var i in $scope.events) {
+            if ($scope.events[i].uuid === userEvent._id) {
+                $scope.events[i] = userEvent;
+            }
+          }
+        });
+      } else {
+        alert("Erreur dans la mise à jour de l'évènement");
+      }
+    };
+
     /* remove event */
     $scope.remove = function(index) {
-      $scope.events.splice(index,1);
+
+      var userEvent = $scope.events[index];
+      if (userEvent) {
+          userEvent.$remove(function(){
+            $scope.events.splice(index,1);
+          });
+      } else {
+          alert("Erreur dans la suppression de l'évènement");
+      }
     };
 
     /* Change View */

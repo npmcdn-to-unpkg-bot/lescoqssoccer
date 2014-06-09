@@ -6,7 +6,14 @@ angular.module('mean.agenda').controller('UserEventController', ['$scope', '$mod
 
     $scope.create = function(userEvent) {
 
-        userEvent.uuid = guid();
+        var userEvent = new UserEvent({
+            title: this.title,
+            content: this.content,
+            start: this.start,
+            end: this.end
+            //  , community: this.community,
+            // location: this.location
+        });
         userEvent.$save(function(response) { 
             $scope.userEvents.push(response.userEvent);
         });
@@ -73,24 +80,24 @@ angular.module('mean.agenda').controller('UserEventController', ['$scope', '$mod
     Date picker management
     ***/
     $scope.initialize = function() {
-        var startDate = angular.element('#directives-calendar').scope().startDate;
-        if(startDate){
-            $scope.startDate = startDate;
-            $scope.endDate = startDate;
+        var start = angular.element('#directives-calendar').scope().selectedDate;
+        if(start){
+            $scope.start = start;
+            $scope.end = start;
         } else {
-            $scope.startDate = new Date();
-            $scope.endDate = new Date();
+            $scope.start = new Date();
+            $scope.end = new Date();
         }
     };
 
     $scope.clear = function () {
-        $scope.startDate = null;
-        $scope.endDate = null;
+        $scope.start = null;
+        $scope.end = null;
     };
 
     // Disable weekend selection
     $scope.disabled = function(date, mode) {
-        return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+        return ( $scope.openedEndDate === true && date < $scope.start );
     };
 
     $scope.toggleMin = function() {
@@ -101,11 +108,10 @@ angular.module('mean.agenda').controller('UserEventController', ['$scope', '$mod
         $event.preventDefault();
         $event.stopPropagation();
 
-        if(datepicker === 'startDate'){
+        if(datepicker === 'start'){
             $scope.openedStartDate = ( $scope.openedStartDate ) ? false : true;
             $scope.openedEndDate = false;
-        }
-        else {
+        } else {
             $scope.openedEndDate = ( $scope.openedEndDate ) ? false : true;
             $scope.openedStartDate = false;
         }
@@ -120,4 +126,44 @@ angular.module('mean.agenda').controller('UserEventController', ['$scope', '$mod
     $scope.toggleMin();
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'shortDate'];
     $scope.format = $scope.formats[0];
+
+    $scope.map = {
+        center: {
+            latitude: 45,
+            longitude: -73
+        },
+        zoom: 8
+    };
+
+    $scope.geoCode = function () {
+        if ($scope.search && $scope.search.length > 0) {
+            if (!this.geocoder) this.geocoder = new google.maps.Geocoder();
+            this.geocoder.geocode({ 'address': $scope.search }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    var loc = results[0].geometry.location;
+                    $scope.search = results[0].formatted_address;
+                    $scope.gotoLocation(loc.lat(), loc.lng());
+                } else {
+                    alert("Sorry, this search produced no results.");
+                }
+            });
+        }
+    };
+
+    $scope.gotoCurrentLocation = function () {
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var c = position.coords;
+                $scope.gotoLocation(c.latitude, c.longitude);
+            });
+            return true;
+        }
+        return false;
+    };
+    $scope.gotoLocation = function (lat, lon) {
+        if ($scope.lat != lat || $scope.lon != lon) {
+            $scope.map.center = { lat: lat, lon: lon };
+            if (!$scope.$$phase) $scope.$apply("loc");
+        }
+    };
 }]);

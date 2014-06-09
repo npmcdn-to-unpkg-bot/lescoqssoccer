@@ -1308,3 +1308,8 @@ button::-moz-focus-inner {
 	right: -5px;
 	font-size: 14px;
 }
+
+.angular-google-map-container { 
+	height: 350px; 
+	margin: 6px 15px;
+}

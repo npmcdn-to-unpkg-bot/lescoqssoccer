@@ -1,33 +1,47 @@
-<section data-ng-controller="ArticlesController">
-    <form class="form-horizontal col-md-6" role="form" data-ng-submit="create()">
-        <div class="left-col">
-            <div class="member-avatar">
-                <img src="images/member-1.jpg" alt=""/>
-            </div>
+    <section data-ng-controller="ArticlesController">
+    
+    <div class="left-col col-md-4">
+        <div class="member-avatar">
+            <img src="images/member-1.jpg" alt=""/>
         </div>
-        <div class="clear"></div>
-        <div class="form-group">
-            <label for="title" class="col-md-2 control-label">Nom</label>
-            <div class="col-md-10">
-                <input type="text" class="form-control" data-ng-model="global.user.name" id="title" placeholder="Title" required>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="title" class="col-md-2 control-label">Mot de passe</label>
-            <div class="col-md-10">
-                <input type="password" class="form-control" data-ng-model="global.user.password" id="password" required>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="title" class="col-md-2 control-label">Confirmer</label>
-            <div class="col-md-10">
-                <input type="password" class="form-control" id="passwordConfirm" required>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <button type="submit" class="btn btn-default">Mettre à jour le profil</button>
-            </div>
-        </div>
-    </form>
+    </div>
+
+    <div class="col-md-8">
+        <tabset justified="true" >
+            <tab heading="Profile">
+                <form class="form-horizontal col-md-6" role="form" data-ng-submit="create()" style="margin-top: 50px;">
+                    <div class="form-group">
+                        <label for="title" class="col-md-6 control-label">Nom</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" data-ng-model="global.user.name" id="title" placeholder="Title" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-md-6 control-label">Mot de passe</label>
+                        <div class="col-md-6">
+                            <input type="password" class="form-control" data-ng-model="global.user.password" id="password" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="passwordConfirm" class="col-md-6 control-label">Confirmer</label>
+                        <div class="col-md-6">
+                            <input type="password" class="form-control" id="passwordConfirm" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-4 col-md-10">
+                            <button type="submit" class="btn btn-default">Mettre à jour le profil</button>
+                        </div>
+                    </div>
+                </form>
+            </tab>
+            <tab heading="Skills"></tab>
+            <tab heading="Community"></tab>
+        </tabset>
+    </div>
+
+    <div class="left-col col-md-4">
+        <h2>{{global.user.name}}</h2>
+    </div>
+
 </section>

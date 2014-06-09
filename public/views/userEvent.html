@@ -17,9 +17,9 @@
 			    <label for="title" class="col-md-2 control-label">Début</label>
 		        <div class="col-md-10">
 		            <p class="input-group">
-		              <input type="text" UserEventDirective startDate="startDate" class="form-control" datepicker-popup="{{format}}" is-open="$parent.openedStartDate" min="minDate" max="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" show-button-bar="false"/>
+		              <input type="text" start="start" class="form-control" datepicker-popup="{{format}}" is-open="$parent.openedStartDate" min="minDate" max="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" show-button-bar="false"/>
 		              <span class="input-group-btn">
-		                <button class="btn btn-default" ng-click="open($event, 'startDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+		                <button class="btn btn-default" ng-click="open($event, 'start')"><i class="glyphicon glyphicon-calendar"></i></button>
 		              </span>
 		            </p>
 		        </div>
@@ -30,12 +30,18 @@
 			    <label for="title" class="col-md-2 control-label">Fin</label>
 		        <div class="col-md-10">
 		            <p class="input-group">
-		              <input type="text" UserEventDirective endDate="endDate" class="form-control" datepicker-popup="{{format}}" is-open="$parent.openedEndDate" min="maxDate" max="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" show-button-bar="false"/>
+		              <input type="text" end="end" class="form-control" datepicker-popup="{{format}}" is-open="$parent.openedEndDate" min="minDate" max="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" show-button-bar="false"/>
 		              <span class="input-group-btn">
-		                <button class="btn btn-default" ng-click="open($event, 'endDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+		                <button class="btn btn-default" ng-click="open($event, 'end')"><i class="glyphicon glyphicon-calendar"></i></button>
 		              </span>
 		            </p>
 		        </div>
+		    </div>
+		</div>
+		<div class="form-group">
+			<div>
+			    <label for="title" class="col-md-2 control-label">Localisation</label>
+		        <google-map center="map.center" zoom="map.zoom"></google-map>
 		    </div>
 		</div>
     </form>
