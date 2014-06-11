@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeParams', '$location', 'Global', 'UserEvent', function ($scope, $routeParams, $location, Global, UserEvent) {
-    
+
     $scope.global = Global;
     $scope.selectedEvent;
     $scope.selectedDate;
+    $scope.display = "calendar";
 
     $scope.loadEvent = function(){
       $scope.events = [];
@@ -118,4 +119,44 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
     $scope.loadEvent();
     $scope.eventSources = [$scope.events];
     $scope.changeLang('french');
+
+    $scope.map = {
+        center: {
+            latitude: 45,
+            longitude: -73
+        },
+        zoom: 8
+    };
+
+    $scope.geoCode = function () {
+        if ($scope.search && $scope.search.length > 0) {
+            if (!this.geocoder) this.geocoder = new google.maps.Geocoder();
+            this.geocoder.geocode({ 'address': $scope.search }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    var loc = results[0].geometry.location;
+                    $scope.search = results[0].formatted_address;
+                    $scope.gotoLocation(loc.lat(), loc.lng());
+                } else {
+                    alert("Sorry, this search produced no results.");
+                }
+            });
+        }
+    };
+
+    $scope.gotoCurrentLocation = function () {
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var c = position.coords;
+                $scope.gotoLocation(c.latitude, c.longitude);
+            });
+            return true;
+        }
+        return false;
+    };
+    $scope.gotoLocation = function (lat, lon) {
+        if ($scope.lat != lat || $scope.lon != lon) {
+            $scope.map.center = { lat: lat, lon: lon };
+            if (!$scope.$$phase) $scope.$apply("loc");
+        }
+    };
 }]);
