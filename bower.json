@@ -11,10 +11,11 @@
     "angular-bootstrap": "0.10.0",
     "angular-ui-utils": "0.1.0",
     "angular-charts": "latest",
-    "d3": "~3.3.10",
+    "d3": "latest",
     "jquery": "~2.0.3",
     "angular-ui-calendar": "latest",
     "es5-shim": "~2.1.0",
-    "angular-google-maps": "latest"
+    "angular-google-maps": "latest",
+    "angular-file-upload": "latest"
   }
 }
