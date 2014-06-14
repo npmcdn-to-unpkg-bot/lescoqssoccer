@@ -17,7 +17,7 @@ angular.module('mean').config(['$routeProvider',
             templateUrl: 'views/articles/view.html'
         }).
         when('/agenda', {
-            templateUrl: 'views/agenda.html'
+            templateUrl: 'views/agenda/agenda.html'
         }).
         when('/team', {
             templateUrl: 'views/team/team.html'
