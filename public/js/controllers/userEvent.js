@@ -73,7 +73,7 @@ angular.module('mean.agenda').controller('UserEventController', ['$scope', '$mod
     };
 
     $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $modalInstance.close();
     };
 
     /***
@@ -134,15 +134,16 @@ angular.module('mean.agenda').controller('UserEventController', ['$scope', '$mod
         },
         zoom: 8
     };
-
+    
     $scope.geoCode = function () {
-        if ($scope.search && $scope.search.length > 0) {
+        var self = this;
+        if (this.search && this.search.length > 0) {
             if (!this.geocoder) this.geocoder = new google.maps.Geocoder();
-            this.geocoder.geocode({ 'address': $scope.search }, function (results, status) {
+            this.geocoder.geocode({ 'address': this.search }, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     var loc = results[0].geometry.location;
-                    $scope.search = results[0].formatted_address;
-                    $scope.gotoLocation(loc.lat(), loc.lng());
+                    self.search = results[0].formatted_address;
+                    self.gotoLocation(loc.lat(), loc.lng());
                 } else {
                     alert("Sorry, this search produced no results.");
                 }
@@ -162,8 +163,40 @@ angular.module('mean.agenda').controller('UserEventController', ['$scope', '$mod
     };
     $scope.gotoLocation = function (lat, lon) {
         if ($scope.lat != lat || $scope.lon != lon) {
-            $scope.map.center = { lat: lat, lon: lon };
+            $scope.map.center = { 
+                latitude: lat, 
+                longitude: lon 
+            };
             if (!$scope.$$phase) $scope.$apply("loc");
         }
     };
+
+
+    var tabClasses;
+  
+  function initTabs() {
+    tabClasses = ["","","",""];
+  }
+  
+  $scope.getTabClass = function (tabNum) {
+    return tabClasses[tabNum];
+  };
+  
+  $scope.getTabPaneClass = function (tabNum) {
+    return "tab-pane " + tabClasses[tabNum];
+  }
+  
+  $scope.setActiveTab = function (tabNum) {
+    initTabs();
+    tabClasses[tabNum] = "active";
+  };
+  
+  $scope.tab1 = "This is FIRST section: Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.";
+  $scope.tab2 = "This is SECOND section: Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.";
+  $scope.tab3 = "This is THIRD section: Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem.  Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.";
+  $scope.tab4 = "This is FOURTH section: Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.";
+  
+  //Initialize 
+  initTabs();
+  $scope.setActiveTab(1);
 }]);

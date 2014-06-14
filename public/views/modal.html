@@ -46,7 +46,7 @@
 				     <!-- search/go to current location -->
 				     <div class="col-md-10" style="margin-bottom: 15px;">
 			            <p class="input-group">
-			              <input type="text" class="form-control" ng-model="search"/>
+			              <input type="text" class="form-control" data-ng-model="search"/>
 			              <span class="input-group-btn">
 				            <button class="btn" type="button" ng-click="geoCode()" ng-disabled="search.length == 0" title="search" >
 				              &nbsp;<i class="glyphicon glyphicon-search"></i>
@@ -92,6 +92,68 @@
 			</div>
 	    </form>	
     </section>
+</div>
+<div class="tabbable tabs-left">
+      <ul class="nav nav-tabs">
+         <li ng-class="getTabClass(1)" ng-click="setActiveTab(1)"><a href="#deal" data-toggle="tab">Deal</a></li>
+         <li ng-class="getTabClass(2)" ng-click="setActiveTab(2)"><a href="#bond" data-toggle="tab">Bond</a></li>
+         <li ng-class="getTabClass(3)" ng-click="setActiveTab(3)"><a href="#collateral" data-toggle="tab">Collateral</a></li>
+         <li ng-class="getTabClass(4)" ng-click="setActiveTab(4)"><a href="#rating" data-toggle="tab">Rating</a></li>
+      </ul>
+      <div class="tab-content">
+        <div ng-class="getTabPaneClass(1)" id="deal" class="content">  
+	        <form>  
+	            <div class="form-group">
+				    <label for="title" class="col-md-2 control-label">Titre</label>
+					<div class="col-md-10">
+						<input type="text" class="form-control" data-ng-model="title" id="title" placeholder="Titre de l'évènement" required>
+					</div>
+				</div>
+				<div class="form-group">
+				    <label for="title" class="col-md-2 control-label">Contenu</label>
+					<div class="col-md-10">
+						<textarea class="form-control" data-ng-model="content" id="content" placeholder="Contenu de l'évènement" required style="min-height:150px;"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<div>
+					    <label for="title" class="col-md-2 control-label">Début</label>
+				        <div class="col-md-4">
+				            <p class="input-group">
+				              <input type="text" class="form-control" datepicker-popup="{{format}}" data-ng-model="start" is-open="$parent.openedStartDate" min="minDate" max="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" show-button-bar="false"/>
+				              <span class="input-group-btn">
+				                <button class="btn btn-default" ng-click="open($event, 'start')"><i class="glyphicon glyphicon-calendar"></i></button>
+				              </span>
+				            </p>
+				        </div>
+				    </div>
+				    <div>
+					    <label for="title" class="col-md-2 control-label">Fin</label>
+				        <div class="col-md-4">
+				            <p class="input-group">
+				              <input type="text" class="form-control" datepicker-popup="{{format}}" data-ng-model="end" is-open="$parent.openedEndDate" min="minDate" max="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" show-button-bar="false"/>
+				              <span class="input-group-btn">
+				                <button class="btn btn-default" ng-click="open($event, 'end')"><i class="glyphicon glyphicon-calendar"></i></button>
+				              </span>
+				            </p>
+				        </div>
+				    </div>
+				</div>
+			</form>
+        </div>    
+        
+        <div ng-class="getTabPaneClass(2)" id="bond" class="content">     
+          {{tab2}}
+        </div>
+        
+        <div ng-class="getTabPaneClass(3)" id="collateral" class="content">     
+          {{tab3}}
+        </div>
+        
+        <div ng-class="getTabPaneClass(4)" id="rating" class="content">     
+          {{tab4}}
+        </div>
+	</div>
 </div>
 <div class="modal-footer">
     <button class="btn btn-primary" ng-click="ok()">OK</button>
