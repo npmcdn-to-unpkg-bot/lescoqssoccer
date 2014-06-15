@@ -1,7 +1,7 @@
 <section class="mainContent" data-ng-controller="agendaController">
 
     <section class="controls no-select" style="position: absolute; left: 0; top: 0;">
-      <div class="tControls">
+      <div class="tControls" style="height: calc(100% - 50px);">
         <div class="top" style="margin-top: 50px;">
           <button ng-click="items.showCreationForm()" class="btn" title="Créer un nouvel article" alt="Créer un nouvel article">
             <i class="glyphicon glyphicon-plus"></i>
@@ -13,7 +13,7 @@
             <i class="glyphicon glyphicon-trash"></i>
           </button>
         </div>
-        <div class="middle">
+        <div class="middle" style="height: calc(100% - 50px);">
           <button ng-click="items.prev();" class="btn" ng-disabled="!items.hasPrev()">
             <i class="glyphicon glyphicon-arrow-up"></i>
           </button>
@@ -21,10 +21,6 @@
             <i class="glyphicon glyphicon-arrow-down"></i>
           </button>
         </div>
-        <div class="bottom">
-          <button ng-click="refresh()" class="btn" title="Refresh feeds" alt="Refresh feeds">
-            <i class="glyphicon glyphicon-refresh"></i>
-          </button>
         </div>
       </div>
     </section>

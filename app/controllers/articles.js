@@ -46,7 +46,6 @@ exports.update = function(req, res) {
     var article = req.article;
 
     article = _.extend(article, req.body);
-
     article.save(function(err) {
         if (err) {
             return res.send('users/signup', {

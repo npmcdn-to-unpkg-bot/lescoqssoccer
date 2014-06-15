@@ -1,31 +1,26 @@
 <section class="mainContent" data-ng-controller="ArticlesController">
 
     <section class="controls no-select" style="position: absolute; left: 0; top: 0;">
-      <div class="tControls">
+      <div class="tControls" style="height: calc(100% - 50px);">
         <div class="top" style="margin-top: 50px;">
           <button ng-click="showCreationForm()" class="btn" title="Créer un nouvel article" alt="Créer un nouvel article">
             <i class="glyphicon glyphicon-plus"></i>
           </button>
-          <button ng-click="showEditionForm()" ng-disabled="!selected" class="btn" title="Editer l'article" alt="Editer l'article">
+          <button ng-click="showEditionForm()" ng-disabled="!selected.selected" class="btn" title="Editer l'article" alt="Editer l'article">
             <i class="glyphicon glyphicon-edit"></i>
           </button>
           <div id="modal" ng-controller="Modal" style="display: inline-block;">
-                <button class="btn" ng-disabled="!selected" data-ng-click="open('modal.html', 'Articles', 'Etes vous sure...', remove)">
+                <button class="btn" ng-disabled="!selected.selected" data-ng-click="open('modal.html', 'Articles', 'Etes vous sure...', remove)">
                     <i class="glyphicon glyphicon-trash"></i>
                 </button>
           </div>
         </div>
-        <div class="middle">
+        <div class="middle" style="height: calc(100% - 50px);">
           <button ng-click="prev();" class="btn" ng-disabled="!hasPrev()">
             <i class="glyphicon glyphicon-arrow-up"></i>
           </button>
           <button ng-click="next();" class="btn" ng-disabled="!hasNext()">
             <i class="glyphicon glyphicon-arrow-down"></i>
-          </button>
-        </div>
-        <div class="bottom">
-          <button ng-click="refresh()" class="btn" title="Refresh feeds" alt="Refresh feeds">
-            <i class="glyphicon glyphicon-refresh"></i>
           </button>
         </div>
       </div>
@@ -37,14 +32,9 @@
                ng-class="{active: article.selected}" class="well summary"
                ng-click="selectItem($index);">
         <div class="row-fluid" >
-          <div class="span6 pub-name">
-            {{article.title}}
-          </div>
-          <div class="span6 pub-date">
-            {{article.created}}
-          </div>
+          <h3 class="pub-title">{{article.title}}</h3>
+          <h3 class="pub-title">{{article.created | date:dateFormat}}</h3>
         </div>
-        <h3 class="pub-title">{{article.title}}</h3>
       </article>
     </section>
 

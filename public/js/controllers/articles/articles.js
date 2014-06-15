@@ -7,14 +7,18 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
     $scope.filtered = [];
     $scope.selected = null;
     $scope.selectedIdx = null;
+    $scope.editingArticle = null;
     $scope.readCount = 0;
     $scope.starredCount = 0;
     $scope.onCreation = false;
 
+    $scope.dateFormat = "dd/MM/yyyy 'à' h'h'mm";
+
     $scope.create = function() {
         var article = new Articles({
             title: this.title,
-            content: this.content
+            content: this.content,
+            link: this.link
         });
         article.$save(function(response) {
             $scope.find();
@@ -53,22 +57,26 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
     };
 
     $scope.findOne = function(articleId) {
-        if(articleId){
+      if(articleId){
           Articles.get({
               articleId: articleId
           }, function(article) {
               $scope.article = article;
           });
-        }
+      }
     };
 
     $scope.update = function() {
-      if ($scope.selected) {
-        $scope.selected.$update(function(response) {
-            $scope.find(true);
-        });
+      if ($scope.editingArticle) {
+          $scope.editingArticle.$update(function(response) {
+              $scope.filtered[$scope.selectedIdx] = response;
+              $scope.selected = response;
+              $scope.selected.selected = true;
+              $scope.onEdition = false;
+              $scope.editingArticle = null;
+          });
       } else {
-        alert("error");
+          alert("error");
       }
     };
 
@@ -128,6 +136,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
     };
 
     $scope.showEditionForm = function() {
+      $scope.editingArticle = _.clone($scope.selected);
       $scope.onEdition = true;
       $scope.onCreation = false;
     };

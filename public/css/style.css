@@ -1313,3 +1313,38 @@ button::-moz-focus-inner {
 	height: 350px; 
 	margin: 6px 15px;
 }
+
+.edit-profile-avatar .manual-file-chooser {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 146px;
+	height: 34px;
+	margin-left: 0;
+	padding: 0;
+	cursor: pointer;
+}
+
+.edit-profile-avatar .button.button-change-profile-picture .label-upload-profile-picture {
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
+.manual-file-chooser {
+	position: absolute;
+	width: 240px;
+	margin-left: -80px;
+	padding: 5px;
+	opacity: .0001;
+	cursor: pointer;
+}
+
+.imgThumbnail{
+	vertical-align: middle; 
+	margin-left: 5px; 
+	margin-right: 20px;
+	border-radius: 5px;
+	vertical-align: bottom;
+}
