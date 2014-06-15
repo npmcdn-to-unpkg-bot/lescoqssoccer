@@ -1,14 +1,19 @@
-<section data-ng-controller="ArticlesController">
-    <h2>{{items.selected.title}}</h2>
-    <div>{{items.selected.content}}</div>
-    <div data-ng-show="global.user._id == items.selected.user._id">
-        <a class="btn" ng-click="items.showEditionForm()" style="padding-left: 0;">
-        	<i class="glyphicon glyphicon-edit"></i>
-        </a> 
-        <div id="modal" ng-controller="Modal" style="display: inline-block;">
-            <a class="btn" data-ng-click="open('articles/delete.html', 'ArticlesDeleteController')">
-                <i class="glyphicon glyphicon-trash"></i>
-            </a>
+<section>
+     <div class="row-fluid">
+        <h2>{{selected.title}}</h2>
+        <span class="author">{{selected.user.name}}</span> - le <span class="pub-name">{{selected.created | date:'medium'}}</span>
+        <hr />
+        <h2>{{selected.title}}</h2>
+        <div>{{selected.content}}</div>
+        <div data-ng-show="global.user._id == selected.user._id">
+            <a class="btn" ng-click="showEditionForm()" style="padding-left: 0;">
+            	<i class="glyphicon glyphicon-edit"></i>
+            </a> 
+            <div id="modal" ng-controller="Modal" style="display: inline-block;">
+                <a class="btn" data-ng-click="open('modal.html', 'Articles', 'Etes vous sure...', remove)">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+            </div>
         </div>
     </div>
 </section>

@@ -1,21 +1,72 @@
-<section data-ng-controller="ArticlesController" data-ng-init="find()" class="col-md-6">
-	<div id="modal" class="btn-group" ng-controller="Modal">
-        <button class="btn btn-default" ng-click="open('articles/create.html', 'ArticlesController')">Ajouter un article</button>
-    </div>
-	<ul class="articles unstyled">
-		<li data-ng-repeat="article in articles">
-			<div class="articleItem">
-			    <div class="date">
-			    	<strong>{{article.created | date:'dd'}}</strong>
-			    	<span>{{article.created | date:'MMMM yyyy'}}</span>
-			    </div>
-			    <p>
-			    	<a data-ng-href="#!/articles/{{article._id}}">{{article.title}}</a><br>
-			    	{{article.content}}
-			    </p>
-			    <p style="font-style:italic">de {{article.user.name}}</p>
-			</div>
-		</li>
-	</ul>
-	<h1 data-ng-hide="!articles || articles.length">No articles yet. <br> Why don't you <a href="/#!/articles/create">Create One</a>?</h1>
+<section class="mainContent" data-ng-controller="ArticlesController">
+
+    <section class="controls no-select" style="position: absolute; left: 0; top: 0;">
+      <div class="tControls">
+        <div class="top" style="margin-top: 50px;">
+          <button ng-click="showCreationForm()" class="btn" title="Créer un nouvel article" alt="Créer un nouvel article">
+            <i class="glyphicon glyphicon-plus"></i>
+          </button>
+          <button ng-click="showEditionForm()" ng-disabled="!selected" class="btn" title="Editer l'article" alt="Editer l'article">
+            <i class="glyphicon glyphicon-edit"></i>
+          </button>
+          <div id="modal" ng-controller="Modal" style="display: inline-block;">
+                <button class="btn" ng-disabled="!selected" data-ng-click="open('modal.html', 'Articles', 'Etes vous sure...', remove)">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </button>
+          </div>
+        </div>
+        <div class="middle">
+          <button ng-click="prev();" class="btn" ng-disabled="!hasPrev()">
+            <i class="glyphicon glyphicon-arrow-up"></i>
+          </button>
+          <button ng-click="next();" class="btn" ng-disabled="!hasNext()">
+            <i class="glyphicon glyphicon-arrow-down"></i>
+          </button>
+        </div>
+        <div class="bottom">
+          <button ng-click="refresh()" class="btn" title="Refresh feeds" alt="Refresh feeds">
+            <i class="glyphicon glyphicon-refresh"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="summaries" style="position: absolute; left: 50px; top: 50px; height: calc(100% - 50px);">
+      <article ng-repeat="article in all"
+               id="{{article._id}}"
+               ng-class="{active: article.selected}" class="well summary"
+               ng-click="selectItem($index);">
+        <div class="row-fluid" >
+          <div class="span6 pub-name">
+            {{article.title}}
+          </div>
+          <div class="span6 pub-date">
+            {{article.created}}
+          </div>
+        </div>
+        <h3 class="pub-title">{{article.title}}</h3>
+      </article>
+    </section>
+
+    <section class="entries" style="padding-top: 0; margin-left: 300px;">
+      <article class="nothingSelected" ng-show="(!filtered.length || !selected.selected) && !onCreation">
+        <img src="img/sadpanda.png" alt="Sad Panda" title="Sad Panda">
+        <p>Nothing selected.</p>
+      </article>
+
+      <article class="well entry active"
+               ng-show="selected.selected && !onCreation && !onEdition">
+        <w-Viewarticle></w-Viewarticle>
+      </article>
+
+      <article class="well entry active" 
+               ng-show="onCreation">
+        <w-Createarticle></w-Createarticle>
+      </article>
+
+      <article class="well entry active" 
+               ng-show="onEdition">
+        <w-Editarticle></w-Editarticle>
+      </article>
+    </section>
 </section>

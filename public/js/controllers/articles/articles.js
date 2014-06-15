@@ -1,9 +1,15 @@
 'use strict';
 
-angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', 'Global', 'Articles', 'items', 'scroll', function ($scope, $routeParams, $location, Global, Articles, items, scroll) {
+angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', 'Global', 'Articles', 'scroll', function ($scope, $routeParams, $location, Global, Articles, scroll) {
     
     $scope.global = Global;
-    $scope.items = items;
+    $scope.all = [];
+    $scope.filtered = [];
+    $scope.selected = null;
+    $scope.selectedIdx = null;
+    $scope.readCount = 0;
+    $scope.starredCount = 0;
+    $scope.onCreation = false;
 
     $scope.create = function() {
         var article = new Articles({
@@ -11,41 +17,38 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
             content: this.content
         });
         article.$save(function(response) {
-            $scope.items.getItemsFromDataStore();
+            $scope.find();
         });
     };
 
-    $scope.remove = function(article) {
-        if (article) {
-            article.$remove(function(response){
-              for (var i in $scope.articles) {
-                if ($scope.articles[i] === article) {
-                    $scope.articles.splice(i, 1);
-                }
-              }
-              $scope.items.getItemsFromDataStore(true);
+    $scope.find = function(selectNextElement) {
+        Articles.query(function(articles) {      
+
+            $scope.all = [];
+
+            angular.forEach(articles, function(article) {
+
+               $scope.all.push(article);
+
+                // items.all.sort(function(articleA, articlesB) {
+                //   return new Date(articlesB.created).getTime() - new Date(articleA.created).getTime();
+                // });
+
+                $scope.filtered = $scope.all;
+                $scope.readCount = $scope.all.reduce(function(count, item) { return item.read ? ++count : count; }, 0);
+                $scope.starredCount = $scope.all.reduce(function(count, item) { return item.starred ? ++count : count; }, 0);
+                $scope.selected = $scope.selected
+                  ? $scope.all.filter(function(item) { return item.id == $scope.selected.id; })[0]
+                  : null;
+                $scope.reindexSelectedItem();
             });
-        } else {
-            $scope.article.$remove();
-            $location.path('articles');
-        }
-    };
 
-    $scope.update = function() {
-        var article = $scope.article;
-        if (!article.updated) {
-            article.updated = [];
-        }
-        article.updated.push(new Date().getTime());
-
-        article.$update(function() {
-            $location.path('articles/' + article._id);
-        });
-    };
-
-    $scope.find = function() {
-        Articles.query(function(articles) {
-            $scope.articles = articles;
+            if(selectNextElement){
+                if($scope.all.length > 0)
+                    $scope.prev();
+                else
+                    $scope.selected = undefined;
+            }
         });
     };
 
@@ -59,20 +62,125 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
         }
     };
 
+    $scope.update = function() {
+      if ($scope.selected) {
+        $scope.selected.$update(function(response) {
+            $scope.find(true);
+        });
+      } else {
+        alert("error");
+      }
+    };
+
+    $scope.remove = function() {
+        if ($scope.selected) {
+          $scope.selected.$remove(function(response){
+              $scope.find(true);
+          });
+        } else {
+          alert("error");
+        }
+    };
+
+    $scope.prev = function() {
+      if (this.hasPrev()) {
+        $scope.selectItem(this.selected ? $scope.selectedIdx - 1 : 0);
+      }
+    };
+
+    $scope.next = function() {
+      if (this.hasNext()) {
+        $scope.selectItem($scope.selected ? $scope.selectedIdx + 1 : 0);
+      }
+    };
+
+    $scope.hasPrev = function() {
+      if (!this.selected) {
+        return true;
+      }
+      return this.selectedIdx > 0;
+    };
+
+    $scope.hasNext = function() {
+      if (!$scope.selected) {
+        return true;
+      }
+      return $scope.selectedIdx < $scope.filtered.length - 1;
+    };
+
+    $scope.selectItem = function(idx) {
+
+        // Unselect previous selection.
+        if ($scope.selected) {
+            $scope.selected.selected = false;
+        }
+
+        $scope.selected = $scope.filtered[idx];
+        $scope.selectedIdx = idx;
+        $scope.selected.selected = true;
+        $scope.onCreation = $scope.onEdition = false;
+    };
+
+    $scope.showCreationForm = function() {
+      if($scope.selected) $scope.selected.selected = false;
+      $scope.onCreation = true;
+      $scope.onEdition = false;
+    };
+
+    $scope.showEditionForm = function() {
+      $scope.onEdition = true;
+      $scope.onCreation = false;
+    };
+
+    $scope.filterBy = function(key, value) {
+      $scope.filtered = $scope.all.filter(function(item) {
+        return item[key] === value;
+      });
+      $scope.reindexSelectedItem();
+    };
+
+    $scope.clearFilter = function() {
+      this.filtered = this.all;
+      this.reindexSelectedItem();
+    };
+
+    $scope.reindexSelectedItem = function() {
+      if ($scope.selected) {
+        var idx = $scope.filtered.indexOf($scope.selected);
+
+        if (idx === -1) {
+          if ($scope.selected) $scope.selected.selected = false;
+
+          $scope.selected = null;
+          $scope.selectedIdx = null;
+        } else {
+          $scope.selectedIdx = idx;
+          $scope.selected = $scope.filtered[idx];
+          $scope.selected.selected = true;
+        }
+      }
+    };
+
     $scope.refresh = function() {
-      
+        $scope.find();
     };
 
     $scope.handleSpace = function() {
       if (!scroll.pageDown()) {
-        items.next();
+        $scope.next();
       }
     };
 
-    $scope.$watch('items.selectedIdx', function(newVal) {
+    $scope.$watch('selectedIdx', function(newVal) {
       if (newVal !== null) {
         scroll.toCurrent();
-        $scope.findOne(items.selected.id);
       }
     });
+
+    $scope.find();
 }]);
+
+
+
+
+
