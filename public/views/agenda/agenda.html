@@ -125,7 +125,28 @@
             </div>
         </div>
       </article>
+    </section>
 
+    <section class="entries" style="padding-top: 0; margin-left: 350px;">
+      <article class="nothingSelected" ng-show="(!filtered.length || !selected.selected) && !onCreation">
+        <img src="img/sadpanda.png" alt="Sad Panda" title="Sad Panda">
+        <p>Nothing selected.</p>
+      </article>
+
+      <article class="well entry active"
+               ng-show="selected.selected && !onCreation && !onEdition">
+        <w-Viewagenda></w-Viewagenda>
+      </article>
+
+      <article class="well entry active"
+               ng-show="onCreation">
+        <w-Createagenda></w-Createagenda>
+      </article>
+
+      <article class="well entry active"
+               ng-show="onEdition">
+        <w-Editagenda></w-Editagenda>
+      </article>
     </section>
 </section>
 
