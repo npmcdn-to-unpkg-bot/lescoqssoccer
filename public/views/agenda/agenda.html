@@ -42,20 +42,20 @@
       </article>
     </section>
 
-    <section class="entries" style="padding-top: 0; margin-left: 350px;">
+    <section class="entries" style="position: absolute; left: 350px; top: 50px; right: 0; padding-left: 30px; height: calc(100% - 50px);">
 
-      <div class="btn-group btn-toggle" style="float:right;">
+      <div class="btn-group btn-toggle" style="float:right; margin-top:30px;">
         <button class="btn" ng-class="(display === 'calendar')? 'btn-primary active' : 'btn-default';" ng-click="display = 'calendar'">Agenda</button>
         <button class="btn" ng-class="(display === 'map')? 'btn-primary active' : 'btn-default';" ng-click="display = 'map'">Map</button>
       </div>
-      <div class="alert alert-info ng-binding col-md-4">
+      <div class="alert alert-info ng-binding col-md-4" ng-show="!onCreation && !onEdition" style="margin-top:30px;">
           <a class="close" ng-click="remove($index)">
             <i class="glyphicon glyphicon-remove"></i>
           </a>
           <label class="ng-pristine ng-valid">Mon Agenda</label>
       </div>
       <div class="clear"></div>
-      <div class="alert alert-info ng-binding col-md-4">
+      <div class="alert alert-info ng-binding col-md-4" ng-show="!onCreation && !onEdition">
           <a class="close" ng-click="remove($index)">
             <i class="glyphicon glyphicon-remove"></i>
           </a>
@@ -111,7 +111,12 @@
                     </button>
                     </span>
                   </p>
-                  <google-map center="map.center" zoom="map.zoom"></google-map>
+                  <google-map center="map.center"
+                      draggable="true"
+                      refresh="true"
+                      zoom="map1.zoom"
+                      events="map.events" ng-if="display === 'map' && !onCreation && !onEdition">
+                  </google-map>
               </div>
             </div>
         </div>

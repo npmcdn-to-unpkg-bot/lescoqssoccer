@@ -1,113 +1,16 @@
-<div class="modal-header">
+<div>
     <h3>Créer un nouvel évènement</h3>
 </div>
-<div class="modal-body">
-	<section>
-		<form class="form-horizontal" role="form">
-			<div class="form-group">
-			    <label for="title" class="col-md-2 control-label">Titre</label>
-				<div class="col-md-10">
-					<input type="text" class="form-control" data-ng-model="title" id="title" placeholder="Titre de l'évènement" required>
-				</div>
-			</div>
-			<div class="form-group">
-			    <label for="title" class="col-md-2 control-label">Contenu</label>
-				<div class="col-md-10">
-					<textarea class="form-control" data-ng-model="content" id="content" placeholder="Contenu de l'évènement" required style="min-height:150px;"></textarea>
-				</div>
-			</div>
-			<div class="form-group">
-				<div>
-				    <label for="title" class="col-md-2 control-label">Début</label>
-			        <div class="col-md-4">
-			            <p class="input-group">
-			              <input type="text" class="form-control" datepicker-popup="{{format}}" data-ng-model="start" is-open="$parent.openedStartDate" min="minDate" max="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" show-button-bar="false"/>
-			              <span class="input-group-btn">
-			                <button class="btn btn-default" ng-click="open($event, 'start')"><i class="glyphicon glyphicon-calendar"></i></button>
-			              </span>
-			            </p>
-			        </div>
-			    </div>
-			    <div>
-				    <label for="title" class="col-md-2 control-label">Fin</label>
-			        <div class="col-md-4">
-			            <p class="input-group">
-			              <input type="text" class="form-control" datepicker-popup="{{format}}" data-ng-model="end" is-open="$parent.openedEndDate" min="minDate" max="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" show-button-bar="false"/>
-			              <span class="input-group-btn">
-			                <button class="btn btn-default" ng-click="open($event, 'end')"><i class="glyphicon glyphicon-calendar"></i></button>
-			              </span>
-			            </p>
-			        </div>
-			    </div>
-			</div>
-			<div class="form-group">
-				<div lass="col-md-10">
-				    <label for="title" class="col-md-2 control-label">Localisation</label>
-				     <!-- search/go to current location -->
-				     <div class="col-md-10" style="margin-bottom: 15px;">
-			            <p class="input-group">
-			              <input type="text" class="form-control" data-ng-model="search"/>
-			              <span class="input-group-btn">
-				            <button class="btn" type="button" ng-click="geoCode()" ng-disabled="search.length == 0" title="search" >
-				              &nbsp;<i class="glyphicon glyphicon-search"></i>
-				            </button>
-				            <button class="btn" type="button" ng-click="gotoCurrentLocation()" title="current location">
-				              &nbsp;<i class="glyphicon glyphicon-home"></i>
-				            </button>
-			              </span>
-			            </p>
-			        </div>
-				    <div class="col-md-12">
-			        	<google-map center="map.center" zoom="map.zoom"></google-map>
-			        </div>
-			    </div>
-			</div>
-			<div class="form-group">
-				<div>
-				    <label for="title" class="col-md-2 control-label">Notifier les utilisateurs</label>
-				    <div class="col-md-10">
-				        <div class="checkbox">
-						  <label>
-						    <input type="checkbox" value="">
-						    User 1
-						    </input>
-						  </label>
-						</div>
-						<div class="checkbox">
-						  <label>
-						    <input type="checkbox" value="">
-						    User 2
-						    </input>
-						  </label>
-						</div>
-						<div class="checkbox">
-						  <label>
-						    <input type="checkbox" value="">
-						    User 3
-						    </input>
-						  </label>
-						</div>
-					</div>
-			    </div>
-			</div>
-	    </form>
-    </section>
-</div>
-<div class="tabbable tabs-left">
-    <ul class="nav nav-tabs">
-        <li ng-class="getTabClass(1)" ng-click="setActiveTab(1)"><a href="#deal" data-toggle="tab">Infos</a></li>
-        <li ng-class="getTabClass(2)" ng-click="setActiveTab(2)"><a href="#bond" data-toggle="tab">Communauté</a></li>
-        <li ng-class="getTabClass(3)" ng-click="setActiveTab(3)"><a href="#collateral" data-toggle="tab">To do list</a></li>
-        <li ng-class="getTabClass(4)" ng-click="setActiveTab(4)"><a href="#rating" data-toggle="tab">Rating</a></li>
-    </ul>
-  	<div class="tab-content">
-        <div ng-class="getTabPaneClass(1)" id="deal" class="content">
-	        <form>
+<br/>
+<div class="row-fluid">
+	<tabset justified="true" >
+        <tab heading="Infos">
+         	<form class="form-horizontal" role="form" style="margin-top: 20px;">
 	        	<div class="form-group">
 				    <label for="title" class="col-md-2 control-label">Type</label>
 					<div class="col-md-10">
 						<select class="form-control" data-ng-model="type" id="type">
-							<option>Restau</option>
+							<option selected="selected">Restau</option>
 							<option>Vacances</option>
 							<option>Soirée</option>
 							<option>Weekend</option>
@@ -150,21 +53,156 @@
 				        </div>
 				    </div>
 				</div>
+			    <div class="form-group">
+					<div lass="col-md-10">
+					    <label for="title" class="col-md-2 control-label">Localisation</label>
+					     <!-- search/go to current location -->
+					     <div class="col-md-10" style="margin-bottom: 15px;">
+				            <p class="input-group">
+				              <input type="text" class="form-control" data-ng-model="search"/>
+				              <span class="input-group-btn">
+					            <button class="btn" type="button" ng-click="geoCode()" ng-disabled="search.length == 0" title="search" >
+					              &nbsp;<i class="glyphicon glyphicon-search"></i>
+					            </button>
+					            <button class="btn" type="button" ng-click="gotoCurrentLocation()" title="current location">
+					              &nbsp;<i class="glyphicon glyphicon-home"></i>
+					            </button>
+				              </span>
+				            </p>
+				        </div>
+					    <div class="col-md-12">
+				        	<google-map center="map1.center"
+									    draggable="true"
+									    refresh="true"
+							        	zoom="map1.zoom"
+							        	events="map1.events" ng-if="onCreation">
+				        	</google-map>
+				        </div>
+				    </div>
+				</div>
 			</form>
-        </div>
+        </tab>
+        <tab heading="Communauté">
+        	<form class="form-horizontal" role="form" style="margin-top: 20px;">
+	        	<div class="form-group">
+					<div>
+						<div class="btn-group btn-toggle" style="float:right;">
+					        <button class="btn btn-default">Privé</button>
+					        <button class="btn btn-primary active">Public</button>
+				      	</div>
+					    <label for="title" class="col-md-2 control-label">Notifier les utilisateurs</label>
+					    <div class="col-md-10">
+					        <div class="checkbox">
+							  <label>
+							    <input type="checkbox" value="">
+							    User 1
+							    </input>
+							  </label>
+							</div>
+							<div class="checkbox">
+							  <label>
+							    <input type="checkbox" value="">
+							    User 2
+							    </input>
+							  </label>
+							</div>
+							<div class="checkbox">
+							  <label>
+							    <input type="checkbox" value="">
+							    User 3
+							    </input>
+							  </label>
+							</div>
+						</div>
+				    </div>
+				</div>
+			</form>
+        </tab>
+        <tab heading="To do list"></tab>
+        <tab heading="Photos">
+        	<section data-ng-controller="FileUploadController" ng-file-drop>
+	            <div class="row">
+	                <div class="col-md-12">
 
-        <div ng-class="getTabPaneClass(2)" id="bond" class="content">
-          Tab2
-        </div>
+	                    <div ng-show="uploader.isHTML5" class="col-md-9" style="margin-top: 20px;">
+	                        <div class="well my-drop-zone" ng-file-drop="{ url: '/foo' }" ng-file-over="another-file-over-class">
+	                            Déposer les images ici
+	                        </div>
+	                    </div>
 
-        <div ng-class="getTabPaneClass(3)" id="collateral" class="content">
-          Tab3
-        </div>
+	                    <div class="col-md-3" style="margin-top: 40px;">
+		                    <button class="btn btn-default">
+						        <label for="upload-profile-picture" class="label-upload-profile-picture">
+						          	Ou Uploader des images
+						       	  	<input id="upload-profile-picture" ng-file-select type="file" multiple class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
+						        </label>
+						    </button>
+		                </div>
+	                </div>
 
-        <div ng-class="getTabPaneClass(4)" id="rating" class="content">
-          Tab4
-        </div>
-	</div>
+	                <div class="col-md-12" style="margin-bottom: 40px">
+
+	                    <table class="table">
+	                        <thead>
+	                            <tr>
+	                                <th width="50%">Name</th>
+	                                <th ng-show="uploader.isHTML5">Size</th>
+	                                <th ng-show="uploader.isHTML5">Progress</th>
+	                                <th>Status</th>
+	                                <th>Actions</th>
+	                            </tr>
+	                        </thead>
+	                        <tbody>
+	                            <tr ng-repeat="item in uploader.queue">
+	                                <td><strong>{{ item.file.name }}</strong></td>
+	                                <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+	                                <td ng-show="uploader.isHTML5">
+	                                    <div class="progress" style="margin-bottom: 0;">
+	                                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+	                                    </div>
+	                                </td>
+	                                <td class="text-center">
+	                                    <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+	                                    <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+	                                    <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+	                                </td>	
+	                                <td nowrap>
+	                                    <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+	                                        <span class="glyphicon glyphicon-upload"></span> Upload
+	                                    </button>
+	                                    <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+	                                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+	                                    </button>
+	                                    <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+	                                        <span class="glyphicon glyphicon-trash"></span> Remove
+	                                    </button>
+	                                </td>
+	                            </tr>
+	                        </tbody>
+	                    </table>
+
+	                    <div>
+	                        <p>
+	                            Queue progress:
+	                            <div class="progress" style="">
+	                                <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+	                            </div>
+	                        </p>
+	                        <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+	                            <span class="glyphicon glyphicon-upload"></span> Upload all
+	                        </button>
+	                        <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
+	                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+	                        </button>
+	                        <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
+	                            <span class="glyphicon glyphicon-trash"></span> Remove all
+	                        </button>
+	                    </div>
+	                </div>
+		        </div>
+		    </section>
+        </tab>
+    </tabset>
 </div>
 <div class="modal-footer">
     <button class="btn btn-primary" ng-click="ok()">OK</button>

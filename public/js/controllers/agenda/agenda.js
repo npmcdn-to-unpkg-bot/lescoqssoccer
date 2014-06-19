@@ -126,7 +126,19 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
             latitude: 45,
             longitude: -73
         },
-        zoom: 8
+        zoom: 8,
+        events: {
+        }
+    };
+
+    $scope.map1 = {
+        center: {
+            latitude: 45,
+            longitude: -73
+        },
+        zoom: 8,
+        events: {
+        }
     };
 
     $scope.geoCode = function () {
@@ -172,4 +184,51 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
       $scope.onEdition = true;
       $scope.onCreation = false;
     };
+
+    /***
+    Date picker management
+    ***/
+    $scope.initialize = function() {
+        var start = angular.element('#directives-calendar').scope().selectedDate;
+        if(start){
+            $scope.start = start;
+            $scope.end = start;
+        } else {
+            $scope.start = new Date();
+            $scope.end = new Date();
+        }
+    };
+
+    $scope.clear = function () {
+        $scope.start = null;
+        $scope.end = null;
+    };
+
+    // Disable weekend selection
+    $scope.disabled = function(date, mode) {
+        return ( $scope.openedEndDate === true && date < $scope.start );
+    };
+
+    $scope.toggleMin = function() {
+        $scope.minDate = ( $scope.minDate ) ? null : new Date();
+    };
+
+    $scope.open = function($event, datepicker) {
+        $event.preventDefault();
+        $event.stopPropagation();
+
+        if(datepicker === 'start'){
+            $scope.openedStartDate = ( $scope.openedStartDate ) ? false : true;
+            $scope.openedEndDate = false;
+        } else {
+            $scope.openedEndDate = ( $scope.openedEndDate ) ? false : true;
+            $scope.openedStartDate = false;
+        }
+    };
+
+    $scope.dateOptions = {
+        'year-format': "'yy'",
+        'starting-day': 1
+    };
+
 }]);
