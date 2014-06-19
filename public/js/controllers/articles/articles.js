@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', 'Global', 'Articles', 'scroll', function ($scope, $routeParams, $location, Global, Articles, scroll) {
+angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', 'Global', 'Articles', 'scroll', '$fileUploader', function ($scope, $routeParams, $location, Global, Articles, scroll, $fileUploader) {
     
     $scope.global = Global;
     $scope.all = [];
@@ -11,18 +11,43 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
     $scope.readCount = 0;
     $scope.starredCount = 0;
     $scope.onCreation = false;
+    $scope.uploaderItem;
 
-    $scope.dateFormat = "dd/MM/yyyy 'à' h'h'mm";
+    $scope.dateFormat = "dd/MM/yyyy 'à' H'h'mm";
+    $scope.uploader = $fileUploader.create({
+        scope: $scope,
+        url: '/upload/photo',
+        formData: [
+            { key: 'value' }
+        ],
+        filters: [
+            function (item) {
+                console.info('filter1');
+                return true;
+            }
+        ]
+    });
+
+    $scope.uploader.bind('afteraddingfile', function (event, item) {
+        console.info('After adding a file', item);
+        $scope.uploaderItem = item;
+    });
+
+    $scope.uploader.bind('complete', function (event, xhr, item, response) {
+        console.info('Complete', xhr, item, response);
+    });
 
     $scope.create = function() {
-        var article = new Articles({
-            title: this.title,
-            content: this.content,
-            link: this.link
-        });
-        article.$save(function(response) {
-            $scope.find();
-        });
+      $scope.uploaderItem.upload();
+
+      var article = new Articles({
+          title: this.title,
+          content: this.content,
+          link: this.link
+      });
+      article.$save(function(response) {
+          $scope.find();
+      });
     };
 
     $scope.find = function(selectNextElement) {
@@ -34,9 +59,9 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 
                $scope.all.push(article);
 
-                // items.all.sort(function(articleA, articlesB) {
-                //   return new Date(articlesB.created).getTime() - new Date(articleA.created).getTime();
-                // });
+                $scope.all.sort(function(articleA, articlesB) {
+                  return new Date(articlesB.created).getTime() - new Date(articleA.created).getTime();
+                });
 
                 $scope.filtered = $scope.all;
                 $scope.readCount = $scope.all.reduce(function(count, item) { return item.read ? ++count : count; }, 0);
