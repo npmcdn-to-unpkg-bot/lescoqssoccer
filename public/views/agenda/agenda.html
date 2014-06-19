@@ -3,21 +3,21 @@
     <section class="controls no-select" style="position: absolute; left: 0; top: 0;">
       <div class="tControls" style="height: calc(100% - 50px);">
         <div class="top" style="margin-top: 50px;">
-          <button ng-click="items.showCreationForm()" class="btn" title="Créer un nouvel article" alt="Créer un nouvel article">
+          <button ng-click="showCreationForm()" class="btn" title="Créer un nouvel évènement" alt="Créer un nouvel évènement">
             <i class="glyphicon glyphicon-plus"></i>
           </button>
-          <button ng-click="items.showEditionForm()" ng-disabled="!items.selected" class="btn" title="Editer l'article" alt="Editer l'article">
+          <button ng-click="showEditionForm()" ng-disabled="!selected" class="btn" title="Editer l'évènement" alt="Editer l'évènement">
             <i class="glyphicon glyphicon-edit"></i>
           </button>
-          <button ng-click="remove(items.selected.article)" ng-disabled="!items.selected" class="btn">
+          <button ng-click="remove()" ng-disabled="!selected" class="btn">
             <i class="glyphicon glyphicon-trash"></i>
           </button>
         </div>
         <div class="middle" style="height: calc(100% - 50px);">
-          <button ng-click="items.prev();" class="btn" ng-disabled="!items.hasPrev()">
+          <button ng-click="prev();" class="btn" ng-disabled="!hasPrev()">
             <i class="glyphicon glyphicon-arrow-up"></i>
           </button>
-          <button ng-click="items.next();" class="btn" ng-disabled="!items.hasNext()">
+          <button ng-click="next();" class="btn" ng-disabled="!hasNext()">
             <i class="glyphicon glyphicon-arrow-down"></i>
           </button>
         </div>
@@ -44,16 +44,6 @@
 
     <section class="entries" style="padding-top: 0; margin-left: 350px;">
 
-      <article class="well entry active"
-               ng-show="items.selected && items.onCreation === false && items.onEdition === false">
-        <div class="row-fluid">
-          <h2>{{items.selected.title}}</h2>
-          <span class="author">{{items.selected.user.name}}</span> - le <span class="pub-name">{{items.selected.created | date:'medium'}}</span>
-          <hr />
-          <w-Viewarticle></w-Viewarticle>
-        </div>
-      </article>
-
       <div class="btn-group btn-toggle" style="float:right;">
         <button class="btn" ng-class="(display === 'calendar')? 'btn-primary active' : 'btn-default';" ng-click="display = 'calendar'">Agenda</button>
         <button class="btn" ng-class="(display === 'map')? 'btn-primary active' : 'btn-default';" ng-click="display = 'map'">Map</button>
@@ -75,7 +65,7 @@
 
       <article  id="directives-calendar"
                 class="well entry active"
-                ng-show="display === 'calendar'">
+                ng-show="display === 'calendar' && !onCreation && !onEdition">
         <div class="well">
           <div class="row-fluid">
             <div id="modal" ng-controller="Modal" style="float: right;">
@@ -102,8 +92,9 @@
         </div>
       </article>
 
-      <article  class="well entry active"
-                ng-show="display === 'map'">
+      <article  id="map"
+                class="well entry active"
+                ng-show="display === 'map' && !onCreation && !onEdition">
         <div class="well">
           <div class="row-fluid">
             <label for="title" class="col-md-2 control-label">Localisation</label>
@@ -125,28 +116,22 @@
             </div>
         </div>
       </article>
-    </section>
-
-    <section class="entries" style="padding-top: 0; margin-left: 350px;">
-      <article class="nothingSelected" ng-show="(!filtered.length || !selected.selected) && !onCreation">
-        <img src="img/sadpanda.png" alt="Sad Panda" title="Sad Panda">
-        <p>Nothing selected.</p>
-      </article>
 
       <article class="well entry active"
                ng-show="selected.selected && !onCreation && !onEdition">
-        <w-Viewagenda></w-Viewagenda>
+        <w-Viewevent></w-Viewevent>
       </article>
 
       <article class="well entry active"
                ng-show="onCreation">
-        <w-Createagenda></w-Createagenda>
+        <w-Createevent></w-Createevent>
       </article>
 
       <article class="well entry active"
                ng-show="onEdition">
-        <w-Editagenda></w-Editagenda>
+        <w-Editevent></w-Editevent>
       </article>
+
     </section>
 </section>
 

@@ -6,6 +6,7 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
     $scope.selectedEvent;
     $scope.selectedDate;
     $scope.display = "calendar";
+    $scope.onCreation = false;
 
     $scope.loadEvent = function(){
       $scope.events = [];
@@ -158,5 +159,17 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
             $scope.map.center = { lat: lat, lon: lon };
             if (!$scope.$$phase) $scope.$apply("loc");
         }
+    };
+
+    $scope.showCreationForm = function() {
+      if($scope.selected) $scope.selected.selected = false;
+      $scope.onCreation = true;
+      $scope.onEdition = false;
+    };
+
+    $scope.showEditionForm = function() {
+      $scope.editingArticle = _.clone($scope.selected);
+      $scope.onEdition = true;
+      $scope.onCreation = false;
     };
 }]);
