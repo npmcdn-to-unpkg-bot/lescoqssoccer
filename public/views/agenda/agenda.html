@@ -111,11 +111,16 @@
                     </button>
                     </span>
                   </p>
-                  <google-map center="map.center"
-                      draggable="true"
-                      refresh="true"
-                      zoom="map1.zoom"
-                      events="map.events" ng-if="display === 'map' && !onCreation && !onEdition">
+                  <google-map  center="map.center"
+                               zoom="map.zoom"
+                               draggable="true"
+                               dragging="map.dragging"
+                               bounds="map.bounds"
+                               events="map.events"
+                               options="map.options"
+                               pan="true"
+                               control="map.control" 
+                               ng-if="display === 'map' && !onCreation && !onEdition">
                   </google-map>
               </div>
             </div>
