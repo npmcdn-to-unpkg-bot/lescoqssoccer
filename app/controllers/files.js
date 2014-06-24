@@ -6,8 +6,11 @@ exports.uploadPhoto = function(req, res) {
 
     callbacks.uploadSuccess = function(){
         console.log('send ok');
-        res.writeHead(200, { 'Content-Type': 'text/plain' });
-        res.end('callback(\'{\"msg\": \"OK\"}\')');
+
+        var fileObject = req.files.file;
+        fileObject.path = "img/users/" + fileObject.path.split('/').pop();
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify(fileObject));
     };
 
     callbacks.uploadFailure = function(err){

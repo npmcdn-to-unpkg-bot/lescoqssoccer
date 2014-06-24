@@ -1354,3 +1354,11 @@ button::-moz-focus-inner {
 .my-drop-zone {
 	border: dotted 3px lightgray;
 }
+
+.form-horizontal .control-label {
+	text-align: left;
+}
+
+.tab-content{
+	border-left: 1px solid #ddd;
+}
