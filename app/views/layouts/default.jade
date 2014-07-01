@@ -6,7 +6,7 @@ html(lang='en', xmlns='http://www.w3.org/1999/xhtml', xmlns:fb='https://www.face
     .navbar.navbar-inverse.navbar-fixed-top(data-ng-include="'views/header.html'", data-role="navigation")
     section#main.container-fluid
       section.row
-        #sidebar-left.col-xs-2.col-sm-2(data-ng-include="'views/sidebar.html'")
+        #sidebar-left.col-xs-2.col-sm-2(data-ng-include="'views/sidebar.html'", data-ng-controller="SidebarController")
         section#content.col-xs-12.col-sm-10
           block content
   else
