@@ -112,7 +112,7 @@ a.show-sidebar:hover {
   transition: 0.2s;
 }
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
-  background:rgba(0, 0, 0, 0.1);
+  background:rgba(0, 0, 0, 0.1)!important;
 }
 .nav.main-menu > li > a:hover, .nav.main-menu > li > a:focus, .nav.main-menu > li.active > a, .nav.main-menu .open > a, .nav.main-menu .open > a:hover, .nav.main-menu .open > a:focus, .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover, .dropdown-menu > li.active > a,
 .nav.msg-menu > li > a:hover, .nav.msg-menu > li > a:focus, .nav.msg-menu > li.active > a, .nav.msg-menu .open > a, .nav.msg-menu .open > a:hover, .nav.msg-menu .open > a:focus {
@@ -1162,7 +1162,7 @@ td.beauty-hover {
   margin-left: 0;
 }
 .toggle-switch input:checked + .toggle-switch-inner + .toggle-switch-switch {
-  right: 0px; 
+  right: 0px;
 }
 .toggle-switch-danger input:checked + .toggle-switch-inner + .toggle-switch-switch {
   border:2px solid #D15E5E;
@@ -1916,9 +1916,9 @@ td.beauty-hover {
 }
 .btn + .dropdown-menu {
   margin-top: -10px;
-  background: rgba(0, 0, 0, 0.7) !important; padding: 0; border: 0; 
-  right: 0; 
-  left: auto; 
+  background: rgba(0, 0, 0, 0.7) !important; padding: 0; border: 0;
+  right: 0;
+  left: auto;
   min-width: 100%;
 }
 .btn + .dropdown-menu > li > a {

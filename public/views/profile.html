@@ -1,82 +1,183 @@
 <section data-ng-controller="ProfileController">
     <div class="row">
 
-        <!-- avatar column -->
-        <div class="col-md-3 col-md-offset-1 avatar-box">
-            <div class="personal-image" style="text-align: center;">
-                <img src="{{global.user.path || 'images/pf-5.jpg'}}" class="avatar img-circle" alt="avatar" style="border: 3px solid #c3cddb; height: 200px; "/>
-                <div style="margin-top: 20px;">
-                    <button class="btn btn-default">
-                        <label for="upload-profile-picture" class="label-upload-profile-picture">
-                            Uploader une photo différente
-                            <input id="upload-profile-picture" ng-file-select type="file" class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
-                        </label>
-                    </button>
+                <!-- avatar column -->
+                <div class="col-md-3 col-md-offset-1 avatar-box">
+                    <div class="personal-image">
+                        <img src="images/3.jpg" class="avatar img-circle" alt="avatar" style="border: 3px solid #c3cddb;
+    height: auto; ">
+                        <div>
+                            <button class="btn btn-default">
+                                <label for="upload-profile-picture" class="label-upload-profile-picture">
+                                    Uploader une photo différente
+                                    <input id="upload-profile-picture" ng-file-select type="file" class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
+                                </label>
+                            </button>
+                        </div>
+                        <div class="left-col">
+                            <h2>{{global.user.name}}</h2>
+                        </div>
+                        <div class="left-col">
                 </div>
                 <div class="left-col" style="text-align: left;">
                     <h2>{{global.user.name}}</h2>
                 </div>
                 <div class="left-col" style="text-align: left;">
-                    <h3>Inscrit depuis le 02 Juin 2014</h3>
+                            <h3>Inscrit depuis le 02 Juin 2014</h3>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="col-md-7">
-            <tabset justified="true" style="box-shadow: inset 3px 0px 4px -1px #fafafa;">
-                <tab heading="Profile">
-                    <form class="form-horizontal" role="form" style="padding-top: 20px; margin-left: 15px;">
+                <!-- edit form column -->
+               <!--  <div class="col-md-7 personal-info" style="border-left: 1px solid #edeff1; box-shadow: inset 3px 0px 4px -1px #fafafa;">
+                    <div class="alert alert-info">
+                        <i class="icon-lightbulb"></i>
+                        This page shows an example of an alternative layout with the main navbar on the top
+                        <br> using <strong>.content.wide-content</strong> for this main container
+                    </div>
+
+                    <form class="form-horizontal" role="form">
                         <div class="form-group">
-                            <label class="col-lg-4 control-label">First name:</label>
+                            <label class="col-lg-2 control-label">First name:</label>
                             <div class="col-lg-8">
                                 <input class="form-control" type="text" value="Alejandra">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-4 control-label">Last name:</label>
+                            <label class="col-lg-2 control-label">Last name:</label>
                             <div class="col-lg-8">
                                 <input class="form-control" type="text" value="Galvan">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-4 control-label">Company:</label>
+                            <label class="col-lg-2 control-label">Company:</label>
                             <div class="col-lg-8">
                                 <input class="form-control" type="text" value="Design Co.">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-4 control-label">Email:</label>
+                            <label class="col-lg-2 control-label">Email:</label>
                             <div class="col-lg-8">
                                 <input class="form-control" type="text" value="alejandra@design.com">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-4 control-label">Username:</label>
+                            <label class="col-lg-2 control-label">Time Zone:</label>
+                            <div class="col-lg-8">
+                                <div class="ui-select">
+                                    <select id="user_time_zone" name="user[time_zone]">
+                                        <option value="Hawaii">(GMT-10:00) Hawaii</option>
+                                        <option value="Alaska">(GMT-09:00) Alaska</option>
+                                        <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
+                                        <option value="Arizona">(GMT-07:00) Arizona</option>
+                                        <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
+                                        <option value="Central Time (US &amp; Canada)" selected="selected">(GMT-06:00) Central Time (US &amp; Canada)</option>
+                                        <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
+                                        <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Username:</label>
                             <div class="col-lg-8">
                                 <input class="form-control" type="text" value="alegalvan">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-4 control-label">Password:</label>
+                            <label class="col-lg-2 control-label">Password:</label>
                             <div class="col-lg-8">
                                 <input class="form-control" type="password" value="blablablabla">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-4 control-label">Confirm password:</label>
+                            <label class="col-lg-2 control-label">Confirm password:</label>
                             <div class="col-lg-8">
                                 <input class="form-control" type="password" value="blablablabla">
                             </div>
                         </div>
-                        <div style="text-align:right; margin-top: 20px;">
-                            <button class="btn btn-primary" ng-click="ok()">OK</button>
-                            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+                        <div class="actions">
+                            <input type="button" class="btn btn-default" value="Save Changes">
+                            <input type="reset" value="Cancel" class="btn btn-primary">
                         </div>
                     </form>
-                </tab>
-                <tab heading="Préférences"></tab>
-            </tabset>
-        </div>
+                </div>
+            </div> -->
+
+
+    <div class="col-md-7">
+        <tabset justified="true" style="border-left: 1px solid #ddd; box-shadow: inset 3px 0px 4px -1px #fafafa;">
+            <tab heading="Profile">
+                <form class="form-horizontal" role="form" style="margin-top: 40px; margin-left: 20px;">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">First name:</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" type="text" value="Alejandra">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Last name:</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" type="text" value="Galvan">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Company:</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" type="text" value="Design Co.">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Email:</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" type="text" value="alejandra@design.com">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Time Zone:</label>
+                        <div class="col-lg-8">
+                            <div class="ui-select">
+                                <select id="user_time_zone" name="user[time_zone]">
+                                    <option value="Hawaii">(GMT-10:00) Hawaii</option>
+                                    <option value="Alaska">(GMT-09:00) Alaska</option>
+                                    <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
+                                    <option value="Arizona">(GMT-07:00) Arizona</option>
+                                    <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
+                                    <option value="Central Time (US &amp; Canada)" selected="selected">(GMT-06:00) Central Time (US &amp; Canada)</option>
+                                    <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
+                                    <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Username:</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" type="text" value="alegalvan">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Password:</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" type="password" value="blablablabla">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">Confirm password:</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" type="password" value="blablablabla">
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <input type="button" class="btn btn-default" value="Save Changes">
+                        <input type="reset" value="Cancel" class="btn btn-primary">
+                    </div>
+                </form>
+            </tab>
+            <tab heading="Skills"></tab>
+            <tab heading="Community"></tab>
+        </tabset>
+    </div>
 
     </div>
 </section>
