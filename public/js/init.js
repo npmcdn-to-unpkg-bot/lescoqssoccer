@@ -7,10 +7,9 @@ angular.element(document).ready(function() {
     //Then init the app
     angular.bootstrap(document, ['mean']);
 
-	$('.show-sidebar').on('click', function () {
-		$('section#main').toggleClass('sidebar-show');
-		setTimeout(MessagesMenuWidth, 250);
-	});
+	// $('.show-sidebar').on('click', function () {
+	// 	$('section#main').toggleClass('sidebar-show');
+	// });
 	$('.main-menu').on('click', 'a', function (e) {
 		var parents = $(this).parents('li');
 		var li = $(this).closest('li.dropdown');
