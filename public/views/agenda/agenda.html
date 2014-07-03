@@ -1,147 +1,93 @@
 <section class="mainContent" data-ng-controller="agendaController">
-
-    <section class="controls no-select" style="position: absolute; left: 0; top: 0;">
-      <div class="tControls" style="height: calc(100% - 50px);">
-        <div class="top" style="margin-top: 50px;">
-          <button ng-click="showCreationForm()" class="btn" title="Créer un nouvel évènement" alt="Créer un nouvel évènement">
-            <i class="glyphicon glyphicon-plus"></i>
-          </button>
-          <button ng-click="showEditionForm()" ng-disabled="!selected" class="btn" title="Editer l'évènement" alt="Editer l'évènement">
-            <i class="glyphicon glyphicon-edit"></i>
-          </button>
-          <button ng-click="remove()" ng-disabled="!selected" class="btn">
-            <i class="glyphicon glyphicon-trash"></i>
-          </button>
-        </div>
-        <div class="middle" style="height: calc(100% - 50px);">
-          <button ng-click="prev();" class="btn" ng-disabled="!hasPrev()">
-            <i class="glyphicon glyphicon-arrow-up"></i>
-          </button>
-          <button ng-click="next();" class="btn" ng-disabled="!hasNext()">
-            <i class="glyphicon glyphicon-arrow-down"></i>
-          </button>
-        </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="summaries" style="position: absolute; left: 50px; top: 50px; height: calc(100% - 50px);">
-      <article ng-repeat="item in items.all"
-               id="{{item.id}}"
-               ng-class="{active: item.selected && items.selected}" class="well summary"
-               ng-click="items.selectItem($index);">
-        <div class="row-fluid" >
-          <div class="span6 pub-name">
-            {{item.feedTitle}}
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <div class="box">
+        <div class="box-header">
+          <div class="box-name">
+            <span>Agenda</span>
           </div>
-          <div class="span6 pub-date">
-            {{item.date}}
+          <div class="box-icons">
+            <a class="collapse-link">
+              <i class="fa fa-chevron-up"></i>
+            </a>
+            <a class="close-link">
+              <i class="fa fa-times"></i>
+            </a>
           </div>
+          <div class="no-move"></div>
         </div>
-        <h3 class="pub-title">{{item.title}}</h3>
-      </article>
-    </section>
-
-    <section class="entries" style="position: absolute; left: 350px; top: 50px; right: 0; padding-left: 30px; height: calc(100% - 50px);">
-
-      <div class="btn-group btn-toggle" style="float:right; margin-top:30px;">
-        <button class="btn" ng-class="(display === 'calendar')? 'btn-primary active' : 'btn-default';" ng-click="display = 'calendar'">Agenda</button>
-        <button class="btn" ng-class="(display === 'map')? 'btn-primary active' : 'btn-default';" ng-click="display = 'map'">Map</button>
-      </div>
-      <div class="alert alert-info ng-binding col-md-4" ng-show="!onCreation && !onEdition" style="margin-top:30px;">
-          <a class="close" ng-click="remove($index)">
-            <i class="glyphicon glyphicon-remove"></i>
-          </a>
-          <label class="ng-pristine ng-valid">Mon Agenda</label>
-      </div>
-      <div class="clear"></div>
-      <div class="alert alert-info ng-binding col-md-4" ng-show="!onCreation && !onEdition">
-          <a class="close" ng-click="remove($index)">
-            <i class="glyphicon glyphicon-remove"></i>
-          </a>
-            <label class="ng-pristine ng-valid">Agenda de la communauté</label>
-      </div>
-      <div class="clear"></div>
-
-      <article  id="directives-calendar"
-                class="well entry active"
-                ng-show="display === 'calendar' && !onCreation && !onEdition">
-        <div class="well">
-          <div class="row-fluid">
-            <div id="modal" ng-controller="Modal" style="float: right;">
-              <button class="btn btn-link" ng-click="open('agenda/create.html', 'UserEventController')">Ajouter un évènement</button>
-            </div>
-            <div class="span8">
-                <tabset>
-                    <tab select="renderCalender(myCalendar1);">
-                      <tab-heading>
-                          <i class="glyphicon glyphglyphicon glyphicon-bell"></i>Calendrier
-                      </tab-heading>
-                      <div class="btn-toolbar">
-                        <div class="btn-group">
-                          <button class="btn btn-success" ng-click="changeView('month', myCalendar1)">Mois</button>
-                          <button class="btn btn-success" ng-click="changeView('agendaWeek', myCalendar1)">Semaine</button>
-                          <button class="btn btn-success" ng-click="changeView('agendaDay', myCalendar1)">Jour</button>
-                        </div>
-                      </div>
-                    <div class="calendar lead " ng-model="eventSources" calendar="myCalendar1" config="uiConfig.calendar" ui-calendar="uiConfig.calendar"></div>
-                   </tab>
-                </tabset>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article  id="map"
-                class="well entry active"
-                ng-show="display === 'map' && !onCreation && !onEdition">
-        <div class="well">
-          <div class="row-fluid">
-            <label for="title" class="col-md-2 control-label">Localisation</label>
-               <!-- search/go to current location -->
-             <div style="margin-bottom: 15px;">
-                  <p class="input-group" style="margin-bottom: 15px;">
-                    <input type="text" class="form-control" ng-model="search"/>
-                    <span class="input-group-btn">
-                    <button class="btn" type="button" ng-click="geoCode()" ng-disabled="search.length == 0" title="search" >
-                      &nbsp;<i class="glyphicon glyphicon-search"></i>
-                    </button>
-                    <button class="btn" type="button" ng-click="gotoCurrentLocation()" title="current location">
-                      &nbsp;<i class="glyphicon glyphicon-home"></i>
-                    </button>
-                    </span>
-                  </p>
-                  <google-map  center="map.center"
-                               zoom="map.zoom"
-                               draggable="true"
-                               dragging="map.dragging"
-                               bounds="map.bounds"
-                               events="map.events"
-                               options="map.options"
-                               pan="true"
-                               control="map.control" 
-                               ng-if="display === 'map' && !onCreation && !onEdition">
-                  </google-map>
+        <div class="box-content">
+            <article  id="directives-calendar"
+                    class="well entry active"
+                    ng-show="display === 'calendar' && !onCreation && !onEdition">
+              <div class="row-fluid">
+                <div id="modal" ng-controller="Modal" style="float: right;">
+                  <button class="btn btn-link" ng-click="open('agenda/create.html', 'UserEventController')">Ajouter un évènement</button>
+                </div>
+                <div class="span8">
+                    <tabset>
+                        <tab select="renderCalender(myCalendar1);">
+                          <tab-heading>
+                              <i class="glyphicon glyphglyphicon glyphicon-bell"></i>Calendrier
+                          </tab-heading>
+                          <div class="btn-toolbar">
+                            <div class="btn-group">
+                              <button class="btn btn-success" ng-click="changeView('month', myCalendar1)">Mois</button>
+                              <button class="btn btn-success" ng-click="changeView('agendaWeek', myCalendar1)">Semaine</button>
+                              <button class="btn btn-success" ng-click="changeView('agendaDay', myCalendar1)">Jour</button>
+                            </div>
+                          </div>
+                        <div class="calendar lead " ng-model="eventSources" calendar="myCalendar1" config="uiConfig.calendar" ui-calendar="uiConfig.calendar"></div>
+                       </tab>
+                    </tabset>
+                </div>
               </div>
-            </div>
+          </article>
         </div>
-      </article>
-
-      <article class="well entry active"
-               ng-show="selected.selected && !onCreation && !onEdition">
-        <w-Viewevent></w-Viewevent>
-      </article>
-
-      <article class="well entry active"
-               ng-show="onCreation">
-        <w-Createevent></w-Createevent>
-      </article>
-
-      <article class="well entry active"
-               ng-show="onEdition">
-        <w-Editevent></w-Editevent>
-      </article>
-
-    </section>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <div class="box">
+        <div class="box-header">
+          <div class="box-name">
+            <span>Map</span>
+          </div>
+          <div class="box-icons">
+            <a class="collapse-link">
+              <i class="fa fa-chevron-up"></i>
+            </a>
+            <a class="close-link">
+              <i class="fa fa-times"></i>
+            </a>
+          </div>
+          <div class="no-move"></div>
+        </div>
+        <div class="box-content">
+          <article  id="map"
+                    class="entry active">
+              <div class="row-fluid">
+                <label for="title" class="col-md-2 control-label">Localisation</label>
+                   <!-- search/go to current location -->
+                <div style="margin-bottom: 15px;">
+                      <p class="input-group" style="margin-bottom: 15px;">
+                        <input type="text" class="form-control" ng-model="search"/>
+                        <span class="input-group-btn">
+                        <button class="btn" type="button" ng-click="geoCode()" ng-disabled="search.length == 0" title="search" >
+                          &nbsp;<i class="glyphicon glyphicon-search"></i>
+                        </button>
+                        <button class="btn" type="button" ng-click="gotoCurrentLocation()" title="current location">
+                          &nbsp;<i class="glyphicon glyphicon-home"></i>
+                        </button>
+                        </span>
+                      </p>
+                      <google-map center="map1.center"
+                                  control="map1.control">
+                      </google-map>
+                </div>
+              </div>
+          </article>
+        </div>
+      </div>
+    </div>
 </section>
 

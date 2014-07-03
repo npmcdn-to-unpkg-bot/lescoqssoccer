@@ -94,6 +94,9 @@ a.show-sidebar:hover {
   -o-transition: 0.2s;
   transition: 0.2s;
 }
+.mainContent{
+  margin-top: 20px;
+}
 .full-content {
   overflow: hidden;
   padding: 0;
@@ -2365,4 +2368,58 @@ td.beauty-hover {
   #dashboard_links .nav-pills > li.active > a:before {
     display: none;
   }
+}
+
+.angular-google-map-container { 
+  height: 350px; 
+  margin: 6px 15px;
+}
+
+.edit-profile-avatar .manual-file-chooser {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 146px;
+  height: 34px;
+  margin-left: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.edit-profile-avatar .button.button-change-profile-picture .label-upload-profile-picture {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.manual-file-chooser {
+  position: absolute;
+  width: 240px;
+  margin-left: -80px;
+  padding: 5px;
+  opacity: .0001;
+  cursor: pointer;
+}
+
+.imgThumbnail{
+  vertical-align: middle; 
+  margin-left: 5px; 
+  margin-right: 20px;
+  border-radius: 5px;
+  vertical-align: bottom;
+  width: 120px;
+  height: 120px;
+}
+
+.my-drop-zone {
+  border: dotted 3px lightgray;
+}
+
+.form-horizontal .control-label {
+  text-align: left;
+}
+
+.tab-content{
+  border-left: 1px solid #ddd;
 }

@@ -120,7 +120,7 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
     $scope.loadEvent();
     $scope.eventSources = [$scope.events];
     $scope.changeLang('french');
-
+    
     $scope.map = {control: {},
       version: "uknown",
       heatLayerCallback: function (layer) {
