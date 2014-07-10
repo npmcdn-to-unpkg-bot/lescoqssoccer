@@ -1,62 +1,23 @@
 <section class="mainContent" data-ng-controller="ArticlesController">
-
-    <section class="controls no-select" style="position: absolute; left: 0; top: 0;">
-      <div class="tControls" style="height: calc(100% - 50px);">
-        <div class="top" style="margin-top: 50px;">
-          <button ng-click="showCreationForm()" class="btn" title="Créer un nouvel article" alt="Créer un nouvel article">
-            <i class="glyphicon glyphicon-plus"></i>
-          </button>
-          <button ng-click="showEditionForm()" ng-disabled="!selected.selected" class="btn" title="Editer l'article" alt="Editer l'article">
-            <i class="glyphicon glyphicon-edit"></i>
-          </button>
-          <div id="modal" ng-controller="Modal" style="display: inline-block;">
-                <button class="btn" ng-disabled="!selected.selected" data-ng-click="open('modal.html', 'Articles', 'Etes vous sure...', remove)">
-                    <i class="glyphicon glyphicon-trash"></i>
-                </button>
-          </div>
+  <div id="gallery" class="gallery isotope" style="position: relative; overflow: hidden; height: 1047px;">
+    <div class="image gallery-group-1 isotope-item" style="position: absolute; left: 0px; top: 0px;">
+        <div class="image-inner">
+            <a href="img/avatar.jpg" data-lightbox="gallery-group-1">
+                <img src="img/8962691008_7f489395c9_m.jpg" alt="">
+            </a>
+            <p class="image-caption">
+                #3452 - Scottwills Arch
+            </p>
         </div>
-        <div class="middle" style="height: calc(100% - 50px);">
-          <button ng-click="prev();" class="btn" ng-disabled="!hasPrev()">
-            <i class="glyphicon glyphicon-arrow-up"></i>
-          </button>
-          <button ng-click="next();" class="btn" ng-disabled="!hasNext()">
-            <i class="glyphicon glyphicon-arrow-down"></i>
-          </button>
+        <div class="image-info">
+            <h5 class="title">Etiam lobortis egestas nisl</h5>
+            <div>
+                <small>by</small> <a href="javascript:;">Lelouch Wong</a>
+            </div>
+            <div class="desc">
+                Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus eget ultricies arcu.
+            </div>
         </div>
-      </div>
-    </section>
-
-    <section class="summaries" style="position: absolute; left: 50px; top: 50px; height: calc(100% - 50px);">
-      <article ng-repeat="article in all"
-               id="{{article._id}}"
-               ng-class="{active: article.selected}" class="well summary"
-               ng-click="selectItem($index);">
-        <div class="row-fluid" >
-          <h3 class="pub-title">{{article.title}}</h3>
-          <h3 class="pub-title">{{article.created | date:dateFormat}}</h3>
-        </div>
-      </article>
-    </section>
-
-    <section class="entries" style="position: absolute; left: 380px; top: 80px; right: 0; height: calc(100% - 80px);">
-      <article class="nothingSelected" ng-show="(!filtered.length || !selected.selected) && !onCreation">
-        <img src="img/sadpanda.png" alt="Sad Panda" title="Sad Panda">
-        <p>Nothing selected.</p>
-      </article>
-
-      <article class="well entry active"
-               ng-show="selected.selected && !onCreation && !onEdition">
-        <w-Viewarticle></w-Viewarticle>
-      </article>
-
-      <article class="well entry active"
-               ng-show="onCreation">
-        <w-Createarticle></w-Createarticle>
-      </article>
-
-      <article class="well entry active"
-               ng-show="onEdition">
-        <w-Editarticle></w-Editarticle>
-      </article>
-    </section>
+    </div>
+  </div>
 </section>

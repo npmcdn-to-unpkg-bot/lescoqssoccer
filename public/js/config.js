@@ -28,6 +28,9 @@ angular.module('mean').config(['$routeProvider',
         when('/externalLink', {
             templateUrl: 'views/externalLink.html'
         }).
+        when('/gallery', {
+            templateUrl: 'views/gallery.html'
+        }).
         when('/home', {
             templateUrl: 'views/home.html'
         }).
