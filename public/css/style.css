@@ -1,5 +1,8 @@
 body {
   color: #525252;
+  background-image: url(../img/skin-greenish.jpg);
+  background-size: 100% 100%;
+  background-attachment: fixed;
 }
 .body-expanded, .modal-open {
   overflow-y:hidden;
@@ -44,7 +47,6 @@ h1, .h1, h2, .h2, h3, .h3 {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
-  box-shadow: 0 1px 2px #272727;
   z-index: 2000;
 }
 .hidden-xs, .hidden-sm {
@@ -71,11 +73,12 @@ a.show-sidebar:hover {
   color:#000;
 }
 #sidebar-left {
-  position:relative;
+  float: left;
+  height: 100%;
+  position: fixed;
+  width: 240px;
   z-index: inherit;
-  padding-bottom: 3000px !important;
-  margin-bottom: -3000px !important;
-  background: #6AA6D6 url(../img/devoops_pattern_b10.png) 0 0 repeat;
+  background: #000;
   -webkit-transition: 0.2s;
   -moz-transition: 0.2s;
   -o-transition: 0.2s;
@@ -84,10 +87,8 @@ a.show-sidebar:hover {
 #content {
   position: relative;
   z-index: 10;
-  background: #ebebeb;
-  box-shadow: 0 0 6px #131313;
-  padding-bottom: 3000px !important;
-  margin-bottom: -2980px !important;
+  margin-left: 218px;
+  margin-top: 15px;
   overflow: hidden;
   -webkit-transition: 0.2s;
   -moz-transition: 0.2s;
@@ -181,6 +182,7 @@ a.show-sidebar:hover {
   line-height: 50px;
   height: 50px;
   background: #ebebeb;
+  box-shadow: 0 1px 2px #272727;
 }
 #main {
   margin-top: 50px;
@@ -248,7 +250,7 @@ a.show-sidebar:hover {
   margin-top: 8px;
   padding: 5px;
   font-size: 20px;
-  color: #7BC5D3;
+  color: currentColor;
   line-height: 1em;
   vertical-align: top;
   -webkit-border-radius: 4px;
@@ -275,7 +277,7 @@ a.show-sidebar:hover {
   margin-top: 3px;
   padding: 3px 6px;
   vertical-align: top;
-  background: #CEA9A9;
+  background: chocolate;
 }
 .avatar {
   width: 40px;
@@ -1607,6 +1609,7 @@ td.beauty-hover {
 }
 #simple_gallery {
   text-align: center;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 #simple_gallery a.fancybox {
   display: inline-block;
@@ -2434,7 +2437,6 @@ td.beauty-hover {
 
 .gallery .image-inner {
 position: relative;
-background: #fff;
 -webkit-border-radius: 3px 3px 0 0;
 -moz-border-radius: 3px 3px 0 0;
 border-radius: 3px 3px 0 0;
@@ -2555,3 +2557,37 @@ border-radius: 3px 3px 0 0;
        -o-transition-duration: 0s;
           transition-duration: 0s;
 }
+
+a.sidebarItem{
+  text-align:center; 
+  padding: 1.2rem;
+  text-align: center !important;
+  text-transform: uppercase; 
+  font-size: large;
+  font-weight: 200;
+}
+
+a.sidebarItem:hover{
+  background: white !important;
+  color: #333 !important;
+}
+
+.profile, .site-header .site-avatar img {
+border-radius: 50%;
+display: block;
+float: none;
+height: 112px;
+margin: 0 auto 24px;
+margin: 0 auto 2.4rem;
+width: 112px;
+}
+
+.profile{
+  margin-top:10px;
+  border:none;
+}
+
+
+
+
+

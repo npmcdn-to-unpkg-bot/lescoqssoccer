@@ -1,7 +1,12 @@
+<div class="site-avatar">
+	<a href="http://www.hiddentao.com/">
+		<img alt="" src="http://1.gravatar.com/avatar/32e3a5e470f509284fc6ee9a7237acdd?s=224&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D224&amp;r=G" class="profile avatar-224 photo" height="224" width="224">
+		</a>
+</div>
 <ul class="nav main-menu">
-	<li ng-repeat="item in menu">
-		<a href="#!/{{item.link}}" class="ajax-link" ng-class="{ active: isCurrentPath('#!/{{item.link}}') }">
-			<i ng-class="item.icon"></i>
+	<li ng-repeat="item in menu" style="border-bottom: 1px solid #333;">
+		<a href="#!/{{item.link}}" class="ajax-link sidebarItem" ng-class="{ active: isCurrentPath('#!/{{item.link}}')}">
+			<!-- <i ng-class="item.icon"></i> -->
 			<span class="hidden-xs">{{item.title}}</span>
 		</a>
 	</li>
