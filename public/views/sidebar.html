@@ -1,38 +1,8 @@
 <ul class="nav main-menu">
-	<li>
-		<a href="#!/home" class="ajax-link" ng-class="{ active: isCurrentPath('#!/home') }">
-			<i class="fa fa-dashboard"></i>
-			<span class="hidden-xs">Home</span>
-		</a>
-	</li>
-	<li>
-		<a href="#!/agenda" class="ajax-link" ng-class="{ active: isCurrentPath('#!/agenda') }">
-			 <i class="fa fa-calendar"></i>
-			 <span class="hidden-xs">Agenda</span>
-		</a>
-	</li>
-	<li class="dropdown">
-		<a href="#!/articles" class="ajax-link" ng-class="{ active: isCurrentPath('#!/articles') }">
-			<i class="fa fa-pencil-square-o"></i>
-			 <span class="hidden-xs">Articles</span>
-		</a>
-	</li>
-	<li class="dropdown">
-		<a href="#!/externalLink" class="ajax-link" ng-class="{ active: isCurrentPath('#!/externalLink') }">
-			<i class="fa fa-list"></i>
-			 <span class="hidden-xs">Liens</span>
-		</a>
-	</li>
-	<li class="dropdown">
-		<a href="#!/gallery" class="ajax-link" ng-class="{ active: isCurrentPath('#!/gallery') }">
-			<i class="fa fa-picture-o"></i>
-			 <span class="hidden-xs">Photos</span>
-		</a>
-	</li>
-	<li>
-		 <a class="ajax-link" href="#!/typography" ng-class="{ active: isCurrentPath('#!/typography') }">
-			 <i class="fa fa-font"></i>
-			 <span class="hidden-xs">Suggestions</span>
+	<li ng-repeat="item in menu">
+		<a href="#!/{{item.link}}" class="ajax-link" ng-class="{ active: isCurrentPath('#!/{{item.link}}') }">
+			<i ng-class="item.icon"></i>
+			<span class="hidden-xs">{{item.title}}</span>
 		</a>
 	</li>
 </ul>

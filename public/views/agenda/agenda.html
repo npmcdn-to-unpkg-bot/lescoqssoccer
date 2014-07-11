@@ -1,4 +1,11 @@
-<section class="mainContent" data-ng-controller="agendaController">
+<section data-ng-controller="agendaController">
+  <div class="row">
+    <div id="breadcrumb" class="col-md-12">
+      <ol class="breadcrumb">
+        <li><a href="#!/Agenda">Agenda</a></li>
+      </ol>
+    </div>
+  </div>
   <div class="row">
     <div class="col-xs-12 col-sm-6">
       <div class="box">
@@ -63,27 +70,32 @@
           <div class="no-move"></div>
         </div>
         <div class="box-content">
-          <article  id="map"
-                    class="entry active">
+          <article  id="map" class="entry active">
               <div class="row-fluid">
-                <label for="title" class="col-md-2 control-label">Localisation</label>
                    <!-- search/go to current location -->
                 <div style="margin-bottom: 15px;">
-                      <p class="input-group" style="margin-bottom: 15px;">
-                        <input type="text" class="form-control" ng-model="search"/>
-                        <span class="input-group-btn">
-                        <button class="btn" type="button" ng-click="geoCode()" ng-disabled="search.length == 0" title="search" >
-                          &nbsp;<i class="glyphicon glyphicon-search"></i>
-                        </button>
-                        <button class="btn" type="button" ng-click="gotoCurrentLocation()" title="current location">
-                          &nbsp;<i class="glyphicon glyphicon-home"></i>
-                        </button>
-                        </span>
-                      </p>
-                      <google-map center="map1.center"
-                                  control="map1.control">
-                      </google-map>
-                </div>
+                    <p class="input-group" style="margin-bottom: 15px;">
+                      <input type="text" class="form-control" ng-model="search" name="search" placeholder="Geolocaliser une adresse"/>
+                      <span class="input-group-btn">
+                      <button class="btn" type="button" ng-click="geoCode()" ng-disabled="search.length == 0" title="search" >
+                        &nbsp;<i class="glyphicon glyphicon-search"></i>
+                      </button>
+                      <button class="btn" type="button" ng-click="gotoCurrentLocation()" title="current location">
+                        &nbsp;<i class="glyphicon glyphicon-home"></i>
+                      </button>
+                      </span>
+                    </p>
+                    <div class="google-map span7"
+                         center="map.center"
+                         zoom="map.zoom"
+                         draggable="true"
+                         dragging="map.dragging"
+                         bounds="map.bounds"
+                         events="map.events"
+                         options="map.options"
+                         pan="true"
+                         control="map.control">
+                    </div>
               </div>
           </article>
         </div>
