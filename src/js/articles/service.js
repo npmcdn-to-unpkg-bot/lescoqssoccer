@@ -1,6 +1,6 @@
 'use strict';
 
-//Articles service used for articles REST endpoint
+//Articles service used for Articles REST endpoint
 angular.module('mean.articles').factory('Articles', ['$resource', function($resource) {
     return $resource('articles/:articleId', {
         articleId: '@_id'
@@ -17,7 +17,7 @@ angular.module('mean.articles').factory('Articles', ['$resource', function($reso
 angular.module('mean.articles').service('ArticlesCollection', ['Global', 'Articles', function(Global, Articles) {
 
 	var global = Global;
-	var articles = {
+	var ArticlesCollection = {
 		 
 		all: [],
 		filtered: [],
@@ -30,21 +30,21 @@ angular.module('mean.articles').service('ArticlesCollection', ['Global', 'Articl
 
 		   	Articles.query(function(articles) {      
 
-		     	articles.all = [];
+		     	ArticlesCollection.all = [];
 		     	angular.forEach(articles, function(article) {
 
-			       	articles.all.push(article);
-			       	articles.all.sort(function(articleA, articlesB) {
-			       	  return new Date(articlesB.created).getTime() - new Date(articleA.created).getTime();
+			       	ArticlesCollection.all.push(article);
+			       	ArticlesCollection.all.sort(function(articleA, articleB) {
+			       	  return new Date(articleB.created).getTime() - new Date(articleA.created).getTime();
 			       	});
 
-			       	articles.filtered = articles.all;
-			       	articles.readCount = articles.all.reduce(function(count, article) { return article.read ? count : count; }, 0);
-			       	articles.starredCount = articles.all.reduce(function(count, article) { return article.starred ? count : count; }, 0);
-			       	articles.selected = articles.selected ? articles.all.filter(function(article) { 
-			       		return article.id == articles.selected.id; 
+			       	ArticlesCollection.filtered = ArticlesCollection.all;
+			       	ArticlesCollection.readCount = ArticlesCollection.all.reduce(function(count, article) { return article.read ? count : count; }, 0);
+			       	ArticlesCollection.starredCount = ArticlesCollection.all.reduce(function(count, article) { return article.starred ? count : count; }, 0);
+			       	ArticlesCollection.selected = ArticlesCollection.selected ? ArticlesCollection.all.filter(function(article) { 
+			       		return article.id == ArticlesCollection.selected.id; 
 			       	})[0] : null;
-		    	});
+		    	});	
 			});
 		},
 
@@ -65,8 +65,8 @@ angular.module('mean.articles').service('ArticlesCollection', ['Global', 'Articl
 		update: function(index, callback){
 			
 			if (index) {
-		        articles.filtered[index].$update(function(response) {
-		            articles.filtered[index] = response;
+		        ArticlesCollection.filtered[index].$update(function(response) {
+		            ArticlesCollection.filtered[index] = response;
 
 		            if(callback)
 		            	callback.call();
@@ -90,56 +90,56 @@ angular.module('mean.articles').service('ArticlesCollection', ['Global', 'Articl
 		},
 
 		prev: function() {
-		    if (articles.hasPrev()) {
-		     	articles.selectArticle(articles.selected ? articles.selectedIdx - 1 : 0);
+		    if (ArticlesCollection.hasPrev()) {
+		     	ArticlesCollection.selectArticle(ArticlesCollection.selected ? ArticlesCollection.selectedIdx - 1 : 0);
 		    }
 		},
 
 		next: function() {
-		    if (articles.hasNext()) {
-		     	articles.selectArticle(articles.selected ? articles.selectedIdx + 1 : 0);
+		    if (ArticlesCollection.hasNext()) {
+		     	ArticlesCollection.selectArticle(ArticlesCollection.selected ? ArticlesCollection.selectedIdx + 1 : 0);
 		    }
 		},
 
 		hasPrev: function() {
-		   	if (!articles.selected) {
+		   	if (!ArticlesCollection.selected) {
 		     	return true;
 		    }
-		    return articles.selectedIdx > 0;
+		    return ArticlesCollection.selectedIdx > 0;
 		},
 
 		hasNext: function() {
-		    if (!articles.selected) {
+		    if (!ArticlesCollection.selected) {
 		     	return true;
 		    }
-		    return articles.selectedIdx < articles.filtered.length - 1;
+		    return ArticlesCollection.selectedIdx < ArticlesCollection.filtered.length - 1;
 		},
 
 		selectArticle: function(idx) {
 
 		    // Unselect previous selection.
-		    if (articles.selected) {
-		     	articles.selected.selected = false;
+		    if (ArticlesCollection.selected) {
+		     	ArticlesCollection.selected.selected = false;
 		    }
 
-		    articles.selected = articles.filtered[idx];
-		    articles.selectedIdx = idx;
-		    articles.selected.selected = true;
-		    articles.onCreation = articles.onEdition = false;
+		    ArticlesCollection.selected = ArticlesCollection.filtered[idx];
+		    ArticlesCollection.selectedIdx = idx;
+		    ArticlesCollection.selected.selected = true;
+		    ArticlesCollection.onCreation = ArticlesCollection.onEdition = false;
 		},
 
 		filterBy: function(key, value) {
-		    articles.filtered = articles.all.filter(function(article) {
+		    ArticlesCollection.filtered = ArticlesCollection.all.filter(function(article) {
 		     	return article[key] === value;
 		    });
-		    articles.reindexSelectedItem();
+		    ArticlesCollection.reindexSelectedItem();
 		},
 
 		clearFilter: function() {
-		    articles.filtered = articles.all;
-		    articles.reindexSelectedItem();
+		    ArticlesCollection.filtered = ArticlesCollection.all;
+		    ArticlesCollection.reindexSelectedItem();
 		},
 	}
 
-	return articles;
+	return ArticlesCollection;
 }]);

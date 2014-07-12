@@ -5,7 +5,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
     $scope.global = Global;
     $scope.onCreation = false;
     $scope.uploaderItem;
-    ArticlesCollection.load();
+    $scope.ArticlesCollection = ArticlesCollection;
 
     $scope.dateFormat = "dd/MM/yyyy 'à' H'h'mm";
     $scope.uploader = $fileUploader.create({
@@ -31,57 +31,6 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
         console.info('Complete', xhr, item, response);
     });
 
-    $scope.create = function() {
-      $scope.uploaderItem.upload();
-
-      var article = new Articles({
-          title: this.title,
-          content: this.content,
-          link: this.link
-      });
-      article.$save(function(response) {
-          $scope.find();
-      });
-    };
-
-    $scope.find = function(selectNextElement) {
-        
-    };
-
-    $scope.findOne = function(articleId) {
-      if(articleId){
-          Articles.get({
-              articleId: articleId
-          }, function(article) {
-              $scope.article = article;
-          });
-      }
-    };
-
-    $scope.update = function() {
-      if ($scope.editingArticle) {
-          $scope.editingArticle.$update(function(response) {
-              $scope.filtered[$scope.selectedIdx] = response;
-              $scope.selected = response;
-              $scope.selected.selected = true;
-              $scope.onEdition = false;
-              $scope.editingArticle = null;
-          });
-      } else {
-          alert("error");
-      }
-    };
-
-    $scope.remove = function() {
-        if ($scope.selected) {
-          $scope.selected.$remove(function(response){
-              $scope.find(true);
-          });
-        } else {
-          alert("error");
-        }
-    };
-
     $scope.showCreationForm = function() {
       if($scope.selected) $scope.selected.selected = false;
       $scope.onCreation = true;
@@ -94,7 +43,22 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
       $scope.onCreation = false;
     };
 
-    
+    $scope.ArticlesCollection.load();
+
+    $scope.totalItems = 64;
+    $scope.currentPage = 4;
+
+    $scope.setPage = function (pageNo) {
+      $scope.currentPage = pageNo;
+    };
+
+    $scope.pageChanged = function() {
+      console.log('Page changed to: ' + $scope.currentPage);
+    };
+
+    $scope.maxSize = 5;
+    $scope.bigTotalItems = 175;
+    $scope.bigCurrentPage = 1;
 }]);
 
 
