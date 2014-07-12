@@ -1,0 +1,24 @@
+<section class="mainContent" data-ng-controller="ArticlesController" style="margin-top:0;">
+    {{ArticlesCollection.all.length}}
+  <div id="gallery" class="gallery isotope" style="position: relative; overflow: hidden; height: 1047px;">
+    <div class="image gallery-group-1 isotope-item" style="position: absolute; left: 0px; top: 0px;" data-ng-repeat="article in articlesCollection.all">
+        <div class="image-inner">
+            <a href="img/avatar.jpg" data-lightbox="gallery-group-1">
+                <img src="img/8962691008_7f489395c9_m.jpg" alt="">
+            </a>
+            <p class="image-caption">
+                #3452 - Scottwills Arch
+            </p>
+        </div>
+        <div class="image-info">
+            <h5 class="title">{{article.title}}</h5>
+            <div>
+                <small>par</small> <a href="javascript:;">Lelouch Wong</a>
+            </div>
+            <div class="desc">
+                Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus eget ultricies arcu.
+            </div>
+        </div>
+    </div>
+  </div>
+</section>
