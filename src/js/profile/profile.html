@@ -1,0 +1,104 @@
+<section data-ng-controller="ProfileController">
+    <div class="row">
+
+        <!-- avatar column -->
+        <div class="col-md-3 col-md-offset-1 avatar-box">
+            <div class="personal-image">
+                <div class="site-avatar">
+                    <a href="http://www.hiddentao.com/">
+                        <img alt="" src="http://1.gravatar.com/avatar/32e3a5e470f509284fc6ee9a7237acdd?s=224&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D224&amp;r=G" class="profile avatar-224 photo" height="224" width="224">
+                    </a>
+                </div>
+                <div>
+                    <button class="btn btn-default">
+                        <label for="upload-profile-picture" class="label-upload-profile-picture">
+                            Uploader une photo différente
+                            <input id="upload-profile-picture" ng-file-select type="file" class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
+                        </label>
+                    </button>
+                </div>
+                <div class="left-col" style="text-align: left;">
+                    <h2>{{global.user.name}}</h2>
+                </div>
+                <div class="left-col" style="text-align: left;">
+                    <h3>Inscrit depuis le 02 Juin 2014</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <tabset justified="true" style="border-left: 1px solid #ddd; box-shadow: inset 3px 0px 4px -1px #fafafa;">
+                <tab heading="Profile">
+                    <form class="form-horizontal" role="form" style="margin-top: 40px; margin-left: 20px;">
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">First name:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" type="text" value="Alejandra">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Last name:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" type="text" value="Galvan">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Company:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" type="text" value="Design Co.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Email:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" type="text" value="alejandra@design.com">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Time Zone:</label>
+                            <div class="col-lg-8">
+                                <div class="ui-select">
+                                    <select id="user_time_zone" name="user[time_zone]">
+                                        <option value="Hawaii">(GMT-10:00) Hawaii</option>
+                                        <option value="Alaska">(GMT-09:00) Alaska</option>
+                                        <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
+                                        <option value="Arizona">(GMT-07:00) Arizona</option>
+                                        <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
+                                        <option value="Central Time (US &amp; Canada)" selected="selected">(GMT-06:00) Central Time (US &amp; Canada)</option>
+                                        <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
+                                        <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Username:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" type="text" value="alegalvan">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Password:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" type="password" value="blablablabla">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Confirm password:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" type="password" value="blablablabla">
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <input type="button" class="btn btn-default" value="Save Changes">
+                            <input type="reset" value="Cancel" class="btn btn-primary">
+                        </div>
+                    </form>
+                </tab>
+                <tab heading="Skills"></tab>
+                <tab heading="Community"></tab>
+            </tabset>
+        </div>
+
+    </div>
+</section>

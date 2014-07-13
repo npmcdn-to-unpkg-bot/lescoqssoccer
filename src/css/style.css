@@ -1,9 +1,6 @@
 body {
   color: #525252;
-  background: #d9e0e7;
-  /*background-image: url(../img/skin-greenish.jpg);
-  background-size: 100% 100%;
-  background-attachment: fixed;*/
+  /*background: #d9e0e7;*/
 }
 .body-expanded, .modal-open {
   overflow-y:hidden;
@@ -189,6 +186,9 @@ a.show-sidebar:hover {
   margin-top: 50px;
   min-height: 800px;
   overflow: hidden;
+    background-image: url(../img/sunset.jpg);
+  background-size: 100% 100%;
+  background-attachment: fixed;
 }
 #search {
   position: relative;
@@ -331,7 +331,6 @@ a.show-sidebar:hover {
   z-index: 1999;
   position: relative;
   border: 1px solid #242a30;
-  box-shadow: 0 0 4px #D8D8D8;
   background: transparent;
   margin-bottom: 20px;
   -webkit-border-radius: 3px;
@@ -350,7 +349,6 @@ a.show-sidebar:hover {
   color: white;
   font-size: 16px;
   position:relative;
-  overflow: hidden;
   height: 28px;
 }
 
@@ -762,9 +760,9 @@ td.beauty-hover {
   font-size: 12px;
   font-weight: bold;
   text-align: center;
-  background-color: #a2a2a2;
+/*  background-color: #a2a2a2;
   background: #a2a2a2 -moz-linear-gradient(top, rgba(255,255,255,0.6), rgba(255,255,255,0));
-  background: #a2a2a2 -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255,255,255,0.6)), to(rgba(255,255,255,0)));
+  background: #a2a2a2 -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255,255,255,0.6)), to(rgba(255,255,255,0)));*/
   line-height: 24px;
   margin: 0 0 10px 0;
   padding: 0 10px;
@@ -792,9 +790,9 @@ td.beauty-hover {
   padding: 0px 8px;
   background: rgba(0, 0, 0, 0.1);
 }
-.btn i {
+/*.btn i {
   vertical-align: middle;
-}
+}*/
 .btn-app {
   width: 80px;
   height: 80px;
