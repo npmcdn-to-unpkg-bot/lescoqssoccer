@@ -102,7 +102,7 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
         height: 300,
         editable: true,
         header:{
-          left: 'add',
+          left: 'month agendaWeek agendaDay',
           center: 'title',
           right: 'prev,next'
         },
