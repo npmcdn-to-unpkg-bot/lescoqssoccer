@@ -28,8 +28,7 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
 
     /* alert on eventClick */
     $scope.alertEventOnClick = function(date, allDay, jsEvent, view ){
-      $scope.selectedEvent = undefined;
-      $scope.add(date);
+        $scope.onCreation = true;
     };
 
     $scope.alertOnEventClick = function(event, allDay, jsEvent, view ){
@@ -242,7 +241,7 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
     };
 
     $scope.onMarkerClicked = function(marker){
-      markers.showWindow = true;
+      marker.showWindow = true;
     };
 
     $scope.geoCode = function () {
@@ -276,18 +275,6 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
             $scope.map1.center = { lat: lat, lon: lon };
             if (!$scope.$$phase) $scope.$apply("loc");
         }
-    };
-
-    $scope.showCreationForm = function() {
-      if($scope.selected) $scope.selected.selected = false;
-      $scope.onCreation = true;
-      $scope.onEdition = false;
-    };
-
-    $scope.showEditionForm = function() {
-      $scope.editingArticle = _.clone($scope.selected);
-      $scope.onEdition = true;
-      $scope.onCreation = false;
     };
 
     /***
