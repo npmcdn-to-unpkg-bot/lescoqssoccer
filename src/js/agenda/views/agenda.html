@@ -1,22 +1,30 @@
 <section data-ng-controller="agendaController">
-  <div class="row">
+  
+  <!-- Agenda global view : fullcalendar and map -->
+  <article ng-show="!onCreation">
+    
+    <!-- Event detail -->
     <div class="col-xs-3">
-    <div class="box">
-      <div class="box-header">
-        <div class="box-name">
-          <span>Agenda</span>
+      <div class="box">
+        <div class="box-header">
+          <div class="box-name">
+            <span>Agenda</span>
+          </div>
+          <div class="box-icons">
+            <a class="close-link">
+              <i class="fa fa-times"></i>
+            </a>
+          </div>
         </div>
-        <div class="box-icons">
-          <a class="close-link">
-            <i class="fa fa-times"></i>
-          </a>
+        <div class="box-content">
+          <button class="btn btn-default" ng-click="onCreation = true" style="margin-left: 10px;background: white;">
+                  Ajouter un évènement
+          </button>
         </div>
-      </div>
-      <div class="box-content">
-        Ici détail de l'agendaController
       </div>
     </div>
-  </div>
+
+    <!-- Calendar -->
     <div class="col-xs-9">
       <div class="box">
         <div class="box-header">
@@ -31,7 +39,7 @@
           <div class="no-move"></div>
         </div>
         <div class="box-content">
-          <article  id="directives-calendar" class="well" style="background-color: rgba(0, 0, 0, 0);">
+          <article class="well" style="background-color: rgba(0, 0, 0, 0);">
             <div class="row-fluid">
               <div class="span8">
                 <div class="calendar" ng-model="eventSources" ui-calendar="uiConfig.calendar"></div>
@@ -42,6 +50,8 @@
         </div>
       </div>
     </div>
+    
+    <!-- Map -->
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
@@ -61,19 +71,7 @@
         <div class="box-content">
           <article  id="map" class="entry active">
               <div class="row-fluid">
-                   <!-- search/go to current location -->
                 <div style="margin-bottom: 15px;">
-                    <p class="input-group" style="margin-bottom: 15px;">
-                      <input type="text" class="form-control" ng-model="search" name="search" placeholder="Geolocaliser une adresse"/>
-                      <span class="input-group-btn">
-                      <button class="btn" type="button" ng-click="geoCode()" ng-disabled="search.length == 0" title="search" >
-                        &nbsp;<i class="glyphicon glyphicon-search"></i>
-                      </button>
-                      <button class="btn" type="button" ng-click="gotoCurrentLocation()" title="current location">
-                        &nbsp;<i class="glyphicon glyphicon-home"></i>
-                      </button>
-                      </span>
-                    </p>
                     <div class="google-map span7"
                          center="map.center"
                          zoom="map.zoom"
@@ -90,5 +88,12 @@
         </div>
       </div>
     </div>
+  </article>
+
+  <!-- Creation form -->
+  <article ng-show="onCreation">
+        <w-Createevent></w-Createevent>
+  </article>
+
 </section>
 

@@ -89,10 +89,11 @@ a.show-sidebar:hover {
   -o-transition: 0.2s;
   transition: 0.2s;
 }
+
 #content {
   position: relative;
   z-index: 10;
-  margin-left: 218px;
+  margin-left: 17%;
   margin-top: 15px;
   overflow: hidden;
   -webkit-transition: 0.2s;
@@ -202,7 +203,7 @@ a.show-sidebar:hover {
   margin-left: 20px;
 }
 #search > input {
-  width: 180px;
+  width: calc(50% - 10px);
   background: #dfdfdf;
   border: 1px solid #C7C7C7;
   text-shadow:0 1px 1px #EEE;
@@ -326,7 +327,7 @@ a.show-sidebar:hover {
   margin: 0;
   font-size: 14px;
   width: 20px;
-  display: inline-block;
+  display: inline-block !important;
   text-align: center;
   vertical-align: middle;
 }
@@ -2284,12 +2285,18 @@ td.beauty-hover {
     width:0;
     padding:0;
   }
+  #content{
+    margin-left:0;
+  }
   .sidebar-show #content.col-sm-10 {
     opacity: 1;
     width:100%;
   }
   .page-404 .form-inline {
     width: 60%;
+  }
+  #content{
+    margin-left: calc(16.665%);
   }
 }
 @media (min-width: 992px) {
@@ -2298,7 +2305,7 @@ td.beauty-hover {
   }
   .nav.main-menu > li > a > i, .nav.msg-menu > li > a > i {
     font-size:14px;
-    width: 20px;
+    /*width: 20px;*/
     display: inline-block;
   }
   .main-menu .dropdown-menu {
@@ -2320,14 +2327,11 @@ td.beauty-hover {
   .page-404 .form-inline {
     width: 40%;
   }
+  #content{
+    margin-left: 16.65%;
+  }
 }
 @media (max-width: 767px) {
-  #main {
-    margin-top: 100px;
-  }
-  #messages-menu {
-    top:140px;
-  }
   .page-404 .form-inline {
     width: 100%;
   }
@@ -2346,13 +2350,26 @@ td.beauty-hover {
     bottom: 0;
     left: 50%;
     margin-left: -9px;
+  }  
+  #content{
+    margin-left:0;
   }
 }
-@media (max-width: 620px) {
+@media (max-width: 767px) {
   .user-mini {
     display: none;
   }
 }
+
+@media (max-width: 620px) {
+  .user-mini {
+    display: none;
+  }
+  #content{
+    margin-left:0;
+  }
+}
+
 @media (max-width: 400px) {
   .panel-menu a.account {
     padding: 5px 0px 5px 0;
@@ -2375,8 +2392,7 @@ td.beauty-hover {
 }
 
 .angular-google-map-container {
-  height: 350px;
-  margin: 6px 15px;
+  height: 400px;
 }
 
 .edit-profile-avatar .manual-file-chooser {
@@ -2408,7 +2424,7 @@ td.beauty-hover {
 
 .imgThumbnail{
   vertical-align: middle;
-  margin-left: 5px;
+  margin-left: 12px;
   margin-right: 20px;
   border-radius: 5px;
   vertical-align: bottom;
@@ -2608,34 +2624,51 @@ a.collapse-link{
 }
 
 .nav-tabs.nav-justified{
-  background: #242a30;
   border-top-left-radius: 3px !important;
   border-top-right-radius: 3px !important;
 }
 
 .nav-tabs.nav-justified a {
-  color: #525252 !important;
-  background: #242a30 !important;
+  color: white !important;
+  background: rgba(0,0,0,0.5) !important;
   border-top-left-radius: 3px !important;
   border-top-right-radius: 3px !important;
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+  border-color: rgba(0,0,0,0.5) !important;
 }
 
-.nav-tabs.nav-justified a:hover{
-  background: #242a30 !important;
+.nav-tabs.nav-justified a:hover:not(active){
+  background: rgba(0,0,0,0.7) !important;
   color: white !important;
+  border: 0 !important;
+  border-color: rgba(0,0,0,0.5) !important;
 }
 
 .nav-tabs.nav-justified>.active>a{
   background: white !important;
   color:  #242a30 !important;
+  border: 0 !important;
+  border-color: rgba(0,0,0,0.5) !important;
+}
+
+.nav-tabs.nav-justified>.active>a:hover{
+  background: white !important;
+  color:  #242a30 !important;
+  border: 0 !important;
+  border-color: rgba(0,0,0,0.5) !important;
 }
 
 .nav-tabs.nav-justified a, .nav-tabs.nav-justified a:hover, .nav-tabs.nav-justified a:focus {
-  border: 0 !important;
   border-radius: 0 !important;
+  border: 0 !important;
+  border-color: rgba(0,0,0,0.5) !important;
 }
 
-.nav-tabs.nav-justified li:first{
-  border-top-left-radius: 3px !important;
+.nav-tabs.nav-justified li{
+  border: 0 !important;
 }
 
+textarea{
+  min-height: 150px;
+}
