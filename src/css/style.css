@@ -357,7 +357,6 @@ a.show-sidebar:hover {
   color: white;
   font-size: 16px;
   position:relative;
-  height: 28px;
 }
 
 .box-name, .modal-header-name {
@@ -2601,13 +2600,13 @@ a.sidebarItem.active{
 }
 
 .profile, .site-header .site-avatar img {
-border-radius: 50%;
-display: block;
-float: none;
-height: 112px;
-margin: 0 auto 24px;
-margin: 0 auto 2.4rem;
-width: 112px;
+  border-radius: 50%;
+  display: block;
+  float: none;
+  height: 112px;
+  margin: 0 auto 24px;
+  margin: 0 auto 2.4rem;
+  width: 112px;
 }
 
 .profile{
@@ -2623,11 +2622,6 @@ a.collapse-link{
   color:#f59c1a !important;
 }
 
-.nav-tabs.nav-justified{
-  border-top-left-radius: 3px !important;
-  border-top-right-radius: 3px !important;
-}
-
 .nav-tabs.nav-justified a {
   color: white !important;
   background: rgba(0,0,0,0.5) !important;
@@ -2641,31 +2635,22 @@ a.collapse-link{
 .nav-tabs.nav-justified a:hover:not(active){
   background: rgba(0,0,0,0.7) !important;
   color: white !important;
-  border: 0 !important;
-  border-color: rgba(0,0,0,0.5) !important;
 }
 
 .nav-tabs.nav-justified>.active>a{
-  background: white !important;
+  background: transparent !important;
   color:  #242a30 !important;
   border: 0 !important;
-  border-color: rgba(0,0,0,0.5) !important;
+  /*border-color: rgba(0,0,0,0.5) !important;*/
 }
 
 .nav-tabs.nav-justified>.active>a:hover{
-  background: white !important;
+  background: transparent !important;
   color:  #242a30 !important;
-  border: 0 !important;
-  border-color: rgba(0,0,0,0.5) !important;
 }
 
 .nav-tabs.nav-justified a, .nav-tabs.nav-justified a:hover, .nav-tabs.nav-justified a:focus {
   border-radius: 0 !important;
-  border: 0 !important;
-  border-color: rgba(0,0,0,0.5) !important;
-}
-
-.nav-tabs.nav-justified li{
   border: 0 !important;
 }
 

@@ -1,7 +1,7 @@
 <section>
 	
 	<div>
-		<button class="btn btn-default" ng-click="onCreation = false" style="margin-left: 15px; background: white;">
+		<button class="btn btn-default" ng-click="onCreation = false;" style="margin-left: 15px; background: white;">
 			<i class="glyphicon glyphicon-arrow-left"></i>
 			Retour à l'agenda
 		</button>
@@ -30,13 +30,21 @@
 				            <div class="form-group">
 							    <label for="title" class="col-md-2 control-label">Titre</label>
 								<div class="col-md-10">
-									<input type="text" class="form-control" data-ng-model="title" placeholder="Titre de l'évènement" required>
+									<input  type="text" 
+											class="form-control" 
+											data-ng-model="title" 
+											placeholder="Titre de l'évènement" 
+											required>
 								</div>
 							</div>
 							<div class="form-group">
 							    <label for="title" class="col-md-2 control-label">Contenu</label>
 								<div class="col-md-10">
-									<textarea class="form-control" data-ng-model="content" placeholder="Contenu de l'évènement" required></textarea>
+									<textarea 	class="form-control" 
+												data-ng-model="content" 
+												placeholder="Contenu de l'évènement" 
+												required>
+									</textarea>
 								</div>
 							</div>
 							<div class="form-group">
@@ -98,27 +106,35 @@
 							            <p class="input-group">
 							              <input type="text" class="form-control" data-ng-model="search"/>
 							              <span class="input-group-btn">
-								            <button class="btn" type="button" ng-click="geoCode()" ng-disabled="search.length == 0" title="search" >
-								              &nbsp;<i class="glyphicon glyphicon-search"></i>
+								            <button class="btn" 
+								            		type="button" 
+								            		ng-click="geoCode()" 
+								            		ng-disabled="search.length == 0" 
+								            		title="search" >
+								              		&nbsp;<i class="glyphicon glyphicon-search"></i>
 								            </button>
-								            <button class="btn" type="button" ng-click="gotoCurrentLocation()" title="current location">
-								              &nbsp;<i class="glyphicon glyphicon-home"></i>
+								            <button class="btn" 
+								            		type="button" 
+								            		ng-click="gotoCurrentLocation()" 
+								            		title="current location">
+								              		&nbsp;<i class="glyphicon glyphicon-home"></i>
 								            </button>
 							              </span>
 							            </p>
 							        </div>
 								    <div class="col-md-12">
-							        	<div class="google-map span7"
+							        	<google-map
 					                         center="map1.center"
 					                         zoom="map1.zoom"
 					                         draggable="true"
-					                         dragging="map.dragging"
-					                         bounds="map.bounds"
-					                         events="map.events"
-					                         options="map.options"
-					                         pan="true"
-					                         control="map.control">
-					                    </div>
+					                         dragging="map1.dragging"
+					                         bounds="map1.bounds"
+					                         events="map1.events"
+					                         options="map1.options"
+					                         refresh="true"
+					                         control="map1.control"
+					                         ng-if="onCreation">
+					                    </google-map>
 							        </div>
 							    </div>
 							</div>
@@ -136,25 +152,11 @@
 							    <label for="title" class="col-md-2 control-label">Notifier les utilisateurs</label>
 							    <div class="col-md-10">
 							        <div class="checkbox">
-									  <label>
-									    <input type="checkbox" value="">
-									    User 1
-									    </input>
-									  </label>
-									</div>
-									<div class="checkbox">
-									  <label>
-									    <input type="checkbox" value="">
-									    User 2
-									    </input>
-									  </label>
-									</div>
-									<div class="checkbox">
-									  <label>
-									    <input type="checkbox" value="">
-									    User 3
-									    </input>
-									  </label>
+									  	<label>
+									    	<input type="checkbox" value="">
+									    	User 1
+									    	</input>
+									  	</label>
 									</div>
 								</div>
 						    </div>
@@ -172,8 +174,7 @@
 				                        <div 	class="well my-drop-zone" 
 				                        		ng-file-drop="{ url: '/foo' }" 
 				                        		ng-file-over="another-file-over-class"
-				                        		style="background: transparent;"
-				                        >
+				                        		style="background: transparent;">
 				                            Déposer les images ici
 				                        </div>
 				                    </div>
@@ -202,26 +203,44 @@
 				                        </thead>
 				                        <tbody>
 				                            <tr ng-repeat="item in uploader.queue">
-				                                <td><strong>{{ item.file.name }}</strong></td>
-				                                <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+				                                <td>
+				                                	<strong>{{ item.file.name }}</strong>
+				                                </td>
+				                                <td ng-show="uploader.isHTML5" nowrap>
+				                                	{{ item.file.size/1024/1024|number:2 }} MB
+				                                </td>
 				                                <td ng-show="uploader.isHTML5">
 				                                    <div class="progress" style="margin-bottom: 0;">
 				                                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
 				                                    </div>
 				                                </td>
 				                                <td class="text-center">
-				                                    <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
-				                                    <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
-				                                    <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+				                                    <span ng-show="item.isSuccess">
+				                                    	<i class="glyphicon glyphicon-ok"></i>
+				                                    </span>
+				                                    <span ng-show="item.isCancel">
+				                                    	<i class="glyphicon glyphicon-ban-circle"></i>
+				                                    </span>
+				                                    <span ng-show="item.isError">
+				                                    	<i class="glyphicon glyphicon-remove"></i>
+				                                    </span>
 				                                </td>	
 				                                <td nowrap>
-				                                    <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+				                                    <button type="button" 
+				                                    		class="btn btn-success btn-xs" 
+				                                    		ng-click="item.upload()" 
+				                                    		ng-disabled="item.isReady || item.isUploading || item.isSuccess">
 				                                        <span class="glyphicon glyphicon-upload"></span> Upload
 				                                    </button>
-				                                    <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+				                                    <button type="button" 
+				                                    		class="btn btn-warning btn-xs" 
+				                                    		ng-click="item.cancel()" 
+				                                    		ng-disabled="!item.isUploading">
 				                                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel
 				                                    </button>
-				                                    <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+				                                    <button type="button" 
+				                                    		class="btn btn-danger btn-xs" n
+				                                    		g-click="item.remove()">
 				                                        <span class="glyphicon glyphicon-trash"></span> Remove
 				                                    </button>
 				                                </td>
@@ -232,16 +251,28 @@
 				                    <div>
 				                        <p>
 				                            <div class="progress" style="">
-				                                <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+				                                <div 	class="progress-bar" 
+				                                		role="progressbar" 
+				                                		ng-style="{ 'width': uploader.progress + '%' }">
+				                                </div>
 				                            </div>
 				                        </p>
-				                        <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+				                        <button type="button" 
+				                        		class="btn btn-success btn-s" 
+				                        		ng-click="uploader.uploadAll()" 
+				                        		ng-disabled="!uploader.getNotUploadedItems().length">
 				                            <span class="glyphicon glyphicon-upload"></span> Upload all
 				                        </button>
-				                        <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
+				                        <button type="button" 
+				                        		class="btn btn-warning btn-s" 
+				                        		ng-click="uploader.cancelAll()" 
+				                        		ng-disabled="!uploader.isUploading">
 				                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
 				                        </button>
-				                        <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
+				                        <button type="button" 
+				                        		class="btn btn-danger btn-s" 
+				                        		ng-click="uploader.clearQueue()" 
+				                        		ng-disabled="!uploader.queue.length">
 				                            <span class="glyphicon glyphicon-trash"></span> Remove all
 				                        </button>
 				                    </div>

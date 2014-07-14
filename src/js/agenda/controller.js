@@ -126,11 +126,8 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
     $scope.changeLang('french');
     
     $scope.map = {
-      control: {},
-      version: "uknown",
-      heatLayerCallback: function (layer) {
-        //set the heat layers backend data
-        var mockHeatLayer = new MockHeatLayer(layer);
+      control: {
+        refresh:true
       },
       showTraffic: true,
       showBicycling: true,
@@ -173,8 +170,6 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
       ],
       doUgly: true, //great name :)
       events: {
-        tilesloaded: function (map, eventName, originalEventArgs) {
-        },
         click: function (mapModel, eventName, originalEventArgs) {
 
           var e = originalEventArgs[0];
@@ -217,13 +212,52 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
     };
 
     $scope.map1 = {
-        center: {
-            latitude: 45,
-            longitude: -73
+      control: {},
+      version: "uknown",
+      showTraffic: true,
+      showBicycling: true,
+      center: {
+        latitude: 45.188529000000000000,
+        longitude: 5.724523999999974000
+      },
+      options: {
+        streetViewControl: true,
+        panControl: true,
+        maxZoom: 20,
+        minZoom: 3
+      },
+      zoom: 8,
+      dragging: false,
+      bounds: {},
+      markers: [
+      ],
+      doUgly: true, //great name :)
+      events: {
+        click: function (mapModel, eventName, originalEventArgs) {
+
+          var e = originalEventArgs[0];
+
+          if (!$scope.map.clickedMarker) {
+            $scope.map.clickedMarker = {
+              title: 'You clicked here',
+              latitude: e.latLng.lat(),
+              longitude: e.latLng.lng()
+            };
+          } else {
+            var marker = {
+              latitude: e.latLng.lat(),
+              longitude: e.latLng.lng()
+            };
+            $scope.map.clickedMarker = marker;
+          }
+
+          //scope apply required because this event handler is outside of the angular domain
+          $scope.$apply();
         },
-        zoom: 8,
-        events: {
+        dragend: function() {
+          self = this;
         }
+      }
     };
 
     $scope.geoCode = function () {

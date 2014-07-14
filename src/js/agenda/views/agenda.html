@@ -69,22 +69,17 @@
           <div class="no-move"></div>
         </div>
         <div class="box-content">
-          <article  id="map" class="entry active">
-              <div class="row-fluid">
-                <div style="margin-bottom: 15px;">
-                    <div class="google-map span7"
-                         center="map.center"
-                         zoom="map.zoom"
-                         draggable="true"
-                         dragging="map.dragging"
-                         bounds="map.bounds"
-                         events="map.events"
-                         options="map.options"
-                         pan="true"
-                         control="map.control">
-                    </div>
-              </div>
-          </article>
+          <google-map
+               center="map.center"
+               zoom="map.zoom"
+               draggable="true"
+               dragging="map.dragging"
+               bounds="map.bounds"
+               events="map.events"
+               options="map.options"
+               control="map.control"
+               ng-if="!onCreation">
+          </google-map>
         </div>
       </div>
     </div>
