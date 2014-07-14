@@ -2,9 +2,12 @@
   
   <!-- Agenda global view : fullcalendar and map -->
   <article ng-show="!onCreation">
-    
+
     <!-- Event detail -->
     <div class="col-xs-3">
+      <button class="btn btn-default" ng-click="onCreation = true" style="background: white;">
+          Ajouter un évènement
+      </button>
       <div class="box">
         <div class="box-header">
           <div class="box-name">
@@ -17,9 +20,7 @@
           </div>
         </div>
         <div class="box-content">
-          <button class="btn btn-default" ng-click="onCreation = true" style="margin-left: 10px;background: white;">
-                  Ajouter un évènement
-          </button>
+        Détail:
         </div>
       </div>
     </div>
@@ -78,6 +79,15 @@
                events="map.events"
                options="map.options"
                control="map.control">
+                
+                <marker ng-repeat="m in map.markers" coords="m" icon="m.icon" click="onMarkerClicked(m);">
+                  <window isIconVisibleOnClick="false" 
+                          show="m.showWindow">
+                      <p>This is an info window at {{ m.latitude | number:4 }}, {{ m.longitude | number:4 }}!</p>
+                      <p class="muted">My marker will stay open when the window is popped up!</p>
+                  </window>
+                </marker>
+                
           </google-map>
         </div>
       </div>

@@ -147,8 +147,52 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
       markers: [
         {
           id: 1,
-          latitude: 45,
-          longitude: -74,
+          latitude: 45.188529000000000000,
+          longitude: 5.724523999999974000,
+          showWindow: false,
+          title: 'Marker 2'
+        },
+        {
+          id: 2,
+          latitude: 15,
+          longitude: 30,
+          showWindow: false,
+          title: 'Marker 2'
+        },
+        {
+          id: 3,
+          latitude: 37,
+          longitude: -122,
+          showWindow: false,
+          title: 'Plane'
+        }
+      ],
+      doUgly: true
+    };
+
+    $scope.map1 = {
+      control: {},
+      version: "uknown",
+      showTraffic: true,
+      showBicycling: true,
+      center: {
+        latitude: 45.188529000000000000,
+        longitude: 5.724523999999974000
+      },
+      options: {
+        streetViewControl: true,
+        panControl: true,
+        maxZoom: 20,
+        minZoom: 3
+      },
+      zoom: 8,
+      dragging: false,
+      bounds: {},
+      markers: [
+        {
+          id: 1,
+          latitude: 45.188529000000000000,
+          longitude: 5.724523999999974000,
           showWindow: false,
           title: 'Marker 2'
         },
@@ -191,73 +235,14 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
           //scope apply required because this event handler is outside of the angular domain
           $scope.$apply();
         },
-        dragend: function () {
-          self = this;
-        }
-      },
-      templatedInfoWindow: {
-        coords: {
-          latitude: 48.654686,
-          longitude: -75.937500
-        },
-        options: {
-          disableAutoPan: true
-        },
-        show: true,
-        templateUrl: 'assets/templates/info.html',
-        templateParameter: {
-          message: 'passed in from the opener'
-        }
-      }
-    };
-
-    $scope.map1 = {
-      control: {},
-      version: "uknown",
-      showTraffic: true,
-      showBicycling: true,
-      center: {
-        latitude: 45.188529000000000000,
-        longitude: 5.724523999999974000
-      },
-      options: {
-        streetViewControl: true,
-        panControl: true,
-        maxZoom: 20,
-        minZoom: 3
-      },
-      zoom: 8,
-      dragging: false,
-      bounds: {},
-      markers: [
-      ],
-      doUgly: true, //great name :)
-      events: {
-        click: function (mapModel, eventName, originalEventArgs) {
-
-          var e = originalEventArgs[0];
-
-          if (!$scope.map.clickedMarker) {
-            $scope.map.clickedMarker = {
-              title: 'You clicked here',
-              latitude: e.latLng.lat(),
-              longitude: e.latLng.lng()
-            };
-          } else {
-            var marker = {
-              latitude: e.latLng.lat(),
-              longitude: e.latLng.lng()
-            };
-            $scope.map.clickedMarker = marker;
-          }
-
-          //scope apply required because this event handler is outside of the angular domain
-          $scope.$apply();
-        },
         dragend: function() {
           self = this;
         }
       }
+    };
+
+    $scope.onMarkerClicked = function(marker){
+      markers.showWindow = true;
     };
 
     $scope.geoCode = function () {
@@ -287,7 +272,6 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
     };
 
     $scope.gotoLocation = function (lat, lon) {
-        alert(lat, lng);
         if ($scope.lat != lat || $scope.lon != lon) {
             $scope.map1.center = { lat: lat, lon: lon };
             if (!$scope.$$phase) $scope.$apply("loc");
