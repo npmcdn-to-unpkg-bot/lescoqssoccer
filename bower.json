@@ -16,5 +16,9 @@
     "angular-google-maps": "latest",
     "angular-file-upload": "latest",
     "angular-ui-calendar": "latest"
+  },
+  "resolutions": {
+    "angular": "1.2.10",
+    "jquery": "~2.0.3"
   }
 }
