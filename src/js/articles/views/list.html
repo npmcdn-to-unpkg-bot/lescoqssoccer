@@ -14,7 +14,7 @@
             <div class="image gallery-group-1 isotope-item" data-ng-repeat="article in ArticlesCollection.all" style="display: inline-block;">
                 <div class="image-inner">
                     <a href="img/avatar.jpg" data-lightbox="gallery-group-1">
-                        <img src="img/8962691008_7f489395c9_m.jpg" alt="">
+                        <img ng-src="{{article.image && article.image || 'img/8962691008_7f489395c9_m.jpg'}}" alt="">
                     </a>
                     <p class="image-caption">
                         #Le - {{article.created | date:dateFormat}}

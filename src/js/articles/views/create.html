@@ -1,4 +1,4 @@
-<section>
+ <section>
 	<div>
 		<button class="btn btn-default" ng-click="onCreation = false" style="margin-left: 15px; background: white;">
 			<i class="glyphicon glyphicon-arrow-left"></i>
@@ -18,6 +18,7 @@
 					<form class="form-horizontal" role="form" data-ng-submit="create()">
 				      	<div class="col-md-3 avatar-box" style="margin-top: 15px;">
 						  	<div class="my-drop-zone imgThumbnail">
+						  		<img ng-src="{{image && image || 'img/8962691008_7f489395c9_m.jpg'}}">
 				          	</div>
 							<button class="btn btn-default" style="margin-top: 15px;">
 						        <label for="upload-profile-picture" class="label-upload-profile-picture">
@@ -30,8 +31,8 @@
 						    <div class="form-group">
 						      	<label for="title" class="col-md-2 control-label">Title</label>
 						      	<div class="col-md-10">
-						        	<input type="text" class="form-control" data-ng-model="title" placeholder="Title" 
-						        	tooltip="See? Now click away..."  tooltip-trigger="focus" tooltip-placement="bottom" required>
+						        	<input type="text" class="form-control" data-ng-model="title" placeholder="Title" required>
+						        	<!-- tooltip="See? Now click away..."  tooltip-trigger="focus" tooltip-placement="bottom"  -->
 						      	</div>
 						    </div>
 						    <div class="form-group">

@@ -48,17 +48,13 @@ angular.module('mean.articles').service('ArticlesCollection', ['Global', 'Articl
 			});
 		},
 
-		add: function(article){
+		add: function(article, callback){
 			
-			var articleModel = new Articles({
-		        title: article.title,
-		        content: article.content,
-		        link: article.link,
-		        user: global.user
-		    });
+			var articleModel = new Articles(article);
 		    
 		    articleModel.$save(function(response) {
-		        $scope.find();
+		        ArticlesCollection.load();
+		        callback.call();
 		    });
 		},
 
