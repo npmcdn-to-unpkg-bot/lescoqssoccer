@@ -45,6 +45,7 @@ angular.module('mean.agenda').service('AgendaCollection', ['Global', 'UserEvent'
 		    
 		    userEventModel.$save(function(response) {
 		        AgendaCollection.load();
+		        alert(JSON.stringify(response));
 		        callback.call();
 		    });
 		},

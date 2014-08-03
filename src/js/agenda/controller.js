@@ -1,82 +1,54 @@
 'use strict';
 
-angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeParams', '$location', 'Global', 'UserEvent', function ($scope, $routeParams, $location, Global, UserEvent) {
+angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeParams', '$location', 'Global', 'AgendaCollection', function ($scope, $routeParams, $location, Global, AgendaCollection) {
 
     $scope.global = Global;
     $scope.selectedEvent;
     $scope.selectedDate;
     $scope.onCreation = false;
+    $scope.AgendaCollection = AgendaCollection;
 
     $scope.eventTypes = [
-      {name:'Resto'},
-      {name:'Vacances'},
-      {name:'Soirée'},
-      {name:'Week-end'},
-      {name:'Autres'}
+      {
+        identifier: 'restaurant',
+        name:'Resto'
+      },
+      {
+        identifier: 'holidays',
+        name:'Vacances'
+      },
+      {
+        identifier: 'party',
+        name:'Soirée'
+      },
+      {
+        identifier: 'weekend',
+        name:'Week-end'
+      },
+      {
+        identifier: 'other',
+        name:'Autres'
+      }
     ];
     $scope.selectedType = $scope.eventTypes[2];
 
-    // Agenda
-    $scope.loadEvent = function(){
-      $scope.events = [];
-      UserEvent.query(function(userEvents) {
-        angular.forEach(userEvents,function(userEvent, key){
-          $scope.events.push(userEvent);
-        });
-      });
-    };
-
     /* alert on eventClick */
-    $scope.alertEventOnClick = function(date, allDay, jsEvent, view ){
+    $scope.onDateClick = function(date, allDay, jsEvent, view){
         $scope.onCreation = true;
     };
 
-    $scope.alertOnEventClick = function(event, allDay, jsEvent, view ){
+    $scope.onEventClick = function(event, allDay, jsEvent, view){
         $scope.selectedEvent = event;
     };
 
     /* alert on Drop */
-    $scope.alertOnDrop = function(event, dayDelta, minuteDelta, allDay, revertFunc, jsEvent, ui, view){
+    $scope.onEventDrop = function(event, dayDelta, minuteDelta, allDay, revertFunc, jsEvent, ui, view){
         $scope.update = event;
     };
 
     /* alert on Resize */
-    $scope.alertOnResize = function(event, dayDelta, minuteDelta, revertFunc, jsEvent, ui, view ){
+    $scope.onEventResize = function(event, dayDelta, minuteDelta, revertFunc, jsEvent, ui, view ){
         $scope.update = event;
-    };
-
-    /* add custom event*/
-    $scope.add = function(start) {
-      $scope.selectedDate = start;
-      var $modalScope = angular.element('#modal').scope();
-      $modalScope.open('modal.html', 'UserEventController');
-    };
-
-    $scope.update = function(userEvent){
-      if (userEvent) {
-        userEvent.$update(function() {
-          for (var i in $scope.events) {
-            if ($scope.events[i].uuid === userEvent._id) {
-                $scope.events[i] = userEvent;
-            }
-          }
-        });
-      } else {
-        alert("Erreur dans la mise à jour de l'évènement");
-      }
-    };
-
-    /* remove event */
-    $scope.remove = function(index) {
-
-      var userEvent = $scope.events[index];
-      if (userEvent) {
-          userEvent.$remove(function(){
-            $scope.events.splice(index,1);
-          });
-      } else {
-          alert("Erreur dans la suppression de l'évènement");
-      }
     };
 
     $scope.changeLang = function(language) {
@@ -112,16 +84,65 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
           buttonText: {
           add: '<div id="modal" class="btn btn-success" ng-controller="Modal"><button class="btn btn-default" ng-click="open(\'modal.html\', \'UserEventController\')">Ajouter un évènement</button></div>'
         },
-        dayClick: $scope.alertEventOnClick,
-        eventClick: $scope.alertOnEventClick,
-        eventDrop: $scope.alertOnDrop,
-        eventResize: $scope.alertOnResize
+        dayClick: $scope.onDateClick,
+        eventClick: $scope.onEventClick,
+        eventDrop: $scope.onEventDrop,
+        eventResize: $scope.onEventResize
+      }
+    };
+
+    // Agenda
+    $scope.loadEvent = function(){
+       $scope.AgendaCollection.load();
+    };
+
+    /* add custom event*/
+    $scope.add = function() {
+      alert(this.content);
+      var userEvent = {
+        title : this.title,
+        type : this.selectedType.identifier,
+        content : this.content,
+        start : this.start,
+        end : this.end,
+        location : this.location
+      };
+
+      $scope.AgendaCollection.add(userEvent, function(){
+          $scope.onCreation = false;
+      });
+    };
+
+    $scope.update = function(userEvent){
+      if (userEvent) {
+        userEvent.$update(function() {
+          for (var i in $scope.events) {
+            if ($scope.events[i].uuid === userEvent._id) {
+                $scope.events[i] = userEvent;
+            }
+          }
+        });
+      } else {
+        alert("Erreur dans la mise à jour de l'évènement");
+      }
+    };
+
+    /* remove event */
+    $scope.remove = function(index) {
+
+      var userEvent = $scope.events[index];
+      if (userEvent) {
+          userEvent.$remove(function(){
+            $scope.events.splice(index,1);
+          });
+      } else {
+          alert("Erreur dans la suppression de l'évènement");
       }
     };
 
     /* event sources array*/
     $scope.loadEvent();
-    $scope.eventSources = [$scope.events];
+    $scope.eventSources = [$scope.AgendaCollection.all];
     $scope.changeLang('french');
     
     $scope.map = {

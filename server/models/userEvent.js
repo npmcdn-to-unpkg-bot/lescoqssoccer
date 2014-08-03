@@ -33,6 +33,10 @@ var UserEventSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'User'
     },
+    type: {
+        type:String,
+        trim: true
+    },
     community: {}
 });
 
