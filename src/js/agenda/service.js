@@ -23,19 +23,20 @@ angular.module('mean.agenda').service('AgendaCollection', ['Global', 'UserEvent'
 		selected: null,
 		selectedIdx: null,
 
-		load: function() { 
+		load: function(callback) { 
 
-		   	UserEvent.query(function(userEvents) {      
-
+		   	UserEvent.query(function(userEvents) { 
 		     	AgendaCollection.all = [];
 		     	angular.forEach(userEvents, function(userEvent) {
 
 			       	AgendaCollection.all.push(userEvent);
 			       	AgendaCollection.filtered = AgendaCollection.all;
 			       	AgendaCollection.selected = AgendaCollection.selected ? AgendaCollection.all.filter(function(userEvent) { 
-			       		return article.id == AgendaCollection.selected.id; 
+			       		return userEvent.id == AgendaCollection.selected.id; 
 			       	})[0] : null;
-		    	});	
+		    	});
+
+		    	callback(AgendaCollection.all);
 			});
 		},
 

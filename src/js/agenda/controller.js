@@ -30,10 +30,20 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
         name:'Autres'
       }
     ];
-    $scope.selectedType = $scope.eventTypes[2];
+    // $scope.selectedType = $scope.eventTypes[2];
+    $scope.userEvent = {
+      selectedType : $scope.eventTypes[2],
+      content :'',
+      title: '',
+      start: new Date(),
+      end: new Date(),
+      location : '',
+      allDay: true
+    };
 
     /* alert on eventClick */
     $scope.onDateClick = function(date, allDay, jsEvent, view){
+        $scope.userEvent.start = $scope.userEvent.end = date;
         $scope.onCreation = true;
     };
 
@@ -93,22 +103,14 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
 
     // Agenda
     $scope.loadEvent = function(){
-       $scope.AgendaCollection.load();
+        $scope.AgendaCollection.load();
     };
 
     /* add custom event*/
     $scope.add = function() {
-      alert(this.content);
-      var userEvent = {
-        title : this.title,
-        type : this.selectedType.identifier,
-        content : this.content,
-        start : this.start,
-        end : this.end,
-        location : this.location
-      };
-
-      $scope.AgendaCollection.add(userEvent, function(){
+      
+      $scope.userEvent.type = $scope.userEvent.selectedType.identifier;
+      $scope.AgendaCollection.add($scope.userEvent, function(){
           $scope.onCreation = false;
       });
     };
@@ -141,9 +143,15 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
     };
 
     /* event sources array*/
-    $scope.loadEvent();
-    $scope.eventSources = [$scope.AgendaCollection.all];
-    $scope.changeLang('french');
+    $scope.load = function(start, end, callback){
+      $scope.AgendaCollection.load(callback);
+    };
+
+    $scope.eventSources = [{
+      events : $scope.load,  
+      cache: false,
+      error: function() { alert("Impossible de charger l'agenda..."); }
+    }];
     
     $scope.map = {
       control: {
