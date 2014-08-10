@@ -29,7 +29,7 @@ var UserEventSchema = new Schema({
         default: '',
         trim: true
     },
-    creator: {
+    user: {
         type: Schema.ObjectId,
         ref: 'User'
     },

@@ -15,7 +15,7 @@ exports.userEvent = function(req, res, next, id) {
     UserEvent.load(id, function(err, userEvent) {
         if (err) return next(err);
         if (!userEvent) return next(new Error('Failed to load event ' + id));
-        req.event = event;
+        req.userEvent = userEvent;
         next();
     });
 };
@@ -66,7 +66,7 @@ exports.update = function(req, res) {
 exports.destroy = function(req, res) {
     var userEvent = req.userEvent;
 
-    UserEvent.remove(function(err) {
+    userEvent.remove(function(err) {
         if (err) {
             return res.send('users/signup', {
                 errors: err.errors,

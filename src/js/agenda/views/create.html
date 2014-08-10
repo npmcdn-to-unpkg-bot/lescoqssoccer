@@ -26,7 +26,7 @@
 								<div class="col-md-10">
 									<select class="form-control" 
 											name="selectedType"
-											data-ng-model="userEvent.selectedType" 
+											data-ng-model="currentUserEvent.selectedType" 
 											ng-options="eventType.name for eventType in eventTypes">
 									</select>
 								</div>
@@ -37,7 +37,7 @@
 									<input  type="text" 
 											class="form-control"
 											name="title" 
-											data-ng-model="userEvent.title" 
+											data-ng-model="currentUserEvent.title" 
 											placeholder="Titre de l'évènement" 
 											required/>
 								</div>
@@ -47,7 +47,7 @@
 								<div class="col-md-10">
 									<textarea 	class="form-control" 
 												name="content"
-												data-ng-model="userEvent.content" 
+												data-ng-model="currentUserEvent.content" 
 												placeholder="Contenu de l'évènement" 
 												required/>
 									</textarea>
@@ -61,7 +61,7 @@
 							              	<input  type="text" 
 								              		class="form-control" 
 								              		datepicker-popup="{{format}}" 
-								              		data-ng-model="userEvent.start" 
+								              		data-ng-model="currentUserEvent.start" 
 								              		is-open="$parent.openedStartDate" 
 								              		min="minDate" 
 								              		max="maxDate" 
@@ -85,7 +85,7 @@
 							              	<input  type="text" 
 							              			class="form-control" 
 							              			datepicker-popup="{{format}}" 
-							              			data-ng-model="userEvent.end" 
+							              			data-ng-model="currentUserEvent.end" 
 							              			is-open="$parent.openedEndDate" 
 							              			min="minDate" 
 							              			max="maxDate" 

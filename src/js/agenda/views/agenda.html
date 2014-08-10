@@ -9,7 +9,7 @@
           <i class="glyphicon glyphicon-plus"></i>
           Ajouter un évènement
       </button>
-      <div class="box">
+      <div class="box" ng-show="selectedUserEvent">
         <div class="box-header">
           <div class="box-name">
             <span>Agenda</span>
@@ -20,8 +20,23 @@
             </a>
           </div>
         </div>
-        <div class="box-content">
-        Détail:
+        <div>
+          <article>
+            <div>
+              <label class="col-md-10 control-label">{{selectedUserEvent.title}}</label>
+              <label class="col-md-10 control-label">{{selectedUserEvent.content}}</label>
+            </div>
+            <div data-ng-show="global.user._id == selectedUserEvent.user">
+                <a class="btn" ng-click="showEditionForm()" style="padding-left: 0;">
+                  <i class="glyphicon glyphicon-edit"></i>
+                </a> 
+                <div id="modal" ng-controller="Modal" style="display: inline-block;">
+                    <a class="btn" data-ng-click="open('appStructure/modal.html', 'Agenda', 'Etes vous sure...', remove)">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
+                </div>
+            </div>
+          </article>
         </div>
       </div>
     </div>

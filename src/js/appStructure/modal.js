@@ -7,7 +7,7 @@ angular.module('mean.agenda').controller('Modal', ['$scope', '$modal', '$log', '
     $scope.open = function (templateUrl, title, content, callback) {
 
         var modalInstance = $modal.open({
-          templateUrl: '../../views/' + templateUrl,
+          templateUrl: '../../js/' + templateUrl,
           controller: 'ModalInstanceController'	,
           resolve:{
 			      title:function(){
@@ -33,7 +33,7 @@ angular.module('mean.agenda').controller('ModalInstanceController', ['$scope', '
     Modal buttons
     ***/
     $scope.ok = function () {
-        callback.call();
+        callback();
         $modalInstance.close();
     };
 

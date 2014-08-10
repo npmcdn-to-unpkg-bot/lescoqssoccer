@@ -3,10 +3,8 @@
 angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeParams', '$location', 'Global', 'AgendaCollection', function ($scope, $routeParams, $location, Global, AgendaCollection) {
 
     $scope.global = Global;
-    $scope.selectedEvent;
-    $scope.selectedDate;
-    $scope.onCreation = false;
     $scope.AgendaCollection = AgendaCollection;
+    $scope.currentUserEvent, $scope.selectedUserEvent;
 
     $scope.eventTypes = [
       {
@@ -30,35 +28,25 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
         name:'Autres'
       }
     ];
-    // $scope.selectedType = $scope.eventTypes[2];
-    $scope.userEvent = {
-      selectedType : $scope.eventTypes[2],
-      content :'',
-      title: '',
-      start: new Date(),
-      end: new Date(),
-      location : '',
-      allDay: true
-    };
 
     /* alert on eventClick */
     $scope.onDateClick = function(date, allDay, jsEvent, view){
-        $scope.userEvent.start = $scope.userEvent.end = date;
+        $scope.currentUserEvent.start = $scope.currentUserEvent.end = date;
         $scope.onCreation = true;
     };
 
     $scope.onEventClick = function(event, allDay, jsEvent, view){
-        $scope.selectedEvent = event;
+        $scope.selectedUserEvent = event;
     };
 
     /* alert on Drop */
     $scope.onEventDrop = function(event, dayDelta, minuteDelta, allDay, revertFunc, jsEvent, ui, view){
-        $scope.update = event;
+        $scope.update(event);
     };
 
     /* alert on Resize */
     $scope.onEventResize = function(event, dayDelta, minuteDelta, revertFunc, jsEvent, ui, view ){
-        $scope.update = event;
+        $scope.update(event);
     };
 
     $scope.changeLang = function(language) {
@@ -91,9 +79,6 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
           center: 'title',
           right: 'prev,next'
         },
-          buttonText: {
-          add: '<div id="modal" class="btn btn-success" ng-controller="Modal"><button class="btn btn-default" ng-click="open(\'modal.html\', \'UserEventController\')">Ajouter un évènement</button></div>'
-        },
         dayClick: $scope.onDateClick,
         eventClick: $scope.onEventClick,
         eventDrop: $scope.onEventDrop,
@@ -101,57 +86,84 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
       }
     };
 
+    $scope.init = function(){
+
+        $scope.selectedUserEvent = null;
+
+        $scope.currentUserEvent = {
+          selectedType : $scope.eventTypes[2],
+          title: '',
+          content :'',
+          start: new Date(),
+          end: new Date(),
+          location : '',
+          allDay: true
+        };
+
+        $scope.onCreation = false;
+    };
+
     // Agenda
-    $scope.loadEvent = function(){
-        $scope.AgendaCollection.load();
+    $scope.load = function(){
+      $scope.AgendaCollection.load(function(events){
+          angular.forEach(events, function(event){
+            $scope.events.push(event);
+          });
+      });
     };
 
     /* add custom event*/
     $scope.add = function() {
       
-      $scope.userEvent.type = $scope.userEvent.selectedType.identifier;
-      $scope.AgendaCollection.add($scope.userEvent, function(){
-          $scope.onCreation = false;
+      $scope.currentUserEvent.type = $scope.currentUserEvent.selectedType.identifier;
+      $scope.AgendaCollection.add($scope.currentUserEvent, function(userEvent){
+          $scope.events.push(userEvent);
+          $scope.init();
       });
     };
 
-    $scope.update = function(userEvent){
-      if (userEvent) {
-        userEvent.$update(function() {
-          for (var i in $scope.events) {
-            if ($scope.events[i].uuid === userEvent._id) {
-                $scope.events[i] = userEvent;
-            }
-          }
-        });
-      } else {
-        alert("Erreur dans la mise à jour de l'évènement");
-      }
+    $scope.update = function(index){
+      
+      var userEvent = $scope.events[index];
+
+      $scope.AgendaCollection.update(userEvent, function(newUserEvent){
+        $scope.events[index] = newUserEvent;
+      });
+
     };
 
     /* remove event */
-    $scope.remove = function(index) {
+    $scope.remove = function() {
 
-      var userEvent = $scope.events[index];
-      if (userEvent) {
-          userEvent.$remove(function(){
-            $scope.events.splice(index,1);
-          });
-      } else {
-          alert("Erreur dans la suppression de l'évènement");
-      }
+      var index;
+      $scope.AgendaCollection.remove($scope.selectedUserEvent, function(){
+        angular.forEach($scope.events, function(event, currentIndex){
+          if(event === $scope.selectedUserEvent){
+            index = currentIndex;
+          }
+        });
+
+        $scope.events.splice(index, 1);
+        $scope.init();
+      });
+
     };
 
     /* event sources array*/
-    $scope.load = function(start, end, callback){
-      $scope.AgendaCollection.load(callback);
-    };
+    // $scope.load = function(start, end, callback){
+    //   $scope.AgendaCollection.load(callback);
+    // };
 
-    $scope.eventSources = [{
-      events : $scope.load,  
-      cache: false,
-      error: function() { alert("Impossible de charger l'agenda..."); }
-    }];
+    // $scope.eventSources = [{
+    //   events : $scope.load,  
+    //   cache: false,
+    //   error: function() { alert("Impossible de charger l'agenda..."); }
+    // }];
+
+    $scope.events = [];
+    $scope.eventSources = [$scope.events];
+    $scope.init();
+    $scope.load();
     
     $scope.map = {
       control: {

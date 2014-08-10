@@ -36,7 +36,8 @@ angular.module('mean.agenda').service('AgendaCollection', ['Global', 'UserEvent'
 			       	})[0] : null;
 		    	});
 
-		    	callback(AgendaCollection.all);
+		     	if (callback)
+		    		callback(AgendaCollection.all);
 			});
 		},
 
@@ -46,9 +47,18 @@ angular.module('mean.agenda').service('AgendaCollection', ['Global', 'UserEvent'
 		    
 		    userEventModel.$save(function(response) {
 		        AgendaCollection.load();
-		        alert(JSON.stringify(response));
-		        callback.call();
+		        callback(response);
 		    });
+		},
+
+		remove : function(userEvent, callback){
+		    if (userEvent) {
+		        userEvent.$remove(function(response){
+		            callback(response);
+		        });
+		    } else {
+		       alert("Erreur dans la suppression de l'évènement");
+		    }
 		},
 
 		prev: function() {
