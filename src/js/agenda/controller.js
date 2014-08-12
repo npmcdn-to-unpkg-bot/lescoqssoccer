@@ -167,17 +167,6 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
 
     };
 
-    /* event sources array*/
-    // $scope.load = function(start, end, callback){
-    //   $scope.AgendaCollection.load(callback);
-    // };
-
-    // $scope.eventSources = [{
-    //   events : $scope.load,  
-    //   cache: false,
-    //   error: function() { alert("Impossible de charger l'agenda..."); }
-    // }];
-
     $scope.events = [];
     $scope.eventSources = [$scope.events];
     $scope.init();
