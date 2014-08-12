@@ -44,9 +44,9 @@ exports.create = function(req, res) {
  * Update a userEvent
  */
 exports.update = function(req, res) {
+    
     var userEvent = req.userEvent;
-
-    userEvent = _.extend(UserEvent, req.body);
+    var userEvent = _.extend(userEvent, req.body);
 
     userEvent.save(function(err) {
         if (err) {

@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('mean.agenda').factory('UserEvent', ['$resource', function($resource) {
-    return $resource('userEvent/:articleId', {
-        articleId: '@_id'
+    return $resource('userEvent/:userEventId', {
+        userEventId: '@_id'
     }, {
         update: {
             method: 'PUT'
@@ -44,11 +44,20 @@ angular.module('mean.agenda').service('AgendaCollection', ['Global', 'UserEvent'
 		add: function(userEvent, callback){
 			
 			var userEventModel = new UserEvent(userEvent);
-		    
 		    userEventModel.$save(function(response) {
 		        AgendaCollection.load();
 		        callback(response);
 		    });
+		},
+
+		update : function(userEvent, callback){
+		    if (userEvent) {
+		        userEvent.$update(function(response){
+		            callback(response);
+		        });
+		    } else {
+		       alert("Erreur dans la mise à jour de l'évènement");
+		    }
 		},
 
 		remove : function(userEvent, callback){
@@ -59,58 +68,7 @@ angular.module('mean.agenda').service('AgendaCollection', ['Global', 'UserEvent'
 		    } else {
 		       alert("Erreur dans la suppression de l'évènement");
 		    }
-		},
-
-		prev: function() {
-		    if (AgendaCollection.hasPrev()) {
-		     	AgendaCollection.selectArticle(AgendaCollection.selected ? AgendaCollection.selectedIdx - 1 : 0);
-		    }
-		},
-
-		next: function() {
-		    if (AgendaCollection.hasNext()) {
-		     	AgendaCollection.selectArticle(AgendaCollection.selected ? AgendaCollection.selectedIdx + 1 : 0);
-		    }
-		},
-
-		hasPrev: function() {
-		   	if (!AgendaCollection.selected) {
-		     	return true;
-		    }
-		    return AgendaCollection.selectedIdx > 0;
-		},
-
-		hasNext: function() {
-		    if (!AgendaCollection.selected) {
-		     	return true;
-		    }
-		    return AgendaCollection.selectedIdx < AgendaCollection.filtered.length - 1;
-		},
-
-		selectArticle: function(idx) {
-
-		    // Unselect previous selection.
-		    if (AgendaCollection.selected) {
-		     	AgendaCollection.selected.selected = false;
-		    }
-
-		    AgendaCollection.selected = AgendaCollection.filtered[idx];
-		    AgendaCollection.selectedIdx = idx;
-		    AgendaCollection.selected.selected = true;
-		    AgendaCollection.onCreation = AgendaCollection.onEdition = false;
-		},
-
-		filterBy: function(key, value) {
-		    AgendaCollection.filtered = AgendaCollection.all.filter(function(article) {
-		     	return article[key] === value;
-		    });
-		    AgendaCollection.reindexSelectedItem();
-		},
-
-		clearFilter: function() {
-		    AgendaCollection.filtered = AgendaCollection.all;
-		    AgendaCollection.reindexSelectedItem();
-		},
+		}
 	}
 
 	return AgendaCollection;

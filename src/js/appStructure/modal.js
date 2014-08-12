@@ -4,7 +4,7 @@ angular.module('mean.agenda').controller('Modal', ['$scope', '$modal', '$log', '
     
     $scope.global = Global;
 
-    $scope.open = function (templateUrl, title, content, callback) {
+    $scope.open = function (templateUrl, title, content, callback, param) {
 
         var modalInstance = $modal.open({
           templateUrl: '../../js/' + templateUrl,
@@ -18,22 +18,26 @@ angular.module('mean.agenda').controller('Modal', ['$scope', '$modal', '$log', '
           	},
           	callback: function(){
           		return callback;
-          	}
+          	},
+            param: function(){
+              return param;
+            }
           }
         });
     };
 }]);
 
-angular.module('mean.agenda').controller('ModalInstanceController', ['$scope', '$modalInstance', 'title', 'content', 'callback', function ($scope, $modalInstance, title, content, callback) {
+angular.module('mean.agenda').controller('ModalInstanceController', ['$scope', '$modalInstance', 'title', 'content', 'callback', 'param', function ($scope, $modalInstance, title, content, callback, param) {
     
     $scope.title = title;
     $scope.content = content;
+    $scope.param = param;
 
     /***
     Modal buttons
     ***/
     $scope.ok = function () {
-        callback();
+        callback(param);
         $modalInstance.close();
     };
 

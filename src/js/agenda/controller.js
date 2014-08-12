@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeParams', '$location', 'Global', 'AgendaCollection', function ($scope, $routeParams, $location, Global, AgendaCollection) {
+angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeParams', '$location', '$filter', 'Global', 'AgendaCollection', function ($scope, $routeParams, $location, $filter, Global, AgendaCollection) {
 
     $scope.global = Global;
     $scope.AgendaCollection = AgendaCollection;
@@ -37,6 +37,8 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
 
     $scope.onEventClick = function(event, allDay, jsEvent, view){
         $scope.selectedUserEvent = event;
+        $scope.selectedUserEvent.index = event.__uiCalId - 1;
+        $scope.selectedUserEvent.selectedType = $filter('getByIdentifier')($scope.eventTypes, $scope.selectedUserEvent.type);
     };
 
     /* alert on Drop */
@@ -103,47 +105,63 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
         $scope.onCreation = false;
     };
 
+    $scope.showEditionForm = function(){
+        $scope.currentUserEvent = $scope.selectedUserEvent;
+        $scope.currentUserEvent.selectedType = $filter('getByIdentifier')($scope.eventTypes, $scope.currentUserEvent.type);
+        $scope.onCreation = true;
+    };
+
     // Agenda
     $scope.load = function(){
+      
       $scope.AgendaCollection.load(function(events){
           angular.forEach(events, function(event){
             $scope.events.push(event);
           });
       });
+
     };
 
     /* add custom event*/
-    $scope.add = function() {
+    $scope.addOrUpdate = function() {
+
+      if(!$scope.currentUserEvent.__uiCalId){
       
-      $scope.currentUserEvent.type = $scope.currentUserEvent.selectedType.identifier;
-      $scope.AgendaCollection.add($scope.currentUserEvent, function(userEvent){
-          $scope.events.push(userEvent);
-          $scope.init();
-      });
+        $scope.currentUserEvent.type = $scope.currentUserEvent.selectedType.identifier;
+        $scope.AgendaCollection.add($scope.currentUserEvent, function(userEvent){
+            $scope.events.push(userEvent);
+            $scope.init();
+        });
+
+      } else {
+
+        $scope.update($scope.currentUserEvent.__uiCalId - 1);
+
+      }
+
     };
 
-    $scope.update = function(index){
+    $scope.update = function(){
       
-      var userEvent = $scope.events[index];
+      var userEvent = $scope.currentUserEvent;
 
       $scope.AgendaCollection.update(userEvent, function(newUserEvent){
-        $scope.events[index] = newUserEvent;
+        newUserEvent.selectedType = $filter('getByIdentifier')($scope.eventTypes, $scope.currentUserEvent.type);
+        $scope.calendar.fullCalendar('updateEvent', newUserEvent);
+        $scope.init();
+        $scope.selectedUserEvent = newUserEvent;
       });
 
     };
 
     /* remove event */
-    $scope.remove = function() {
+    $scope.remove = function(index) {
 
-      var index;
-      $scope.AgendaCollection.remove($scope.selectedUserEvent, function(){
-        angular.forEach($scope.events, function(event, currentIndex){
-          if(event === $scope.selectedUserEvent){
-            index = currentIndex;
-          }
-        });
+      var userEvent = $scope.events[index];
+      var userEventId = userEvent.id;
 
-        $scope.events.splice(index, 1);
+      $scope.AgendaCollection.remove(userEvent, function(){
+        $scope.calendar.fullCalendar('removeEvents', userEventId);
         $scope.init();
       });
 

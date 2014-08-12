@@ -21,22 +21,21 @@
           </div>
         </div>
         <div>
-          <article>
-            <div>
-              <label class="col-md-10 control-label">{{selectedUserEvent.title}}</label>
-              <label class="col-md-10 control-label">{{selectedUserEvent.content}}</label>
+            <div class="box" style="padding-top: 15px; padding-bottom: 15px; border: 0;">
+              <label class="col-md-12 control-label">{{selectedUserEvent.selectedType.name}}</label>
+              <label class="col-md-12 control-label">{{selectedUserEvent.title}}</label>
+              <label class="col-md-12 control-label">{{selectedUserEvent.content}}</label>
             </div>
-            <div data-ng-show="global.user._id == selectedUserEvent.user">
-                <a class="btn" ng-click="showEditionForm()" style="padding-left: 0;">
+            <div data-ng-show="global.user._id == selectedUserEvent.user" class="modal-footer" style="border-top: 0; padding-bottom: 15px;">
+                <a class="btn" ng-click="showEditionForm()">
                   <i class="glyphicon glyphicon-edit"></i>
                 </a> 
                 <div id="modal" ng-controller="Modal" style="display: inline-block;">
-                    <a class="btn" data-ng-click="open('appStructure/modal.html', 'Agenda', 'Etes vous sure...', remove)">
+                    <a class="btn" data-ng-click="open('appStructure/modal.html', 'Agenda', 'Etes vous sure...', remove, selectedUserEvent.index)">
                         <i class="glyphicon glyphicon-trash"></i>
                     </a>
                 </div>
             </div>
-          </article>
         </div>
       </div>
     </div>
@@ -59,7 +58,7 @@
           <article class="well" style="background-color: rgba(0, 0, 0, 0);">
             <div class="row-fluid">
               <div class="span8">
-                <div class="calendar" ng-model="eventSources" ui-calendar="uiConfig.calendar"></div>
+                <div class="calendar" ng-model="eventSources" ui-calendar="uiConfig.calendar" calendar="calendar"></div>
                </tab>
               </div>
             </div>
