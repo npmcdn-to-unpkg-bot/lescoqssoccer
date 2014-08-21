@@ -194,7 +194,7 @@ a.show-sidebar:hover {
   margin-top: 50px;
   min-height: 100%;
   overflow: hidden;
-  background-image: url(../img/183484__city-night-lights-paint-lights-bokeh-city-night-lights-colors-light-bokeh-1920x1080_p.jpg);
+  background: #202021 url(../img/gradient-colored-smoke-13587.jpg);
   background-size: 100% 100%;
   background-attachment: fixed;
 }
@@ -1614,12 +1614,10 @@ td.beauty-hover {
 }
 #simple_gallery a.fancybox {
   display: inline-block;
-  padding: 5px;
 }
 #simple_gallery a.fancybox img {
   width: 100%;
   padding: 2px;
-  border: 1px solid #979797;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;

@@ -31,6 +31,9 @@ angular.module('mean').config(['$routeProvider',
         when('/suggestions', {
             templateUrl: 'js/suggestions/suggestions.html'
         }).
+        when('/notifications', {
+            templateUrl: 'js/notifications/notifications.html'
+        }).
         when('/home', {
             templateUrl: 'js/appStructure/home.html'
         }).
