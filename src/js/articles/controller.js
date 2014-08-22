@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', 'Global', 'ArticlesCollection', '$fileUploader', function ($scope, $routeParams, $location, Global, ArticlesCollection, $fileUploader) {
+angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', 'Global', 'ArticlesCollection', 'FileUploader', function ($scope, $routeParams, $location, Global, ArticlesCollection, FileUploader) {
     
     $scope.global = Global;
     $scope.onCreation = false;
@@ -9,30 +9,24 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
     $scope.ArticlesCollection = ArticlesCollection;
 
     $scope.dateFormat = "dd/MM/yyyy 'à' H'h'mm";
-    $scope.uploader = $fileUploader.create({
+    $scope.uploader = new FileUploader({
         scope: $scope,
         url: '/upload/photo',
         autoUpload: true,
         formData: [
             { key: 'value' }
-        ],
-        filters: [
-            function (item) {
-                console.info('filter1');
-                return true;
-            }
         ]
     });
 
-    $scope.uploader.bind('afteraddingfile', function (event, item) {
+    $scope.uploader.onAfterAddingFile = function(item) {
         console.info('After adding a file', item);
         $scope.uploaderItem = item;
-    });
+    };
 
-    $scope.uploader.bind('complete', function (event, xhr, item, response) {
-        console.info('Complete', xhr, item, response);
+    $scope.uploader.onCompleteItem = function(item, response, status, headers) {
+        console.info('Complete', item, response);
         $scope.image = response.path;
-    });
+    };
 
     $scope.showCreationForm = function() {
       if($scope.selected) $scope.selected.selected = false;

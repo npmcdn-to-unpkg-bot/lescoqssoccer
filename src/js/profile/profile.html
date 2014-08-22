@@ -7,14 +7,20 @@
                 <div class="personal-image">
                     <div class="site-avatar">
                         <a href="#!">
-                            <img alt="" src="img/avatar.png" class="profile avatar-224 photo" height="224" width="224">
+                            <img    ng-src="{{image || 'img/avatar.png'}}" 
+                                    class="profile avatar-224 photo" 
+                                    height="224" width="224">
                         </a>
                     </div>
                     <div>
                         <button class="btn btn-default">
                             <label for="upload-profile-picture" class="label-upload-profile-picture">
                                 Uploader une photo différente
-                                <input id="upload-profile-picture" ng-file-select type="file" class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
+                                <input  id="upload-profile-picture" 
+                                        nv-file-select 
+                                        uploader="uploader"
+                                        type="file" 
+                                        class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
                             </label>
                         </button>
                     </div>
@@ -52,12 +58,6 @@
                                     <label class="col-lg-4 control-label">Prénom</label>
                                     <div class="col-lg-8">
                                         <input class="form-control" type="text" value="Alex">
-                                    </div>
-                                </div>
-                                <div >
-                                    <label>Test avec les copains</label>
-                                    <div >
-                                        <input type="text" value="Alex">
                                     </div>
                                 </div>
                                 <div class="form-group">
