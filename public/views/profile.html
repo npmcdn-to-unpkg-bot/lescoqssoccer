@@ -1,33 +1,82 @@
-<section data-ng-controller="ArticlesController">
-    <form class="form-horizontal col-md-6" role="form" data-ng-submit="create()">
-        <div class="left-col">
-            <div class="member-avatar">
-                <img src="images/member-1.jpg" alt=""/>
+<section data-ng-controller="ProfileController">
+    <div class="row">
+
+        <!-- avatar column -->
+        <div class="col-md-3 col-md-offset-1 avatar-box">
+            <div class="personal-image" style="text-align: center;">
+                <img src="{{global.user.path || 'images/pf-5.jpg'}}" class="avatar img-circle" alt="avatar" style="border: 3px solid #c3cddb; height: 200px; "/>
+                <div style="margin-top: 20px;">
+                    <button class="btn btn-default">
+                        <label for="upload-profile-picture" class="label-upload-profile-picture">
+                            Uploader une photo différente
+                            <input id="upload-profile-picture" ng-file-select type="file" class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
+                        </label>
+                    </button>
+                </div>
+                <div class="left-col" style="text-align: left;">
+                    <h2>{{global.user.name}}</h2>
+                </div>
+                <div class="left-col" style="text-align: left;">
+                    <h3>Inscrit depuis le 02 Juin 2014</h3>
+                </div>
             </div>
         </div>
-        <div class="clear"></div>
-        <div class="form-group">
-            <label for="title" class="col-md-2 control-label">Nom</label>
-            <div class="col-md-10">
-                <input type="text" class="form-control" data-ng-model="global.user.name" id="title" placeholder="Title" required>
-            </div>
+
+        <div class="col-md-7">
+            <tabset justified="true" style="box-shadow: inset 3px 0px 4px -1px #fafafa;">
+                <tab heading="Profile">
+                    <form class="form-horizontal" role="form" style="padding-top: 20px; margin-left: 15px;">
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">First name:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" type="text" value="Alejandra">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Last name:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" type="text" value="Galvan">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Company:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" type="text" value="Design Co.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Email:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" type="text" value="alejandra@design.com">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Username:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" type="text" value="alegalvan">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Password:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" type="password" value="blablablabla">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Confirm password:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" type="password" value="blablablabla">
+                            </div>
+                        </div>
+                        <div style="text-align:right; margin-top: 20px;">
+                            <button class="btn btn-primary" ng-click="ok()">OK</button>
+                            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+                        </div>
+                    </form>
+                </tab>
+                <tab heading="Préférences"></tab>
+            </tabset>
         </div>
-        <div class="form-group">
-            <label for="title" class="col-md-2 control-label">Mot de passe</label>
-            <div class="col-md-10">
-                <input type="password" class="form-control" data-ng-model="global.user.password" id="password" required>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="title" class="col-md-2 control-label">Confirmer</label>
-            <div class="col-md-10">
-                <input type="password" class="form-control" id="passwordConfirm" required>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <button type="submit" class="btn btn-default">Mettre à jour le profil</button>
-            </div>
-        </div>
-    </form>
+
+    </div>
 </section>

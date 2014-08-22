@@ -9,3 +9,4 @@ angular.module('mean.agenda').factory('UserEvent', ['$resource', function($resou
         }
     });
 }]);
+

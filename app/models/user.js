@@ -11,7 +11,12 @@ var mongoose = require('mongoose'),
  * User Schema
  */
 var UserSchema = new Schema({
+    created: {
+        type: Date,
+        default: Date.now
+    },
     name: String,
+    lastname: String,
     email: String,
     username: {
         type: String,
@@ -20,6 +25,14 @@ var UserSchema = new Schema({
     hashed_password: String,
     provider: String,
     salt: String,
+    avatar: String,
+    community:[],
+    preferences: {
+        notifyCommunity: {
+            type: Boolean,
+            default: true
+        }
+    },
     facebook: {},
     twitter: {},
     github: {},

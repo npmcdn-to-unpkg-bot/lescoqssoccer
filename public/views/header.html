@@ -1,7 +1,7 @@
-<div class="" data-ng-controller="HeaderController">
-    <ul class="navbar-nav nav">
+<div class="container" data-ng-controller="HeaderController">
+    <ul class="navbar-nav nav" style="margin-left: 50px;">
         <li>
-            <a class="navbar-brand" href="#!/articles">MEAN - A Modern Stack</a>
+            <a class="navbar-brand" href="#!/articles">Home</a>
         </li>
         <li data-ng-repeat="item in menu" data-ng-show="global.user" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
             <a href="#!/{{item.link}}">{{item.title}}</a>
@@ -16,7 +16,8 @@
     </ul>
     <ul class="navbar-nav nav pull-right" data-ng-show="global.authenticated">
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <img src="{{global.user.path || 'images/pf-5.jpg'}}" class="avatar img-circle" alt="avatar" style="height: 40px; width: auto; vertical-align: middle;"/>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="display:inline-block;">
 				{{global.user.name}} <b class="caret"></b>
 			</a>
             <ul class="dropdown-menu">

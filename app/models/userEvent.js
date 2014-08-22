@@ -10,18 +10,13 @@ var mongoose = require('mongoose'),
  * Article Schema
  */
 var UserEventSchema = new Schema({
-    startDate: {
+    start: {
         type: Date,
         default: Date.now
     },
-    endDate: {
+    end: {
         type: Date,
         default: Date.now,
-        trim: true
-    },
-    content: {
-        type: String,
-        default: '',
         trim: true
     },
     title: {
@@ -29,10 +24,16 @@ var UserEventSchema = new Schema({
         default: '',
         trim: true
     },
-    user: {
+    content: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    creator: {
         type: Schema.ObjectId,
         ref: 'User'
-    }
+    },
+    community: {}
 });
 
 /**

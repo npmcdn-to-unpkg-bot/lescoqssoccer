@@ -60,9 +60,10 @@ section.mainContent {
   padding-bottom: 0px;
 }
 
+/*
 section.mainContent div {
   height: 100%;
-}
+}*/
 
 .controls {
   box-sizing: border-box;
