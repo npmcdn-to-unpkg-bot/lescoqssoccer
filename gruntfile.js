@@ -6,26 +6,26 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         watch: {
             jade: {
-                files: ['app/views/**'],
+                files: ['server/views/**'],
                 options: {
                     livereload: true,
                 },
             },
             js: {
-                files: ['gruntfile.js', 'server.js', 'app/**/*.js', 'public/js/**', 'test/**/*.js'],
+                files: ['gruntfile.js', 'server.js', 'server/**/*.js', 'src/js/**', 'test/**/*.js'],
                 tasks: ['jshint'],
                 options: {
                     livereload: true,
                 },
             },
             html: {
-                files: ['public/views/**'],
+                files: ['src/**'],
                 options: {
                     livereload: true,
                 },
             },
             css: {
-                files: ['public/css/**'],
+                files: ['src/css/**'],
                 options: {
                     livereload: true
                 }
@@ -33,7 +33,7 @@ module.exports = function(grunt) {
         },
         jshint: {
             all: {
-                src: ['gruntfile.js', 'server.js', 'app/**/*.js', 'public/js/**', 'test/**/*.js'],
+                src: ['gruntfile.js', 'server/server.js', 'server/**/*.js', 'src/js/**', 'test/**/*.js'],
                 options: {
                     jshintrc: true
                 }
@@ -42,9 +42,9 @@ module.exports = function(grunt) {
         nodemon: {
             dev: {
                 options: {
-                    file: 'server.js',
+                    file: 'server/server.js',
                     args: [],
-                    ignoredFiles: ['public/**'],
+                    ignoredFiles: ['src/**'],
                     watchedExtensions: ['js'],
                     nodeArgs: ['--debug'],
                     delayTime: 1,
@@ -64,7 +64,7 @@ module.exports = function(grunt) {
         mochaTest: {
             options: {
                 reporter: 'spec',
-                require: 'server.js'
+                require: 'server/server.js'
             },
             src: ['test/mocha/**/*.js']
         },
@@ -80,7 +80,7 @@ module.exports = function(grunt) {
         }
     });
 
-    //Load NPM tasks 
+    //Load NPM tasks
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-mocha-test');

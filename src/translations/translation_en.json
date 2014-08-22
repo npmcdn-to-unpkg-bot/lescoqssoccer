@@ -1,0 +1,9 @@
+{
+	"personnal_agenda" : "My calendar",
+	"community_agenda" : "Community calendar",
+	"event_details"	: "Event details",
+	"title"	: "Title",
+	"content"	: "Content",
+	"startdate"	: "Start date",
+	"enddate"	: "End date"
+}

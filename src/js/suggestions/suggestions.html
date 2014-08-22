@@ -1,0 +1,48 @@
+<section data-ng-controller="SuggestionController">
+	<div class="box" style="margin: 20px 0 20px 15px;">
+		
+		<div class="box-header">
+			<div class="box-name">
+				<span>Suggestions</span>
+			</div>
+			<div class="no-move"></div>
+		</div>
+
+		<div class="box-content">
+			<form class="form-horizontal" role="form" data-ng-submit="add();">		  	
+				
+				<div class="row">
+					<div class="col-xs-12 page-feed">
+						<div class="box" style="border:0;">
+							<div class="avatar">
+								<img src="img/avatar.png" alt="Jane" class="profile avatar-224 photo" style="margin-top: 0"/>
+							</div>
+							<div class="page-feed-content">
+								<small class="time">{{global.user.name}}, 12 min ago</small>
+								<p>Linux is a Unix-like and POSIX-compliant computer operating system assembled under the model of free and open source software development and distribution. Maemo - Software platform developed by Nokia and then handed over to Hildon Foundation for smartphones and Internet tablets</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+				    <div class="col-md-12" style="margin-bottom: 15px;">
+			            <p class="input-group">
+			              <input 	type="text" 
+			              			class="form-control" 
+			              			placeholder="Ajouter une suggestion"
+			              			data-ng-model="suggestion"/>
+			              <span class="input-group-btn">
+				            <button class="btn btn-primary" 
+				            		type="submit"
+				            		title="Ajouter une suggestion">
+				              		<i class="glyphicon glyphicon-ok"></i>
+				            </button>
+			              </span>
+			            </p>
+			        </div>
+                </div>
+			</form>
+		</div>
+	</div>
+</section>

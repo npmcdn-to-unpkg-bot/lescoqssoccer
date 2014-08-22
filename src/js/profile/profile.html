@@ -1,0 +1,105 @@
+<section data-ng-controller="ProfileController">
+    <div class="row">
+
+        <!-- avatar column -->
+        <div class="col-md-3 col-md-offset-1 avatar-box" style="display: table;">
+            <div style="display: table-cell; vertical-align:middle;">
+                <div class="personal-image">
+                    <div class="site-avatar">
+                        <a href="#!">
+                            <img    ng-src="{{image || 'img/avatar.png'}}" 
+                                    class="profile avatar-224 photo" 
+                                    height="224" width="224">
+                        </a>
+                    </div>
+                    <div>
+                        <button class="btn btn-default">
+                            <label for="upload-profile-picture" class="label-upload-profile-picture">
+                                Uploader une photo différente
+                                <input  id="upload-profile-picture" 
+                                        nv-file-select 
+                                        uploader="uploader"
+                                        type="file" 
+                                        class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
+                            </label>
+                        </button>
+                    </div>
+                    <div class="left-col" style="text-align: left;">
+                        <h2>{{global.user.name}}</h2>
+                    </div>
+                    <div class="left-col" style="text-align: left;">
+                        <h3>Inscrit depuis le 02 Juin 2014</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-7">
+          <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <span>Map</span>
+                </div>
+                <div class="box-icons">
+                    <a class="collapse-link">
+                      <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="close-link">
+                      <i class="fa fa-times"></i>
+                    </a>
+                </div>
+                <div class="no-move"></div>
+                </div>
+                <div class="box-content" style="padding: 0;">
+                    <tabset justified="true">
+                        <tab heading="Profile">
+                            <form class="form-horizontal" role="form" style="padding: 10px;">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Prénom</label>
+                                    <div class="col-lg-8">
+                                        <input class="form-control" type="text" value="Alex">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Nom</label>
+                                    <div class="col-lg-8">
+                                        <input class="form-control" type="text" value="Lapize">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Email</label>
+                                    <div class="col-lg-8">
+                                        <input class="form-control" type="text" value="bobby@yopmail.com">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Pseudo</label>
+                                    <div class="col-lg-8">
+                                        <input class="form-control" type="text" value="bobby">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Mot de passe</label>
+                                    <div class="col-lg-8">
+                                        <input class="form-control" type="password" value="heyhey">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label">Confirmation</label>
+                                    <div class="col-lg-8">
+                                        <input class="form-control" type="password" value="heyhey">
+                                    </div>
+                                </div>
+                                <div class="actions" style="text-align:right; padding: 20px 0 0 0;">
+                                    <input type="button" class="btn btn-default" value="Enregistrer les modifs">
+                                </div>
+                            </form>
+                        </tab>
+                        <tab heading="Skills"></tab>
+                    </tabset>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
