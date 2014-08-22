@@ -363,9 +363,7 @@ a.show-sidebar:hover {
   padding-left: 15px;
   line-height: 28px;
 }
-.box-name:hover {
-  cursor: move;
-}
+
 .box-name > i {
   margin-right:5px;
 }

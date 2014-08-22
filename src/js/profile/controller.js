@@ -24,5 +24,15 @@ angular.module('mean.users').controller('ProfileController', ['$scope', 'Global'
         console.info('Complete', item, response);
         $scope.image = response.path;
     };
+
+    $scope.rate = 7;
+    $scope.percent = 70;
+    $scope.max = 10;    
+
+    $scope.hoveringOver = function(value) {
+        $scope.overStar = value;
+        $scope.percent = 100 * (value / $scope.max);
+    };
+
 }]);
  
