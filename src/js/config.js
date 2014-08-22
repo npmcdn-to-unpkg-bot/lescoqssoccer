@@ -52,3 +52,13 @@ angular.module('mean').config(['$locationProvider',
         $locationProvider.hashPrefix('!');
     }
 ]);
+
+angular.module('mean').config(['$translateProvider', function($translateProvider) {
+    
+    $translateProvider.useStaticFilesLoader({
+      prefix: 'translations/translation_',
+      suffix: '.json'
+    });
+
+    $translateProvider.preferredLanguage('fr');
+}]);
