@@ -16,27 +16,27 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
     };
 
     $scope.menu = [{
-        'title': 'Home',
+        'title': 'home_title',
         'link': 'home',
         'icon': 'fa fa-dashboard'
     },{
-        'title': 'Agenda',
+        'title': 'agenda_title',
         'link': 'agenda',
         'icon': 'fa fa-calendar'
     },{
-        'title': 'Articles',
+        'title': 'article_title',
         'link': 'articles',
         'icon': 'fa fa-pencil-square-o'
     },{
-        'title': 'Liens',
+        'title': 'link_title',
         'link': 'externalLink',
         'icon': 'fa fa-list'
     },{
-        'title': 'Photos',
+        'title': 'gallery_title',
         'link': 'gallery',
         'icon': 'fa fa-picture-o'
     },{
-        'title': 'Suggestions',
+        'title': 'suggestions_title',
         'link': 'suggestions',
         'icon': 'fa fa-font'
     }];

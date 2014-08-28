@@ -1,4 +1,13 @@
 {
+	// Sidebar
+	"home_title" : "Accueil",
+	"agenda_title" : "Agenda",
+	"article_title": "Article",
+	"gallery_title": "Photos",
+	"link_title": "Liens",
+	"suggestions_title" : "Suggestions",
+
+	// Agenda
 	"personnal_agenda" : "Mon agenda",
 	"community_agenda" : "Agenda de la communauté",
 	"event_details"	: "Détails de l'évènement",
@@ -6,4 +15,16 @@
 	"content"	: "Contenu",
 	"startdate"	: "Date de début",
 	"enddate"	: "Date de fin"
+
+	//Articles
+
+	//Gallery
+
+	//Links
+
+	//Notifications
+
+	//Profile
+
+	//Suugestions
 }
