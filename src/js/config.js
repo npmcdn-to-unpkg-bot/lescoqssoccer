@@ -54,7 +54,7 @@ angular.module('mean').config(['$locationProvider',
 ]);
 
 angular.module('mean').config(['$translateProvider', function($translateProvider) {
-    
+
     $translateProvider.useStaticFilesLoader({
       prefix: 'translations/translation_',
       suffix: '.json'

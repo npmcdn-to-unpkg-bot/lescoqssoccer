@@ -1,16 +1,16 @@
 'use strict';
 
-angular.module('mean', ['ngCookies', 
-						'ngResource', 
-						'ngRoute', 
-						'ui.bootstrap', 
-						'ui.route', 
-						'pascalprecht.translate', 
-						'mean.system', 
-						'mean.articles', 
-						'mean.agenda', 
-						'mean.users', 
-						'mean.notifications', 
+angular.module('mean', ['ngCookies',
+						'ngResource',
+						'ngRoute',
+						'ui.bootstrap',
+						'ui.route',
+						'pascalprecht.translate',
+						'mean.system',
+						'mean.articles',
+						'mean.agenda',
+						'mean.users',
+						'mean.notifications',
 						'mean.suggestions']);
 
 angular.module('mean.system', []);
