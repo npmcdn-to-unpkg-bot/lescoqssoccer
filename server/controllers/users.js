@@ -61,10 +61,10 @@ exports.create = function(req, res, next) {
             switch (err.code) {
                 case 11000:
                 case 11001:
-                    message = 'Username already exists';
+                    message = "Pseudo déjà utilisé";
                     break;
                 default:
-                    message = 'Please fill all the required fields';
+                    message = "Veuillez renseigner l'ensemble des champs";
             }
 
             return res.render('users/signup', {

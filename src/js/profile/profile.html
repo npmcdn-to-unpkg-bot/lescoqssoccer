@@ -7,8 +7,8 @@
                 <div class="personal-image">
                     <div class="site-avatar">
                         <a href="#!">
-                            <img    ng-src="{{image || 'img/avatar.png'}}" 
-                                    class="profile avatar-224 photo" 
+                            <img    ng-src="{{image || 'img/avatar.png'}}"
+                                    class="profile avatar-224 photo"
                                     height="224" width="224">
                         </a>
                     </div>
@@ -16,10 +16,10 @@
                         <button class="btn btn-default">
                             <label for="upload-profile-picture" class="label-upload-profile-picture">
                                 Uploader une photo différente
-                                <input  id="upload-profile-picture" 
-                                        nv-file-select 
+                                <input  id="upload-profile-picture"
+                                        nv-file-select
                                         uploader="uploader"
-                                        type="file" 
+                                        type="file"
                                         class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
                             </label>
                         </button>
@@ -39,7 +39,7 @@
                 <div class="box-content" style="padding: 0;">
                     <form id="profileForm" class="form-horizontal" role="form">
                         <tabset justified="true">
-                            
+
                             <tab heading="Infos">
                                 <div style="padding: 10px;">
                                     <div class="form-group">
@@ -80,8 +80,8 @@
                                     </div>
                                     <div class="actions" style="text-align:right; padding: 20px 0 0 0;">
                                         <input type="button" class="btn btn-default" value="Enregistrer les modifs">
-                                    </div> 
-                                </div>                       
+                                    </div>
+                                </div>
                             </tab>
 
                             <tab heading="Skills">
@@ -89,15 +89,15 @@
                                     <div class="form-group">
                                         <label class="col-lg-4 control-label">AquaBiker</label>
                                         <div class="col-lg-8" style="text-align: right;">
-                                            <rating value="rate" 
-                                            max="max" 
-                                            readonly="isReadonly" 
-                                            on-hover="hoveringOver(value)" 
+                                            <rating value="rate"
+                                            max="max"
+                                            readonly="isReadonly"
+                                            on-hover="hoveringOver(value)"
                                             on-leave="overStar = null">
                                             </rating>
-                                            <span   class="label" 
-                                                    ng-class=" {'label-warning': percent<30, 
-                                                                'label-info': percent>=30 && percent<70, 
+                                            <span   class="label"
+                                                    ng-class=" {'label-warning': percent<30,
+                                                                'label-info': percent>=30 && percent<70,
                                                                 'label-success': percent>=70}">
                                                     {{percent}}%
                                             </span>
@@ -106,12 +106,12 @@
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <p class="input-group">
-                                                <input  type="text" 
-                                                        class="form-control" 
+                                                <input  type="text"
+                                                        class="form-control"
                                                         placeholder="Ajouter une compétence"
                                                         data-ng-model="suggestion"/>
                                                 <span class="input-group-btn">
-                                                <button class="btn btn-primary" 
+                                                <button class="btn btn-primary"
                                                         type="submit"
                                                         title="Ajouter une compétence">
                                                         <i class="glyphicon glyphicon-star"></i>
@@ -123,7 +123,7 @@
                                 </div>
                                 <div class="actions" style="text-align:right; padding-right: 10px;">
                                     <input type="button" class="btn btn-default" value="Enregistrer les modifs">
-                                </div> 
+                                </div>
                             </tab>
 
                         </tabset>
