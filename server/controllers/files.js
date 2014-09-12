@@ -1,7 +1,7 @@
 
 exports.uploadPhoto = function(req, res) {
     console.info('inside uploadPhoto'); // <-- never reached using IE9
-    
+
     var callbacks = {};
 
     callbacks.uploadSuccess = function(){
@@ -27,7 +27,7 @@ exports.uploadPhoto = function(req, res) {
 
 function handlePhotoUpload(params, callbacks) {
     console.log('inside handlePhotoUpload'); // <-- never reached using IE9
-   	
+
     console.log("00");
 
     console.log("0");
@@ -56,4 +56,4 @@ function handlePhotoUpload(params, callbacks) {
             callbacks.uploadSuccess();
         });
     });
-};	
+};
