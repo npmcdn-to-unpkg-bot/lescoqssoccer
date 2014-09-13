@@ -8,7 +8,7 @@ exports.uploadPhoto = function(req, res) {
         console.log('send ok');
 
         var fileObject = req.files.file;
-        fileObject.path = "img/users/" + fileObject.path.split('/').pop();
+        fileObject.path = "public/img/users/" + fileObject.path.split('/').pop();
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify(fileObject));
     };
