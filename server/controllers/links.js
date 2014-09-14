@@ -4,98 +4,98 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    Article = mongoose.model('Article'),
+    Link = mongoose.model('Link'),
     _ = require('lodash');
 
 
 /**
- * Find article by id
+ * Find link by id
  */
-exports.article = function(req, res, next, id) {
-    Article.load(id, function(err, article) {
+exports.link = function(req, res, next, id) {
+    link.load(id, function(err, link) {
         if (err) return next(err);
-        if (!article) return next(new Error('Failed to load article ' + id));
-        req.article = article;
+        if (!link) return next(new Error('Failed to load link ' + id));
+        req.link = link;
         next();
     });
 };
 
 /**
- * Create a article
+ * Create a link
  */
 exports.create = function(req, res) {
 
-    var article = new Article(req.body);
-    article.user = req.user;
+    var link = new Link(req.body);
+    link.user = req.user;
 
-    article.save(function(err) {
+    link.save(function(err) {
         console.log(err);
         if (err) {
             return res.send('users/signup', {
                 errors: err.errors,
-                article: article
+                link: link
             });
         } else {
-            res.jsonp(article);
+            res.jsonp(link);
         }
     });
 };
 
 /**
- * Update a article
+ * Update a link
  */
 exports.update = function(req, res) {
-    var article = req.article;
+    var link = req.link;
 
-    article = _.extend(article, req.body);
-    article.save(function(err) {
+    link = _.extend(link, req.body);
+    link.save(function(err) {
         if (err) {
             return res.send('users/signup', {
                 errors: err.errors,
-                article: article
+                link: link
             });
         } else {
-            res.jsonp(article);
+            res.jsonp(link);
         }
     });
 };
 
 /**
- * Delete an article
+ * Delete an link
  */
 exports.destroy = function(req, res) {
-    var article = req.article;
+    var link = req.link;
 
-    article.remove(function(err) {
+    link.remove(function(err) {
         if (err) {
             return res.send('users/signup', {
                 errors: err.errors,
-                article: article
+                link: link
             });
         } else {
-            res.jsonp(article);
+            res.jsonp(link);
         }
     });
 };
 
 /**
- * Show an article
+ * Show an link
  */
 exports.show = function(req, res) {
-    res.jsonp(req.article);
+    res.jsonp(req.link);
 };
 
 /**
- * List of articles
+ * List of links
  */
 exports.all = function(req, res) {
-    Article.find().sort('-created').populate('user', 'name username').exec(function(err, articles) {
+    Link.find().sort('-created').populate('user', 'name username').exec(function(err, links) {
         if (err) {
             res.render('error', {
                 status: 500
             });
         } else {
-            res.jsonp(articles);
+            res.jsonp(links);
         }
     });
 };

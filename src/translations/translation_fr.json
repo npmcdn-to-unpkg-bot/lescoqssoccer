@@ -12,5 +12,7 @@
 	"title"	: "Titre",
 	"content"	: "Contenu",
 	"startdate"	: "Date de début",
-	"enddate"	: "Date de fin"
+	"enddate"	: "Date de fin",
+
+	"suggestions_add" : "Ajouter une suggestion"
 }

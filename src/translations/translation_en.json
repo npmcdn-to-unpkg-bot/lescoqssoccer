@@ -1,9 +1,18 @@
 {
-	"personnal_agenda" : "My calendar",
-	"community_agenda" : "Community calendar",
-	"event_details"	: "Event details",
+	"home_title" : "Home",
+	"agenda_title" : "Agenda",
+	"article_title": "Article",
+	"gallery_title": "Gallery",
+	"link_title": "Links",
+	"suggestions_title" : "Suggestions",
+
+	"personnal_agenda" : "My agenda",
+	"community_agenda" : "Community agenda",
+	"event_details"	: "Event detail",
 	"title"	: "Title",
 	"content"	: "Content",
 	"startdate"	: "Start date",
-	"enddate"	: "End date"
+	"enddate"	: "End date",
+
+	"suggestions_add" : "Add suggestion"
 }
