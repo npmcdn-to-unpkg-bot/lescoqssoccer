@@ -26,7 +26,7 @@ angular.module('mean').config(['$routeProvider',
             templateUrl: 'js/links/externalLink.html'
         }).
         when('/gallery', {
-            templateUrl: 'js/gallery/gallery.html'
+            templateUrl: 'js/gallery/views/gallery.html'
         }).
         when('/suggestions', {
             templateUrl: 'js/suggestions/suggestions.html'

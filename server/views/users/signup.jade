@@ -8,24 +8,44 @@ block auth
     .box-content
       form.signup.form-horizontal(action="/users", method="post")
         .form-group
-          label.col-md-4.control-label(for='name') Full Name
+          label.col-md-4.control-label(for='name') Nom
           .col-md-8
-            input#name.form-control(type='text', name="name", placeholder='Full name', value=user.name)
+            .input-group.margin-bottom-sm
+              span.input-group-addon
+                i.fa.fa-pencil.fa-fw
+              input#name.form-control(type='text', name="name", placeholder='Full name', value=user.name)
 
         .form-group
           label.col-md-4.control-label(for='email') Email
           .col-md-8
-            input#email.form-control(type='text', name="email", placeholder='Email', value=user.email)
+            .input-group.margin-bottom-sm
+              span.input-group-addon
+                i.fa.fa-envelope-o.fa-fw
+              input#email.form-control(type='text', name="email", placeholder='Email', value=user.email)
 
         .form-group
           label.col-md-4.control-label(for='username') Username
           .col-md-8
-            input#username.form-control(type='text', name="username", placeholder='Username', value=user.username)
+            .input-group.margin-bottom-sm
+              span.input-group-addon
+                i.fa.fa-user.fa-fw
+              input#username.form-control(type='text', name="username", placeholder='Username', value=user.username)
 
         .form-group
           label.col-md-4.control-label(for='password') Password
           .col-md-8
-            input#password.form-control(type='password', name="password", placeholder='Password')
+            .input-group.margin-bottom-sm
+              span.input-group-addon
+                i.fa.fa-key.fa-fw
+              input#password.form-control(type='password', name="password", placeholder='Password')
+
+        .form-group
+          label.col-md-4.control-label(for='confirm') Password
+          .col-md-8
+            .input-group.margin-bottom-sm
+              span.input-group-addon
+                i.fa.fa-key.fa-fw
+              input#password.form-control(type='password', name="confirm", placeholder='Confirmation')
 
         .form-group
           .col-md-offset-4.col-md-8.right

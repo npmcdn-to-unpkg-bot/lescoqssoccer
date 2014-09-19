@@ -10,12 +10,18 @@ block auth
         .form-group
           label.col-md-4.control-label(for='email') Email
           .col-md-8
-            input#email.form-control(type='text', name="email", placeholder='Email')
+            .input-group.margin-bottom-sm
+              span.input-group-addon
+                i.fa.fa-user.fa-fw
+              input#email.form-control(type='text', name="email", placeholder='Email')
 
         .form-group
           label.col-md-4.control-label(for='password') Password
           .col-md-8
-            input#password.form-control(type='password', name="password", placeholder='Password')
+            .input-group.margin-bottom-sm
+              span.input-group-addon
+                i.fa.fa-key.fa-fw
+              input#password.form-control(type='password', name="password", placeholder='Password')
 
         .form-group
           .col-md-offset-4.col-md-8.right
