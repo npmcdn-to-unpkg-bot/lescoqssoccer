@@ -25,9 +25,57 @@ angular.module('mean').config(['$routeProvider',
         when('/externalLink', {
             templateUrl: 'js/links/externalLink.html'
         }).
-        when('/gallery', {
-            templateUrl: 'js/gallery/views/gallery.html'
+        /** PHOTOS ****/
+        when('/photos', {
+            templateUrl: 'js/gallery/views/photos.html',
+            controller: 'PhotoCtrl', 
+            resolve: PhotoMgrData
         }).
+        when('/photos/:view', {
+            //templateUrl: 'tpl/photos.html',
+            templateUrl: function(params){ 
+                return (params.view === 'add') ? 'js/gallery/views/photo-detail.html': 'js/gallery/views/photos.html'
+            },
+            controller: 'PhotoCtrl', 
+            resolve: PhotoMgrData
+        }).         
+        when('/photos/:view/:photoId', {
+            templateUrl: 'js/gallery/views/photo-detail.html',
+            controller: 'PhotoCtrl', 
+            resolve: PhotoMgrData
+        }).
+
+        /** ALBUMS ****/
+        when('/albums', {
+            templateUrl:'js/gallery/views/albums.html',
+            controller: 'AlbumCtrl', 
+            resolve: PhotoMgrData
+        }).
+    
+        when('/albums/:view', {
+            templateUrl: function(params){ 
+                return (params.view === 'add') ? 'js/gallery/views/album-detail.html': 'js/gallery/views/albums.html'
+            },
+            controller: 'AlbumCtrl', 
+            resolve: PhotoMgrData
+        }).
+        when('/albums/:view/:albumId', {
+            templateUrl:'js/gallery/views/album-detail.html',
+            controller: 'AlbumCtrl', 
+            resolve: PhotoMgrData
+        }).
+
+        /** GALLERY ****/
+        when('/gallery', {
+            templateUrl: 'js/gallery/views/gallery.html', 
+            controller: 'GalleryCtrl', 
+            resolve: GalleryData
+        }).
+        when('/gallery/:albumId', {
+            templateUrl: 'js/gallery/views/gallery.html', 
+            controller: 'GalleryCtrl', 
+            resolve: PhotoMgrData
+        }). 
         when('/suggestions', {
             templateUrl: 'js/suggestions/suggestions.html'
         }).

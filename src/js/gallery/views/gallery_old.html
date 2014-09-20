@@ -1,0 +1,27 @@
+<section data-ng-controller="GalleryController">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-name">
+                        <i class="fa fa-picture-o"></i>
+                        <span>Photos !!</span>
+                    </div>
+                    <div class="no-move"></div>
+                </div>
+
+                <div id="simple_gallery" class="box-content">
+                    <div id="modal" ng-controller="Modal">
+                        <a  class="fancybox" 
+                            rel="gallery1" 
+                            data-ng-click="open('gallery/views/caroussel.html', 'Articles', 'Etes vous sure...', remove)" 
+                            ng-repeat="slide in slides">
+                            <img ng-src="{{slide.src}}" alt="" />
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
