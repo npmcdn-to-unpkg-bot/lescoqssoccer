@@ -9,7 +9,7 @@
 			    		<a>
 				    		<h4 class="panel-title">
 				    			<span 	class="glyphicon glyphicon-film" 
-				    				data-ng-class="(albums[$index]._id === album._id) ? 'enabled' : 'disabled'">
+				    					data-ng-class="(albums[$index]._id === album._id) ? 'enabled' : 'disabled'">
 				    			</span>
 				    		{{a.name}}</h4>
 			    		</a>
@@ -29,7 +29,9 @@
 		<div class="well well-sm">
 			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 				<div class="carousel-inner">
-					<div class="carousel-img item" data-ng-repeat="p in album.photoList" data-ng-class="(p._id === photo._id) ? 'active' : ''">
+					<div 	class="carousel-img item" 
+						data-ng-repeat="p in album.photoList" 
+						data-ng-class="(p._id === photo._id) ? 'active' : ''">
 						<img data-ng-src="{{p.filepath}}">
 					</div>		
 				</div>
@@ -38,7 +40,9 @@
 		</div>
 
 		<ul class="pagination">
-			<li data-ng-click="clickPhoto(album._id, prev)"><a>&laquo;</a></li>
+			<li data-ng-click="clickPhoto(album._id, prev)">
+				<a>&laquo;</a>
+			</li>
 			<li 	data-ng-repeat="p in album.photoList" 
 				data-ng-class="(p._id === photo._id) ? 'active' : ''" 
 				data-ng-click="clickPhoto(album._id, $index)">
