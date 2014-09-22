@@ -1,5 +1,5 @@
 <section data-ng-controller="agendaController">
-  
+
   <!-- Agenda global view : fullcalendar and map -->
   <article ng-show="!onCreation">
 
@@ -29,7 +29,7 @@
             <div data-ng-show="global.user._id == selectedUserEvent.user" class="modal-footer" style="border-top: 0; padding-bottom: 15px;">
                 <a class="btn" ng-click="showEditionForm()">
                   <i class="glyphicon glyphicon-edit"></i>
-                </a> 
+                </a>
                 <div id="modal" ng-controller="Modal" style="display: inline-block;">
                     <a class="btn" data-ng-click="open('appStructure/modal.html', 'Agenda', 'Etes vous sure...', remove, selectedUserEvent.index)">
                         <i class="glyphicon glyphicon-trash"></i>
@@ -66,7 +66,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- Map -->
     <div class="col-xs-12">
       <div class="box">
@@ -94,9 +94,9 @@
                events="map.events"
                options="map.options"
                control="map.control">
-                
+
                 <marker ng-repeat="m in map.markers" coords="m" icon="m.icon" click="onMarkerClicked(m);">
-                  <window isIconVisibleOnClick="false" 
+                  <window isIconVisibleOnClick="false"
                           show="m.showWindow">
                       <p>This is an info window at {{ m.latitude | number:4 }}, {{ m.longitude | number:4 }}!</p>
                       <p class="muted">My marker will stay open when the window is popped up!</p>
