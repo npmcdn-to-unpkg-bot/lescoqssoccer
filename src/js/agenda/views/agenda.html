@@ -1,118 +1,123 @@
 <section data-ng-controller="agendaController">
-  
-  <!-- Agenda global view : fullcalendar and map -->
-  <article ng-show="!onCreation">
 
-    <!-- Event detail -->
-    <div class="col-xs-3">
-      <button class="btn btn-default" ng-click="onCreation = true" style="background: white; width: 100%;">
-          <i class="glyphicon glyphicon-plus"></i>
-          Ajouter un évènement
-      </button>
-      <div class="box" ng-show="selectedUserEvent">
-        <div class="box-header">
-          <div class="box-name">
-            <span>{{'personnal_agenda' | translate}}</span>
-          </div>
-          <div class="box-icons">
-            <a class="close-link">
-              <i class="fa fa-times"></i>
-            </a>
-          </div>
-        </div>
-        <div>
-            <div class="box" style="padding-top: 15px; padding-bottom: 15px; border: 0;">
-              <label class="col-md-12 control-label">{{selectedUserEvent.selectedType.name}}</label>
-              <label class="col-md-12 control-label">{{selectedUserEvent.title}}</label>
-              <label class="col-md-12 control-label">{{selectedUserEvent.content}}</label>
-            </div>
-            <div data-ng-show="global.user._id == selectedUserEvent.user" class="modal-footer" style="border-top: 0; padding-bottom: 15px;">
-                <a class="btn" ng-click="showEditionForm()">
-                  <i class="glyphicon glyphicon-edit"></i>
-                </a> 
-                <div id="modal" ng-controller="Modal" style="display: inline-block;">
-                    <a class="btn" data-ng-click="open('appStructure/modal.html', 'Agenda', 'Etes vous sure...', remove, selectedUserEvent.index)">
-                        <i class="glyphicon glyphicon-trash"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-      </div>
-    </div>
+	<!-- Agenda global view : fullcalendar and map -->
+	<article ng-show="!onCreation">
 
-    <!-- Calendar -->
-    <div class="col-xs-9">
-      <div class="box">
-        <div class="box-header">
-          <div class="box-name">
-            <span>Agenda</span>
-          </div>
-          <div class="box-icons">
-            <a class="close-link">
-              <i class="fa fa-times"></i>
-            </a>
-          </div>
-          <div class="no-move"></div>
-        </div>
-        <div class="box-content">
-          <article class="well" style="background-color: rgba(0, 0, 0, 0);">
-            <div class="row-fluid">
-              <div class="span8">
-                <div class="calendar" ng-model="eventSources" ui-calendar="uiConfig.calendar" calendar="calendar"></div>
-               </tab>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Map -->
-    <div class="col-xs-12">
-      <div class="box">
-        <div class="box-header">
-          <div class="box-name">
-            <span>Map</span>
-          </div>
-          <div class="box-icons">
-            <a class="collapse-link">
-              <i class="fa fa-chevron-up"></i>
-            </a>
-            <a class="close-link">
-              <i class="fa fa-times"></i>
-            </a>
-          </div>
-          <div class="no-move"></div>
-        </div>
-        <div class="box-content">
-          <google-map
-               center="map.center"
-               zoom="map.zoom"
-               draggable="true"
-               dragging="map.dragging"
-               bounds="map.bounds"
-               events="map.events"
-               options="map.options"
-               control="map.control">
-                
-                <marker ng-repeat="m in map.markers" coords="m" icon="m.icon" click="onMarkerClicked(m);">
-                  <window isIconVisibleOnClick="false" 
-                          show="m.showWindow">
-                      <p>This is an info window at {{ m.latitude | number:4 }}, {{ m.longitude | number:4 }}!</p>
-                      <p class="muted">My marker will stay open when the window is popped up!</p>
-                  </window>
-                </marker>
+		<!-- Event detail -->
+		<div class="col-xs-3">
+			<button class="btn btn-default" ng-click="onCreation = true" style="background: white; width: 100%;">
+			<i class="glyphicon glyphicon-plus"></i>
+			Ajouter un évènement
+			</button>
+			<div class="box" ng-show="selectedUserEvent">
+				<div class="box-header">
+					<div class="box-name">
+						<span>{{'personnal_agenda' | translate}}</span>
+					</div>
+					<div class="box-icons">
+						<a class="close-link">
+						<i class="fa fa-times"></i>
+						</a>
+					</div>
+				</div>
+				<div>
+					<div class="box" style="padding-top: 15px; padding-bottom: 15px; border: 0;">
+						<label class="col-md-12 control-label">{{selectedUserEvent.selectedType.name}}</label>
+						<label class="col-md-12 control-label">{{selectedUserEvent.title}}</label>
+						<label class="col-md-12 control-label">{{selectedUserEvent.content}}</label>
+					</div>
+					<div data-ng-show="global.user._id == selectedUserEvent.user"
+						class="modal-footer"
+						style="border-top: 0; padding-bottom: 15px;">
+						<a class="btn" ng-click="showEditionForm()">
+							<i class="glyphicon glyphicon-edit"></i>
+						</a>
+						<div id="modal" ng-controller="Modal" style="display: inline-block;">
+							<a class="btn" 
+								data-ng-click="open('appStructure/modal.html', 'Agenda', 'Etes vous sure...', remove, selectedUserEvent.index)">
+								<i class="glyphicon glyphicon-trash"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-          </google-map>
-        </div>
-      </div>
-    </div>
-  </article>
+		<!-- Calendar -->
+		<div class="col-xs-9">
+			<div class="box">
+				<div class="box-header">
+					<div class="box-name">
+						<span>Agenda</span>
+					</div>
+					<div class="box-icons">
+						<a class="close-link">
+						<i class="fa fa-times"></i>
+						</a>
+					</div>
+					<div class="no-move"></div>
+				</div>
+				<div class="box-content">
+					<article class="well" style="background-color: rgba(0, 0, 0, 0);">
+						<div class="row-fluid">
+							<div class="span8">
+								<div class="calendar"
+									ng-model="eventSources"
+									ui-calendar="uiConfig.calendar"
+									calendar="calendar"></div>
+								</tab>
+							</div>
+						</div>
+					</article>
+				</div>
+			</div>
+		</div>
 
-  <!-- Creation form -->
-  <article ng-show="onCreation">
-        <w-Createevent></w-Createevent>
-  </article>
+		<!-- Map -->
+		<div class="col-xs-12">
+			<div class="box">
+				<div class="box-header">
+					<div class="box-name">
+						<span>Map</span>
+					</div>
+					<div class="box-icons">
+						<a class="collapse-link">
+							<i class="fa fa-chevron-up"></i>
+						</a>
+						<a class="close-link">
+							<i class="fa fa-times"></i>
+						</a>
+					</div>
+					<div class="no-move"></div>
+				</div>
+				<div class="box-content">
+					<google-map
+					center="map.center"
+					zoom="map.zoom"
+					draggable="true"
+					dragging="map.dragging"
+					bounds="map.bounds"
+					events="map.events"
+					options="map.options"
+					control="map.control">
+
+					<marker ng-repeat="m in map.markers" coords="m" icon="m.icon" click="onMarkerClicked(m);">
+						<window isIconVisibleOnClick="false"
+						show="m.showWindow">
+							<p>This is an info window at {{ m.latitude | number:4 }}, {{ m.longitude | number:4 }}!</p>
+							<p class="muted">My marker will stay open when the window is popped up!</p>
+						</window>
+					</marker>
+
+					</google-map>
+				</div>
+			</div>
+		</div>
+	</article>
+
+	<!-- Creation form -->
+	<article ng-show="onCreation">
+		<w-Createevent></w-Createevent>
+	</article>
 
 </section>
-

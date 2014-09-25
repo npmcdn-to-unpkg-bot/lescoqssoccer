@@ -1,141 +1,149 @@
 'use strict';
 
 //Articles service used for Articles REST endpoint
-angular.module('mean.articles').factory('Articles', ['$resource', function($resource) {
-    return $resource('articles/:articleId', {
-        articleId: '@_id'
-    }, {
-        update: {
-            method: 'PUT'
-        }
-    });
-}]);
+angular.module('mean.articles').factory('Articles', ['$resource',
+	function ($resource) {
+		return $resource('articles/:articleId', {
+			articleId: '@_id'
+		}, {
+			update: {
+				method: 'PUT'
+			}
+		});
+	}
+]);
 
 /**
-* ArticleModel service
-**/
-angular.module('mean.articles').service('ArticlesCollection', ['Global', 'Articles', function(Global, Articles) {
+ * ArticleModel service
+ **/
+angular.module('mean.articles').service('ArticlesCollection', ['Global', 'Articles',
+	function (Global, Articles) {
 
-	var global = Global;
-	var ArticlesCollection = {
-		 
-		all: [],
-		filtered: [],
-		selected: null,
-		selectedIdx: null,
-		readCount: 0,
-		starredCount: 0,
+		var global = Global;
+		var ArticlesCollection = {
 
-		load: function() { 
+			all: [],
+			filtered: [],
+			selected: null,
+			selectedIdx: null,
+			readCount: 0,
+			starredCount: 0,
 
-		   	Articles.query(function(articles) {      
+			load: function () {
 
-		     	ArticlesCollection.all = [];
-		     	angular.forEach(articles, function(article) {
+				Articles.query(function (articles) {
 
-			       	ArticlesCollection.all.push(article);
-			       	ArticlesCollection.all.sort(function(articleA, articleB) {
-			       	  return new Date(articleB.created).getTime() - new Date(articleA.created).getTime();
-			       	});
+					ArticlesCollection.all = [];
+					angular.forEach(articles, function (article) {
 
-			       	ArticlesCollection.filtered = ArticlesCollection.all;
-			       	ArticlesCollection.readCount = ArticlesCollection.all.reduce(function(count, article) { return article.read ? count : count; }, 0);
-			       	ArticlesCollection.starredCount = ArticlesCollection.all.reduce(function(count, article) { return article.starred ? count : count; }, 0);
-			       	ArticlesCollection.selected = ArticlesCollection.selected ? ArticlesCollection.all.filter(function(article) { 
-			       		return article.id == ArticlesCollection.selected.id; 
-			       	})[0] : null;
-		    	});	
-			});
-		},
+						ArticlesCollection.all.push(article);
+						ArticlesCollection.all.sort(function (articleA, articleB) {
+							return new Date(articleB.created).getTime() - new Date(articleA.created).getTime();
+						});
 
-		add: function(article, callback){
-			
-			var articleModel = new Articles(article);
-		    
-		    articleModel.$save(function(response) {
-		        ArticlesCollection.load();
-		        callback.call();
-		    });
-		},
+						ArticlesCollection.filtered = ArticlesCollection.all;
+						ArticlesCollection.readCount = ArticlesCollection.all.reduce(function (count, article) {
+							return article.read ? count : count;
+						}, 0);
+						ArticlesCollection.starredCount = ArticlesCollection.all.reduce(function (count, article) {
+							return article.starred ? count : count;
+						}, 0);
+						ArticlesCollection.selected = ArticlesCollection.selected ? ArticlesCollection.all.filter(function (article) {
+							return article.id == ArticlesCollection.selected.id;
+						})[0] : null;
+					});
+				});
+			},
 
-		update: function(index, callback){
-			
-			if (index) {
-		        ArticlesCollection.filtered[index].$update(function(response) {
-		            ArticlesCollection.filtered[index] = response;
+			add: function (article, callback) {
 
-		            if(callback)
-		            	callback.call();
-		        });
-		    } else {
-		        if(callback)
-		            callback.call();
-		    }
-		},
+				var articleModel = new Articles(article);
 
-		remove: function(index, callback){
-			if (index) {
-	          	$scope.filtered[index].$remove(function(response){
-	              	if(callback)
-		            	callback.call();
-	          	});
-	        } else {
-	          	if(callback)
-		            callback.call();
-	        }
-		},
+				articleModel.$save(function (response) {
+					ArticlesCollection.load();
+					callback.call();
+				});
+			},
 
-		prev: function() {
-		    if (ArticlesCollection.hasPrev()) {
-		     	ArticlesCollection.selectArticle(ArticlesCollection.selected ? ArticlesCollection.selectedIdx - 1 : 0);
-		    }
-		},
+			update: function (index, callback) {
 
-		next: function() {
-		    if (ArticlesCollection.hasNext()) {
-		     	ArticlesCollection.selectArticle(ArticlesCollection.selected ? ArticlesCollection.selectedIdx + 1 : 0);
-		    }
-		},
+				if (index) {
+					ArticlesCollection.filtered[index].$update(function (response) {
+						ArticlesCollection.filtered[index] = response;
 
-		hasPrev: function() {
-		   	if (!ArticlesCollection.selected) {
-		     	return true;
-		    }
-		    return ArticlesCollection.selectedIdx > 0;
-		},
+						if (callback)
+							callback.call();
+					});
+				} else {
+					if (callback)
+						callback.call();
+				}
+			},
 
-		hasNext: function() {
-		    if (!ArticlesCollection.selected) {
-		     	return true;
-		    }
-		    return ArticlesCollection.selectedIdx < ArticlesCollection.filtered.length - 1;
-		},
+			remove: function (index, callback) {
+				if (index) {
+					$scope.filtered[index].$remove(function (response) {
+						if (callback)
+							callback.call();
+					});
+				} else {
+					if (callback)
+						callback.call();
+				}
+			},
 
-		selectArticle: function(idx) {
+			prev: function () {
+				if (ArticlesCollection.hasPrev()) {
+					ArticlesCollection.selectArticle(ArticlesCollection.selected ? ArticlesCollection.selectedIdx - 1 : 0);
+				}
+			},
 
-		    // Unselect previous selection.
-		    if (ArticlesCollection.selected) {
-		     	ArticlesCollection.selected.selected = false;
-		    }
+			next: function () {
+				if (ArticlesCollection.hasNext()) {
+					ArticlesCollection.selectArticle(ArticlesCollection.selected ? ArticlesCollection.selectedIdx + 1 : 0);
+				}
+			},
 
-		    ArticlesCollection.selected = ArticlesCollection.filtered[idx];
-		    ArticlesCollection.selectedIdx = idx;
-		    ArticlesCollection.selected.selected = true;
-		    ArticlesCollection.onCreation = ArticlesCollection.onEdition = false;
-		},
+			hasPrev: function () {
+				if (!ArticlesCollection.selected) {
+					return true;
+				}
+				return ArticlesCollection.selectedIdx > 0;
+			},
 
-		filterBy: function(key, value) {
-		    ArticlesCollection.filtered = ArticlesCollection.all.filter(function(article) {
-		     	return article[key] === value;
-		    });
-		    ArticlesCollection.reindexSelectedItem();
-		},
+			hasNext: function () {
+				if (!ArticlesCollection.selected) {
+					return true;
+				}
+				return ArticlesCollection.selectedIdx < ArticlesCollection.filtered.length - 1;
+			},
 
-		clearFilter: function() {
-		    ArticlesCollection.filtered = ArticlesCollection.all;
-		    ArticlesCollection.reindexSelectedItem();
-		},
+			selectArticle: function (idx) {
+
+				// Unselect previous selection.
+				if (ArticlesCollection.selected) {
+					ArticlesCollection.selected.selected = false;
+				}
+
+				ArticlesCollection.selected = ArticlesCollection.filtered[idx];
+				ArticlesCollection.selectedIdx = idx;
+				ArticlesCollection.selected.selected = true;
+				ArticlesCollection.onCreation = ArticlesCollection.onEdition = false;
+			},
+
+			filterBy: function (key, value) {
+				ArticlesCollection.filtered = ArticlesCollection.all.filter(function (article) {
+					return article[key] === value;
+				});
+				ArticlesCollection.reindexSelectedItem();
+			},
+
+			clearFilter: function () {
+				ArticlesCollection.filtered = ArticlesCollection.all;
+				ArticlesCollection.reindexSelectedItem();
+			},
+		}
+
+		return ArticlesCollection;
 	}
-
-	return ArticlesCollection;
-}]);
+]);
