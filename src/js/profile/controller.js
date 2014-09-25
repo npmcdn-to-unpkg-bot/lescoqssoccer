@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.users').controller('ProfileController', ['$scope', 'Global', 'FileUploader',
-	function ($scope, Global, FileUploader) {
+angular.module('mean.users').controller('ProfileController', ['$scope', 'Global', '$translate','FileUploader',
+	function ($scope, Global, $translate, FileUploader) {
 
 		$scope.global = Global;
 		$scope.image;
@@ -33,6 +33,10 @@ angular.module('mean.users').controller('ProfileController', ['$scope', 'Global'
 		$scope.hoveringOver = function (value) {
 			$scope.overStar = value;
 			$scope.percent = 100 * (value / $scope.max);
+		};
+
+		$scope.changeLanguage = function (key) {
+		    	$translate.use(key);
 		};
 
 	}

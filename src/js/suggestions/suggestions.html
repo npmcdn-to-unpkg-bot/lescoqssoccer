@@ -14,36 +14,36 @@
 				<div class="form-group">
 					<div class="col-md-12">
 						<p class="input-group">
-						<input 	type="text"
+						<textarea
 						class="form-control"
 						placeholder="{{'suggestions_add' | translate}}"
 						data-ng-model="content"/>
 						<span class="input-group-btn">
-						<button class="btn btn-primary"
-						type="submit"
-						title="{{'suggestions_add' | translate}}">
-						<i class="glyphicon glyphicon-ok"></i>
-						</button>
+							<button class="btn btn-primary"
+									type="submit"
+									title="{{'suggestions_add' | translate}}">
+								<i class="glyphicon glyphicon-ok"></i>
+							</button>
 						</span>
 						</p>
 					</div>
 				</div>
-
-				<div class="row" data-ng-repeat="suggestion in SuggestionsCollection.all">
-					<div class="col-xs-12 page-feed">
-						<div class="box" style="border:0;">
-							<div class="avatar">
-								<img src="img/avatar.png" class="profile avatar-224 photo" style="margin-top: 0"/>
-							</div>
-							<div class="page-feed-content">
-								<small class="time">{{global.user.name}}, le {{suggestion.created | date:dateFormat}}</small>
-								<p>{{suggestion.content}}</p>
-							</div>
-						</div>
-					</div>
-				</div>
-
 			</form>
 		</div>
 	</div>
+
+	<div class="row" data-ng-repeat="suggestion in SuggestionsCollection.all">
+		<div class="col-xs-12 page-feed">
+			<div class="box" style="border:0;">
+				<div class="avatar">
+					<img src="img/avatar.png" class="profile avatar-224 photo" style="margin-top: 0"/>
+				</div>
+				<div class="page-feed-content">
+					<small class="time">{{global.user.name}}, le {{suggestion.created | date:dateFormat}}</small>
+					<p>{{suggestion.content}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </section>
