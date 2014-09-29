@@ -2885,21 +2885,28 @@ a:hover{
 }
 
 .animate-show {
-  line-height:20px;
-  opacity:1;
-  padding:10px;
-  border:1px solid black;
-  background:white;
+	  -moz-transition:all linear 1s;
+	  -o-transition:all linear 1s;
+	  transition:all linear 1s;
+	  -webkit-transform:all linear 1s;
+	  transition:all linear 1s;
+	  display:absolute!important;
+	  opacity:1;
+	  top: 50px;
 }
 
-.animate-show.ng-hide-add.ng-hide-add-active,
-.animate-show.ng-hide-remove.ng-hide-remove-active {
-  -webkit-transition:all linear 0.5s;
-  transition:all linear 0.5s;
+.animate-show.ng-hide-add,
+.animate-show.ng-hide-remove {
+	display:block!important;
+	opacity:1;
 }
 
-.animate-show.ng-hide {
-  line-height:0;
-  opacity:0;
-  padding:0 10px;
+.animate-show.ng-hide,  .animate-show.ng-hide div{
+	-webkit-transition: all 1s;
+	-moz-transition: all 1s;
+	-o-transition: all 1s;
+	transition: all 1s;  
+	 /* -moz-transform: scale(3);
+	  -webkit-transform: scale(3);*/
+	  opacity: 0;
 }

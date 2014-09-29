@@ -3,7 +3,7 @@
 	<article>
 
 		<div class="site-avatar col-md-6" >
-			<a ng-click="onCreation = true">
+			<a ng-click="alert();onCreation = true; alert(onCreation);">
 				<img    ng-src="{{'img/avatar.png'}}"
 				class="profile avatar-224 photo"
 				style="background-color: lightgray;"
@@ -51,7 +51,7 @@
 	</article>
 
 	<article>
-		<w-Createarticle ng-show="onCreation" ng-animate="{show: 'animate-show', hide: 'animate-hide'}">
+		<w-Createarticle ng-show="onCreation" class="animate-show">
 		</w-Createarticle>
 	</article>
 
