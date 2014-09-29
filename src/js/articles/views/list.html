@@ -1,13 +1,30 @@
 <section class="mainContent" data-ng-controller="ArticlesController" style="margin-top:0;">
 
-	<article ng-show="!onCreation">
+	<article>
+
+		<div class="site-avatar col-md-6" >
+			<a ng-click="onCreation = true">
+				<img    ng-src="{{'img/avatar.png'}}"
+				class="profile avatar-224 photo"
+				style="background-color: lightgray;"
+				height="224" 
+				width="224">
+			</a>
+		</div>
+
 		<div class="col-md-6" style="text-align: left;">
 			<button class="btn btn-default" ng-click="onCreation = true" style="margin-left: 10px;background: white;">
 			Ajouter un article
 			</button>
 		</div>
 		<div class="col-md-6" style="text-align: right;">
-			<pagination total-items="$scope.bigTotalItems" ng-model="$scope.bigCurrentPage" max-size="$scope.maxSize" class="pagination-sm" boundary-links="true" style="margin-top: 0;"></pagination>
+			<pagination total-items="$scope.bigTotalItems"
+			ng-model="$scope.bigCurrentPage"
+			max-size="$scope.maxSize"
+			class="pagination-sm"
+			boundary-links="true"
+			style="margin-top: 0;">
+			</pagination>
 		</div>
 
 		<div id="gallery" class="gallery isotope col-md-12">
@@ -33,8 +50,9 @@
 		</div>
 	</article>
 
-	<article ng-show="onCreation">
-		<w-Createarticle></w-Createarticle>
+	<article>
+		<w-Createarticle ng-show="onCreation" ng-animate="{show: 'animate-show', hide: 'animate-hide'}">
+		</w-Createarticle>
 	</article>
 
 </section>

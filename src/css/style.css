@@ -1406,7 +1406,7 @@ td.beauty-hover {
   background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #eee), color-stop(0.5, #fff));
   background-image: -webkit-linear-gradient(center bottom, #eee 0%, #fff 50%);
   background-image: -moz-linear-gradient(center bottom, #eee 0%, #fff 50%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#ffffff', endColorstr = '#eeeeee', GradientType = 0);
+  /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#ffffff', endColorstr = '#eeeeee', GradientType = 0);*/
   background-image: linear-gradient(top, #fff 0%, #eee 50%);
 }
 .select2-container-multi .select2-choices .select2-search-field input {
@@ -2869,8 +2869,37 @@ textarea{
 
 .html-authentication{
   background-color: antiquewhite;
-}
+}	
 
 .alert{
   border: 1px solid black;
+}
+
+a{
+	cursor: pointer;
+	text-decoration: none;
+}
+
+a:hover{
+	text-decoration: none;
+}
+
+.animate-show {
+  line-height:20px;
+  opacity:1;
+  padding:10px;
+  border:1px solid black;
+  background:white;
+}
+
+.animate-show.ng-hide-add.ng-hide-add-active,
+.animate-show.ng-hide-remove.ng-hide-remove-active {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.animate-show.ng-hide {
+  line-height:0;
+  opacity:0;
+  padding:0 10px;
 }
