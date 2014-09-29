@@ -16,6 +16,7 @@
     "angular-google-maps": "latest",
     "angular-file-upload": "latest",
     "angular-ui-calendar": "latest",
+    "angular-animate": "latest",
     "angular-translate": "latest",
     "angular-translate-loader-static-files": "latest"
   },
