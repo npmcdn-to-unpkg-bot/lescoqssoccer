@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('mean.articles').controller('FileUploadController', ['$scope', '$fileUploader',
-	function ($scope, $fileUploader) {
+angular.module('mean.articles').controller('FileUploadController', ['$scope', 'FileUploader',
+	function ($scope, FileUploader) {
 
 		// create a uploader with options
-		var uploader = $scope.uploader = $fileUploader.create({
+		$scope.uploader = new FileUploader({
 			scope: $scope,
 			url: '/upload/photo',
 			formData: [{
@@ -34,58 +34,58 @@ angular.module('mean.articles').controller('FileUploadController', ['$scope', '$
 			uploader.removeFromQueue(this);
 		};
 
-		uploader.queue.push(item);
-		uploader.progress = 100;
+		$scope.uploader.queue.push(item);
+		$scope.uploader.progress = 100;
 
 		// ADDING FILTERS
-		uploader.filters.push(function (item) { // second user filter
+		$scope.uploader.filters.push(function (item) { // second user filter
 			console.info('filter2');
 			return true;
 		});
 
 		// REGISTER HANDLERS
-		uploader.bind('afteraddingfile', function (event, item) {
+		$scope.uploader.onAfteraddingfile = function (event, item) {
 			console.info('After adding a file', item);
-		});
+		};
 
-		uploader.bind('whenaddingfilefailed', function (event, item) {
+		$scope.uploader.onWhenaddingfilefailed = function (event, item) {
 			console.info('When adding a file failed', item);
-		});
+		};
 
-		uploader.bind('afteraddingall', function (event, items) {
+		$scope.uploader.onAfteraddingall = function (event, items) {
 			console.info('After adding all files', items);
-		});
+		};
 
-		uploader.bind('beforeupload', function (event, item) {
+		$scope.uploader.onBeforeupload = function (event, item) {
 			console.info('Before upload', item);
-		});
+		};
 
-		uploader.bind('progress', function (event, item, progress) {
+		$scope.uploader.onProgress = function (event, item, progress) {
 			console.info('Progress: ' + progress, item);
-		});
+		};
 
-		uploader.bind('success', function (event, xhr, item, response) {
+		$scope.uploader.onSuccess = function (event, xhr, item, response) {
 			console.info('Success', xhr, item, response);
-		});
+		};
 
-		uploader.bind('cancel', function (event, xhr, item) {
+		$scope.uploader.onCancel = function (event, xhr, item) {
 			console.info('Cancel', xhr, item);
-		});
+		};
 
-		uploader.bind('error', function (event, xhr, item, response) {
+		$scope.uploader.onError = function (event, xhr, item, response) {
 			console.info('Error', xhr, item, response);
-		});
+		};
 
-		uploader.bind('complete', function (event, xhr, item, response) {
+		$scope.uploader.onComplete = function (event, xhr, item, response) {
 			console.info('Complete', xhr, item, response);
-		});
+		};
 
-		uploader.bind('progressall', function (event, progress) {
+		$scope.uploader.onProgressall = function (event, progress) {
 			console.info('Total progress: ' + progress);
-		});
+		};
 
-		uploader.bind('completeall', function (event, items) {
+		$scope.uploader.onCompleteall = function (event, items) {
 			console.info('Complete all', items);
-		});
+		};
 	}
 ]);

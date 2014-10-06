@@ -46,9 +46,8 @@ function handlePhotoUpload( params, callbacks ) {
 
 	fs.readFile( params.file.path, function ( err, data ) {
 
-		console.log( err );
 		if ( err ) {
-			callbacks.uploadFailure( "1" + err );
+			callbacks.uploadFailure( err );
 		}
 
 		var photoId = guid();

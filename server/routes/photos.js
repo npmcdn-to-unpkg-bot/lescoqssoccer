@@ -1,12 +1,12 @@
 'use strict';
 
 // Articles routes use articles controller
-var albums = require('../controllers/albums');
+var photos = require('../controllers/photos');
 var authorization = require('./middlewares/authorization');
 
 // Article authorization helpers
 var hasAuthorization = function (req, res, next) {
-	if (req.article.user.id !== req.user.id) {
+	if (req.photo.user.id !== req.photo.id) {
 		return res.send(401, 'User is not authorized');
 	}
 	next();
@@ -14,14 +14,11 @@ var hasAuthorization = function (req, res, next) {
 
 module.exports = function (app) {
 
-	/** File upload from user **/
-	app.post('/upload', albums.uploadPhoto);
-
 	/** File C.R.U.D. **/
-	app.post('/photos', albums.addPhoto);
-	app.get('/photos', albums.findAllPhotos);
-	app.get('/photos/:id', albums.findPhotoById);
-	app.put('/photos/:id', albums.updatePhoto);
-	app.post('/photos/:id', albums.updatePhoto);
-	app.delete('/photos/:id', albums.deletePhoto);
+	app.post('/photos', photos.addPhoto);
+	app.get('/photos', photos.findAllPhotos);
+	app.get('/photos/:id', photos.findPhotoById);
+	app.put('/photos/:id', photos.updatePhoto);
+	app.post('/photos/:id', photos.updatePhoto);
+	app.delete('/photos/:id', photos.deletePhoto);
 };

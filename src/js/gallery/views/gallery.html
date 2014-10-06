@@ -3,6 +3,11 @@
 		<div class="col-lg-3">
 
 			<div class="panel-group">
+				<div class="panel panel-default">
+					<a href="#!/albums" class="btn btn-default">
+						Ajouter un album
+					</a>
+				</div>
 			  	<div class="panel panel-default" data-ng-repeat="a in albums| filter:{enabled: true}|orderBy:'a.order'">
 			    	<div 	class="panel-heading" 
 			    		data-ng-click="clickAlbum($index)" 

@@ -12,7 +12,7 @@ angular.module('mean.albums').factory('PhotosCollection', ['$resource',
 			},
 			uploadPhoto: {
 				method: 'POST',
-				url: '/upload',
+				url: '/upload/photo',
 				headers: {
 					'Content-Type': undefined
 				},
@@ -149,6 +149,5 @@ angular.module('mean.albums').service('PhotoMgrService', ['Global', 'AlbumsColle
 		}
 
 		return pmSvc;
-
 	}
 ]);
