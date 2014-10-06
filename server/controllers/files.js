@@ -1,59 +1,81 @@
+var fs = require( 'fs' );
+var path = require( "path" );
+var config = require( '../../config/config' );
 
-exports.uploadPhoto = function(req, res) {
-    console.info('inside uploadPhoto'); // <-- never reached using IE9
+exports.uploadPhoto = function ( req, res ) {
+	console.info( 'inside uploadPhoto' ); // <-- never reached using IE9
 
-    var callbacks = {};
+	var callbacks = {};
 
-    callbacks.uploadSuccess = function(){
-        console.log('send ok');
+	callbacks.uploadSuccess = function ( newName ) {
+		console.log( 'inside uploadSuccess' );
 
-        var fileObject = req.files.file;
-        fileObject.path = "public/img/users/" + fileObject.path.split('/').pop();
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify(fileObject));
-    };
+		res.writeHead( 200, {
+			'Content-Type': 'application/json'
+		} );
 
-    callbacks.uploadFailure = function(err){
-        console.log('send bad');
-	    res.writeHead(400, { 'Content-Type': 'text/plain' });
-        res.end('callback(\'{\"msg\": \"KO\"}\')');
+		res.end( JSON.stringify( {
+			err: null,
+			path: config.uploadDirectory + newName
+		} ) );
 	};
 
-	console.log(req.files);
+	callbacks.uploadFailure = function ( err ) {
+		console.log( 'inside uploadFailure' );
 
-    callbacks.uploadSuccess();
-    //handlePhotoUpload(req.files, callbacks);
+		res.writeHead( 400, {
+			'Content-Type': 'text/plain'
+		} );
+
+		res.end( JSON.stringify( {
+			err: 100, //Mettre en place des messages d'erreur
+			path: null
+		} ) );
+	};
+
+	handlePhotoUpload( req.files, callbacks );
 };
 
-function handlePhotoUpload(params, callbacks) {
-    console.log('inside handlePhotoUpload'); // <-- never reached using IE9
+function handlePhotoUpload( params, callbacks ) {
+	console.log( 'inside handlePhotoUpload' ); // <-- never reached using IE9
 
-    console.log("00");
-
-    console.log("0");
-    if(params.file.type !== 'image/png' && params.file.type !== 'image/jpeg' && params.file.type !== 'image/gif') {
-	    callbacks.uploadFailure('Wrong file type');
-	    return;
+	if ( params.file.type !== 'image/png' && params.file.type !== 'image/jpeg' && params.file.type !== 'image/gif' ) {
+		callbacks.uploadFailure( 'Wrong file type' );
+		return;
 	}
 
-    console.log("1");
-    fs.readFile(params.file.path, function(err, data){
-        console.log("2");
-        if(err){
-            callbacks.uploadFailure(err);
-        }
+	fs.readFile( params.file.path, function ( err, data ) {
 
-        console.log("3");
-        var newPath = path.resolve("/public/img/users/" + params.file.filename);
-        fs.writeFile(newPath, data, function(err) {
+		console.log( err );
+		if ( err ) {
+			callbacks.uploadFailure( "1" + err );
+		}
 
-            console.log("4");
-            if(err){
-                callbacks.uploadFailure(err);
-            }
+		var photoId = guid();
+		var newName = photoId + "." + params.file.path.split( '.' ).pop();
+		var newPath = path.resolve( config.root + "/server/" + config.uploadDirectory + newName );
 
-            console.log("ok sauvé");
-            callbacks.uploadSuccess();
-        });
-    });
+		fs.writeFile( newPath, data, function ( err ) {
+
+			if ( err ) {
+				callbacks.uploadFailure( err );
+			} else {
+				callbacks.uploadSuccess( newName );
+			}
+
+			fs.unlink( params.file.path, function ( err ) {
+				if ( err ) response.errors.push( "Erorr : " + err );
+				console.log( 'successfully deleted : ' + params.file.path );
+			} );
+		} );
+	} );
 };
+
+var guid = ( function () {
+	function s4() {
+		return Math.floor( ( 1 + Math.random() ) * 0x10000 ).toString( 16 ).substring( 1 );
+	}
+	return function () {
+		return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+	};
+} )();
