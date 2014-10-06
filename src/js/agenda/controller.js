@@ -318,8 +318,8 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
 		};
 
 		/***
-    Date picker management
-    ***/
+	 Date picker management
+	 ***/
 		$scope.initialize = function () {
 			var start = angular.element('#directives-calendar').scope().selectedDate;
 			if (start) {

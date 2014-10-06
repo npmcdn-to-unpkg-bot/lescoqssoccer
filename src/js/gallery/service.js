@@ -19,7 +19,6 @@ angular.module('mean.albums').factory('PhotosCollection', ['$resource',
 				transformRequest: angular.identity
 			}
 		});
-
 	}
 ]);
 
