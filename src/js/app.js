@@ -14,7 +14,8 @@ angular.module('mean', ['ngCookies',
 	'mean.notifications',
 	'mean.suggestions',
 	'mean.gallery',
-	'mean.albums'
+	'mean.albums',
+	'angularFileUpload'
 ]);
 
 angular.module('mean.system', []);

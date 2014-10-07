@@ -7,7 +7,7 @@ exports.uploadPhoto = function ( req, res ) {
 
 	var callbacks = {};
 
-	callbacks.uploadSuccess = function ( newName ) {
+	callbacks.uploadSuccess = function ( newName, oldName) {
 		console.log( 'inside uploadSuccess' );
 
 		res.writeHead( 200, {
@@ -16,7 +16,8 @@ exports.uploadPhoto = function ( req, res ) {
 
 		res.end( JSON.stringify( {
 			err: null,
-			path: config.uploadDirectory + newName
+			path: config.uploadDirectory + newName,
+			name: oldName
 		} ) );
 	};
 
@@ -50,6 +51,7 @@ function handlePhotoUpload( params, callbacks ) {
 			callbacks.uploadFailure( err );
 		}
 
+		var oldName = params.file.name;
 		var photoId = guid();
 		var newName = photoId + "." + params.file.path.split( '.' ).pop();
 		var newPath = path.resolve( config.root + "/server/" + config.uploadDirectory + newName );
@@ -59,7 +61,7 @@ function handlePhotoUpload( params, callbacks ) {
 			if ( err ) {
 				callbacks.uploadFailure( err );
 			} else {
-				callbacks.uploadSuccess( newName );
+				callbacks.uploadSuccess( newName, oldName );
 			}
 
 			fs.unlink( params.file.path, function ( err ) {

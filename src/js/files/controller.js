@@ -1,46 +1,16 @@
 'use strict';
 
-angular.module('mean.articles').controller('FileUploadController', ['$scope', 'FileUploader',
+angular.module('mean').controller('FileUploadController',  ['$scope', 'FileUploader',
 	function ($scope, FileUploader) {
 
 		// create a uploader with options
 		$scope.uploader = new FileUploader({
 			scope: $scope,
 			url: '/upload/photo',
+			autoUpload: true,
 			formData: [{
 				key: 'value'
-			}],
-			filters: [
-
-				function (item) {
-					console.info('filter1');
-					return true;
-				}
-			]
-		});
-
-		// FAQ #1
-		var item = {
-			file: {
-				name: 'Previously uploaded file',
-				size: 1e6
-			},
-			progress: 100,
-			isUploaded: true,
-			isSuccess: true
-		};
-
-		item.remove = function () {
-			uploader.removeFromQueue(this);
-		};
-
-		$scope.uploader.queue.push(item);
-		$scope.uploader.progress = 100;
-
-		// ADDING FILTERS
-		$scope.uploader.filters.push(function (item) { // second user filter
-			console.info('filter2');
-			return true;
+			}]
 		});
 
 		// REGISTER HANDLERS
