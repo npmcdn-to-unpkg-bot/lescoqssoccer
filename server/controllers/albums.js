@@ -65,6 +65,8 @@ exports.addAlbum = function ( req, res ) {
 
 exports.updateAlbum = function ( req, res ) {
 	Album.findById( req.params.id, function ( err, album ) {
+		delete req.body._id;
+		delete req.body.photoList;
 		if ( err ) console.log( "error: " + err )
 		_.extend( album, req.body );
 		album.save( function ( err, album, numAffected ) {

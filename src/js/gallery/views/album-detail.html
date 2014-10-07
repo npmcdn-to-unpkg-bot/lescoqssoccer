@@ -11,15 +11,8 @@
 
 	            	<form class="form-horizontal" role="form">
 
-	                		<div class="form-group">
-		                    	<label for="id" class="col-lg-4 control-label">ID:</label>
-		                    	<div class="col-lg-8">
-		                    		<input class="form-control input-sm" data-ng-model="album._id" disabled="" type="text">
-		                    	</div>
-	                		</div>
-
 		                	<div class="form-group">
-		                    	<label for="name" class="col-lg-4 control-label">Name:</label>
+		                    	<label for="name" class="col-lg-4 control-label">Name</label>
 		                    	<div class="col-lg-8">                
 		                    		<input class="form-control input-sm" data-ng-model="album.name" type="text">
 		                    	</div>
@@ -29,7 +22,7 @@
 	                		<input class="form-control input-sm" data-ng-model="album.coverPicPath" type="hidden">
 	              
 	                		<div class="form-group">
-	                    		<label for="name" class="col-lg-4 control-label">Cover Photo:</label>
+	                    		<label for="name" class="col-lg-4 control-label">Cover Photo</label>
 	                    		<div class="col-lg-8">                  
 	                    			<select 	class="form-control input-sm" 
 		                    				data-ng-model="coverPic" 
@@ -40,27 +33,19 @@
 	                		</div>
 
 		                	<div class="form-group">
-		                    	<label for="description" class="col-lg-4 control-label">Description:</label>
+		                    	<label for="description" class="col-lg-4 control-label">Description</label>
 		                    	<div class="col-lg-8">                
 		                    		<textarea class="form-control input-sm" data-ng-model="album.description" rows="2"></textarea>
 		                    	</div>
 		                	</div>
 
-	                		<div class="form-group">
-	                    		<div class="col-lg-offset-4 col-lg-8">
-	                      			<div class="checkbox">
-	                        				<label>                  
-	                          					<input 	type="checkbox" 
-			                          					data-ng-model="album.enabled" 
-			                          					ng-checked="album.enabled"> Show in Gallery 
-	                        				</label>
-	                      			</div>
-	                    		</div>
-	                		</div>
 	            	</form>
 
-	            	<a class="btn btn-primary" ng-click="saveAlbum(album, !(album._id))" data-ng-disabled="!album.name">Save</a>
-	            	<a class="btn btn-default" ng-click="deleteAlbum(album, true)" data-ng-disabled="!album._id">Delete</a>
+	            	<div class="modal-footer">
+		            	<a class="btn btn-primary" ng-click="saveAlbum(album, !(album._id))" data-ng-disabled="!album.name">Save</a>
+		            	<a class="btn btn-default" ng-click="deleteAlbum(album, true)" data-ng-disabled="!album._id">Delete</a>
+	         		</div>
+	         		
 	          </div>
 	</div>
 

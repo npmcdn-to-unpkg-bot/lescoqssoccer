@@ -58,7 +58,7 @@ angular.module('mean.albums').service('PhotoMgrService', ['Global', 'AlbumsColle
 		var pmSvc = {};
 
 		pmSvc.editAlbumPhotos = function (action, photo, album) {
-			alert(JSON.stringify(photo));
+
 			return AlbumsCollection.editAlbumPhotos({
 				action: action,
 				_id: album._id,

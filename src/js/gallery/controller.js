@@ -40,7 +40,7 @@ angular.module( 'mean.albums' ).controller( 'modalInstanceCtrl', [ '$scope', '$m
 	}
 ] );
 
-angular.module( 'mean.albums' ).controller( 'deleteAlbumModalCtrl', [ '$scope', '$modalInstance', 'albums',
+angular.module( 'mean.albums' ).controller( 'deleteAlbumModalCtrl', [ '$scope', '$modalInstance', 'album',
 
 	function ( $scope, $modalInstance, album ) {
 
@@ -222,11 +222,11 @@ angular.module( 'mean.albums' ).controller( 'AlbumCtrl', [ '$location', '$scope'
 		$scope.deleteAlbum = function ( deletedAlbum, redirect ) {
 
 			var modalInstance = $modal.open( {
-				templateUrl: 'tpl/modal/deleteAlbumModal.html',
+				templateUrl: 'js/gallery/views/modal/deleteAlbumModal.html',
 				controller: 'deleteAlbumModalCtrl',
 				resolve: {
 					album: function () {
-						return deletedAlbum
+						return deletedAlbum;
 					}
 				}
 			} );
