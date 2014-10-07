@@ -339,9 +339,9 @@ angular.module( 'mean.albums' ).controller( 'AlbumCtrl', [ '$location', '$scope'
 	}
 ] );
 
-angular.module( 'mean.albums' ).controller( 'GalleryCtrl', [ '$scope', 'albums', 'photos',
+angular.module( 'mean.albums' ).controller( 'GalleryCtrl', [ '$scope', 'albums', 'photos', 'view',
 
-	function ( $scope, albums, photos ) {
+	function ( $scope, albums, photos, view ) {
 
 		$scope.clickPhoto = function ( albumID, index ) {
 			if ( albumID !== $scope.album._id ) {
@@ -385,6 +385,13 @@ angular.module( 'mean.albums' ).controller( 'GalleryCtrl', [ '$scope', 'albums',
 			$scope.prev = $scope.album.photoList.length - 1;
 			$scope.next = 1;
 		}
+
+		$scope.section = {
+			'name': 'Album',
+			'url': '/albums'
+		}; 
+
+		$scope.view = 'gallery'; 
 	}
 ] );
 
@@ -435,5 +442,9 @@ var GalleryData = {
 		return $route.current.params.albumId ? AlbumsCollection.getPhotos( {
 			id: $route.current.params.albumId
 		} ).$promise : PhotosCollection.query().$promise;
+	},
+
+	view: function ( $route ) {
+		return $route.current.params.view;
 	}
 };
