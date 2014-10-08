@@ -1,7 +1,7 @@
 <ul class="nav main-menu" style="display: table-cell; vertical-align:middle;">
 	<li ng-repeat="item in menu" style="border-bottom: 1px solid #333;">
 		<a href="#!/{{item.link}}" class="ajax-link sidebarItem" ng-class="{ active: isCurrentPath('#!/{{item.link}}')}">
-		<span class="hidden-xs">{{item.title | translate}}</span>
+			<span class="hidden-xs">{{item.title | translate}}</span>
 		</a>
 	</li>
 </ul>

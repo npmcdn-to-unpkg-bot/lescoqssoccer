@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeParams', '$location', '$filter', 'Global', 'AgendaCollection',
-	function ($scope, $routeParams, $location, $filter, Global, AgendaCollection) {
+angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection', 
+	function ($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection) {
 
 		$scope.global = Global;
 		$scope.AgendaCollection = AgendaCollection;
@@ -363,5 +363,11 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
 			'starting-day': 1
 		};
 
+		$scope.view = ($route.current && $route.current.params.view) ? $route.current.params.view : 'agenda'; //if view not set in route params,view = list
+
+		$scope.section = {
+			'name': 'Agenda',
+			'url': '/agenda'
+		}; 
 	}
 ]);

@@ -15,6 +15,11 @@ angular.module('mean').config(['$routeProvider',
 		when('/agenda', {
 			templateUrl: 'js/agenda/views/agenda.html'
 		}).
+		when('/agenda/:view', {
+			templateUrl: function (params) {
+				return (params.view === 'add') ? 'js/agenda/views/create.html' : 'js/agenda/views/map.html'
+			}
+		}).
 
 		/** ARTICLES ****/
 		when('/articles', {
@@ -65,6 +70,8 @@ angular.module('mean').config(['$routeProvider',
 			controller: 'GalleryCtrl',
 			resolve: PhotoMgrData
 		}).
+
+		/** SUGGESTIONS ****/
 		when('/suggestions', {
 			templateUrl: 'js/suggestions/suggestions.html'
 		}).
