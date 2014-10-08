@@ -35,25 +35,6 @@ angular.module('mean').config(['$routeProvider',
 			templateUrl: 'js/links/externalLink.html'
 		}).
 
-		/** PHOTOS ****/
-		when('/photos', {
-			templateUrl: 'js/gallery/views/photos.html',
-			controller: 'PhotoCtrl',
-			resolve: PhotoMgrData
-		}).
-		when('/photos/:view', {
-			templateUrl: function (params) {
-				return (params.view === 'add') ? 'js/gallery/views/photo-detail.html' : 'js/gallery/views/photos.html'
-			},
-			controller: 'PhotoCtrl',
-			resolve: PhotoMgrData
-		}).
-		when('/photos/:view/:photoId', {
-			templateUrl: 'js/gallery/views/photo-detail.html',
-			controller: 'PhotoCtrl',
-			resolve: PhotoMgrData
-		}).
-
 		/** ALBUMS ****/
 		when('/albums', {
 			templateUrl: 'js/gallery/views/albums.html',

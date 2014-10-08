@@ -2911,3 +2911,6 @@ a:hover{
 	  opacity: 0;
 }
 
+table.table-striped td {
+	vertical-align: middle !important;
+}

@@ -14,8 +14,7 @@ angular.module('mean', ['ngCookies',
 	'mean.notifications',
 	'mean.suggestions',
 	'mean.gallery',
-	'mean.albums',
-	'angularFileUpload'
+	'mean.albums'
 ]);
 
 angular.module('mean.system', []);
@@ -25,4 +24,4 @@ angular.module('mean.users', ['ui.bootstrap', 'angularFileUpload']);
 angular.module('mean.notifications', []);
 angular.module('mean.suggestions', []);
 angular.module('mean.gallery', ['ui.bootstrap']);
-angular.module('mean.albums', ['ui.sortable', 'ui.bootstrap']);
+angular.module('mean.albums', ['ui.sortable', 'ui.bootstrap','angularFileUpload']);
