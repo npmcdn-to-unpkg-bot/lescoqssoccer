@@ -12,14 +12,16 @@ angular.module('mean.suggestions').controller('SuggestionController', ['$scope',
 
 		$scope.add = function () {
 
-			var suggestion = {
-				content: this.content
+			if(this.content !== ""){
+
+				var suggestion = {
+					content: this.content
+				}
+
+				$scope.SuggestionsCollection.add(suggestion, function () {
+					$scope.content = "";
+				});
 			}
-
-			$scope.SuggestionsCollection.add(suggestion, function () {
-				$scope.content = "";
-			});
 		}
-
 	}
 ]);

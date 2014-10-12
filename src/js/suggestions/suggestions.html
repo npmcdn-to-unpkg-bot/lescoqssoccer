@@ -1,35 +1,24 @@
 <section data-ng-controller="SuggestionController">
-	<div class="box" style="margin: 20px 0 20px 15px;">
 
-		<div class="box-header">
-			<div class="box-name">
-				<span>{{'suggestions_title' | translate}}</span>
-			</div>
-			<div class="no-move"></div>
-		</div>
-
-		<div class="box-content">
-			<form class="form-horizontal" role="form" data-ng-submit="add();">
-
-				<div class="form-group">
-					<div class="col-md-12">
-						<p class="input-group">
-						<textarea
+	<div class="col-xs-12">
+		<form class="form-horizontal" role="form" data-ng-submit="add();">
+			<div class="form-group">
+				<div class="col-md-12">
+					<textarea
 						class="form-control"
 						placeholder="{{'suggestions_add' | translate}}"
-						data-ng-model="content"/>
-						<span class="input-group-btn">
-							<button class="btn btn-primary"
-									type="submit"
-									title="{{'suggestions_add' | translate}}">
-								<i class="glyphicon glyphicon-ok"></i>
-							</button>
-						</span>
-						</p>
-					</div>
+						data-ng-model="content"
+						style="width: 100%;"/>
+					<button 
+						class="btn btn-primary"
+						type="submit"
+						title="{{'suggestions_add' | translate}}"
+						style="float:right;">
+						<i class="glyphicon glyphicon-ok"></i>
+					</button>
 				</div>
-			</form>
-		</div>
+			</div>
+		</form>
 	</div>
 
 	<div class="row" data-ng-repeat="suggestion in SuggestionsCollection.all">

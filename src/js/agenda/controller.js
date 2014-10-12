@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection', 
-	function ($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection) {
+angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection', 'FileUploader',
+	function ($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection, FileUploader) {
 
 		$scope.global = Global;
 		$scope.AgendaCollection = AgendaCollection;
@@ -23,6 +23,24 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
 			identifier: 'other',
 			name: 'Autres'
 		}];
+
+		// create a uploader with options
+		$scope.uploader = new FileUploader( {
+			scope: $scope,
+			url: '/upload/photo',
+			autoUpload: true,
+			formData: [ {
+				key: 'value'
+			} ]
+		} );
+
+		$scope.uploader.onCompleteItem = function ( item, response, status, headers ) {
+			console.info( 'Complete', item, response );
+
+			$scope.image = response;
+			console.log($scope.image.path);
+			console.log($scope.image.name);
+		};
 
 		/* alert on eventClick */
 		$scope.onDateClick = function (date, allDay, jsEvent, view) {

@@ -2856,9 +2856,8 @@ textarea{
 
 .login-box{
   position: fixed;
-  top: 40%;
+  top: 80px;
   left: 50%;
-  margin-top: -50px;
   margin-left: -250px;
   width: 500px;
 }
@@ -2867,9 +2866,9 @@ textarea{
   background-color: aliceblue;
 }
 
-.html-authentication{
+/*.html-authentication{
   background-color: antiquewhite;
-}	
+}	*/
 
 .alert{
   border: 1px solid black;
