@@ -1,0 +1,36 @@
+<section data-ng-controller="LinkController">
+	<article>
+
+		<div class="col-md-6">
+			<a href="#!/links/create">
+				<button class="btn btn-default">
+					Ajouter un lien
+				</button>
+			</a>
+		</div>
+
+		<div class="gallery isotope col-md-12">
+			<div class="image gallery-group-1 isotope-item" data-ng-repeat="link in LinksCollection.all" style="display: inline-block;">
+				<div class="image-inner">
+					<a href="img/avatar.jpg" data-lightbox="gallery-group-1">
+						<img ng-src="{{link.image && link.image || 'img/8962691008_7f489395c9_m.jpg'}}" alt="">
+					</a>
+					<p class="image-caption">
+						#Le - {{link.created | date:dateFormat}}
+					</p>
+				</div>
+				<div class="image-info">
+					<h5 class="title">{{link.title}}</h5>
+					<div>
+						<small>par</small>
+						<a href="#!">{{link.user.name}}</a>
+					</div>
+					<div class="desc">
+						{{link.content}}
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</article>
+</section>

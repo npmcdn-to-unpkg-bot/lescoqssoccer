@@ -36,8 +36,11 @@ angular.module('mean').config(['$routeProvider',
 		}).
 
 		/** LINKS ****/
-		when('/externalLink', {
-			templateUrl: 'js/links/externalLink.html'
+		when('/links', {
+			templateUrl: 'js/links/views/links.html'
+		}).
+		when('/links/create', {
+			templateUrl: 'js/links/views/create.html'
 		}).
 
 		/** ALBUMS ****/

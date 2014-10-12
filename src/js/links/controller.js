@@ -13,7 +13,9 @@ angular.module('mean.links').controller('LinkController', ['$scope', 'Global', '
 		$scope.add = function () {
 
 			var link = {
-				content: this.content
+				title: this.title,
+				content: this.content,
+				url: this.url
 			}
 
 			$scope.LinksCollection.add(link, function () {

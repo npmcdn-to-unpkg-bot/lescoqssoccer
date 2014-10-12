@@ -3,8 +3,8 @@
 //links service used for links REST endpoint
 angular.module('mean.links').factory('Links', ['$resource',
 	function ($resource) {
-		return $resource('suggestions/:suggestionId', {
-			suggestionId: '@_id'
+		return $resource('links/:linkId', {
+			linkId: '@_id'
 		}, {
 			update: {
 				method: 'PUT'

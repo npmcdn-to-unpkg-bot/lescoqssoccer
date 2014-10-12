@@ -29,7 +29,7 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 			'icon': 'fa fa-pencil-square-o'
 		}, {
 			'title': 'link_title',
-			'link': 'externalLink',
+			'link': 'links',
 			'icon': 'fa fa-list'
 		}, {
 			'title': 'gallery_title',
