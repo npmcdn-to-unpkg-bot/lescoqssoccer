@@ -2411,10 +2411,10 @@ td.beauty-hover {
 .manual-file-chooser {
   position: absolute;
   width: 240px;
-  margin-left: -80px;
+  margin-left: -50px;
+  margin-top: -25px;
   padding: 5px;
   opacity: .0001;
-  cursor: pointer;
 }
 
 .imgThumbnail{
