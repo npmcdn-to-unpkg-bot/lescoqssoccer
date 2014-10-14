@@ -42,65 +42,6 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
 			console.log($scope.image.name);
 		};
 
-		/* alert on eventClick */
-		$scope.onDateClick = function (date, allDay, jsEvent, view) {
-			$scope.currentUserEvent.start = $scope.currentUserEvent.end = date;
-			$scope.onCreation = true;
-		};
-
-		$scope.onEventClick = function (event, allDay, jsEvent, view) {
-			$scope.selectedUserEvent = event;
-			$scope.selectedUserEvent.index = event.__uiCalId - 1;
-			$scope.selectedUserEvent.selectedType = $filter('getByIdentifier')($scope.eventTypes, $scope.selectedUserEvent.type);
-		};
-
-		/* alert on Drop */
-		$scope.onEventDrop = function (event, dayDelta, minuteDelta, allDay, revertFunc, jsEvent, ui, view) {
-			$scope.update(event);
-		};
-
-		/* alert on Resize */
-		$scope.onEventResize = function (event, dayDelta, minuteDelta, revertFunc, jsEvent, ui, view) {
-			$scope.update(event);
-		};
-
-		$scope.changeLang = function (language) {
-			if (language === 'french') {
-				$scope.uiConfig.calendar.firstDay = 1;
-				$scope.uiConfig.calendar.monthNames = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
-				$scope.uiConfig.calendar.monthNamesShort = ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Jui', 'Juil', 'Aou', 'Sep', 'Oct', 'Nov', 'Déc'];
-				$scope.uiConfig.calendar.dayNames = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
-				$scope.uiConfig.calendar.dayNamesShort = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
-				$scope.uiConfig.calendar.buttonText = {
-					prev: "<span class='fc-text-arrow'>&lsaquo;</span>",
-					next: "<span class='fc-text-arrow'>&rsaquo;</span>",
-					prevYear: "<span class='fc-text-arrow'>&laquo;</span>",
-					nextYear: "<span class='fc-text-arrow'>&raquo;</span>",
-					today: 'Aujourd\'hui',
-					month: 'Mois',
-					week: 'Semaine',
-					day: 'Jour'
-				};
-			}
-		};
-
-		/* config object */
-		$scope.uiConfig = {
-			calendar: {
-				height: 300,
-				editable: true,
-				header: {
-					left: 'month agendaWeek agendaDay',
-					center: 'title',
-					right: 'prev,next'
-				},
-				dayClick: $scope.onDateClick,
-				eventClick: $scope.onEventClick,
-				eventDrop: $scope.onEventDrop,
-				eventResize: $scope.onEventResize
-			}
-		};
-
 		$scope.init = function () {
 
 			$scope.selectedUserEvent = null;
@@ -114,14 +55,6 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
 				location: '',
 				allDay: true
 			};
-
-			$scope.onCreation = false;
-		};
-
-		$scope.showEditionForm = function () {
-			$scope.currentUserEvent = $scope.selectedUserEvent;
-			$scope.currentUserEvent.selectedType = $filter('getByIdentifier')($scope.eventTypes, $scope.currentUserEvent.type);
-			$scope.onCreation = true;
 		};
 
 		// Agenda
@@ -144,12 +77,11 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
 				$scope.AgendaCollection.add($scope.currentUserEvent, function (userEvent) {
 					$scope.events.push(userEvent);
 					$scope.init();
+					$location.path("/agenda");
 				});
 
 			} else {
-
 				$scope.update($scope.currentUserEvent.__uiCalId - 1);
-
 			}
 
 		};
@@ -163,6 +95,7 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
 				$scope.calendar.fullCalendar('updateEvent', newUserEvent);
 				$scope.init();
 				$scope.selectedUserEvent = newUserEvent;
+				$location.path("/agenda");
 			});
 
 		};
@@ -184,47 +117,6 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
 		$scope.eventSources = [$scope.events];
 		$scope.init();
 		$scope.load();
-
-		$scope.map = {
-			control: {
-				refresh: true
-			},
-			showTraffic: true,
-			showBicycling: true,
-			center: {
-				latitude: 45.188529000000000000,
-				longitude: 5.724523999999974000
-			},
-			options: {
-				streetViewControl: true,
-				panControl: true,
-				maxZoom: 20,
-				minZoom: 3
-			},
-			zoom: 8,
-			dragging: false,
-			bounds: {},
-			markers: [{
-				id: 1,
-				latitude: 45.188529000000000000,
-				longitude: 5.724523999999974000,
-				showWindow: false,
-				title: 'Marker 2'
-			}, {
-				id: 2,
-				latitude: 15,
-				longitude: 30,
-				showWindow: false,
-				title: 'Marker 2'
-			}, {
-				id: 3,
-				latitude: 37,
-				longitude: -122,
-				showWindow: false,
-				title: 'Plane'
-			}],
-			doUgly: true
-		};
 
 		$scope.map1 = {
 			control: {},
@@ -250,19 +142,6 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
 				longitude: 5.724523999999974000,
 				showWindow: false,
 				title: 'Marker 2'
-			}, {
-				id: 2,
-				latitude: 15,
-				longitude: 30,
-				showWindow: false,
-				title: 'Marker 2'
-			}, {
-				id: 3,
-				icon: 'assets/images/plane.png',
-				latitude: 37,
-				longitude: -122,
-				showWindow: false,
-				title: 'Plane'
 			}],
 			doUgly: true, //great name :)
 			events: {
@@ -336,8 +215,8 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
 		};
 
 		/***
-	 Date picker management
-	 ***/
+		Date picker management
+		 ***/
 		$scope.initialize = function () {
 			var start = angular.element('#directives-calendar').scope().selectedDate;
 			if (start) {
@@ -380,12 +259,165 @@ angular.module('mean.agenda').controller('agendaController', ['$scope', '$routeP
 			'year-format': "'yy'",
 			'starting-day': 1
 		};
+	}
+]);
+
+angular.module('mean.agenda').controller('calendarController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection',
+	function ($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection) {
+
+		$scope.agendaCollection = AgendaCollection;
+		$scope.currentUserEvent;
+		$scope.selectedUserEvent;
+
+		// Agenda
+		$scope.load = function () {
+
+			$scope.agendaCollection.load(function (events) {
+				angular.forEach(events, function (event) {
+					$scope.events.push(event);
+				});
+			});
+
+		};
+
+		/* alert on eventClick */
+		$scope.onDateClick = function (date, allDay, jsEvent, view) {
+			$scope.currentUserEvent.start = $scope.currentUserEvent.end = date;
+		};
+
+		$scope.onEventClick = function (event, allDay, jsEvent, view) {
+			$scope.selectedUserEvent = event;
+			$scope.selectedUserEvent.index = event.__uiCalId - 1;
+			// $scope.selectedUserEvent.selectedType = $filter('getByIdentifier')($scope.eventTypes, $scope.selectedUserEvent.type);
+		};
+
+		/* alert on Drop */
+		$scope.onEventDrop = function (event, dayDelta, minuteDelta, allDay, revertFunc, jsEvent, ui, view) {
+			// $scope.update(event);
+		};
+
+		/* alert on Resize */
+		$scope.onEventResize = function (event, dayDelta, minuteDelta, revertFunc, jsEvent, ui, view) {
+			// $scope.update(event);
+		};
+
+		$scope.changeLang = function (language) {
+			if (language === 'french') {
+				$scope.uiConfig.calendar.firstDay = 1;
+				$scope.uiConfig.calendar.monthNames = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+				$scope.uiConfig.calendar.monthNamesShort = ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Jui', 'Juil', 'Aou', 'Sep', 'Oct', 'Nov', 'Déc'];
+				$scope.uiConfig.calendar.dayNames = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
+				$scope.uiConfig.calendar.dayNamesShort = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
+				$scope.uiConfig.calendar.buttonText = {
+					prev: "<span class='fc-text-arrow'>&lsaquo;</span>",
+					next: "<span class='fc-text-arrow'>&rsaquo;</span>",
+					prevYear: "<span class='fc-text-arrow'>&laquo;</span>",
+					nextYear: "<span class='fc-text-arrow'>&raquo;</span>",
+					today: 'Aujourd\'hui',
+					month: 'Mois',
+					week: 'Semaine',
+					day: 'Jour'
+				};
+			}
+		};
+
+		/* config object */
+		$scope.uiConfig = {
+			calendar: {
+				height: 300,
+				editable: true,
+				header: {
+					left: 'month agendaWeek agendaDay',
+					center: 'title',
+					right: 'prev,next'
+				},
+				dayClick: $scope.onDateClick,
+				eventClick: $scope.onEventClick,
+				eventDrop: $scope.onEventDrop,
+				eventResize: $scope.onEventResize
+			}
+		};
+
+		$scope.events = [];
+		$scope.eventSources = [$scope.events];
+		$scope.load();
+	}
+]);
+
+angular.module('mean.agenda').controller('mapController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection',
+	function ($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection) {
+
+		$scope.agendaCollection = AgendaCollection;
+
+		// Agenda
+		$scope.load = function () {
+
+			$scope.agendaCollection.load(function (events) {
+				angular.forEach(events, function (event) {
+					$scope.events.push(event);
+				});
+			});
+
+		};
+
+		$scope.map = {
+			control: {
+				refresh: true
+			},
+			showTraffic: true,
+			showBicycling: true,
+			center: {
+				latitude: 45.188529000000000000,
+				longitude: 5.724523999999974000
+			},
+			options: {
+				streetViewControl: true,
+				panControl: true,
+				maxZoom: 20,
+				minZoom: 3
+			},
+			zoom: 8,
+			dragging: false,
+			bounds: {},
+			markers: [{
+				id: 1,
+				latitude: 45.188529000000000000,
+				longitude: 5.724523999999974000,
+				showWindow: false,
+				title: 'Marker 2'
+			}, {
+				id: 2,
+				latitude: 15,
+				longitude: 30,
+				showWindow: false,
+				title: 'Marker 2'
+			}, {
+				id: 3,
+				latitude: 37,
+				longitude: -122,
+				showWindow: false,
+				title: 'Plane'
+			}],
+			doUgly: true
+		};
+
+		$scope.onMarkerClicked = function (marker) {
+			marker.showWindow = true;
+		};
+
+		$scope.events = [];
+		$scope.eventSources = [$scope.events];
+		$scope.load();
+	}
+]);
+
+angular.module('mean.agenda').controller('subNavController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection',
+	function ($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection) {
 
 		$scope.view = ($route.current && $route.current.params.view) ? $route.current.params.view : 'agenda'; //if view not set in route params,view = list
-
 		$scope.section = {
 			'name': 'Agenda',
 			'url': '/agenda'
-		}; 
+		};
 	}
 ]);
