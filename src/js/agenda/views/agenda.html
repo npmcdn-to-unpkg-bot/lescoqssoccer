@@ -2,23 +2,18 @@
 
 	<div data-ng-include="'/js/agenda/views/subnav.html'"></div>
 
-	<!-- Agenda global view : fullcalendar and map -->
-	<article>
-
-		<!-- Calendar -->
-		<div class="col-xs-12">
-			<article class="well" style="background-color: rgba(0, 0, 0, 0);">
-				<div class="row-fluid">
-					<div class="span8">
-						<div class="calendar"
-							ng-model="eventSources"
-							ui-calendar="uiConfig.calendar"
-							calendar="calendar"></div>
-						</tab>
-					</div>
+	<!-- Calendar -->
+	<div class="col-md-12" style="padding: 0; ">
+		<article class="well" style="background-color: rgba(0, 0, 0, 0);">
+			<div class="row-fluid">
+				<div class="span8">
+					<div class="calendar"
+						ng-model="eventSources"
+						ui-calendar="uiConfig.calendar"
+						calendar="calendar"></div>
+					</tab>
 				</div>
-			</article>
-		</div>
-
-	</article>
+			</div>
+		</article>
+	</div>
 </section>

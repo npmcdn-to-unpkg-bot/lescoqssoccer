@@ -2,30 +2,24 @@
 
 	<div data-ng-include="'/js/agenda/views/subnav.html'"></div>
 
-	<!-- Agenda global view : fullcalendar and map -->
-	<article>
+	<!-- Map -->
+	<div class="col-md-12" style="padding: 0; ">
+		<google-map
+		center="map.center"
+		zoom="map.zoom"
+		draggable="true"
+		dragging="map.dragging"
+		bounds="map.bounds"
+		events="map.events"
+		options="map.options"
+		control="map.control">
 
-		<!-- Map -->
-		<div class="col-xs-12">
-			<google-map
-			center="map.center"
-			zoom="map.zoom"
-			draggable="true"
-			dragging="map.dragging"
-			bounds="map.bounds"
-			events="map.events"
-			options="map.options"
-			control="map.control">
-
-				<marker ng-repeat="m in map.markers" coords="m" icon="m.icon" click="onMarkerClicked(m);">
-					<window isIconVisibleOnClick="false" show="m.showWindow">
-						<p>This is an info window at {{ m.latitude | number:4 }}, {{ m.longitude | number:4 }}!</p>
-						<p class="muted">My marker will stay open when the window is popped up!</p>
-					</window>
-				</marker>
-
-			</google-map>
-		</div>
-	</article>
-
+			<marker ng-repeat="m in map.markers" coords="m" icon="m.icon" click="onMarkerClicked(m);">
+				<window isIconVisibleOnClick="false" show="m.showWindow">
+					<p>This is an info window at {{ m.latitude | number:4 }}, {{ m.longitude | number:4 }}!</p>
+					<p class="muted">My marker will stay open when the window is popped up!</p>
+				</window>
+			</marker>
+		</google-map>
+	</div>
 </section>

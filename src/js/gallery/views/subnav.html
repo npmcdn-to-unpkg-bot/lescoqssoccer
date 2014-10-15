@@ -2,7 +2,7 @@
       	<div class="col-lg-12">
          		<div class="navbar-default" >
                		<div class="navbar-inner toolbar">
-	                        	
+
 	                        	<ul class="nav navbar-nav navbar-default">
 	                        		<li data-ng-class="{active: view === 'gallery'}" class="toolbaritem">
 	                                    		<a href="#!/gallery"><span class="fa fa-picture-o"></span> Gallery </a>
@@ -17,16 +17,23 @@
 	                                    		<a href='#!{{section.url}}/add'><span class="fa fa-plus"></span> Add {{section.name}}</a>
 	                              	</li>
 	                          	</ul>
-	              		
-	              		<form class="navbar-form navbar-right">
-			                  	<div class="form-group">
-			                    	<input 	type="text" 
-			                    			class="form-control" 
-			                    			placeholder="Search" 
-			                    			data-ng-model="pmSvc.filter" 
-			                    			data-ng-hide="view === 'add'||view === 'detail'"/>
-			                  	</div>
-	              		</form>
+
+		                  	<div class="navbar-right" ng-show="view === 'gallery'">
+					<ul class="pagination" style="margin-top: 0;">
+						<li data-ng-click="clickPhoto(album._id, prev)">
+							<a>&laquo;</a>
+						</li>
+						<li
+						data-ng-repeat="p in album.photoList"
+						data-ng-class="(p._id === photo._id) ? 'active' : ''"
+						data-ng-click="clickPhoto(album._id, $index)">
+							<a>{{$index + 1}}</a>
+						</li>
+						<li data-ng-click="clickPhoto(album._id, next)">
+							<a>&raquo;</a>
+						</li>
+					</ul>
+				</div>
        			</div>
       		</div>
   	</div>
