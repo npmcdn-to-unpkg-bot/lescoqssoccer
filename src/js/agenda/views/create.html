@@ -4,11 +4,11 @@
 
 	<div class="col-md-12" style="padding: 0; border: 1px solid gray">
 		<form class="form-horizontal" role="form" data-ng-submit="addOrUpdate();">
-			
+
 			<tabset justified="true">
 				<tab heading="Infos">
 					<div class="col-sm-12" style="margin-top: 20px;">
-						
+
 						<div class="form-group">
 							<label for="selectedType" class="col-md-2 control-label">Type</label>
 							<div class="col-md-10">
@@ -23,7 +23,7 @@
 						<div class="form-group">
 							<label for="title" class="col-md-2 control-label">Titre</label>
 							<div class="col-md-10">
-								<input  
+								<input
 								type="text"
 								class="form-control"
 								name="title"
@@ -36,7 +36,7 @@
 						<div class="form-group">
 							<label for="content" class="col-md-2 control-label">Contenu</label>
 							<div class="col-md-10">
-								<textarea 	
+								<textarea
 								class="form-control"
 								name="content"
 								data-ng-model="currentUserEvent.content"
@@ -51,7 +51,7 @@
 								<label for="title" class="col-md-2 control-label">Début</label>
 								<div class="col-md-4">
 									<p class="input-group">
-										<input  
+										<input
 										type="text"
 										class="form-control"
 										datepicker-popup="{{format}}"
@@ -75,7 +75,7 @@
 								<label for="title" class="col-md-2 control-label">Fin</label>
 								<div class="col-md-4">
 									<p class="input-group">
-										<input  
+										<input
 										type="text"
 										class="form-control"
 										datepicker-popup="{{format}}"
@@ -100,13 +100,13 @@
 						<div class="form-group">
 							<div lass="col-md-10">
 								<label for="title" class="col-md-2 control-label">Localisation</label>
-								
+
 								<!-- search/go to current location -->
 								<div class="col-md-10" style="margin-bottom: 15px;">
 									<p class="input-group">
 										<input type="text" class="form-control" data-ng-model="search"/>
 										<span class="input-group-btn">
-											<button 
+											<button
 												class="btn"
 												type="button"
 												ng-click="geoCode()"
@@ -114,7 +114,7 @@
 												title="search" >
 												&nbsp;<i class="glyphicon glyphicon-search"></i>
 											</button>
-											<button 
+											<button
 												class="btn"
 												type="button"
 												ng-click="gotoCurrentLocation()"
@@ -127,13 +127,13 @@
 
 								<div class="col-md-12">
 									<google-map
-									center="map1.center"
-									zoom="map1.zoom"
+									center="map.center"
+									zoom="map.zoom"
 									draggable="true"
-									dragging="map1.dragging"
-									bounds="map1.bounds"
-									events="map1.events"
-									options="map1.options"
+									dragging="map.dragging"
+									bounds="map.bounds"
+									events="map.events"
+									options="map.options"
 									refresh="true"
 									control="map1.control">
 									</google-map>
@@ -146,8 +146,8 @@
 				<tab heading="Photos">
 					<div class="col-sm-12" style="margin-top: 20px;">
 						<div class="form-group">
-	                        				<div data-ng-include="'/js/files/fileUpload.html'"></div>
-	                    			</div>
+                				<div data-ng-include="'/js/files/fileUpload.html'"></div>
+            			</div>
 					</div>
 				</tab>
 			</tabset>

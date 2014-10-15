@@ -6,6 +6,9 @@
 	"link_title": "Liens",
 	"suggestions_title" : "Suggestions",
 
+	"agenda_view"	: "Calendrier",
+	"agenda_map"	: "Map",
+	"agenda_add"	: "Ajouter un évènement",
 	"personnal_agenda" : "Mon agenda",
 	"community_agenda" : "Agenda de la communauté",
 	"event_details"	: "Détails de l'évènement",
