@@ -17,9 +17,13 @@ angular.module('mean').config(['$routeProvider',
 		}).
 		when('/agenda/:view', {
 			templateUrl: function (params) {
-				return (params.view === 'add') ? 'js/agenda/views/create.html' : 'js/agenda/views/map.html'
+				return (params.view === 'create') ? 'js/agenda/views/create.html' : 'js/agenda/views/map.html'
 			}
 		}).
+		when('/agenda/:view/:startDate', {
+			templateUrl: 'js/agenda/views/create.html'
+		}).
+
 
 		/** ARTICLES ****/
 		when('/articles', {

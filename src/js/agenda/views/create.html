@@ -1,22 +1,67 @@
-<section data-ng-controller="agendaController">
+<section data-ng-controller="createController" data-ng-init="init()">
 
 	<div data-ng-include="'/js/agenda/views/subnav.html'"></div>
 
-	<div class="col-md-12" style="padding: 0; border: 1px solid gray">
-		<form class="form-horizontal" role="form" data-ng-submit="addOrUpdate();">
+	<div class="col-md-12" style="padding: 0; border: 1px solid gray; margin-bottom: 20px;">
+		<form class="form-horizontal" role="form" data-ng-submit="create();">
 
 			<tabset justified="true">
 				<tab heading="Infos">
-					<div class="col-sm-12" style="margin-top: 20px;">
+					<div class="col-sm-12" style="margin-top: 20px; ">
 
 						<div class="form-group">
 							<label for="selectedType" class="col-md-2 control-label">Type</label>
 							<div class="col-md-10">
 								<select class="form-control"
 									name="selectedType"
-									data-ng-model="currentUserEvent.selectedType"
+									data-ng-model="userEvent.selectedType"
 									ng-options="eventType.name for eventType in eventTypes">
 								</select>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div>
+								<label for="title" class="col-md-2 control-label">Dates</label>
+								<div class="col-md-5 datepicker">
+									<p class="input-group">
+										<input
+										type="text"
+										class="form-control well well-small"
+										datepicker-popup="{{format}}"
+										data-ng-model="userEvent.start"
+										is-open="$parent.openedStartDate"
+										datepicker-options="dateOptions"
+										show-weeks="false"
+										show-button-bar="false"/>
+										<span class="input-group-btn">
+											<button class="btn btn-default" ng-click="open($event, 'start')">
+												<i class="glyphicon glyphicon-calendar"></i>
+											</button>
+										</span>
+									</p>
+								</div>
+							</div>
+							<div>
+								<div class="col-md-5 datepicker">
+									<p class="input-group">
+										<input
+										type="text"
+										class="form-control well well-small"
+										datepicker-popup="{{format}}"
+										data-ng-model="userEvent.end"
+										is-open="$parent.openedEndDate"
+										min="userEvent.start"
+										datepicker-options="dateOptions"
+										show-weeks="false"
+										show-button-bar="false"/>
+										<span class="input-group-btn">
+											<button class="btn btn-default" ng-click="open($event, 'end')">
+												<i class="glyphicon glyphicon-calendar"></i>
+											</button>
+										</span>
+									</p>
+								</div>
 							</div>
 						</div>
 
@@ -27,7 +72,7 @@
 								type="text"
 								class="form-control"
 								name="title"
-								data-ng-model="currentUserEvent.title"
+								data-ng-model="userEvent.title"
 								placeholder="Titre de l'évènement"
 								required/>
 							</div>
@@ -39,61 +84,10 @@
 								<textarea
 								class="form-control"
 								name="content"
-								data-ng-model="currentUserEvent.content"
+								data-ng-model="userEvent.content"
 								placeholder="Contenu de l'évènement"
 								required/>
 								</textarea>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div>
-								<label for="title" class="col-md-2 control-label">Début</label>
-								<div class="col-md-4">
-									<p class="input-group">
-										<input
-										type="text"
-										class="form-control"
-										datepicker-popup="{{format}}"
-										data-ng-model="currentUserEvent.start"
-										is-open="$parent.openedStartDate"
-										min="minDate"
-										max="maxDate"
-										datepicker-options="dateOptions"
-										date-disabled="disabled(date, mode)"
-										close-text="Close"
-										show-button-bar="false"/>
-										<span class="input-group-btn">
-											<button class="btn btn-default" ng-click="open($event, 'start')">
-												<i class="glyphicon glyphicon-calendar"></i>
-											</button>
-										</span>
-									</p>
-								</div>
-							</div>
-							<div>
-								<label for="title" class="col-md-2 control-label">Fin</label>
-								<div class="col-md-4">
-									<p class="input-group">
-										<input
-										type="text"
-										class="form-control"
-										datepicker-popup="{{format}}"
-										data-ng-model="currentUserEvent.end"
-										is-open="$parent.openedEndDate"
-										min="minDate"
-										max="maxDate"
-										datepicker-options="dateOptions"
-										date-disabled="disabled(date, mode)"
-										close-text="Close"
-										show-button-bar="false"/>
-										<span class="input-group-btn">
-											<button class="btn btn-default" ng-click="open($event, 'end')">
-												<i class="glyphicon glyphicon-calendar"></i>
-											</button>
-										</span>
-									</p>
-								</div>
 							</div>
 						</div>
 
@@ -125,7 +119,8 @@
 									</p>
 								</div>
 
-								<div class="col-md-12">
+								<div class="col-md-2"></div>
+								<div class="col-md-8">
 									<google-map
 									center="map.center"
 									zoom="map.zoom"
@@ -146,8 +141,8 @@
 				<tab heading="Photos">
 					<div class="col-sm-12" style="margin-top: 20px;">
 						<div class="form-group">
-                				<div data-ng-include="'/js/files/fileUpload.html'"></div>
-            			</div>
+                						<div data-ng-include="'/js/files/fileUpload.html'"></div>
+            						</div>
 					</div>
 				</tab>
 			</tabset>
