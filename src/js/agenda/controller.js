@@ -36,9 +36,7 @@ angular.module( 'mean.agenda' ).controller( 'createController', [ '$scope', '$ro
 		/***
 		Date picker management
 		 ***/
-
-		//Manage opening of two datepickers
-		$scope.open = function ( $event, datepicker ) {
+		$scope.open = function ( $event, datepicker ) { //Manage opening of two datepickers
 			$event.preventDefault();
 			$event.stopPropagation();
 
@@ -92,7 +90,6 @@ angular.module( 'mean.agenda' ).controller( 'createController', [ '$scope', '$ro
 		 ***/
 		$scope.map = {
 			control: {},
-			version: "uknown",
 			showTraffic: true,
 			showBicycling: true,
 			center: {
@@ -101,11 +98,10 @@ angular.module( 'mean.agenda' ).controller( 'createController', [ '$scope', '$ro
 			},
 			options: {
 				streetViewControl: true,
-				panControl: true
+				panControl: true,
+				scrollwheel: false
 			},
 			zoom: 8,
-			dragging: false,
-			bounds: {},
 			markers: [ {
 				id: 1,
 				latitude: 45.188529000000000000,
@@ -122,7 +118,7 @@ angular.module( 'mean.agenda' ).controller( 'createController', [ '$scope', '$ro
 					draggable: true
 				}
 			} ],
-			doUgly: true //great name :)
+			doUgly: true
 		};
 
 		$scope.geoCode = function () {
@@ -158,11 +154,18 @@ angular.module( 'mean.agenda' ).controller( 'createController', [ '$scope', '$ro
 		$scope.gotoLocation = function ( lat, lon ) {
 
 			if ( $scope.lat != lat || $scope.lon != lon ) {
+
+				$scope.map.markers[0].latitude = lat;
+				$scope.map.markers[0].longitude = lon;
+
 				$scope.map.center = {
-					lat: lat,
-					lon: lon
+					latitude: lat,
+					longitude: lon
 				};
-				if ( !$scope.$$phase ) $scope.$apply( "loc" );
+
+				if ( !$scope.$$phase ) {
+					$scope.$apply();
+				}
 			}
 		};
 

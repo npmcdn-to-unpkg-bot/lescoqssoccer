@@ -129,11 +129,8 @@
 									center="map.center"
 									zoom="map.zoom"
 									draggable="true"
-									dragging="map.dragging"
-									bounds="map.bounds"
 									events="map.events"
 									options="map.options"
-									refresh="true"
 									control="map.control">
 
 									<marker ng-repeat="m in map.markers" coords="m" events="m.events" options ="m.options">
@@ -142,6 +139,11 @@
 								</div>
 							</div>
 						</div>
+					</div>
+
+
+					<div class="actions" style="text-align:right; padding: 20px 15px 0 0;">
+						<button class="btn btn-primary" type="submit">OK</button>
 					</div>
 				</tab>
 
@@ -153,11 +155,6 @@
 					</div>
 				</tab>
 			</tabset>
-
-			<div class="actions" style="text-align:right; padding: 20px 15px 0 0;">
-				<button class="btn btn-primary" type="submit">OK</button>
-			</div>
-
 		</form>
 	</div>
 </section>
