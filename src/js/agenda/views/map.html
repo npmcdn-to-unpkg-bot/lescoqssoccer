@@ -5,6 +5,7 @@
 	<!-- Map -->
 	<div class="col-md-12" style="padding: 0; ">
 		<google-map
+		ng-if="view === 'map'"
 		center="map.center"
 		zoom="map.zoom"
 		draggable="true"
@@ -14,7 +15,7 @@
 		options="map.options"
 		control="map.control">
 
-			<marker ng-repeat="m in map.markers" coords="m" icon="m.icon" click="onMarkerClicked(m);">
+			<marker ng-repeat="m in map.markers" coords="m" click="onMarkerClicked(m);">
 				<window isIconVisibleOnClick="false" show="m.showWindow">
 					<p>This is an info window at {{ m.latitude | number:4 }}, {{ m.longitude | number:4 }}!</p>
 					<p class="muted">My marker will stay open when the window is popped up!</p>

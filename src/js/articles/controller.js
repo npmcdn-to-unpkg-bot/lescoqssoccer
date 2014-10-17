@@ -9,7 +9,7 @@ angular.module( 'mean.articles' ).controller( 'ArticlesController', [ '$scope', 
 		$scope.image;
 		$scope.article;
 		$scope.dateFormat = "dd/MM/yyyy 'à' H'h'mm";
-		
+
 		$scope.uploader = new FileUploader( {
 			scope: $scope,
 			url: '/upload/photo',
@@ -49,7 +49,7 @@ angular.module( 'mean.articles' ).controller( 'ArticlesController', [ '$scope', 
 		};
 
 		$scope.remove = function () {
-	
+
 			var articlePromise = $scope.ArticlesCollection.remove( $scope.article )
 			articlePromise.then( function ( response ) {
 				$location.path( "/articles" );

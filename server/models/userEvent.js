@@ -3,42 +3,52 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+var mongoose = require( 'mongoose' ),
+	Schema = mongoose.Schema;
 
 /**
  * Article Schema
  */
-var UserEventSchema = new Schema({
-    start: {
-        type: Date,
-        default: Date.now
-    },
-    end: {
-        type: Date,
-        default: Date.now,
-        trim: true
-    },
-    title: {
-        type: String,
-        default: '',
-        trim: true
-    },
-    content: {
-        type: String,
-        default: '',
-        trim: true
-    },
-    user: {
-        type: Schema.ObjectId,
-        ref: 'User'
-    },
-    type: {
-        type:String,
-        trim: true
-    },
-    community: {}
-});
+var UserEventSchema = new Schema( {
+	start: {
+		type: Date,
+		default: Date.now
+	},
+	end: {
+		type: Date,
+		default: Date.now,
+		trim: true
+	},
+	title: {
+		type: String,
+		default: '',
+		trim: true
+	},
+	content: {
+		type: String,
+		default: '',
+		trim: true
+	},
+	user: {
+		type: Schema.ObjectId,
+		ref: 'User'
+	},
+	type: {
+		type: String,
+		trim: true
+	},
+	photos: {
+		type: Array
+	},
+	location: {
+		k: {
+			type: String
+		},
+		B: {
+			type: String
+		}
+	},
+} );
 
 /**
  * Validations
@@ -50,10 +60,10 @@ var UserEventSchema = new Schema({
 /**
  * Statics
  */
-UserEventSchema.statics.load = function(id, cb) {
-    this.findOne({
-        _id: id
-    }).populate('userEvent', 'name username').exec(cb);
+UserEventSchema.statics.load = function ( id, cb ) {
+	this.findOne( {
+		_id: id
+	} ).populate( 'userEvent', 'name username' ).exec( cb );
 };
 
-module.exports = mongoose.model('UserEvent', UserEventSchema);
+module.exports = mongoose.model( 'UserEvent', UserEventSchema );
