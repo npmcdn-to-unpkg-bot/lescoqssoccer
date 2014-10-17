@@ -16,9 +16,8 @@
 		control="map.control">
 
 			<marker ng-repeat="m in map.markers" coords="m" click="onMarkerClicked(m);">
-				<window isIconVisibleOnClick="false" show="m.showWindow">
-					<p>This is an info window at {{ m.latitude | number:4 }}, {{ m.longitude | number:4 }}!</p>
-					<p class="muted">My marker will stay open when the window is popped up!</p>
+				<window isIconVisibleOnClick="true" show="m.showWindow">
+					<p>{{ m.title }}</p>
 				</window>
 			</marker>
 		</google-map>

@@ -155,8 +155,8 @@ angular.module( 'mean.agenda' ).controller( 'createController', [ '$scope', '$ro
 
 			if ( $scope.lat != lat || $scope.lon != lon ) {
 
-				$scope.map.markers[0].latitude = lat;
-				$scope.map.markers[0].longitude = lon;
+				$scope.map.markers[ 0 ].latitude = lat;
+				$scope.map.markers[ 0 ].longitude = lon;
 
 				$scope.map.center = {
 					latitude: lat,
@@ -308,6 +308,9 @@ angular.module( 'mean.agenda' ).controller( 'mapController', [ '$scope', '$route
 		};
 
 		$scope.onMarkerClicked = function ( marker ) {
+			angular.forEach( $scope.map.markers, function ( marker ) {
+				marker.showWindow = false;
+			} );
 			marker.showWindow = true;
 		};
 
