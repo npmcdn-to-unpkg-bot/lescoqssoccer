@@ -9,13 +9,11 @@
 	"agenda_view"	: "Calendar",
 	"agenda_map"	: "Map",
 	"agenda_add"	: "Add event",
-	"personnal_agenda" : "My agenda",
-	"community_agenda" : "Community agenda",
-	"event_details"	: "Event detail",
-	"title"	: "Title",
-	"content"	: "Content",
-	"startdate"	: "Start date",
-	"enddate"	: "End date",
+	"title"			: "Title",
+	"type"			: "Type",
+	"content"		: "Content",
+	"startdate"		: "Start date",
+	"enddate"		: "End date",
 
 	"suggestions_add" : "Add suggestion"
 }
