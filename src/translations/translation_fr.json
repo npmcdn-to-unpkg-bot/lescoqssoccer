@@ -17,5 +17,9 @@
 	"startdate"	: "Date de début",
 	"enddate"	: "Date de fin",
 
-	"suggestions_add" : "Ajouter une suggestion"
+	"suggestions_add" : "Ajouter une suggestion",
+
+	"articles_add": "Ajouter un article",
+
+	"common_date_prefix": "Le"
 }

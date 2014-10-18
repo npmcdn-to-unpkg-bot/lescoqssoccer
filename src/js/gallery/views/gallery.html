@@ -33,12 +33,17 @@
 	<div class="col-lg-9">
 		<div class="well well-sm">
 			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-				<div class="carousel-inner">
+				<div id="modal" ng-controller="Modal" class="carousel-inner">
 					<div
 					class="carousel-img item"
 					data-ng-repeat="p in album.photoList"
 					data-ng-class="(p._id === photo._id) ? 'active' : ''">
+						<a
+						class="fancybox"
+				                          rel="gallery1"
+				                          data-ng-click="open('gallery/views/caroussel.html', 'GalleryCtrl', '', '', album.photoList)">
 						<img data-ng-src="{{p.filepath}}">
+						</a>
 					</div>
 				</div>
 				<br/>
