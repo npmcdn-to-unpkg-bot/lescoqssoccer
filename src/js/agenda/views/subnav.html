@@ -1,0 +1,19 @@
+<div class="row" style="margin-bottom: 20px;" ng-controller="subNavController">
+    <div class="col-lg-12">
+        <div class="navbar-default" >
+            <div class="navbar-inner toolbar">
+            	<ul class="nav navbar-nav navbar-default">
+            		<li data-ng-class="{active: view === 'agenda'}" class="toolbaritem">
+                        <a href="#!{{section.url}}"><span class="fa fa-calendar-o"></span>&nbsp;{{'agenda_view' | translate}}</a>
+                  	</li>
+                  	<li data-ng-class="{active: view === 'map'}" class="toolbaritem">
+                        <a href="#!{{section.url}}/map"><span class="fa fa-globe"></span>&nbsp;{{'agenda_map' | translate}}</a>
+                  	</li>
+                  	<li data-ng-class="{active: view === 'create'}" class="toolbaritem">
+                        <a href="#!{{section.url}}/create"><span class="fa fa-plus"></span>&nbsp;{{'agenda_add' | translate}}</a>
+                  	</li>
+              	</ul>
+   			</div>
+  		</div>
+  	</div>
+</div>

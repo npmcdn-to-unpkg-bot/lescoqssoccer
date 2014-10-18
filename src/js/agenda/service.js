@@ -1,75 +1,57 @@
 'use strict';
 
-angular.module('mean.agenda').factory('UserEvent', ['$resource', function($resource) {
-    return $resource('userEvent/:userEventId', {
-        userEventId: '@_id'
-    }, {
-        update: {
-            method: 'PUT'
-        }
-    });
-}]);
+/**
+ * Agenda resource
+ **/
+angular.module( 'mean.agenda' ).factory( 'UserEvent', [ '$resource',
+	function ( $resource ) {
+		return $resource( 'userEvent/:userEventId', {
+			userEventId: '@_id'
+		}, {
+			update: {
+				method: 'PUT'
+			},
+			query: {
+				method: 'GET',
+				isArray: true
+			},
+		} );
+	}
+] );
 
 /**
-* ArticleModel service
-**/
-angular.module('mean.agenda').service('AgendaCollection', ['Global', 'UserEvent', function(Global, UserEvent) {
+ * Agenda service
+ **/
+angular.module( 'mean.agenda' ).service( 'AgendaCollection', [ 'Global', 'UserEvent',
+	function ( Global, UserEvent ) {
 
-	var global = Global;
-	var AgendaCollection = {
-		 
-		all: [],
-		filtered: [],
-		selected: null,
-		selectedIdx: null,
+		var AgendaCollection = {
 
-		load: function(callback) { 
+			load: function () {
+				return UserEvent.query( {}, function ( userEvents ) {
+					return userEvents;
+				} ).$promise;
+			},
 
-		   	UserEvent.query(function(userEvents) { 
-		     	AgendaCollection.all = [];
-		     	angular.forEach(userEvents, function(userEvent) {
+			add: function ( userEvent ) {
+				return UserEvent.save( {}, userEvent, function ( userEvent ) {
+					return userEvent;
+				} ).$promise;
+			},
 
-			       	AgendaCollection.all.push(userEvent);
-			       	AgendaCollection.filtered = AgendaCollection.all;
-			       	AgendaCollection.selected = AgendaCollection.selected ? AgendaCollection.all.filter(function(userEvent) { 
-			       		return userEvent.id == AgendaCollection.selected.id; 
-			       	})[0] : null;
-		    	});
+			update: function ( userEvent ) {
+				return UserEvent.update( {}, userEvent, function ( userEvent ) {
+					return userEvent;
+				} ).$promise;
+			},
 
-		     	if (callback)
-		    		callback(AgendaCollection.all);
-			});
-		},
-
-		add: function(userEvent, callback){
-			
-			var userEventModel = new UserEvent(userEvent);
-		    userEventModel.$save(function(response) {
-		        AgendaCollection.load();
-		        callback(response);
-		    });
-		},
-
-		update : function(userEvent, callback){
-		    if (userEvent) {
-		        userEvent.$update(function(response){
-		            callback(response);
-		        });
-		    } else {
-		       alert("Erreur dans la mise à jour de l'évènement");
-		    }
-		},
-
-		remove : function(userEvent, callback){
-		    if (userEvent) {
-		        userEvent.$remove(function(response){
-		            callback(response);
-		        });
-		    } else {
-		       alert("Erreur dans la suppression de l'évènement");
-		    }
+			remove: function ( userEvent, callback ) {
+				return UserEvent.delete( {}, userEvent, function ( userEvent ) {
+					return userEvent;
+				} ).$promise;
+			}
 		}
-	}
 
-	return AgendaCollection;
-}]);
+		return AgendaCollection;
+	}
+] );

@@ -1,12 +1,12 @@
 <div class="modal-header">
-  <button type="button" class="close" data-ng-click="cancel()" aria-hidden="true">&times;</button>
-  <h4 class="modal-title">Confirm Album Deletion - {{album.name}}</h4>
+    <button type="button" class="close" data-ng-click="cancel()" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">Confirm Album Deletion - {{album.name}}</h4>
 </div>
 <div class="modal-body">
-  <p>Are you sure you want to delete the album "{{album.name}}"<span data-ng-hide="album.photos.length < 1">, containing {{album.photos.length}} photos</span>?</p>
-  <p>This action is irreversible</p>
+    <p>Are you sure you want to delete the album "{{album.name}}"<span data-ng-hide="album.photos.length < 1">, containing {{album.photos.length}} photos</span>?</p>
+    <p>This action is irreversible</p>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-default" data-ng-click="cancel()">Close</button>
-  <button type="button" class="btn btn-danger" data-ng-click="ok()"><span class="glyphicon glyphicon-trash"></span>  Delete Album</button>
+    <button type="button" class="btn btn-default" data-ng-click="cancel()">Close</button>
+    <button type="button" class="btn btn-danger" data-ng-click="ok()"><span class="glyphicon glyphicon-trash"></span>  Delete Album</button>
 </div>

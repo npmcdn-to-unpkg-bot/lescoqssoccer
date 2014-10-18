@@ -1,88 +1,61 @@
 'use strict';
 
-angular.module('mean.articles').controller('FileUploadController', ['$scope', '$fileUploader', function($scope, $fileUploader) {
-  
-    // create a uploader with options
-    var uploader = $scope.uploader = $fileUploader.create({
-        scope: $scope,
-        url: '/upload/photo',
-        formData: [
-            { key: 'value' }
-        ],
-        filters: [
-            function (item) {
-                console.info('filter1');
-                return true;
-            }
-        ]
-    });
+angular.module('mean').controller('FileUploadController',  ['$scope', 'FileUploader',
+	function ($scope, FileUploader) {
 
-    // FAQ #1
-    var item = {
-        file: {
-            name: 'Previously uploaded file',
-            size: 1e6
-        },
-        progress: 100,
-        isUploaded: true,
-        isSuccess: true
-    };
+		// create a uploader with options
+		$scope.uploader = new FileUploader({
+			scope: $scope,
+			url: '/upload/photo',
+			autoUpload: true,
+			formData: [{
+				key: 'value'
+			}]
+		});
 
-    item.remove = function() {
-        uploader.removeFromQueue(this);
-    };
+		// REGISTER HANDLERS
+		$scope.uploader.onAfteraddingfile = function (event, item) {
+			console.info('After adding a file', item);
+		};
 
-    uploader.queue.push(item);
-    uploader.progress = 100;
+		$scope.uploader.onWhenaddingfilefailed = function (event, item) {
+			console.info('When adding a file failed', item);
+		};
 
-    // ADDING FILTERS
-    uploader.filters.push(function (item) { // second user filter
-        console.info('filter2');
-        return true;
-    });
+		$scope.uploader.onAfteraddingall = function (event, items) {
+			console.info('After adding all files', items);
+		};
 
-    // REGISTER HANDLERS
-    uploader.bind('afteraddingfile', function (event, item) {
-        console.info('After adding a file', item);
-    });
+		$scope.uploader.onBeforeupload = function (event, item) {
+			console.info('Before upload', item);
+		};
 
-    uploader.bind('whenaddingfilefailed', function (event, item) {
-        console.info('When adding a file failed', item);
-    });
+		$scope.uploader.onProgress = function (event, item, progress) {
+			console.info('Progress: ' + progress, item);
+		};
 
-    uploader.bind('afteraddingall', function (event, items) {
-        console.info('After adding all files', items);
-    });
+		$scope.uploader.onSuccess = function (event, xhr, item, response) {
+			console.info('Success', xhr, item, response);
+		};
 
-    uploader.bind('beforeupload', function (event, item) {
-        console.info('Before upload', item);
-    });
+		$scope.uploader.onCancel = function (event, xhr, item) {
+			console.info('Cancel', xhr, item);
+		};
 
-    uploader.bind('progress', function (event, item, progress) {
-        console.info('Progress: ' + progress, item);
-    });
+		$scope.uploader.onError = function (event, xhr, item, response) {
+			console.info('Error', xhr, item, response);
+		};
 
-    uploader.bind('success', function (event, xhr, item, response) {
-        console.info('Success', xhr, item, response);
-    });
+		$scope.uploader.onComplete = function (event, xhr, item, response) {
+			console.info('Complete', xhr, item, response);
+		};
 
-    uploader.bind('cancel', function (event, xhr, item) {
-        console.info('Cancel', xhr, item);
-    });
+		$scope.uploader.onProgressall = function (event, progress) {
+			console.info('Total progress: ' + progress);
+		};
 
-    uploader.bind('error', function (event, xhr, item, response) {
-        console.info('Error', xhr, item, response);
-    });
-
-    uploader.bind('complete', function (event, xhr, item, response) {
-        console.info('Complete', xhr, item, response);
-    });
-
-    uploader.bind('progressall', function (event, progress) {
-        console.info('Total progress: ' + progress);
-    });
-
-    uploader.bind('completeall', function (event, items) {
-        console.info('Complete all', items);
-    });
-}]);
+		$scope.uploader.onCompleteall = function (event, items) {
+			console.info('Complete all', items);
+		};
+	}
+]);

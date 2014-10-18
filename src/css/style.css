@@ -194,7 +194,7 @@ a.show-sidebar:hover {
   margin-top: 50px;
   min-height: 100%;
   overflow: hidden;
-  background: #202021 url(../img/outer_space_stars_galaxies_milky_way_1440x900_44234.jpg);
+  /*background: #202021 url(../img/outer_space_stars_galaxies_milky_way_1440x900_44234.jpg);*/
   background-size: 100% 100%;
   background-attachment: fixed;
 }
@@ -1406,7 +1406,7 @@ td.beauty-hover {
   background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #eee), color-stop(0.5, #fff));
   background-image: -webkit-linear-gradient(center bottom, #eee 0%, #fff 50%);
   background-image: -moz-linear-gradient(center bottom, #eee 0%, #fff 50%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#ffffff', endColorstr = '#eeeeee', GradientType = 0);
+  /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#ffffff', endColorstr = '#eeeeee', GradientType = 0);*/
   background-image: linear-gradient(top, #fff 0%, #eee 50%);
 }
 .select2-container-multi .select2-choices .select2-search-field input {
@@ -2411,10 +2411,10 @@ td.beauty-hover {
 .manual-file-chooser {
   position: absolute;
   width: 240px;
-  margin-left: -80px;
+  margin-left: -50px;
+  margin-top: -25px;
   padding: 5px;
   opacity: .0001;
-  cursor: pointer;
 }
 
 .imgThumbnail{
@@ -2856,9 +2856,8 @@ textarea{
 
 .login-box{
   position: fixed;
-  top: 40%;
+  top: 80px;
   left: 50%;
-  margin-top: -50px;
   margin-left: -250px;
   width: 500px;
 }
@@ -2867,10 +2866,65 @@ textarea{
   background-color: aliceblue;
 }
 
-.html-authentication{
+/*.html-authentication{
   background-color: antiquewhite;
-}
+}	*/
 
 .alert{
   border: 1px solid black;
+}
+
+a{
+	cursor: pointer;
+	text-decoration: none;
+}
+
+a:hover{
+	text-decoration: none;
+}
+
+.animate-show {
+	  -moz-transition:all linear 1s;
+	  -o-transition:all linear 1s;
+	  transition:all linear 1s;
+	  -webkit-transform:all linear 1s;
+	  transition:all linear 1s;
+	  display:absolute!important;
+	  opacity:1;
+	  top: 50px;
+}
+
+.animate-show.ng-hide-add,
+.animate-show.ng-hide-remove {
+	display:block!important;
+	opacity:1;
+}
+
+.animate-show.ng-hide,  .animate-show.ng-hide div{
+	-webkit-transition: all 1s;
+	-moz-transition: all 1s;
+	-o-transition: all 1s;
+	transition: all 1s;
+	 /* -moz-transform: scale(3);
+	  -webkit-transform: scale(3);*/
+	  opacity: 0;
+}
+
+table.table-striped td {
+	vertical-align: middle !important;
+}
+
+.datepicker ul {
+	min-height: 20px;
+	padding: 19px;
+	margin-bottom: 20px;
+	background-color: #f5f5f5;
+	border: 1px solid #e3e3e3;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+}
+
+.datepicker ul .btn-info{
+	background-color: steelblue !important;
 }

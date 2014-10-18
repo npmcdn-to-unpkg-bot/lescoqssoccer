@@ -1,40 +1,32 @@
 <section class="mainContent" data-ng-controller="ArticlesController" style="margin-top:0;">
-    
-    <article ng-show="!onCreation">
-        <div class="col-md-6" style="text-align: left;">
-            <button class="btn btn-default" ng-click="onCreation = true" style="margin-left: 10px;background: white;">
-                Ajouter un article
-            </button>
-        </div>
-        <div class="col-md-6" style="text-align: right;">
-            <pagination total-items="$scope.bigTotalItems" ng-model="$scope.bigCurrentPage" max-size="$scope.maxSize" class="pagination-sm" boundary-links="true" style="margin-top: 0;"></pagination>
-        </div>
+	<article>
+	
+		<div class="col-md-6" >
+			<a href="#!/articles/create">
+				Ajouter un article
+			</a>
+		</div>
 
-        <div id="gallery" class="gallery isotope col-md-12">
-            <div class="image gallery-group-1 isotope-item" data-ng-repeat="article in ArticlesCollection.all" style="display: inline-block;">
-                <div class="image-inner">
-                    <a href="img/avatar.jpg" data-lightbox="gallery-group-1">
-                        <img ng-src="{{article.image && article.image || 'img/8962691008_7f489395c9_m.jpg'}}" alt="">
-                    </a>
-                    <p class="image-caption">
-                        #Le - {{article.created | date:dateFormat}}
-                    </p>
-                </div>
-                <div class="image-info">
-                    <h5 class="title">{{article.title}}</h5>
-                    <div>
-                        <small>par</small> <a href="javascript:;">{{article.user.name}}</a>
-                    </div>
-                    <div class="desc">
-                        {{article.content}}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </article>
-
-    <article ng-show="onCreation">
-        <w-Createarticle></w-Createarticle>
-    </article>
-
+		<div id="gallery" class="gallery isotope col-md-12">
+			<div class="image gallery-group-1 isotope-item" data-ng-repeat="article in ArticlesCollection.all" style="display: inline-block;">
+				<div class="image-inner">
+					<a href="#!/articles/{{article._id}}" data-lightbox="gallery-group-1">
+						<img ng-src="{{article.image && article.image || 'img/8962691008_7f489395c9_m.jpg'}}" alt="">
+					</a>
+					<p class="image-caption">
+						#Le - {{article.created | date:dateFormat}}
+					</p>
+				</div>
+				<div class="image-info">
+					<h5 class="title">{{article.title}}</h5>
+					<div>
+						<small>par</small> <a href="javascript:;">{{article.user.name}}</a>
+					</div>
+					<div class="desc">
+						{{article.content}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</article>
 </section>
