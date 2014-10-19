@@ -6,13 +6,6 @@ body {
   color: #525252;
   /*background: #d9e0e7;*/
 }
-.body-expanded, .modal-open {
-  overflow-y:hidden;
-  margin-right: 15px;
-}
-.body-expanded .expanded-panel, .fancybox-margin .expanded-panel {
-  margin-right: 15px;
-}
 .body-screensaver {
   overflow: hidden;
 }
