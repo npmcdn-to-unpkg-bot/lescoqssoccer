@@ -40,9 +40,8 @@
 					data-ng-class="(p._id === photo._id) ? 'active' : ''">
 						<a
 						class="fancybox"
-				                          rel="gallery1"
-				                          data-ng-click="open('gallery/views/caroussel.html', 'GalleryCtrl', '', '', album.photoList)">
-						<img data-ng-src="{{p.filepath}}">
+				                          data-ng-click="open('gallery/views/caroussel.html', 'GalleryCtrl', '', '', getCarousel())">
+							<img data-ng-src="{{p.filepath}}">
 						</a>
 					</div>
 				</div>

@@ -32,11 +32,9 @@ angular.module( 'mean.agenda' ).controller( 'Modal', [ '$scope', '$modal', '$log
 angular.module( 'mean.agenda' ).controller( 'ModalInstanceController', [ '$scope', '$modalInstance', 'title', 'content', 'callback', 'param',
 	function ( $scope, $modalInstance, title, content, callback, param ) {
 
-		alert(param);
 		$scope.title = title;
 		$scope.content = content;
 		$scope.param = param;
-
 		/***
 		    Modal buttons
 		    ***/
