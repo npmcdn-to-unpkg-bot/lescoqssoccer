@@ -27,10 +27,16 @@ angular.module( 'mean.agenda' ).service( 'AgendaCollection', [ 'Global', 'UserEv
 
 		var AgendaCollection = {
 
+			all: [],
+
 			load: function () {
 				return UserEvent.query( {}, function ( userEvents ) {
 					return userEvents;
 				} ).$promise;
+			},
+
+			setEvents: function(events){
+				AgendaCollection.all = events;
 			},
 
 			add: function ( userEvent ) {

@@ -1,77 +1,5 @@
 'use strict';
 
-angular.module( 'mean.gallery' ).controller( 'GalleryController', [ '$scope', 'Global',
-	function ( $scope, Global ) {
-
-		$scope.global = Global;
-		$scope.slides = [ {
-			src: "img/9036958611_fa1bb7f827_m.jpg",
-			text: "Image 1"
-		}, {
-			src: "img/9041440555_2175b32078_m.jpg",
-			text: "Image 2"
-		}, {
-			src: "img/8985207189_01ea27882d_m.jpg",
-			text: "Image 2"
-		}, {
-			src: "img/8962691008_7f489395c9_m.jpg",
-			text: "Image 3"
-		} ];
-
-		// initializing the time Interval
-		$scope.myInterval = 5000;
-	}
-] );
-
-angular.module( 'mean.albums' ).controller( 'modalInstanceCtrl', [ '$scope', '$modalInstance', 'photos', 'albums',
-
-	function ( $scope, $modalInstance, photos, albums ) {
-
-		$scope.photos = photos;
-		$scope.albums = albums;
-
-		$scope.ok = function ( result ) {
-			$modalInstance.close( result );
-		};
-
-		$scope.cancel = function () {
-			$modalInstance.dismiss( 'cancel' );
-		};
-	}
-] );
-
-angular.module( 'mean.albums' ).controller( 'deleteAlbumModalCtrl', [ '$scope', '$modalInstance', 'album',
-
-	function ( $scope, $modalInstance, album ) {
-
-		$scope.album = album;
-
-		$scope.ok = function ( result ) {
-			$modalInstance.close( result );
-		};
-
-		$scope.cancel = function () {
-			$modalInstance.dismiss( 'cancel' );
-		};
-	}
-] );
-
-angular.module( 'mean.albums' ).controller( 'deletePhotoModalCtrl', [ '$scope', '$modalInstance', 'photo',
-
-	function ( $scope, $modalInstance, photo ) {
-
-		$scope.photo = photo;
-
-		$scope.ok = function ( result ) {
-			$modalInstance.close( result );
-		};
-
-		$scope.cancel = function () {
-			$modalInstance.dismiss( 'cancel' );
-		};
-	}
-] );
-
 angular.module( 'mean.albums' ).controller( 'AlbumCtrl', [ '$location', '$scope', '$modal', 'PhotoMgrService', 'album', 'albums', 'view', 'FileUploader',
 
 	function ( $location, $scope, $modal, PhotoMgrService, album, albums, view, FileUploader ) {
@@ -375,3 +303,52 @@ var GalleryData = {
 		return $route.current.params.view;
 	}
 };
+
+angular.module( 'mean.albums' ).controller( 'modalInstanceCtrl', [ '$scope', '$modalInstance', 'photos', 'albums',
+
+	function ( $scope, $modalInstance, photos, albums ) {
+
+		$scope.photos = photos;
+		$scope.albums = albums;
+
+		$scope.ok = function ( result ) {
+			$modalInstance.close( result );
+		};
+
+		$scope.cancel = function () {
+			$modalInstance.dismiss( 'cancel' );
+		};
+	}
+] );
+
+angular.module( 'mean.albums' ).controller( 'deleteAlbumModalCtrl', [ '$scope', '$modalInstance', 'album',
+
+	function ( $scope, $modalInstance, album ) {
+
+		$scope.album = album;
+
+		$scope.ok = function ( result ) {
+			$modalInstance.close( result );
+		};
+
+		$scope.cancel = function () {
+			$modalInstance.dismiss( 'cancel' );
+		};
+	}
+] );
+
+angular.module( 'mean.albums' ).controller( 'deletePhotoModalCtrl', [ '$scope', '$modalInstance', 'photo',
+
+	function ( $scope, $modalInstance, photo ) {
+
+		$scope.photo = photo;
+
+		$scope.ok = function ( result ) {
+			$modalInstance.close( result );
+		};
+
+		$scope.cancel = function () {
+			$modalInstance.dismiss( 'cancel' );
+		};
+	}
+] );
