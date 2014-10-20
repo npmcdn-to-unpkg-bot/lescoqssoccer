@@ -1,12 +1,18 @@
 <div class="modal-body">
-    	<div class="container" data-ng-controller="GalleryController" style="width:100%;">
-        		<carousel interval="myInterval">
-	            	<slide ng-repeat="slide in slides" active="slide.active">
-	                		<img class="image-circle" ng-src="{{slide.src}}" style="margin:auto; min-width:750px;"/>
-	                		<div class="carousel-caption">
-	                    		<h4>{{slide.text}}</h4>
-	                		</div>
-	            	</slide>
-        		</carousel>
-    	</div>
+	<div id="carousel" class="carousel slide">
+		<div class="carousel-inner">
+			<div
+			class="carousel-img item"
+			data-ng-repeat="p in param"
+			data-ng-class="(p.active) ? 'active' : ''">
+				<img data-ng-src="{{p.filepath}}" style="margin:auto; height:'auto'">
+			</div>
+		</div>
+		<a class="left carousel-control" href="#carousel" data-slide="prev">
+			<span class="glyphicon glyphicon-chevron-left"></span>
+		</a>
+		<a class="right carousel-control" href="#carousel" data-slide="next">
+			<span class="glyphicon glyphicon-chevron-right"></span>
+		</a>
+	</div>
 </div>

@@ -15,7 +15,8 @@ angular.module( 'mean.agenda' ).controller( 'createController', [ '$scope', '$ro
 				content: '',
 				start: $scope.start,
 				end: $scope.end,
-				location: '',
+				photos: [],
+				location: {},
 				allDay: true
 			};
 		};
@@ -24,7 +25,10 @@ angular.module( 'mean.agenda' ).controller( 'createController', [ '$scope', '$ro
 		$scope.create = function () {
 
 			$scope.userEvent.type = $scope.userEvent.selectedType.identifier;
-			$scope.agendaCollection.add( $scope.userEvent, function ( userEvent ) {
+
+			alert( JSON.stringify( $scope.userEvent ) );
+			var promise = $scope.agendaCollection.add( $scope.userEvent );
+			promise.then( function ( userEvent ) {
 				$location.path( "/agenda" );
 			} );
 		};
@@ -32,9 +36,7 @@ angular.module( 'mean.agenda' ).controller( 'createController', [ '$scope', '$ro
 		/***
 		Date picker management
 		 ***/
-
-		//Manage opening of two datepickers
-		$scope.open = function ( $event, datepicker ) {
+		$scope.open = function ( $event, datepicker ) { //Manage opening of two datepickers
 			$event.preventDefault();
 			$event.stopPropagation();
 
@@ -77,9 +79,10 @@ angular.module( 'mean.agenda' ).controller( 'createController', [ '$scope', '$ro
 		$scope.uploader.onCompleteItem = function ( item, response, status, headers ) {
 			console.info( 'Complete', item, response );
 
-			$scope.image = response;
-			console.log( $scope.image.path );
-			console.log( $scope.image.name );
+			$scope.userEvent.photos.push( {
+				path: response.path,
+				name: response.name
+			} );
 		};
 
 		/***
@@ -87,7 +90,6 @@ angular.module( 'mean.agenda' ).controller( 'createController', [ '$scope', '$ro
 		 ***/
 		$scope.map = {
 			control: {},
-			version: "uknown",
 			showTraffic: true,
 			showBicycling: true,
 			center: {
@@ -97,61 +99,39 @@ angular.module( 'mean.agenda' ).controller( 'createController', [ '$scope', '$ro
 			options: {
 				streetViewControl: true,
 				panControl: true,
-				maxZoom: 20,
-				minZoom: 3
+				scrollwheel: false
 			},
 			zoom: 8,
-			dragging: false,
-			bounds: {},
 			markers: [ {
 				id: 1,
 				latitude: 45.188529000000000000,
 				longitude: 5.724523999999974000,
-				showWindow: false,
-				title: 'Marker 2'
-			} ],
-			doUgly: true, //great name :)
-			events: {
-				click: function ( mapModel, eventName, originalEventArgs ) {
-
-					var e = originalEventArgs[ 0 ];
-
-					if ( !$scope.map.clickedMarker ) {
-						$scope.map.clickedMarker = {
-							title: 'You clicked here',
-							latitude: e.latLng.lat(),
-							longitude: e.latLng.lng()
-						};
-					} else {
-						var marker = {
-							latitude: e.latLng.lat(),
-							longitude: e.latLng.lng()
-						};
-						$scope.map.clickedMarker = marker;
+				events: {
+					dragend: function ( marker, eventName, model ) {
+						$scope.userEvent.location = {
+							k: marker.getPosition().lat(),
+							B: marker.getPosition().lng()
+						}
 					}
-
-					//scope apply required because this event handler is outside of the angular domain
-					$scope.$apply();
 				},
-				dragend: function () {
-					self = this;
+				options: {
+					draggable: true
 				}
-			}
-		};
-
-		$scope.onMarkerClicked = function ( marker ) {
-			marker.showWindow = true;
+			} ],
+			doUgly: true
 		};
 
 		$scope.geoCode = function () {
-			if ( $scope.search && $scope.search.length > 0 ) {
+
+			if ( this.search && this.search.length > 0 ) {
 				if ( !this.geocoder ) this.geocoder = new google.maps.Geocoder();
 				this.geocoder.geocode( {
-					'address': $scope.search
+					'address': this.search
 				}, function ( results, status ) {
 					if ( status == google.maps.GeocoderStatus.OK ) {
 						var loc = results[ 0 ].geometry.location;
 						$scope.search = results[ 0 ].formatted_address;
+						$scope.userEvent.location = loc;
 						$scope.gotoLocation( loc.lat(), loc.lng() );
 					} else {
 						alert( "Sorry, this search produced no results." );
@@ -172,14 +152,24 @@ angular.module( 'mean.agenda' ).controller( 'createController', [ '$scope', '$ro
 		};
 
 		$scope.gotoLocation = function ( lat, lon ) {
+
 			if ( $scope.lat != lat || $scope.lon != lon ) {
-				$scope.map1.center = {
-					lat: lat,
-					lon: lon
+
+				$scope.map.markers[ 0 ].latitude = lat;
+				$scope.map.markers[ 0 ].longitude = lon;
+
+				$scope.map.center = {
+					latitude: lat,
+					longitude: lon
 				};
-				if ( !$scope.$$phase ) $scope.$apply( "loc" );
+
+				if ( !$scope.$$phase ) {
+					$scope.$apply();
+				}
 			}
 		};
+
+		$scope.view = $route.current.params.view;
 	}
 ] );
 
@@ -190,7 +180,8 @@ angular.module( 'mean.agenda' ).controller( 'calendarController', [ '$scope', '$
 
 		$scope.load = function () {
 
-			$scope.agendaCollection.load( function ( events ) {
+			var promise = $scope.agendaCollection.load();
+			promise.then( function ( events ) {
 				angular.forEach( events, function ( event ) {
 					$scope.events.push( event );
 				} );
@@ -200,9 +191,8 @@ angular.module( 'mean.agenda' ).controller( 'calendarController', [ '$scope', '$
 
 		$scope.update = function ( userEvent ) {
 
-			$scope.agendaCollection.update( userEvent, function ( newUserEvent ) {
-				newUserEvent.selectedType = $filter( 'getByIdentifier' )( eventTypes, userEvent.type );
-				$scope.calendar.fullCalendar( 'updateEvent', newUserEvent );
+			var promise = $scope.agendaCollection.update( userEvent );
+			promise.then( function ( newUserEvent ) {
 				$location.path( "/agenda" );
 			} );
 		};
@@ -215,9 +205,9 @@ angular.module( 'mean.agenda' ).controller( 'calendarController', [ '$scope', '$
 		};
 
 		$scope.onEventClick = function ( event, allDay, jsEvent, view ) {
+			alert( JSON.stringify( event ) );
 			// $scope.userEvent = event;
 			// $scope.userEvent.index = event.__uiCalId - 1;
-			alert( JSON.stringify( event ) )
 			// $scope.selectedUserEvent.selectedType = $filter('getByIdentifier')($scope.eventTypes, $scope.selectedUserEvent.type);
 		};
 
@@ -278,9 +268,18 @@ angular.module( 'mean.agenda' ).controller( 'mapController', [ '$scope', '$route
 		// Agenda
 		$scope.load = function () {
 
-			$scope.agendaCollection.load( function ( events ) {
+			var promise = $scope.agendaCollection.load();
+			promise.then( function ( events ) {
 				angular.forEach( events, function ( event ) {
-					$scope.events.push( event );
+					if ( event.location && event.location !== "" ) {
+						$scope.map.markers.push( {
+							id: event._id,
+							latitude: event.location.k,
+							longitude: event.location.B,
+							showWindow: false,
+							title: event.title
+						} );
+					}
 				} );
 			} );
 		};
@@ -304,32 +303,18 @@ angular.module( 'mean.agenda' ).controller( 'mapController', [ '$scope', '$route
 			zoom: 8,
 			dragging: false,
 			bounds: {},
-			markers: [ {
-				id: 1,
-				latitude: 45.188529000000000000,
-				longitude: 5.724523999999974000,
-				showWindow: false,
-				title: 'Marker 2'
-			}, {
-				id: 2,
-				latitude: 15,
-				longitude: 30,
-				showWindow: false,
-				title: 'Marker 2'
-			}, {
-				id: 3,
-				latitude: 37,
-				longitude: -122,
-				showWindow: false,
-				title: 'Plane'
-			} ],
+			markers: [],
 			doUgly: true
 		};
 
 		$scope.onMarkerClicked = function ( marker ) {
+			angular.forEach( $scope.map.markers, function ( marker ) {
+				marker.showWindow = false;
+			} );
 			marker.showWindow = true;
 		};
 
+		$scope.view = $route.current.params.view;
 		$scope.events = [];
 		$scope.eventSources = [ $scope.events ];
 	}

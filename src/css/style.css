@@ -10,7 +10,7 @@ body {
   overflow-y:hidden;
   margin-right: 15px;
 }
-.body-expanded .expanded-panel, .fancybox-margin .expanded-panel, .modal-open .expanded-panel {
+.body-expanded .expanded-panel, .fancybox-margin .expanded-panel {
   margin-right: 15px;
 }
 .body-screensaver {
@@ -49,7 +49,7 @@ h1, .h1, h2, .h2, h3, .h3 {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
-  z-index: 1049;
+  z-index: 1039;
 }
 .hidden-xs, .hidden-sm {
   display: inline-block!important;

@@ -93,18 +93,21 @@
 
 						<div class="form-group">
 							<div lass="col-md-10">
-								<label for="title" class="col-md-2 control-label">Localisation</label>
+								<label for="search" class="col-md-2 control-label">Localisation</label>
 
 								<!-- search/go to current location -->
 								<div class="col-md-10" style="margin-bottom: 15px;">
 									<p class="input-group">
-										<input type="text" class="form-control" data-ng-model="search"/>
+										<input
+										type="text"
+										class="form-control"
+										data-ng-model="search"/>
 										<span class="input-group-btn">
 											<button
 												class="btn"
 												type="button"
 												ng-click="geoCode()"
-												ng-disabled="search.length == 0"
+												ng-disabled="search.length === 0"
 												title="search" >
 												&nbsp;<i class="glyphicon glyphicon-search"></i>
 											</button>
@@ -120,21 +123,27 @@
 								</div>
 
 								<div class="col-md-2"></div>
-								<div class="col-md-8">
+								<div class="col-md-10">
 									<google-map
+									ng-if="view === 'create'"
 									center="map.center"
 									zoom="map.zoom"
 									draggable="true"
-									dragging="map.dragging"
-									bounds="map.bounds"
 									events="map.events"
 									options="map.options"
-									refresh="true"
-									control="map1.control">
+									control="map.control">
+
+									<marker ng-repeat="m in map.markers" coords="m" events="m.events" options ="m.options">
+										</marker>
 									</google-map>
 								</div>
 							</div>
 						</div>
+					</div>
+
+
+					<div class="actions" style="text-align:right; padding: 20px 15px 0 0;">
+						<button class="btn btn-primary" type="submit">OK</button>
 					</div>
 				</tab>
 
@@ -146,11 +155,6 @@
 					</div>
 				</tab>
 			</tabset>
-
-			<div class="actions" style="text-align:right; padding: 20px 15px 0 0;">
-				<button class="btn btn-primary" type="submit">OK</button>
-			</div>
-
 		</form>
 	</div>
 </section>

@@ -278,6 +278,19 @@ angular.module( 'mean.albums' ).controller( 'GalleryCtrl', [ '$scope', 'albums',
 			}
 		};
 
+		$scope.getCarousel = function(){
+
+			var slides = [];
+			_.each($scope.album.photoList, function(photo, index){
+				slides.push({
+					filepath: photo.filepath,
+					active: (photo._id === $scope.photo._id)
+				});
+			});
+
+			return slides;
+		};
+
 		$scope.albums = window._.where( albums, {
 			enabled: true
 		} );
@@ -303,13 +316,13 @@ angular.module( 'mean.albums' ).controller( 'GalleryCtrl', [ '$scope', 'albums',
 		$scope.section = {
 			'name': 'Album',
 			'url': '/albums'
-		}; 
+		};
 
-		$scope.view = 'gallery'; 
+		$scope.view = 'gallery';
 	}
 ] );
 
-//To Pre-load Album & Photo data before route change 
+//To Pre-load Album & Photo data before route change
 var PhotoMgrData = {
 
 	album: function ( AlbumsCollection, $route ) {
@@ -345,7 +358,7 @@ var PhotoMgrData = {
 	}
 };
 
-//Preload all photos and albums 
+//Preload all photos and albums
 var GalleryData = {
 
 	albums: function ( AlbumsCollection ) {

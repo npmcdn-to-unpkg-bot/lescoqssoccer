@@ -5,11 +5,12 @@ angular.module( 'mean.articles' ).controller( 'ArticlesController', [ '$scope', 
 
 		$scope.global = Global;
 		$scope.ArticlesCollection = ArticlesCollection;
+		$scope.articles;
 
 		$scope.image;
 		$scope.article;
 		$scope.dateFormat = "dd/MM/yyyy 'à' H'h'mm";
-		
+
 		$scope.uploader = new FileUploader( {
 			scope: $scope,
 			url: '/upload/photo',
@@ -24,7 +25,13 @@ angular.module( 'mean.articles' ).controller( 'ArticlesController', [ '$scope', 
 			$scope.image = response.path;
 		};
 
-		$scope.ArticlesCollection.load();
+		$scope.load = function () {
+
+			var articlePromise = $scope.ArticlesCollection.load();
+			articlePromise.then( function (articles) {
+				$scope.articles = articles;
+			} );
+		};
 
 		$scope.create = function () {
 
@@ -49,7 +56,7 @@ angular.module( 'mean.articles' ).controller( 'ArticlesController', [ '$scope', 
 		};
 
 		$scope.remove = function () {
-	
+
 			var articlePromise = $scope.ArticlesCollection.remove( $scope.article )
 			articlePromise.then( function ( response ) {
 				$location.path( "/articles" );
