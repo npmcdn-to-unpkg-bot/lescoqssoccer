@@ -1,24 +1,22 @@
 <div class="row" style="margin-bottom: 20px;">
-      	<div class="col-lg-12">
-         		<div class="navbar-default" >
-               		<div class="navbar-inner toolbar">
-
-	                        	<ul class="nav navbar-nav navbar-default">
-	                        		<li data-ng-class="{active: view === 'gallery'}" class="toolbaritem">
-	                                    		<a href="#!/gallery"><span class="fa fa-picture-o"></span> Gallery </a>
-	                              	</li>
-	                              	<li data-ng-class="{active: view === 'list'}" class="toolbaritem">
-	                                    		<a href="#!{{section.url}}"><span class="fa fa-list"></span> List View</a>
-	                              	</li>
-	                              	<li data-ng-class="{active: view === 'grid'}" class="toolbaritem">
-	                                    		<a href="#!{{section.url}}/grid"><span class="fa fa-th"></span> Grid View</a>
-	                              	</li>
-	                              	<li data-ng-class="{active: view === 'add'}" class="toolbaritem">
-	                                    		<a href='#!{{section.url}}/add'><span class="fa fa-plus"></span> Add {{section.name}}</a>
-	                              	</li>
-	                          	</ul>
-
-		                  	<div class="navbar-right" ng-show="view === 'gallery'">
+  	<div class="col-lg-12">
+ 		<div class="navbar-default" >
+       		<div class="navbar-inner toolbar">
+            	<ul class="nav navbar-nav navbar-default">
+            		<li data-ng-class="{active: view === 'gallery'}" class="toolbaritem">
+                        <a href="#!/gallery"><span class="fa fa-picture-o"></span> {{'gallery_navbar_gallery_title' | translate}}</a>
+                  	</li>
+                  	<li data-ng-class="{active: view === 'list'}" class="toolbaritem">
+                        <a href="#!{{section.url}}"><span class="fa fa-list"></span> {{'gallery_navbar_list_title' | translate}}</a>
+                  	</li>
+                  	<li data-ng-class="{active: view === 'grid'}" class="toolbaritem">
+                        <a href="#!{{section.url}}/grid"><span class="fa fa-th"></span> {{'gallery_navbar_grid_title' | translate}}</a>
+                  	</li>
+                  	<li data-ng-class="{active: view === 'add'}" class="toolbaritem">
+                        <a href='#!{{section.url}}/add'><span class="fa fa-plus"></span> {{'gallery_navbar_add_title' | translate}}</a>
+                  	</li>
+              	</ul>
+	            <div class="navbar-right" ng-show="view === 'gallery'">
 					<ul class="pagination" style="margin-top: 0;">
 						<li data-ng-click="clickPhoto(album._id, prev)">
 							<a>&laquo;</a>
@@ -34,7 +32,7 @@
 						</li>
 					</ul>
 				</div>
-       			</div>
-      		</div>
-  	</div>
+			</div>
+		</div>
+	</div>
 </div>

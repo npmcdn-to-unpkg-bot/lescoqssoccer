@@ -10,7 +10,7 @@
 					<div class="col-sm-12" style="margin-top: 20px; ">
 
 						<div class="form-group">
-							<label for="selectedType" class="col-md-2 control-label">Type</label>
+							<label for="selectedType" class="col-md-2 control-label">{{'type' | translate}}</label>
 							<div class="col-md-10">
 								<select class="form-control"
 									name="selectedType"
@@ -22,7 +22,7 @@
 
 						<div class="form-group">
 							<div>
-								<label for="title" class="col-md-2 control-label">Dates</label>
+								<label for="title" class="col-md-2 control-label">{{'dates' | translate}}</label>
 								<div class="col-md-5 datepicker">
 									<p class="input-group">
 										<input
@@ -66,7 +66,7 @@
 						</div>
 
 						<div class="form-group">
-							<label for="title" class="col-md-2 control-label">Titre</label>
+							<label for="title" class="col-md-2 control-label">{{'title' | translate}}</label>
 							<div class="col-md-10">
 								<input
 								type="text"
@@ -79,7 +79,7 @@
 						</div>
 
 						<div class="form-group">
-							<label for="content" class="col-md-2 control-label">Contenu</label>
+							<label for="content" class="col-md-2 control-label">{{'content' | translate}}</label>
 							<div class="col-md-10">
 								<textarea
 								class="form-control"
@@ -93,7 +93,7 @@
 
 						<div class="form-group">
 							<div lass="col-md-10">
-								<label for="search" class="col-md-2 control-label">Localisation</label>
+								<label for="search" class="col-md-2 control-label">{{'location' | translate}}</label>
 
 								<!-- search/go to current location -->
 								<div class="col-md-10" style="margin-bottom: 15px;">
@@ -143,15 +143,15 @@
 
 
 					<div class="actions" style="text-align:right; padding: 20px 15px 0 0;">
-						<button class="btn btn-primary" type="submit">OK</button>
+						<button class="btn btn-primary" type="submit">{{'common_ok' | translate}}</button>
 					</div>
 				</tab>
 
 				<tab heading="Photos">
 					<div class="col-sm-12" style="margin-top: 20px;">
 						<div class="form-group">
-                						<div data-ng-include="'/js/files/fileUpload.html'"></div>
-            						</div>
+    						<div data-ng-include="'/js/files/fileUpload.html'"></div>
+						</div>
 					</div>
 				</tab>
 			</tabset>

@@ -6,6 +6,11 @@
 	"link_title": "Liens",
 	"suggestions_title" : "Suggestions",
 
+	"welcom" : "Bonjour",
+	"profil" : "Profile",
+	"parameters" : "Paramètres",
+	"disconnect" : "Deconnexion",
+
 	"agenda_view"	: "Calendrier",
 	"agenda_map"	: "Map",
 	"agenda_add"	: "Ajouter un évènement",
@@ -15,10 +20,35 @@
 	"content"		: "Contenu",
 	"startdate"		: "Date de début",
 	"enddate"		: "Date de fin",
+	"dates"			: "Dates",
+	"location"		: "Localisation",
+
+	"gallery_navbar_gallery_title" : "Gallerie",
+	"gallery_navbar_list_title" : "Vue Liste",
+	"gallery_navbar_grid_title" : "Vue Grille",
+	"gallery_navbar_add_title" : "Ajouter un album",
+	"gallery_detail": "Détails",
+	"gallery_name"	: "Nom",
+	"gallery_cover" : "Couverture",
+ 	"gallery_description" : "Description",
+ 	"gallery_add" : "Ajouter des photos",
+ 	"gallery_edit" : "Editer les photos",
 
 	"suggestions_add" : "Ajouter une suggestion",
 
 	"articles_add": "Ajouter un article",
 
-	"common_date_prefix": "Le"
+	"profile_fistname" : "Prénom",
+	"profile_lastname" : "Nom",
+	"profile_email" : "Email",
+	"profile_username" : "Identifiant",
+	"profile_password" : "Mot de passe",
+	"profile_confirm" : "Confirmation",
+
+	"common_date_prefix": "Le",
+	"common_ok": "OK",
+	"common_cancel": "Annuler",
+	"common_save": "Sauvegarder",
+	"common_delete": "Supprimer",
+	"common_back" : "Retour"
 }

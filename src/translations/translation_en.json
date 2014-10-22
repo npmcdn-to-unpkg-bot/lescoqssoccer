@@ -6,18 +6,49 @@
 	"link_title": "Links",
 	"suggestions_title" : "Suggestions",
 
+	"welcom" : "Welcom",
+	"profil" : "Profil",
+	"parameters" : "Parameters",
+	"disconnect" : "Disconnect",
+
 	"agenda_view"	: "Calendar",
 	"agenda_map"	: "Map",
 	"agenda_add"	: "Add event",
+	"event_details"	: "Event details",
 	"title"			: "Title",
 	"type"			: "Type",
 	"content"		: "Content",
 	"startdate"		: "Start date",
 	"enddate"		: "End date",
+	"dates"			: "Dates",
+	"location"		: "Location",
+
+	"gallery_navbar_gallery_title" : "Gallery",
+	"gallery_navbar_list_title" : "List View",
+	"gallery_navbar_grid_title" : "Grid View",
+	"gallery_navbar_add_title" : "Add album",
+	"gallery_detail": "Details",
+	"gallery_name"	: "Name",
+	"gallery_cover" : "Cover",
+ 	"gallery_description" : "Description",
+ 	"gallery_add" : "Add photos",
+ 	"gallery_edit" : "Edit photos",
 
 	"suggestions_add" : "Add suggestion",
 
 	"articles_add": "Add an article",
 
-	"common_date_prefix": "On"
+	"profile_fistname" : "Fist name",
+	"profile_lastname" : "Last name",
+	"profile_email" : "Email",
+	"profile_username" : "Username",
+	"profile_password" : "Password",
+	"profile_confirm" : "Confirm",
+
+	"common_date_prefix": "On",
+	"common_ok": "OK",
+	"common_cancel": "Cancel",
+	"common_save": "Save",
+	"common_delete": "Delete",
+	"common_back" : "Back"
 }

@@ -5,11 +5,11 @@
     	<div class="row album-list" data-ng-show="view === 'list'">
       		<div class="col-lg-12">
         			<table class="table table-striped table-hover">
-          			<tbody class="album-list-table" ui-sortable="sortAlbums" data-ng-model="albums">  
+          			<tbody class="album-list-table" ui-sortable="sortAlbums" data-ng-model="albums">
 
 				          <!--Row per album  -->
-				          <tr 	data-ng-repeat="album in albums | filter:pmSvc.filter" 
-				                	data-ng-model="album" class="sortable" 
+				          <tr 	data-ng-repeat="album in albums | filter:pmSvc.filter"
+				                	data-ng-model="album" class="sortable"
 				                	data-ng-album-order="{{$index}}">
 
 				              	<td><a href="#!/albums/detail/{{album._id}}">{{album.order + 1}}</a></td>
@@ -17,8 +17,8 @@
 				              	<td>{{album.description}}</td>
 				              	<td style="text-align: center" class="album-enabled">
 				                		<a href="" data-ng-click="clickEnabled($index)">
-				                  			<span data-ng-class="(album.enabled) ? 'enabled' : 'disabled'" 
-				                        		title="Show/Hide Album in Gallery" 
+				                  			<span data-ng-class="(album.enabled) ? 'enabled' : 'disabled'"
+				                        		title="Show/Hide Album in Gallery"
 				                        		class="album-enabled fa fa-film"/>
 				                		</a>
 				              	</td>
@@ -39,7 +39,7 @@
 				              	</td>
 				          </tr>
 
-				          <!-- row for add form--> 
+				          <!-- row for add form-->
 				          <tr class="nonsortable">
 				              	<td></td>
 				              	<td>
@@ -49,16 +49,16 @@
 				              		<input data-ng-model="newAlbum.description" type="text" class="form-control" placeholder="Description">
 				              	</td>
 				              	<td style="text-align: center">
-				              		<input data-ng-model="newAlbum.enabled" type="checkbox"> 
-				              	</td>                 
+				              		<input data-ng-model="newAlbum.enabled" type="checkbox">
+				              	</td>
 				              	<td colspan="3"/>
-				          </tr> 
+				          </tr>
 
 				          <!-- buttons -->
 				          <tr class="nonsortable">
 				              	<td></td>
 				              	<td colspan="6">
-				              		<a class="btn btn-primary" ng-click="saveAlbum(newAlbum)" data-ng-disabled="!newAlbum.name">Save New</a>
+				              		<a class="btn btn-primary" ng-click="saveAlbum(newAlbum)" data-ng-disabled="!newAlbum.name">{{'common_save' | translate}}</a>
 				              	</td>
 				          </tr>
           			</tbody>

@@ -5,51 +5,52 @@
     	<div class="row">
         		<div ng-class="(album._id) ? 'col-lg-4' : 'col-lg-12'">
 
-		            	<div class="well well-sm">
-			            	<h4 class="item-header"><span class="glyphicon glyphicon-cog"></span> Details</h4>
+	            	<div class="well well-sm">
+		            	<h4 class="item-header"><span class="glyphicon glyphicon-cog"></span>{{'gallery_detail' | translate}}</h4>
 
-			            	<form class="form-horizontal" role="form">
+		            	<form class="form-horizontal" role="form">
 
-				                	<div class="form-group">
-				                    	<label for="name" class="col-lg-4 control-label">Name</label>
+			                	<div class="form-group">
+			                    	<label for="name" class="col-lg-4 control-label">{{'gallery_name' | translate}}</label>
+			                    	<div class="col-lg-8">
+			                    		<input class="form-control input-sm" data-ng-model="album.name" type="text">
+			                    	</div>
+			                	</div>
+
+		                		<input class="form-control input-sm" data-ng-model="album.coverPic" type="hidden">
+		                		<input class="form-control input-sm" data-ng-model="album.coverPicPath" type="hidden">
+
+		                		<div class="form-group">
+			                    		<label for="name" class="col-lg-4 control-label">{{'gallery_cover' | translate}}</label>
+			                    		<div class="col-lg-8">
+			                    			<select
+			                    			class="form-control input-sm"
+		                    				data-ng-model="coverPic"
+		                    				data-ng-change="setCoverPic(coverPic)"
+		                    				data-ng-options="f as f.name for f in displayPhotos">
+			                    			</select>
+			                    		</div>
+		                		</div>
+
+			                	<div class="form-group">
+				                    	<label for="description" class="col-lg-4 control-label">{{'gallery_description' | translate}}</label>
 				                    	<div class="col-lg-8">
-				                    		<input class="form-control input-sm" data-ng-model="album.name" type="text">
+				                    		<textarea class="form-control input-sm" data-ng-model="album.description" rows="2"></textarea>
 				                    	</div>
-				                	</div>
+			                	</div>
 
-			                		<input class="form-control input-sm" data-ng-model="album.coverPic" type="hidden">
-			                		<input class="form-control input-sm" data-ng-model="album.coverPicPath" type="hidden">
+		            	</form>
 
-			                		<div class="form-group">
-				                    		<label for="name" class="col-lg-4 control-label">Cover Photo</label>
-				                    		<div class="col-lg-8">
-				                    			<select 	class="form-control input-sm"
-					                    				data-ng-model="coverPic"
-					                    				data-ng-change="setCoverPic(coverPic)"
-					                    				data-ng-options="f as f.name for f in displayPhotos">
-				                    			</select>
-				                    		</div>
-			                		</div>
-
-				                	<div class="form-group">
-					                    	<label for="description" class="col-lg-4 control-label">Description</label>
-					                    	<div class="col-lg-8">
-					                    		<textarea class="form-control input-sm" data-ng-model="album.description" rows="2"></textarea>
-					                    	</div>
-				                	</div>
-
-			            	</form>
-
-			            	<div class="modal-footer">
-				            	<a class="btn btn-primary" ng-click="saveAlbum(album, !(album._id))" data-ng-disabled="!album.name">
-				            		Save
-				            	</a>
-				            	<a class="btn btn-default" ng-click="deleteAlbum(album, true)" data-ng-disabled="!album._id">
-				            		Delete
-				            	</a>
-			         	</div>
-		          </div>
-		</div>
+		            	<div class="modal-footer">
+			            	<a class="btn btn-primary" ng-click="saveAlbum(album, !(album._id))" data-ng-disabled="!album.name">
+			            		{{'common_save' | translate}}
+			            	</a>
+			            	<a class="btn btn-default" ng-click="deleteAlbum(album, true)" data-ng-disabled="!album._id">
+			            		{{'common_delete' | translate}}
+			            	</a>
+		         		</div>
+		          	</div>
+				</div>
 
 	        	<div class="col-lg-8" data-ng-show="album._id">
 		            	<tabset>
@@ -59,7 +60,7 @@
 			                    	<tab-heading>
 			                        		<h4 class="">
 			                        			<span class="fa fa-plus-circle"></span>
-			                        			Add Photos
+			                        			{{'gallery_add' | translate}}
 			                        		</h4>
 			                    	</tab-heading>
 		                		<div class="form-group">
@@ -72,7 +73,7 @@
 		                    		<tab-heading>
 			                        		<h4 class="">
 			                        			<span class="fa fa-edit"></span>
-			                        			Edit Photos ({{displayPhotos.length}})
+			                        			{{'gallery_edit' | translate}} ({{displayPhotos.length}})
 			                        		</h4>
 			                    	</tab-heading>
 
