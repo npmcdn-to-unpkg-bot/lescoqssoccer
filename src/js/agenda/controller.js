@@ -248,7 +248,7 @@ angular.module( 'mean.agenda' ).controller( 'calendarController', [ '$scope', '$
 					}
 				};
 
-				$scope.uiConfig = _.defaults( frenchConfig, $scope.uiConfig );
+				$scope.uiConfig.calendar = _.defaults( frenchConfig.calendar, $scope.uiConfig.calendar );
 			}
 		};
 
