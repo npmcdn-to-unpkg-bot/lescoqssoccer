@@ -29,51 +29,42 @@
 		</div>
 
 		<div class="col-xs-7">
-			<div class="box">
-				<div class="box-header">
-					<div class="box-name">
-						<span>Profile</span>
-					</div>
-					<div class="no-move"></div>
-				</div>
-				<div class="box-content" style="padding: 0;">
-					<form id="profileForm" class="form-horizontal" role="form">
-						<tabset justified="true">
-
-						<tab heading="Infos">
+			<form id="profileForm" class="form-horizontal" role="form">
+				<tabset justified="true">
+					<tab heading="Infos">
 						<div style="padding: 10px;">
 							<div class="form-group">
-								<label class="col-lg-4 control-label">Prénom</label>
+								<label class="col-lg-4 control-label">{{'profile_firstname' | translate}}</label>
 								<div class="col-lg-8">
 									<input class="form-control" type="text" value="Alex">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-4 control-label">Nom</label>
+								<label class="col-lg-4 control-label">{{'profile_lastname' | translate}}</label>
 								<div class="col-lg-8">
 									<input class="form-control" type="text" value="Lapize">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-4 control-label">Email</label>
+								<label class="col-lg-4 control-label">{{'profile_email' | translate}}</label>
 								<div class="col-lg-8">
 									<input class="form-control" type="text" value="bobby@yopmail.com">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-4 control-label">Pseudo</label>
+								<label class="col-lg-4 control-label">{{'profile_username' | translate}}</label>
 								<div class="col-lg-8">
 									<input class="form-control" type="text" value="bobby">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-4 control-label">Mot de passe</label>
+								<label class="col-lg-4 control-label">{{'profile_password' | translate}}</label>
 								<div class="col-lg-8">
 									<input class="form-control" type="password" value="heyhey">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-4 control-label">Confirmation</label>
+								<label class="col-lg-4 control-label">{{'profile_confirm' | translate}}</label>
 								<div class="col-lg-8">
 									<input class="form-control" type="password" value="heyhey">
 								</div>
@@ -82,9 +73,9 @@
 								<input type="button" class="btn btn-default" value="Enregistrer les modifs">
 							</div>
 						</div>
-						</tab>
+					</tab>
 
-						<tab heading="Skills">
+					<tab heading="Skills">
 						<div style="padding: 10px;">
 							<div class="form-group">
 								<label class="col-lg-4 control-label">AquaBiker</label>
@@ -99,7 +90,7 @@
 									ng-class=" {'label-warning': percent<30,
 									'label-info': percent>=30 && percent<70,
 									'label-success': percent>=70}">
-									{{percent}}%
+										{{percent}}%
 									</span>
 								</div>
 							</div>
@@ -111,11 +102,11 @@
 									placeholder="Ajouter une compétence"
 									data-ng-model="suggestion"/>
 									<span class="input-group-btn">
-									<button class="btn btn-primary"
-									type="submit"
-									title="Ajouter une compétence">
-									<i class="glyphicon glyphicon-star"></i>
-									</button>
+										<button class="btn btn-primary"
+										type="submit"
+										title="Ajouter une compétence">
+											<i class="glyphicon glyphicon-star"></i>
+										</button>
 									</span>
 									</p>
 								</div>
@@ -124,12 +115,9 @@
 						<div class="actions" style="text-align:right; padding-right: 10px;">
 							<input type="button" class="btn btn-default" value="Enregistrer les modifs">
 						</div>
-						</tab>
-
-						</tabset>
-					</form>
-				</div>
-			</div>
+					</tab>
+				</tabset>
+			</form>
 		</div>
 	</div>
 </section>
