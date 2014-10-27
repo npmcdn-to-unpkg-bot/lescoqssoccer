@@ -84,15 +84,8 @@ a.show-sidebar:hover {
 }
 
 #content {
-  position: relative;
-  z-index: 10;
-  margin-left: 17%;
-  margin-top: 15px;
-  overflow: hidden;
-  -webkit-transition: 0.2s;
-  -moz-transition: 0.2s;
-  -o-transition: 0.2s;
-  transition: 0.2s;
+  margin-top: 20px;
+  max-height: 80%;
 }
 .mainContent{
   margin-top: 20px;
@@ -421,6 +414,11 @@ a.show-sidebar:hover {
 }
 .expanded a.close-link {
   display:none;
+}
+#cms-sidebar-nav{
+   position: fixed;
+   margin-top: 20px;
+   height: 80%;
 }
 #sidebar-left.col-xs-2 {
   opacity: 0;
@@ -2273,9 +2271,9 @@ td.beauty-hover {
     width:0;
     padding:0;
   }
-  #content{
+/*  #content{
     margin-left:0;
-  }
+  }*/
   .sidebar-show #content.col-sm-10 {
     opacity: 1;
     width:100%;
@@ -2283,9 +2281,9 @@ td.beauty-hover {
   .page-404 .form-inline {
     width: 60%;
   }
-  #content{
+/*  #content{
     margin-left: calc(16.665%);
-  }
+  }*/
 }
 @media (min-width: 992px) {
   .nav.main-menu > li > a, .nav.msg-menu > li > a {
@@ -2315,9 +2313,9 @@ td.beauty-hover {
   .page-404 .form-inline {
     width: 40%;
   }
-  #content{
+/*  #content{
     margin-left: 16.65%;
-  }
+  }*/
 }
 @media (max-width: 767px) {
   .page-404 .form-inline {
@@ -2339,9 +2337,9 @@ td.beauty-hover {
     left: 50%;
     margin-left: -9px;
   }
-  #content{
+/*  #content{
     margin-left:0;
-  }
+  }*/
 }
 @media (max-width: 767px) {
   .user-mini {
@@ -2353,10 +2351,10 @@ td.beauty-hover {
   .user-mini {
     display: none;
   }
-  #content{
+/*  #content{
     margin-left:0;
   }
-}
+*/}
 
 @media (max-width: 400px) {
   .panel-menu a.account {

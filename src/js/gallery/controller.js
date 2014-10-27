@@ -4,6 +4,17 @@ angular.module( 'mean.albums' ).controller( 'AlbumCtrl', [ '$location', '$scope'
 
 	function ( $location, $scope, $modal, PhotoMgrService, album, albums, view, FileUploader ) {
 
+		$scope.pmSvc = PhotoMgrService;
+		$scope.view = view ? view : 'list'; //if view not set in route params,view = list
+		$scope.album = album;
+		$scope.newAlbum = $scope.pmSvc.newAlbum()
+		$scope.albums = albums;
+		$scope.pmSvc.filter = '';
+		$scope.section = {
+			'name': 'Album',
+			'url': '/albums'
+		}; //used in subnav.html
+
 		// create a uploader with options
 		$scope.uploader = new FileUploader( {
 			scope: $scope,
@@ -152,17 +163,6 @@ angular.module( 'mean.albums' ).controller( 'AlbumCtrl', [ '$location', '$scope'
 			$scope.pmSvc.editAlbumPhotos( 'remove', removedPhoto, album );
 		};
 
-		$scope.pmSvc = PhotoMgrService;
-		$scope.view = view ? view : 'list'; //if view not set in route params,view = list
-		$scope.album = album;
-		$scope.newAlbum = $scope.pmSvc.newAlbum()
-		$scope.albums = albums;
-		$scope.pmSvc.filter = '';
-		$scope.section = {
-			'name': 'Album',
-			'url': '/albums'
-		}; //used in subnav.html
-
 		if ( view === 'detail' ) {
 			console.log( album );
 
@@ -206,15 +206,15 @@ angular.module( 'mean.albums' ).controller( 'GalleryCtrl', [ '$scope', 'albums',
 			}
 		};
 
-		$scope.getCarousel = function(){
+		$scope.getCarousel = function () {
 
 			var slides = [];
-			_.each($scope.album.photoList, function(photo, index){
-				slides.push({
+			_.each( $scope.album.photoList, function ( photo, index ) {
+				slides.push( {
 					filepath: photo.filepath,
-					active: (photo._id === $scope.photo._id)
-				});
-			});
+					active: ( photo._id === $scope.photo._id )
+				} );
+			} );
 
 			return slides;
 		};
