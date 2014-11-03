@@ -1,11 +1,10 @@
 <section>
 
-	<div data-ng-include="'/js/gallery/views/subnav.html'"></div>
+	<div class="col-md-12" data-ng-include="'/js/gallery/views/subnav.html'"></div>
 
-	<div class="row">
-		<div class="col-lg-3">
-			<div class="panel-group">
-			  	<div class="panel panel-default" data-ng-repeat="a in albums| filter:{enabled: true}|orderBy:'a.order'">
+	<div class="col-md-3">
+		<div class="panel-group">
+		  	<div class="panel panel-default" data-ng-repeat="a in albums| filter:{enabled: true}|orderBy:'a.order'">
 			    	<div 	class="panel-heading"
 			    		data-ng-click="clickAlbum($index)"
 			    		data-ng-class="(albums[$index]._id === album._id) ? 'active enabled' : 'disabled'">

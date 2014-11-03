@@ -4,8 +4,8 @@
 		<a href="#!/articles/create">{{'articles_add' | translate}}</a>
 	</div>
 
-	<div id="gallery" class="gallery isotope col-md-12">
-		<div class="image gallery-group-1 isotope-item" data-ng-repeat="article in articles" style="display: inline-block;">
+	<div id="gallery" class="gallery col-md-12">
+		<div class="image" data-ng-repeat="article in articles" style="display: inline-block;">
 			<div class="image-inner">
 				<a href="#!/articles/{{article._id}}" data-lightbox="gallery-group-1">
 					<img ng-src="{{article.image && article.image || 'img/8962691008_7f489395c9_m.jpg'}}" alt="">

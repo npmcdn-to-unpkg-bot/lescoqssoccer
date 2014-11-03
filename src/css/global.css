@@ -371,11 +371,7 @@
     text-align: left;
 }
 .gallery .image {
-    width: 25%;
-    display: block;
-    margin-right: -.5%;
-    overflow: hidden;
-    padding: 10px;
+    padding-right: 30px;
 }
 .gallery .image-inner {
     position: relative;
@@ -389,6 +385,7 @@
     -webkit-border-radius: 0 0 3px 3px;
     -moz-border-radius: 0 0 3px 3px;
     border-radius: 0 0 3px 3px;
+    border: 1px solid lightgray;
 }
 .gallery .image a {
     -webkit-transition: all .2s linear;
