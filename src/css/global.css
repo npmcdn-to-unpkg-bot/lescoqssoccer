@@ -10,25 +10,8 @@
     border-radius: 0;
     z-index: 1039;
 }
-#sidebar-left {
-    float: left;
-    height: 100%;
-    position: fixed;
-    display: table;
-    padding: 0 !important;
-    top: 0;
-    width: 240px;
-    z-index: inherit;
-    background-color: rgba(0, 0, 0, 0.3);
-    -webkit-transition: 0.2s;
-    -moz-transition: 0.2s;
-    -o-transition: 0.2s;
-    transition: 0.2s;
-}
 #content {
     margin-top: 20px;
-    /*  max-height: 80%;
-*/
 }
 .slim-view {
     max-width: 350px;
@@ -53,7 +36,6 @@
     min-height: 100%;
     overflow: hidden;
     /*background: #202021 url(../img/outer_space_stars_galaxies_milky_way_1440x900_44234.jpg);*/
-
     background-size: 100% 100%;
     background-attachment: fixed;
 }
@@ -193,25 +175,6 @@
 .well {
     padding: 15px;
 }
-#cms-sidebar-nav {
-    position: fixed;
-    margin-top: 20px;
-    height: 80%;
-}
-#sidebar-left.col-xs-2 {
-    opacity: 0;
-    width: 0%;
-    padding: 0;
-}
-.sidebar-show #sidebar-left.col-xs-2 {
-    opacity: 1;
-    width: 16.666666666666664%;
-    padding: 0 15px;
-}
-.sidebar-show #content.col-xs-12 {
-    opacity: 1;
-    width: 83.33333333333334%;
-}
 .form-horizontal .radio, .form-horizontal .checkbox, .form-horizontal .radio-inline, .form-horizontal .checkbox-inline {
     min-height: inherit;
     padding-top: 0;
@@ -228,6 +191,38 @@
 .input-group .form-control {
     margin: 0;
 }
+
+.page-feed .avatar {
+    width: 60px;
+    float: left;
+    margin: 10px 15px;
+    text-align: center;
+    overflow: hidden;
+}
+.page-feed .avatar img {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #F8F8F8;
+}
+.page-feed-content {
+    position: relative;
+    padding: 3px 15px 5px;
+    background: #FCFCFC;
+    margin-left: 90px;
+    min-height: 80px;
+}
+.page-feed-content small.time {
+    font-style: italic;
+}
+.page-feed .page-feed-content:before {
+    font-family: FontAwesome;
+    content: "\f0d9";
+    position: absolute;
+    left: -10px;
+    top: 15px;
+    font-size: 30px;
+    color: #fcfcfc;
+}
 @media (min-width: 768px) {
     #sidebar-left.col-sm-2 {
         opacity: 1;
@@ -239,9 +234,6 @@
         width: 0;
         padding: 0;
     }
-    /*  #content{
-    margin-left:0;
-  }*/
 
     .sidebar-show #content.col-sm-10 {
         opacity: 1;
@@ -250,9 +242,6 @@
     .page-404 .form-inline {
         width: 60%;
     }
-    /*  #content{
-    margin-left: calc(16.665%);
-  }*/
 }
 @media (min-width: 992px) {
     .nav.main-menu > li > a, .nav.msg-menu > li > a {
@@ -260,8 +249,6 @@
     }
     .nav.main-menu > li > a > i, .nav.msg-menu > li > a > i {
         font-size: 14px;
-        /*width: 20px;*/
-
         display: inline-block;
     }
     .main-menu .dropdown-menu {
@@ -283,9 +270,6 @@
     .page-404 .form-inline {
         width: 40%;
     }
-    /*  #content{
-    margin-left: 16.65%;
-  }*/
 }
 @media (max-width: 767px) {
     .page-404 .form-inline {
@@ -307,9 +291,6 @@
         left: 50%;
         margin-left: -9px;
     }
-    /*  #content{
-    margin-left:0;
-  }*/
 }
 @media (max-width: 767px) {
     .user-mini {
@@ -320,10 +301,6 @@
     .user-mini {
         display: none;
     }
-    /*  #content{
-    margin-left:0;
-  }
-*/
 }
 @media (max-width: 400px) {
     .panel-menu a.account {
@@ -468,48 +445,17 @@
     overflow: hidden;
     height: 1047px;
 }
-/**** Isotope Filtering ****/
 
-.isotope-item {
-    z-index: 2;
+#cms-sidebar-nav {
+    position: fixed;
+    margin-top: 20px;
+    height: 80%;
 }
-.isotope-hidden.isotope-item {
-    pointer-events: none;
-    z-index: 1;
-}
-/**** Isotope CSS3 transitions ****/
 
-.isotope, .isotope .isotope-item {
-    -webkit-transition-duration: 0.8s;
-    -moz-transition-duration: 0.8s;
-    -ms-transition-duration: 0.8s;
-    -o-transition-duration: 0.8s;
-    transition-duration: 0.8s;
+#cms-sidebar-nav li.active{
+    background-color: white;
 }
-.isotope {
-    -webkit-transition-property: height, width;
-    -moz-transition-property: height, width;
-    -ms-transition-property: height, width;
-    -o-transition-property: height, width;
-    transition-property: height, width;
-}
-.isotope .isotope-item {
-    /* -webkit-transition-property: -webkit-transform, opacity; */
 
-    -moz-transition-property: -moz-transform, opacity;
-    -ms-transition-property: -ms-transform, opacity;
-    -o-transition-property: -o-transform, opacity;
-    transition-property: transform, opacity;
-}
-/**** disabling Isotope CSS3 transitions ****/
-
-.isotope.no-transition, .isotope.no-transition .isotope-item, .isotope .isotope-item.no-transition {
-    -webkit-transition-duration: 0s;
-    -moz-transition-duration: 0s;
-    -ms-transition-duration: 0s;
-    -o-transition-duration: 0s;
-    transition-duration: 0s;
-}
 a.sidebarItem {
     text-align: center;
     padding: 1.2rem;
@@ -520,7 +466,6 @@ a.sidebarItem {
 }
 a.sidebarItem:hover {
     background: white !important;
-    color: #333 !important;
 }
 a.sidebarItem.active {
     background: white !important;
@@ -563,7 +508,6 @@ a.collapse-link {
     background: transparent !important;
     color: #242a30 !important;
     border: 0 !important;
-    /*border-color: rgba(0,0,0,0.5) !important;*/
 }
 .nav-tabs.nav-justified>.active>a:hover {
     background: transparent !important;
@@ -613,7 +557,7 @@ textarea {
     clear: both;
 }
 .timeline > li > .timeline-panel {
-    width: 46%;
+    width: calc(50% - 50px);
     float: left;
     border: 1px solid #d4d4d4;
     border-radius: 2px;
@@ -748,9 +692,6 @@ textarea {
 .login-container {
     background-color: aliceblue;
 }
-/*.html-authentication{
-  background-color: antiquewhite;
-} */
 
 .alert {
     border: 1px solid black;
@@ -801,4 +742,11 @@ table.table-striped td {
 }
 .datepicker ul .btn-info {
     background-color: steelblue !important;
+}
+
+.ellipsis {
+    overflow: hidden;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

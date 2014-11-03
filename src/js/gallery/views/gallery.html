@@ -21,7 +21,7 @@
 		    		</div>
 			    	<div class="panel-collapse" data-ng-class="a.opened ? 'collapse in' : 'collapse'">
 				      	<div class="panel-body gallery-photo-name">
-					      	<div data-ng-repeat="p in a.photoList" data-ng-class="(p._id === photo._id) ? 'active' : ''">
+					      	<div data-ng-repeat="p in a.photoList" data-ng-class="(p._id === photo._id) ? 'active' : ''" class="ellipsis">
 					      		<a data-ng-click="clickPhoto(a._id, $index)">{{p.name}}</a>
 					      	</div>
 				      	</div>
