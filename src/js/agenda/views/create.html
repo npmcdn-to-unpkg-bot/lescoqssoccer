@@ -2,7 +2,7 @@
 	<div class="container col-md-12">
 		<div data-ng-include="'/js/agenda/views/subnav.html'"></div>
 
-		<div class="col-md-12" style="padding: 0; border: 1px solid gray; margin-bottom: 20px;">
+		<div style="border: 1px solid lightgray; margin-bottom: 20px;">
 			<form class="form-horizontal" role="form" data-ng-submit="create();">
 
 				<tabset justified="true">
@@ -148,10 +148,8 @@
 					</tab>
 
 					<tab heading="Photos">
-						<div class="col-sm-12" style="margin-top: 20px;">
-							<div class="form-group">
-	    						<div data-ng-include="'/js/files/fileUpload.html'"></div>
-							</div>
+						<div class="form-group" style="margin: 20px;">
+    							<div data-ng-include="'/js/files/fileUpload.html'"></div>
 						</div>
 					</tab>
 				</tabset>

@@ -1,22 +1,25 @@
+<h1 style="margin-left:15px; padding-left:0;">
+	<i class="fa fa-puzzle-piece"></i>
+	Suggestions
+</h1>
+<hr style="margin-left:15px; padding-left:0;">
 <section data-ng-controller="SuggestionController">
 
 	<div class="col-xs-12">
 		<form class="form-horizontal" role="form" data-ng-submit="add();">
 			<div class="form-group">
-				<div class="col-md-12">
-					<textarea
-						class="form-control"
-						placeholder="{{'suggestions_add' | translate}}"
-						data-ng-model="content"
-						style="width: 100%;"/>
-					<button 
-						class="btn btn-primary"
-						type="submit"
-						title="{{'suggestions_add' | translate}}"
-						style="float:right;">
-						<i class="glyphicon glyphicon-ok"></i>
-					</button>
-				</div>
+				<textarea
+					class="form-control"
+					placeholder="{{'suggestions_add' | translate}}"
+					data-ng-model="content"
+					style="width:calc(100% - 15px); margin-left: 15px;"/>
+				<button
+					class="btn btn-primary"
+					type="submit"
+					title="{{'suggestions_add' | translate}}"
+					style="float:right;">
+					<i class="glyphicon glyphicon-ok"></i>
+				</button>
 			</div>
 		</form>
 	</div>

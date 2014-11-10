@@ -189,7 +189,6 @@ angular.module( 'mean.albums' ).controller( 'GalleryCtrl', [ '$scope', 'albums',
 		$scope.paginationMax = 7;
 		$scope.currentIndex = 0;
 
-
 		$scope.clickPhoto = function ( albumID, index ) {
 			if ( albumID !== $scope.album._id ) {
 				$scope.album = window._.findWhere( $scope.albums, {

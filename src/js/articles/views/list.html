@@ -1,10 +1,13 @@
+<h1 style="margin-left:15px; padding-left:0;">
+	<i class="fa fa-dot-circle-o"></i>
+	Articles
+	<a href="#!/articles/create" class="pull-right" style="color: lightgray;">
+		<i class="fa fa-plus-circle"></i>
+	</a>
+</h1>
+<hr style="margin-left:15px; padding-left:0;">
 <section data-ng-controller="ArticlesController" data-ng-init="load();">
-
-	<div class="col-md-6" >
-		<a href="#!/articles/create">{{'articles_add' | translate}}</a>
-	</div>
-
-	<div id="gallery" class="gallery col-md-12">
+	<div id="gallery" class="gallery col-md-12" style="margin-bottom: 20px;">
 		<div class="image" data-ng-repeat="article in articles" style="display: inline-block;">
 			<div class="image-inner">
 				<a href="#!/articles/{{article._id}}" data-lightbox="gallery-group-1">
