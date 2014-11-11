@@ -38,7 +38,7 @@
 
 	"articles_add": "Ajouter un article",
 
-	"profile_fistname" : "Prénom",
+	"profile_firstname" : "Prénom",
 	"profile_lastname" : "Nom",
 	"profile_email" : "Email",
 	"profile_username" : "Identifiant",
@@ -50,5 +50,7 @@
 	"common_cancel": "Annuler",
 	"common_save": "Sauvegarder",
 	"common_delete": "Supprimer",
-	"common_back" : "Retour"
+	"common_back" : "Retour",
+
+	"welcome" : "Bonjour"
 }
