@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module( 'mean.agenda' ).controller( 'createController', [ '$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection', 'FileUploader',
-	function ( $scope, $routeParams, $location, $route, $filter, Global, AgendaCollection, FileUploader ) {
+angular.module( 'mean.agenda' ).controller( 'createController', [ '$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection', 'FileUploader', '$modal',
+	function ( $scope, $routeParams, $location, $route, $filter, Global, AgendaCollection, FileUploader, $modal) {
 
 		$scope.agendaCollection = AgendaCollection;
 		$scope.view = $route.current.params.view;
@@ -130,12 +130,18 @@ angular.module( 'mean.agenda' ).controller( 'createController', [ '$scope', '$ro
 					'address': this.search
 				}, function ( results, status ) {
 					if ( status == google.maps.GeocoderStatus.OK ) {
+
 						var loc = results[ 0 ].geometry.location;
 						$scope.search = results[ 0 ].formatted_address;
 						$scope.userEvent.location = loc;
 						$scope.gotoLocation( loc.lat(), loc.lng() );
+
 					} else {
-						alert( "Sorry, this search produced no results." );
+
+						$modal.open( {
+							templateUrl: 'js/agenda/views/modal/unknownLocation.html',
+							controller: 'unknowLocationCtrl'
+						} );
 					}
 				} );
 			}
@@ -207,7 +213,6 @@ angular.module( 'mean.agenda' ).controller( 'calendarController', [ '$scope', '$
 		};
 
 		$scope.onEventClick = function ( event, allDay, jsEvent, view ) {
-			alert( JSON.stringify( event ) );
 			// $scope.userEvent = event;
 			// $scope.userEvent.index = event.__uiCalId - 1;
 			// $scope.selectedUserEvent.selectedType = $filter('getByIdentifier')($scope.eventTypes, $scope.selectedUserEvent.type);
@@ -235,7 +240,8 @@ angular.module( 'mean.agenda' ).controller( 'calendarController', [ '$scope', '$
 							left: 'month agendaWeek agendaDay',
 							center: 'title',
 							right: 'prev,next'
-						},buttonText: {
+						},
+						buttonText: {
 							prev: "<span class='fc-text-arrow'>&lsaquo;</span>",
 							next: "<span class='fc-text-arrow'>&rsaquo;</span>",
 							prevYear: "<span class='fc-text-arrow'>&laquo;</span>",
@@ -338,6 +344,20 @@ angular.module( 'mean.agenda' ).controller( 'subNavController', [ '$scope', '$ro
 		$scope.section = {
 			'name': 'Agenda',
 			'url': '/agenda'
+		};
+	}
+] );
+
+angular.module( 'mean.agenda' ).controller( 'unknowLocationCtrl', [ '$scope', '$modalInstance',
+
+	function ( $scope, $modalInstance ) {
+
+		$scope.ok = function ( result ) {
+			$modalInstance.close( result );
+		};
+
+		$scope.cancel = function () {
+			$modalInstance.dismiss( 'cancel' );
 		};
 	}
 ] );
