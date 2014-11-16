@@ -1,26 +1,34 @@
-<section data-ng-controller="ArticlesController" data-ng-init="findOne()">
-	<div class="container col-md-12">
-		<div class="col-md-2">
-			<img src="{{article.image}}" style="height: 80px; width: 80px; vertical-zlign: middle;"></img>
-		</div>
-		<div class="col-md-8" style="margin-bottom: 10px;">
-			<h2>{{article.title}}</h2>
-			<span class="author">{{article.user.name}}</span> - le <span class="pub-name">{{article.created | date:dateFormat}}</span>
-		</div>
-		<div class="col-md-2"></div>
-		<div class="col-md-8" style="margin-bottom: 10px;">
-			<div>{{article.content}}</div>
-		</div>
-		<div class="col-md-2"></div>
-		<div class="col-md-12" data-ng-show="global.user._id == article.user._id" style="text-align:right;">
-			<a style="padding-left: 0;">
-				<i class="glyphicon glyphicon-edit"></i>
+ <h1 style="margin-left:15px; padding-left:0;">
+	<a href="#!/articles" style="color: black;">
+		<i class="fa fa-arrow-circle-left"></i>
+	</a>
+	{{'article_title' | translate}}s
+</h1>
+<hr style="margin-left:15px; padding-left:0;">
+<section data-ng-init="findOne()">
+	<div class="col-md-2" style="text-align:center;">
+		<img
+		class="imgThumbnail"
+		ng-src="{{article.image && article.image || 'img/8962691008_7f489395c9_m.jpg'}}"
+		style="height: 80px; width: 80px; vertical-zlign: middle; margin-bottom: 15px;"></img>
+		<div data-ng-show="global.user._id == article.user._id">
+			<a data-ng-click="edit();">
+				<i class="fa fa-pencil" style="font-size: medium"></i>
 			</a>
 			<div id="modal" ng-controller="Modal" style="display: inline-block;">
-				<a data-ng-click="open('appStructure/modal.html', 'Articles', 'Etes vous sure...', remove)">
-					<i class="glyphicon glyphicon-trash"></i>
+				<a data-ng-click="open('appStructure/modal.html', 'Articles', 'Sur de supprimer?', remove)">
+					<i class="fa fa-trash-o" style="font-size: medium"></i>
 				</a>
 			</div>
 		</div>
+	</div>
+
+	<div class="col-md-10" style="margin-bottom: 10px;">
+		<h2>{{article.title}}</h2>
+		<span class="author">{{article.user.name}}</span> - le <span class="pub-name">{{article.created | date:dateFormat}}</span>
+	</div>
+
+	<div class="col-md-10 col-md-offset-2" style="margin-bottom: 10px;">
+		<div>{{article.content}}</div>
 	</div>
 </section>

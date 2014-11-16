@@ -29,13 +29,16 @@ angular.module( 'mean' ).config( [ '$routeProvider',
 			templateUrl: 'js/articles/views/list.html'
 		} ).
 		when( '/articles/create', {
-			templateUrl: 'js/articles/views/create.html'
+			templateUrl: 'js/articles/views/create.html',
+			controller: 'ArticlesController',
 		} ).
 		when( '/articles/:articleId/edit', {
-			templateUrl: 'js/articles/views/edit.html'
+			templateUrl: 'js/articles/views/create.html',
+			controller: 'ArticlesController',
 		} ).
 		when( '/articles/:articleId', {
-			templateUrl: 'js/articles/views/view.html'
+			templateUrl: 'js/articles/views/view.html',
+			controller: 'ArticlesController',
 		} ).
 
 		/** LINKS ****/

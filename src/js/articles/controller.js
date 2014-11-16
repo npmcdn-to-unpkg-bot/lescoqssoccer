@@ -62,5 +62,9 @@ angular.module( 'mean.articles' ).controller( 'ArticlesController', [ '$scope', 
 				$location.path( "/articles" );
 			} );
 		};
+
+		$scope.edit = function(){
+			alert("Bientot");
+		};
 	}
 ] );
