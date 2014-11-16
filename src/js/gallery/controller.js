@@ -158,7 +158,7 @@ angular.module( 'mean.albums' ).controller( 'AlbumCtrl', [ '$location', '$scope'
 			} );
 		};
 
-		$scope.removePhotoFromAlbum = function ( removedPhoto ) {
+		$scope.deletePhoto = function(removedPhoto){
 			$scope.displayPhotos.splice( window._.indexOf( $scope.displayPhotos, removedPhoto ), 1 );
 			$scope.pmSvc.editAlbumPhotos( 'remove', removedPhoto, album );
 		};

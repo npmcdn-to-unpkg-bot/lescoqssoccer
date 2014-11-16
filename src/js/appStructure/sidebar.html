@@ -6,7 +6,7 @@
 		</li> -->
 
 		<li ng-repeat="item in menu" ng-class="{ active: isCurrentPath('#!/{{item.link}}')}">
-			<a href="#!/{{item.link}}" class="ajax-link sidebarItem">
+			<a href="#!/{{item.link}}" class="ajax-link sidebarItem ellipsis">
 				<span class="hidden-xs">{{item.title | translate}}</span>
 			</a>
 		</li>
