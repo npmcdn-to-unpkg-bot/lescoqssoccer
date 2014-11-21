@@ -37,6 +37,7 @@
 	"suggestions_add" : "Ajouter une suggestion",
 
 	"articles_add": "Ajouter un article",
+	"articles_empty": "Pas encore d'articles",
 
 	"profile_firstname" : "Prénom",
 	"profile_lastname" : "Nom",
@@ -51,6 +52,7 @@
 	"common_save": "Sauvegarder",
 	"common_delete": "Supprimer",
 	"common_back" : "Retour",
+	"common_by" : "par",
 
 	"welcome" : "Bonjour"
 }

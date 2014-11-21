@@ -12,15 +12,18 @@ angular.module('mean.links').controller('LinkController', ['$scope', 'Global', '
 		$scope.links = {
 			joan: {
 				author: "Jo",
-				adress: "http://objectifjapon.wordpress.com"
+				adress: "http://objectifjapon.wordpress.com",
+				image: "img/jojo.jpg"
 			},
 			nico: {
 				author: "Nico",
-				adress: "http://deux-noix-nz.blogspot.fr"
+				adress: "http://deux-noix-nz.blogspot.fr",
+				image: "img/nico.jpg"
 			},
 			momo:{
 				author: "Momo",
-				adress: "http://google.fr"
+				adress: "http://bandedemickeysen4l.com/",
+				image: "img/momo.jpeg"
 			}
 		};
 

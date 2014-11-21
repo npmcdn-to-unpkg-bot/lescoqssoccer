@@ -20,12 +20,15 @@
 			<div class="image-info">
 				<h5 class="title">{{article.title}}</h5>
 				<div>
-					<small>par</small> <a href="javascript:;">{{article.user.name}}</a>
+					<small>{{'common_by' | translate}}</small> <a href="#!">{{article.user.name}}</a>
 				</div>
 				<div class="desc">
 					{{article.content}}
 				</div>
 			</div>
+		</div>
+		<div data-ng-show="articles.length === 0" class="well">
+			<h4>{{'articles_empty' | translate}}</h4>
 		</div>
 	</div>
 </section>
