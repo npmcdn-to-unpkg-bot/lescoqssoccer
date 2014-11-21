@@ -1,51 +1,55 @@
- <section data-ng-controller="ArticlesController">
-
-	<div class="col-xs-12 col-sm-12" style="margin-top: 20px;">   
-		<div class="container" style="width: inherit;">             
-			<form class="form-horizontal" role="form" data-ng-submit="create()">
-				<div class="col-md-3 avatar-box" style="margin-top: 15px;">
-					<div class="my-drop-zone imgThumbnail" style="width: 126px; height: auto;">
-						<img ng-src="{{image && image || 'img/8962691008_7f489395c9_m.jpg'}}">
-					</div>
-					<button class="btn btn-default" style="margin-top: 15px;">
-						<label for="upload-profile-picture" class="label-upload-profile-picture">
-							Uploader une image
-							<input  
-							id="upload-profile-picture" 
-							nv-file-select 
-							uploader="uploader"
-							type="file" 
-							class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
-						</label>
-					</button>
+ <h1 style="margin-left:15px; padding-left:0;">
+	<a href="#!/articles" style="color: black;">
+		<i class="fa fa-arrow-circle-left"></i>
+	</a>
+	{{'article_title' | translate}}s
+</h1>
+<hr style="margin-left:15px; padding-left:0;">
+ <section>
+	<div class="col-md-12" style="margin-top: 20px;">
+		<form class="form-horizontal" role="form" data-ng-submit="create()">
+			<div class="col-md-3 avatar-box" style="margin-top: 15px;">
+				<div class="my-drop-zone imgThumbnail" style="width: 126px; height: auto;">
+					<img ng-src="{{image && image || 'img/8962691008_7f489395c9_m.jpg'}}">
 				</div>
-				<div class="col-md-9">
-					<div class="form-group">
-						<label for="title" class="col-md-2 control-label">Title</label>
-						<div class="col-md-10">
-							<input type="text" class="form-control" data-ng-model="title" placeholder="Title" required>
-							<!-- tooltip="See? Now click away..."  tooltip-trigger="focus" tooltip-placement="bottom"  -->
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="content" class="col-md-2 control-label">Contenu</label>
-						<div class="col-md-10">
-							<textarea data-ng-model="content" cols="30" rows="5" placeholder="Content" class="form-control" required></textarea>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="title" class="col-md-2 control-label">Lien</label>
-						<div class="col-md-10">
-							<input type="text" class="form-control" data-ng-model="link" placeholder="Lien">
-						</div>
-					</div>
-					<div class="modal-footer" style="padding: 19px 0 20px 20px;">
-						<a href="#!/articles" class="btn btn-default" type="button">Retour</a>
-						<button class="btn btn-primary" type="submit">Ajouter</button>
+				<button class="btn btn-default" style="margin-top: 15px;">
+					<label for="upload-profile-picture" class="label-upload-profile-picture">
+						Uploader une image
+						<input
+						id="upload-profile-picture"
+						nv-file-select
+						uploader="uploader"
+						type="file"
+						class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
+					</label>
+				</button>
+			</div>
+			<div class="col-md-9">
+				<div class="form-group">
+					<label for="title" class="col-md-2 control-label">Title</label>
+					<div class="col-md-10">
+						<input type="text" class="form-control" data-ng-model="title" placeholder="Title" required>
+						<!-- tooltip="See? Now click away..."  tooltip-trigger="focus" tooltip-placement="bottom"  -->
 					</div>
 				</div>
-			</form>
-		</div>
+				<div class="form-group">
+					<label for="content" class="col-md-2 control-label">Contenu</label>
+					<div class="col-md-10">
+						<textarea data-ng-model="content" cols="30" rows="5" placeholder="Content" class="form-control" required></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="title" class="col-md-2 control-label">Lien</label>
+					<div class="col-md-10">
+						<input type="text" class="form-control" data-ng-model="link" placeholder="Lien">
+					</div>
+				</div>
+				<div class="modal-footer" style="padding: 19px 0 20px 20px;">
+					<a href="#!/articles" class="btn btn-default" type="button">Retour</a>
+					<button class="btn btn-primary" type="submit">Ajouter</button>
+				</div>
+			</div>
+		</form>
 	</div>
 </section>
 

@@ -5,6 +5,7 @@ angular.module( 'mean.articles' ).controller( 'ArticlesController', [ '$scope', 
 
 		$scope.global = Global;
 		$scope.ArticlesCollection = ArticlesCollection;
+		$scope.articles;
 
 		$scope.image;
 		$scope.article;
@@ -24,7 +25,13 @@ angular.module( 'mean.articles' ).controller( 'ArticlesController', [ '$scope', 
 			$scope.image = response.path;
 		};
 
-		$scope.ArticlesCollection.load();
+		$scope.load = function () {
+
+			var articlePromise = $scope.ArticlesCollection.load();
+			articlePromise.then( function (articles) {
+				$scope.articles = articles;
+			} );
+		};
 
 		$scope.create = function () {
 
@@ -54,6 +61,10 @@ angular.module( 'mean.articles' ).controller( 'ArticlesController', [ '$scope', 
 			articlePromise.then( function ( response ) {
 				$location.path( "/articles" );
 			} );
+		};
+
+		$scope.edit = function(){
+			alert("Bientot");
 		};
 	}
 ] );

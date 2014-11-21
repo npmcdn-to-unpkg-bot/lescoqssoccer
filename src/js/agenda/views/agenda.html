@@ -1,19 +1,22 @@
 <section data-ng-controller="calendarController" data-ng-init="load()">
+	<div class="container col-md-12">
 
-	<div data-ng-include="'/js/agenda/views/subnav.html'"></div>
+		<div data-ng-include="'/js/agenda/views/subnav.html'"></div>
 
-	<!-- Calendar -->
-	<div class="col-md-12" style="padding: 0; ">
-		<article class="well" style="background-color: rgba(0, 0, 0, 0);">
-			<div class="row-fluid">
-				<div class="span8">
-					<div class="calendar"
-						ng-model="eventSources"
-						ui-calendar="uiConfig.calendar"
-						calendar="calendar"></div>
-					</tab>
+		<!-- Calendar -->
+		<div class="col-md-12" style="padding: 0; ">
+			<article class="well" style="background-color: rgba(0, 0, 0, 0);">
+				<div class="row-fluid">
+					<div class="span8">
+						<div class="calendar"
+							ng-model="eventSources"
+							ui-calendar="uiConfig.calendar"
+							calendar="calendar"></div>
+						</tab>
+					</div>
 				</div>
-			</div>
-		</article>
+			</article>
+		</div>
+
 	</div>
 </section>

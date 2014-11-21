@@ -1,9 +1,10 @@
 'use strict';
 
-angular.module( 'mean.agenda' ).controller( 'createController', [ '$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection', 'FileUploader',
-	function ( $scope, $routeParams, $location, $route, $filter, Global, AgendaCollection, FileUploader ) {
+angular.module( 'mean.agenda' ).controller( 'createController', [ '$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection', 'FileUploader', '$modal',
+	function ( $scope, $routeParams, $location, $route, $filter, Global, AgendaCollection, FileUploader, $modal) {
 
 		$scope.agendaCollection = AgendaCollection;
+		$scope.view = $route.current.params.view;
 		$scope.eventTypes = eventTypes;
 		$scope.start = $scope.end = ( $route.current && $route.current.params.startDate ) ? new Date( $route.current.params.startDate ) : new Date();
 
@@ -26,7 +27,6 @@ angular.module( 'mean.agenda' ).controller( 'createController', [ '$scope', '$ro
 
 			$scope.userEvent.type = $scope.userEvent.selectedType.identifier;
 
-			alert( JSON.stringify( $scope.userEvent ) );
 			var promise = $scope.agendaCollection.add( $scope.userEvent );
 			promise.then( function ( userEvent ) {
 				$location.path( "/agenda" );
@@ -125,16 +125,23 @@ angular.module( 'mean.agenda' ).controller( 'createController', [ '$scope', '$ro
 
 			if ( this.search && this.search.length > 0 ) {
 				if ( !this.geocoder ) this.geocoder = new google.maps.Geocoder();
+
 				this.geocoder.geocode( {
 					'address': this.search
 				}, function ( results, status ) {
 					if ( status == google.maps.GeocoderStatus.OK ) {
+
 						var loc = results[ 0 ].geometry.location;
 						$scope.search = results[ 0 ].formatted_address;
 						$scope.userEvent.location = loc;
 						$scope.gotoLocation( loc.lat(), loc.lng() );
+
 					} else {
-						alert( "Sorry, this search produced no results." );
+
+						$modal.open( {
+							templateUrl: 'js/agenda/views/modal/unknownLocation.html',
+							controller: 'unknowLocationCtrl'
+						} );
 					}
 				} );
 			}
@@ -143,8 +150,7 @@ angular.module( 'mean.agenda' ).controller( 'createController', [ '$scope', '$ro
 		$scope.gotoCurrentLocation = function () {
 			if ( "geolocation" in navigator ) {
 				navigator.geolocation.getCurrentPosition( function ( position ) {
-					var c = position.coords;
-					$scope.gotoLocation( c.latitude, c.longitude );
+					$scope.gotoLocation( position.coords.latitude, position.coords.longitude );
 				} );
 				return true;
 			}
@@ -153,23 +159,16 @@ angular.module( 'mean.agenda' ).controller( 'createController', [ '$scope', '$ro
 
 		$scope.gotoLocation = function ( lat, lon ) {
 
-			if ( $scope.lat != lat || $scope.lon != lon ) {
+			if ( $scope.map.center.latitude !== lat || $scope.map.center.longitude !== lon ) {
 
-				$scope.map.markers[ 0 ].latitude = lat;
-				$scope.map.markers[ 0 ].longitude = lon;
-
-				$scope.map.center = {
-					latitude: lat,
-					longitude: lon
-				};
+				$scope.map.markers[ 0 ].latitude = $scope.map.center.latitude = lat;
+				$scope.map.markers[ 0 ].longitude = $scope.map.center.longitude = lon;
 
 				if ( !$scope.$$phase ) {
 					$scope.$apply();
 				}
 			}
 		};
-
-		$scope.view = $route.current.params.view;
 	}
 ] );
 
@@ -180,13 +179,22 @@ angular.module( 'mean.agenda' ).controller( 'calendarController', [ '$scope', '$
 
 		$scope.load = function () {
 
-			var promise = $scope.agendaCollection.load();
-			promise.then( function ( events ) {
-				angular.forEach( events, function ( event ) {
+			if ( $scope.agendaCollection.all.length === 0 ) {
+
+				var promise = $scope.agendaCollection.load();
+				promise.then( function ( events ) {
+					$scope.agendaCollection.setEvents( events );
+					angular.forEach( events, function ( event ) {
+						$scope.events.push( event );
+					} );
+				} );
+
+			} else {
+
+				angular.forEach( $scope.agendaCollection.all, function ( event ) {
 					$scope.events.push( event );
 				} );
-			} );
-
+			}
 		};
 
 		$scope.update = function ( userEvent ) {
@@ -205,7 +213,6 @@ angular.module( 'mean.agenda' ).controller( 'calendarController', [ '$scope', '$
 		};
 
 		$scope.onEventClick = function ( event, allDay, jsEvent, view ) {
-			alert( JSON.stringify( event ) );
 			// $scope.userEvent = event;
 			// $scope.userEvent.index = event.__uiCalId - 1;
 			// $scope.selectedUserEvent.selectedType = $filter('getByIdentifier')($scope.eventTypes, $scope.selectedUserEvent.type);
@@ -221,21 +228,33 @@ angular.module( 'mean.agenda' ).controller( 'calendarController', [ '$scope', '$
 
 		$scope.changeLang = function ( language ) {
 			if ( language === 'french' ) {
-				$scope.uiConfig.calendar.firstDay = 1;
-				$scope.uiConfig.calendar.monthNames = [ 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre' ];
-				$scope.uiConfig.calendar.monthNamesShort = [ 'Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Jui', 'Juil', 'Aou', 'Sep', 'Oct', 'Nov', 'Déc' ];
-				$scope.uiConfig.calendar.dayNames = [ "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi" ];
-				$scope.uiConfig.calendar.dayNamesShort = [ "Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam" ];
-				$scope.uiConfig.calendar.buttonText = {
-					prev: "<span class='fc-text-arrow'>&lsaquo;</span>",
-					next: "<span class='fc-text-arrow'>&rsaquo;</span>",
-					prevYear: "<span class='fc-text-arrow'>&laquo;</span>",
-					nextYear: "<span class='fc-text-arrow'>&raquo;</span>",
-					today: 'Aujourd\'hui',
-					month: 'Mois',
-					week: 'Semaine',
-					day: 'Jour'
+
+				var frenchConfig = {
+					calendar: {
+						firstDay: 1,
+						monthNames: [ 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre' ],
+						monthNamesShort: [ 'Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Jui', 'Juil', 'Aou', 'Sep', 'Oct', 'Nov', 'Déc' ],
+						dayNames: [ "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi" ],
+						dayNamesShort: [ "Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam" ],
+						header: {
+							left: 'month agendaWeek agendaDay',
+							center: 'title',
+							right: 'prev,next'
+						},
+						buttonText: {
+							prev: "<span class='fc-text-arrow'>&lsaquo;</span>",
+							next: "<span class='fc-text-arrow'>&rsaquo;</span>",
+							prevYear: "<span class='fc-text-arrow'>&laquo;</span>",
+							nextYear: "<span class='fc-text-arrow'>&raquo;</span>",
+							today: 'Aujourd\'hui',
+							month: 'Mois',
+							week: 'Semaine',
+							day: 'Jour'
+						}
+					}
 				};
+
+				$scope.uiConfig.calendar = _.defaults( frenchConfig.calendar, $scope.uiConfig.calendar );
 			}
 		};
 
@@ -255,6 +274,7 @@ angular.module( 'mean.agenda' ).controller( 'calendarController', [ '$scope', '$
 			}
 		};
 
+		$scope.changeLang( 'french' );
 		$scope.events = [];
 		$scope.eventSources = [ $scope.events ];
 	}
@@ -264,6 +284,7 @@ angular.module( 'mean.agenda' ).controller( 'mapController', [ '$scope', '$route
 	function ( $scope, $routeParams, $location, $route, $filter, Global, AgendaCollection ) {
 
 		$scope.agendaCollection = AgendaCollection;
+		$scope.view = $route.current.params.view;
 
 		// Agenda
 		$scope.load = function () {
@@ -313,10 +334,6 @@ angular.module( 'mean.agenda' ).controller( 'mapController', [ '$scope', '$route
 			} );
 			marker.showWindow = true;
 		};
-
-		$scope.view = $route.current.params.view;
-		$scope.events = [];
-		$scope.eventSources = [ $scope.events ];
 	}
 ] );
 
@@ -327,6 +344,20 @@ angular.module( 'mean.agenda' ).controller( 'subNavController', [ '$scope', '$ro
 		$scope.section = {
 			'name': 'Agenda',
 			'url': '/agenda'
+		};
+	}
+] );
+
+angular.module( 'mean.agenda' ).controller( 'unknowLocationCtrl', [ '$scope', '$modalInstance',
+
+	function ( $scope, $modalInstance ) {
+
+		$scope.ok = function ( result ) {
+			$modalInstance.close( result );
+		};
+
+		$scope.cancel = function () {
+			$modalInstance.dismiss( 'cancel' );
 		};
 	}
 ] );

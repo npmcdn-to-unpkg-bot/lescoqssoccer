@@ -1,135 +1,121 @@
 <section data-ng-controller="ProfileController">
-	<div class="row">
 
-		<!-- avatar column -->
-		<div class="col-md-3 col-md-offset-1 avatar-box" style="display: table;">
-			<div style="display: table-cell; vertical-align:middle;">
-				<div class="personal-image">
-					<div class="site-avatar">
-						<a href="#!">
-						<img    ng-src="{{image || 'img/avatar.png'}}"
-						class="profile avatar-224 photo"
-						height="224" width="224">
-						</a>
-					</div>
-					<div style="text-align: center;">
-						<button class="btn btn-default">
-						<label for="upload-profile-picture" class="label-upload-profile-picture">
-							Uploader une photo différente
-							<input  id="upload-profile-picture"
-							nv-file-select
-							uploader="uploader"
-							type="file"
-							class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
-						</label>
-						</button>
-					</div>
+	<!-- avatar column -->
+	<div class="col-md-2 avatar-box" style="display: table;">
+		<div style="display: table-cell; vertical-align:middle;">
+			<div class="personal-image">
+				<div class="site-avatar">
+					<a href="#!">
+					<img    ng-src="{{image || 'img/avatar.png'}}"
+					class="profile avatar-224 photo"
+					height="224" width="224">
+					</a>
+				</div>
+				<div style="text-align: center;">
+					<button class="btn btn-default">
+					<label for="upload-profile-picture" class="label-upload-profile-picture">
+						<div class="ellipsis" style="width: 150px;">Uploader une photo différente</div>
+						<input  id="upload-profile-picture"
+						nv-file-select
+						uploader="uploader"
+						type="file"
+						class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
+					</label>
+					</button>
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<div class="col-xs-7">
-			<div class="box">
-				<div class="box-header">
-					<div class="box-name">
-						<span>Profile</span>
-					</div>
-					<div class="no-move"></div>
-				</div>
-				<div class="box-content" style="padding: 0;">
-					<form id="profileForm" class="form-horizontal" role="form">
-						<tabset justified="true">
-
-						<tab heading="Infos">
-						<div style="padding: 10px;">
-							<div class="form-group">
-								<label class="col-lg-4 control-label">Prénom</label>
-								<div class="col-lg-8">
-									<input class="form-control" type="text" value="Alex">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-4 control-label">Nom</label>
-								<div class="col-lg-8">
-									<input class="form-control" type="text" value="Lapize">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-4 control-label">Email</label>
-								<div class="col-lg-8">
-									<input class="form-control" type="text" value="bobby@yopmail.com">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-4 control-label">Pseudo</label>
-								<div class="col-lg-8">
-									<input class="form-control" type="text" value="bobby">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-4 control-label">Mot de passe</label>
-								<div class="col-lg-8">
-									<input class="form-control" type="password" value="heyhey">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-4 control-label">Confirmation</label>
-								<div class="col-lg-8">
-									<input class="form-control" type="password" value="heyhey">
-								</div>
-							</div>
-							<div class="actions" style="text-align:right; padding: 20px 0 0 0;">
-								<input type="button" class="btn btn-default" value="Enregistrer les modifs">
+	<div class="col-md-9" style="border: 1px solid lightgray; margin-bottom: 20px; padding: 0; ">
+		<form id="profileForm" class="form-horizontal" role="form" style="min-height: 75%">
+			<tabset justified="true">
+				<tab heading="Infos">
+					<div style="padding: 10px;">
+						<div class="form-group">
+							<label class="col-md-4 control-label">{{'profile_firstname' | translate}}</label>
+							<div class="col-md-8">
+								<input class="form-control" type="text" value="Alex">
 							</div>
 						</div>
-						</tab>
-
-						<tab heading="Skills">
-						<div style="padding: 10px;">
-							<div class="form-group">
-								<label class="col-lg-4 control-label">AquaBiker</label>
-								<div class="col-lg-8" style="text-align: right;">
-									<rating value="rate"
-									max="max"
-									readonly="isReadonly"
-									on-hover="hoveringOver(value)"
-									on-leave="overStar = null">
-									</rating>
-									<span   class="label"
-									ng-class=" {'label-warning': percent<30,
-									'label-info': percent>=30 && percent<70,
-									'label-success': percent>=70}">
-									{{percent}}%
-									</span>
-								</div>
+						<div class="form-group">
+							<label class="col-md-4 control-label">{{'profile_lastname' | translate}}</label>
+							<div class="col-md-8">
+								<input class="form-control" type="text" value="Lapize">
 							</div>
-							<div class="form-group">
-								<div class="col-md-12">
-									<p class="input-group">
-									<input  type="text"
-									class="form-control"
-									placeholder="Ajouter une compétence"
-									data-ng-model="suggestion"/>
-									<span class="input-group-btn">
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 control-label">{{'profile_email' | translate}}</label>
+							<div class="col-md-8">
+								<input class="form-control" type="text" value="bobby@yopmail.com">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 control-label">{{'profile_username' | translate}}</label>
+							<div class="col-md-8">
+								<input class="form-control" type="text" value="bobby">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 control-label">{{'profile_password' | translate}}</label>
+							<div class="col-md-8">
+								<input class="form-control" type="password" value="heyhey">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-4 control-label">{{'profile_confirm' | translate}}</label>
+							<div class="col-md-8">
+								<input class="form-control" type="password" value="heyhey">
+							</div>
+						</div>
+						<div class="actions" style="text-align:right; padding: 20px 0 0 0;">
+							<input type="button" class="btn btn-default" value="Enregistrer les modifs">
+						</div>
+					</div>
+				</tab>
+
+				<tab heading="Skills">
+					<div style="padding: 10px;">
+						<div class="form-group">
+							<label class="col-md-4 control-label">AquaBiker</label>
+							<div class="col-md-8" style="text-align: right;">
+								<rating value="rate"
+								max="max"
+								readonly="isReadonly"
+								on-hover="hoveringOver(value)"
+								on-leave="overStar = null">
+								</rating>
+								<span   class="label"
+								ng-class=" {'label-warning': percent<30,
+								'label-info': percent>=30 && percent<70,
+								'label-success': percent>=70}">
+									{{percent}}%
+								</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-12">
+								<p class="input-group">
+								<input  type="text"
+								class="form-control"
+								placeholder="Ajouter une compétence"
+								data-ng-model="suggestion"/>
+								<span class="input-group-btn">
 									<button class="btn btn-primary"
 									type="submit"
 									title="Ajouter une compétence">
-									<i class="glyphicon glyphicon-star"></i>
+										<i class="glyphicon glyphicon-star"></i>
 									</button>
-									</span>
-									</p>
-								</div>
+								</span>
+								</p>
 							</div>
 						</div>
-						<div class="actions" style="text-align:right; padding-right: 10px;">
-							<input type="button" class="btn btn-default" value="Enregistrer les modifs">
-						</div>
-						</tab>
-
-						</tabset>
-					</form>
-				</div>
-			</div>
-		</div>
+					</div>
+					<div class="actions" style="text-align:right; padding-right: 10px;">
+						<input type="button" class="btn btn-default" value="Enregistrer les modifs">
+					</div>
+				</tab>
+			</tabset>
+		</form>
 	</div>
 </section>

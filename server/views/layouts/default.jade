@@ -2,10 +2,10 @@ doctype html
 html(lang='en', xmlns='http://www.w3.org/1999/xhtml', itemscope='itemscope', itemtype='http://schema.org/Product')
   include ../includes/head
   body
-    .navbar.navbar-inverse.navbar-fixed-top(data-ng-include="'js/appStructure/header.html'", data-role="navigation")
+    .navbar(data-ng-include="'js/appStructure/header.html'", data-role="navigation")
     section#main.container-fluid
-      section.row
-        #sidebar-left.col-xs-2.col-sm-2(data-ng-include="'js/appStructure/sidebar.html'", data-ng-controller="SidebarController")
-        section#content.col-xs-12.col-sm-10
-          block content
+        .col-md-offset-1.col-xs-2.col-sm-2(data-ng-include="'js/appStructure/sidebar.html'", data-ng-controller="SidebarController")
+        section#content.col-xs-8.col-sm-8
+          section.row
+              block content
   include ../includes/foot

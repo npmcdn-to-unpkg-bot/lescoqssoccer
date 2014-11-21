@@ -1,25 +1,27 @@
 <section data-ng-controller="mapController" data-ng-init="load()">
+	<div class="container col-md-12">
+		<div data-ng-include="'/js/agenda/views/subnav.html'"></div>
 
-	<div data-ng-include="'/js/agenda/views/subnav.html'"></div>
+		<!-- Map -->
+		<div class="col-md-12" style="padding: 0; ">
+			<google-map
+			ng-if="view === 'map'"
+			center="map.center"
+			zoom="map.zoom"
+			draggable="true"
+			dragging="map.dragging"
+			bounds="map.bounds"
+			events="map.events"
+			options="map.options"
+			control="map.control">
 
-	<!-- Map -->
-	<div class="col-md-12" style="padding: 0; ">
-		<google-map
-		ng-if="view === 'map'"
-		center="map.center"
-		zoom="map.zoom"
-		draggable="true"
-		dragging="map.dragging"
-		bounds="map.bounds"
-		events="map.events"
-		options="map.options"
-		control="map.control">
-
-			<marker ng-repeat="m in map.markers" coords="m" click="onMarkerClicked(m);">
-				<window isIconVisibleOnClick="true" show="m.showWindow">
-					<p>{{ m.title }}</p>
-				</window>
-			</marker>
-		</google-map>
+				<marker ng-repeat="m in map.markers" coords="m" click="onMarkerClicked(m);">
+					<window isIconVisibleOnClick="true" show="m.showWindow">
+						<p>{{ m.title }}</p>
+						<p>{{ m.content }}</p>
+					</window>
+				</marker>
+			</google-map>
+		</div>
 	</div>
 </section>

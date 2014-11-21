@@ -1,80 +1,19 @@
 'use strict';
 
-angular.module( 'mean.gallery' ).controller( 'GalleryController', [ '$scope', 'Global',
-	function ( $scope, Global ) {
-
-		$scope.global = Global;
-		$scope.slides = [ {
-			src: "img/9036958611_fa1bb7f827_m.jpg",
-			text: "Image 1"
-		}, {
-			src: "img/9041440555_2175b32078_m.jpg",
-			text: "Image 2"
-		}, {
-			src: "img/8985207189_01ea27882d_m.jpg",
-			text: "Image 2"
-		}, {
-			src: "img/8962691008_7f489395c9_m.jpg",
-			text: "Image 3"
-		} ];
-
-		// initializing the time Interval
-		$scope.myInterval = 5000;
-	}
-] );
-
-angular.module( 'mean.albums' ).controller( 'modalInstanceCtrl', [ '$scope', '$modalInstance', 'photos', 'albums',
-
-	function ( $scope, $modalInstance, photos, albums ) {
-
-		$scope.photos = photos;
-		$scope.albums = albums;
-
-		$scope.ok = function ( result ) {
-			$modalInstance.close( result );
-		};
-
-		$scope.cancel = function () {
-			$modalInstance.dismiss( 'cancel' );
-		};
-	}
-] );
-
-angular.module( 'mean.albums' ).controller( 'deleteAlbumModalCtrl', [ '$scope', '$modalInstance', 'album',
-
-	function ( $scope, $modalInstance, album ) {
-
-		$scope.album = album;
-
-		$scope.ok = function ( result ) {
-			$modalInstance.close( result );
-		};
-
-		$scope.cancel = function () {
-			$modalInstance.dismiss( 'cancel' );
-		};
-	}
-] );
-
-angular.module( 'mean.albums' ).controller( 'deletePhotoModalCtrl', [ '$scope', '$modalInstance', 'photo',
-
-	function ( $scope, $modalInstance, photo ) {
-
-		$scope.photo = photo;
-
-		$scope.ok = function ( result ) {
-			$modalInstance.close( result );
-		};
-
-		$scope.cancel = function () {
-			$modalInstance.dismiss( 'cancel' );
-		};
-	}
-] );
-
 angular.module( 'mean.albums' ).controller( 'AlbumCtrl', [ '$location', '$scope', '$modal', 'PhotoMgrService', 'album', 'albums', 'view', 'FileUploader',
 
 	function ( $location, $scope, $modal, PhotoMgrService, album, albums, view, FileUploader ) {
+
+		$scope.pmSvc = PhotoMgrService;
+		$scope.view = view ? view : 'list'; //if view not set in route params,view = list
+		$scope.album = album;
+		$scope.newAlbum = $scope.pmSvc.newAlbum()
+		$scope.albums = albums;
+		$scope.pmSvc.filter = '';
+		$scope.section = {
+			'name': 'Album',
+			'url': '/albums'
+		}; //used in subnav.html
 
 		// create a uploader with options
 		$scope.uploader = new FileUploader( {
@@ -219,21 +158,10 @@ angular.module( 'mean.albums' ).controller( 'AlbumCtrl', [ '$location', '$scope'
 			} );
 		};
 
-		$scope.removePhotoFromAlbum = function ( removedPhoto ) {
+		$scope.deletePhoto = function(removedPhoto){
 			$scope.displayPhotos.splice( window._.indexOf( $scope.displayPhotos, removedPhoto ), 1 );
 			$scope.pmSvc.editAlbumPhotos( 'remove', removedPhoto, album );
 		};
-
-		$scope.pmSvc = PhotoMgrService;
-		$scope.view = view ? view : 'list'; //if view not set in route params,view = list
-		$scope.album = album;
-		$scope.newAlbum = $scope.pmSvc.newAlbum()
-		$scope.albums = albums;
-		$scope.pmSvc.filter = '';
-		$scope.section = {
-			'name': 'Album',
-			'url': '/albums'
-		}; //used in subnav.html
 
 		if ( view === 'detail' ) {
 			console.log( album );
@@ -257,6 +185,10 @@ angular.module( 'mean.albums' ).controller( 'GalleryCtrl', [ '$scope', 'albums',
 
 	function ( $scope, albums, photos, view ) {
 
+		$scope.paginationMin = 0;
+		$scope.paginationMax = 7;
+		$scope.currentIndex = 0;
+
 		$scope.clickPhoto = function ( albumID, index ) {
 			if ( albumID !== $scope.album._id ) {
 				$scope.album = window._.findWhere( $scope.albums, {
@@ -267,6 +199,11 @@ angular.module( 'mean.albums' ).controller( 'GalleryCtrl', [ '$scope', 'albums',
 			$scope.prev = ( index - 1 ) < 0 ? $scope.album.photoList.length - 1 : index - 1;
 			$scope.next = ( index + 1 ) % $scope.album.photoList.length;
 			$scope.photo = $scope.album.photoList[ index ];
+
+			$scope.currentIndex = $scope.next-1;
+			$scope.paginationMin = (index > 5) ? index-5 : 0;
+			$scope.paginationMax = ($scope.paginationMin + 7 > $scope.album.photoList.length-1) ? $scope.album.photoList.length-1 : $scope.paginationMin + 7;
+
 		}
 
 		$scope.clickAlbum = function ( i ) {
@@ -276,6 +213,19 @@ angular.module( 'mean.albums' ).controller( 'GalleryCtrl', [ '$scope', 'albums',
 				$scope.album = $scope.albums[ i ]
 				$scope.photo = $scope.album.photoList[ 0 ]
 			}
+		};
+
+		$scope.getCarousel = function () {
+
+			var slides = [];
+			_.each( $scope.album.photoList, function ( photo, index ) {
+				slides.push( {
+					filepath: photo.filepath,
+					active: ( photo._id === $scope.photo._id )
+				} );
+			} );
+
+			return slides;
 		};
 
 		$scope.albums = window._.where( albums, {
@@ -303,13 +253,13 @@ angular.module( 'mean.albums' ).controller( 'GalleryCtrl', [ '$scope', 'albums',
 		$scope.section = {
 			'name': 'Album',
 			'url': '/albums'
-		}; 
+		};
 
-		$scope.view = 'gallery'; 
+		$scope.view = 'gallery';
 	}
 ] );
 
-//To Pre-load Album & Photo data before route change 
+//To Pre-load Album & Photo data before route change
 var PhotoMgrData = {
 
 	album: function ( AlbumsCollection, $route ) {
@@ -345,7 +295,7 @@ var PhotoMgrData = {
 	}
 };
 
-//Preload all photos and albums 
+//Preload all photos and albums
 var GalleryData = {
 
 	albums: function ( AlbumsCollection ) {
@@ -362,3 +312,52 @@ var GalleryData = {
 		return $route.current.params.view;
 	}
 };
+
+angular.module( 'mean.albums' ).controller( 'modalInstanceCtrl', [ '$scope', '$modalInstance', 'photos', 'albums',
+
+	function ( $scope, $modalInstance, photos, albums ) {
+
+		$scope.photos = photos;
+		$scope.albums = albums;
+
+		$scope.ok = function ( result ) {
+			$modalInstance.close( result );
+		};
+
+		$scope.cancel = function () {
+			$modalInstance.dismiss( 'cancel' );
+		};
+	}
+] );
+
+angular.module( 'mean.albums' ).controller( 'deleteAlbumModalCtrl', [ '$scope', '$modalInstance', 'album',
+
+	function ( $scope, $modalInstance, album ) {
+
+		$scope.album = album;
+
+		$scope.ok = function ( result ) {
+			$modalInstance.close( result );
+		};
+
+		$scope.cancel = function () {
+			$modalInstance.dismiss( 'cancel' );
+		};
+	}
+] );
+
+angular.module( 'mean.albums' ).controller( 'deletePhotoModalCtrl', [ '$scope', '$modalInstance', 'photo',
+
+	function ( $scope, $modalInstance, photo ) {
+
+		$scope.photo = photo;
+
+		$scope.ok = function ( result ) {
+			$modalInstance.close( result );
+		};
+
+		$scope.cancel = function () {
+			$modalInstance.dismiss( 'cancel' );
+		};
+	}
+] );

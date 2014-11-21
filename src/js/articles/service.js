@@ -8,7 +8,11 @@ angular.module( 'mean.articles' ).factory( 'Articles', [ '$resource',
 		}, {
 			update: {
 				method: 'PUT'
-			}
+			},
+			query: {
+				method: 'GET',
+				isArray: true
+			},
 		} );
 	}
 ] );
@@ -30,29 +34,9 @@ angular.module( 'mean.articles' ).service( 'ArticlesCollection', [ 'Global', 'Ar
 			starredCount: 0,
 
 			load: function () {
-
-				Articles.query( function ( articles ) {
-
-					ArticlesCollection.all = [];
-					angular.forEach( articles, function ( article ) {
-
-						ArticlesCollection.all.push( article );
-						ArticlesCollection.all.sort( function ( articleA, articleB ) {
-							return new Date( articleB.created ).getTime() - new Date( articleA.created ).getTime();
-						} );
-
-						ArticlesCollection.filtered = ArticlesCollection.all;
-						ArticlesCollection.readCount = ArticlesCollection.all.reduce( function ( count, article ) {
-							return article.read ? count : count;
-						}, 0 );
-						ArticlesCollection.starredCount = ArticlesCollection.all.reduce( function ( count, article ) {
-							return article.starred ? count : count;
-						}, 0 );
-						ArticlesCollection.selected = ArticlesCollection.selected ? ArticlesCollection.all.filter( function ( article ) {
-							return article.id == ArticlesCollection.selected.id;
-						} )[ 0 ] : null;
-					} );
-				} );
+				return Articles.query( {}, function ( articles ) {
+					return articles;
+				} ).$promise;
 			},
 
 			findOne: function ( articleId ) {

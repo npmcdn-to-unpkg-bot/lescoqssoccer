@@ -3,56 +3,63 @@
 		<div class="row">
 			<div id="top-panel" class="col-xs-12 col-sm-12">
 				<div class="row">
-					<div class="col-xs-8 col-sm-4">
-						<a href="#!" class="show-sidebar">
-						<i class="fa fa-bars"></i>
-						</a>
-						<div id="search">
-							<input type="text" placeholder="search"/>
-							<i class="fa fa-search"></i>
+					<div class="col-md-offset-1 col-xs-8 col-sm-3">
+						<div class="site-avatar">
+							<a href="#!">
+								<img
+								ng-src="{{image || 'img/squares-background.jpg'}}"
+								class="profile avatar-224 photo"
+								height="224"
+								width="224"
+								style="display: inline-block; margin-left: 50px; position: fixed; top: -30px;">
+							</a>
 						</div>
 					</div>
-					<div class="col-xs-4 col-sm-8 top-panel-right">
+					<div class="col-xs-4 col-sm-7 top-panel-right">
 						<ul class="nav navbar-nav pull-right panel-menu">
-							<li class="hidden-xs">
+							<!-- <li class="hidden-xs">
 								<a href="#!/notifications" class="modal-link" style="display:table-cell;">
-								<i class="fa fa-bell" style="color: #777"></i>
-								<span class="badge">7</span>
+									<i class="fa fa-bell" style="color: #777"></i>
+									<span class="badge">7</span>
 								</a>
-							</li>
+							</li> -->
 							<li class="dropdown hidden-xs">
 								<a href="#" class="dropdown-toggle account" data-toggle="dropdown">
-								<div class="avatar">
-									<img src="img/avatar.png" class="img-rounded" alt="avatar" />
-								</div>
-								<i class="fa fa-angle-down pull-right"></i>
-								<div class="user-mini pull-right">
-									<span class="welcome">Bonjour,</span>
-									<span>{{global.user.name}}</span>
-								</div>
+									<div class="avatar">
+										<img src="img/avatar.png" class="img-rounded" alt="avatar" />
+									</div>
+									<i class="fa fa-angle-down pull-right"></i>
+									<div class="user-mini pull-right">
+										<span class="welcome">{{'welcome' | translate}},</span>
+										<span>{{global.user.name}}</span>
+									</div>
 								</a>
 								<ul class="dropdown-menu">
 									<li>
 										<a href="#!/profile">
-										<i class="fa fa-user"></i>
-										<span class="hidden-sm text">Profil</span>
+											<i class="fa fa-user"></i>
+											<span class="hidden-sm text">{{'profil' | translate}}</span>
 										</a>
 									</li>
 									<li>
 										<a href="#!/profile">
-										<i class="fa fa-cog"></i>
-										<span class="hidden-sm text">Paramètres</span>
+											<i class="fa fa-cog"></i>
+											<span class="hidden-sm text">{{'parameters' | translate}}</span>
 										</a>
 									</li>
 									<li>
 										<a href="/signout">
-										<i class="fa fa-power-off"></i>
-										<span class="hidden-sm text">Deconnexion</span>
+											<i class="fa fa-power-off"></i>
+											<span class="hidden-sm text">{{'disconnect' | translate}}</span>
 										</a>
 									</li>
 								</ul>
 							</li>
 						</ul>
+						<div id="search" class="pull-right" style="display: inline-block; margin-right: 10px;">
+							<input type="text" placeholder="Recherche"/>
+							<i class="fa fa-search"></i>
+						</div>
 					</div>
 				</div>
 			</div>
