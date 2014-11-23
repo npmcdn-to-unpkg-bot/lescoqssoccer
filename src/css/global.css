@@ -11,6 +11,39 @@
     z-index: 1039;
 }
 
+/* @group Animate */
+.view-animate.ng-enter {
+  opacity: .5;
+  top: 100%;
+}
+
+.view-animate.ng-enter,
+.view-animate.ng-leave {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) .5s;
+  webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) .5s;
+}
+
+.view-animate.ng-enter.ng-enter-active {
+  opacity: .75;
+  top: 0;
+}
+
+.view-animate.ng-leave.ng-leave-active {
+  opacity: 0;
+  top: -100%;
+}
+
+.view-animate-container {
+  min-height: 750px;
+  overflow: hidden;
+  position: relative;
+}
+
 /*Bootstrap override*/
 .hidden-xs, .hidden-sm {
     display: inline-block!important;
@@ -388,6 +421,7 @@
 .gallery .image {
     padding-right: 30px;
     margin-bottom: 20px;
+    width: 33%;
 }
 .gallery .image-inner {
     position: relative;
@@ -450,6 +484,7 @@
     -webkit-border-radius: 3px 3px 0 0;
     -moz-border-radius: 3px 3px 0 0;
     border-radius: 3px 3px 0 0;
+    width: 100%;
 }
 .gallery.isotope {
     position: relative;
