@@ -298,7 +298,9 @@ angular.module( 'mean.agenda' ).controller( 'mapController', [ '$scope', '$route
 							latitude: event.location.k,
 							longitude: event.location.B,
 							showWindow: false,
-							title: event.title
+							title: event.title,
+							content: event.content,
+							photos: event.photos
 						} );
 					}
 				} );
