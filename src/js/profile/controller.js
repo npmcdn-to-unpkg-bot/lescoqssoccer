@@ -30,25 +30,27 @@ angular.module( 'mean.users' ).controller( 'ProfileController', [ '$scope', 'Glo
 		***/
 		$scope.percent;
 		$scope.max = 10;
-		$scope.tmpValue;
 
 		$scope.hoveringOver = function ( value ) {
 			$scope.overStar = value;
+			$scope.percent = 100 * (value / $scope.max);
 		};
 
 		$scope.updateSkill = function ( skill ) {
 			skill.value = $scope.overStar;
-			$scope.overStar = null;
+			skill.percent = 100 * ($scope.overStar / $scope.max);
 		};
 
-		$scope.addSkill = function ( name, value ) {
+		$scope.addSkill = function () {
 
+			console.log(this.skillName);
 			if ( !user.skills )
 				user.skills = [];
 
 			$scope.user.skills.push( {
-				name: $scope.skillName,
-				value: 70
+				name: this.skillName,
+				value: 7,
+				percent: 70
 			} );
 		};
 

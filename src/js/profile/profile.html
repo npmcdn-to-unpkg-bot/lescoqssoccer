@@ -84,14 +84,14 @@
 								<rating value="skill.value"
 								max="max"
 								readonly="false"
-								on-hover="hoveringOver(value)"
-								on-leave="updateSkill(skill)">
+								on-hover="hoveringOver(value); updateSkill(skill);"
+								on-leave="updateSkill(skill);">
 								</rating>
 								<span   class="label"
-								ng-class=" {'label-warning': percent<30,
-								'label-info': percent>=30 && percent<70,
-								'label-success': percent>=70}">
-									{{percent}}%
+								ng-class=" {'label-warning': skill.percent<30,
+								'label-info': skill.percent>=30 && skill.percent<70,
+								'label-success': skill.percent>=70}">
+									{{skill.percent}}%
 								</span>
 							</div>
 						</div>
@@ -99,24 +99,24 @@
 						<div class="form-group">
 							<div class="col-md-12">
 								<p class="input-group">
-								<input  type="text"
-								class="form-control"
-								placeholder="Ajouter une compétence"
-								data-ng-model="skillName"/>
-								<span class="input-group-btn">
-									<button class="btn btn-primary"
-									type="button"
-									data-ng-click="addSkill();"
-									title="Ajouter une compétence">
-										<i class="glyphicon glyphicon-star"></i>
-									</button>
-								</span>
+									<input  type="text"
+									class="form-control"
+									placeholder="Ajouter une compétence"
+									data-ng-model="skillName"/>
+									<span class="input-group-btn">
+										<button class="btn btn-primary"
+										type="button"
+										data-ng-click="addSkill();"
+										title="Ajouter une compétence">
+											<i class="glyphicon glyphicon-star"></i>
+										</button>
+									</span>
 								</p>
 							</div>
 						</div>
 
 						<div class="actions" style="text-align:right; padding: 20px 0 0 0;">
-							<input type="button" class="btn btn-default" value="Enregistrer les modifs">
+							<input type="submit" class="btn btn-default" value="Enregistrer les modifs">
 						</div>
 
 					</div>
