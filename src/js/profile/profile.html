@@ -1,4 +1,4 @@
-<section data-ng-controller="ProfileController">
+<section data-ng-controller="ProfileController" data-ng-init="load()">
 
 	<!-- avatar column -->
 	<div class="col-md-2 avatar-box" style="display: table;">
@@ -6,7 +6,7 @@
 			<div class="personal-image">
 				<div class="site-avatar">
 					<a href="#!">
-					<img    ng-src="{{image || 'img/avatar.png'}}"
+					<img    ng-src="{{user.avatar || 'img/avatar.png'}}"
 					class="profile avatar-224 photo"
 					height="224" width="224">
 					</a>
@@ -28,62 +28,64 @@
 	</div>
 
 	<div class="col-md-9" style="border: 1px solid lightgray; margin-bottom: 20px; padding: 0; ">
-		<form id="profileForm" class="form-horizontal" role="form" style="min-height: 75%">
+		<form id="profileForm" class="form-horizontal" role="form" data-ng-submit="update()" style="min-height: 75%">
 			<tabset justified="true">
+
 				<tab heading="Infos">
 					<div style="padding: 10px;">
 						<div class="form-group">
 							<label class="col-md-4 control-label">{{'profile_firstname' | translate}}</label>
 							<div class="col-md-8">
-								<input class="form-control" type="text" value="Alex">
+								<input class="form-control" type="text" data-ng-model="user.name">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-4 control-label">{{'profile_lastname' | translate}}</label>
 							<div class="col-md-8">
-								<input class="form-control" type="text" value="Lapize">
+								<input class="form-control" type="text" data-ng-model="user.lastname">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-4 control-label">{{'profile_email' | translate}}</label>
 							<div class="col-md-8">
-								<input class="form-control" type="text" value="bobby@yopmail.com">
+								<input class="form-control" type="text" data-ng-model="user.email">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-4 control-label">{{'profile_username' | translate}}</label>
 							<div class="col-md-8">
-								<input class="form-control" type="text" value="bobby">
+								<input class="form-control" type="text" data-ng-model="user.username">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-4 control-label">{{'profile_password' | translate}}</label>
 							<div class="col-md-8">
-								<input class="form-control" type="password" value="heyhey">
+								<input class="form-control" type="password" data-ng-model="heyhey">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-4 control-label">{{'profile_confirm' | translate}}</label>
 							<div class="col-md-8">
-								<input class="form-control" type="password" value="heyhey">
+								<input class="form-control" type="password" data-ng-model="heyhey">
 							</div>
 						</div>
 						<div class="actions" style="text-align:right; padding: 20px 0 0 0;">
-							<input type="button" class="btn btn-default" value="Enregistrer les modifs">
+							<input type="submit" class="btn btn-default" value="Enregistrer les modifs">
 						</div>
 					</div>
 				</tab>
 
 				<tab heading="Skills">
 					<div style="padding: 10px;">
-						<div class="form-group">
-							<label class="col-md-4 control-label">AquaBiker</label>
+
+						<div class="form-group" data-ng-repeat="skill in user.skills">
+							<label class="col-md-4 control-label">{{skill.name}}</label>
 							<div class="col-md-8" style="text-align: right;">
-								<rating value="rate"
+								<rating value="skill.value"
 								max="max"
-								readonly="isReadonly"
+								readonly="false"
 								on-hover="hoveringOver(value)"
-								on-leave="overStar = null">
+								on-leave="updateSkill(skill)">
 								</rating>
 								<span   class="label"
 								ng-class=" {'label-warning': percent<30,
@@ -93,16 +95,18 @@
 								</span>
 							</div>
 						</div>
+
 						<div class="form-group">
 							<div class="col-md-12">
 								<p class="input-group">
 								<input  type="text"
 								class="form-control"
 								placeholder="Ajouter une compétence"
-								data-ng-model="suggestion"/>
+								data-ng-model="skillName"/>
 								<span class="input-group-btn">
 									<button class="btn btn-primary"
-									type="submit"
+									type="button"
+									data-ng-click="addSkill();"
 									title="Ajouter une compétence">
 										<i class="glyphicon glyphicon-star"></i>
 									</button>
@@ -110,9 +114,11 @@
 								</p>
 							</div>
 						</div>
-					</div>
-					<div class="actions" style="text-align:right; padding-right: 10px;">
-						<input type="button" class="btn btn-default" value="Enregistrer les modifs">
+
+						<div class="actions" style="text-align:right; padding: 20px 0 0 0;">
+							<input type="button" class="btn btn-default" value="Enregistrer les modifs">
+						</div>
+
 					</div>
 				</tab>
 			</tabset>

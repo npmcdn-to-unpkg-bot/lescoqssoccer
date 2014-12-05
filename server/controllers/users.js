@@ -4,6 +4,7 @@
  * Module dependencies.
  */
 var mongoose = require( 'mongoose' ),
+	_ = require( 'lodash' ),
 	User = mongoose.model( 'User' );
 
 /**
@@ -79,6 +80,23 @@ exports.create = function ( req, res, next ) {
 	} );
 };
 
+exports.update = function ( req, res, next ) {
+
+	var user = req.user;
+
+	user = _.extend( user, req.body );
+	user.save( function ( err ) {
+		if ( err ) {
+			return res.send( 'users/signup', {
+				errors: err.errors,
+				user: user
+			} );
+		} else {
+			res.jsonp( user );
+		}
+	} );
+};
+
 /**
  * Send User
  */
@@ -90,14 +108,12 @@ exports.me = function ( req, res ) {
  * Find user by id
  */
 exports.user = function ( req, res, next, id ) {
-	User
-		.findOne( {
-			_id: id
-		} )
-		.exec( function ( err, user ) {
-			if ( err ) return next( err );
-			if ( !user ) return next( new Error( 'Failed to load User ' + id ) );
-			req.profile = user;
-			next();
-		} );
+	User.findOne( {
+		_id: id
+	} ).exec( function ( err, user ) {
+		if ( err ) return next( err );
+		if ( !user ) return next( new Error( 'Failed to load User ' + id ) );
+		req.profile = user;
+		next();
+	} );
 };

@@ -25,7 +25,7 @@ exports.findAllPhotosInAlbum = function ( req, res ) {
 };
 
 exports.editAlbumPhotos = function ( req, res ) {
-	
+
 	var action = req.params.action;
 	var albumId = req.params.id;
 	var photoId = req.params.photoId;
