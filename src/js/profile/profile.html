@@ -6,21 +6,25 @@
 			<div class="personal-image">
 				<div class="site-avatar">
 					<a href="#!">
-					<img    ng-src="{{user.avatar || 'img/avatar.png'}}"
-					class="profile avatar-224 photo"
-					height="224" width="224">
+						<img
+						ng-src="{{user.avatar || 'img/avatar.png'}}"
+						class="profile avatar-224 photo"
+						height="224"
+						width="224">
 					</a>
 				</div>
 				<div style="text-align: center;">
 					<button class="btn btn-default">
-					<label for="upload-profile-picture" class="label-upload-profile-picture">
-						<div class="ellipsis" style="width: 150px;">Uploader une photo différente</div>
-						<input  id="upload-profile-picture"
-						nv-file-select
-						uploader="uploader"
-						type="file"
-						class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
-					</label>
+						<label for="upload-profile-picture" class="label-upload-profile-picture">
+							<div class="ellipsis" style="width: 150px;">
+								{{'photos_upload' | translate}}
+							</div>
+							<input  id="upload-profile-picture"
+							nv-file-select
+							uploader="uploader"
+							type="file"
+							class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
+						</label>
 					</button>
 				</div>
 			</div>

@@ -43,7 +43,6 @@ angular.module( 'mean.users' ).controller( 'ProfileController', [ '$scope', 'Glo
 
 		$scope.addSkill = function () {
 
-			console.log(this.skillName);
 			if ( !user.skills )
 				user.skills = [];
 
@@ -67,7 +66,7 @@ angular.module( 'mean.users' ).controller( 'ProfileController', [ '$scope', 'Glo
 
 		$scope.update = function () {
 			$scope.user.$update( function ( response ) {
-				console.log( response );
+				Global.user = response;
 			} );
 		};
 
