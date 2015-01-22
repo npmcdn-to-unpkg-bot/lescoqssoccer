@@ -1,6 +1,18 @@
+<h1 style="margin-left:15px; padding-left:0;">
+	<i class="fa fa-dot-circle-o"></i>
+	Agenda
+	<a href="#!/agenda/create" class="pull-right" style="color: lightgray;">
+		<i class="fa fa-plus-circle"></i>
+	</a>
+	<a href="#!/agenda" class="pull-right" style="color: lightgray; margin-right: 10px;">
+	 	<i class="fa fa-calendar-o"></i>
+	</a>
+</h1>
+<hr style="margin-left:15px; padding-left:0;">
+
 <section data-ng-controller="mapController" data-ng-init="load()">
 	<div class="container col-md-12">
-		<div data-ng-include="'/js/agenda/views/subnav.html'"></div>
+		<!-- <div data-ng-include="'/js/agenda/views/subnav.html'"></div> -->
 
 		<!-- Map -->
 		<div class="col-md-12" style="padding: 0; ">
@@ -17,8 +29,20 @@
 
 				<marker ng-repeat="m in map.markers" coords="m" click="onMarkerClicked(m);">
 					<window isIconVisibleOnClick="true" show="m.showWindow">
-						<p>{{ m.title }}</p>
-						<p>{{ m.content }}</p>
+						<div>
+							<!-- TODO: Slider -->
+							<div style="display: inline-block;">
+								<p style="text-align: center">{{m.title}}</p>
+
+								<img
+								class="imgThumbnail"
+								ng-src="{{m.photos.length > 0 && m.photos[0].path || 'img/8962691008_7f489395c9_m.jpg'}}"
+								style="height: 80px; width: 80px; margin-bottom: 15px; margin-left: 0; margin-right: 5px;">
+								</img>
+
+								<p style="display: inline-block; vertical-align: top;">{{m.content}}</p>
+							</div>
+            					</div>
 					</window>
 				</marker>
 			</google-map>

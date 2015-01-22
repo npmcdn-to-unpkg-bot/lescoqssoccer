@@ -158,7 +158,7 @@ angular.module( 'mean.albums' ).controller( 'AlbumCtrl', [ '$location', '$scope'
 			} );
 		};
 
-		$scope.deletePhoto = function(removedPhoto){
+		$scope.deletePhoto = function ( removedPhoto ) {
 			$scope.displayPhotos.splice( window._.indexOf( $scope.displayPhotos, removedPhoto ), 1 );
 			$scope.pmSvc.editAlbumPhotos( 'remove', removedPhoto, album );
 		};
@@ -181,74 +181,12 @@ angular.module( 'mean.albums' ).controller( 'AlbumCtrl', [ '$location', '$scope'
 	}
 ] );
 
-angular.module( 'mean.albums' ).controller( 'GalleryCtrl', [ '$scope', 'albums', 'photos', 'view',
+angular.module( 'mean.albums' ).controller( 'GalleryCtrl', [ '$scope', 'album', 'view',
 
-	function ( $scope, albums, photos, view ) {
+	function ( $scope, album, view, albumId ) {
 
-		$scope.paginationMin = 0;
-		$scope.paginationMax = 7;
-		$scope.currentIndex = 0;
-
-		$scope.clickPhoto = function ( albumID, index ) {
-			if ( albumID !== $scope.album._id ) {
-				$scope.album = window._.findWhere( $scope.albums, {
-					_id: albumID
-				} )
-			}
-
-			$scope.prev = ( index - 1 ) < 0 ? $scope.album.photoList.length - 1 : index - 1;
-			$scope.next = ( index + 1 ) % $scope.album.photoList.length;
-			$scope.photo = $scope.album.photoList[ index ];
-
-			$scope.currentIndex = $scope.next-1;
-			$scope.paginationMin = (index > 5) ? index-5 : 0;
-			$scope.paginationMax = ($scope.paginationMin + 7 > $scope.album.photoList.length-1) ? $scope.album.photoList.length-1 : $scope.paginationMin + 7;
-
-		}
-
-		$scope.clickAlbum = function ( i ) {
-
-			$scope.albums[ i ].opened = !$scope.albums[ i ].opened;
-			if ( $scope.albums[ i ].opened ) {
-				$scope.album = $scope.albums[ i ]
-				$scope.photo = $scope.album.photoList[ 0 ]
-			}
-		};
-
-		$scope.getCarousel = function () {
-
-			var slides = [];
-			_.each( $scope.album.photoList, function ( photo, index ) {
-				slides.push( {
-					filepath: photo.filepath,
-					active: ( photo._id === $scope.photo._id )
-				} );
-			} );
-
-			return slides;
-		};
-
-		$scope.albums = window._.where( albums, {
-			enabled: true
-		} );
-
-		if ( $scope.albums.length > 0 ) {
-
-			//load photo data into $scope.albums
-			window._.each( $scope.albums, function ( album ) {
-				window._.each( album.photoList, function ( entry ) {
-					window._.extend( entry, window._.findWhere( photos, {
-						_id: entry._id
-					} ) );
-				} );
-			} );
-
-			$scope.album = $scope.albums[ 0 ];
-			$scope.album.opened = true;
-			$scope.photo = $scope.album.photoList[ 0 ];
-			$scope.prev = $scope.album.photoList.length - 1;
-			$scope.next = 1;
-		}
+		$scope.album = album;
+		$scope.photo = album.photoList[0];
 
 		$scope.section = {
 			'name': 'Album',
@@ -256,6 +194,33 @@ angular.module( 'mean.albums' ).controller( 'GalleryCtrl', [ '$scope', 'albums',
 		};
 
 		$scope.view = 'gallery';
+
+		$scope.paginationMin = 0;
+		$scope.paginationMax = 15;
+		$scope.prev = 0;
+		$scope.next = 1;
+
+		$scope.clickPhoto = function ( index ) {
+
+			$scope.prev = ( index - 1 ) < 0 ? 0 : index - 1;
+			$scope.next = ( index + 1 ) > $scope.album.photoList.length-1 ? $scope.album.photoList.length-1 : index+1;
+			$scope.photo = $scope.album.photoList[ index ];
+
+		}
+
+
+		$scope.getCarousel = function () {
+
+			var slides = [];
+			_.each( $scope.album.photoList, function ( photo, index ) {
+				slides.push( {
+					filepath: photo._id.filepath,
+					active: ( photo._id._id === $scope.photo._id._id )
+				} );
+			} );
+
+			return slides;
+		};
 	}
 ] );
 
@@ -298,14 +263,10 @@ var PhotoMgrData = {
 //Preload all photos and albums
 var GalleryData = {
 
-	albums: function ( AlbumsCollection ) {
-		return AlbumsCollection.query().$promise;
-	},
-
-	photos: function ( PhotosCollection, $route ) {
-		return $route.current.params.albumId ? AlbumsCollection.getPhotos( {
+	album: function ( AlbumsCollection, $route ) {
+		return $route.current.params.albumId ? AlbumsCollection.get( {
 			id: $route.current.params.albumId
-		} ).$promise : PhotosCollection.query().$promise;
+		} ).$promise : AlbumsCollection.query().$promise;
 	},
 
 	view: function ( $route ) {

@@ -33,6 +33,7 @@ var UserSchema = new Schema( {
 			default: true
 		}
 	},
+	skills:[],
 	facebook: {},
 	twitter: {},
 	github: {},

@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.suggestions').controller('SuggestionController', ['$scope', 'Global', 'SuggestionsCollection',
-	function ($scope, Global, SuggestionsCollection) {
+angular.module('mean.suggestions').controller('SuggestionController', ['$scope', '$location', 'Global', 'SuggestionsCollection',
+	function ($scope, $location, Global, SuggestionsCollection) {
 
 		$scope.global = Global;
 		$scope.dateFormat = "dd/MM/yyyy 'à' H'h'mm";
@@ -20,6 +20,7 @@ angular.module('mean.suggestions').controller('SuggestionController', ['$scope',
 
 				$scope.SuggestionsCollection.add(suggestion, function () {
 					$scope.content = "";
+					$location.path( "/suggestions" );
 				});
 			}
 		}

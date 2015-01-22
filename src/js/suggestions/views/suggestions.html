@@ -1,0 +1,25 @@
+<h1 style="margin-left:15px; padding-left:0;">
+	<i class="fa fa-puzzle-piece"></i>
+	{{'suggestions_title' | translate}}
+	<a href="#!/suggestions/create" class="pull-right" style="color: lightgray;">
+		<i class="fa fa-plus-circle"></i>
+	</a>
+</h1>
+<hr style="margin-left:15px; padding-left:0;">
+<section data-ng-controller="SuggestionController">
+
+	<div class="row" data-ng-repeat="suggestion in SuggestionsCollection.all">
+		<div class="col-xs-12 page-feed">
+			<div class="box" style="border:0;">
+				<div class="avatar">
+					<img src="img/avatar.png" class="profile avatar-224 photo" style="margin-top: 0"/>
+				</div>
+				<div class="page-feed-content">
+					<small class="time">{{global.user.name}}, le {{suggestion.created | date:dateFormat}}</small>
+					<p>{{suggestion.content}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</section>

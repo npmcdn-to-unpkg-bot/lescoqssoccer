@@ -34,6 +34,8 @@
  	"gallery_add" : "Add photos",
  	"gallery_edit" : "Edit photos",
 
+ 	"photos_upload": "Upload another photo",
+
 	"suggestions_add" : "Add suggestion",
 
 	"articles_add": "Add an article",

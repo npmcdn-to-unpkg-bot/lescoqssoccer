@@ -7,11 +7,12 @@
 						<div class="site-avatar">
 							<a href="#!">
 								<img
-								ng-src="{{image || 'img/squares-background.jpg'}}"
+								id="header-logo"
+								ng-src="{{image || 'img/singe.jpg'}}"
 								class="profile avatar-224 photo"
 								height="224"
 								width="224"
-								style="display: inline-block; margin-left: 50px; position: fixed; top: -30px;">
+								style="display: inline-block; margin-left: 50px; position: fixed; top: -30px; border-radius: 0;">
 							</a>
 						</div>
 					</div>
@@ -26,7 +27,7 @@
 							<li class="dropdown hidden-xs">
 								<a href="#" class="dropdown-toggle account" data-toggle="dropdown">
 									<div class="avatar">
-										<img src="img/avatar.png" class="img-rounded" alt="avatar" />
+										<img ng-src="{{global.user.avatar || img/avatar.png}}" class="img-rounded" alt="avatar" />
 									</div>
 									<i class="fa fa-angle-down pull-right"></i>
 									<div class="user-mini pull-right">
