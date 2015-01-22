@@ -181,9 +181,9 @@ angular.module( 'mean.albums' ).controller( 'AlbumCtrl', [ '$location', '$scope'
 	}
 ] );
 
-angular.module( 'mean.albums' ).controller( 'GalleryCtrl', [ '$scope', 'album', 'photos', 'view',
+angular.module( 'mean.albums' ).controller( 'GalleryCtrl', [ '$scope', 'album', 'view',
 
-	function ( $scope, album, photos, view, albumId ) {
+	function ( $scope, album, view, albumId ) {
 
 		$scope.album = album;
 		$scope.photo = album.photoList[0];
@@ -267,12 +267,6 @@ var GalleryData = {
 		return $route.current.params.albumId ? AlbumsCollection.get( {
 			id: $route.current.params.albumId
 		} ).$promise : AlbumsCollection.query().$promise;
-	},
-
-	photos: function ( AlbumsCollection, $route ) {
-		return $route.current.params.albumId ? AlbumsCollection.getPhotos( {
-			id: $route.current.params.albumId
-		} ).$promise : [];
 	},
 
 	view: function ( $route ) {

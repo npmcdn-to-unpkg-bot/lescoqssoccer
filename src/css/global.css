@@ -180,7 +180,7 @@ html,body{
     vertical-align: top;
     background: #ff5b57;
 }
-#header-logo:hover{
+#header-logo{
 	-webkit-transform: rotate(-2deg) scale(1.2);
 	-ms-transform: rotate(-2deg) scale(1.2);
 	transform: rotate(-2deg) scale(1.2);
