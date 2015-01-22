@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mean.system').controller('SidebarController', ['$scope', 'Global', '$location',
-	
+
 	function ($scope, Global, $location) {
 		$scope.global = Global;
 
@@ -33,7 +33,7 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 			'icon': 'fa fa-list'
 		}, {
 			'title': 'gallery_title',
-			'link': 'gallery',
+			'link': 'albums/grid',
 			'icon': 'fa fa-picture-o'
 		}, {
 			'title': 'suggestions_title',

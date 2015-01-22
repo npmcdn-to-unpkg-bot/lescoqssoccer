@@ -77,7 +77,7 @@ angular.module( 'mean' ).config( [ '$routeProvider',
 		when( '/gallery/:albumId', {
 			templateUrl: 'js/gallery/views/gallery.html',
 			controller: 'GalleryCtrl',
-			resolve: PhotoMgrData
+			resolve: GalleryData
 		} ).
 
 		/** SUGGESTIONS ****/

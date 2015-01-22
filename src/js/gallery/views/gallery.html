@@ -1,8 +1,11 @@
 <h1 style="margin-left:15px; padding-left:0;">
 	<i class="fa fa-dot-circle-o"></i>
 	Photos
-	<a href="#!/albums/list" class="pull-right" style="color: lightgray;">
-		<i class="fa fa-list"></i>
+	<a ng-href="#!/albums/detail/{{album._id}}" class="pull-right" style="color: lightgray;">
+		<i class="fa fa-edit"></i>
+	</a>
+	<a href="#!/albums/grid" class="pull-right" style="color: lightgray; margin-right: 10px;">
+		<i class="fa fa-th"></i>
 	</a>
 </h1>
 <hr style="margin-left:15px; padding-left:0;">
@@ -10,45 +13,35 @@
 
 	<!-- <div class="col-md-12" data-ng-include="'/js/gallery/views/subnav.html'"></div> -->
 
-	<div class="col-md-3">
-		<div class="panel-group">
-		  	<div class="panel panel-default" data-ng-repeat="a in albums| filter:{enabled: true}|orderBy:'a.order'">
-			    	<div 	class="panel-heading"
-			    		data-ng-click="clickAlbum($index)"
-			    		data-ng-class="(albums[$index]._id === album._id) ? 'active enabled' : 'disabled'">
-			    		<a>
-				    		<h4 class="panel-title">
-				    			<span
-				    			class="glyphicon glyphicon-film"
-				    			data-ng-class="(albums[$index]._id === album._id) ? 'enabled' : 'disabled'">
-				    			</span>
-				    			{{a.name}}
-				    		</h4>
-			    		</a>
-		    		</div>
-			    	<div class="panel-collapse" data-ng-class="a.opened ? 'collapse in' : 'collapse'">
-				      	<div class="panel-body gallery-photo-name">
-					      	<div data-ng-repeat="p in a.photoList" data-ng-class="(p._id === photo._id) ? 'active' : ''" class="ellipsis">
-					      		<a data-ng-click="clickPhoto(a._id, $index)">{{p.name}}</a>
-					      	</div>
-				      	</div>
-			    	</div>
-			</div>
-		</div>
+	<div class="col-md-12" style="text-align: center;">
+	    	<ul class="pagination" style="margin-top: 10px;">
+	        		<li data-ng-click="clickPhoto(prev)">
+	            		<a>&laquo;</a>
+	        		</li>
+	        		<li
+	            	data-ng-repeat="p in album.photoList | slice:paginationMin:paginationMax"
+	            	data-ng-class="(p._id === photo._id) ? 'active' : ''"
+	            	data-ng-click="clickPhoto( $index)">
+	            		<a>{{  $index + 1 }}</a>
+	        		</li>
+	        		<li data-ng-click="clickPhoto(next)">
+	            		<a>&raquo;</a>
+	        		</li>
+	    	</ul>
 	</div>
 
-	<div class="col-md-9">
+	<div class="col-md-12">
 		<div class="well well-sm">
 			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 				<div id="modal" ng-controller="Modal" class="carousel-inner">
 					<div
 					class="carousel-img item"
 					data-ng-repeat="p in album.photoList"
-					data-ng-class="(p._id === photo._id) ? 'active' : ''">
+					data-ng-class="(p._id._id === photo._id._id) ? 'active' : ''">
 						<a
 						class="fancybox"
 				                          data-ng-click="open('gallery/views/caroussel.html', 'GalleryCtrl', '', '', getCarousel())">
-							<img data-ng-src="{{p.filepath}}">
+							<img data-ng-src="{{p._id.filepath}}" style="margin: auto;">
 						</a>
 					</div>
 				</div>

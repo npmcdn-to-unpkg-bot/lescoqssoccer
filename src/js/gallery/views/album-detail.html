@@ -1,11 +1,11 @@
 <h1 style="margin-left:15px; padding-left:0;">
 	<i class="fa fa-dot-circle-o"></i>
 	Photos
-	<a href="#!/albums/list" class="pull-right" style="color: lightgray;">
-		<i class="fa fa-list"></i>
+	<a href="#!/gallery/{{album._id}}" data-ng-show="album._id" class="pull-right" style="color: lightgray;">
+	 	<i class="fa fa-picture-o"></i>
 	</a>
-	<a href="#!/albums/add" class="pull-right" style="color: lightgray; margin-right: 10px;">
-	 	<i class="fa fa-add"></i>
+	<a href="#!/albums/grid" class="pull-right" style="color: lightgray; margin-right: 10px;">
+		<i class="fa fa-th"></i>
 	</a>
 </h1>
 <hr style="margin-left:15px; padding-left:0;">
@@ -15,11 +15,12 @@
     	<div ng-class="(album._id) ? 'col-md-4' : 'col-md-12'">
 
             	<div class="well well-sm">
+
 	            	<h4 class="item-header">
 	            		<span class="glyphicon glyphicon-cog">
 	            		</span>
 	            		<span >{{'gallery_detail' | translate}}</span>
-	            	</h4>
+	                        </h4>
 
 	            	<form class="form-horizontal" role="form">
 
@@ -118,13 +119,6 @@
 		      		</div>
 		    	</div>
             		</tab>
-            		<tab>
-            			<tab-heading>
-	                        		<h4 class="">
-	                        			<a href="#!/gallery"><span class="fa fa-picture-o"></span></a>
-	                        		</h4>
-	                    		</tab-heading>
-	                    	</tab>
             	</tabset>
         	</div>
 </section>

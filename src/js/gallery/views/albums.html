@@ -4,9 +4,6 @@
 	<a href="#!/albums/add" class="pull-right" style="color: lightgray; margin-left: 10px;">
 	 	<i class="fa fa-plus"></i>
 	</a>
-	<a href="#!/albums/list"  data-ng-show="view === 'grid'" class="pull-right" style="color: lightgray;">
-		<i class="fa fa-list"></i>
-	</a>
 	<a href="#!/albums/grid"  data-ng-show="view === 'list'" class="pull-right" style="color: lightgray;">
 		<i class="fa fa-th"></i>
 	</a>
@@ -26,8 +23,8 @@
 			                	data-ng-model="album" class="sortable"
 			                	data-ng-album-order="{{$index}}">
 
-			              	<td><a href="#!/albums/detail/{{album._id}}">{{album.order + 1}}</a></td>
-			              	<td><a href="#!/albums/detail/{{album._id}}">{{album.name}}</a></td>
+			              	<td><a href="#!/gallery/{{album._id}}">{{album.order + 1}}</a></td>
+			              	<td><a href="#!/gallery/{{album._id}}">{{album.name}}</a></td>
 			              	<td>{{album.description}}</td>
 			              	<td style="text-align: center" >
 			                		<a href="#!/albums/detail/{{album._id}}">
@@ -64,7 +61,7 @@
 
 	<!-- GRID VIEW -->
       	<div class="col-md-4" data-ng-repeat="album in albums| filter:pmSvc.filter" data-ng-if="view === 'grid'">
-        		<a href="#!/albums/detail/{{album._id}}">
+        		<a href="#!/gallery/{{album._id}}">
 		          <div class="thumbnail albumgrid-thumbnail">
 		            	<img class="img-thumbnail" style="width: 280px; height: 240px" data-ng-src="{{album.coverPicPath}}"/>
 		            	<div class="caption">
