@@ -1,10 +1,10 @@
-<h1 style="margin-left:15px; padding-left:0;">
-	<i class="fa fa-dot-circle-o"></i>
+<h1 style="margin-left:15px; padding-left:0; color: white;">
+	<i class="fa fa-dot-circle-o" style="color: white;"></i>
 	Photos
-	<a href="#!/gallery/{{album._id}}" data-ng-show="album._id" class="pull-right" style="color: lightgray;">
+	<a href="#!/gallery/{{album._id}}" data-ng-show="album._id" class="pull-right" style="color: white;">
 	 	<i class="fa fa-picture-o"></i>
 	</a>
-	<a href="#!/albums/grid" class="pull-right" style="color: lightgray; margin-right: 10px;">
+	<a href="#!/albums/grid" class="pull-right" style="color: white; margin-right: 10px;">
 		<i class="fa fa-th"></i>
 	</a>
 </h1>
@@ -63,62 +63,63 @@
 	          	</div>
 	</div>
 
-        	<div class="col-md-8" data-ng-show="album._id">
+        	<div class="col-md-8 well" data-ng-show="album._id" style="background: white;">
             	<tabset>
+
+            		<!-- GALLERY PREVIEW TAB -->
+                    		<tab>
+	                    		<tab-heading>
+		                        		<h4 class="">
+		                        			<span class="fa fa-edit"></span>
+		                        			{{'gallery_edit' | translate}} ({{displayPhotos.length}})
+		                        		</h4>
+		                    	</tab-heading>
+
+	                    		<div class="row album-list">
+			      		<div class="col-md-12">
+			        			<table class="table table-striped table-hover">
+				          			<tbody>
+
+							          <!--Row per album  -->
+							          <tr data-ng-repeat="photo in displayPhotos">
+
+							              	<td>
+							              		<a href="#!/albums/detail/{{album._id}}">{{$index +1}}</a>
+							              	</td>
+							              	<td>
+							              		<a>
+							              			<img data-ng-src="{{photo.filepath}}" style="width: 150px; height: auto;">
+							              		</a>
+							              	</td>
+							              	<td>
+							              		<a href="#!/albums/detail/{{album._id}}">{{photo.name}}</a>
+							              	</td>
+
+							              	<td style="text-align: center">
+							                		<a ng-click="deletePhoto(photo);">
+							                  		<span class="glyphicon glyphicon-trash" title="Delete Photo"/>
+							                		</a>
+							              	</td>
+							          	</tr>
+				          			</tbody>
+			        			</table>
+			      		</div>
+			    	</div>
+            		</tab>
 
             		<!-- ADD PHOTOS TAB -->
             		<tab>
-	                    	<tab-heading>
-	                        		<h4 class="">
-	                        			<span class="fa fa-plus-circle"></span>
-	                        			{{'gallery_add' | translate}}
-	                        		</h4>
-	                    	</tab-heading>
-                		<div class="form-group">
-                    			<div data-ng-include="'/js/files/fileUpload.html'"></div>
-                		</div>
+		                    	<tab-heading>
+		                        		<h4 class="">
+		                        			<span class="fa fa-plus-circle"></span>
+		                        			{{'gallery_add' | translate}}
+		                        		</h4>
+		                    	</tab-heading>
+	                		<div class="form-group">
+	                    			<div data-ng-include="'/js/files/fileUpload.html'"></div>
+	                		</div>
             		</tab>
 
-            		<!-- GALLERY PREVIEW TAB -->
-            		<tab select="">
-                    		<tab-heading>
-	                        		<h4 class="">
-	                        			<span class="fa fa-edit"></span>
-	                        			{{'gallery_edit' | translate}} ({{displayPhotos.length}})
-	                        		</h4>
-	                    	</tab-heading>
-
-                    		<div class="row album-list">
-		      		<div class="col-md-12">
-		        			<table class="table table-striped table-hover">
-			          			<tbody>
-
-						          <!--Row per album  -->
-						          <tr data-ng-repeat="photo in displayPhotos">
-
-						              	<td>
-						              		<a href="#!/albums/detail/{{album._id}}">{{$index +1}}</a>
-						              	</td>
-						              	<td>
-						              		<a>
-						              			<img data-ng-src="{{photo.filepath}}" style="width: 150px; height: auto;">
-						              		</a>
-						              	</td>
-						              	<td>
-						              		<a href="#!/albums/detail/{{album._id}}">{{photo.name}}</a>
-						              	</td>
-
-						              	<td style="text-align: center">
-						                		<a ng-click="deletePhoto(photo);">
-						                  		<span class="glyphicon glyphicon-trash" title="Delete Photo"/>
-						                		</a>
-						              	</td>
-						          	</tr>
-			          			</tbody>
-		        			</table>
-		      		</div>
-		    	</div>
-            		</tab>
             	</tabset>
         	</div>
 </section>
