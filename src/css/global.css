@@ -907,3 +907,51 @@ ul.suggestionList li a:hover,ul.suggestionList li a:focus{
     	-webkit-box-orient: vertical;
     	overflow: hidden;
 }
+
+/*
+FallingLamp*/
+
+canvas {
+	display: block;
+	width: 100%;
+	min-height: 500px;
+	height: 100%;
+	position: fixed;
+	z-index: 5;
+	background: none;
+}
+.external {
+	background: white;
+	padding: 1em;
+	z-index: 11;
+}
+.lights {
+	right: 0;
+	bottom: 0;
+}
+.central {
+	position: absolute;
+	top: 420px;
+	margin: auto;
+	width: 570px;
+	margin-left: -285px;
+	left: 50%;
+	z-index: 11;
+	color: #000;
+	text-align: justify;
+}
+.central2 {
+	-webkit-transform-origin: 50% 100%;
+	-moz-transform-origin: 50% 100%;
+	-ms-transform-origin: 50% 100%;
+	-o-transform-origin: 50% 100%;
+	transform-origin: 50% 100%;
+	-webkit-transform: skew(0deg, 0deg) scaleY(.2);
+	-moz-transform: skew(0deg, 0deg) scaleY(.2);
+	-ms-transform: skew(0deg, 0deg) scaleY(.2);
+	-o-transform: skew(0deg, 0deg) scaleY(.2);
+	color: transparent;
+	text-shadow: 0px 0px 40px #222;
+	display: none;
+	top: 480px;
+}
