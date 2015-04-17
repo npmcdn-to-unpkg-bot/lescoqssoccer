@@ -930,3 +930,9 @@ canvas {
 #content h1, #cms-sidebar-nav-list span{
 	font-family: "aaaiight";
 }
+
+.bookTitle{
+	margin-top: 10px !important;
+	font-family: "aaaiight";
+	color: #2c3e50;
+}
