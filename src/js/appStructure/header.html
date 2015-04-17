@@ -2,31 +2,16 @@
 	<div class="container-fluid expanded-panel">
 		<div class="row">
 			<div id="top-panel" class="col-xs-12 col-sm-12">
+
 				<div class="row">
+
 					<div class="col-md-offset-1 col-xs-8 col-sm-3">
-						<!-- <div class="site-avatar">
-							<a href="#!">
-								<img
-								id="header-logo"
-								ng-src="{{image || 'img/singe.jpg'}}"
-								class="profile avatar-224 photo"
-								height="224"
-								width="224"
-								style="display: inline-block; margin-left: 50px; position: fixed; top: -30px; border-radius: 0;">
-							</a>
-						</div> -->
-						<canvas id="RopeDrawingArea">You need a internet browser that support html5 canvas…</canvas>
+						<canvas id="ropeDrawingArea"></canvas>
 					</div>
 
 					<div class="col-xs-4 col-sm-7 top-panel-right">
-						<div ng-click="click();">Toggle Lights!</div>
+						<span ng-click="click();">Toggle Lights!</span>
 						<ul class="nav navbar-nav pull-right panel-menu">
-							<!-- <li class="hidden-xs">
-								<a href="#!/notifications" class="modal-link" style="display:table-cell;">
-									<i class="fa fa-bell" style="color: #777"></i>
-									<span class="badge">7</span>
-								</a>
-							</li> -->
 							<li class="dropdown hidden-xs">
 								<a href="#" class="dropdown-toggle account" data-toggle="dropdown">
 									<div class="avatar">
@@ -60,10 +45,12 @@
 								</ul>
 							</li>
 						</ul>
+
 						<div id="search" class="pull-right" style="display: inline-block; margin-right: 10px;">
 							<input type="text" placeholder="Recherche"/>
 							<i class="fa fa-search"></i>
 						</div>
+
 					</div>
 				</div>
 			</div>

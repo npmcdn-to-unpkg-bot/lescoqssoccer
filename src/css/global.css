@@ -916,3 +916,9 @@ canvas {
 	z-index: 5;
 	background: none;
 }
+
+#ropeDrawingArea{
+    position: fixed;
+    left: 0;
+    width: 35%;
+}
