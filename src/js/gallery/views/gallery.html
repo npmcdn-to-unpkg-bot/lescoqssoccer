@@ -1,37 +1,34 @@
-<h1 style="margin-left:15px; padding-left:0;">
-	<i class="fa fa-dot-circle-o"></i>
+<h1 style="margin-left:15px; padding-left:0; color: white; ">
+	<i class="fa fa-dot-circle-o" style="color: white; "></i>
 	Photos
-	<a ng-href="#!/albums/detail/{{album._id}}" class="pull-right" style="color: lightgray;">
+	<a ng-href="#!/albums/detail/{{album._id}}" class="pull-right" style="color: white;">
 		<i class="fa fa-edit"></i>
 	</a>
-	<a href="#!/albums/grid" class="pull-right" style="color: lightgray; margin-right: 10px;">
+	<a href="#!/albums/grid" class="pull-right" style="color: white; margin-right: 10px;">
 		<i class="fa fa-th"></i>
 	</a>
 </h1>
 <hr style="margin-left:15px; padding-left:0;">
 <section>
 
-	<!-- <div class="col-md-12" data-ng-include="'/js/gallery/views/subnav.html'"></div> -->
-
-	<div class="col-md-12" style="text-align: center;">
-	    	<ul class="pagination" style="margin-top: 10px;">
-	        		<li data-ng-click="clickPhoto(prev)">
-	            		<a>&laquo;</a>
-	        		</li>
-	        		<li
-	            	data-ng-repeat="p in album.photoList | slice:paginationMin:paginationMax"
-	            	data-ng-class="(p._id === photo._id) ? 'active' : ''"
-	            	data-ng-click="clickPhoto( $index)">
-	            		<a>{{  $index + 1 }}</a>
-	        		</li>
-	        		<li data-ng-click="clickPhoto(next)">
-	            		<a>&raquo;</a>
-	        		</li>
-	    	</ul>
-	</div>
-
 	<div class="col-md-12">
 		<div class="well well-sm">
+			<div style="text-align: center;">
+				<ul class="pagination" style="margin-top: 10px;">
+			        		<li data-ng-click="clickPhoto(prev)">
+			            		<a>&laquo;</a>
+			        		</li>
+			        		<li
+			            	data-ng-repeat="p in album.photoList | slice:paginationMin:paginationMax"
+			            	data-ng-class="(p._id === photo._id) ? 'active' : ''"
+			            	data-ng-click="clickPhoto( $index)">
+			            		<a>{{  $index + 1 }}</a>
+			        		</li>
+			        		<li data-ng-click="clickPhoto(next)">
+			            		<a>&raquo;</a>
+			        		</li>
+			    	</ul>
+			</div>
 			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 				<div id="modal" ng-controller="Modal" class="carousel-inner">
 					<div

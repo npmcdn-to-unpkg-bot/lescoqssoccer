@@ -4,7 +4,7 @@ angular.module('mean.suggestions').controller('SuggestionController', ['$scope',
 	function ($scope, $location, Global, SuggestionsCollection) {
 
 		$scope.global = Global;
-		$scope.dateFormat = "dd/MM/yyyy 'à' H'h'mm";
+		$scope.dateFormat = "dd/MM/yyyy";
 		$scope.SuggestionsCollection = SuggestionsCollection;
 		$scope.content;
 

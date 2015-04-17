@@ -8,7 +8,8 @@ angular.module( 'mean' ).config( [ '$routeProvider',
 
 		/** HOME ****/
 		when( '/home', {
-			templateUrl: 'js/appStructure/home.html'
+			templateUrl: 'js/appStructure/home.html',
+			controller: 'HomeController',
 		} ).
 
 		/** AGENDA ****/
