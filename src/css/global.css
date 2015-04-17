@@ -510,6 +510,8 @@ body{
 
 #cms-sidebar-nav {
     position: fixed;
+    width: 25%;
+    left: 0;
     margin: 100px 0;
     height: calc(100% - 220px);
 }
@@ -916,6 +918,7 @@ canvas {
 	width: 100%;
 	z-index: 5;
 	background: none;
+	margin-left: 10px;
 }
 
 @font-face {
