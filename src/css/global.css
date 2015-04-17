@@ -4,8 +4,9 @@ html,body{
 
 body{
 	opacity: 1;
-	background-image: -webkit-linear-gradient(left, rgba(19, 78, 94, 0.8), rgba(113, 178, 128, 0.8));
-	background-color: rgb(255, 255, 255);
+	/*background-image: -webkit-linear-gradient(left, rgba(19, 78, 94, 0.8), rgba(113, 178, 128, 0.8));*/
+	background: url(../img/abstract-room-empty-wallpaper-wallwuzz-hd-wallpaper-11134.jpg) no-repeat center center fixed;
+  	background-size: cover;
 }
 
 .navbar {
@@ -915,4 +916,14 @@ canvas {
 	width: 100%;
 	z-index: 5;
 	background: none;
+}
+
+@font-face {
+    font-family: "aaaiight";
+    font-weight: bold;
+    src: url('../fonts/aaaiight.ttf');
+}
+
+#content h1, #cms-sidebar-nav-list span{
+	font-family: "aaaiight";
 }

@@ -1,9 +1,8 @@
-<div id="cms-sidebar-nav" class="well well-sm cms-sidebar-nav bs-sidebar hidden-print">
+<div id="cms-sidebar-nav" class="well-sm cms-sidebar-nav bs-sidebar hidden-print">
 
 	<nav id="cms-sidebar-nav-list" class="nav nav-list">
-<!-- 		<li class="nav-header">
-			<span class="title">Menu</span>
-		</li> -->
+
+		<li class="nav-divider"></li>
 
 		<li ng-repeat="item in menu" ng-class="{ active: isCurrentPath('#!/{{item.link}}')}">
 			<a href="#!/{{item.link}}" class="ajax-link sidebarItem ellipsis">
@@ -11,11 +10,6 @@
 			</a>
 		</li>
 
-		<!-- <li class="nav-header">
-			<span class="title">Admin</span>
-		</li>
-
-		<li  ng-class="{active:item.selected}" data-match-route="#{{item.href}}" ng-repeat="item in App.menu.admin" ng-include src="'sidebar-item.html'"></li>
-		<li class="nav-divider"></li> -->
+		<li class="nav-divider"></li>
 	</nav>
 </div>
