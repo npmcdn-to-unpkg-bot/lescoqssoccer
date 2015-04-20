@@ -4,18 +4,17 @@
 			<div id="top-panel" class="col-xs-12 col-sm-12">
 
 				<div class="row">
-
-					<div class="col-md-offset-1 col-xs-8 col-sm-3">
-						<canvas id="ropeDrawingArea"></canvas>
+					<div class="col-xs-8 col-sm-3">
+						<canvas id="RopeDrawingArea"></canvas>
 					</div>
 
-					<div class="col-xs-4 col-sm-7 top-panel-right">
+					<div class="col-xs-4 col-sm-8 top-panel-right">
 						<span ng-click="click();">Toggle Lights!</span>
 						<ul class="nav navbar-nav pull-right panel-menu">
 							<li class="dropdown hidden-xs">
 								<a href="#" class="dropdown-toggle account" data-toggle="dropdown">
 									<div class="avatar">
-										<img ng-src="{{global.user.avatar || img/avatar.png}}" class="img-rounded" alt="avatar" />
+										<img ng-src="{{global.user.avatar !== null && global.user.avatar || 'img/avatar.png'}}" class="img-rounded" alt="avatar" />
 									</div>
 									<i class="fa fa-angle-down pull-right"></i>
 									<div class="user-mini pull-right">
