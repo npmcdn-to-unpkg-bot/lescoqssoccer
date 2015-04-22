@@ -827,7 +827,6 @@ ul.suggestionList,li{
 }
 ul.suggestionList{
   overflow:hidden;
-  padding:3em;
 }
 ul.suggestionList li a{
   text-decoration:none;
