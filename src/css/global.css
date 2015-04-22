@@ -96,12 +96,8 @@ body{
     box-shadow: 0 1px 2px #272727;
 }
 #main {
-    margin-top: 50px;
     min-height: 100%;
     overflow: hidden;
-    /*background: #202021 url(../img/outer_space_stars_galaxies_milky_way_1440x900_44234.jpg);*/
-    background-size: 100% 100%;
-    background-attachment: fixed;
 }
 #search {
     position: relative;
@@ -517,7 +513,7 @@ body{
     position: fixed;
     width: 25%;
     left: 0;
-    margin: 100px 0;
+    margin: 150px 0;
     height: calc(100% - 220px);
 }
 

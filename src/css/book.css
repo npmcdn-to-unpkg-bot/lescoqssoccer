@@ -24,7 +24,7 @@ a {
 	text-decoration: none;
 }
 
-.btn {
+.component .btn {
 	display: inline-block;
 	text-transform: uppercase;
 	border: 2px solid #2c3e50;
@@ -38,7 +38,7 @@ a {
 	transition: color 0.3s, border-color 0.3s;
 }
 
-.btn:hover {
+.component .btn:hover {
 	border-color: #16a085;
 	color: #16a085;
 }
@@ -57,7 +57,6 @@ a {
 	min-height: 300px;
 	display: inline-block;
 	margin: 30px 20px 30px 30px;
-	padding: 0 0 0 60px;
 	vertical-align: top;
 }
 
