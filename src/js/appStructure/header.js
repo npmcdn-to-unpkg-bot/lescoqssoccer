@@ -230,7 +230,7 @@ angular.module('mean.system').controller('HeaderController', ['$scope', 'Global'
 			ropeDemo.context.drawingContext.lineTo(-3900, 1280);
 			ropeDemo.context.drawingContext.lineTo(item.x, item.y + 170);
 			var grd = ropeDemo.context.drawingContext.createRadialGradient(0, 0, 2, 640, 1030, 1280);
-			grd.addColorStop(0, 'white');
+			// grd.addColorStop(0, 'white');
 
 			// dark blue
 			grd.addColorStop(1, 'rgba(255, 255, 255, 0.6)');
@@ -242,6 +242,8 @@ angular.module('mean.system').controller('HeaderController', ['$scope', 'Global'
 			ropeDemo.context.drawingContext.restore();
 			ropeDemo.context.drawingContext.lineWidth = 0;
 			ropeDemo.context.drawingContext.closePath();
+
+			$('#cms-sidebar-nav-list').css('background', 'rgba(255, 255, 255, 0.6)');
 		}
 
 		ropeDemo.noLight = function() {
@@ -261,6 +263,8 @@ angular.module('mean.system').controller('HeaderController', ['$scope', 'Global'
 			ropeDemo.context.drawingContext.restore();
 			ropeDemo.context.drawingContext.lineWidth = 0;
 			ropeDemo.context.drawingContext.closePath();
+
+			$('#cms-sidebar-nav-list').css('background', 'rgba(255, 255, 255, 0)');
 		}
 
 		ropeDemo.turnOff = function() {
