@@ -75,7 +75,7 @@ angular.module('mean.home').controller('HomeController', ['$scope', 'Global',
 		// 	},
 		// 	Initialize: function() {
 		// 		// Gather data
-		// 		ropeDemo.context.canvas = document.getElementById("RopeDrawingArea");
+		// 		ropeDemo.context.canvas = document.getElementById("ropeDrawingArea");
 		// 		ropeDemo.context.canvas.width = window.innerWidth;
 		// 		ropeDemo.context.canvas.height = window.innerHeight;
 		// 		ropeDemo.context.size.w = window.innerWidth;
