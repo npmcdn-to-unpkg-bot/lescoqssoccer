@@ -11,11 +11,10 @@
 <hr style="margin-left:15px; padding-left:0;">
 
 <section data-ng-controller="mapController" data-ng-init="load()">
-	<div class="col-md-12">
-		<!-- <div data-ng-include="'/js/agenda/views/subnav.html'"></div> -->
+	<div class="col-md-12 mapContainer">
 
 		<!-- Map -->
-		<div class="col-md-12 well">
+		<div class="col-md-12">
 			<google-map
 			ng-if="view === 'map'"
 			center="map.center"
@@ -46,6 +45,8 @@
 					</window>
 				</marker>
 			</google-map>
+
+			<div id="mapBorder"></div>
 		</div>
 	</div>
 </section>
