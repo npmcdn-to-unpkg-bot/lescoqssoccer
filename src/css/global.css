@@ -5,7 +5,7 @@ html,body{
 body{
 	opacity: 1;
 	/*background-image: -webkit-linear-gradient(left, rgba(19, 78, 94, 0.8), rgba(113, 178, 128, 0.8));*/
-	background: url(../img/abstract-room-empty-wallpaper-wallwuzz-hd-wallpaper-11134.jpg) no-repeat center center fixed;
+	/*background: url(../img/abstract-room-empty-wallpaper-wallwuzz-hd-wallpaper-11134.jpg) no-repeat center center fixed;*/
   	background-size: cover;
 }
 
@@ -388,7 +388,7 @@ body{
     }
 }
 .angular-google-map-container {
-    height: 400px;
+    height: 440px;
 }
 .edit-profile-avatar .manual-file-chooser {
     display: block;
@@ -942,7 +942,7 @@ canvas {
 	  position: absolute;
 	  top: 0;
 	  left: 0;
-	  height: calc(100% + 40px);
+	  height: calc(100% + 40px)	;
 	  width: 100% ;
 	  background: url('../../img/map_mask.png') no-repeat;
 	  background-size: 100%;
@@ -951,4 +951,29 @@ canvas {
 
 .mapContainer div{
 	background: none;
+}
+
+#cms-sidebar-nav-list>li>a:hover::after{
+  opacity: 1;
+  -webkit-transform: translateX(-50%) translateY(-50%) scale(1);
+  -moz-transform: translateX(-50%) translateY(-50%) scale(1);
+  transform: translateX(-50%) translateY(-50%) scale(1);
+  }
+
+#cms-sidebar-nav-list>li>a::after{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  border: 2px solid rgba(0,0,0,0.1);
+  border-radius: 50%;
+  content: '';
+  opacity: 0;
+  -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+  -moz-transition: -moz-transform 0.3s, opacity 0.3s;
+  transition: transform 0.3s, opacity 0.3s;
+  -webkit-transform: translateX(-50%) translateY(-50%) scale(0.2);
+  -moz-transform: translateX(-50%) translateY(-50%) scale(0.2);
+  transform: translateX(-50%) translateY(-50%) scale(0.2);
 }
