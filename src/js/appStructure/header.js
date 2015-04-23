@@ -2,15 +2,17 @@
 
 angular.module('mean.system').controller('HeaderController', ['$scope', 'Global',
 	function ($scope, Global) {
-		$scope.global = Global;
 
+		$scope.global = Global;
 		$scope.isCollapsed = false;
 
 		var physic = {
+
 			ApplyUnitaryVerletIntegration: function(item, ellapsedTime, gravity, pixelsPerMeter) {
 				item.x = 2 * item.x - item.old_x; // No acceleration here
 				item.y = 2 * item.y - item.old_y + gravity * ellapsedTime * ellapsedTime * pixelsPerMeter;
 			},
+
 			ApplyUnitaryDistanceRelaxation: function(item, from, targettedLength) {
 				var dx = item.x - from.x;
 				var dy = item.y - from.y;
@@ -76,7 +78,7 @@ angular.module('mean.system').controller('HeaderController', ['$scope', 'Global'
 			},
 			Initialize: function() {
 				// Gather data
-				ropeDemo.context.canvas = document.getElementById("RopeDrawingArea");
+				ropeDemo.context.canvas = document.getElementById("ropeDrawingArea");
 				ropeDemo.context.canvas.width = window.innerWidth;
 				ropeDemo.context.canvas.height = window.innerHeight;
 				ropeDemo.context.size.w = window.innerWidth;
@@ -115,6 +117,7 @@ angular.module('mean.system').controller('HeaderController', ['$scope', 'Global'
 		};
 
 		ropeDemo.DrawOverride = function() {
+
 			// Draw segments
 			ropeDemo.context.drawingContext.clearRect(0, 0, ropeDemo.context.size.w, ropeDemo.context.size.h);
 			ropeDemo.context.drawingContext.beginPath();
@@ -135,6 +138,7 @@ angular.module('mean.system').controller('HeaderController', ['$scope', 'Global'
 					ropeDemo.context.drawingContext.restore();
 				}
 			}
+
 			var grad = ropeDemo.context.drawingContext.createLinearGradient((ropeDemo.context.size.w * 0.5) - 10, 0, (ropeDemo.context.size.w * 0.5) + 20, 0);
 			grad.addColorStop(0, "#666666");
 			grad.addColorStop(1, "#111111");
@@ -145,12 +149,15 @@ angular.module('mean.system').controller('HeaderController', ['$scope', 'Global'
 		};
 
 		ropeDemo.ThinkOverride = function() {
+
 			var itemLength = ropeDemo.rope.length / ropeDemo.rope.nbItems;
 			var ellapsedTime = +1 / ropeDemo.data.fps;
+
 			if (ropeDemo.context.isGrabbing) {
 				ropeDemo.rope.items[19].x = ropeDemo.context.mouse.x - ropeDemo.context.center.x;
 				ropeDemo.rope.items[19].y = ropeDemo.context.mouse.y - ropeDemo.context.center.y;
 			}
+
 			// Apply verlet integration
 			for (var index in ropeDemo.rope.items) {
 				var item = ropeDemo.rope.items[index];
@@ -162,6 +169,7 @@ angular.module('mean.system').controller('HeaderController', ['$scope', 'Global'
 				item.old_x = old_x;
 				item.old_y = old_y;
 			}
+
 			// Apply relaxation
 			for (var iterations = 0; iterations < ropeDemo.rope.relaxationIterations; iterations++) {
 				for (var index in ropeDemo.rope.items) {
@@ -204,23 +212,29 @@ angular.module('mean.system').controller('HeaderController', ['$scope', 'Global'
 		}
 
 		ropeDemo.Light = function() {
+
 			ropeDemo.data.state = true;
 			ropeDemo.context.drawingContext.beginPath();
+
 			var item = ropeDemo.rope.items.slice(-1)[0];
 			var item0 = ropeDemo.rope.items.slice(-9)[0];
+
 			ropeDemo.rope.coeff = ((item.x + ropeDemo.context.center.x) - (item0.x + ropeDemo.context.center.x)) / ((item.y + ropeDemo.context.center.y) - (item0.y + ropeDemo.context.center.y));
 			ropeDemo.context.drawingContext.save();
 			ropeDemo.context.drawingContext.translate((item.x + ropeDemo.context.center.x), (item.y + ropeDemo.context.center.y));
 			ropeDemo.context.drawingContext.rotate(ropeDemo.rope.coeff);
+
 			//the light
 			ropeDemo.context.drawingContext.moveTo(item.x, item.y + 170);
 			ropeDemo.context.drawingContext.lineTo(3900, 1280);
 			ropeDemo.context.drawingContext.lineTo(-3900, 1280);
 			ropeDemo.context.drawingContext.lineTo(item.x, item.y + 170);
 			var grd = ropeDemo.context.drawingContext.createRadialGradient(0, 0, 2, 640, 1030, 1280);
-			grd.addColorStop(0, 'white');
+			// grd.addColorStop(0, 'white');
+
 			// dark blue
 			grd.addColorStop(1, 'rgba(255, 255, 255, 0.6)');
+
 			// ropeDemo.context.drawingContext.fillStyle = 'rgba(255, 255, 209, 0.9)';
 			ropeDemo.context.drawingContext.fillStyle = grd;
 			ropeDemo.context.drawingContext.fill();
@@ -228,14 +242,19 @@ angular.module('mean.system').controller('HeaderController', ['$scope', 'Global'
 			ropeDemo.context.drawingContext.restore();
 			ropeDemo.context.drawingContext.lineWidth = 0;
 			ropeDemo.context.drawingContext.closePath();
+
+			$('#cms-sidebar-nav-list').css('background', 'rgba(255, 255, 255, 0.6)');
 		}
 
 		ropeDemo.noLight = function() {
+
 			ropeDemo.data.state = false;
 			ropeDemo.context.drawingContext.clearRect(0, 60, ropeDemo.context.size.w, ropeDemo.context.size.h);
 			ropeDemo.context.drawingContext.beginPath();
+
 			var item = ropeDemo.rope.items.slice(-1)[0];
 			var item0 = ropeDemo.rope.items.slice(-9)[0];
+
 			ropeDemo.rope.coeff = ((item.x + ropeDemo.context.center.x) - (item0.x + ropeDemo.context.center.x)) / ((item.y + ropeDemo.context.center.y) - (item0.y + ropeDemo.context.center.y));
 			ropeDemo.context.drawingContext.save();
 			ropeDemo.context.drawingContext.translate((item.x + ropeDemo.context.center.x), (item.y + ropeDemo.context.center.y));
@@ -244,6 +263,8 @@ angular.module('mean.system').controller('HeaderController', ['$scope', 'Global'
 			ropeDemo.context.drawingContext.restore();
 			ropeDemo.context.drawingContext.lineWidth = 0;
 			ropeDemo.context.drawingContext.closePath();
+
+			$('#cms-sidebar-nav-list').css('background', 'rgba(255, 255, 255, 0)');
 		}
 
 		ropeDemo.turnOff = function() {
@@ -279,8 +300,6 @@ angular.module('mean.system').controller('HeaderController', ['$scope', 'Global'
 			ropeDemo.rope.items[0].isPinned = true;
 		};
 
-		ropeDemo.Initialize();
-
 		$scope.click = function(){
 			if (ropeDemo.data.state == true) {
 				ropeDemo.turnOff();
@@ -288,5 +307,7 @@ angular.module('mean.system').controller('HeaderController', ['$scope', 'Global'
 				ropeDemo.waitLight();
 			}
 		};
+
+		ropeDemo.Initialize();
 	}
 ]);

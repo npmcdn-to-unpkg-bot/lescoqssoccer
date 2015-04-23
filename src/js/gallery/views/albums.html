@@ -60,7 +60,7 @@
 	</div>
 
 	<!-- GRID VIEW -->
-      	<div class="col-md-4" data-ng-repeat="album in albums| filter:pmSvc.filter" data-ng-if="view === 'grid'">
+      	<div class="col-md-4" data-ng-repeat="album in albums | filter:pmSvc.filter" data-ng-if="view === 'grid'">
 		<div class="component">
 			<ul class="align">
 				<li>
@@ -80,17 +80,16 @@
 
 						<!-- Pages -->
 						<ul class='page'>
-							<li>
-
-							</li>
+							<li></li>
 							<li>
 								<a class="btn" href="#!/gallery/{{album._id}}">Ouvrir</a>
 							</li>
 							<li>
-								<img style="width: 90%;  height: 90%;  margin-top: 5%;" src="img/jojo.jpg">
+								hey{{album.photos[0].filepath}}
+								<img style="width: 90%;  height: 90%;  margin-top: 5%;" data-ng-src="{{displayPhotos[0].filepath}}">
 							</li>
 							<li>
-								<img style="width: 90%;  height: 90%;  margin-top: 5%;" src="img/jojo.jpg">
+								<img style="width: 90%;  height: 90%;  margin-top: 5%;" data-ng-src="{{album.coverPicPath}}">
 							</li>
 							<li></li>
 						</ul>
