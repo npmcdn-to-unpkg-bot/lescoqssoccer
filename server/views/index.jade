@@ -1,6 +1,8 @@
 extends layouts/default
 
 block content
-  section(data-ng-view)#main
+  section#content.col-xs-8.col-sm-8
+    .row.view-animate-container
+      page-about.pop(data-ng-view)
   script(type="text/javascript").
     window.user = !{user};

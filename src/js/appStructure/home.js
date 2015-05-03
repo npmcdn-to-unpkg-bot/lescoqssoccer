@@ -4,6 +4,12 @@ angular.module('mean.home').controller('HomeController', ['$scope', 'Global',
 
 		$scope.global = Global;
 
+		$scope.activeItem = "";
+
+		$scope.active = function(item){
+			$scope.activeItem = item;
+		};
+
 		$scope.menu = [{
 			'title': 'home_title',
 			'link': 'home',
