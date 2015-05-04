@@ -826,9 +826,7 @@ vertical-align: top;
 ul.suggestionList,li{
   list-style:none;
 }
-ul.suggestionList{
-  overflow:hidden;
-}
+
 ul.suggestionList li a{
   text-decoration:none;
   color:#000;
