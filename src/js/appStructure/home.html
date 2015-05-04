@@ -1,16 +1,15 @@
-<section class="page page-home view-animate">
+<section class="page page-home">
 	<div class="pentagonContainer" ng-class="{active: activeItem === item.link}" ng-repeat="item in menu">
-		<div class="pentagon">
-			<a href="#!/{{item.link}}" ng-click="active(item.link)">
-				<span class="mask"></span>
-				<img src="../../img/8962691008_7f489395c9_m.jpg">
-			</a>
-			<div class="portfolio-title">
-				<h4>
-					{{item.title | translate}}
-					<span>test</span>
-				</h4>
-			</div>
+		<a href="#!/{{item.link}}" ng-click="active(item.link)">
+			<div class="pentagon">
+				<i class="{{item.icon}}"></i>
+				<div class="portfolio-title">
+					<h4>
+						{{item.title | translate}}
+						<span>test</span>
+					</h4>
+				</div>
 		</div>
+		</a>
 	</div>
 </section>

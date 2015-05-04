@@ -3,7 +3,6 @@
 angular.module( 'mean.agenda' ).controller( 'createController', [ '$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection', 'FileUploader', '$modal',
 	function ( $scope, $routeParams, $location, $route, $filter, Global, AgendaCollection, FileUploader, $modal) {
 
-		$scope.pageclass= "page-about";
 		$scope.agendaCollection = AgendaCollection;
 		$scope.view = $route.current.params.view;
 		$scope.eventTypes = eventTypes;
