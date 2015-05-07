@@ -1,14 +1,11 @@
-<h1 style="margin-left:15px; padding-left:0;">
-	<i class="fa fa-dot-circle-o"></i>
-	Articles
-	<a href="#!/articles/create" class="pull-right">
-		<i class="fa fa-plus-circle"></i>
-	</a>
-</h1>
-<hr style="margin-left:15px; padding-left:0;">
 <section data-ng-controller="ArticlesController" data-ng-init="load();">
 	<div id="gallery" class="gallery col-md-12" style="margin-bottom: 20px;">
-		<div class="image" data-ng-repeat="article in articles" style="display: inline-block;">
+
+		<cm-expandable template-url="js/articles/views/gridItem.html">
+
+		</cm-expandable>
+
+		<!-- <div class="image" data-ng-repeat="article in articles" style="display: inline-block;">
 			<div class="image-inner">
 				<a href="#!/articles/{{article._id}}" data-lightbox="gallery-group-1">
 					<img ng-src="{{article.image && article.image || 'img/8962691008_7f489395c9_m.jpg'}}" alt="">
@@ -27,8 +24,10 @@
 				</div>
 			</div>
 		</div>
+ -->
 		<div data-ng-show="articles.length === 0" class="well">
 			<h4>{{'articles_empty' | translate}}</h4>
 		</div>
+
 	</div>
 </section>

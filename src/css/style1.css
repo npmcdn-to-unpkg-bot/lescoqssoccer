@@ -820,7 +820,7 @@ button:focus {
 
   .main {
     height: 100%;
-    margin-left: 300px;
+    /*margin-left: 300px;*/
   }
 
   .content__item {

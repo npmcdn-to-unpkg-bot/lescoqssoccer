@@ -93,35 +93,35 @@
 	function loadContent(item) {
 		// add expanding element/placeholder
 		var dummy = document.createElement('div');
-		dummy.className = 'placeholder';
+		dummy.className = 'placeholder placeholder--trans-in';
 
 		// set the width/heigth and position
 		dummy.style.WebkitTransform = 'translate3d(' + (item.offsetLeft - 5) + 'px, ' + (item.offsetTop - 5) + 'px, 0px) scale3d(' + item.offsetWidth/gridItemsContainer.offsetWidth + ',' + item.offsetHeight/getViewport('y') + ',1)';
 		dummy.style.transform = 'translate3d(' + (item.offsetLeft - 5) + 'px, ' + (item.offsetTop - 5) + 'px, 0px) scale3d(' + item.offsetWidth/gridItemsContainer.offsetWidth + ',' + item.offsetHeight/getViewport('y') + ',1)';
 
 		// add transition class
-		classie.add(dummy, 'placeholder--trans-in');
+		// classie.add(dummy, 'placeholder--trans-in');
 
 		// insert it after all the grid items
 		gridItemsContainer.appendChild(dummy);
 
 		// body overlay
-		classie.add(bodyEl, 'view-single');
+		// classie.add(bodyEl, 'view-single');
 
 		setTimeout(function() {
 
 			// expands the placeholder
-			dummy.style.WebkitTransform = 'translate3d(-5px, ' + (scrollY() - 5) + 'px, 0px)';
+			// dummy.style.WebkitTransform = 'translate3d(-5px, ' + (scrollY() - 5) + 'px, 0px)';
 			dummy.style.transform = 'translate3d(-5px, ' + (scrollY() - 5) + 'px, 0px)';
 
 		}, 25);
 
 		onEndTransition(dummy, function() {
 			// add transition class
-			classie.remove(dummy, 'placeholder--trans-in');
-			classie.add(dummy, 'placeholder--trans-out');
+			// classie.remove(dummy, 'placeholder--trans-in');
+			// classie.add(dummy, 'placeholder--trans-out');
 			// position the content container
-			contentItemsContainer.style.top = scrollY() + 'px';
+			// contentItemsContainer.style.top = scrollY() + 'px';
 			// show the main content container
 			classie.add(contentItemsContainer, 'content--show');
 			// show content item:
