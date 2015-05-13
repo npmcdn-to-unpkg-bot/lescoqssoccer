@@ -5,7 +5,7 @@ html(lang='en', xmlns='http://www.w3.org/1999/xhtml', itemscope='itemscope', ite
     .navbar(data-ng-include="'js/appStructure/header.html'", data-role="navigation")
     section#main.container-fluid
         .col-xs-3.col-sm-3(data-ng-include="'js/appStructure/sidebar.html'", data-ng-controller="SidebarController")
-        section#content.col-xs-8.col-sm-8
+        section#content.col-sm-offset-3.col-md-9
           section.row.view-animate-container
               block content
   include ../includes/foot

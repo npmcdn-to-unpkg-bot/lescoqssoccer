@@ -314,6 +314,8 @@ button:focus {
   flex-direction: column;
   -webkit-justify-content: center;
   justify-content: center;
+  display: inline-block;
+  width: 49%;
 }
 
 /* Grid item "border" */

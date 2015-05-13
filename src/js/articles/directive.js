@@ -58,7 +58,6 @@ angular.module('mean.articles').directive('cmExpandable', function () {
 						onEndCallbackFn();
 					}
 				},
-				gridEl = document.getElementById('theGrid'),
 				gridItemsContainer = $('section.grid'),
 				contentItemsContainer = $('section.content'),
 				gridItems = $('.grid__item'),
