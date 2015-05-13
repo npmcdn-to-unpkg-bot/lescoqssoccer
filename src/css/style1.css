@@ -466,6 +466,8 @@ button:focus {
   display: block;
   border-radius: 50%;
   margin: 2em auto;
+  width: 100px;
+  height: 100px;
 }
 
 .meta--preview .meta__avatar {
@@ -861,7 +863,7 @@ button:focus {
     display: none;
   }
 }
-@media screen and (min-width: 900px) {
+@media screen{
   .grid {
     display: -webkit-box;
     display: -webkit-flex;

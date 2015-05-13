@@ -1,33 +1,10 @@
 <section data-ng-controller="ArticlesController" data-ng-init="load();">
-	<div id="gallery" class="gallery col-md-12" style="margin-bottom: 20px;">
 
-		<cm-expandable template-url="js/articles/views/gridItem.html">
+	<cm-expandable template-url="js/articles/views/gridItem.html">
+	</cm-expandable>
 
-		</cm-expandable>
-
-		<!-- <div class="image" data-ng-repeat="article in articles" style="display: inline-block;">
-			<div class="image-inner">
-				<a href="#!/articles/{{article._id}}" data-lightbox="gallery-group-1">
-					<img ng-src="{{article.image && article.image || 'img/8962691008_7f489395c9_m.jpg'}}" alt="">
-				</a>
-				<p class="image-caption">
-					#{{'common_date_prefix' | translate}} - {{article.created | date:dateFormat}}
-				</p>
-			</div>
-			<div class="image-info">
-				<h5 class="title">{{article.title}}</h5>
-				<div>
-					<small>{{'common_by' | translate}}</small> <a href="#!">{{article.user.name}}</a>
-				</div>
-				<div class="desc">
-					{{article.content}}
-				</div>
-			</div>
-		</div>
- -->
-		<div data-ng-show="articles.length === 0" class="well">
-			<h4>{{'articles_empty' | translate}}</h4>
-		</div>
-
+	<div data-ng-show="articles.length === 0" class="well">
+		<h4>{{'articles_empty' | translate}}</h4>
 	</div>
+
 </section>
