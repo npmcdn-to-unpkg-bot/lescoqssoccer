@@ -71,7 +71,7 @@ angular.module('mean.system').controller('HeaderController', ['$scope', 'Global'
 			},
 			Start: function() {
 				ropeDemo.StartOverride();
-				ropeDemo.data.intervalId = setInterval(ropeDemo.Step, +1000 / ropeDemo.data.fps);
+				ropeDemo.data.intervalId = setInterval(ropeDemo.Step, +300 / ropeDemo.data.fps);
 			},
 			Stop: function() {
 				clearInterval(ropeDemo.data.intervalId);

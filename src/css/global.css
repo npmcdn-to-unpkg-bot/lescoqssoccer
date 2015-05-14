@@ -56,6 +56,7 @@ Bootstrap override
 }
 #content {
 	margin-top: 20px;
+	z-index: 2;
 }
 .slim-view {
 	max-width: 350px;
@@ -262,7 +263,7 @@ Navbar
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
 	border-radius: 0;
-	z-index: 1039;
+	z-index: 2;
 }
 #cms-sidebar-nav {
 	position: fixed;
@@ -289,7 +290,7 @@ a.sidebarItem {
 	position: relative;
 }
 .nav li {
-	font-size: 50px;
+	/*font-size: 50px;*/
 	display: block;
 }
 .nav li a {
@@ -322,6 +323,23 @@ a.sidebarItem {
 .nav li.active a.hidden {
 	text-shadow: none;
 }
+
+.navbar-default .filter{
+	height: 50px;
+}
+
+.navbar-default .filter span{
+	height: 50px;
+}
+
+.subnav{
+	margin-bottom: 20px;
+}
+
+.subnav input{
+	 margin: 10px;
+}
+
 /****
 
 FallingLamp

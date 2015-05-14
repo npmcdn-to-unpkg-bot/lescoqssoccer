@@ -2,9 +2,9 @@ doctype html
 html(lang='en', xmlns='http://www.w3.org/1999/xhtml', itemscope='itemscope', itemtype='http://schema.org/Product')
   include ../includes/head
   body
-    .navbar(data-ng-include="'js/appStructure/header.html'", data-role="navigation")
+    .navbar(data-ng-include="'js/appStructure/header.html'")
     section#main.container-fluid
-        .col-xs-3.col-sm-3(data-ng-include="'js/appStructure/sidebar.html'", data-ng-controller="SidebarController")
+        .col-xs-3.col-sm-3(data-ng-include="'js/appStructure/sidebar.html'", data-ng-controller="SidebarController", data-role="navigation")
         section#content.col-sm-offset-3.col-md-9
           section.view-animate-container
               block content

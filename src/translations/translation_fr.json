@@ -13,7 +13,7 @@
 
 	"agenda_view"	: "Calendrier",
 	"agenda_map"	: "Map",
-	"agenda_add"	: "Ajouter un évènement",
+	"agenda_add"	: "Ajouter",
 	"event_details"	: "Détails de l'évènement",
 	"title"			: "Titre",
 	"type"			: "Type",
