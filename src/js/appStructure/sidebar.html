@@ -1,7 +1,7 @@
 <div id="cms-sidebar-nav" class="well-sm cms-sidebar-nav bs-sidebar hidden-print">
 	<nav id="cms-sidebar-nav-list" class="nav nav-list">
 		<li ng-repeat="item in menu" ng-class="{ active: isCurrentPath('#!/{{item.link}}')}">
-			<a href="#!/{{item.link}}" class="ajax-link sidebarItem ellipsis">
+			<a href="#!/{{item.link}}" class="ajax-link sidebarItem ellipsis hidden">
 				<span class="hidden-xs">{{item.title | translate}}</span>
 			</a>
 		</li>
