@@ -793,10 +793,6 @@ button:focus {
   transition: opacity 0.3s;
 }
 
-.close-button span {
-  display: none;
-}
-
 .close-button:hover {
   color: #7b7b7b;
 }

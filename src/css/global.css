@@ -561,3 +561,59 @@ Map
 .mapContainer div {
 	background: none;
 }
+/****
+
+Articles
+
+*****/
+
+.close-button {
+	opacity: 1;
+	top: 52px;
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+	-webkit-transition: opacity .3s ease-out .3s, -webkit-transform .3s, top 0;
+	transition: opacity .3s ease-out .3s, transform .3s, top 0s;
+	margin: 0 auto;
+	z-index: 30;
+}
+.closebutton {
+	border-radius: 38px;
+	height: 38px;
+	width: 38px;
+	border: 1px solid #afafaf;
+	right: 20px;
+	top: 15px;
+	position: absolute;
+	text-decoration: none;
+	-webkit-transform: rotate(-180deg);
+	transform: rotate(-180deg);
+	-webkit-transition: border .3s, box-shadow .3s, -webkit-transform .3s;
+	transition: border .3s, box-shadow .3s, transform .3s;
+}
+.closebutton:hover {
+	border: 1px solid transparent;
+	box-shadow: 0 0 0 4px #e1e1e1;
+	-webkit-transform: rotate(180deg);
+	transform: rotate(180deg);
+	border-radius: 38px;
+	height: 38px;
+	width: 38px;
+}
+.closebutton:after {
+	height: 36px;
+	line-height: 36px;
+	width: 36px;
+	font-family: 'icons';
+	position: absolute;
+	color: #afafaf;
+	content: "x";
+	font-size: 14px;
+	left: 0;
+	text-align: center;
+	top: 0;
+}
+@font-face {
+	font-family: "icons";
+	src: url('../fonts/icons.woff');
+}
