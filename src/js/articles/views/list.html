@@ -1,6 +1,6 @@
 <section data-ng-controller="ArticlesController" data-ng-init="load();">
 
-	<cm-expandable template-url="js/articles/views/gridItem.html">
+	<cm-expandable template-url="js/articles/views/gridItem.html" data-ng-show="articles.length > 0">
 	</cm-expandable>
 
 	<div data-ng-show="articles.length === 0" class="well">
