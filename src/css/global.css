@@ -291,7 +291,8 @@ a.sidebarItem {
 }
 .nav li {
 	/*font-size: 50px;*/
-	display: block;
+
+display: block;
 }
 .nav li a {
 	color: transparent;
@@ -323,23 +324,57 @@ a.sidebarItem {
 .nav li.active a.hidden {
 	text-shadow: none;
 }
-
-.navbar-default .filter{
+.navbar-default .filter {
 	height: 50px;
 }
-
-.navbar-default .filter span{
-	height: 50px;
-}
-
-.subnav{
+.subnav {
 	margin-bottom: 20px;
 }
-
-.subnav input{
-	 margin: 10px;
+.subnav .navbar-default{
+	background-color: transparent;
 }
 
+#search {
+	position: absolute;
+	display: inline-block;
+	right: 15px;
+	top: 10px;
+}
+#search > input {
+	background: #dfdfdf;
+	border: 1px solid #C7C7C7;
+	text-shadow: 0 1px 1px #EEE;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	color: #686868;
+	line-height: 1em;
+	height: 30px;
+	padding: 0 15px 0 10px;
+	-webkit-transition: 0.2s;
+	-moz-transition: 0.2s;
+	-o-transition: 0.2s;
+	transition: 0.2s;
+	font-family: sans-serif;
+}
+#search > input + i {
+	opacity: 0;
+	position: absolute;
+	top: 5px;
+	right: 10px;
+	color: #fff;
+	-webkit-transition: 0.4s;
+	-moz-transition: 0.4s;
+	-o-transition: 0.4s;
+	transition: 0.4s;
+}
+#search > input:focus {
+	width: 100%;
+	outline: none
+}
+#search > input:focus + i {
+	opacity: 1;
+}
 /****
 
 FallingLamp

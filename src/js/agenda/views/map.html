@@ -1,52 +1,39 @@
-<h1>
-	<i class="fa fa-dot-circle-o"></i>
-	Agenda
-	<a href="#!/agenda/create" class="pull-right">
-		<i class="fa fa-plus-circle"></i>
-	</a>
-	<a href="#!/agenda" class="pull-right" style="margin-right: 10px;">
-	 	<i class="fa fa-calendar-o"></i>
-	</a>
-</h1>
-<hr style="margin-left:15px; padding-left:0;">
-
 <section data-ng-controller="mapController" data-ng-init="load()">
+
+	<div class="col-md-12" data-ng-include="'/js/agenda/views/subnav.html'"></div>
+
 	<div class="col-md-12 mapContainer">
 
 		<!-- Map -->
-		<div class="col-md-12">
-			<google-map
-			ng-if="view === 'map'"
-			center="map.center"
-			zoom="map.zoom"
-			draggable="true"
-			dragging="map.dragging"
-			bounds="map.bounds"
-			events="map.events"
-			options="map.options"
-			control="map.control">
+		<google-map
+		ng-if="view === 'map'"
+		center="map.center"
+		zoom="map.zoom"
+		draggable="true"
+		dragging="map.dragging"
+		bounds="map.bounds"
+		events="map.events"
+		options="map.options"
+		control="map.control">
+		<marker ng-repeat="m in map.markers" coords="m" click="onMarkerClicked(m);">
+			<window isIconVisibleOnClick="true" show="m.showWindow">
+			<div>
+				<!-- TODO: Slider -->
+				<div style="display: inline-block;">
+					<p style="text-align: center">{{m.title}}</p>
 
-				<marker ng-repeat="m in map.markers" coords="m" click="onMarkerClicked(m);">
-					<window isIconVisibleOnClick="true" show="m.showWindow">
-						<div>
-							<!-- TODO: Slider -->
-							<div style="display: inline-block;">
-								<p style="text-align: center">{{m.title}}</p>
+					<img
+					class="imgThumbnail"
+					ng-src="{{m.photos.length > 0 && m.photos[0].path || 'img/8962691008_7f489395c9_m.jpg'}}"
+					style="height: 80px; width: 80px; margin-bottom: 15px; margin-left: 0; margin-right: 5px;">
+					</img>
+					<p style="display: inline-block; vertical-align: top;">{{m.content}}</p>
+				</div>
+			</div>
+			</window>
+		</marker>
+		</google-map>
 
-								<img
-								class="imgThumbnail"
-								ng-src="{{m.photos.length > 0 && m.photos[0].path || 'img/8962691008_7f489395c9_m.jpg'}}"
-								style="height: 80px; width: 80px; margin-bottom: 15px; margin-left: 0; margin-right: 5px;">
-								</img>
-
-								<p style="display: inline-block; vertical-align: top;">{{m.content}}</p>
-							</div>
-            					</div>
-					</window>
-				</marker>
-			</google-map>
-
-			<div id="mapBorder"></div>
-		</div>
+		<div id="mapBorder"></div>
 	</div>
 </section>

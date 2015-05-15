@@ -13,17 +13,20 @@ angular.module('mean.links').controller('LinkController', ['$scope', 'Global', '
 			joan: {
 				author: "Jo",
 				adress: "http://objectifjapon.wordpress.com",
-				image: "img/jojo.jpg"
+				image: "img/jojo.jpg",
+				title: "objectifjapon TKT"
 			},
 			nico: {
 				author: "Nico",
 				adress: "http://deux-noix-nz.blogspot.fr",
-				image: "img/nico.jpg"
+				image: "img/nico.jpg",
+				title: "Deux noix au pays des kiwis"
 			},
 			momo:{
 				author: "Momo",
 				adress: "http://bandedemickeysen4l.com/",
-				image: "img/momo.jpeg"
+				image: "img/momo.jpeg",
+				title: "Bande de Mickeys en 4L"
 			}
 		};
 

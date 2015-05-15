@@ -1,18 +1,19 @@
 <div class="subnav navbar-default" >
 	<div class="navbar-inner toolbar">
 		<ul class="nav navbar-nav navbar-default">
+			<li data-ng-class="{active: view === 'create'}" class="toolbaritem">
+				<a href="#!agenda/create"><span class="fa fa-plus"></span>&nbsp;{{'agenda_add' | translate}}</a>
+			</li>
 			<li data-ng-class="{active: view === 'agenda'}" class="toolbaritem">
 				<a href="#!agenda"><span class="fa fa-calendar-o"></span>&nbsp;{{'agenda_view' | translate}}</a>
 			</li>
 			<li data-ng-class="{active: view === 'map'}" class="toolbaritem">
 				<a href="#!agenda/map"><span class="fa fa-globe"></span>&nbsp;{{'agenda_map' | translate}}</a>
 			</li>
-			<li data-ng-class="{active: view === 'create'}" class="toolbaritem">
-				<a href="#!agenda/create"><span class="fa fa-plus"></span>&nbsp;{{'agenda_add' | translate}}</a>
-			</li>
 		</ul>
-	</div>
-	<div class="filter navbar-inner toolbar">
-		<input type="text" class="search" placeholder="Rechercher"/>
+		<div id="search" class="pull-right">
+			<input type="text" placeholder="Recherche"/>
+			<i class="fa fa-search"></i>
+		</div>
 	</div>
 </div>
