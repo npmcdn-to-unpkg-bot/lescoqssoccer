@@ -45,6 +45,11 @@ Bootstrap override
 .hidden-xs, .hidden-sm {
 	display: inline-block!important;
 }
+@media screen and (min-width: 768px) {
+	.navbar-nav {
+		float: inherit;
+}
+}
 .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
 	color: #262626;
 	text-decoration: none;
@@ -55,7 +60,6 @@ Bootstrap override
 	border-radius: 4px;
 }
 #content {
-	margin-top: 20px;
 	z-index: 2;
 }
 .slim-view {
@@ -330,14 +334,42 @@ display: block;
 .subnav {
 	margin-bottom: 20px;
 }
-.subnav .navbar-default{
+.navbar-default {
 	background-color: transparent;
 }
-
+#subnav {
+	padding: 0;
+	margin-left: 5px;
+}
+#subnav li {
+	float: left;
+	width: 164px;
+	height: 50px;
+	border-bottom: 1px solid rgba(74, 74, 74, 0.3);
+	border-left: 1px solid rgba(74, 74, 74, 0.3);
+}
+#subnav li:not(.active) {
+	border-right: 1px solid rgba(74, 74, 74, 0.3);
+}
+#subnav li.active:after {
+	display: block;
+	content: "";
+	width: 165px;
+	height: 10px;
+	background: url('../img/bg_gnb_on.png') no-repeat right bottom;
+}
+#subnav li.active a, #subnav li:hover a {
+	width: 164px;
+	background-color: black;
+	color: white;
+}
+#subnav li a {
+	font-family: 'aaaiight'
+}
 #search {
 	position: absolute;
 	display: inline-block;
-	right: 15px;
+	right: 20px;
 	top: 10px;
 }
 #search > input {

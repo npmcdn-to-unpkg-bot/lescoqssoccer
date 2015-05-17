@@ -115,6 +115,8 @@ angular.module('mean.articles').directive('cmExpandable', function() {
 					$(contentItems[current]).addClass('content__item--show');
 					closeCtrl.addClass('close-button--show');
 
+					$("#subnav").hide("fast");
+
 					isAnimating = false;
 				});
 			}
@@ -143,6 +145,8 @@ angular.module('mean.articles').directive('cmExpandable', function() {
 
 						//hide close button and  section content
 						$(contentItemsContainer).removeClass('content--show');
+
+						$("#subnav").show("fast");
 					});
 
 					// reset current

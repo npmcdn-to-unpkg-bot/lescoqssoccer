@@ -1,0 +1,16 @@
+<div class="subnav navbar-default" >
+	<div id="subnav" class="navbar-inner toolbar">
+		<ul class="nav navbar-nav navbar-default">
+			<li data-ng-class="{active: view === 'create'}" class="toolbaritem">
+				<a href="#!articles/create"><span class="fa fa-plus-circle"></span> {{'agenda_add' | translate}}</a>
+			</li>
+			<li data-ng-class="{active: view === 'articles'}" class="toolbaritem">
+				<a href="#!articles"><span class="fa fa-tasks"></span> {{'article_title' | translate}}s</a>
+			</li>
+		</ul>
+		<div id="search" class="pull-right" ng-if="view === 'articles'">
+			<input data-ng-model="obj.searchTitle" type="text" placeholder="Recherche"/>
+			<i class="fa fa-search"></i>
+		</div>
+	</div>
+</div>

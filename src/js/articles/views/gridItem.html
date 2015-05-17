@@ -1,5 +1,5 @@
 <section class="grid">
-	<div class="grid__item" ng-repeat="article in articles">
+	<div class="grid__item" ng-repeat="article in articles | filter: nameFilter">
 		<h2 class="title title--preview">{{article.title}}</h2>
 		<div class="loader"></div>
 		<span class="category">Category</span>
@@ -14,7 +14,7 @@
 </section>
 <section class="content">
 	<div class="scroll-wrap">
-		<article class="content__item" ng-repeat="article in articles">
+		<article class="content__item" ng-repeat="article in articles | filter: nameFilter">
 			<span class="category category--full">Category</span>
 			<h2 class="title title--full">{{article.title}}</h2>
 			<div class="meta meta--full">

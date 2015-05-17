@@ -1,9 +1,13 @@
 <section data-ng-controller="ArticlesController" data-ng-init="load();">
 
-	<cm-expandable template-url="js/articles/views/gridItem.html" data-ng-show="articles.length > 0">
-	</cm-expandable>
+	<div class="col-md-12" data-ng-include="'/js/articles/views/subnav.html'"></div>
 
-	<div data-ng-show="articles.length === 0" class="well">
+	<div class="col-md-12">
+		<cm-expandable template-url="js/articles/views/gridItem.html" data-ng-show="articles.length > 0">
+		</cm-expandable>
+	</div>
+
+	<div class="col-md-12 well" data-ng-show="articles.length === 0">
 		<h4>{{'articles_empty' | translate}}</h4>
 	</div>
 
