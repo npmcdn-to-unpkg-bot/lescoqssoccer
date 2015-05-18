@@ -16,7 +16,8 @@ angular.module('mean', ['ngCookies',
 	'mean.notifications',
 	'mean.suggestions',
 	'mean.gallery',
-	'mean.albums'
+	'mean.albums',
+	'wysiwyg.module'
 ]);
 
 angular.module('mean.system', []);

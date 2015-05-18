@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', 'Global', 'ArticlesCollection', 'FileUploader',
-	function($scope, $routeParams, $location, Global, ArticlesCollection, FileUploader) {
+angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', '$sce', 'Global', 'ArticlesCollection', 'FileUploader',
+	function($scope, $routeParams, $location, $sce, Global, ArticlesCollection, FileUploader) {
 
 		$scope.global = Global;
 		$scope.ArticlesCollection = ArticlesCollection;
@@ -39,11 +39,12 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 
 		$scope.create = function() {
 
+			console.warn(this.category);
 			var articlePromise = $scope.ArticlesCollection.add({
+				image: this.image,
 				title: this.title,
-				content: this.content,
-				link: this.link,
-				image: this.image
+				category: this.category,
+				content: this.content
 			});
 
 			articlePromise.then(function() {
@@ -77,6 +78,22 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 			} else {
 				return;
 			}
+		};
+
+		$scope.customMenu = [
+			['bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript'],
+			['font'],
+			['font-size'],
+			['font-color', 'hilite-color'],
+			['remove-format'],
+			['ordered-list', 'unordered-list', 'outdent', 'indent'],
+			['left-justify', 'center-justify', 'right-justify'],
+			['code', 'quote', 'paragragh'],
+			['link', 'image']
+		];
+
+		$scope.getFormattedContent  = function(html){
+			return $sce.trustAsHtml(html);
 		};
 
 	}

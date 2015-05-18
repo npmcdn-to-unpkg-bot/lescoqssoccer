@@ -22,7 +22,7 @@ var ArticleSchema = new Schema({
         		default: '',
         		trim: true
     	},
-    	link: {
+    	category: {
         		type: String,
         		default: ''
     	},

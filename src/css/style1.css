@@ -880,7 +880,7 @@ button:focus {
     top: 5px;
     right: 5px;
     bottom: 5px;
-    left: 5px;
+    left: 0;
     border: 1px solid rgba(74, 74, 74, 0.075);
     -webkit-transition: opacity 0.3s;
     transition: opacity 0.3s;
