@@ -1,18 +1,18 @@
 <div class="subnav navbar-default" >
-	<div class="navbar-inner toolbar">
+	<div id="subnav" class="navbar-inner toolbar">
 		<ul class="nav navbar-nav navbar-default">
 			<li data-ng-class="{active: view === 'create'}" class="toolbaritem">
-				<a href="#!agenda/create"><span class="fa fa-plus"></span>&nbsp;{{'agenda_add' | translate}}</a>
+				<a href="#!agenda/create"><span class="fa fa-plus"></span> {{'agenda_add' | translate}}</a>
 			</li>
 			<li data-ng-class="{active: view === 'agenda'}" class="toolbaritem">
-				<a href="#!agenda"><span class="fa fa-calendar-o"></span>&nbsp;{{'agenda_view' | translate}}</a>
+				<a href="#!agenda"><span class="fa fa-calendar-o"></span> {{'agenda_view' | translate}}</a>
 			</li>
 			<li data-ng-class="{active: view === 'map'}" class="toolbaritem">
-				<a href="#!agenda/map"><span class="fa fa-globe"></span>&nbsp;{{'agenda_map' | translate}}</a>
+				<a href="#!agenda/map"><span class="fa fa-globe"></span> {{'agenda_map' | translate}}</a>
 			</li>
 		</ul>
-		<div id="search" class="pull-right">
-			<input type="text" placeholder="Recherche"/>
+		<div id="search" class="pull-right" ng-if="view === 'articles'">
+			<input data-ng-model="obj.searchTitle" type="text" placeholder="Recherche"/>
 			<i class="fa fa-search"></i>
 		</div>
 	</div>
