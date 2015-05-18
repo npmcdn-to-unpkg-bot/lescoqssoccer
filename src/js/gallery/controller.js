@@ -5,7 +5,7 @@ angular.module( 'mean.albums' ).controller( 'AlbumCtrl', [ '$location', '$scope'
 	function ( $location, $scope, $modal, PhotoMgrService, album, albums, view, FileUploader ) {
 
 		$scope.pmSvc = PhotoMgrService;
-		$scope.view = view ? view : 'list'; //if view not set in route params,view = list
+		$scope.view = view ? view : 'grid'; //if view not set in route params,view = list
 		$scope.album = album;
 		$scope.newAlbum = $scope.pmSvc.newAlbum()
 		$scope.albums = albums;

@@ -446,7 +446,6 @@ button:focus {
 
 .meta {
   font-size: 0.765em;
-  text-align: left;
 }
 
 .meta .fa {
@@ -483,8 +482,6 @@ button:focus {
 
 .meta__date,
 .meta__reading-time {
-  display: block;
-  float: left;
   color: #aaa;
 }
 

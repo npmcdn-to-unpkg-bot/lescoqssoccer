@@ -54,9 +54,8 @@ a {
 
 .align > li {
 	width: 500px;
-	min-height: 300px;
 	display: inline-block;
-	margin: 30px 20px 30px 30px;
+	margin: 0px 20px 60px 30px;
 	vertical-align: top;
 }
 

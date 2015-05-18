@@ -6,8 +6,9 @@ angular.module('mean.suggestions').controller('SuggestionController', ['$scope',
 		$scope.global = Global;
 		$scope.dateFormat = "dd/MM/yyyy";
 		$scope.SuggestionsCollection = SuggestionsCollection;
-		$scope.content;
+		$scope.view = ($location.path().substr(1, $location.path().length) === 'suggestions') ? 'suggestions' : 'create';
 
+		$scope.content;
 		$scope.SuggestionsCollection.load();
 
 		$scope.add = function () {

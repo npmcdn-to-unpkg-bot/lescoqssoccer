@@ -8,7 +8,6 @@
 			<span class="meta__date"><i class="fa fa-calendar-o"></i>
 			{{article.created | date:dateFormat}}
 			</span>
-			<span class="meta__reading-time"><i class="fa fa-clock-o"></i> 3 min read</span>
 		</div>
 	</div>
 </section>
@@ -23,7 +22,6 @@
 				<span class="meta__date"><i class="fa fa-calendar-o"></i>
 				{{article.created | date:dateFormat}}
 				</span>
-				<span class="meta__reading-time"><i class="fa fa-clock-o"></i> 3 min read</span>
 			</div>
 			<div ng-bind-html="getFormattedContent(article.content)"></div>
 		</article>

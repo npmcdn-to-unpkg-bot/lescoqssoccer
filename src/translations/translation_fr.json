@@ -25,8 +25,8 @@
 
 	"gallery_navbar_gallery_title" : "Gallerie",
 	"gallery_navbar_list_title" : "Vue Liste",
-	"gallery_navbar_grid_title" : "Vue Grille",
-	"gallery_navbar_add_title" : "Ajouter un album",
+	"gallery_navbar_grid_title" : "Albums",
+	"gallery_navbar_add_title" : "Ajouter",
 	"gallery_detail": "Détails",
 	"gallery_name"	: "Nom",
 	"gallery_cover" : "Couverture",

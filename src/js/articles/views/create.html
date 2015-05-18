@@ -1,14 +1,12 @@
 <section>
 
 	<div class="col-md-12" data-ng-include="'/js/articles/views/subnav.html'"></div>
-
 	<form class="form-horizontal" role="form" data-ng-submit="create()">
-
-		<div class="col-md-12 avatar-box" style="margin-top: 20px; text-align: center;">
-			<div class="my-drop-zone imgThumbnail" style="width: 126px; height: auto; display: inline-block;">
+		<div class="col-md-3 avatar-box" style="margin-top: 10px">
+			<div class="imgThumbnail">
 				<img ng-src="{{image && image || 'img/8962691008_7f489395c9_m.jpg'}}">
 			</div>
-			<button class="btn btn-default" style="display: block; margin: auto; margin-top: 15px; margin-bottom: 15px; ">
+			<button class="btn btn-default" style="margin-top: 20px;">
 			<label for="upload-profile-picture" class="label-upload-profile-picture">
 				Uploader une image
 				<input
@@ -20,28 +18,39 @@
 			</label>
 			</button>
 		</div>
+		<div class="col-md-9">
 
+			<div class="input input--nao" data-ng-class="{'input--filled': title && title !== ''}">
+				<input class="input__field input__field--nao" type="text" data-ng-model="title" required/>
+				<label class="input__label input__label--nao" for="title">
+					<span class="input__label-content input__label-content--nao">Titre</span>
+				</label>
+				<svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+				<path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+				</svg>
+			</div>
+			<div class="input input--nao" data-ng-class="{'input--filled': category && category !== ''}">
+				<input class="input__field input__field--nao" type="text" data-ng-model="category" required/>
+				<label class="input__label input__label--nao" for="category">
+					<span class="input__label-content input__label-content--nao">Category</span>
+				</label>
+				<svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+				<path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+				</svg>
+			</div>
+		</div>
 		<div class="col-md-12">
-			<div class="form-group">
-				<label for="title" class="col-md-2 control-label">Titre</label>
-				<div class="col-md-10">
-					<input type="text" class="form-control" data-ng-model="title" placeholder="Titre" required/>
-				</div>
+			<div class="wysiwyg--nao">
+				<wysiwyg
+				textarea-class="form-control"
+				textarea-height="150px"
+				textarea-required
+				ng-model="content"
+				enable-bootstrap-title="true"
+				textarea-menu="customMenu">
+				</wysiwyg>
 			</div>
-			<div class="form-group">
-				<label for="category" class="col-md-2 control-label">Category</label>
-				<div class="col-md-10">
-					<input type="text" class="form-control" data-ng-model="category" placeholder="Category" required/>
-				</div>
-			</div>
-			<wysiwyg
-			textarea-class="form-control"
-			textarea-height="150px"
-			textarea-required
-			ng-model="content"
-			enable-bootstrap-title="true"
-			textarea-menu="customMenu">
-			</wysiwyg>
+
 			<div class="modal-footer" style="padding: 19px 0 20px 20px;">
 				<a href="#!/articles" class="btn btn-default" type="button">Retour</a>
 				<button class="btn btn-primary" type="submit">Ajouter</button>

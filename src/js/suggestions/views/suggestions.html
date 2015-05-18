@@ -1,18 +1,15 @@
-<h1 style="margin-left:15px; padding-left:0;">
-	<i class="fa fa-puzzle-piece"></i>
-	{{'suggestions_title' | translate}}
-	<a href="#!/suggestions/create" class="pull-right">
-		<i class="fa fa-plus-circle"></i>
-	</a>
-</h1>
-<hr style="margin-left:15px; padding-left:0;">
 <section data-ng-controller="SuggestionController">
-	<ul class="suggestionList">
-		<li class="suggestionItem" data-ng-repeat="suggestion in SuggestionsCollection.all">
-			<a href="#">
-				<h4>{{global.user.name}}, le {{suggestion.created | date:dateFormat}}</h4>
-		        		<p class="three-line-ellipsis">{{suggestion.content}}</p>
-		      	</a>
-		</li>
-	</ul>
+
+	<div class="col-md-12" data-ng-include="'/js/suggestions/views/subnav.html'"></div>
+
+	<div class="col-md-12">
+		<ul class="suggestionList">
+			<li class="suggestionItem" data-ng-repeat="suggestion in SuggestionsCollection.all">
+				<a href="#">
+					<h4>{{global.user.name}}, le {{suggestion.created | date:dateFormat}}</h4>
+			        		<p class="three-line-ellipsis">{{suggestion.content}}</p>
+			      	</a>
+			</li>
+		</ul>
+	</div>
 </section>

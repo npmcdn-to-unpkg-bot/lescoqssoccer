@@ -39,7 +39,6 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 
 		$scope.create = function() {
 
-			console.warn(this.category);
 			var articlePromise = $scope.ArticlesCollection.add({
 				image: this.image,
 				title: this.title,
