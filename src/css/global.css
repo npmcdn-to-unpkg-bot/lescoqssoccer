@@ -278,7 +278,7 @@ Navbar
 	background: url('../img/mochaGrunge.png')
 }
 #content h1, #cms-sidebar-nav-list span {
-	font-family: "aaaiight";
+	font-family: "rispaBold";
 }
 a.sidebarItem {
 	text-align: center;
@@ -426,6 +426,11 @@ canvas {
 	font-family: "aaaiight";
 	font-weight: bold;
 	src: url('../fonts/aaaiight.ttf');
+}
+@font-face {
+	font-family: "rispaBold";
+	font-weight: bold;
+	src: url('../fonts/Rispa-Bold.otf');
 }
 .bookTitle {
 	margin-top: 10px !important;

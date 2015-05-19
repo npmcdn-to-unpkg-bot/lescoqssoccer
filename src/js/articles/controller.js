@@ -72,7 +72,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 		};
 
 		$scope.nameFilter = function(article) {
-			if (article.title.indexOf($scope.obj.searchTitle) !== -1) {
+			if (article.title.toLowerCase().indexOf($scope.obj.searchTitle) !== -1) {
 				return article.title;
 			} else {
 				return;

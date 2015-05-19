@@ -622,6 +622,10 @@ button:focus {
   -webkit-overflow-scrolling: touch;
 }
 
+.scroll-wrap::-webkit-scrollbar{
+  display: none;
+}
+
 /* single content item */
 .content__item {
   position: absolute;

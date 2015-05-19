@@ -8,21 +8,17 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 		$scope.isCurrentPath = function (path) {
 
 			var cur_path = "#!" + $location.path().substr(0, path.length);
-			if (cur_path.indexOf(path) !== -1) {
-				return true;
-			} else {
-				return false;
-			}
+			return (cur_path.indexOf(path) !== -1);
 		};
 
 		$scope.menu = [{
 			'title': 'home_title',
 			'link': 'home',
-			'icon': 'fa fa-dashboard'
+			'icon': 'human_picto_163.png'
 		}, {
 			'title': 'agenda_title',
 			'link': 'agenda',
-			'icon': 'fa fa-calendar'
+			'icon': 'human_picto_300.png'
 		}, {
 			'title': 'article_title',
 			'link': 'articles',
