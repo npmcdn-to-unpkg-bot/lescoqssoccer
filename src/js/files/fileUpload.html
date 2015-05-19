@@ -1,9 +1,10 @@
-<section>
-
+<div class="modal-header">
+	<h4>Select Photo to Add:</h4>
+</div>
+<div class="modal-body">
 	<div class="col-md-3">
 
 		<div ng-show="uploader.isHTML5">
-
 			<div class="well my-drop-zone"
 				nv-file-drop="{ url: '/foo' }"
 				nv-file-over="another-file-over-class"
@@ -12,15 +13,14 @@
 			</div>
 		</div>
 		<button class="btn btn-default col-md-12">
-			<label for="upload-profile-picture" class="label-upload-profile-picture">
+		<label for="upload-profile-picture" class="label-upload-profile-picture">
 			Parcourir
 			<input nv-file-select type="file" multiple  uploader="uploader" class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
-			</label>
+		</label>
 		</button>
 	</div>
 
 	<div class="col-md-9" style="margin-bottom: 40px">
-
 		<table class="table">
 			<thead>
 				<tr>
@@ -54,4 +54,8 @@
 			</div>
 		</div>
 	</div>
-</section>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-default" data-ng-click="cancel()">Cancel</button>
+		<button type="button" class="btn btn-success" data-ng-click="ok()">Ok</button>
+	</div>
+</div>

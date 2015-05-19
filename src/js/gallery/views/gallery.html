@@ -2,39 +2,35 @@
 	<div class="col-md-12" data-ng-include="'/js/gallery/views/subnav.html'"></div>
 
 	<div class="col-md-12">
-		<div class="well well-sm">
-			<div style="text-align: center;">
-				<ul class="pagination" style="margin-top: 10px;">
-			        		<li data-ng-click="clickPhoto(prev)">
-			            		<a>&laquo;</a>
-			        		</li>
-			        		<li
-			            	data-ng-repeat="p in album.photoList | slice:paginationMin:paginationMax"
-			            	data-ng-class="(p._id === photo._id) ? 'active' : ''"
-			            	data-ng-click="clickPhoto( $index)">
-			            		<a>{{  $index + 1 }}</a>
-			        		</li>
-			        		<li data-ng-click="clickPhoto(next)">
-			            		<a>&raquo;</a>
-			        		</li>
-			    	</ul>
-			</div>
-			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-				<div id="modal" ng-controller="Modal" class="carousel-inner">
-					<div
+		<div style="text-align: center;">
+			<ul class="pagination" style="margin-top: 10px;">
+				<li data-ng-click="clickPhoto(prev)">
+					<a>&laquo;</a>
+				</li>
+				<li
+					data-ng-repeat="p in album.photoList | slice:paginationMin:paginationMax"
+					data-ng-class="(p._id === photo._id) ? 'active' : ''"
+					data-ng-click="clickPhoto( $index)">
+					<a>{{  $index + 1 }}</a>
+				</li>
+				<li data-ng-click="clickPhoto(next)">
+					<a>&raquo;</a>
+				</li>
+			</ul>
+		</div>
+		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+			<div id="modal" class="carousel-inner">
+				<div
 					class="carousel-img item"
 					data-ng-repeat="p in album.photoList"
 					data-ng-class="(p._id._id === photo._id._id) ? 'active' : ''">
-						<a
-						class="fancybox"
-				                          data-ng-click="open('gallery/views/caroussel.html', 'GalleryCtrl', '', '', getCarousel())">
-							<img data-ng-src="{{p._id.filepath}}" style="margin: auto;">
-						</a>
-					</div>
+					<a class="fancybox">
+						<img data-ng-src="{{p._id.filepath}}" style="margin: auto;">
+					</a>
 				</div>
-				<br/>
-				<h3>{{photo.name}}</h3>
 			</div>
+			<br/>
+			<h3>{{photo.name}}</h3>
 		</div>
 	</div>
 </section>

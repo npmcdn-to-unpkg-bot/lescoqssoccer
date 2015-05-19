@@ -3,9 +3,8 @@
 
 	<div class="col-md-4">
 		<form class="form-horizontal" role="form">
-
 			<div class="input input--nao" data-ng-class="{'input--filled': album.name && album.name !== ''}">
-				<input class="input__field input__field--nao" type="text" data-ng-model="album.name" required/>
+				<input class="input__field input__field--nao" type="text" data-ng-model="album.name" ng-mouseleave="saveAlbum(album, !(album._id))" required/>
 				<label class="input__label input__label--nao" for="name">
 					<span class="input__label-content input__label-content--nao">{{'gallery_name' | translate}}</span>
 				</label>
@@ -13,38 +12,39 @@
 				<path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
 				</svg>
 			</div>
-			<div class="input input--nao" data-ng-class="{'input--filled': album.description && album.description !== ''}">
-				<textarea class="input__field input__field--nao" data-ng-model="album.description" rows="2"></textarea>
-				<label class="input__label input__label--nao" for="name">
-					<span class="input__label-content input__label-content--nao">{{'gallery_description' | translate}}</span>
-				</label>
-				<svg class="textareaGraphic graphic--nao" width="300%" height="100%" viewBox="0 -3 1200 60" preserveAspectRatio="none">
-				<path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
-				</svg>
-			</div>
+			<!-- 			<div class="input input--nao" data-ng-class="{'input--filled': album.description && album.description !== ''}">
+					<textarea class="input__field input__field--nao" data-ng-model="album.description" rows="2"></textarea>
+					<label class="input__label input__label--nao" for="name">
+							<span class="input__label-content input__label-content--nao">{{'gallery_description' | translate}}</span>
+					</label>
+					<svg class="textareaGraphic graphic--nao" width="300%" height="100%" viewBox="0 -3 1200 60" preserveAspectRatio="none">
+					<path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+					</svg>
+			</div> -->
 		</form>
-
-		<div class="modal-footer">
-			<a class="btn btn-primary" ng-click="saveAlbum(album, !(album._id))" data-ng-disabled="!album.name">
-			{{'common_save' | translate}}
-			</a>
-		</div>
 	</div>
-	<div class="col-md-8 well">
-		<tabset>
-		<!-- GALLERY PREVIEW TAB -->
-		<tab>
-		<tab-heading>
-		<h4 class="">
-		<span class="fa fa-edit"></span>
-		{{'gallery_edit' | translate}} ({{displayPhotos.length}})
-		</h4>
-		</tab-heading>
+	<div class="col-md-8">
+
+		<div class="form-group">
+			<button ng-click="uploadFiles();" data-ng-disabled="!album.name">Plus</button>
+		</div>
+
+		<div class="form-group">
+			<label for="name" class="col-md-12 control-label">{{'gallery_cover' | translate}}</label>
+			<div class="col-md-12">
+				<select
+					class="form-control input-sm"
+					data-ng-model="album.coverPic"
+					data-ng-change="setCoverPic(coverPic)"
+					data-ng-options="f as f.name for f in displayPhotos">
+				</select>
+			</div>
+		</div>
+
 		<div class="row album-list">
 			<div class="col-md-12">
 				<table class="table table-striped table-hover">
 					<tbody>
-
 						<!--Row per album  -->
 						<tr data-ng-repeat="photo in displayPhotos">
 							<td>
@@ -69,33 +69,5 @@
 			</div>
 		</div>
 
-		<input class="form-control input-sm" data-ng-model="album.coverPic" type="hidden">
-		<input class="form-control input-sm" data-ng-model="album.coverPicPath" type="hidden">
-		<div class="form-group">
-			<label for="name" class="col-md-12 control-label">{{'gallery_cover' | translate}}</label>
-			<div class="col-md-12">
-				<select
-					class="form-control input-sm"
-					data-ng-model="coverPic"
-					data-ng-change="setCoverPic(coverPic)"
-					data-ng-options="f as f.name for f in displayPhotos">
-				</select>
-			</div>
-		</div>
-		</tab>
-		<!-- ADD PHOTOS TAB -->
-		<tab>
-		<tab-heading>
-		<h4 class="">
-		<span class="fa fa-plus-circle"></span>
-		{{'gallery_add' | translate}}
-		</h4>
-		</tab-heading>
-		<div class="form-group">
-			<div data-ng-include="'/js/files/fileUpload.html'"></div>
-		</div>
-		</tab>
-
-		</tabset>
 	</div>
 </section>
