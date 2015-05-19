@@ -115,6 +115,10 @@ angular.module('mean.articles').directive('cmExpandable', function() {
 					$(contentItems[current]).addClass('content__item--show');
 					closeCtrl.addClass('close-button--show');
 
+					if (!$('.grid').first().hasClass('content--show')) {
+						$('.grid').hide();
+					}
+
 					$("#subnav").hide("fast");
 
 					isAnimating = false;
@@ -129,6 +133,7 @@ angular.module('mean.articles').directive('cmExpandable', function() {
 				//hide article content
 				$(contentItem).removeClass('content__item--show');
 				closeCtrl.removeClass('close-button--show');
+				$('.grid').show();
 
 				setTimeout(function() {
 
@@ -147,6 +152,7 @@ angular.module('mean.articles').directive('cmExpandable', function() {
 						$(contentItemsContainer).removeClass('content--show');
 
 						$("#subnav").show("fast");
+						$('.grid').show();
 					});
 
 					// reset current
