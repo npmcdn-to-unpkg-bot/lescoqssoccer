@@ -8,7 +8,7 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 		$scope.isCurrentPath = function (path) {
 
 			var cur_path = "#!" + $location.path().substr(0, path.length);
-			return (cur_path.indexOf(path) !== -1);
+			return (cur_path.indexOf(path) !== -1) || (path.indexOf('albums') !== -1 && cur_path.indexOf('gallery') !== -1);
 		};
 
 		$scope.menu = [{
@@ -29,7 +29,7 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 			'icon': 'human_picto_025.png'
 		}, {
 			'title': 'gallery_title',
-			'link': 'albums/grid',
+			'link': 'albums',
 			'icon': 'human_picto_225.png'
 		}, {
 			'title': 'suggestions_title',

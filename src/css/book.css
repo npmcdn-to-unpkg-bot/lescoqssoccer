@@ -551,3 +551,9 @@ Table of Contents
 .yellow {
 	background: url(../img/paper.jpg) 100% 100%;
 }
+
+.bookTitle {
+	margin-top: 10px !important;
+	font-family: "aaaiight";
+	color: #2c3e50;
+}
