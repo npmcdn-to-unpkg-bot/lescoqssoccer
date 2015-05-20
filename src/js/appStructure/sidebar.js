@@ -22,19 +22,19 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 		}, {
 			'title': 'article_title',
 			'link': 'articles',
-			'icon': 'fa fa-pencil-square-o'
+			'icon': 'human_picto_118.png'
 		}, {
 			'title': 'link_title',
 			'link': 'links',
-			'icon': 'fa fa-list'
+			'icon': 'human_picto_025.png'
 		}, {
 			'title': 'gallery_title',
 			'link': 'albums/grid',
-			'icon': 'fa fa-picture-o'
+			'icon': 'human_picto_225.png'
 		}, {
 			'title': 'suggestions_title',
 			'link': 'suggestions',
-			'icon': 'fa fa-font'
+			'icon': 'human_picto_298.png'
 		}];
 
 		$scope.isCollapsed = false;

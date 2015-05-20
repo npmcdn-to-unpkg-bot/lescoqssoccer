@@ -273,17 +273,22 @@ Navbar
 	position: fixed;
 	width: 25%;
 	left: 0;
-	padding-top: 191px;
+	padding-top: 176px;
 	height: 100%;
 	background: url('../img/mochaGrunge.png')
 }
 #content h1, #cms-sidebar-nav-list span {
 	font-family: "rispaBold";
+	margin-left: 15px;
 }
+
+#cms-sidebar-nav-list li {
+	margin-top: 15px;
+}
+
 a.sidebarItem {
-	text-align: center;
+	text-align: left;
 	padding: 1.2rem;
-	text-align: center !important;
 	text-transform: uppercase;
 	font-size: large;
 	font-weight: 200;
@@ -294,9 +299,7 @@ a.sidebarItem {
 	position: relative;
 }
 .nav li {
-	/*font-size: 50px;*/
-
-display: block;
+	display: block;
 }
 .nav li a {
 	color: transparent;
@@ -319,6 +322,7 @@ display: block;
 	padding-left: 10px;
 	background: none;
 }
+
 .nav li.active a {
 	color: #fff;
 	text-shadow: 0px 0px 1px #fff;
@@ -331,6 +335,61 @@ display: block;
 .navbar-default .filter {
 	height: 50px;
 }
+
+.nav li a img{
+	height: 40px;
+}
+
+.nav li:not(.active) a img{
+	-webkit-filter: blur(2px);
+    filter: blur(2px);
+}
+
+.nav li:not(.active) a:focus img, .nav li:not(.active) a:hover img{
+	-webkit-filter: blur(0);
+    filter: blur(0);
+}
+
+.picto-circle {
+	position: absolute;
+  	left: 5px;
+  	top: 0;
+  	border-radius: 30px;
+  	height: 60px;
+  	width: 60px;
+  	border: 2px dashed #FFF;
+  	display: block;
+  	margin: 0 auto;
+  	opacity: 0.5;
+}
+
+.nav li a:hover .picto-circle, .nav li a:focus .picto-circle, .nav li.active a .picto-circle{
+	left: 0;
+	-webkit-transition: all 0.2s ease-in-out;
+  	-moz-transition: all 0.2s ease-in-out;
+  	-o-transition: all 0.2s ease-in-out;
+  	-ms-transition: all 0.2s ease-in-out;
+  	transition: all 0.2s ease-in-out;
+  	opacity: 1;
+}
+
+.nav li.active .picto-circle{
+	-webkit-animation: rotating 20s linear infinite;
+  	-moz-animation:    rotating 20s linear infinite;
+  	-o-animation:      rotating 20s linear infinite;
+  	animation:         rotating 20s linear infinite;
+  	opacity: 1;
+}
+
+@-webkit-keyframes rotating {
+    from{
+        -webkit-transform: rotate(0deg);
+    }
+    to{
+        -webkit-transform: rotate(360deg);
+    }
+}
+
 .subnav {
 	margin-bottom: 20px;
 }
