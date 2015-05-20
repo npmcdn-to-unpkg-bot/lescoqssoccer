@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mean.albums').factory('PhotosCollection', ['$resource',
-	function ($resource) {
+	function($resource) {
 
 		return $resource('photos/:id/', {
 			id: '@_id'
@@ -23,7 +23,7 @@ angular.module('mean.albums').factory('PhotosCollection', ['$resource',
 ]);
 
 angular.module('mean.albums').factory('AlbumsCollection', ['$resource',
-	function ($resource) {
+	function($resource) {
 
 		return $resource('albums/:id/', {
 			id: '@_id'
@@ -52,100 +52,100 @@ angular.module('mean.albums').factory('AlbumsCollection', ['$resource',
 ]);
 
 angular.module('mean.albums').service('PhotoMgrService', ['Global', 'AlbumsCollection', 'PhotosCollection',
-	function (Global, AlbumsCollection, Photo) {
+	function(Global, AlbumsCollection, Photo) {
 
 		var global = Global;
 		var pmSvc = {};
 
-		pmSvc.editAlbumPhotos = function (action, photo, album) {
+		pmSvc.editAlbumPhotos = function(action, photo, album) {
 
 			return AlbumsCollection.editAlbumPhotos({
 				action: action,
 				_id: album._id,
 				photoId: photo._id
-			}, function (data) {
+			}, function(data) {
 				return data;
 			});
 		}
 
-		pmSvc.getAlbum = function (id) {
+		pmSvc.getAlbum = function(id) {
 			return AlbumsCollection.get({
 				id: id
-			}, function (data) {
+			}, function(data) {
 				return data;
 			}).$promise;
 		}
 
-		pmSvc.getPhoto = function (id) {
+		pmSvc.getPhoto = function(id) {
 			return Photo.get({
 				id: id
-			}, function (data) {
+			}, function(data) {
 				return data;
 			}).$promise;
 		}
 
-		pmSvc.getAllPhotos = function () {
-			return Photo.query({}, function (data) {
+		pmSvc.getAllPhotos = function() {
+			return Photo.query({}, function(data) {
 				return data;
 			}).$promise;
 		}
 
-		pmSvc.getAllAlbums = function () {
-			return AlbumsCollection.query({}, function (data) {
+		pmSvc.getAllAlbums = function() {
+			return AlbumsCollection.query({}, function(data) {
 				return data;
 			}).$promise;
 		}
 
-		pmSvc.saveAlbum = function (album) {
-			return AlbumsCollection.save({}, album, function (data) {
+		pmSvc.saveAlbum = function(album) {
+			return AlbumsCollection.save({}, album, function(data) {
 				return data;
 			}).$promise;
 		}
 
-		pmSvc.savePhoto = function (photo) {
-			return Photo.save({}, photo, function (data) {
+		pmSvc.savePhoto = function(photo) {
+			return Photo.save({}, photo, function(data) {
 				return data;
 			}).$promise;
 		}
 
-		pmSvc.deleteAlbum = function (album) {
-			return AlbumsCollection.delete({}, album, function (data) {
+		pmSvc.deleteAlbum = function(album) {
+			return AlbumsCollection.delete({}, album, function(data) {
 				return data;
 			}).$promise;
 		}
 
-		pmSvc.deletePhoto = function (photo) {
-			return Photo.delete({}, photo, function (data) {
+		pmSvc.deletePhoto = function(photo) {
+			return Photo.delete({}, photo, function(data) {
 				return data;
 			}).$promise;
 		}
 
-		pmSvc.toggleEnabled = function (id) {
+		pmSvc.toggleEnabled = function(id) {
 			return AlbumsCollection.get({
 				id: id
-			}, function (album) {
+			}, function(album) {
 				album.enabled = (!album.enabled)
 				album.$save();
 			}).$promise;
 		}
 
-		pmSvc.getAlbumPhotos = function (id) {
+		pmSvc.getAlbumPhotos = function(id) {
 			return AlbumsCollection.getPhotos({
 				id: id
-			}, function (data) {
+			}, function(data) {
 				return data;
 			}).$promise;
 		}
 
-		pmSvc.newAlbum = function () {
+		pmSvc.newAlbum = function() {
 			return new AlbumsCollection();
 		}
 
-		pmSvc.newPhoto = function (photo) {
+		pmSvc.newPhoto = function(photo) {
 			return new Photo(photo);
 		}
 
-		pmSvc.uploadFile = function (formData) {
+		pmSvc.uploadFile = function(formData) {
 			return Photo.uploadPhoto({}, formData).$promise;
 		}
 
@@ -154,7 +154,7 @@ angular.module('mean.albums').service('PhotoMgrService', ['Global', 'AlbumsColle
 ]);
 
 angular.module('mean.albums').filter('slice', function() {
-  return function(arr, start, end) {
-    return (arr || []).slice(start, end);
-  };
+	return function(arr, start, end) {
+		return (arr || []).slice(start, end);
+	};
 });
