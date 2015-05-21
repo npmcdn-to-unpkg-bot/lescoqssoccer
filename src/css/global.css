@@ -642,8 +642,8 @@ Map
 }
 
 .angular-google-map-container {
-	height: 440px;
-	width: 780px;
+	height: 500px;
+	width: 100%;
 }
 
 
@@ -959,4 +959,134 @@ Form
 	fill: #fff;
 	-webkit-transform: translate3d(-66.6%, 0, 0);
 	transform: translate3d(-66.6%, 0, 0);
+}
+
+/****
+
+Agenda
+
+*****/
+
+.ev2page-col {
+    padding: 2%;
+    background: lightgray;
+    width: 100%;
+}
+
+.ev2page-col .ev2page-info p { margin-top: 150px !important }
+.ev2page,.ev2page .ev3page {
+    padding: 2%;
+    width: 96%;
+}
+
+.ev2shr-data, .ev2page-data {
+    left: -7px;
+    float: left;
+    width: 75px;
+    color: #1d1d1b;
+    position: relative;
+    text-align: center;
+}
+
+.ev2shr-day, .ev2page-day { font-size: 54px }
+
+.ev2shr-month, .ev2page-month {
+    text-transform: uppercase;
+    position: relative;
+    font-size: 32px;
+    top: -5px;
+}
+
+.ev2shr-year, .ev2page-year {
+    text-transform: uppercase;
+    position: relative;
+    font-size: 28px;
+}
+
+.ev2shr-col, .ev2page-col {
+    margin-bottom: 20px;
+    float: left;
+    padding: 15px;
+}
+
+.ev2shr-cover, .ev2page-cover {
+    margin-right: 15px;
+    float: left;
+    width: 166px;
+    height: 166px;
+    position: relative;
+    overflow: hidden;
+}
+
+h2.ev2shr-title, h2.ev2page-title, h2.ev3page-title {
+    font-size: 20px;
+    margin-top: 0px;
+}
+
+h2.ev2shr-title a, h2.ev2page-title a, h2.ev3page-title a {
+    font-weight: 600;
+    margin-bottom: -10px;
+    color: #1b1b1b;
+}
+
+.ev2shr-info, .ev2page-info {
+    margin-bottom: 38px;
+    top: 0px;
+    color: #888;
+    position: relative;
+}
+
+.ev2shr-venue, .ev2page-venue {
+    background: url("images/event-venue.png") no-repeat;
+    line-height: 16px;
+    padding-left: 20px;
+    margin-top: 3px;
+    float: left;
+    color: #1d1d1b;
+    margin-right: 20px;
+    overflow: hidden;
+    height:16px;
+    width:180px;
+}
+
+.ev2shr-hour, .ev2page-hour {
+    background: url("images/event-hour.png") no-repeat;
+    line-height: 15px;
+    padding-left: 20px;
+    margin-top: 3px;
+    margin-right: 15px;
+    float: left;
+    color: #1d1d1b;
+}
+
+.ev2page-tickets a {
+    margin-top: 10px;
+    text-transform: uppercase;
+    text-decoration: none;
+    float: left;
+    color: #18cecf;
+    background: #fff;
+    padding: 5px 8px 5px 8px;
+    border-radius: 3px;
+}
+
+.ev2page-tickets a:hover, .ev3page-tickets a:hover {
+	background: #000;
+	color: #fff;
+}
+
+.ev2page-week {
+    position: relative;
+    float: right;
+    cursor: default;
+    font-size: 36px;
+   	color: #18cecf;
+    text-transform: uppercase;
+}
+
+.ev2page-col .ev2page-week{
+    transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
 }

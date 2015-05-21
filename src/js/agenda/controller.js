@@ -177,6 +177,17 @@ angular.module('mean.agenda').controller('calendarController', ['$scope', '$rout
 
 		$scope.agendaCollection = AgendaCollection;
 		$scope.view = "agenda";
+		$scope.obj = {
+			searchTitle: ""
+		};
+
+		$scope.nameFilter = function(event) {
+			if (event.title.toLowerCase().indexOf($scope.obj.searchTitle) !== -1) {
+				return event.title;
+			} else {
+				return;
+			}
+		};
 
 		$scope.load = function() {
 
@@ -278,6 +289,7 @@ angular.module('mean.agenda').controller('calendarController', ['$scope', '$rout
 		$scope.changeLang('french');
 		$scope.events = [];
 		$scope.eventSources = [$scope.events];
+		$scope.eventTypes = eventTypes;
 	}
 ]);
 
@@ -597,8 +609,6 @@ angular.module('mean.agenda').controller('subNavController', ['$scope', '$routeP
 			'name': 'Agenda',
 			'url': '/agenda'
 		};
-
-		console.warn($scope.view);
 	}
 ]);
 
