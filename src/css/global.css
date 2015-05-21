@@ -48,7 +48,7 @@ Bootstrap override
 @media screen and (min-width: 768px) {
 	.navbar-nav {
 		float: inherit;
-	}
+}
 }
 .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
 	color: #262626;
@@ -206,11 +206,9 @@ Navbar
 	font-family: "rispaBold";
 	margin-left: 15px;
 }
-
 #cms-sidebar-nav-list li {
 	margin-top: 15px;
 }
-
 a.sidebarItem {
 	text-align: left;
 	padding: 1.2rem;
@@ -247,7 +245,6 @@ a.sidebarItem {
 	padding-left: 10px;
 	background: none;
 }
-
 .nav li.active a {
 	color: #fff;
 	text-shadow: 0px 0px 1px #fff;
@@ -260,61 +257,53 @@ a.sidebarItem {
 .navbar-default .filter {
 	height: 50px;
 }
-
-.nav li a img{
+.nav li a img {
 	height: 40px;
 }
-
-.nav li:not(.active) a img{
+.nav li:not(.active) a img {
 	-webkit-filter: blur(2px);
-    filter: blur(2px);
+	filter: blur(2px);
 }
-
-.nav li:not(.active) a:focus img, .nav li:not(.active) a:hover img{
+.nav li:not(.active) a:focus img, .nav li:not(.active) a:hover img {
 	-webkit-filter: blur(0);
-    filter: blur(0);
+	filter: blur(0);
 }
-
 .picto-circle {
 	position: absolute;
-  	left: 5px;
-  	top: 0;
-  	border-radius: 30px;
-  	height: 60px;
-  	width: 60px;
-  	border: 2px dashed #FFF;
-  	display: block;
-  	margin: 0 auto;
-  	opacity: 0.5;
+	left: 5px;
+	top: 0;
+	border-radius: 30px;
+	height: 60px;
+	width: 60px;
+	border: 2px dashed #FFF;
+	display: block;
+	margin: 0 auto;
+	opacity: 0.5;
 }
-
-.nav li a:hover .picto-circle, .nav li a:focus .picto-circle, .nav li.active a .picto-circle{
+.nav li a:hover .picto-circle, .nav li a:focus .picto-circle, .nav li.active a .picto-circle {
 	left: 0;
 	-webkit-transition: all 0.2s ease-in-out;
-  	-moz-transition: all 0.2s ease-in-out;
-  	-o-transition: all 0.2s ease-in-out;
-  	-ms-transition: all 0.2s ease-in-out;
-  	transition: all 0.2s ease-in-out;
-  	opacity: 1;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	-ms-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+	opacity: 1;
 }
-
-.nav li.active .picto-circle{
+.nav li.active .picto-circle {
 	-webkit-animation: rotating 20s linear infinite;
-  	-moz-animation:    rotating 20s linear infinite;
-  	-o-animation:      rotating 20s linear infinite;
-  	animation:         rotating 20s linear infinite;
-  	opacity: 1;
+	-moz-animation: rotating 20s linear infinite;
+	-o-animation: rotating 20s linear infinite;
+	animation: rotating 20s linear infinite;
+	opacity: 1;
 }
-
 @-webkit-keyframes rotating {
-    from{
-        -webkit-transform: rotate(0deg);
-    }
-    to{
-        -webkit-transform: rotate(360deg);
-    }
+	from {
+		-webkit-transform: rotate(0deg);
 }
-
+to {
+	-webkit-transform: rotate(360deg);
+}
+}
 .subnav {
 	margin-bottom: 20px;
 }
@@ -334,7 +323,7 @@ a.sidebarItem {
 #subnav li:first-child {
 	border-left: 1px solid rgba(74, 74, 74, 0.3);
 }
-#subnav li+li: not(.active) {
+#subnav li+li:not(.active) {
 	border-left: 1px solid rgba(74, 74, 74, 0.3);
 }
 #subnav li.active:after {
@@ -416,7 +405,6 @@ canvas {
 	font-weight: bold;
 	src: url('../fonts/Rispa-Bold.otf');
 }
-
 /****
 
 
@@ -450,7 +438,7 @@ a.collapse-link {
 	border-bottom: 0 !important;
 	border-color: rgba(0, 0, 0, 0.5) !important;
 }
-.nav-tabs.nav-justified a:hover: not(active) {
+.nav-tabs.nav-justified a:hover:not(.active) {
 	background: rgba(0, 0, 0, 0.7) !important;
 	color: white !important;
 }
@@ -524,8 +512,6 @@ table.table-striped td {
 	vertical-align: top;
 	border-top: 0;
 }
-
-
 /****
 
 Suggestions : post-it;
@@ -619,8 +605,6 @@ ul.suggestionList li a:hover, ul.suggestionList li a:focus {
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 }
-
-
 /****
 
 Map
@@ -637,16 +621,14 @@ Map
 	background-size: 100%;
 	pointer-events: none;
 }*/
+
 .mapContainer div {
 	background: none;
 }
-
 .angular-google-map-container {
 	height: 500px;
 	width: 100%;
 }
-
-
 /****
 
 Articles
@@ -699,14 +681,12 @@ Articles
 	text-align: center;
 	top: 0;
 }
-
-
 .add-button {
 	opacity: 1;
 	margin: 0 auto;
 	border: none;
- 	background: none;
- 	display: inline-block;
+	background: none;
+	display: inline-block;
 }
 .addbutton {
 	border-radius: 38px;
@@ -739,17 +719,16 @@ Articles
 	font-size: 30px;
 	text-align: center;
 }
-
 @font-face {
 	font-family: "icons";
 	src: url('../fonts/icons.woff');
 }
-
 /****
 
 Form
 
 ****/
+
 .input {
 	position: relative;
 	z-index: 1;
@@ -812,7 +791,6 @@ Form
 	color: #ddd;
 	font-size: 150%;
 }
-
 /* Nao */
 
 .input--nao {
@@ -864,24 +842,22 @@ Form
 	-webkit-transform: translate3d(-66.6%, 0, 0);
 	transform: translate3d(-66.6%, 0, 0);
 }
-
 /* Kozakura */
 
 .input--kozakura {
 	overflow: hidden;
 	padding-bottom: 1em;
 }
-
 .input__field--kozakura {
 	padding: 0.25em 0.5em;
 	margin-top: 1.25em;
 	width: 100%;
 	/*background: transparent;*/
-	color: #2F3238;
+
+color: #2F3238;
 	font-size: 1.55em;
 	opacity: 0;
 }
-
 .input__label--kozakura {
 	width: 100%;
 	text-align: left;
@@ -889,21 +865,20 @@ Form
 	top: 1em;
 	pointer-events: none;
 	/*overflow: hidden;*/
-	padding: 0 0.25em;
+
+padding: 0 0.25em;
 	-webkit-transform: translate3d(1em, 2.75em, 0);
 	transform: translate3d(1em, 2.75em, 0);
 	-webkit-transition: -webkit-transform 0.3s;
 	transition: transform 0.3s;
 }
-
 .input__label-content--kozakura {
 	color: #A4A5A6;
 	padding: 0.4em 0 0.25em;
 	-webkit-transition: -webkit-transform 0.3s;
 	transition: transform 0.3s;
 }
-
-.input__label-content--kozakura::after {
+.input__label-content--kozakura: :after {
 	content: attr(data-content);
 	position: absolute;
 	font-weight: 800;
@@ -917,9 +892,8 @@ Form
 	letter-spacing: 1px;
 	font-size: 0.85em;
 }
-
 .graphic--kozakura {
-	fill: #424242;
+	fill: #18cecf;
 	pointer-events: none;
 	top: 1em;
 	bottom: 0px;
@@ -930,37 +904,28 @@ Form
 	-webkit-transition-timing-function: cubic-bezier(0, 0.25, 0.5, 1);
 	transition-timing-function: cubic-bezier(0, 0.25, 0.5, 1);
 }
-
-.input__field--kozakura:focus,
-.input--filled .input__field--kozakura {
+.input__field--kozakura:focus, .input--filled .input__field--kozakura {
 	-webkit-transition: opacity 0s 0.35s;
 	transition: opacity 0s 0.35s;
 	opacity: 1;
 }
-
-.input__field--kozakura:focus + .input__label--kozakura,
-.input--filled .input__label--kozakura {
+.input__field--kozakura:focus + .input__label--kozakura, .input--filled .input__label--kozakura {
 	-webkit-transition-delay: 0.15s;
 	transition-delay: 0.15s;
 	-webkit-transform: translate3d(0, 0, 0);
 	transform: translate3d(0, 0, 0);
 }
-
-.input__field--kozakura:focus + .input__label--kozakura .input__label-content--kozakura,
-.input--filled .input__label-content--kozakura {
+.input__field--kozakura:focus + .input__label--kozakura .input__label-content--kozakura, .input--filled .input__label-content--kozakura {
 	-webkit-transition-delay: 0.15s;
 	transition-delay: 0.15s;
 	-webkit-transform: translate3d(0, -100%, 0);
 	transform: translate3d(0, -100%, 0);
 }
-
-.input__field--kozakura:focus ~ .graphic--kozakura,
-.input--filled .graphic--kozakura {
+.input__field--kozakura:focus ~ .graphic--kozakura, .input--filled .graphic--kozakura {
 	fill: #fff;
 	-webkit-transform: translate3d(-66.6%, 0, 0);
 	transform: translate3d(-66.6%, 0, 0);
 }
-
 /****
 
 Agenda
@@ -968,125 +933,108 @@ Agenda
 *****/
 
 .ev2page-col {
-    padding: 2%;
-    background: lightgray;
-    width: 100%;
+	padding: 2%;
+	border: 1px solid rgba(74, 74, 74, 0.3);
+	width: 100%;
+	line-height: 1;
 }
-
-.ev2page-col .ev2page-info p { margin-top: 150px !important }
-.ev2page,.ev2page .ev3page {
-    padding: 2%;
-    width: 96%;
+.ev2page-col:hover {
+	border: 1px solid rgba(24, 206, 207, 1);
+	cursor: pointer;
 }
-
+.ev2page-col .ev2page-info p {
+	margin-top: 150px !important
+}
+.ev2page, .ev2page .ev3page {
+	padding: 2%;
+	width: 96%;
+}
 .ev2shr-data, .ev2page-data {
-    left: -7px;
-    float: left;
-    width: 75px;
-    color: #1d1d1b;
-    position: relative;
-    text-align: center;
+	color: #1d1d1b;
+	position: absolute;
+	text-align: center;
+	top: 0;
+  	left: 10px;
 }
-
-.ev2shr-day, .ev2page-day { font-size: 54px }
-
+.ev2shr-day, .ev2page-day {
+	font-size: 54px
+}
 .ev2shr-month, .ev2page-month {
-    text-transform: uppercase;
-    position: relative;
-    font-size: 32px;
-    top: -5px;
+	text-transform: uppercase;
+	position: relative;
+	font-size: 32px;
+	top: -20px;
 }
-
 .ev2shr-year, .ev2page-year {
-    text-transform: uppercase;
-    position: relative;
-    font-size: 28px;
+	text-transform: uppercase;
+	position: relative;
+	font-size: 28px;
+	top: -30px;
 }
-
 .ev2shr-col, .ev2page-col {
-    margin-bottom: 20px;
-    float: left;
-    padding: 15px;
+	margin-bottom: 10px;
+	float: left;
+	padding: 15px;
 }
-
 .ev2shr-cover, .ev2page-cover {
-    margin-right: 15px;
-    float: left;
-    width: 166px;
-    height: 166px;
-    position: relative;
-    overflow: hidden;
+	display: inline-block;
+	position: relative;
+	overflow: hidden;
 }
-
 h2.ev2shr-title, h2.ev2page-title, h2.ev3page-title {
-    font-size: 20px;
-    margin-top: 0px;
+	font-size: 20px;
+	margin-top: 0px;
+	padding-left: 50px;
+	padding-right: 50px;
 }
-
 h2.ev2shr-title a, h2.ev2page-title a, h2.ev3page-title a {
-    font-weight: 600;
-    margin-bottom: -10px;
-    color: #1b1b1b;
+	font-weight: 600;
+	margin-bottom: -10px;
+	color: #1b1b1b;
 }
-
 .ev2shr-info, .ev2page-info {
-    margin-bottom: 38px;
-    top: 0px;
-    color: #888;
-    position: relative;
+	top: 0px;
+	color: #888;
+	position: relative;
 }
-
 .ev2shr-venue, .ev2page-venue {
-    background: url("images/event-venue.png") no-repeat;
-    line-height: 16px;
-    padding-left: 20px;
-    margin-top: 3px;
-    float: left;
-    color: #1d1d1b;
-    margin-right: 20px;
-    overflow: hidden;
-    height:16px;
-    width:180px;
+	margin-top: 3px;
+	float: left;
+	color: #1d1d1b;
+	margin-right: 20px;
+	overflow: hidden;
+	height: 16px;
+	width: 180px;
 }
-
 .ev2shr-hour, .ev2page-hour {
-    background: url("images/event-hour.png") no-repeat;
-    line-height: 15px;
-    padding-left: 20px;
-    margin-top: 3px;
-    margin-right: 15px;
-    float: left;
-    color: #1d1d1b;
+	color: #1d1d1b;
 }
-
 .ev2page-tickets a {
-    margin-top: 10px;
-    text-transform: uppercase;
-    text-decoration: none;
-    float: left;
-    color: #18cecf;
-    background: #fff;
-    padding: 5px 8px 5px 8px;
-    border-radius: 3px;
+	text-transform: uppercase;
+	text-decoration: none;
+	float: right;
+	color: #18cecf;
+	background: gray;
+	padding: 5px 8px 5px 8px;
+	border-radius: 3px;
+	position: absolute;
+	top: 10px;
+	right: 10px;
 }
-
 .ev2page-tickets a:hover, .ev3page-tickets a:hover {
 	background: #000;
 	color: #fff;
 }
-
 .ev2page-week {
-    position: relative;
-    float: right;
-    cursor: default;
-    font-size: 36px;
-   	color: #18cecf;
-    text-transform: uppercase;
+	position: relative;
+	cursor: default;
+	font-size: 36px;
+	color: #18cecf;
+	text-transform: uppercase;
 }
-
-.ev2page-col .ev2page-week{
-    transition: all .3s ease-in-out;
-    -ms-transition: all .3s ease-in-out;
-    -moz-transition: all .3s ease-in-out;
-    -webkit-transition: all .3s ease-in-out;
+.ev2page-col .ev2page-week {
+	transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-webkit-transition: all .3s ease-in-out;
 }

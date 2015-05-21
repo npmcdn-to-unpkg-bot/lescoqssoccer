@@ -66,7 +66,11 @@ button:focus {
   right: 55px;
   bottom: 0px;
   left: 55px;
-  border-bottom: 1px solid rgba(74, 74, 74, 0.075);
+  border-bottom: 1px solid rgba(74, 74, 74, 0.3);
+}
+
+.grid__item::before:hover {
+	border: 3px solid rgba(24, 206, 207, 0.3);
 }
 
 .grid__item * {
@@ -296,7 +300,7 @@ button:focus {
 .category--full {
   font-size: 1.25em;
   margin-bottom: 20px;
-  color: #81c483;
+  color: #18cecf;
 }
 
 .title--full {
@@ -518,14 +522,14 @@ button:focus {
     right: 5px;
     bottom: 5px;
     left: 0;
-    border: 1px solid rgba(74, 74, 74, 0.075);
+    border: 1px solid rgba(74, 74, 74, 0.3);
     -webkit-transition: opacity 0.3s;
     transition: opacity 0.3s;
   }
 
   .grid__item:hover::before,
   .grid__item:focus::before {
-    border: 3px solid rgba(129, 196, 131, 0.5);
+    border: 3px solid rgba(24, 206, 207, 0.3);
   }
 
   .grid__item--loading.grid__item::before {
@@ -534,25 +538,25 @@ button:focus {
 }
 @media screen and (min-width: 1200px) {
   /* 3 columns */
-  .grid__item {
+  .grid__item:not(.agenda_item) {
     width: 33.333%;
   }
 }
 @media screen and (min-width: 1500px) {
   /* 4 columns */
-  .grid__item {
+  .grid__item:not(.agenda_item) {
     width: 25%;
   }
 }
 @media screen and (min-width: 1800px) {
   /* 5 columns */
-  .grid__item {
-    width: 20%;
+  .grid__item:not(.agenda_item) {
+    width: 20% ;
   }
 }
 @media screen and (min-width: 2100px) {
   /* 6 columns */
-  .grid__item {
+  .grid__item:not(.agenda_item) {
     width: 16.66%;
   }
 }

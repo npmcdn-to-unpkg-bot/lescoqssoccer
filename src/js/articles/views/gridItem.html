@@ -1,21 +1,23 @@
 <section class="grid">
 	<div class="grid__item" ng-repeat="article in articles | filter: nameFilter">
-		<h2 class="title title--preview">{{article.title}}</h2>
-		<div class="loader"></div>
-		<span class="category">{{article.category}}</span>
+		<h2 class="ev2page-title"><a href="#!">{{article.title}}</a></h2>
 		<div class="meta meta--preview">
 			<img ng-src="{{article.image && article.image || 'img/8962691008_7f489395c9_m.jpg'}}" alt="" class="meta__avatar">
-			<span class="meta__date"><i class="fa fa-calendar-o"></i>
+			<div class="ev2page-hour">
+			{{article.user.name}}
+			</div>
+			<span class="ev2page-hour"><i class="fa fa-calendar-o"></i>
 			{{article.created | date:dateFormat}}
 			</span>
 		</div>
+		<div class="ev2page-tickets" ng-if="article.category"><a href="#!">{{article.category}}</a></div>
 	</div>
 </section>
 <section class="content">
 	<div class="scroll-wrap">
 		<article class="content__item" ng-repeat="article in articles | filter: nameFilter">
 			<span class="category category--full">{{article.category}}</span>
-			<h2 class="title title--full">{{article.title}}</h2>
+			<h2 class="title title--preview">{{article.title}}</h2>
 			<div class="meta meta--full">
 				<img ng-src="{{article.image && article.image || 'img/8962691008_7f489395c9_m.jpg'}}" alt="" class="meta__avatar">
 				<span class="meta__author">{{article.user.name}}</span>
