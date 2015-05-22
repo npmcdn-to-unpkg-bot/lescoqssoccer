@@ -12,8 +12,12 @@
 			</li>
 		</ul>
 		<div id="search" class="pull-right" ng-if="view === 'agenda'">
-			<input data-ng-model="obj.searchTitle" type="text" placeholder="Recherche"/>
-			<i class="fa fa-search"></i>
+			<span class="input input--makiko">
+				<input class="input__field input__field--makiko" type="text" data-ng-model="obj.searchTitle" name="search"/>
+				<label class="input__label input__label--makiko" for="search">
+					<span class="input__label-content input__label-content--makiko">Rechercher</span>
+				</label>
+			</span>
 		</div>
 	</div>
 </div>

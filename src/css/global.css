@@ -347,8 +347,8 @@ to {
 #search {
 	position: absolute;
 	display: inline-block;
-	right: 20px;
-	top: 10px;
+	right: 0;
+	top: 0;
 }
 #search > input {
 	background: #dfdfdf;
@@ -914,6 +914,59 @@ select.input__field--yoshiko{
 .input__field--yoshiko:focus, .input--yoshiko.input--filled .input__field--yoshiko{
 	background-color: transparent;
 	border-color: #18cecf;
+}
+
+/* Makiko */
+.input--makiko {
+	overflow: hidden;
+	background: #eee;
+}
+
+.input__field--makiko {
+	width: 100%;
+	background: transparent;
+	color: #797693;
+	z-index: 10;
+	font-weight: 500;
+	line-height: 2em;
+}
+
+.input__label--makiko {
+	position: absolute;
+	width: 100%;
+	text-align: left;
+	pointer-events: none;
+	color: #fff;
+}
+
+.input__label--makiko::before {
+	content: '';
+	position: absolute;
+	width: 20px;
+	height: 25px;
+	top: 35%;
+	left: 10px;
+	background: url(../img/search.svg) no-repeat center center;
+	background-size: 100%;
+	-webkit-transition: -webkit-transform 0.4s cubic-bezier(0.7,0,0.3,1);
+	transition: transform 0.4s cubic-bezier(0.7,0,0.3,1);
+}
+
+.input__label-content--makiko {
+	display: block;
+	padding: 1.3em 0 0 2.75em;
+	-webkit-transition: -webkit-transform 0.4s cubic-bezier(0.7,0,0.3,1);
+	transition: transform 0.4s cubic-bezier(0.7,0,0.3,1);
+}
+
+.input__field--makiko:focus + .input__label--makiko::before,
+.input--filled .input__label--makiko::before {
+	-webkit-transform: scale3d(38, 38, 1);
+	transform: scale3d(38, 38, 1);
+}
+
+.input__field--makiko:focus {
+	border: 1px solid #18cecf;
 }
 
 /****
