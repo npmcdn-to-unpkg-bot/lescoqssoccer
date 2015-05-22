@@ -2,17 +2,16 @@
 	<div class="col-md-12" data-ng-include="'/js/gallery/views/subnav.html'"></div>
 
 	<div class="col-md-12">
-		<form class="form-horizontal" role="form">
-			<div class="input input--kozakura" data-ng-class="{'input--filled': album.name && album.name !== ''}" style="display: inline-block;">
-				<input class="input__field input__field--kozakura" type="text" data-ng-model="album.name" ng-mouseleave="saveAlbum(album, !(album._id))" required/>
-				<label class="input__label input__label--kozakura" for="name">
-					<span class="input__label-content input__label-content--kozakura">{{'gallery_name' | translate}}</span>
-				</label>
-				<svg class="graphic graphic--kozakura" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-					<path d="M1200,9c0,0-305.005,0-401.001,0C733,9,675.327,4.969,598,4.969C514.994,4.969,449.336,9,400.333,9C299.666,9,0,9,0,9v43c0,0,299.666,0,400.333,0c49.002,0,114.66,3.484,197.667,3.484c77.327,0,135-3.484,200.999-3.484C894.995,52,1200,52,1200,52V9z"/>
-				</svg>
-			</div>
+		<form class="form-horizontal" role="form" style="padding-top: 20px;">
 
+			<span class="input input--yoshiko" data-ng-class="{'input--filled': album.name && album.name !== ''}">
+				<input class="input__field input__field--yoshiko" type="text" name="name" data-ng-model="album.name" ng-mouseleave="saveAlbum(album, !(album._id))" required/>
+				<label class="input__label input__label--yoshiko" for="name">
+					<span class="input__label-content input__label-content--yoshiko">{{'gallery_name' | translate}}</span>
+				</label>
+			</span>
+
+			<br/>
 			<button
 			class="add-button"
 			ng-click="uploadFiles();"
@@ -20,6 +19,7 @@
 				<span class="addbutton" tooltip="Rentre d'abord un nom" tooltip-placement="right" ng-show="!album.name"></span>
 				<span class="addbutton" ng-show="album.name"></span>
 			</button>
+
 		</form>
 	</div>
 

@@ -50,6 +50,9 @@ Bootstrap override
 		float: inherit;
 }
 }
+.btn{
+	background: #eee;
+}
 .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
 	color: #262626;
 	text-decoration: none;
@@ -722,18 +725,61 @@ Articles
 	font-family: "icons";
 	src: url('../fonts/icons.woff');
 }
+
 /****
 
-Form
+Article list
 
 ****/
+.bl2page-cover {
+    height: 150px;
+    position: relative;
+    overflow: hidden;
+}
+
+h2.bl2page-title { font-size: 20px }
+
+h2.bl2page-title a {
+    font-weight: 600;
+    margin-bottom: -10px;
+    color: #1b1b1b;
+}
+
+.bl2page-text { margin-top: -3px }
+
+.bl2page-info {
+    margin-top: 1px;
+    float: left;
+    display: block;
+    margin-left: -5px;
+}
+
+p.bl2page-user,  p.bl2page-date, p.bl2page-comment{
+    padding-left: 28px;
+    padding-right: 10px;
+    float: left;
+    line-height: 27px;
+    margin: 0;
+}
+
+p.bl2page-comment a { color: #1b1b1b }
+
+/****
+
+Forms
+
+****/
+
+.form-horizontal{
+	padding-top: 20px;
+}
 
 .input {
 	  position: relative;
 	  display: inline-block;
 	  margin-bottom: 3em;
 	  margin-left: 0;
-	  max-width: 350px;
+	  max-width: 490px;
 	  width: calc(100% - 2em);
 	  vertical-align: top;
 }
@@ -875,10 +921,6 @@ select.input__field--yoshiko{
 Agenda
 
 *****/
-.agendaForm{
-	padding-top: 20px;
-}
-
 .agendaForm .angular-google-map-container {
 	height: 350px;
 	width: 75%
@@ -1140,7 +1182,7 @@ Links
     visibility:hidden;
 }
 
-.adpage1-col:hover .he-view{
+.adpage1-col:hover .he-view, .grid__item:hover .he-view{
 	visibility:visible;
 	opacity: 0.7;
 }

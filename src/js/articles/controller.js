@@ -13,7 +13,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 
 		$scope.image;
 		$scope.article;
-		$scope.dateFormat = "dd/MM/yyyy 'à' H'h'mm";
+		$scope.dateFormat = "dd MMM yyyy 'à' H'h'mm";
 
 		$scope.uploader = new FileUploader({
 			scope: $scope,

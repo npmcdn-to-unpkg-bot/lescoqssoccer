@@ -4,12 +4,14 @@
 
 	<div class="col-md-12">
 		<form class="form-horizontal" role="form" data-ng-submit="add();">
+			<span class="input input--yoshiko" data-ng-class="{'input--filled': content}">
+				<textarea class="input__field input__field--yoshiko" type="text" name="content" data-ng-model="content" required>
+				</textarea>
+				<label class="input__label input__label--yoshiko" for="content">
+					<span class="input__label-content input__label-content--yoshiko">{{'suggestions_add' | translate}}</span>
+				</label>
+			</span>
 			<div class="form-group">
-				<textarea
-					class="form-control"
-					placeholder="{{'suggestions_add' | translate}}"
-					data-ng-model="content"
-					style="width:calc(100% - 15px); margin-left: 15px;"/>
 				<button
 					class="btn btn-primary"
 					type="submit"
