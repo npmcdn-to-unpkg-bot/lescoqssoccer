@@ -1,13 +1,20 @@
 <section class="grid" data-ng-controller="LinkController">
-
-	<a data-ng-repeat="link in links" href="{{link.adress}}" data-lightbox="gallery-group-1" target="_blank" class="grid__item">
-		<div>
-			<h2 class="title title--preview">{{link.title}}</h2>
-			<div class="loader"></div>
-			<span class="category">{{link.author}}</span>
-			<div class="meta meta--preview">
-				<img ng-src="{{link.image && link.image || 'img/8962691008_7f489395c9_m.jpg'}}" alt="" class="meta__avatar">
-			</div>
-		</div>
-	</a>
+	<div class="adpage1-col wz-last" data-ng-repeat="link in links">
+		<a href="{{link.adress}}" target="_blank">
+		    <div class="adpage1-cover">
+		       <div class="wz-wrap wz-hover">
+		          	<img ng-src="{{link.image && link.image || 'img/8962691008_7f489395c9_m.jpg'}}" alt="" class="linkImage" scale="0">
+		          	<div class="he-view">
+		             	<div class="bg a0">
+		             	</div>
+				  	</div>
+		       	</div>
+		    </div>
+	       	<div class="adpage-info">
+	          	<div class="adpage-title">{{link.title}}</div>
+	          	<div class="adpage-des"> {{link.author}}</div>
+	       </div>
+ 		</a>
+ 	</div>
 </section>
+

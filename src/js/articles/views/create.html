@@ -1,8 +1,10 @@
 <section>
 
 	<div class="col-md-12" data-ng-include="'/js/articles/views/subnav.html'"></div>
-	<form class="form-horizontal" role="form" data-ng-submit="create()">
-		<div class="col-md-3 avatar-box" style="margin-top: 10px">
+
+	<form class="form-horizontal articleForm" role="form" data-ng-submit="create()">
+
+		<div class="col-md-3 avatar-box">
 			<div class="imgThumbnail">
 				<img ng-src="{{image && image || 'img/8962691008_7f489395c9_m.jpg'}}">
 			</div>
@@ -18,31 +20,30 @@
 			</label>
 			</button>
 		</div>
-		<div class="col-md-9">
 
-			<div class="input input--kozakura" data-ng-class="{'input--filled': title && title !== ''}">
-				<input class="input__field input__field--kozakura" type="text" data-ng-model="title" required/>
-				<label class="input__label input__label--kozakura" for="title">
-					<span class="input__label-content input__label-content--kozakura">Titre</span>
+		<div class="col-md-9" style="margin-top: 20px;">
+
+			<span class="input input--yoshiko" data-ng-class="{'input--filled': title}">
+				<input class="input__field input__field--yoshiko" type="text" data-ng-model="title" required/>
+				<label class="input__label input__label--yoshiko" for="title">
+					<span class="input__label-content input__label-content--yoshiko">{{'title' | translate}}</span>
 				</label>
-				<svg class="graphic graphic--kozakura" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-					<path d="M1200,9c0,0-305.005,0-401.001,0C733,9,675.327,4.969,598,4.969C514.994,4.969,449.336,9,400.333,9C299.666,9,0,9,0,9v43c0,0,299.666,0,400.333,0c49.002,0,114.66,3.484,197.667,3.484c77.327,0,135-3.484,200.999-3.484C894.995,52,1200,52,1200,52V9z"/>
-				</svg>
-			</div>
-			<div class="input input--kozakura" data-ng-class="{'input--filled': category && category !== ''}">
-				<input class="input__field input__field--kozakura" type="text" data-ng-model="category" required/>
-				<label class="input__label input__label--kozakura" for="category">
-					<span class="input__label-content input__label-content--kozakura">Category</span>
+			</span>
+
+			<br/>
+			<span class="input input--yoshiko" data-ng-class="{'input--filled': category}">
+				<input class="input__field input__field--yoshiko" type="text" data-ng-model="category" required/>
+				<label class="input__label input__label--yoshiko" for="category">
+					<span class="input__label-content input__label-content--yoshiko">Categorie</span>
 				</label>
-				<svg class="graphic graphic--kozakura" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-					<path d="M1200,9c0,0-305.005,0-401.001,0C733,9,675.327,4.969,598,4.969C514.994,4.969,449.336,9,400.333,9C299.666,9,0,9,0,9v43c0,0,299.666,0,400.333,0c49.002,0,114.66,3.484,197.667,3.484c77.327,0,135-3.484,200.999-3.484C894.995,52,1200,52,1200,52V9z"/>
-				</svg>
-			</div>
+			</span>
+
 		</div>
-		<div class="col-md-12">
+
+		<div class="col-md-12" style="margin-top: 20px;">
 			<div class="wysiwyg--nao">
 				<wysiwyg
-				textarea-class="form-control"
+				textarea-class="input__field--yoshiko"
 				textarea-height="150px"
 				textarea-required
 				ng-model="content"

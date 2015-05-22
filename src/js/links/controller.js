@@ -17,13 +17,13 @@ angular.module('mean.links').controller('LinkController', ['$scope', 'Global', '
 				title: "objectifjapon TKT"
 			},
 			nico: {
-				author: "Nico",
+				author: "Nico et Amélie",
 				adress: "http://deux-noix-nz.blogspot.fr",
 				image: "img/nico.jpg",
 				title: "Deux noix au pays des kiwis"
 			},
 			momo:{
-				author: "Momo",
+				author: "Momo et Céline",
 				adress: "http://bandedemickeysen4l.com/",
 				image: "img/momo.jpeg",
 				title: "Bande de Mickeys en 4L"
