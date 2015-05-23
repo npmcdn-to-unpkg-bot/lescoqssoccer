@@ -620,3 +620,12 @@ button:focus {
     display: none;
   }
 }
+
+.expandable-container.expand{
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  height: 150px;
+	  width: 100%;
+	  background-color: white;
+}

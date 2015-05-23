@@ -1,7 +1,6 @@
 <section data-ng-controller="createController" data-ng-init="init()">
 
 	<div class="col-md-12" data-ng-include="'/js/agenda/views/subnav.html'"></div>
-
 	<div class="col-md-12">
 		<form class="form-horizontal agendaForm" role="form" data-ng-submit="create();">
 
@@ -11,8 +10,8 @@
 					<span class="input__label-content input__label-content--yoshiko">{{'title' | translate}}</span>
 				</label>
 			</span>
-
 			<br/>
+
 			<span class="input input--yoshiko input--filled">
 				<select class="input__field--yoshiko"
 					name="selectedType"
@@ -40,13 +39,13 @@
 					<span class="input__label-content input__label-content--yoshiko">{{'startdate' | translate}}</span>
 				</label>
 				<span class="input-group-btn location-btn">
-					<button class="btn" ng-click="open($event, 'start')">
-						<i class="glyphicon glyphicon-calendar"></i>
-					</button>
+				<button class="btn btn-cm" ng-click="open($event, 'start')">
+				<i class="glyphicon glyphicon-calendar"></i>
+				</button>
 				</span>
 			</div>
-
 			<br/>
+
 			<span class="input input--yoshiko" data-ng-class="{'input--filled': userEvent.content}">
 				<textarea class="input__field input__field--yoshiko" type="text" name="content" data-ng-model="userEvent.content" required>
 				</textarea>
@@ -62,21 +61,21 @@
 					<span class="input__label-content input__label-content--yoshiko">Localisation</span>
 				</label>
 				<span class="input-group-btn location-btn">
-					<button
-						class="btn"
-						type="button"
-						ng-click="geoCode()"
-						ng-disabled="search.length === 0"
-						title="search" >
-						&nbsp;<i class="glyphicon glyphicon-search"></i>
-					</button>
-					<button
-						class="btn"
-						type="button"
-						ng-click="gotoCurrentLocation()"
-						title="current location">
-						&nbsp;<i class="glyphicon glyphicon-home"></i>
-					</button>
+				<button
+				class="btn btn-cm	"
+				type="button"
+				ng-click="geoCode()"
+				ng-disabled="search.length === 0"
+				title="search" >
+				&nbsp;<i class="glyphicon glyphicon-search"></i>
+				</button>
+				<button
+				class="btn btn-cm"
+				type="button"
+				ng-click="gotoCurrentLocation()"
+				title="current location">
+				&nbsp;<i class="glyphicon glyphicon-home"></i>
+				</button>
 				</span>
 			</div>
 
@@ -89,13 +88,12 @@
 			options="map.options"
 			control="map.control">
 
-			<marker ng-repeat="m in map.markers" coords="m" events="m.events" options ="m.options">
+				<marker ng-repeat="m in map.markers" coords="m" events="m.events" options ="m.options">
 				</marker>
 			</google-map>
-			</div>
 
-			<div class="actions" style="text-align:right; padding: 20px 15px 20px 0;">
-				<button class="btn btn-primary" type="submit">{{'common_ok' | translate}}</button>
+			<div class="input">
+				<button class="btn btn-primary" style="float:right;" type="submit">{{'common_ok' | translate}}</button>
 			</div>
 
 		</form>

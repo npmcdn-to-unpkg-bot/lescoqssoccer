@@ -102,6 +102,7 @@ angular.module('mean.articles').directive('cmExpandable', function() {
 
 				}, 25);
 
+
 				onEndTransition(dummy, function() {
 
 					// add transition class
@@ -119,7 +120,7 @@ angular.module('mean.articles').directive('cmExpandable', function() {
 						$('.grid').hide();
 					}
 
-					$("#subnav").hide("fast");
+					$(".expandable-container").addClass("expand");
 
 					isAnimating = false;
 				});
@@ -134,6 +135,7 @@ angular.module('mean.articles').directive('cmExpandable', function() {
 				$(contentItem).removeClass('content__item--show');
 				closeCtrl.removeClass('close-button--show');
 				$('.grid').show();
+				$(".expandable-container").removeClass("expand");
 
 				setTimeout(function() {
 
@@ -151,7 +153,7 @@ angular.module('mean.articles').directive('cmExpandable', function() {
 						//hide close button and  section content
 						$(contentItemsContainer).removeClass('content--show');
 
-						$("#subnav").show("fast");
+						$(".expandable-container").removeClass("expand");
 						$('.grid').show();
 					});
 
