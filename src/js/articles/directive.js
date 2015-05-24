@@ -90,6 +90,8 @@ angular.module('mean.articles').directive('cmExpandable', function() {
 				dummy.style.WebkitTransform = 'translate3d(' + (item.offsetLeft - 5) + 'px, ' + (item.offsetTop - 5) + 'px, 0px) scale3d(' + item.offsetWidth / gridItemsContainer.width() + ',' + (item.offsetHeight) / getViewport('y') + ',1)';
 				dummy.style.transform = 'translate3d(' + (item.offsetLeft - 5) + 'px, ' + (item.offsetTop - 5) + 'px, 0px) scale3d(' + item.offsetWidth / gridItemsContainer.width() + ',' + (item.offsetHeight) / getViewport('y') + ',1)';
 
+				dummy.style.background = $(item).css('background');
+
 				// insert it after all the grid items
 				gridItemsContainer.append(dummy);
 

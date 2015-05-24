@@ -321,13 +321,16 @@ to {
 	width: 164px;
 	height: 50px;
 	border-bottom: 1px solid rgba(74, 74, 74, 0.3);
-	border-right: 1px solid rgba(74, 74, 74, 0.3);
 }
 #subnav li:first-child {
 	border-left: 1px solid rgba(74, 74, 74, 0.3);
 }
 #subnav li+li:not(.active) {
 	border-left: 1px solid rgba(74, 74, 74, 0.3);
+}
+#subnav li:last-child {
+	border-left: none !important;
+	border-right: 1px solid rgba(74, 74, 74, 0.3);
 }
 #subnav li.active:after {
 	display: block;
@@ -632,8 +635,11 @@ Map
 .angular-google-map-container {
 	height: 500px;
 	width: 100%;
-	max-width: 490px;
 	margin-bottom: 30px;
+}
+
+.agendaForm .angular-google-map-container{
+	max-width: 490px;
 }
 /****
 
@@ -856,7 +862,10 @@ select.input__field--yoshiko {
 	display: inline;
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-size: 12.6000003814697px;
-	font-weight: bold;
+	height: 45px;
+}
+select.input__field--yoshiko:focus {
+	outline-color: #18cecf;
 }
 .input__label--yoshiko {
 	width: 100%;
