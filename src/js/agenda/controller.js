@@ -217,78 +217,7 @@ angular.module('mean.agenda').controller('calendarController', ['$scope', '$rout
 			});
 		};
 
-		/***
-		Calendar events and config
-		***/
-		$scope.onDateClick = function(date, allDay, jsEvent, view) {
-			$location.path('/agenda/create/' + date);
-		};
-
-		$scope.onEventClick = function(event, allDay, jsEvent, view) {
-			// $scope.userEvent = event;
-			// $scope.userEvent.index = event.__uiCalId - 1;
-			// $scope.selectedUserEvent.selectedType = $filter('getByIdentifier')($scope.eventTypes, $scope.selectedUserEvent.type);
-		};
-
-		$scope.onEventDrop = function(event, dayDelta, minuteDelta, allDay, revertFunc, jsEvent, ui, view) {
-			$scope.update(event);
-		};
-
-		$scope.onEventResize = function(event, dayDelta, minuteDelta, revertFunc, jsEvent, ui, view) {
-			$scope.update(event);
-		};
-
-		$scope.changeLang = function(language) {
-			if (language === 'french') {
-
-				var frenchConfig = {
-					calendar: {
-						firstDay: 1,
-						monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-						monthNamesShort: ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Jui', 'Juil', 'Aou', 'Sep', 'Oct', 'Nov', 'Déc'],
-						dayNames: ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
-						dayNamesShort: ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"],
-						header: {
-							left: 'month agendaWeek agendaDay',
-							center: 'title',
-							right: 'prev,next'
-						},
-						buttonText: {
-							prev: "<span class='fc-text-arrow'>&lsaquo;</span>",
-							next: "<span class='fc-text-arrow'>&rsaquo;</span>",
-							prevYear: "<span class='fc-text-arrow'>&laquo;</span>",
-							nextYear: "<span class='fc-text-arrow'>&raquo;</span>",
-							today: 'Aujourd\'hui',
-							month: 'Mois',
-							week: 'Semaine',
-							day: 'Jour'
-						}
-					}
-				};
-
-				$scope.uiConfig.calendar = _.defaults(frenchConfig.calendar, $scope.uiConfig.calendar);
-			}
-		};
-
-		$scope.uiConfig = {
-			calendar: {
-				height: 300,
-				editable: true,
-				header: {
-					left: 'month agendaWeek agendaDay',
-					center: 'title',
-					right: 'prev,next'
-				},
-				dayClick: $scope.onDateClick,
-				eventClick: $scope.onEventClick,
-				eventDrop: $scope.onEventDrop,
-				eventResize: $scope.onEventResize
-			}
-		};
-
-		$scope.changeLang('french');
 		$scope.events = [];
-		$scope.eventSources = [$scope.events];
 		$scope.eventTypes = eventTypes;
 	}
 ]);

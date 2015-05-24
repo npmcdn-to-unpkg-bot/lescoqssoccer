@@ -88,7 +88,7 @@ exports.show = function ( req, res ) {
  * List of userEvent
  */
 exports.all = function ( req, res ) {
-	UserEvent.find().sort( '-created' ).populate( 'user', 'name username' ).exec( function ( err, userEvent ) {
+	UserEvent.find().sort( 'start' ).populate( 'user', 'name username' ).exec( function ( err, userEvent ) {
 		if ( err ) {
 			res.render( 'error', {
 				status: 500

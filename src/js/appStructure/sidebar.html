@@ -3,7 +3,7 @@
 		<li ng-repeat="item in menu" ng-class="{ active: isCurrentPath('#!/{{item.link}}')}">
 			<a href="#!/{{item.link}}" class="ajax-link sidebarItem ellipsis hidden">
 				<div class="picto-circle"></div>
-				<img src="img/{{item.icon}}"/>
+				<img ng-src="img/{{item.icon}}"/>
 				<span class="hidden-xs">{{item.title | translate}}</span>
 			</a>
 		</li>
