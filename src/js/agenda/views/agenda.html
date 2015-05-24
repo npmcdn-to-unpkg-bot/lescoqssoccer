@@ -1,52 +1,12 @@
 <section data-ng-controller="calendarController" data-ng-init="load()">
 
-	<div class="col-md-12" data-ng-include="'/js/agenda/views/subnav.html'"></div>
-
-	<div id="search">
-		<span class="input input--makiko">
-		<input class="input__field input__field--makiko" type="text" data-ng-model="obj.searchTitle" name="search"/>
-		<label class="input__label input__label--makiko" for="search">
-			<span class="input__label-content input__label-content--makiko">Rechercher</span>
-		</label>
-		</span>
+	<div class="col-md-12 expandable-container">
+		<cm-expandable template-url="js/agenda/views/view.html" data-ng-show="events.length > 0">
+		</cm-expandable>
 	</div>
-	<!-- Calendar -->
-	<!-- <div class="col-md-12">
-				<article class="well">
-							<div class="row-fluid">
-										<div class="span8">
-													<div class="calendar"
-																ng-model="eventSources"
-																ui-calendar="uiConfig.calendar"
-													calendar="calendar"></div>
-													</tab>
-										</div>
-							</div>
-				</article>
-	</div> -->
-	<div class="col-md-12" style="padding-right: 20px;">
-		<div class="grid__item	 agenda_item" ng-repeat="event in events | filter: nameFilter">
-			<h2 class="ev2page-title three-line-ellipsis"><a href="#!">{{event.title}}</a></h2>
-			<div class="ev2page-data">
-				<div class="ev2page-day">{{event.start | date:"dd"}}</div>
-				<div class="ev2page-month">{{event.start | date:"MMM"}}</div>
-				<div class="ev2page-year">{{event.start | date:"yyyy"}}</div>
-			</div>
 
-			<div class="ev2page-cover">
-				<div class="wz-wrap wz-hover">
-					<img src="http://rtu.fm/wp-content/uploads/2015/04/10606249_10204061653773746_1623658979705155741_n-166x166.jpg" alt="Ekoun Sekta à La Marquise" scale="0">
-					<div class="he-view">
-						<div class="bg a1" data-animate="fadeIn">
-							<a href="http://rtu.fm/event/ekoun-sekta-a-la-marquise/" class="ev2page-link a2" data-animate="zoomIn"></a>
-							<a href="http://rtu.fm/wp-content/uploads/2015/04/10606249_10204061653773746_1623658979705155741_n.jpg" class="ev2page-zoom a2" data-animate="zoomIn" data-rel="prettyPhoto-cover"></a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="ev2page-week">{{event.start | date:"EEEE"}}</div>
-			<div class="ev2page-tickets"><a href="#!">{{ eventTypes | getNameByIdentifier:event.type}}</a></div>
-		</div>
+	<div class="col-md-12" data-ng-show="events.length === 0">
+		<h4>{{'articles_empty' | translate}}</h4>
 	</div>
 
 </section>

@@ -208,13 +208,14 @@ button:focus {
   pointer-events: none;
   position: absolute;
   width: calc(100% + 5px);
-  height: calc(100vh + 5px);
+  height: calc(100vh + 75px);
   z-index: 100;
   top: 0;
   left: 0;
   background: #fff;
   -webkit-transform-origin: 0 0;
   transform-origin: 0 0;
+  border: 3px solid rgba(24, 206, 207, 0.3);
 }
 
 .placeholder.placeholder--trans-in {
@@ -276,6 +277,7 @@ button:focus {
   padding: 60px 60px 80px 60px;
   pointer-events: none;
   font-size: 0.85em;
+  background-color: white;
 }
 .content__item p {
   max-width: 1200px;
@@ -619,13 +621,4 @@ button:focus {
   body #cdawrap {
     display: none;
   }
-}
-
-.expandable-container.expand{
-	  position: absolute;
-	  top: 0;
-	  left: 0;
-	  height: 150px;
-	  width: 100%;
-	  background-color: white;
 }

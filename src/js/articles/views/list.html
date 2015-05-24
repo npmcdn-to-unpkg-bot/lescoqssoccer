@@ -1,21 +1,11 @@
 <section data-ng-controller="ArticlesController" data-ng-init="load();">
 
-	<div class="col-md-12" data-ng-include="'/js/articles/views/subnav.html'"></div>
-
-	<div id="search" class="pull-right">
-		<span class="input input--makiko">
-		<input class="input__field input__field--makiko" type="text" data-ng-model="obj.searchTitle" name="search"/>
-		<label class="input__label input__label--makiko" for="search">
-			<span class="input__label-content input__label-content--makiko">Rechercher</span>
-		</label>
-		</span>
-	</div>
-
 	<div class="col-md-12 expandable-container">
-		<cm-expandable template-url="js/articles/views/gridItem.html" data-ng-show="articles.length > 0">
+		<cm-expandable template-url="js/articles/views/view.html" data-ng-show="articles.length > 0">
 		</cm-expandable>
 	</div>
-	<div class="col-md-12 well" data-ng-show="articles.length === 0">
+
+	<div class="col-md-12" data-ng-show="articles.length === 0">
 		<h4>{{'articles_empty' | translate}}</h4>
 	</div>
 

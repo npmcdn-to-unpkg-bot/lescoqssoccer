@@ -1,34 +1,48 @@
- <h1 style="margin-left:15px; padding-left:0;">
-	<a href="#!/articles">
-		<i class="fa fa-arrow-circle-left"></i>
-	</a>
-	{{'article_title' | translate}}s
-</h1>
-<hr style="margin-left:15px; padding-left:0;">
-<section data-ng-init="findOne()">
-	<div class="col-md-2" style="text-align:center;">
-		<img
-		class="imgThumbnail"
-		ng-src="{{article.image && article.image || 'img/8962691008_7f489395c9_m.jpg'}}"
-		style="height: 80px; width: 80px; vertical-zlign: middle; margin-bottom: 15px;"></img>
-		<div data-ng-show="global.user._id == article.user._id">
-			<a data-ng-click="edit();">
-				<i class="fa fa-pencil" style="font-size: medium"></i>
-			</a>
-			<div id="modal" ng-controller="Modal" style="display: inline-block;">
-				<a data-ng-click="open('appStructure/modal.html', 'Articles', 'Sur de supprimer?', remove)">
-					<i class="fa fa-trash-o" style="font-size: medium"></i>
-				</a>
+<div data-ng-include="'/js/articles/views/subnav.html'"></div>
+
+<div id="search" class="pull-right">
+	<span class="input input--makiko">
+	<input class="input__field input__field--makiko" type="text" data-ng-model="obj.searchTitle" name="search"/>
+	<label class="input__label input__label--makiko" for="search">
+		<span class="input__label-content input__label-content--makiko">Rechercher</span>
+	</label>
+	</span>
+</div>
+<section class="grid">
+	<div class="grid__item" ng-repeat="article in articles | filter: nameFilter">
+		<div class="ev2page-tickets" ng-if="article.category"><a href="#!">{{article.category}}</a></div>
+		<h2 class="bl2page-title"><a href="#!">{{article.title}}</a></h2>
+		<div class="bl2page-cover">
+			<div class="wz-wrap wz-hover">
+				<img ng-src="{{article.image && article.image || 'img/8962691008_7f489395c9_m.jpg'}}" alt="" scale="0" class="linkImage meta__avatar">
+				<div class="he-view">
+					<div class="bg a0 meta__avatar"></div>
+				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="col-md-10" style="margin-bottom: 10px;">
-		<h2>{{article.title}}</h2>
-		<span class="author">{{article.user.name}}</span> - le <span class="pub-name">{{article.created | date:dateFormat}}</span>
+		<div class="bl2page-info">
+			<p class="bl2page-user"><span class="fa fa-user"></span> {{article.user.name}}</p>
+			<p class="bl2page-date"><span class="fa fa-clock-o"> {{article.created | date:dateFormat}}</p>
+		</div>
 	</div>
-
-	<div class="col-md-10 col-md-offset-2" style="margin-bottom: 10px;">
-		<div ng-bind-html="getFormattedContent(article.content)"></div>
+</section>
+<section class="content">
+	<div class="scroll-wrap">
+		<article class="content__item" ng-repeat="article in articles | filter: nameFilter">
+			<span class="category category--full">{{article.category}}</span>
+			<h2 class="title title--preview">{{article.title}}</h2>
+			<div class="meta meta--full">
+				<img ng-src="{{article.image && article.image || 'img/8962691008_7f489395c9_m.jpg'}}" alt="" class="meta__avatar">
+				<span class="meta__author">{{article.user.name}}</span>
+				<span class="meta__date"><i class="fa fa-calendar-o"></i>
+				{{article.created | date:dateFormat}}
+				</span>
+			</div>
+			<div ng-bind-html="getFormattedContent(article.content)"></div>
+		</article>
+		<button class="close-button">
+		<span class="closebutton"></span>
+		</button>
 	</div>
 </section>
