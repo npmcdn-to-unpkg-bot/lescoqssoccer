@@ -2,7 +2,19 @@
 	<div class="col-md-12" data-ng-include="'/js/gallery/views/subnav.html'"></div>
 
 	<div class="col-md-12">
-		<div style="text-align: center;">
+	<div class="gamma-container gamma-loading" id="gamma-container">
+
+					<ul class="gamma-gallery">
+
+
+					</ul>
+
+					<div class="gamma-overlay"></div>
+
+					<div id="loadmore" class="loadmore">Example for loading more items...</div>
+
+				</div>
+		<!-- <div style="text-align: center;">
 			<ul class="pagination" style="margin-top: 10px;">
 				<li data-ng-click="clickPhoto(prev)">
 					<a>&laquo;</a>
@@ -31,6 +43,6 @@
 			</div>
 			<br/>
 			<h3>{{photo.name}}</h3>
-		</div>
+		</div> -->
 	</div>
 </section>
