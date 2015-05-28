@@ -54,7 +54,10 @@ button:focus {
   -webkit-justify-content: center;
   justify-content: center;
   display: inline-block;
-  width: 49%;
+}
+
+.grid-directive{
+	width: 49%;
 }
 
 /* Grid item "border" */
@@ -514,9 +517,12 @@ button:focus {
 
   /* 2 columns */
   .grid__item {
-    width: 50%;
     border: none;
   }
+
+  .grid-directive{
+	width: 49%;
+}
 
   .grid__item::before {
     top: 5px;
@@ -539,25 +545,25 @@ button:focus {
 }
 @media screen and (min-width: 1200px) {
   /* 3 columns */
-  .grid__item:not(.agenda_item) {
+  .grid-directive:not(.agenda_item) {
     width: 33.333%;
   }
 }
 @media screen and (min-width: 1500px) {
   /* 4 columns */
-  .grid__item:not(.agenda_item) {
+  .grid-directive:not(.agenda_item) {
     width: 25%;
   }
 }
 @media screen and (min-width: 1800px) {
   /* 5 columns */
-  .grid__item:not(.agenda_item) {
+  .grid-directive:not(.agenda_item) {
     width: 20% ;
   }
 }
 @media screen and (min-width: 2100px) {
   /* 6 columns */
-  .grid__item:not(.agenda_item) {
+  .grid-directive:not(.agenda_item) {
     width: 16.66%;
   }
 }

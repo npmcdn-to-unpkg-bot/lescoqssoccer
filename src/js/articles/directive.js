@@ -63,16 +63,17 @@ angular.module('mean.articles').directive('cmExpandable', ['$http', '$compile',
 				function loadContent() {
 
 					var contentItemsContainer = element.parent().parent().find('.content');
+					var contentItem = $(element.children()[0]);
 
 					// add expanding element/placeholder
 					var dummy = document.createElement('div');
 					dummy.className = 'placeholder placeholder--trans-in';
 
 					// set the width/heigth and position
-					dummy.style.WebkitTransform = 'translate3d(' + (element.offset().left - 5) + 'px, ' + (element.offset().top - 5) + 'px, 0px) scale3d(' + element.outerWidth() / element.parent().outerWidth() + ',' + (element.outerHeight()) / getViewport('y') + ',1)';
-					dummy.style.transform = 'translate3d(' + (element.offset().left - 5) + 'px, ' + (element.offset().top - 5) + 'px, 0px) scale3d(' + element.outerWidth() / element.parent().outerWidth() + ',' + (element.outerHeight()) / getViewport('y') + ',1)';
+					dummy.style.WebkitTransform = 'translate3d(' + (contentItem.position().left - 5) + 'px, ' + (contentItem.position().top - 5) + 'px, 0px) scale3d(' + contentItem.outerWidth() / contentItemsContainer.outerWidth() + ',' + (contentItem.outerHeight()) / getViewport('y') + ',1)';
+					dummy.style.transform = 'translate3d(' + (contentItem.position().left - 5) + 'px, ' + (contentItem.position().top - 5) + 'px, 0px) scale3d(' + contentItem.outerWidth() / contentItemsContainer.outerWidth() + ',' + (contentItem.outerHeight()) / getViewport('y') + ',1)';
 
-					dummy.style.background = element.css('background');
+					dummy.style.background = contentItem.css('background');
 
 					// insert it after all the grid items
 					element.parent().append(dummy);
@@ -120,8 +121,8 @@ angular.module('mean.articles').directive('cmExpandable', ['$http', '$compile',
 					setTimeout(function() {
 
 						var dummy = $('.placeholder');
-						dummy.css('WebkitTransform', 'translate3d(' + gridItem.offset().left + 'px, ' + (gridItem.offset().top) + 'px, 0px) scale3d(' + gridItem.outerWidth() / $(gridItemsContainer).width() + ',' + (gridItem.outerHeight() - 40) / getViewport('y') + ',1)');
-						dummy.css('transform', 'translate3d(' + gridItem.offset().left + 'px, ' + (gridItem.offset().top) + 'px, 0px) scale3d(' + gridItem.outerWidth() / $(gridItemsContainer).width() + ',' + (gridItem.outerHeight() - 40) / getViewport('y') + ',1)');
+						dummy.css('WebkitTransform', 'translate3d(' + gridItem.position().left + 'px, ' + (gridItem.position().top) + 'px, 0px) scale3d(' + gridItem.outerWidth() / $(gridItemsContainer).width() + ',' + (gridItem.outerHeight() - 40) / getViewport('y') + ',1)');
+						dummy.css('transform', 'translate3d(' + gridItem.position().left + 'px, ' + (gridItem.position().top) + 'px, 0px) scale3d(' + gridItem.outerWidth() / $(gridItemsContainer).width() + ',' + (gridItem.outerHeight() - 40) / getViewport('y') + ',1)');
 
 						onEndTransition(dummy, function() {
 
