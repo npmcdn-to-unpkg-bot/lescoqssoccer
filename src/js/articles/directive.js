@@ -135,8 +135,8 @@ angular.module('mean.articles').directive('cmExpandable', function() {
 				setTimeout(function() {
 
 					var dummy = $('.placeholder');
-					dummy.css('WebkitTransform', 'translate3d(' + gridItem.offsetLeft + 'px, ' + (gridItem.offsetTop) + 'px, 0px) scale3d(' + gridItem.offsetWidth / gridItemsContainer.width() + ',' + (gridItem.offsetHeight - 40) / getViewport('y') + ',1)');
-					dummy.css('transform', 'translate3d(' + gridItem.offsetLeft + 'px, ' + (gridItem.offsetTop) + 'px, 0px) scale3d(' + gridItem.offsetWidth / gridItemsContainer.width() + ',' + (gridItem.offsetHeight - 40) / getViewport('y') + ',1)');
+					dummy.css('WebkitTransform', 'translate3d(' + gridItem.offsetLeft + 'px, ' + (gridItem.offsetTop) + 'px, 0px) scale3d(' + gridItem.offsetWidth / gridItemsContainer.width() + ',' + (gridItem.offsetHeight - 20) / getViewport('y') + ',1)');
+					dummy.css('transform', 'translate3d(' + gridItem.offsetLeft + 'px, ' + (gridItem.offsetTop) + 'px, 0px) scale3d(' + gridItem.offsetWidth / gridItemsContainer.width() + ',' + (gridItem.offsetHeight - 20) / getViewport('y') + ',1)');
 
 					onEndTransition(dummy, function() {
 

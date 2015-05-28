@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('mean.albums').controller('AlbumCtrl', ['$location', '$scope', '$modal', 'PhotoMgrService', 'album', 'albums', 'view', 'FileUploader',
+angular.module('mean.albums').controller('AlbumCtrl', ['$location', '$scope', '$modal', 'PhotoMgrService', 'album', 'albums', 'view', 'FileUploader', 'AlbumsCollection',
 
-    function($location, $scope, $modal, PhotoMgrService, album, albums, view, FileUploader) {
+    function($location, $scope, $modal, PhotoMgrService, album, albums, view, FileUploader, AlbumsCollection) {
 
         $scope.pmSvc = PhotoMgrService;
         $scope.view = view ? view : 'grid';
@@ -171,6 +171,53 @@ angular.module('mean.albums').controller('AlbumCtrl', ['$location', '$scope', '$
             $scope.displayPhotos.splice(window._.indexOf($scope.displayPhotos, removedPhoto), 1);
             $scope.pmSvc.editAlbumPhotos('remove', removedPhoto, album);
         };
+
+        $scope.loadPhotos = function(album){
+            var album = AlbumsCollection.get({
+                id: album._id
+            }).$promise;
+
+            album.then(function(album){
+                 window._.each(album.photoList, function(p){
+
+            // console.warn(""  + p);
+            $("ul.gamma-gallery").append(
+                '<li><div data-alt="img03" data-description="<h3>Sky high</h3>" data-max-width="1800" data-max-height="1350">'+
+                '<div data-src="' + p._id.filepath + '"></div></div></li>'
+            );
+        });
+
+        var GammaSettings = {
+            // order is important!
+            viewport: [{
+                width: 1200,
+                columns: 5
+            }, {
+                width: 900,
+                columns: 4
+            }, {
+                width: 500,
+                columns: 3
+            }, {
+                width: 320,
+                columns: 2
+            }, {
+                width: 0,
+                columns: 2
+            }]
+        };
+
+        Gamma.init(GammaSettings, fncallback);
+
+
+        // Example how to add more items (just a dummy):
+
+        var page = 0;
+        function fncallback() {
+
+        }
+            })
+        }
 
         if (view === 'detail') {
             $scope.displayPhotos = [];

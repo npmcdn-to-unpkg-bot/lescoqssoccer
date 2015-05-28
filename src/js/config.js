@@ -71,12 +71,12 @@ angular.module( 'mean' ).config( [ '$routeProvider',
 
 		/** GALLERY ****/
 		when( '/gallery', {
-			templateUrl: 'js/gallery/views/gallery.html',
+			templateUrl: 'js/gallery/views/view.html',
 			controller: 'GalleryCtrl',
 			resolve: GalleryData
 		} ).
 		when( '/gallery/:albumId', {
-			templateUrl: 'js/gallery/views/gallery.html',
+			templateUrl: 'js/gallery/views/view.html',
 			controller: 'GalleryCtrl',
 			resolve: GalleryData
 		} ).
