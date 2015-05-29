@@ -1,69 +1,20 @@
-angular.module('mean.articles').directive('cmExpandable', ['$http', '$compile',
-	function($http, $compile) {
+angular.module('mean.articles').directive('cmExpandable',
+	function() {
 		return {
 			restrict: 'E',
 			transclude: true,
+			templateUrl: function(elem, attrs) {
+				return attrs.templateUrl;
+			},
 			link: function($scope, element, attrs) {
 
-				var bodyEl = document.body,
-					docElem = window.document.documentElement,
-					support = {
-						transitions: Modernizr.csstransitions
-					},
-
-					// transition end event name
-					transEndEventNames = {
-						'WebkitTransition': 'webkitTransitionEnd',
-						'MozTransition': 'transitionend',
-						'OTransition': 'oTransitionEnd',
-						'msTransition': 'MSTransitionEnd',
-						'transition': 'transitionend'
-					},
-					transEndEventName = transEndEventNames[Modernizr.prefixed('transition')],
-					isAnimating = false;
-
-				var isContent = attrs.content;
-				var close;
-
-				$http.get(attrs.templateUrl).then(function(response) {
-					element.append($compile(response.data)($scope));
-				});
-
-				function initEvents() {
-
-					if (!isContent) {
-
-						close = $(element.parent().parent().find(".content").find("[name='"+ attrs.name + "']").children()[1]);
-
-						// grid element click event
-						element.on('click', function(ev) {
-							ev.preventDefault();
-
-							if (isAnimating) {
-								return false;
-							}
-
-							isAnimating = true;
-							loadContent();
-						});
-
-					} else {
-
-						close = element.find(".close-button");
-
-						close.on('click', function() {
-
-							// hide content
-							hideContent();
-						});
-					}
-
-				};
-
-				function loadContent() {
+				// grid element click event
+				element.on('click', function(ev) {
+					ev.preventDefault();
 
 					var contentItemsContainer = element.parent().parent().find('.content');
 					var contentItem = $(element.children()[0]);
+					var close = $(element.parent().parent().find(".content").find("[name='" + attrs.name + "']").find('.close-button'));
 
 					// add expanding element/placeholder
 					var dummy = document.createElement('div');
@@ -72,7 +23,6 @@ angular.module('mean.articles').directive('cmExpandable', ['$http', '$compile',
 					// set the width/heigth and position
 					dummy.style.WebkitTransform = 'translate3d(' + (contentItem.position().left - 5) + 'px, ' + (contentItem.position().top - 5) + 'px, 0px) scale3d(' + contentItem.outerWidth() / contentItemsContainer.outerWidth() + ',' + (contentItem.outerHeight()) / getViewport('y') + ',1)';
 					dummy.style.transform = 'translate3d(' + (contentItem.position().left - 5) + 'px, ' + (contentItem.position().top - 5) + 'px, 0px) scale3d(' + contentItem.outerWidth() / contentItemsContainer.outerWidth() + ',' + (contentItem.outerHeight()) / getViewport('y') + ',1)';
-
 					dummy.style.background = contentItem.css('background');
 
 					// insert it after all the grid items
@@ -96,23 +46,36 @@ angular.module('mean.articles').directive('cmExpandable', ['$http', '$compile',
 						contentItemsContainer.css('top', scrollY() + 'px');
 						contentItemsContainer.addClass('content--show');
 
-						var divEl = contentItemsContainer.find("[name='"+ attrs.name + "']").children()[0];
-						$(divEl).addClass('content__item--show');
+						$(contentItemsContainer.find("[name='" + attrs.name + "']").children()[0]).addClass('content__item--show');
 						close.addClass('close-button--show');
 
 						$("body").css('overflow', 'hidden');
-
-						isAnimating = false;
 					});
-				}
+				});
+			}
+		}
+	}
+);
 
-				function hideContent() {
+angular.module('mean.articles').directive('cmReduce',
+	function() {
+		return {
+			restrict: 'E',
+			transclude: true,
+			templateUrl: function(elem, attrs) {
+				return attrs.templateUrl;
+			},
+			link: function($scope, element, attrs) {
+
+				var close = element.find(".close-button");
+				close.on('click', function(ev) {
+					ev.preventDefault();
 
 					var gridItemsContainer = element.parent().parent().parent().find('.grid');
-					var gridItem = $(gridItemsContainer.find("[name='"+ attrs.name + "']").children()[0]);
+					var gridItem = $(gridItemsContainer.find("[name='" + attrs.name + "']").children()[0]);
 
 					var contentItemsContainer = element.parent().parent().parent().find('.content');
-					var contentItem = $(contentItemsContainer.find("[name='"+ attrs.name + "']").children()[0]);
+					var contentItem = $(contentItemsContainer.find("[name='" + attrs.name + "']").children()[0]);
 
 					//hide article content
 					contentItem.removeClass('content__item--show');
@@ -138,53 +101,66 @@ angular.module('mean.articles').directive('cmExpandable', ['$http', '$compile',
 						});
 
 					}, 25);
-				};
 
-				function onEndTransition(el, callback) {
+				});
 
-					var onEndCallbackFn = function(ev) {
-						if (support.transitions) {
-							if (ev.target != this) return;
-							this.removeEventListener(transEndEventName, onEndCallbackFn);
-						}
-						if (callback && typeof callback === 'function') {
-							callback.call(this);
-						}
-					};
-
-					if (support.transitions) {
-						$(el).on(transEndEventName, onEndCallbackFn);
-					} else {
-						onEndCallbackFn();
-					}
-				};
-
-				/**
-				 * gets the viewport width and height
-				 * based on http://responsejs.com/labs/dimensions/
-				 */
-				function getViewport(axis) {
-					var client, inner;
-					if (axis === 'x') {
-						client = docElem['clientWidth'];
-						inner = window['innerWidth'];
-					} else if (axis === 'y') {
-						client = docElem['clientHeight'];
-						inner = window['innerHeight'];
-					}
-					return client < inner ? inner : client;
-				}
-
-				function scrollX() {
-					return window.pageXOffset || docElem.scrollLeft;
-				}
-
-				function scrollY() {
-					return window.pageYOffset || docElem.scrollTop;
-				}
-
-				setTimeout(initEvents, 500);
 			}
 		}
 	}
-]);
+);
+
+var docElem = window.document.documentElement,
+	support = {
+		transitions: Modernizr.csstransitions
+	},
+	transEndEventNames = {
+		'WebkitTransition': 'webkitTransitionEnd',
+		'MozTransition': 'transitionend',
+		'OTransition': 'oTransitionEnd',
+		'msTransition': 'MSTransitionEnd',
+		'transition': 'transitionend'
+	},
+	transEndEventName = transEndEventNames[Modernizr.prefixed('transition')];
+
+function onEndTransition(el, callback) {
+
+	var onEndCallbackFn = function(ev) {
+		if (support.transitions) {
+			if (ev.target != this) return;
+			$(this).unbind(transEndEventName);
+		}
+		if (callback && typeof callback === 'function') {
+			callback.call(this);
+		}
+	};
+
+	if (support.transitions) {
+		$(el).on(transEndEventName, onEndCallbackFn);
+	} else {
+		onEndCallbackFn();
+	}
+};
+
+/**
+ * gets the viewport width and height
+ * based on http://responsejs.com/labs/dimensions/
+ */
+function getViewport(axis) {
+	var client, inner;
+	if (axis === 'x') {
+		client = docElem['clientWidth'];
+		inner = window['innerWidth'];
+	} else if (axis === 'y') {
+		client = docElem['clientHeight'];
+		inner = window['innerHeight'];
+	}
+	return client < inner ? inner : client;
+}
+
+function scrollX() {
+	return window.pageXOffset || docElem.scrollLeft;
+}
+
+function scrollY() {
+	return window.pageYOffset || docElem.scrollTop;
+}
