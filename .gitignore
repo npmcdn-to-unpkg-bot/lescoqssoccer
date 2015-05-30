@@ -4,3 +4,4 @@ src/libs/*/
 
 #libs to synchronize
 !src/lib/angular-ui.sortable.js
+*.command
