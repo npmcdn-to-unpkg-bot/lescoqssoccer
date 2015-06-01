@@ -638,9 +638,6 @@ Map
 	margin-bottom: 30px;
 }
 
-.agendaForm .angular-google-map-container{
-	max-width: 490px;
-}
 /****
 
 Articles
@@ -787,7 +784,6 @@ Forms
 	display: inline-block;
 	margin-bottom: 3em;
 	margin-left: 0;
-	max-width: 490px;
 	width: calc(100% - 2em);
 	vertical-align: top;
 }
@@ -971,7 +967,7 @@ Agenda
 
 .agendaForm .angular-google-map-container {
 	height: 350px;
-	width: 75%
+	width: calc(100% - 2em);
 }
 .ev2page-col {
 	padding: 2%;

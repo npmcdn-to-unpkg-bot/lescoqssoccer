@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.agenda').controller('createController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection', 'FileUploader', '$modal',
-	function($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection, FileUploader, $modal) {
+angular.module('mean.agenda').controller('createController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection', '$modal',
+	function($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection, $modal) {
 
 		$scope.agendaCollection = AgendaCollection;
 		$scope.view = $route.current.params.view;
@@ -31,6 +31,7 @@ angular.module('mean.agenda').controller('createController', ['$scope', '$routeP
 			promise.then(function(userEvent) {
 				$location.path("/agenda");
 			});
+
 		};
 
 		/***
@@ -62,27 +63,6 @@ angular.module('mean.agenda').controller('createController', ['$scope', '$routeP
 		$scope.dateOptions = {
 			'year-format': "'yy'",
 			'starting-day': 1
-		};
-
-		/***
-		Photos management
-		 ***/
-		$scope.uploader = new FileUploader({
-			scope: $scope,
-			url: '/upload/photo',
-			autoUpload: true,
-			formData: [{
-				key: 'value'
-			}]
-		});
-
-		$scope.uploader.onCompleteItem = function(item, response, status, headers) {
-			console.info('Complete', item, response);
-
-			$scope.userEvent.photos.push({
-				path: response.path,
-				name: response.name
-			});
 		};
 
 		/***
