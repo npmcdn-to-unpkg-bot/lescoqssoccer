@@ -266,7 +266,7 @@ angular.module('mean.albums').controller('GalleryCtrl', ['$scope', 'album', 'vie
 
         	// console.warn(""  + p);
         	$("ul.gamma-gallery").append(
-        		'<li><div data-alt="img03" data-description="<h3>Sky high</h3>" data-max-width="1800" data-max-height="1350">'+
+        		'<li><div data-alt="img03" data-description="<h3' + p._id.name + '</h3>" data-max-width="1800" data-max-height="1350">'+
 				'<div data-src="' + p._id.filepath + '"></div></div></li>'
         	);
         });
@@ -291,15 +291,7 @@ angular.module('mean.albums').controller('GalleryCtrl', ['$scope', 'album', 'vie
             }]
         };
 
-        Gamma.init(GammaSettings, fncallback);
-
-
-        // Example how to add more items (just a dummy):
-
-        var page = 0;
-        function fncallback() {
-
-        }
+        Gamma.init(GammaSettings);
     }
 ]);
 

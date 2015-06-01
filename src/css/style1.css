@@ -54,6 +54,7 @@ button:focus {
   -webkit-justify-content: center;
   justify-content: center;
   display: inline-block;
+  width: 100%;
 }
 
 .grid-directive{

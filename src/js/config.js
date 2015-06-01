@@ -94,11 +94,6 @@ angular.module( 'mean' ).config( [ '$routeProvider',
 			templateUrl: 'js/profile/profile.html'
 		} ).
 
-		/** NOTIFICATIONS ****/
-		when( '/notifications', {
-			templateUrl: 'js/notifications/notifications.html'
-		} ).
-
 		/** DEFAULT ****/
 		when( '/', {
 			redirectTo: 'home'

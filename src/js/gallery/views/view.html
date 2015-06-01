@@ -1,41 +1,12 @@
-<div data-ng-include="'/js/gallery/views/subnav.html'"></div>
+<div class="col-md-12">
+	<div class="gamma-container gamma-loading" id="gamma-container">
 
-<div id="search" class="pull-right">
-	<span class="input input--makiko">
-	<input class="input__field input__field--makiko" type="text" data-ng-class="{'searchFocus': obj.searchTitle}" data-ng-model="obj.searchTitle" name="search"/>
-	<label class="input__label input__label--makiko" for="search">
-		<span class="input__label-content input__label-content--makiko">Rechercher</span>
-	</label>
-	</span>
+		<ul class="gamma-gallery">
+		</ul>
+		<div class="gamma-overlay"></div>
+
+	</div>
 </div>
-
-<section class="grid">
-	<div class="grid__item" ng-repeat="album in albums | filter:pmSvc.filter" ng-click="loadPhotos(album);">
-		<h2 class="bl2page-title"><a href="#!">{{album.name}}</a></h2>
-		<div class="bl2page-cover">
-			<div class="wz-wrap wz-hover">
-				<img ng-src="{{album.coverPicPath && album.coverPicPath || 'img/8962691008_7f489395c9_m.jpg'}}" alt="" scale="0" class="linkImage meta__avatar">
-				<div class="he-view">
-					<div class="bg a0 meta__avatar"></div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-<section class="content">
-	<div class="scroll-wrap">
-		<div class="col-md-12">
-			<div class="gamma-container gamma-loading" id="gamma-container">
-
-				<ul class="gamma-gallery">
-				</ul>
-				<div class="gamma-overlay"></div>
-
-			</div>
-		</div>
-		<button class="close-button">
-		<span class="closebutton"></span>
-		</button>
-	</div>
-</section>
+<button class="close-button">
+<span class="closebutton"></span>
+</button>
