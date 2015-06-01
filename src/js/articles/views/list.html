@@ -1,8 +1,32 @@
 <section data-ng-controller="ArticlesController" data-ng-init="load();">
 
-	<div class="col-md-12 expandable-container">
-		<cm-expandable template-url="js/articles/views/view.html">
-		</cm-expandable>
+	<div class="col-md-12 expandable-container" data-ng-show="articles.length > 0">
+
+		<div data-ng-include="'/js/articles/views/subnav.html'"></div>
+
+		<div id="search" class="pull-right">
+			<span class="input input--makiko">
+			<input class="input__field input__field--makiko" type="text" data-ng-class="{'searchFocus': obj.searchTitle}" data-ng-model="obj.searchTitle" name="search"/>
+			<label class="input__label input__label--makiko" for="search">
+				<span class="input__label-content input__label-content--makiko">Rechercher</span>
+			</label>
+			</span>
+		</div>
+
+		<section class="grid">
+
+			<cm-expandable template-url="js/articles/views/cell.html" ng-repeat="article in articles | filter: nameFilter" name="{{$index}}" class="grid-directive">
+
+		</section>
+
+		<section class="content">
+			<div class="scroll-wrap">
+
+				<cm-reduce template-url="js/articles/views/view.html" ng-repeat="article in articles | filter: nameFilter" name="{{$index}}">
+				</cm-reduce>
+
+			</div>
+		</section>
 	</div>
 
 	<div class="col-md-12" data-ng-show="articles.length === 0">
