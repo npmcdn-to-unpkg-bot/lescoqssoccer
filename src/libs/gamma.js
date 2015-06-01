@@ -236,7 +236,6 @@ var Gamma = (function() {
 			Gamma.controls = Gamma.container.children( 'div.gamma-options' );
 			Gamma.gallery = Gamma.container.children( 'ul.gamma-gallery' );
 			Gamma.items = Gamma.gallery.children();
-			console.warn(Gamma.items);
 			Gamma.itemsCount = Gamma.items.length;
 			Gamma.columns = Gamma.settings.columns;
 			// true if any animation (including preloading an image) running
