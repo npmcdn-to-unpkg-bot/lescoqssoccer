@@ -46,7 +46,7 @@ angular.module('mean.articles').directive('cmExpandable',
 						contentItemsContainer.css('top', scrollY() + 'px');
 						contentItemsContainer.addClass('content--show');
 
-						$(contentItemsContainer.find("[name='" + attrs.name + "']").children()[0]).addClass('content__item--show');
+						$(contentItemsContainer.find("[name='" + attrs.name + "']").children()[0]).addClass('content__item--show').css('visibility', 'visible');
 						close.addClass('close-button--show');
 
 						$("body").css('overflow', 'hidden');
@@ -78,7 +78,7 @@ angular.module('mean.articles').directive('cmReduce',
 					var contentItem = $(contentItemsContainer.find("[name='" + attrs.name + "']").children()[0]);
 
 					//hide article content
-					contentItem.removeClass('content__item--show');
+					contentItem.removeClass('content__item--show').css('visibility', 'hidden');
 					close.removeClass('close-button--show');
 
 					setTimeout(function() {
