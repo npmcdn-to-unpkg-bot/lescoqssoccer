@@ -4,7 +4,7 @@ html, body {
 body {
 	opacity: 1;
 	background-size: cover;
-	background: #3fcbba;
+	/*background: #3fcbba;*/
 }
 /****
 
@@ -204,7 +204,7 @@ Navbar
 	left: 0;
 	padding-top: 176px;
 	height: 100%;
-	background: #f1f1f1;
+	background: url('../img/mochaGrunge.png')
 }
 #content h1, #cms-sidebar-nav-list span {
 	font-family: "rispaBold";
