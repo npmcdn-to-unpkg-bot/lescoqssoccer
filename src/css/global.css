@@ -207,7 +207,7 @@ Navbar
 	background: url('../img/mochaGrunge.png')
 }
 #content h1, #cms-sidebar-nav-list span {
-	font-family: "rispaBold";
+	font-family: "WC Mano Negra Bold", "WC Mano Negra", "Impact", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 	margin-left: 15px;
 }
 #cms-sidebar-nav-list li {
@@ -316,25 +316,13 @@ to {
 }
 #subnav {
 	padding: 0;
+	padding-top: 15px;
 }
 
 #subnav li.active a{
 	width: 190px;
   	height: 71px;
 	background: url('../img/bg-tab.png') no-repeat;
-	font-family: "WC Mano Negra Bold", "WC Mano Negra", "Impact", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	color: white;
-	  font-size: 22px;
-	  line-height: 60px;
-	  font-weight: 700;
-	  color: #FFF;
-	  text-transform: uppercase;
-	  text-align: center;
-}
-#subnav li:hover a {
-
-}
-#subnav li a {
 	font-family: "WC Mano Negra Bold", "WC Mano Negra", "Impact", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: white;
 	font-size: 22px;
@@ -344,11 +332,27 @@ to {
 	text-transform: uppercase;
 	text-align: center;
 }
+#subnav li:hover a {
+
+}
+#subnav li a {
+	font-family: "WC Mano Negra Bold", "WC Mano Negra", "Impact", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 22px;
+	line-height: 60px;
+	font-weight: 700;
+	text-transform: uppercase;
+	text-align: center;
+}
 #search {
 	position: absolute;
 	display: inline-block;
-	right: -8px;
-	top: 0;
+	right: 10px;
+	top: -95px;
+
+	width: 223px;
+    height: 169px;
+	float: left;
+	background: url(../img/leftlinks.png) top left no-repeat;
 }
 
 /****
@@ -717,7 +721,7 @@ h2.bl2page-title {
 h2.bl2page-title a {
 	font-weight: 600;
 	margin-bottom: -10px;
-	color: white;
+	color: black;
 	font-family: "WC Mano Negra Bold", "WC Mano Negra", "Impact", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 30px;
 }
@@ -897,32 +901,35 @@ select.input__field--yoshiko:focus, .wysiwyg-textarea:focus {
 
 .input--makiko {
 	overflow: hidden;
-	background: gray;
+	background: url(../img/footer-input-background.png);
+	top: 112px;
+  	left: 27px;
 }
 .input__field--makiko {
-	width: 100%;
+	width: 85%;
+	top: 5px;
+	font-family: "WC Mano Negra Bold", "WC Mano Negra", "Impact", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+	font-size: 20px;
+	height: 57px;
 	background: transparent;
-	color: #797693;
+	color: #fff;
 	z-index: 10;
-	font-weight: 500;
+	font-weight: bold;
 	line-height: 2em;
 }
-.input__label--makiko {
+
+*::-webkit-input-placeholder {
+    color: #fff;
+}
+/*.input__label--makiko {
 	position: absolute;
 	width: 100%;
 	text-align: left;
 	pointer-events: none;
 	color: #fff;
-}
+}*/
 
-.input__label--makiko::after {
-	height: 169px;
-	  float: left;
-	  background: url(../img/leftlinks.png) top left no-repeat;
-	  position: relative;
-}
-
-.input__label--makiko::before {
+/*.input__label--makiko::before {
 	content: '';
 	position: absolute;
 	width: 20px;
@@ -933,7 +940,7 @@ select.input__field--yoshiko:focus, .wysiwyg-textarea:focus {
 	background-size: 100%;
 	-webkit-transition: -webkit-transform 0.4s cubic-bezier(0.7, 0, 0.3, 1);
 	transition: transform 0.4s cubic-bezier(0.7, 0, 0.3, 1);
-}
+}*/
 .input__label-content--makiko {
 	display: block;
 	padding: 0.7em 0 0 2em;
@@ -944,9 +951,9 @@ select.input__field--yoshiko:focus, .wysiwyg-textarea:focus {
 	-webkit-transform: scale3d(38, 38, 1);
 	transform: scale3d(38, 38, 1);
 }
-.input__field--makiko:focus, .input__field--makiko.searchFocus {
+/*.input__field--makiko:focus, .input__field--makiko.searchFocus {
 	border: 1px solid #18cecf;
-}
+}*/
 /****
 
 Agenda

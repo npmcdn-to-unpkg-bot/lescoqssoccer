@@ -46,7 +46,7 @@ button:focus {
 }
 
 .grid-directive{
-	width: 50%;
+	width: 49%;
 }
 
 .grid__item * {
@@ -487,31 +487,16 @@ button:focus {
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-/*    background: #fcfaea;
-    margin-top: 40px;
-    margin-bottom: 40px;*/
   }
-
-  /*.grid::before {
-    content:"";
-    position: absolute;
-    background: url("../img/bg-paper-top.png") repeat-x 50% 0;
-    padding-top: 64px;
-    z-index: 10;
-    margin-top: -64px;
-    margin-left: -30px;
-    margin-right: -30px;
-    width: calc(100% + 60px);
-  }*/
 
   /* 2 columns */
   .grid__item {
-    border: 1px solid rgba(74, 74, 74, 0.3);
+    border: 3px solid rgba(74, 74, 74, 0.3);
   }
 
   .grid-directive{
   	width: calc(50% - 5px);
-    	margin-bottom: 10px;
+    margin-bottom: 10px;
   }
 
   .grid-directive:nth-child(2n){
@@ -520,7 +505,7 @@ button:focus {
 
   .grid__item:hover,
   .grid__item:focus{
-    border: 1px solid rgba(24, 206, 207, 0.3);
+    border: 3px solid rgba(24, 206, 207, 0.3);
   }
 }
 @media screen and (min-width: 1200px) {
