@@ -18,23 +18,23 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 		}, {
 			'title': 'agenda_title',
 			'link': 'agenda',
-			'icon': 'human_picto_300.png'
+			'icon': 'Time_left_64.png'
 		}, {
 			'title': 'article_title',
 			'link': 'articles',
-			'icon': 'human_picto_118.png'
+			'icon': 'News_over_the_radio_64.png'
 		}, {
 			'title': 'link_title',
 			'link': 'links',
-			'icon': 'human_picto_025.png'
+			'icon': 'Coconut_trees_64.png'
 		}, {
 			'title': 'gallery_title',
 			'link': 'albums',
-			'icon': 'human_picto_225.png'
+			'icon': 'photo229.png'
 		}, {
 			'title': 'suggestions_title',
 			'link': 'suggestions',
-			'icon': 'human_picto_298.png'
+			'icon': 'light bulbs7.png'
 		}];
 
 		$scope.isCollapsed = false;

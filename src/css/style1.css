@@ -45,9 +45,22 @@ button:focus {
   width: 100%;
 }
 
-.grid-directive{
+.grid-directive {
 	width: 49%;
-  background: url(../img/plakband_posters_s1.png) no-repeat left top;
+	background: url(../img/feesten_bg_s1.png) left top no-repeat;
+	background-size: 100% 100%;
+	padding-right: 10px;
+}
+
+.scotch {
+	clear: both;
+	height: 23px;
+	position: absolute;
+	width: 60px;
+	top: -8px;
+	left: 40%;
+	background: url(../img/plakband_feesten_s1.png) left top no-repeat;
+	z-index: 11 !important;
 }
 
 .grid__item * {
@@ -279,7 +292,7 @@ button:focus {
 .category--full {
   font-size: 1.25em;
   margin-bottom: 20px;
-  color: #18cecf;
+  color: rgb(4, 189, 242);
 }
 
 .title--full {
@@ -449,7 +462,8 @@ button:focus {
 
   .grid__item {
     padding: 45px 45px 30px;
-    background-color: #fff;
+
+	background-color: #eee;
   }
 
   /* Demo ad */
@@ -492,13 +506,13 @@ button:focus {
   }
 
   /* 2 columns */
-  .grid__item {
+/*  .grid__item {
     border: 3px solid rgba(74, 74, 74, 0.3);
-  }
+  }*/
 
   .grid-directive{
   	width: calc(50% - 5px);
-    margin-bottom: 10px;
+    	margin-bottom: 40px;
   }
 
   .grid-directive{
@@ -509,10 +523,10 @@ button:focus {
     margin-left: 0;
   }
 
-  .grid__item:hover,
+/*  .grid__item:hover,
   .grid__item:focus{
     border: 3px solid rgba(24, 206, 207, 0.3);
-  }
+  }*/
 }
 @media screen and (min-width: 1200px) {
   /* 3 columns */

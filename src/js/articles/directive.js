@@ -23,7 +23,9 @@ angular.module('mean.articles').directive('cmExpandable',
 					// set the width/heigth and position
 					dummy.style.WebkitTransform = 'translate3d(' + (contentItem.position().left) + 'px, ' + (contentItem.position().top ) + 'px, 0px) scale3d(' + contentItem.outerWidth() / contentItemsContainer.outerWidth() + ',' + (contentItem.outerHeight()) / getViewport('y') + ',1)';
 					dummy.style.transform = 'translate3d(' + (contentItem.position().left) + 'px, ' + (contentItem.position().top) + 'px, 0px) scale3d(' + contentItem.outerWidth() / contentItemsContainer.outerWidth() + ',' + (contentItem.outerHeight()) / getViewport('y') + ',1)';
-					dummy.style.background = contentItem.css('background');
+					dummy.style.background = "#04BDF2";
+					dummy.style.opacity = "0.92";
+
 
 					// insert it after all the grid items
 					element.parent().append(dummy);

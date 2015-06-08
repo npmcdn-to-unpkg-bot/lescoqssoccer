@@ -6,6 +6,10 @@ body {
 	background-size: cover;
 	/*background: #3fcbba;*/
 }
+
+div, p, a, select{
+	font-family: "WC Mano Negra Bold", "WC Mano Negra", "Impact", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
 /****
 
 Animate view
@@ -204,7 +208,8 @@ Navbar
 	left: 0;
 	padding-top: 176px;
 	height: 100%;
-	background: url('../img/mochaGrunge.png')
+	/*background: url('../img/mochaGrunge.png');*/
+	background-color: rgb(4, 189, 242);
 }
 #content h1, #cms-sidebar-nav-list span {
 	font-family: "WC Mano Negra Bold", "WC Mano Negra", "Impact", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
@@ -279,7 +284,7 @@ a.sidebarItem {
 	border-radius: 30px;
 	height: 60px;
 	width: 60px;
-	border: 2px dashed #FFF;
+	/*border: 2px dashed #FFF;*/
 	display: block;
 	margin: 0 auto;
 	opacity: 0.5;
@@ -504,7 +509,7 @@ ul.suggestionList, li {
 ul.suggestionList li a {
 	text-decoration: none;
 	color: #000;
-	background: #18cecf;
+	background: rgb(4, 189, 242);
 	display: block;
 	height: 10em;
 	width: 10em;
@@ -549,7 +554,7 @@ ul.suggestionList li:nth-child(3n) a {
 	-moz-transform: rotate(-3deg);
 	position: relative;
 	top: -5px;
-	background: #18cecf;
+	background: rgb(4, 189, 242);
 }
 ul.suggestionList li:nth-child(5n) a {
 	-o-transform: rotate(5deg);
@@ -728,10 +733,10 @@ h2.bl2page-title a {
 	margin-top: -3px
 }
 .bl2page-info {
-	margin-top: 20px;
+	margin-top: 75%;
 	float: left;
 	display: block;
-	margin-left: -5px;
+	margin-left: -15%;
 	font-family: "WC Mano Negra Bold", "WC Mano Negra", "Impact", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 p.bl2page-user, p.bl2page-date, p.bl2page-comment {
@@ -752,6 +757,13 @@ p.bl2page-comment a {
 	color: #1b1b1b;
 	font-family: "WC Mano Negra Bold", "WC Mano Negra", "Impact", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
+.articleCell{
+	width: 100%;
+  	height: 235px !important;
+  	z-index: 9;
+}
+
 /****
 
 Forms
@@ -894,7 +906,7 @@ select.input__field--yoshiko:focus, .wysiwyg-textarea:focus {
 }
 .input__field--yoshiko:focus, .input--yoshiko.input--filled .input__field--yoshiko {
 	background-color: transparent;
-	border-color: #18cecf;
+	border-color: rgb(4, 189, 242);
 }
 /* Makiko */
 
@@ -951,7 +963,7 @@ select.input__field--yoshiko:focus, .wysiwyg-textarea:focus {
 	transform: scale3d(38, 38, 1);
 }
 /*.input__field--makiko:focus, .input__field--makiko.searchFocus {
-	border: 1px solid #18cecf;
+	border: 1px solid rgb(4, 189, 242);
 }*/
 /****
 
@@ -1061,7 +1073,7 @@ h2.ev2shr-title a, h2.ev2page-title a, h2.ev3page-title a {
 	position: relative;
 	cursor: default;
 	font-size: 36px;
-	color: #18cecf;
+	color: rgb(4, 189, 242);
 	text-transform: uppercase;
 }
 .ev2page-col .ev2page-week {
@@ -1118,11 +1130,10 @@ Links
 	width: 45px;
 	height: 45px;
 }
-.wz-hover .bg {
-	height: 100px;
-	width: 100px;
+
+.he-view .bg {
 	text-align: center;
-	background: #18cecf;
+	background: #04BDF2;
 }
 
 .adpage1-cover .bg {
@@ -1140,7 +1151,7 @@ Links
 	border-bottom: 3px solid #bbbbbb;
 }
 .adpage1-col:hover .adpage-info {
-	border-bottom: 3px solid #18cecf;
+	border-bottom: 3px solid rgb(4, 189, 242);
 }
 .adpage-title {
 	color: #1b1b1b;
@@ -1197,16 +1208,23 @@ Links
 }
 .he-view {
 	position: absolute;
-	top: 0;
+	z-index: -2;
+	bottom: 0;
+	opacity: 0.92;
 	left: 0;
 	right: 0;
-	bottom: 0;
+	top: 100%;
 	overflow: hidden;
 	visibility: hidden;
 }
 .adpage1-col:hover .he-view, .grid__item:hover .he-view {
 	visibility: visible;
-	opacity: 0.7;
+	bottom: 0;
+	top: 0;
+/*	transition: all .4s ease-in-out;
+	-ms-transition: all .4s ease-in-out;
+	-moz-transition: all .4s ease-in-out;
+	-webkit-transition: all .4s ease-in-out;*/
 }
 .he-view-show {
 	visibility: visible;
