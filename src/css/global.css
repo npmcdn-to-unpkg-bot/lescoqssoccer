@@ -347,8 +347,7 @@ to {
 	position: absolute;
 	display: inline-block;
 	right: 10px;
-	top: -95px;
-
+	top: -50px;
 	width: 223px;
     height: 169px;
 	float: left;
@@ -855,8 +854,8 @@ select.input__field--yoshiko:focus, .wysiwyg-textarea:focus {
 	pointer-events: none;
 	overflow: hidden;
 	padding: 0 1.25em;
-	-webkit-transform: translate3d(0, 3em, 0);
-	transform: translate3d(0, 3em, 0);
+	-webkit-transform: translate3d(0, 2.2em, 0);
+	transform: translate3d(0, 2.2em, 0);
 	-webkit-transition: -webkit-transform 0.25s;
 	transition: transform 0.25s;
 	-webkit-transition-timing-function: ease-in-out;
@@ -902,7 +901,7 @@ select.input__field--yoshiko:focus, .wysiwyg-textarea:focus {
 .input--makiko {
 	overflow: hidden;
 	background: url(../img/footer-input-background.png);
-	top: 112px;
+	top: 75px;
   	left: 27px;
 }
 .input__field--makiko {

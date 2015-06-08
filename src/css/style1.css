@@ -47,6 +47,7 @@ button:focus {
 
 .grid-directive{
 	width: 49%;
+  background: url(../img/plakband_posters_s1.png) no-repeat left top;
 }
 
 .grid__item * {
@@ -448,6 +449,7 @@ button:focus {
 
   .grid__item {
     padding: 45px 45px 30px;
+    background-color: #fff;
   }
 
   /* Demo ad */
@@ -499,8 +501,12 @@ button:focus {
     margin-bottom: 10px;
   }
 
-  .grid-directive:nth-child(2n){
+  .grid-directive{
     margin-left: 10px;
+  }
+
+  .grid-directive(:nth-child(2n-1)){
+    margin-left: 0;
   }
 
   .grid__item:hover,
@@ -511,25 +517,41 @@ button:focus {
 @media screen and (min-width: 1200px) {
   /* 3 columns */
   .grid-directive:not(.agenda_item) {
-    width: 33.333%;
+    width: calc(33.333% - 10px);
+  }
+
+  .grid-directive(:nth-child(3n-1)){
+    margin-left: 0;
   }
 }
 @media screen and (min-width: 1500px) {
   /* 4 columns */
   .grid-directive:not(.agenda_item) {
-    width: 25%;
+    width: calc(25% - 10px);
+  }
+
+  .grid-directive(:nth-child(4n-1)){
+    margin-left: 0;
   }
 }
 @media screen and (min-width: 1800px) {
   /* 5 columns */
   .grid-directive:not(.agenda_item) {
-    width: 20% ;
+    width: calc(20% - 10px);
+  }
+
+  .grid-directive(:nth-child(5n-1)){
+    margin-left: 0;
   }
 }
 @media screen and (min-width: 2100px) {
   /* 6 columns */
   .grid-directive:not(.agenda_item) {
-    width: 16.66%;
+    width: calc(16.66% - 10px);
+  }
+
+  .grid-directive(:nth-child(6n-1)){
+    margin-left: 0;
   }
 }
 /* small screen changes for sidebar (it becomes an off-canvas menu) */
