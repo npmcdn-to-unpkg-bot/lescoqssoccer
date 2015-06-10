@@ -53,7 +53,7 @@ angular.module( 'mean' ).config( [ '$routeProvider',
 		/** ALBUMS ****/
 		when( '/albums', {
 			templateUrl: 'js/gallery/views/albums.html',
-			controller: 'AlbumCtrl',
+			controller: 'GalleryCtrl',
 			resolve: PhotoMgrData
 		} ).
 		when( '/albums/:view', {

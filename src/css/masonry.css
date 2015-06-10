@@ -16,6 +16,11 @@
 .gamma-container {
 	min-height: 200px;
 	margin-top: 70px;
+	display: none;
+}
+
+.gamma-container.show {
+	display: block;
 }
 
 .gamma-gallery {
