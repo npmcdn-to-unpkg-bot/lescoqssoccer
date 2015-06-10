@@ -1,6 +1,6 @@
 node_modules/
 server/public/img/users/
-src/libs/*/
+#src/libs/*/
 
 #libs to synchronize
 !src/lib/angular-ui.sortable.js

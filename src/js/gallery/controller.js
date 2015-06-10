@@ -172,7 +172,8 @@ angular.module('mean.albums').controller('AlbumCtrl', ['$location', '$scope', '$
             $scope.pmSvc.editAlbumPhotos('remove', removedPhoto, album);
         };
 
-        $scope.loadPhotos = function(album){
+        $scope.loadPhotos = function(album, index){
+
             var album = AlbumsCollection.get({
                 id: album._id
             }).$promise;
@@ -211,10 +212,16 @@ angular.module('mean.albums').controller('AlbumCtrl', ['$location', '$scope', '$
                         }]
                     };
 
-                    Gamma.init(GammaSettings);
+                    Gamma.init(GammaSettings, index);
                 }
             });
-        }
+        };
+
+        $scope.deleteMasonry = function(){
+
+            $("ul.gamma-gallery").find("li").remove();
+
+        };
 
         if (view === 'detail') {
 

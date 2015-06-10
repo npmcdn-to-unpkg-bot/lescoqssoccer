@@ -191,12 +191,12 @@ var Gamma = (function() {
 			// if History API is not supported this value will turn false
 			historyapi : true
 		},
-		init = function( settings, callback ) {
+		init = function( settings, name, callback ) {
 
 			Gamma.settings = $.extend( true, {}, defaults, settings );
 
 			// cache some elements..
-			_config();
+			_config(name);
 			// build the layout
 			_layout();
 			// init masonry
@@ -229,9 +229,9 @@ var Gamma = (function() {
 			} );
 
 		},
-		_config = function() {
+		_config = function(name) {
 
-			Gamma.container = $( '#gamma-container' );
+			Gamma.container = $("[name=" + name + "]").find( '.gamma-container' );
 			Gamma.overlay = Gamma.container.find( 'div.gamma-overlay' );
 			Gamma.controls = Gamma.container.children( 'div.gamma-options' );
 			Gamma.gallery = Gamma.container.children( 'ul.gamma-gallery' );
@@ -406,7 +406,6 @@ var Gamma = (function() {
 					maxheight : $picEl.data( 'maxHeight' )
 				} );
 
-				console.warn($item);
 				$( '<div/>' ).addClass( 'gamma-description' ).html( description ).insertAfter( $picEl );
 
 				$( '<img/>' ).attr( {
