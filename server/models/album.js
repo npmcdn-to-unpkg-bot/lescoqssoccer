@@ -19,7 +19,8 @@ var albumSchema = new Schema({
 	enabled: { type: Boolean},
 	coverPicPath: { type: String},
 	coverPic: {type : mongoose.Schema.ObjectId, ref : 'Photo'},
-	photoList  : [ photoListSchema ]
+	photoList  : [ photoListSchema ],
+	user: {type : mongoose.Schema.ObjectId, ref : 'User'},
 });
 
 // Instance method to add photo
@@ -51,17 +52,17 @@ albumSchema.methods.removePhoto = function(photoId, callback) {
 			album.photoList.remove({_id: photoId});
 			album.photoList.forEach(function(photo, index){
 				photo.order = index;
-			})			
+			})
 			album.save(function(err){
 				if (err) console.log("error removing photo from album: " + err)
 				callback({photo: photo,album: album});
 			});
-		})		
+		})
 	})
 };
 
 // after removing the album, delete references to it
-// from within any photo documents 
+// from within any photo documents
 albumSchema.post('remove', function(album) {
 	var self = this;
 	_.each(album.photoList, function(entry){

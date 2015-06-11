@@ -764,6 +764,22 @@ p.bl2page-comment a {
   	z-index: 9;
 }
 
+.articleCell .center{
+	margin-top: 35%;
+}
+
+.articleCell .center.negativeMargin{
+	margin-left: -80px;
+}
+
+.articleCell .left{
+	float: left;
+	margin-top: 10px;
+	margin-left: 10px;
+	height: 40px;
+	width: 40px;
+}
+
 /****
 
 Forms
@@ -1084,10 +1100,11 @@ h2.ev2shr-title a, h2.ev2page-title a, h2.ev3page-title a {
 }
 .location-btn {
 	position: absolute;
-	right: -4px;
+	right: 29px;
 }
 .location-btn button {
-	height: 45px;
+	height: 47px;
+/*	margin-top: -1px;*/
 }
 /****
 
@@ -1109,9 +1126,10 @@ Links
 }
 .adpage1-cover {
 	width: 100%;
-	height: 235px;
+	height: 290px;
 	position: relative;
-	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: visible;
 }
 .wz-hover .adpage1-link {
 	float: left;

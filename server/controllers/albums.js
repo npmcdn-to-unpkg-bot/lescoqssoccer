@@ -55,7 +55,10 @@ exports.findAlbumById = function ( req, res ) {
 };
 
 exports.addAlbum = function ( req, res ) {
+
 	var newAlbum = req.body;
+	newAlbum.user = req.user;
+
 	console.log( "Adding Album: " + JSON.stringify( newAlbum ) );
 	Album.create( newAlbum, function ( err, album ) {
 		if ( err ) console.log( "error: " + err );

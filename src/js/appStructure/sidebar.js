@@ -26,7 +26,7 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 		}, {
 			'title': 'link_title',
 			'link': 'links',
-			'icon': 'Coconut_trees_64.png'
+			'icon': 'Sandals_64.png'
 		}, {
 			'title': 'gallery_title',
 			'link': 'albums',

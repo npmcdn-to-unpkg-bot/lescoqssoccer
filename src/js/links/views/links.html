@@ -1,8 +1,9 @@
-<section class="grid" data-ng-controller="LinkController">
+<section class="col-md-12">
 	<div class="adpage1-col wz-last" data-ng-repeat="link in links">
 		<a href="{{link.adress}}" target="_blank">
-		    <div class="adpage1-cover">
-		       <div class="wz-wrap wz-hover">
+		    <div class="adpage1-cover" st>
+		    	<div class="scotch"></div>
+		        <div class="wz-wrap wz-hover">
 		          	<img ng-src="{{link.image && link.image || 'img/8962691008_7f489395c9_m.jpg'}}" alt="" class="linkImage" scale="0">
 		          	<div class="he-view">
 		             	<div class="bg a0">

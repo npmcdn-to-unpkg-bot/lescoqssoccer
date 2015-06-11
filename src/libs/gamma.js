@@ -315,7 +315,7 @@ angular.module('mean.albums').factory('Gamma',
 				// back history to a state with no id
 				if (Gamma.settings.historyapi && Gamma.isSV && id === undefined) {
 
-					this._closesingleview();
+					this._closesingleview(this);
 
 				}
 
@@ -716,9 +716,9 @@ angular.module('mean.albums').factory('Gamma',
 				var sources = properties.sources,
 					imgMaxW = properties.imgMaxW || 0,
 					imgMaxH = properties.imgMaxH || 0,
-					source = _chooseImgSource(sources, properties.wrapper.width),
+					source = this._chooseImgSource(sources, properties.wrapper.width),
 					// calculate final size and position of image
-					finalSizePosition = _getFinalSizePosition(properties.image, properties.wrapper);
+					finalSizePosition = this._getFinalSizePosition(properties.image, properties.wrapper);
 
 				// check for new source
 				if (finalSizePosition.checksource) {
@@ -760,10 +760,10 @@ angular.module('mean.albums').factory('Gamma',
 
 			},
 			// triggered when one grid image is clicked
-			_singleview: function() {
+			_singleview: function(Gamma) {
 
 				var id = $(this).index();
-				this._saveState(id);
+				Gamma._saveState(id);
 
 			},
 			// shows the item
@@ -840,7 +840,7 @@ angular.module('mean.albums').factory('Gamma',
 						}
 
 						// set the overflow-y to hidden
-						this.$body.css('overflow-y', 'hidden');
+						self.$body.css('overflow-y', 'hidden');
 						// force repaint. Chrome in Windows does not remove overflow..
 						// http://stackoverflow.com/a/3485654/989439
 						var el = Gamma.overlay[0];
@@ -861,8 +861,8 @@ angular.module('mean.albums').factory('Gamma',
 						var styleCSS = {
 								width: finalSizePosition.width,
 								height: finalSizePosition.height,
-								left: finalSizePosition.left + this.$window.scrollLeft() + Gamma.svMargins.horizontal / 2,
-								top: finalSizePosition.top + this.$window.scrollTop() + Gamma.svMargins.vertical / 2
+								left: finalSizePosition.left + self.$window.scrollLeft() + Gamma.svMargins.horizontal / 2,
+								top: finalSizePosition.top + self.$window.scrollTop() + Gamma.svMargins.vertical / 2
 							},
 							cond = Gamma.supportTransitions;
 
@@ -1301,8 +1301,13 @@ angular.module('mean.albums').factory('Gamma',
 
 					case 'singleview':
 
-						Gamma.gallery.on('click.gamma', 'li', self._singleview);
-						Gamma.svclose.on('click.gamma', self._closesingleview);
+						Gamma.gallery.on('click.gamma', 'li', function(){
+							self._singleview(self);
+						});
+
+						Gamma.svclose.on('click.gamma', function(){
+							self._closesingleview(self);
+						});
 
 						break;
 
