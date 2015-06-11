@@ -1,14 +1,19 @@
 <div class="grid__item">
+
 	<div class="scotch"></div>
 	<img ng-src="{{article.image && article.image || 'img/8962691008_7f489395c9_m.jpg'}}" alt="" scale="0" class="linkImage articleCell">
 	<!-- <div class="ev2page-tickets" ng-if="article.category"><a href="#!">{{article.category}}</a></div> -->
 	<!-- <h2 class="bl2page-title"><a href="#!">{{article.title}}</a></h2> -->
 
 	<div class="he-view">
-		<div class="bg a0 articleCell"></div>
+		<div class="bg a0 articleCell">
+			<img src="img/trash.png" class="left" ng-click="remove(article, $event)" ng-show="global.user._id === article.user._id"/>
+			<img src="img/pencil.png" class="left" ng-click="edit(article, $event)" ng-show="global.user._id === article.user._id"/>
+			<img src="img/magnifier_sketch.png" class="center" ng-class="{'negativeMargin' : global.user._id === article.user._id}"/>
+		</div>
 	</div>
 
-	<div class="adpage-info">
+	<div class="bl2page-info">
 		<p class="bl2page-user"><span class="fa fa-user"></span> {{article.user.name}}</p>
 		<p class="bl2page-date ellipsis"><span class="fa fa-clock-o"> {{article.created | date:dateFormat}}</p>
 	</div>

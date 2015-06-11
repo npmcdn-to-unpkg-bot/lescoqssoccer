@@ -24,13 +24,13 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 			'link': 'articles',
 			'icon': 'News_over_the_radio_64.png'
 		}, {
-			'title': 'link_title',
-			'link': 'links',
-			'icon': 'Sandals_64.png'
-		}, {
 			'title': 'gallery_title',
 			'link': 'albums',
 			'icon': 'photo229.png'
+		}, {
+			'title': 'link_title',
+			'link': 'links',
+			'icon': 'Sandals_64.png'
 		}, {
 			'title': 'suggestions_title',
 			'link': 'suggestions',

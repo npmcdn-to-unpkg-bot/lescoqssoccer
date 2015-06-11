@@ -1,9 +1,9 @@
 <div class="modal-header">
     <button type="button" class="close" data-ng-click="cancel()" aria-hidden="true">&times;</button>
-    <h4 class="modal-title">Confirmation pour supprimer - {{album.name}}</h4>
+    <h4 class="modal-title">Confirmation pour supprimer - {{article.name}}</h4>
 </div>
 <div class="modal-body">
-    <p>T'es sur de vouloir supprimer l'album "{{album.name}}"<span data-ng-hide="album.photos.length < 1">, qui contient {{album.photoList.length}} photos</span>?</p>
+    <p>T'es sur de vouloir supprimer l'article "{{article.name}}"?</p>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default" data-ng-click="cancel()">Annuler</button>

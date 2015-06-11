@@ -33,12 +33,8 @@ angular.module( 'mean' ).config( [ '$routeProvider',
 			templateUrl: 'js/articles/views/create.html',
 			controller: 'ArticlesController'
 		} ).
-		when( '/articles/:articleId/edit', {
+		when( '/articles/edit/:articleId', {
 			templateUrl: 'js/articles/views/create.html',
-			controller: 'ArticlesController'
-		} ).
-		when( '/articles/:articleId', {
-			templateUrl: 'js/articles/views/view.html',
 			controller: 'ArticlesController'
 		} ).
 

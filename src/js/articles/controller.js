@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', '$sce', 'Global', 'ArticlesCollection', 'FileUploader',
-	function($scope, $routeParams, $location, $sce, Global, ArticlesCollection, FileUploader) {
+angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', '$sce', '$modal','Global', 'ArticlesCollection', 'FileUploader',
+	function($scope, $routeParams, $location, $sce, $modal, Global, ArticlesCollection, FileUploader) {
 
 		$scope.global = Global;
 		$scope.ArticlesCollection = ArticlesCollection;
@@ -59,16 +59,37 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 			});
 		};
 
-		$scope.remove = function() {
+		$scope.remove = function(article, evt) {
 
-			var articlePromise = $scope.ArticlesCollection.remove($scope.article)
-			articlePromise.then(function(response) {
-				$location.path("/articles");
-			});
+			evt.preventDefault();
+            evt.stopPropagation();
+
+            var modalInstance = $modal.open({
+                templateUrl: 'js/articles/views/modal/deleteArticleModal.html',
+                controller: 'deleteArticleModalCtrl',
+                resolve: {
+                    article: function() {
+                        return article;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function() {
+
+                // Delete the article and either update article list or redirect to it
+                $scope.ArticlesCollection.remove(article).then(function(response) {
+					$scope.articles.splice(window._.indexOf($scope.articles, article), 1);
+				});
+
+            });
 		};
 
-		$scope.edit = function() {
-			alert("Bientot");
+		$scope.edit = function(article, evt) {
+
+			evt.preventDefault();
+            evt.stopPropagation();
+
+			$location.path("/articles/edit/" + article._id);
 		};
 
 		$scope.nameFilter = function(article) {
@@ -96,4 +117,20 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 		};
 
 	}
+]);
+
+angular.module('mean.articles').controller('deleteArticleModalCtrl', ['$scope', '$modalInstance', 'article',
+
+    function($scope, $modalInstance, article) {
+
+        $scope.article = article;
+
+        $scope.ok = function(result) {
+            $modalInstance.close(result);
+        };
+
+        $scope.cancel = function() {
+            $modalInstance.dismiss('cancel');
+        };
+    }
 ]);

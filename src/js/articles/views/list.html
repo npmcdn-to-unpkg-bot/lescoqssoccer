@@ -1,14 +1,14 @@
 <section data-ng-controller="ArticlesController" data-ng-init="load();">
 
+	<div class="col-md-9" data-ng-include="'/js/articles/views/subnav.html'"></div>
+
+	<div id="search" class="col-md-3">
+		<span class="input input--makiko">
+		<input class="input__field input__field--makiko" type="text" data-ng-class="{'searchFocus': obj.searchTitle}" data-ng-model="obj.searchTitle" name="search" placeholder="Rechercher"/>
+		</span>
+	</div>
+
 	<div class="col-md-12 expandable-container">
-
-		<div data-ng-include="'/js/articles/views/subnav.html'"></div>
-
-		<div id="search" class="pull-right">
-			<span class="input input--makiko">
-			<input class="input__field input__field--makiko" type="text" data-ng-class="{'searchFocus': obj.searchTitle}" data-ng-model="obj.searchTitle" name="search" placeholder="Rechercher"/>
-			</span>
-		</div>
 
 		<section class="grid">
 

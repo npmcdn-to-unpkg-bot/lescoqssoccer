@@ -5,7 +5,7 @@ var Album = mongoose.model( 'Album' );
 exports.findAllAlbums = function ( req, res ) {
 	Album.find( {}, null, {
 		sort: {
-			order: 1
+			name: 1
 		}
 	}, function ( err, albums ) {
 		res.send( albums );

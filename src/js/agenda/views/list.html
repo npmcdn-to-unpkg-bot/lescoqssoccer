@@ -1,14 +1,8 @@
 <section data-ng-controller="calendarController" data-ng-init="load()">
 
-	<div class="col-md-12 expandable-container" data-ng-show="events.length > 0">
+	<div class="col-md-8 expandable-container" data-ng-show="events.length > 0">
 
 		<div data-ng-include="'/js/agenda/views/subnav.html'"></div>
-
-		<div id="search" class="pull-right">
-			<span class="input input--makiko">
-			<input class="input__field input__field--makiko" type="text" data-ng-class="{'searchFocus': obj.searchTitle}" data-ng-model="obj.searchTitle" name="search" placeholder="Rechercher"/>
-			</span>
-		</div>
 
 		<section class="grid">
 
@@ -24,6 +18,23 @@
 
 			</div>
 		</section>
+	</div>
+
+	<div class="col-md-3" style="margin-left: 40px; text-align: center">
+
+		<div id="search">
+			<span class="input input--makiko">
+			<input class="input__field input__field--makiko" type="text" data-ng-class="{'searchFocus': obj.searchTitle}" data-ng-model="obj.searchTitle" name="search" placeholder="Rechercher"/>
+			</span>
+		</div>
+
+		<p>Derniers évènements</p>
+
+		<div class="grid__item eventSmall" ng-repeat="event in events">
+			<h2 class="ev2page-title three-line-ellipsis"><a href="#!">{{event.title}}</a></h2>
+			<div class="ev2page-tickets"><a href="#!">{{ eventTypes | getNameByIdentifier:event.type}}</a></div>
+		</div>
+
 	</div>
 
 	<div class="col-md-12" data-ng-show="events.length === 0">

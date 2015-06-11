@@ -349,14 +349,10 @@ to {
 	text-align: center;
 }
 #search {
-	position: absolute;
 	display: inline-block;
-	right: 10px;
-	top: -50px;
-	width: 223px;
-    height: 169px;
-	float: left;
-	background: url(../img/leftlinks.png) top left no-repeat;
+	background: url(../img/leftlinks.png) no-repeat;
+	background-position: 80% -50px;
+
 }
 
 /****
@@ -733,7 +729,7 @@ h2.bl2page-title a {
 	margin-top: -3px
 }
 .bl2page-info {
-	margin-top: 75%;
+	margin-top: 240px;
 	float: left;
 	display: block;
 	margin-left: -15%;
@@ -929,8 +925,8 @@ select.input__field--yoshiko:focus, .wysiwyg-textarea:focus {
 .input--makiko {
 	overflow: hidden;
 	background: url(../img/footer-input-background.png);
-	top: 75px;
-  	left: 27px;
+	top: 20px;
+	width: 100%;
 }
 .input__field--makiko {
 	width: 85%;
@@ -1106,6 +1102,21 @@ h2.ev2shr-title a, h2.ev2page-title a, h2.ev3page-title a {
 	height: 47px;
 /*	margin-top: -1px;*/
 }
+
+.eventSmall{
+	/*height: 80px;*/
+	min-height: 80px !important;
+	padding-left: 5px !important;
+	padding-right: 5px !important;
+	margin-bottom: 30px;
+}
+
+.eventSmall h2.ev2page-title{
+	padding-left: 0px;
+	padding-right: 0px;
+	height: inherit;
+}
+
 /****
 
 Links
@@ -1168,9 +1179,14 @@ Links
 	padding: 5px 5px 5px 10px;
 	border-bottom: 3px solid #bbbbbb;
 }
-.adpage1-col:hover .adpage-info {
+.adpage1-col:hover .adpage-info,  .grid__item:hover{
 	border-bottom: 3px solid rgb(4, 189, 242);
 }
+
+.grid__item{
+	border-bottom: 3px solid #bbbbbb;
+}
+
 .adpage-title {
 	color: #1b1b1b;
 	font-size: 15px;
