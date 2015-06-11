@@ -1,12 +1,19 @@
 <div class="grid__item" ng-click="loadPhotos(album, $index);">
 	<div class="scotch"></div>
+	<img ng-src="{{album.coverPicPath && album.coverPicPath || 'img/8962691008_7f489395c9_m.jpg'}}" alt="" scale="0" class="linkImage articleCell">
+
 	<h2 class="bl2page-title"><a href="#!">{{album.name}}</a></h2>
-	<div class="bl2page-cover">
-		<div class="wz-wrap wz-hover">
-			<img ng-src="{{album.coverPicPath && album.coverPicPath || 'img/8962691008_7f489395c9_m.jpg'}}" alt="" scale="0" class="linkImage meta__avatar">
-			<div class="he-view">
-				<div class="bg a0 meta__avatar"></div>
-			</div>
+
+	<div class="he-view">
+		<div class="bg a0 articleCell">
+			<img src="img/trash.png" class="left" ng-click="deleteAlbum(album, $event)" ng-show="global.user._id === album.user"/>
+			<img src="img/pencil.png" class="left" ng-click="editAlbum(album, $event)" ng-show="global.user._id === album.user"/>
+			<img src="img/magnifier_sketch.png" class="center" ng-class="{'negativeMargin' : global.user._id === album.user}"/>
 		</div>
 	</div>
+
+	<div class="ev2page-week" style="margin-top: 170px;">
+		{{album.name}}
+	</div>
+
 </div>

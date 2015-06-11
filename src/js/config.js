@@ -31,20 +31,21 @@ angular.module( 'mean' ).config( [ '$routeProvider',
 		} ).
 		when( '/articles/create', {
 			templateUrl: 'js/articles/views/create.html',
-			controller: 'ArticlesController',
+			controller: 'ArticlesController'
 		} ).
 		when( '/articles/:articleId/edit', {
 			templateUrl: 'js/articles/views/create.html',
-			controller: 'ArticlesController',
+			controller: 'ArticlesController'
 		} ).
 		when( '/articles/:articleId', {
 			templateUrl: 'js/articles/views/view.html',
-			controller: 'ArticlesController',
+			controller: 'ArticlesController'
 		} ).
 
 		/** LINKS ****/
 		when( '/links', {
-			templateUrl: 'js/links/views/links.html'
+			templateUrl: 'js/links/views/links.html',
+			controller: 'LinkController'
 		} ).
 		when( '/links/create', {
 			templateUrl: 'js/links/views/create.html'
@@ -67,18 +68,6 @@ angular.module( 'mean' ).config( [ '$routeProvider',
 			templateUrl: 'js/gallery/views/album-detail.html',
 			controller: 'AlbumCtrl',
 			resolve: PhotoMgrData
-		} ).
-
-		/** GALLERY ****/
-		when( '/gallery', {
-			templateUrl: 'js/gallery/views/view.html',
-			controller: 'GalleryCtrl',
-			resolve: GalleryData
-		} ).
-		when( '/gallery/:albumId', {
-			templateUrl: 'js/gallery/views/view.html',
-			controller: 'GalleryCtrl',
-			resolve: GalleryData
 		} ).
 
 		/** SUGGESTIONS ****/

@@ -27,7 +27,7 @@ button:focus {
   padding: 45px 55px 30px;
   position: relative;
   color: inherit;
-  min-height: 300px;
+  min-height: 400px;
   cursor: pointer;
   text-align: center;
   display: -webkit-box;
@@ -42,7 +42,7 @@ button:focus {
   -webkit-justify-content: center;
   justify-content: center;
   display: inline-block;
-  width: 100%;
+  width: 99%;
 }
 
 .grid-directive {
@@ -453,7 +453,6 @@ button:focus {
 
   .main {
     height: 100%;
-    /*margin-left: 300px;*/
   }
 
   .content__item {
@@ -462,8 +461,7 @@ button:focus {
 
   .grid__item {
     padding: 45px 45px 30px;
-
-	background-color: #eee;
+	  background-color: #eee;
   }
 
   /* Demo ad */
@@ -505,14 +503,9 @@ button:focus {
     flex-wrap: wrap;
   }
 
-  /* 2 columns */
-/*  .grid__item {
-    border: 3px solid rgba(74, 74, 74, 0.3);
-  }*/
-
   .grid-directive{
-  	width: calc(50% - 5px);
-    	margin-bottom: 40px;
+  	width: calc(50% - 10px);
+    margin-bottom: 40px;
   }
 
   .grid-directive{
@@ -522,12 +515,8 @@ button:focus {
   .grid-directive(:nth-child(2n-1)){
     margin-left: 0;
   }
-
-/*  .grid__item:hover,
-  .grid__item:focus{
-    border: 3px solid rgba(24, 206, 207, 0.3);
-  }*/
 }
+
 @media screen and (min-width: 1200px) {
   /* 3 columns */
   .grid-directive:not(.agenda_item) {
