@@ -1162,7 +1162,7 @@ Links
 
 .he-view .bg {
 	text-align: center;
-	background: #04BDF2;
+	background: #eee;
 }
 
 .adpage1-cover .bg {
@@ -1244,7 +1244,7 @@ Links
 	position: absolute;
 	z-index: -2;
 	bottom: 0;
-	opacity: 0.92;
+	opacity: 0.8;
 	left: 0;
 	right: 0;
 	top: 100%;

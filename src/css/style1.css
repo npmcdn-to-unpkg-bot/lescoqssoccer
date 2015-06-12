@@ -198,8 +198,8 @@ button:focus {
 .placeholder {
   pointer-events: none;
   position: absolute;
-  width: calc(100% + 5px);
-  height: calc(100vh + 75px);
+  width: 100%;
+  height: 100vh;
   z-index: 100;
   top: 0;
   left: 0;
@@ -226,7 +226,7 @@ button:focus {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: calc(100% + 60px);
   pointer-events: none;
   height: 0;
   /* Avoid second scroll bar in Chrome! */
@@ -236,9 +236,11 @@ button:focus {
 }
 
 .content.content--show {
-  height: 100vh;
+  height: calc(100vh + 10px);
   pointer-events: auto;
   visibility: visible;
+  margin-right: -30px;
+  margin-left: -30px;
 }
 
 /* scroll helper wrap */
@@ -268,7 +270,7 @@ button:focus {
   padding: 60px 60px 80px 60px;
   pointer-events: none;
   font-size: 0.85em;
-  background-color: white;
+  background-color: #eee;
 }
 .content__item p {
   max-width: 1200px;
@@ -281,7 +283,7 @@ button:focus {
 
 .content__item.content__item--show {
   height: auto;
-  min-height: 100vh;
+  min-height: calc(100vh + 10px);
   opacity: 1;
   pointer-events: auto;
   -webkit-transition: opacity 0.6s;
