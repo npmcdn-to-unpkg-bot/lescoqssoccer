@@ -23,9 +23,8 @@ angular.module('mean.articles').directive('cmExpandable',
 					// set the width/heigth and position
 					dummy.style.WebkitTransform = 'translate3d(' + (contentItem.position().left) + 'px, ' + (contentItem.position().top ) + 'px, 0px) scale3d(' + contentItem.outerWidth() / contentItemsContainer.outerWidth() + ',' + (contentItem.outerHeight()) / getViewport('y') + ',1)';
 					dummy.style.transform = 'translate3d(' + (contentItem.position().left) + 'px, ' + (contentItem.position().top) + 'px, 0px) scale3d(' + contentItem.outerWidth() / contentItemsContainer.outerWidth() + ',' + (contentItem.outerHeight()) / getViewport('y') + ',1)';
-					dummy.style.background = "#04BDF2";
-					dummy.style.opacity = "0.92";
-
+					dummy.style.background = "#eee";
+					dummy.style.opacity = "0.8";
 
 					// insert it after all the grid items
 					element.parent().append(dummy);
@@ -33,8 +32,8 @@ angular.module('mean.articles').directive('cmExpandable',
 					setTimeout(function() {
 
 						// expands the placeholder
-						dummy.style.WebkitTransform = 'translate3d(0px, ' + (scrollY() - 135) + 'px, 0px)';
-						dummy.style.transform = 'translate3d(0px, ' + (scrollY() - 135) + 'px, 0px)';
+						dummy.style.WebkitTransform = 'translate3d(0px, ' + (scrollY() - 125) + 'px, 0px)';
+						dummy.style.transform = 'translate3d(0px, ' + (scrollY() - 125) + 'px, 0px)';
 
 					}, 25);
 
@@ -45,7 +44,7 @@ angular.module('mean.articles').directive('cmExpandable',
 						$(dummy).addClass('placeholder--trans-out');
 
 						// position the content container
-						contentItemsContainer.css('top', scrollY() + 'px');
+						contentItemsContainer.css('top', (scrollY() - 130) + 'px');
 						contentItemsContainer.addClass('content--show');
 
 						$(contentItemsContainer.find("[name='" + attrs.name + "']").children()[0]).addClass('content__item--show').css('visibility', 'visible');
@@ -86,8 +85,8 @@ angular.module('mean.articles').directive('cmReduce',
 					setTimeout(function() {
 
 						var dummy = $('.placeholder');
-						dummy.css('WebkitTransform', 'translate3d(' + gridItem.position().left + 'px, ' + (gridItem.position().top) + 'px, 0px) scale3d(' + (gridItem.outerWidth()-30) / $(gridItemsContainer).width() + ',' + (gridItem.outerHeight() - 40) / getViewport('y') + ',1)');
-						dummy.css('transform', 'translate3d(' + gridItem.position().left + 'px, ' + (gridItem.position().top) + 'px, 0px) scale3d(' + (gridItem.outerWidth()-30) / $(gridItemsContainer).width() + ',' + (gridItem.outerHeight() - 40) / getViewport('y') + ',1)');
+						dummy.css('WebkitTransform', 'translate3d(' + (gridItem.position().left - 5) + 'px, ' + (gridItem.position().top) + 'px, 0px) scale3d(' + (gridItem.outerWidth() - 20) / $(gridItemsContainer).width() + ',' + (gridItem.outerHeight()) / getViewport('y') + ',1)');
+						dummy.css('transform', 'translate3d(' + (gridItem.position().left - 5) + 'px, ' + (gridItem.position().top) + 'px, 0px) scale3d(' + (gridItem.outerWidth() - 20) / $(gridItemsContainer).width() + ',' + (gridItem.outerHeight()) / getViewport('y') + ',1)');
 
 						onEndTransition(dummy, function() {
 

@@ -1,62 +1,32 @@
 'use strict';
 
-angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', '$sce', '$modal','Global', 'ArticlesCollection', 'FileUploader',
-	function($scope, $routeParams, $location, $sce, $modal, Global, ArticlesCollection, FileUploader) {
+angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', '$sce', '$modal','Global', 'ArticlesCollection', 'Articles',
+	function($scope, $routeParams, $location, $sce, $modal, Global, ArticlesCollection, Articles) {
 
 		$scope.global = Global;
 		$scope.ArticlesCollection = ArticlesCollection;
-		$scope.view = ($location.path().substr(1, $location.path().length) === 'articles') ? 'articles' : 'create';
-		$scope.articles;
-		$scope.obj = {
-			searchTitle: ""
-		};
+		$scope.articles = Articles;
 
-		$scope.image;
-		$scope.article;
+		$scope.view = 'articles';
 		$scope.dateFormat = "dd MMM yyyy 'à' H'h'mm";
 
-		$scope.uploader = new FileUploader({
-			scope: $scope,
-			url: '/upload/photo',
-			autoUpload: true,
-			formData: [{
-				key: 'value'
-			}]
-		});
-
-		$scope.uploader.onCompleteItem = function(item, response, status, headers) {
-			console.info('Upload complete for ', response.path);
-			$scope.image = response.path;
+		// Manage search input
+		$scope.obj = { searchTitle: "" };
+		$scope.nameFilter = function(article) {
+			return (article.title.toLowerCase().indexOf($scope.obj.searchTitle) !== -1) ? article.title : null;
 		};
 
-		$scope.load = function() {
-
-			var articlePromise = $scope.ArticlesCollection.load();
-			articlePromise.then(function(articles) {
-				$scope.articles = articles;
-			});
+		//Format html content from article content edit by wysiwyg
+		$scope.getFormattedContent  = function(html){
+			return $sce.trustAsHtml(html);
 		};
 
-		$scope.create = function() {
+		$scope.edit = function(article, evt) {
 
-			var articlePromise = $scope.ArticlesCollection.add({
-				image: this.image,
-				title: this.title,
-				category: this.category,
-				content: this.content
-			});
+			evt.preventDefault();
+            evt.stopPropagation();
 
-			articlePromise.then(function() {
-				$location.path("/articles");
-			});
-		};
-
-		$scope.findOne = function() {
-
-			var articlePromise = $scope.ArticlesCollection.findOne($routeParams.articleId);
-			articlePromise.then(function(article) {
-				$scope.article = article;
-			});
+			$location.path("/articles/edit/" + article._id);
 		};
 
 		$scope.remove = function(article, evt) {
@@ -83,39 +53,6 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 
             });
 		};
-
-		$scope.edit = function(article, evt) {
-
-			evt.preventDefault();
-            evt.stopPropagation();
-
-			$location.path("/articles/edit/" + article._id);
-		};
-
-		$scope.nameFilter = function(article) {
-			if (article.title.toLowerCase().indexOf($scope.obj.searchTitle) !== -1) {
-				return article.title;
-			} else {
-				return;
-			}
-		};
-
-		$scope.customMenu = [
-			['bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript'],
-			['font'],
-			['font-size'],
-			['font-color', 'hilite-color'],
-			['remove-format'],
-			['ordered-list', 'unordered-list', 'outdent', 'indent'],
-			['left-justify', 'center-justify', 'right-justify'],
-			['code', 'quote', 'paragragh'],
-			['link', 'image']
-		];
-
-		$scope.getFormattedContent  = function(html){
-			return $sce.trustAsHtml(html);
-		};
-
 	}
 ]);
 
@@ -133,4 +70,59 @@ angular.module('mean.articles').controller('deleteArticleModalCtrl', ['$scope', 
             $modalInstance.dismiss('cancel');
         };
     }
+
 ]);
+
+angular.module('mean.articles').controller('CreateArticleController', ['$scope', '$location', 'Global', 'ArticlesCollection', 'FileUploader', 'article', 'view',
+	function($scope, $location, Global, ArticlesCollection, FileUploader, Article, view) {
+
+		$scope.global = Global;
+		$scope.ArticlesCollection = ArticlesCollection;
+		$scope.article = Article;
+		$scope.view = view;
+
+		$scope.create = function() {
+			$scope.ArticlesCollection.add($scope.article).then(function() {
+				$location.path("/articles");
+			});
+		};
+
+		$scope.uploader = new FileUploader({
+			scope: $scope,
+			url: '/upload/photo',
+			autoUpload: true,
+			formData: [{
+				key: 'value'
+			}]
+		});
+
+		$scope.uploader.onCompleteItem = function(item, response, status, headers) {
+			$scope.article.image = response.path;
+		};
+
+		// Use by wysiwyg
+		$scope.customMenu = [
+			['bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript'],
+			['font'],
+			['font-size'],
+			['font-color', 'hilite-color'],
+			['remove-format'],
+			['ordered-list', 'unordered-list', 'outdent', 'indent'],
+			['left-justify', 'center-justify', 'right-justify'],
+			['code', 'quote', 'paragragh'],
+			['link', 'image']
+		];
+
+	}
+]);
+
+var ArticleDetailData = {
+
+    article: function(ArticlesCollection, $route) {
+        return ($route.current.params.articleId) ? ArticlesCollection.findOne($route.current.params.articleId) : null;
+    },
+
+    view: function($route) {
+        return $route.current.params.view;
+    }
+};

@@ -1,109 +1,117 @@
 'use strict';
 
 //Setting up route
-angular.module( 'mean' ).config( [ '$routeProvider',
+angular.module('mean').config(['$routeProvider',
 
-	function ( $routeProvider ) {
+	function($routeProvider) {
 		$routeProvider.
 
 		/** HOME ****/
-		when( '/home', {
+		when('/home', {
 			templateUrl: 'js/appStructure/home.html',
 			controller: 'HomeController',
-		} ).
+		}).
 
 		/** AGENDA ****/
-		when( '/agenda', {
+		when('/agenda', {
 			templateUrl: 'js/agenda/views/list.html'
-		} ).
-		when( '/agenda/:view', {
-			templateUrl: function ( params ) {
-				return ( params.view === 'create' ) ? 'js/agenda/views/create.html' : 'js/agenda/views/map.html'
+		}).
+		when('/agenda/:view', {
+			templateUrl: function(params) {
+				return (params.view === 'create') ? 'js/agenda/views/create.html' : 'js/agenda/views/map.html'
 			}
-		} ).
-		when( '/agenda/:view/:startDate', {
+		}).
+		when('/agenda/:view/:startDate', {
 			templateUrl: 'js/agenda/views/create.html'
-		} ).
+		}).
 
 		/** ARTICLES ****/
-		when( '/articles', {
-			templateUrl: 'js/articles/views/list.html'
-		} ).
-		when( '/articles/create', {
+		when('/articles', {
+			templateUrl: 'js/articles/views/list.html',
+			controller: 'ArticlesController',
+			resolve: {
+				Articles: function(ArticlesCollection) {
+					return ArticlesCollection.load();
+				}
+			}
+		}).
+		when('/articles/create', {
 			templateUrl: 'js/articles/views/create.html',
-			controller: 'ArticlesController'
-		} ).
-		when( '/articles/edit/:articleId', {
+			controller: 'CreateArticleController',
+			resolve: ArticleDetailData
+		}).
+		when('/articles/edit/:articleId', {
 			templateUrl: 'js/articles/views/create.html',
-			controller: 'ArticlesController'
-		} ).
+			controller: 'CreateArticleController',
+			resolve: ArticleDetailData
+		}).
 
 		/** LINKS ****/
-		when( '/links', {
+		when('/links', {
 			templateUrl: 'js/links/views/links.html',
 			controller: 'LinkController'
-		} ).
-		when( '/links/create', {
+		}).
+		when('/links/create', {
 			templateUrl: 'js/links/views/create.html'
-		} ).
+		}).
 
 		/** ALBUMS ****/
-		when( '/albums', {
+		when('/albums', {
 			templateUrl: 'js/gallery/views/albums.html',
 			controller: 'GalleryCtrl',
 			resolve: PhotoMgrData
-		} ).
-		when( '/albums/:view', {
-			templateUrl: function ( params ) {
-				return ( params.view === 'add' ) ? 'js/gallery/views/album-detail.html' : 'js/gallery/views/albums.html'
+		}).
+		when('/albums/:view', {
+			templateUrl: function(params) {
+				return (params.view === 'add') ? 'js/gallery/views/album-detail.html' : 'js/gallery/views/albums.html'
 			},
 			controller: 'AlbumCtrl',
 			resolve: PhotoMgrData
-		} ).
-		when( '/albums/:view/:albumId', {
+		}).
+		when('/albums/:view/:albumId', {
 			templateUrl: 'js/gallery/views/album-detail.html',
 			controller: 'AlbumCtrl',
 			resolve: PhotoMgrData
-		} ).
+		}).
 
 		/** SUGGESTIONS ****/
-		when( '/suggestions', {
+		when('/suggestions', {
 			templateUrl: 'js/suggestions/views/suggestions.html'
-		} ).
-		when( '/suggestions/create', {
+		}).
+		when('/suggestions/create', {
 			templateUrl: 'js/suggestions/views/create.html'
-		} ).
+		}).
 
 		/** PROFILE ****/
-		when( '/profile', {
+		when('/profile', {
 			templateUrl: 'js/profile/profile.html'
-		} ).
+		}).
 
 		/** DEFAULT ****/
-		when( '/', {
+		when('/', {
 			redirectTo: 'home'
-		} ).
-		otherwise( {
+		}).
+		otherwise({
 			redirectTo: 'home'
-		} );
+		});
 	}
-] );
+]);
 
 //Setting HTML5 Location Mode
-angular.module( 'mean' ).config( [ '$locationProvider',
-	function ( $locationProvider ) {
-		$locationProvider.hashPrefix( '!' );
+angular.module('mean').config(['$locationProvider',
+	function($locationProvider) {
+		$locationProvider.hashPrefix('!');
 	}
-] );
+]);
 
-angular.module( 'mean' ).config( [ '$translateProvider',
-	function ( $translateProvider ) {
+angular.module('mean').config(['$translateProvider',
+	function($translateProvider) {
 
-		$translateProvider.useStaticFilesLoader( {
+		$translateProvider.useStaticFilesLoader({
 			prefix: 'translations/translation_',
 			suffix: '.json'
-		} );
+		});
 
-		$translateProvider.preferredLanguage( 'fr' );
+		$translateProvider.preferredLanguage('fr');
 	}
-] );
+]);
