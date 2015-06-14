@@ -1,6 +1,5 @@
-<div class="grid__item	 agenda_item">
+<div class="grid__item	 agendaItem">
 	<div class="scotch"></div>
-	<h2 class="ev2page-title three-line-ellipsis"><!-- <a href="#!">{{event.title}}</a> --></h2>
 	<div class="ev2page-data">
 		<div class="ev2page-day">{{event.start | date:"dd"}}</div>
 		<div class="ev2page-month">{{event.start | date:"MMM"}}</div>
@@ -15,6 +14,8 @@
 			</div>
 		</div>
 	</div>
-	<div class="ev2page-week">{{event.start | date:"EEEE"}}</div>
-	<div class="ev2page-tickets"><a href="#!" style="top: 20px;">{{ eventTypes | getNameByIdentifier:event.type}}</a></div>
+	<div class="ev2page-week" style="display: inline-block;">{{event.start | date:"EEEE"}}</div>
+	<div class="ev2page-tickets">
+		<a href="#!">{{ eventTypes | getNameByIdentifier:event.type}}</a>
+	</div>
 </div>

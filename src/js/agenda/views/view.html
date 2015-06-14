@@ -2,7 +2,7 @@
 	<span class="category category--full">{{ eventTypes | getNameByIdentifier:event.type}}</span>
 	<h2 class="title title--preview">{{event.title}}</h2>
 	<div class="ev2page-data" style="margin-left: 50px;">
-		<div class="ev2page-day">{{event.start | date:"dd"}}</div>
+		<div class="ev2page-day" style="margin-top: 20px;">{{event.start | date:"dd"}}</div>
 		<div class="ev2page-month">{{event.start | date:"MMM"}}</div>
 		<div class="ev2page-year">{{event.start | date:"yyyy"}}</div>
 	</div>

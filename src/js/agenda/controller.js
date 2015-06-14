@@ -152,10 +152,11 @@ angular.module('mean.agenda').controller('createController', ['$scope', '$routeP
 	}
 ]);
 
-angular.module('mean.agenda').controller('calendarController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection',
-	function($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection) {
+angular.module('mean.agenda').controller('CalendarController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection', 'Agenda',
+	function($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection, Agenda) {
 
 		$scope.agendaCollection = AgendaCollection;
+		$scope.agenda = Agenda;
 		$scope.view = "agenda";
 		$scope.obj = {
 			searchTitle: ""
@@ -166,26 +167,6 @@ angular.module('mean.agenda').controller('calendarController', ['$scope', '$rout
 				return event.title;
 			} else {
 				return;
-			}
-		};
-
-		$scope.load = function() {
-
-			if ($scope.agendaCollection.all.length === 0) {
-
-				var promise = $scope.agendaCollection.load();
-				promise.then(function(events) {
-					$scope.agendaCollection.setEvents(events);
-					angular.forEach(events, function(event) {
-						$scope.events.push(event);
-					});
-				});
-
-			} else {
-
-				angular.forEach($scope.agendaCollection.all, function(event) {
-					$scope.events.push(event);
-				});
 			}
 		};
 
@@ -506,17 +487,6 @@ angular.module('mean.agenda').controller('mapController', ['$scope', '$routePara
 				marker.showWindow = false;
 			});
 			marker.showWindow = true;
-		};
-	}
-]);
-
-angular.module('mean.agenda').controller('subNavController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection',
-	function($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection) {
-
-		$scope.view = ($route.current && $route.current.params.view) ? $route.current.params.view : 'agenda'; //if view not set in route params,view = list
-		$scope.section = {
-			'name': 'Agenda',
-			'url': '/agenda'
 		};
 	}
 ]);
