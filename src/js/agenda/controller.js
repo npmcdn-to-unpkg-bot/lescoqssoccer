@@ -152,8 +152,8 @@ angular.module('mean.agenda').controller('createController', ['$scope', '$routeP
 	}
 ]);
 
-angular.module('mean.agenda').controller('CalendarController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection', 'Agenda',
-	function($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection, Agenda) {
+angular.module('mean.agenda').controller('CalendarController', ['$scope', '$routeParams', '$location', '$route', 'Global', 'AgendaCollection', 'Agenda',
+	function($scope, $routeParams, $location, $route, Global, AgendaCollection, Agenda) {
 
 		$scope.agendaCollection = AgendaCollection;
 		$scope.agenda = Agenda;
@@ -163,11 +163,15 @@ angular.module('mean.agenda').controller('CalendarController', ['$scope', '$rout
 		};
 
 		$scope.nameFilter = function(event) {
-			if (event.title.toLowerCase().indexOf($scope.obj.searchTitle) !== -1) {
-				return event.title;
-			} else {
-				return;
-			}
+			return (event.title.toLowerCase().indexOf($scope.obj.searchTitle) !== -1) ? event.title : null;
+		};
+
+		$scope.isPastEvent = function(event) {
+			return moment(event.start).endOf('day').isBefore(new Date()) ? event.start : null;
+		};
+
+		$scope.isComingEvent = function(event) {
+			return moment(event.start).endOf('day').isAfter(new Date()) ? event.start : null;
 		};
 
 		$scope.update = function(userEvent) {

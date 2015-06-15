@@ -14,11 +14,10 @@
 
 		<section class="grid" style="width: 100%;">
 
+			<div style="text-align: center; position: absolute; top: 0; right: 10px; width: 33%;">
+				<h2>Passés</h2>
 
-			<div style="text-align: center; position: absolute; top: 0; right: 10px; width: 33%; background-color: #eee;">
-				<p>Derniers évènements</p>
-
-				<div class="grid__item eventSmall" ng-repeat="event in events">
+				<div class="grid__item eventSmall" ng-repeat="event in agenda | filter: isPastEvent">
 					<h2 class="ev2page-title three-line-ellipsis">
 						<a href="#!">{{event.title}}</a>
 					</h2>
@@ -30,16 +29,16 @@
 
 			</div>
 
-			<cm-expandable template-url="js/agenda/views/cell.html" ng-repeat="event in agenda | filter: nameFilter" name="{{$index}}" class="grid-directive" style="float: left; width: 65%;">
+			<h2 style="width: 100%;">A venir</h2>
+			<cm-expandable template-url="js/agenda/views/cell.html" ng-repeat="event in agenda | filter: nameFilter | filter: isComingEvent" name="{{$index}}" class="grid-directive" style="float: left; width: 65%;">
 			</cm-expandable>
-
 
 		</section>
 
 		<section class="content">
 			<div class="scroll-wrap">
 
-				<cm-reduce template-url="js/agenda/views/view.html" ng-repeat="event in agenda | filter: nameFilter" name="{{$index}}">
+				<cm-reduce template-url="js/agenda/views/view.html" ng-repeat="event in agenda | filter: nameFilter | filter: isComingEvent" name="{{$index}}">
 				</cm-reduce>
 
 			</div>

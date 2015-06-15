@@ -35,10 +35,6 @@ angular.module( 'mean.agenda' ).service( 'AgendaCollection', [ 'Global', 'UserEv
 				} ).$promise;
 			},
 
-			setEvents: function(events){
-				AgendaCollection.all = events;
-			},
-
 			add: function ( userEvent ) {
 				return UserEvent.save( {}, userEvent, function ( userEvent ) {
 					AgendaCollection.all.push(userEvent);
