@@ -5,18 +5,35 @@
 
 		<div id="search" class="pull-right">
 			<span class="input input--makiko">
-			<input class="input__field input__field--makiko" type="text" data-ng-class="{'searchFocus': obj.searchTitle}" data-ng-model="obj.searchTitle" name="search" placeholder="Rechercher"/>
+				<input
+				class="input__field input__field--makiko"
+				type="text" data-ng-class="{'searchFocus': obj.searchTitle}"
+				data-ng-model="obj.searchTitle"
+				name="search"
+				placeholder="Rechercher"/>
 			</span>
 		</div>
 	</div>
 
-	<div class="col-md-12 expandable-container" data-ng-show="agenda.length > 0" style="padding-right: 0;">
+	<div class="col-md-12 expandable-container" data-ng-show="agenda.length > 0">
 
 		<section class="grid" style="width: 100%;">
 
-			<div style="text-align: center; position: absolute; top: 0; right: 10px; width: 33%;">
-				<h2>Passés</h2>
+			<div class="comingEvents">
 
+				<h3>A venir</h3>
+				<cm-expandable
+					template-url="js/agenda/views/cell.html"
+					ng-repeat="event in agenda | filter: nameFilter | filter: isComingEvent"
+					name="{{$index}}"
+					class="grid-directive">
+				</cm-expandable>
+
+			</div>
+
+			<div class="pastEvents">
+
+				<h3>Passés</h3>
 				<div class="grid__item eventSmall" ng-repeat="event in agenda | filter: isPastEvent">
 					<h2 class="ev2page-title three-line-ellipsis">
 						<a href="#!">{{event.title}}</a>
@@ -29,16 +46,15 @@
 
 			</div>
 
-			<h2 style="width: 100%;">A venir</h2>
-			<cm-expandable template-url="js/agenda/views/cell.html" ng-repeat="event in agenda | filter: nameFilter | filter: isComingEvent" name="{{$index}}" class="grid-directive" style="float: left; width: 65%;">
-			</cm-expandable>
-
 		</section>
 
 		<section class="content">
 			<div class="scroll-wrap">
 
-				<cm-reduce template-url="js/agenda/views/view.html" ng-repeat="event in agenda | filter: nameFilter | filter: isComingEvent" name="{{$index}}">
+				<cm-reduce
+				template-url="js/agenda/views/view.html"
+				ng-repeat="event in agenda | filter: nameFilter | filter: isComingEvent"
+				name="{{$index}}">
 				</cm-reduce>
 
 			</div>

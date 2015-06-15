@@ -14,9 +14,9 @@ angular.module('mean.articles').directive('cmExpandable',
 
 					var marginTop = 132;
 
-					var contentItemsContainer = element.parent().parent().find('.content');
 					var contentItem = $(element.children()[0]);
-					var close = $(element.parent().parent().find(".content").find("[name='" + attrs.name + "']").find('.close-button'));
+					var contentItemsContainer = (contentItem.hasClass('agendaItem')) ? element.parent().parent().parent().find('.content') : element.parent().parent().find('.content');
+					var close = (contentItem.hasClass('agendaItem')) ? $(element.parent().parent().parent().find(".content").find("[name='" + attrs.name + "']").find('.close-button')) : $(element.parent().parent().find(".content").find("[name='" + attrs.name + "']").find('.close-button'));
 
 					// add expanding element/placeholder
 					var dummy = document.createElement('div');
@@ -85,7 +85,7 @@ angular.module('mean.articles').directive('cmReduce',
 					setTimeout(function() {
 
 						var dummy = $('.placeholder');
-						var negativeOuterWidth = (dummy.hasClass('agendaItem')) ? 25 : 25;
+						var negativeOuterWidth = (dummy.hasClass('agendaItem')) ? 25 : 15;
 
 						dummy.css('WebkitTransform', 'translate3d(' + (gridItem.position().left) + 'px, ' + (gridItem.position().top) + 'px, 0px) scale3d(' + (gridItem.outerWidth() - negativeOuterWidth) / $(gridItemsContainer).width() + ',' + (gridItem.outerHeight()) / getViewport('y') + ',1)');
 						dummy.css('transform', 'translate3d(' + (gridItem.position().left) + 'px, ' + (gridItem.position().top) + 'px, 0px) scale3d(' + (gridItem.outerWidth() - negativeOuterWidth) / $(gridItemsContainer).width() + ',' + (gridItem.outerHeight()) / getViewport('y') + ',1)');

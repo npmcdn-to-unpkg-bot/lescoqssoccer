@@ -1099,11 +1099,9 @@ h2.ev2shr-title a, h2.ev2page-title a, h2.ev3page-title a {
 }
 .location-btn button {
 	height: 47px;
-/*	margin-top: -1px;*/
 }
 
 .eventSmall{
-	/*height: 80px;*/
 	min-height: 80px !important;
 	padding-left: 5px !important;
 	padding-right: 5px !important;
@@ -1114,6 +1112,17 @@ h2.ev2shr-title a, h2.ev2page-title a, h2.ev3page-title a {
 	padding-left: 0px;
 	padding-right: 0px;
 	height: inherit;
+}
+
+div.pastEvents{
+	text-align: center;
+	width: 33%;
+}
+
+div.comingEvents{
+	text-align: center;
+	width: 67%;
+	padding: 0 20px 0 0;
 }
 
 /****
