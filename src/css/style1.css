@@ -39,6 +39,7 @@ button:focus {
   justify-content: center;
   display: inline-block;
   width: 100%;
+  background-color: #eee;
 }
 
 .grid__item.agendaItem{
@@ -47,10 +48,11 @@ button:focus {
 }
 
 .grid-directive {
-	width: 49%;
 	background: url(../img/feesten_bg_s1.png) left top no-repeat;
 	background-size: 100% 100%;
 	padding-right: 10px;
+  width: calc(50% - 10px);
+  margin-bottom: 40px;
 }
 
 .scotch {
@@ -467,11 +469,6 @@ button:focus {
     font-size: 1em;
   }
 
-  .grid__item {
-    padding: 45px 45px 30px;
-	  background-color: #eee;
-  }
-
   /* Demo ad */
   body #cdawrap {
     right: auto;
@@ -509,11 +506,6 @@ button:focus {
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-  }
-
-  .grid-directive{
-  	width: calc(50% - 10px);
-    	margin-bottom: 40px;
   }
 
    .grid-directive:nth-child(2n-1){

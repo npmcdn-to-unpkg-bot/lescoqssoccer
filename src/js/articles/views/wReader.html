@@ -34,19 +34,7 @@
 					<span class="author">
 						{{selected.user.name}}</span> - le <span class="pub-name">{{selected.created | date:'medium'}}</span>
 					<hr />
-
-					<article class="articleItem active">
-						<span class="category category--full">{{selected.category}}</span>
-						<div class="meta meta--full">
-							<img ng-src="{{selected.image && selected.image || 'img/8962691008_7f489395c9_m.jpg'}}" alt="" class="meta__avatar">
-							<span class="meta__author">{{selected.user.name}}</span>
-							<span class="meta__date"><i class="fa fa-calendar-o"></i>
-							{{selected.created | date:dateFormat}}
-							</span>
-						</div>
-						<div ng-bind-html="getFormattedContent(selected.content)"></div>
-					</article>
-
+					<w-Viewarticle></w-Viewarticle>
 				</div>
 			</article>
 		</section>

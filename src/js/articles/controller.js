@@ -8,7 +8,11 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 		$scope.articles = Articles;
 
 		$scope.view = 'articles';
-		$scope.dateFormat = "dd MMM yyyy 'à' H'h'mm";
+		$scope.dateFormat = "dd MMM yyyy, H'h'mm";
+
+		if(!$scope.selected && $scope.articles.length > 0){
+			$scope.selected = $scope.articles[0];
+		}
 
 		// Manage search input
 		$scope.obj = { searchTitle: "" };
@@ -27,6 +31,10 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
             evt.stopPropagation();
 
 			$location.path("/articles/edit/" + article._id);
+		};
+
+		$scope.selectArticle = function(article){
+			$scope.selected = article;
 		};
 
 		$scope.remove = function(article, evt) {

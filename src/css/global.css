@@ -75,9 +75,6 @@ Bootstrap override
 	max-width: 350px;
 	margin: 15px auto;
 }
-.mainContent {
-	margin-top: 20px;
-}
 .full-content {
 	overflow: hidden;
 	padding: 0;
@@ -284,7 +281,7 @@ a.sidebarItem {
 	border-radius: 30px;
 	height: 60px;
 	width: 60px;
-	/*border: 2px dashed #FFF;*/
+	border: 2px dashed black;
 	display: block;
 	margin: 0 auto;
 	opacity: 0.5;
@@ -348,13 +345,6 @@ to {
 	text-transform: uppercase;
 	text-align: center;
 }
-#search {
-	display: inline-block;
-	background: url(../img/leftlinks.png) no-repeat;
-	background-position: 80% -50px;
-
-}
-
 /****
 
 FallingLamp
@@ -615,7 +605,6 @@ Map
 Articles
 
 *****/
-
 .close-button {
 	opacity: 1;
 	top: 52px;
@@ -703,6 +692,7 @@ Articles
 	font-family: "icons";
 	src: url('../fonts/icons.woff');
 }
+
 /****
 
 Article list
@@ -753,7 +743,7 @@ p.bl2page-comment a {
 	font-family: "WC Mano Negra Bold", "WC Mano Negra", "Impact", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.articleCell{
+.photoCell{
 	width: 100%;
   	height: 235px !important;
   	z-index: 9;
@@ -919,63 +909,7 @@ select.input__field--yoshiko:focus, .wysiwyg-textarea:focus {
 	background-color: transparent;
 	border-color: rgb(4, 189, 242);
 }
-/* Makiko */
 
-.input--makiko {
-	overflow: hidden;
-	background: url(../img/footer-input-background.png);
-	top: 20px;
-	width: 100%;
-}
-.input__field--makiko {
-	width: 85%;
-	top: 5px;
-	font-family: "WC Mano Negra Bold", "WC Mano Negra", "Impact", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
-	font-size: 20px;
-	height: 57px;
-	background: transparent;
-	color: #fff;
-	z-index: 10;
-	font-weight: bold;
-	line-height: 2em;
-}
-
-*::-webkit-input-placeholder {
-    color: #fff;
-}
-/*.input__label--makiko {
-	position: absolute;
-	width: 100%;
-	text-align: left;
-	pointer-events: none;
-	color: #fff;
-}*/
-
-/*.input__label--makiko::before {
-	content: '';
-	position: absolute;
-	width: 20px;
-	height: 25px;
-	top: 35%;
-	left: 10px;
-	background: url(../img/search.svg) no-repeat center center;
-	background-size: 100%;
-	-webkit-transition: -webkit-transform 0.4s cubic-bezier(0.7, 0, 0.3, 1);
-	transition: transform 0.4s cubic-bezier(0.7, 0, 0.3, 1);
-}*/
-.input__label-content--makiko {
-	display: block;
-	padding: 0.7em 0 0 2em;
-	-webkit-transition: -webkit-transform 0.4s cubic-bezier(0.7, 0, 0.3, 1);
-	transition: transform 0.4s cubic-bezier(0.7, 0, 0.3, 1);
-}
-.input__field--makiko:focus + .input__label--makiko::before, .input__field--makiko.searchFocus + .input__label--makiko::before, .input--filled .input__label--makiko::before, .input--filled .input__label--makiko::before {
-	-webkit-transform: scale3d(38, 38, 1);
-	transform: scale3d(38, 38, 1);
-}
-/*.input__field--makiko:focus, .input__field--makiko.searchFocus {
-	border: 1px solid rgb(4, 189, 242);
-}*/
 /****
 
 Agenda

@@ -1,0 +1,335 @@
+/****
+
+Articles
+
+*****/
+
+.articleCell{
+	width: auto;
+	max-width: 135px;
+  height: 100px !important;
+  z-index: 9;
+}
+
+.articleCellDetail p{
+  margin-left: 100px;
+  text-align: left;
+}
+
+.articleItem{
+  padding: 20px 55px 20px;
+  position: relative;
+  cursor: pointer;
+  text-align: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: center;
+  justify-content: center;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.articleItem:not(.active){
+  opacity: 0.3;
+}
+
+.articleItem *{
+  opacity: 1 !important;
+}
+
+
+
+[ng-cloak] {
+  display: none;
+}
+
+body ::-webkit-scrollbar {
+  height: 16px;
+  overflow: visible;
+  width: 16px;
+}
+body ::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, .1);
+  background-clip: padding-box;
+  border: solid transparent;
+  min-height: 28px;
+  padding: 100px 0 0;
+  box-shadow: inset 1px 1px 0 rgba(0,0,0,.1),inset 0 -1px 0 rgba(0,0,0,.07);
+  border-width: 1px 1px 1px 6px;
+}
+body ::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+body ::-webkit-scrollbar-button {
+  height: 0;
+  width: 0;
+}
+::-webkit-scrollbar-track {
+  background-clip: padding-box;
+  border: solid transparent;
+  border-width: 0 0 0 4px;
+}
+body ::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+html {
+  height: 100%;
+}
+
+.navbar .navbar-inner {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.navbar .container {
+  width: 100%;
+}
+
+.itemCount {
+  width: 90px;
+  text-align: center;
+}
+
+section.mainContent {
+  position: fixed;
+  height: 100%;
+  width: calc(100% + 20px);
+  margin-left: -15px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  box-sizing: border-box;
+}
+
+section.mainContent div:not(.picto-circle) {
+  height: 100%;
+}
+
+.controls {
+  box-sizing: border-box;
+  width: 75px;
+  height: 100%;
+  padding: 5px;
+  margin: 0;
+  background-color: #e4e4e4;
+}
+
+.controls .btn {
+  width: 65px;
+  height: 65px;
+  margin-top: 5px;
+}
+
+.imgMenu{
+  width: 50px;
+  height: 50px;
+}
+
+.tControls {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.controls div.top {
+  margin-top:15px;
+  min-height: 50px;
+  -webkit-box-align: start;
+  -webkit-box-flex: 1;
+  text-align: center;
+}
+
+.controls div.middle {
+  text-align: center;
+  min-height: 185px;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-flex: 2;
+}
+
+.controls div.bottom {
+  text-align: center;
+  min-height: 50px;
+  -webkit-box-flex: 1;
+  display: -webkit-box;
+  -webkit-box-align: end;
+}
+
+.summaries {
+  box-sizing: border-box;
+  padding: 10px;
+  overflow-y: scroll;
+  width: 400px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.summary {
+  color: #222;
+  /*box-shadow: 5px 5px 5px rgba(210, 210, 210, 0.6);*/
+}
+
+.summary.read {
+  opacity: 0.6;
+}
+
+.summary.active {
+  background-color: #e4e4e4;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  opacity: 1.0;
+}
+
+.summary .icon {}
+.summary .pub-name {
+  font-size: 0.9em;
+}
+.summary .pub-date {
+  font-size: 0.9em;
+  text-align: right;
+}
+.summary .title {}
+.summary .description {}
+
+.entries {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  -webkit-box-flex: 1;
+  overflow-y: scroll;
+  padding-left: 30px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.entry {
+  width: 100%;
+    -webkit-transition: all 0.5s ease-in-out;
+    box-shadow: 5px 5px 5px rgba(210, 210, 210, 0.6);
+}
+
+.entry.read {
+}
+
+.entry.active {
+  border: 0px solid #222;
+  text-align: center;
+}
+
+.entry .pub-date {
+  font-size: 0.9em;
+}
+.entry .actions {
+  text-align: right;
+}
+.entry .title {}
+.entry .author {}
+.entry .pub-name {}
+.entry hr {}
+.entry .post-content {}
+
+.entry .post-content img {
+  margin: 5px;
+}
+
+.entry .actions div, .entry .actions label {
+  display: inline;
+}
+
+.entry .actions input[type=checkbox] {
+  -webkit-appearance: none;
+  -webkit-box-shadow: transparent;
+  border: 0;
+  display: inline-block;
+  font-size: 15px;
+  line-height: 1em;
+  margin: 0 0.25em 0 0;
+  padding: 0;
+  width: 1.25em;
+  height: 1.25em;
+  -webkit-border-radius: 0.25em;
+  vertical-align: text-top;
+  background-image: url("../img/glyphicons-halflings.png");
+ }
+
+.entry .actions input[type=checkbox].star {
+  background-position: -144px 0;
+}
+
+.entry .actions input[type=checkbox].star:checked {
+  background-position: -120px 0;
+}
+
+.entry .actions input[type=checkbox].read {
+  background-position: -192px -96px;
+}
+
+.entry .actions input[type=checkbox].read:checked {
+  background-position: -72px -96px
+}
+
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+/* Search */
+
+#search {
+  width: calc(100% + 25px);
+  margin-bottom: -20px;
+}
+
+.input--makiko {
+  overflow: hidden;
+  background: gray;
+}
+.input__field--makiko {
+  width: 100%;
+  background: transparent;
+  color: #797693;
+  z-index: 10;
+  font-weight: 500;
+  line-height: 2em;
+}
+.input__label--makiko {
+  position: absolute;
+  width: 100%;
+  text-align: left;
+  pointer-events: none;
+  color: #fff;
+}
+.input__label--makiko::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 25px;
+  top: 25%;
+  left: 10px;
+  background: url(../img/search.svg) no-repeat center center;
+  background-size: 100%;
+  -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+  transition: transform 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+}
+.input__label-content--makiko {
+  display: block;
+  padding: 0.7em 0 0 2.75em;
+  -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+  transition: transform 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+}
+.input__field--makiko:focus + .input__label--makiko::before, .input__field--makiko.searchFocus + .input__label--makiko::before, .input--filled .input__label--makiko::before, .input--filled .input__label--makiko::before {
+  -webkit-transform: scale3d(38, 38, 1);
+  transform: scale3d(38, 38, 1);
+}
+.input__field--makiko:focus, .input__field--makiko.searchFocus {
+  border: 1px solid #18cecf;
+}

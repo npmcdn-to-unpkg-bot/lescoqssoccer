@@ -1,0 +1,7 @@
+- Ajouter tooltip sur sidebar
+- Ajouter profil utilisateur
+- Section utilisateur
+- Ajouter commentaire
+
+- Remplacer gallery photo "gamma" par angular masonry et magnific popup
+- Harmoniser sidebar sur les différentes vues

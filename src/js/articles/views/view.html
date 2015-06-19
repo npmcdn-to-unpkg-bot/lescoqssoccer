@@ -1,15 +1,11 @@
-<article class="content__item">
-	<span class="category category--full">{{article.category}}</span>
-	<h2 class="title title--preview">{{article.title}}</h2>
+<article class="articleItem active">
+	<span class="category category--full">{{selected.category}}</span>
 	<div class="meta meta--full">
-		<img ng-src="{{article.image && article.image || 'img/8962691008_7f489395c9_m.jpg'}}" alt="" class="meta__avatar">
-		<span class="meta__author">{{article.user.name}}</span>
+		<img ng-src="{{selected.image && selected.image || 'img/8962691008_7f489395c9_m.jpg'}}" alt="" class="meta__avatar">
+		<span class="meta__author">{{selected.user.name}}</span>
 		<span class="meta__date"><i class="fa fa-calendar-o"></i>
-		{{article.created | date:dateFormat}}
+		{{selected.created | date:dateFormat}}
 		</span>
 	</div>
-	<div ng-bind-html="getFormattedContent(article.content)"></div>
+	<div ng-bind-html="getFormattedContent(selected.content)"></div>
 </article>
-<button class="close-button" name="close">
-<span class="closebutton"></span>
-</button>

@@ -16,52 +16,11 @@
 	<div id="menu" class="menu active">
 	  <div class="menu-inner container">
 	    <nav>
-	      <a href="/" class="simple-border-box">
+	      <a ng-repeat="item in menu" href="#!/{{item.link}}" class="simple-border-box" ng-class="{ active: isCurrentPath('#!/{{item.link}}')}">
 	        <div class="sbb-contents">
-	          Home
+	        	<img ng-src="img/{{item.icon}}"/>
+	          {{item.title | translate}}
 	          <span class="small-text">_sweet home./</span>
-	        </div>
-	      </a>
-	      <a href="/work" class="simple-border-box">
-	        <div class="sbb-contents">
-	          Work
-	          <span class="small-text">_our portfolio./</span>
-	        </div>
-	      </a>
-	      <a href="/services" class="simple-border-box">
-	        <div class="sbb-contents">
-	          Services
-	          <span class="small-text">_commercial stuff./</span>
-	        </div>
-	      </a>
-	      <a href="/culture" class="simple-border-box">
-	        <div class="sbb-contents">
-	          Culture
-	          <span class="small-text">_behind the magic./</span>
-	        </div>
-	      </a>
-	      <a href="/lab" class="simple-border-box active">
-	        <div class="sbb-contents">
-	          Lab
-	          <span class="small-text">_products &amp; experiments./</span>
-	        </div>
-	      </a>
-	      <a href="/contact" class="simple-border-box">
-	        <div class="sbb-contents">
-	          Contact
-	          <span class="small-text">_get in touch./</span>
-	        </div>
-	      </a>
-	      <a href="https://medium.com/aerolab-stories" target="_blank" class="simple-border-box">
-	        <div class="sbb-contents">
-	          Stories
-	          <span class="small-text">_sharing the knowledge./</span>
-	        </div>
-	      </a>
-	      <a href="https://aerolab.hiretracking.com/" target="_blank" class="simple-border-box">
-	        <div class="sbb-contents">
-	          Jobs
-	          <span class="small-text">_challenge accepted./</span>
 	        </div>
 	      </a>
 	    </nav>
