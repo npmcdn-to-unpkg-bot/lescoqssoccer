@@ -7,7 +7,7 @@ body {
 	/*background: #3fcbba;*/
 }
 
-div, p, a, select{
+div, p, a, select, h1, h2, h3, h4{
 	font-family: "WC Mano Negra Bold", "WC Mano Negra", "Impact", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 /****
@@ -16,36 +16,41 @@ Animate view
 
 *****/
 
-.view-animate.ng-enter {
-	opacity: .5;
-	top: 100%;
-}
-.view-animate.ng-enter, .view-animate.ng-leave {
-	bottom: 0;
-	left: 0;
-	position: absolute;
-	right: 0;
-	top: 0;
-	transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) .5s;
-	webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) .5s;
-}
-.view-animate.ng-enter.ng-enter-active {
-	opacity: 1;
-	top: 0;
-}
-.view-animate.ng-leave.ng-leave-active {
-	opacity: 0;
-	top: -100%;
-}
-.view-animate-container {
-	min-height: 100%;
+/*.view-animate.ng-enter {
+	-webkit-animation: moveToTop .6s ease both;
+	animation: moveToTop .6s ease both;
+}*/
+
+.view-animate.ng-enter .mainContent{
+	opacity: 0.5;
 	position: relative;
+	transform: translateZ(0);
+    	-webkit-transform: translateZ(0);
 }
+.view-animate.ng-leave {
+	-webkit-animation: moveToTop .7s ease-in-out both;
+	animation: moveToTop .7s ease-in-out both;
+	z-index: 999;
+}
+
+@-webkit-keyframes moveToTop {
+	from { }
+	to { -webkit-transform: translateY(-100%); }
+}
+@keyframes moveToTop {
+	from {-webkit-transform: translateY(0); transform: translateY(0); }
+	to { -webkit-transform: translateY(-100%); transform: translateY(-100%); }
+}
+
 /*
 
 Bootstrap override
 
 */
+.form-group {
+  margin-bottom: 15px;
+  padding-right: 30px;
+}
 
 .hidden-xs, .hidden-sm {
 	display: inline-block!important;
@@ -743,28 +748,6 @@ p.bl2page-comment a {
 	font-family: "WC Mano Negra Bold", "WC Mano Negra", "Impact", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.photoCell{
-	width: 100%;
-  	height: 235px !important;
-  	z-index: 9;
-}
-
-.articleCell .center{
-	margin-top: 35%;
-}
-
-.articleCell .center.negativeMargin{
-	margin-left: -80px;
-}
-
-.articleCell .left{
-	float: left;
-	margin-top: 10px;
-	margin-left: 10px;
-	height: 40px;
-	width: 40px;
-}
-
 /****
 
 Forms
@@ -779,7 +762,7 @@ Forms
 	display: inline-block;
 	margin-bottom: 3em;
 	margin-left: 0;
-	width: calc(100% - 2em);
+	width: 100%;
 	vertical-align: top;
 }
 .input__field {
@@ -1179,29 +1162,7 @@ Links
 	position: relative;
 	zoom: 1;
 	display: inline-block;
-	*display: inline;
+	display: inline;
 	position: relative;
 }
-.he-view {
-	position: absolute;
-	z-index: -2;
-	bottom: 0;
-	opacity: 0.8;
-	left: 0;
-	right: 0;
-	top: 100%;
-	overflow: hidden;
-	visibility: hidden;
-}
-.adpage1-col:hover .he-view, .grid__item:hover .he-view {
-	visibility: visible;
-	bottom: 0;
-	top: 0;
-/*	transition: all .4s ease-in-out;
-	-ms-transition: all .4s ease-in-out;
-	-moz-transition: all .4s ease-in-out;
-	-webkit-transition: all .4s ease-in-out;*/
-}
-.he-view-show {
-	visibility: visible;
-}
+

@@ -82,10 +82,12 @@ angular.module('mean').config(['$routeProvider',
 
 		/** SUGGESTIONS ****/
 		when('/suggestions', {
-			templateUrl: 'js/suggestions/views/suggestions.html'
+			templateUrl: 'js/suggestions/views/suggestions.html',
+			controller: 'SuggestionController',
 		}).
 		when('/suggestions/create', {
-			templateUrl: 'js/suggestions/views/create.html'
+			templateUrl: 'js/suggestions/views/create.html',
+			controller: 'SuggestionController',
 		}).
 
 		/** PROFILE ****/

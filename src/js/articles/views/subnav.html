@@ -1,12 +1,27 @@
-<div class="subnav navbar-default" >
-	<div id="subnav" class="navbar-inner toolbar">
-		<ul class="nav navbar-nav navbar-default">
-			<li data-ng-class="{active: view === 'create'}" class="toolbaritem">
-				<a href="#!articles/create"><span class="fa fa-plus-circle"></span> {{'agenda_add' | translate}}</a>
-			</li>
-			<li data-ng-class="{active: view === 'articles'}" class="toolbaritem">
-				<a href="#!articles"><span class="fa fa-tasks"></span> {{'article_title' | translate}}</a>
-			</li>
-		</ul>
+<section class="controls no-select">
+	<div class="tControls">
+
+		<div class="top">
+			<a href="#!home">
+			<span class="imgMenu" tooltip="Retourner à l'accueil" tooltip-placement="right" >
+				<img src="img/Home_sketch_64.png" class="imgMenu"/></span>
+			</a>
+		</div>
+
+		<div class="middle">
+			<a href="#!articles/create">
+				<img src="img/Draw_Adding_Cross_64.png" class="imgMenu"/>
+			</a>
+			<a href="#!" ng-click="setPreviousArticle($event);">
+				<img src="img/Sketched_up_arrow_triangle_64.png" class="imgMenu" />
+			</a>
+			<a href="#!" ng-click="setNextArticle($event);" >
+				<img src="img/Sketched_down_arrow_triangle_64.png" class="imgMenu"/>
+			</a>
+		</div>
+
+		<div class="bottom">
+		</div>
+
 	</div>
-</div>
+</section>

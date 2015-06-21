@@ -1,10 +1,7 @@
 <div class="content__item">
-	<div class="gamma-container gamma-loading" data-ng-class="{'show': $index === index}">
-		<ul class="gamma-gallery">
-		</ul>
-		<div class="gamma-overlay"></div>
-	</div>
+	<div deckgrid class="deckgrid" source="album.photoList" cardTemplate="js/gallery/views/photoCard.html"></div>
 </div>
-<button class="close-button" ng-click="deleteMasonry()">
+
+<button class="close-button">
 	<span class="closebutton"></span>
 </button>

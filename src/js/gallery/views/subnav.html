@@ -1,16 +1,24 @@
-<div class="subnav navbar-default" >
-	<div id="subnav" class="navbar-inner toolbar">
-		<ul class="nav navbar-nav navbar-default">
-			<li data-ng-class="{active: view === 'add'}" class="toolbaritem">
-				<a href="#!{{section.url}}/add"><span class="fa fa-plus"></span> {{'gallery_navbar_add_title' | translate}}</a>
-			</li>
-			<li data-ng-class="{active: view === 'grid'}" class="toolbaritem">
-				<a href="#!{{section.url}}"><span class="fa fa-th"></span> {{'gallery_navbar_grid_title' | translate}}</a>
-			</li>
-		</ul>
-		<div id="search" class="pull-right" ng-if="view === 'articles'">
-			<input data-ng-model="obj.searchTitle" type="text" placeholder="Recherche"/>
-			<i class="fa fa-search"></i>
+<section class="controls no-select">
+	<div class="tControls">
+
+		<div class="top">
+			<a href="#!home">
+			<span class="imgMenu" tooltip="Retourner à l'accueil" tooltip-placement="right" >
+				<img src="img/Home_sketch_64.png" class="imgMenu"/></span>
+			</a>
 		</div>
+
+		<div class="middle">
+			<a href="#!albums/add">
+				<img src="img/Draw_Adding_Cross_64.png" class="imgMenu"/>
+			</a>
+			<a href="#!albums">
+				<img src="img/Draw_Adding_Cross_64.png" class="imgMenu"/>
+			</a>
+		</div>
+
+		<div class="bottom">
+		</div>
+
 	</div>
-</div>
+</section>

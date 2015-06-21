@@ -1,35 +1,25 @@
- <section>
+ <section class="mainContent">
 
-	<div class="col-md-12">
-		<div data-ng-include="'/js/gallery/views/subnav.html'" style="display: inline-block;"></div>
+ 	<div class="subview" data-ng-include="'/js/gallery/views/subnav.html'"></div>
 
-		<div id="search" class="pull-right">
-			<span class="input input--makiko">
-			<input class="input__field input__field--makiko" type="text" data-ng-class="{'searchFocus': obj.searchTitle}" data-ng-model="obj.searchTitle" name="search" placeholder="Rechercher"/>
-			</span>
+	<section class="entries" style="padding-right: 0;">
+
+		<div class="col-md-12 expandable-container">
+			<section class="grid">
+				<div deckgrid class="deckgrid" source="albums" cardTemplate="js/gallery/views/albumCard.html"></div>
+			</section>
+
+			<section class="content">
+				<div class="scroll-wrap">
+					<cm-reduce template-url="js/gallery/views/view.html" ng-repeat="album in albums | filter:pmSvc.filter" name="{{$index}}">
+					</cm-reduce>
+				</div>
+			</section>
 		</div>
-	</div>
 
-	<div class="col-md-12 expandable-container">
+		<div class="col-md-12" data-ng-show="albums.length === 0">
+			<h4>Pas de photos</h4>
+		</div>
 
-		<section class="grid">
-
-			<cm-expandable template-url="js/gallery/views/cell.html" ng-repeat="album in albums | filter:pmSvc.filter" name="{{$index}}" class="grid-directive"></cm-expandable>
-
-		</section>
-
-		<section class="content">
-			<div class="scroll-wrap">
-
-				<cm-reduce template-url="js/gallery/views/view.html" ng-repeat="album in albums | filter:pmSvc.filter" name="{{$index}}">
-				</cm-reduce>
-
-			</div>
-		</section>
-	</div>
-
-	<div class="col-md-12" data-ng-show="albums.length === 0">
-		<h4>Pas de photos</h4>
-	</div>
-
+	</section>
 </section>

@@ -7,7 +7,7 @@ exports.findAllAlbums = function ( req, res ) {
 		sort: {
 			name: 1
 		}
-	}, function ( err, albums ) {
+	}).populate( 'photoList._id' ).exec( function ( err, albums ) {
 		res.send( albums );
 	} )
 };
@@ -50,6 +50,7 @@ exports.findAlbumById = function ( req, res ) {
 		_id: req.params.id
 	} ).populate( 'photoList._id' ).exec( function ( err, album ) {
 		if ( err ) console.log( "error finding album: " + err )
+		console.warn(album);
 		res.send( album );
 	} )
 };

@@ -1,8 +1,8 @@
-<section data-ng-controller="SuggestionController">
+<section class="mainContent">
 
-	<div class="col-md-12" data-ng-include="'/js/suggestions/views/subnav.html'"></div>
+	<div class="subview" data-ng-include="'/js/suggestions/views/subnav.html'"></div>
 
-	<div class="col-md-12">
+	<section class="entries">
 		<ul class="suggestionList">
 			<li class="suggestionItem" data-ng-repeat="suggestion in SuggestionsCollection.all">
 				<a href="#">
@@ -11,5 +11,5 @@
 			      	</a>
 			</li>
 		</ul>
-	</div>
+	</section>
 </section>

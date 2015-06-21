@@ -12,19 +12,20 @@ angular.module('mean.articles').directive('cmExpandable',
 				element.on('click', function(ev) {
 					ev.preventDefault();
 
-					var marginTop = 132;
+					var marginTop = 0;
 
 					var contentItem = $(element.children()[0]);
-					var contentItemsContainer = (contentItem.hasClass('agendaItem')) ? element.parent().parent().parent().find('.content') : element.parent().parent().find('.content');
-					var close = (contentItem.hasClass('agendaItem')) ? $(element.parent().parent().parent().find(".content").find("[name='" + attrs.name + "']").find('.close-button')) : $(element.parent().parent().find(".content").find("[name='" + attrs.name + "']").find('.close-button'));
+					var contentItemsContainer = element.parent().parent().parent().parent().parent().find('.content');
+					var gridItemsContainer = element.parent().parent().parent().parent().parent().find('.grid');
+					var close = $(element.parent().parent().parent().parent().parent().find(".content").find("[name='" + attrs.name + "']").find('.close-button'));
 
 					// add expanding element/placeholder
 					var dummy = document.createElement('div');
 					dummy.className = (contentItem.hasClass('agendaItem'))? 'placeholder placeholder--trans-in agendaItem' : 'placeholder placeholder--trans-in';
 
 					// set the width/heigth and position
-					dummy.style.WebkitTransform = 'translate3d(' + (contentItem.position().left) + 'px, ' + (contentItem.position().top ) + 'px, 0px) scale3d(' + (contentItem.outerWidth() + 30) / contentItemsContainer.outerWidth() + ',' + (contentItem.outerHeight()) / getViewport('y') + ',1)';
-					dummy.style.transform = 'translate3d(' + (contentItem.position().left) + 'px, ' + (contentItem.position().top) + 'px, 0px) scale3d(' + (contentItem.outerWidth() + 30) / contentItemsContainer.outerWidth() + ',' + (contentItem.outerHeight()) / getViewport('y') + ',1)';
+					dummy.style.WebkitTransform = 'translate3d(' + (contentItem.position().left) + 'px, ' + (contentItem.position().top ) + 'px, 0px) scale3d(' + (contentItem.outerWidth()) / contentItemsContainer.outerWidth() + ',' + (contentItem.outerHeight()) / getViewport('y') + ',1)';
+					dummy.style.transform = 'translate3d(' + (contentItem.position().left) + 'px, ' + (contentItem.position().top) + 'px, 0px) scale3d(' + (contentItem.outerWidth()) / contentItemsContainer.outerWidth() + ',' + (contentItem.outerHeight()) / getViewport('y') + ',1)';
 
 					// insert it after all the grid items
 					element.parent().append(dummy);
@@ -32,8 +33,8 @@ angular.module('mean.articles').directive('cmExpandable',
 					setTimeout(function() {
 
 						// expands the placeholder
-						dummy.style.WebkitTransform = 'translate3d(-30px, ' + (scrollY() - marginTop) + 'px, 0px)';
-						dummy.style.transform = 'translate3d(-30px, ' + (scrollY() - marginTop) + 'px, 0px)';
+						dummy.style.WebkitTransform = 'translate3d(-45px, ' + (scrollY() - marginTop) + 'px, 0px)';
+						dummy.style.transform = 'translate3d(-45px, ' + (scrollY() - marginTop) + 'px, 0px)';
 
 					}, 25);
 
@@ -50,6 +51,8 @@ angular.module('mean.articles').directive('cmExpandable',
 						$(contentItemsContainer.find("[name='" + attrs.name + "']").children()[0]).addClass('content__item--show').css('visibility', 'visible');
 						close.addClass('close-button--show');
 
+						$("#search").css('visibility', 'hidden');
+						$(gridItemsContainer).css('display', 'none');
 						$("body").css('overflow', 'hidden');
 					});
 				});
@@ -78,6 +81,9 @@ angular.module('mean.articles').directive('cmReduce',
 					var contentItemsContainer = element.parent().parent().parent().find('.content');
 					var contentItem = $(contentItemsContainer.find("[name='" + attrs.name + "']").children()[0]);
 
+					$(gridItemsContainer).css('display', 'flex');
+					$("#search").css('visibility', 'visible');
+
 					//hide article content
 					contentItem.removeClass('content__item--show').css('visibility', 'hidden');
 					close.removeClass('close-button--show');
@@ -85,7 +91,7 @@ angular.module('mean.articles').directive('cmReduce',
 					setTimeout(function() {
 
 						var dummy = $('.placeholder');
-						var negativeOuterWidth = (dummy.hasClass('agendaItem')) ? 25 : 15;
+						var negativeOuterWidth = 25;
 
 						dummy.css('WebkitTransform', 'translate3d(' + (gridItem.position().left) + 'px, ' + (gridItem.position().top) + 'px, 0px) scale3d(' + (gridItem.outerWidth() - negativeOuterWidth) / $(gridItemsContainer).width() + ',' + (gridItem.outerHeight()) / getViewport('y') + ',1)');
 						dummy.css('transform', 'translate3d(' + (gridItem.position().left) + 'px, ' + (gridItem.position().top) + 'px, 0px) scale3d(' + (gridItem.outerWidth() - negativeOuterWidth) / $(gridItemsContainer).width() + ',' + (gridItem.outerHeight()) / getViewport('y') + ',1)');

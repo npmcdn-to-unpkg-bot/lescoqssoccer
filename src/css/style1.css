@@ -19,51 +19,32 @@ button:focus {
 }
 
 /* Grid item */
-.grid__item {
-  padding: 45px 55px 30px;
-  position: relative;
-  color: inherit;
-  min-height: 400px;
-  cursor: pointer;
-  text-align: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-direction: normal;
-  -webkit-box-orient: vertical;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-justify-content: center;
-  justify-content: center;
-  display: inline-block;
-  width: 100%;
-  background-color: #eee;
+.grid__item:not(.photo) {
+	  padding: 45px 55px 30px;
+	  position: relative;
+	  color: inherit;
+	  min-height: 400px;
+	  cursor: pointer;
+	  text-align: center;
+	  display: -webkit-box;
+	  display: -webkit-flex;
+	  display: -ms-flexbox;
+	  display: flex;
+	  -webkit-box-direction: normal;
+	  -webkit-box-orient: vertical;
+	  -webkit-flex-direction: column;
+	  -ms-flex-direction: column;
+	  flex-direction: column;
+	  -webkit-justify-content: center;
+	  justify-content: center;
+	  display: inline-block;
+	  width: 100%;
+	  background-color: #eee;
 }
 
 .grid__item.agendaItem{
 	padding: 0;
 	min-height: 0;
-}
-
-.grid-directive {
-	background: url(../img/feesten_bg_s1.png) left top no-repeat;
-	background-size: 100% 100%;
-	padding-right: 10px;
-  width: calc(50% - 10px);
-  margin-bottom: 40px;
-}
-
-.scotch {
-	clear: both;
-	height: 23px;
-	position: absolute;
-	width: 60px;
-	top: -8px;
-	left: calc(50% - 30px);
-	background: url(../img/plakband_feesten_s1.png) left top no-repeat;
-	z-index: 11 !important;
 }
 
 .grid__item * {
@@ -233,8 +214,8 @@ button:focus {
 .content {
   position: absolute;
   top: 0;
-  left: 0;
-  width: calc(100% + 40px);
+  left: -30px;
+  width: calc(100% + 30px);
   pointer-events: none;
   height: 0;
   /* Avoid second scroll bar in Chrome! */
@@ -247,8 +228,6 @@ button:focus {
   height: calc(100vh + 10px);
   pointer-events: auto;
   visibility: visible;
-  margin-right: -15px;
-  margin-left: -15px;
 }
 
 /* scroll helper wrap */

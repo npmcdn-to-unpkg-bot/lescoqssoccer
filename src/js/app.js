@@ -17,7 +17,8 @@ angular.module('mean', ['ngCookies',
 	'mean.suggestions',
 	'mean.gallery',
 	'mean.albums',
-	'wysiwyg.module'
+	'wysiwyg.module',
+	'akoenig.deckgrid'
 ]);
 
 angular.module('mean.system', []);

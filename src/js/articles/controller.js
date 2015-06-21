@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', '$sce', '$modal','Global', 'ArticlesCollection', 'Articles',
+angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', '$sce', '$modal', 'Global', 'ArticlesCollection', 'Articles',
 	function($scope, $routeParams, $location, $sce, $modal, Global, ArticlesCollection, Articles) {
 
 		$scope.global = Global;
@@ -10,74 +10,99 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 		$scope.view = 'articles';
 		$scope.dateFormat = "dd MMM yyyy, H'h'mm";
 
-		if(!$scope.selected && $scope.articles.length > 0){
-			$scope.selected = $scope.articles[0];
-		}
-
 		// Manage search input
-		$scope.obj = { searchTitle: "" };
+		$scope.obj = {
+			searchTitle: ""
+		};
 		$scope.nameFilter = function(article) {
 			return (article.title.toLowerCase().indexOf($scope.obj.searchTitle) !== -1) ? article.title : null;
 		};
 
 		//Format html content from article content edit by wysiwyg
-		$scope.getFormattedContent  = function(html){
+		$scope.getFormattedContent = function(html) {
 			return $sce.trustAsHtml(html);
 		};
 
 		$scope.edit = function(article, evt) {
 
 			evt.preventDefault();
-            evt.stopPropagation();
+			evt.stopPropagation();
 
 			$location.path("/articles/edit/" + article._id);
 		};
 
-		$scope.selectArticle = function(article){
+		$scope.selectArticle = function(article, index) {
 			$scope.selected = article;
+			$scope.currentIndex = index;
+		};
+
+		$scope.setPreviousArticle = function(evt){
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			if($scope.currentIndex > 0){
+				$scope.currentIndex --;
+				$scope.selected = $scope.articles[$scope.currentIndex];
+			}
+		};
+
+		$scope.setNextArticle = function(evt){
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			if($scope.articles.length  > $scope.currentIndex){
+				$scope.currentIndex ++;
+				$scope.selected = $scope.articles[$scope.currentIndex];
+			}
 		};
 
 		$scope.remove = function(article, evt) {
 
 			evt.preventDefault();
-            evt.stopPropagation();
+			evt.stopPropagation();
 
-            var modalInstance = $modal.open({
-                templateUrl: 'js/articles/views/modal/deleteArticleModal.html',
-                controller: 'deleteArticleModalCtrl',
-                resolve: {
-                    article: function() {
-                        return article;
-                    }
-                }
-            });
+			var modalInstance = $modal.open({
+				templateUrl: 'js/articles/views/modal/deleteArticleModal.html',
+				controller: 'deleteArticleModalCtrl',
+				resolve: {
+					article: function() {
+						return article;
+					}
+				}
+			});
 
-            modalInstance.result.then(function() {
+			modalInstance.result.then(function() {
 
-                // Delete the article and either update article list or redirect to it
-                $scope.ArticlesCollection.remove(article).then(function(response) {
+				// Delete the article and either update article list or redirect to it
+				$scope.ArticlesCollection.remove(article).then(function(response) {
 					$scope.articles.splice(window._.indexOf($scope.articles, article), 1);
 				});
 
-            });
+			});
 		};
+
+		if (!$scope.selected && $scope.articles.length > 0) {
+			$scope.selectArticle($scope.articles[0], 0);
+		}
 	}
 ]);
 
 angular.module('mean.articles').controller('deleteArticleModalCtrl', ['$scope', '$modalInstance', 'article',
 
-    function($scope, $modalInstance, article) {
+	function($scope, $modalInstance, article) {
 
-        $scope.article = article;
+		$scope.article = article;
 
-        $scope.ok = function(result) {
-            $modalInstance.close(result);
-        };
+		$scope.ok = function(result) {
+			$modalInstance.close(result);
+		};
 
-        $scope.cancel = function() {
-            $modalInstance.dismiss('cancel');
-        };
-    }
+		$scope.cancel = function() {
+			$modalInstance.dismiss('cancel');
+		};
+	}
 
 ]);
 
@@ -126,11 +151,11 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 
 var ArticleDetailData = {
 
-    article: function(ArticlesCollection, $route) {
-        return ($route.current.params.articleId) ? ArticlesCollection.findOne($route.current.params.articleId) : null;
-    },
+	article: function(ArticlesCollection, $route) {
+		return ($route.current.params.articleId) ? ArticlesCollection.findOne($route.current.params.articleId) : null;
+	},
 
-    view: function($route) {
-        return $route.current.params.view;
-    }
+	view: function($route) {
+		return $route.current.params.view;
+	}
 };

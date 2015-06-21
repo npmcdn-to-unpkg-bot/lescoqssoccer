@@ -1,0 +1,170 @@
+/*
+
+Phtotos
+
+*/
+
+.photoCard{
+	width: 100%;
+}
+
+.scotch {
+	clear: both;
+	height: 23px;
+	position: absolute;
+	width: 60px;
+	top: -8px;
+	left: calc(50% - 30px);
+	background: url(../img/plakband_feesten_s1.png) left top no-repeat;
+	z-index: 11 !important;
+}
+
+.grid__item.photo:hover{
+	border-bottom: 3px solid rgb(4, 189, 242);
+}
+
+.grid__item.photo{
+	border-bottom: 3px solid #bbbbbb;
+}
+
+.albumTitle {
+	text-align: center;
+	position: relative;
+	cursor: default;
+	font-size: 36px;
+	color: rgb(4, 189, 242);
+	text-transform: uppercase;
+}
+
+.albumOverlay {
+	position: absolute;
+	bottom: 0;
+	opacity: 0.8;
+	left: 0;
+	right: 0;
+	top: 100%;
+	overflow: hidden;
+	visibility: hidden;
+}
+
+.grid__item:hover .albumOverlay {
+	visibility: visible;
+	bottom: 0;
+	top: 0;
+}
+
+.photoCell {
+	width: 100%;
+	height: 100%;
+	z-index: 9;
+	text-align: center;
+	background: #eee;
+	vertical-align: middle;
+	padding-top: 60px;
+}
+
+.photoCell .center {
+	vertical-align: middle;
+}
+
+.photoCell .center.negativeMargin {
+	margin-left: -80px;
+}
+
+.photoCell .left {
+	float: left;
+	margin-top: 10px;
+	margin-left: 10px;
+	height: 40px;
+	width: 40px;
+}
+
+/*
+*
+ * angular-deckgrid
+ *
+ */
+
+img {
+    height:auto;
+    max-width:100%;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.deckgrid {
+    padding:10px;
+    width:1000px;
+}
+
+.deckgrid[deckgrid]::before {
+    content: '5 .column.size-1-5';
+    font-size: 0;
+    visibility:hidden;
+}
+
+.deckgrid .column {
+    float:left;
+}
+
+.photo {
+    background:#fff url(../img/spinner.gif) center 30px no-repeat;
+    border:1px solid rgba(0, 0, 0, .15);
+    border-radius:3px;
+    margin:0 10px 10px 0;
+    position:relative;
+}
+
+.photo .photo-index {
+    background:rgba(0, 0, 0, .9);
+    color:#fff;
+    position:absolute;
+    height:100%;
+    text-align:center;
+    width:100%;
+    z-index:99;
+}
+
+.photo .photo-index p:first-child {
+    margin-top:10px;
+}
+
+.photo .photo-wrapper {
+    min-height:60px;
+}
+
+.photo .photo-description {
+    padding:15px;
+}
+
+.deckgrid .column.size-1-5 {
+    width: 20%;
+}
+
+.deckgrid .column.size-1-4 {
+    width: 25%;
+}
+
+.deckgrid .column.size-1-3 {
+    width: 33.333%;
+}
+
+.deckgrid .column.size-1-2 {
+    width: 50%;
+}
+
+.deckgrid {
+     width:100%;
+}
+
+.deckgrid[deckgrid]::before {
+      content: '4 .column.size-1-4';
+ }
