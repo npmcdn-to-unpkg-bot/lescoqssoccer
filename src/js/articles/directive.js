@@ -91,7 +91,7 @@ angular.module('mean.articles').directive('cmReduce',
 					setTimeout(function() {
 
 						var dummy = $('.placeholder');
-						var negativeOuterWidth = 25;
+						var negativeOuterWidth = 15;
 
 						dummy.css('WebkitTransform', 'translate3d(' + (gridItem.position().left) + 'px, ' + (gridItem.position().top) + 'px, 0px) scale3d(' + (gridItem.outerWidth() - negativeOuterWidth) / $(gridItemsContainer).width() + ',' + (gridItem.outerHeight()) / getViewport('y') + ',1)');
 						dummy.css('transform', 'translate3d(' + (gridItem.position().left) + 'px, ' + (gridItem.position().top) + 'px, 0px) scale3d(' + (gridItem.outerWidth() - negativeOuterWidth) / $(gridItemsContainer).width() + ',' + (gridItem.outerHeight()) / getViewport('y') + ',1)');
