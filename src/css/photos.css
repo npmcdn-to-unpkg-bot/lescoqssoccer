@@ -29,6 +29,10 @@ Phtotos
 }
 
 .albumContainer{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 75px;
 	width: 100%;
   	padding: 10px;
  	padding-right: 55px;
@@ -123,12 +127,6 @@ img {
     width:1000px;
 }
 
-.deckgrid[deckgrid]::before {
-    content: '5 .column.size-1-5';
-    font-size: 0;
-    visibility:hidden;
-}
-
 .deckgrid .column {
     float:left;
 }
@@ -180,9 +178,10 @@ img {
 }
 
 .deckgrid {
-     width:100%;
+    width:100%;
 }
 
 .deckgrid[deckgrid]::before {
-      content: '4 .column.size-1-4';
+    content: '4 .column.size-1-4';
+    	font-size: 0;
  }

@@ -1,10 +1,29 @@
 <section class="controls no-select">
 	<div class="tControls">
 		<div class="top">
-			<a href="#!home">
+
+			<div class="forkit-curtain">
+				<div data-ng-include="'/js/appStructure/home.html'" data-ng-controller="HomeController"></div>
+				<div class="close-button">
+					<button class="close-button close-button--show">
+						<span class="closebutton"></span>
+					</button>
+				</div>
+			</div>
+
+			<a class="forkit"
+			data-text="Top Secret"
+			data-text-detached="Drag down >"
+			href="#!home">
 				<span tooltip="Retourner à l'accueil" tooltip-placement="right" >
 				<img src="img/Home_sketch_64.png" class="imgMenu"/></span>
 			</a>
+
+			<!-- <a href="#!home">
+				<span tooltip="Retourner à l'accueil" tooltip-placement="right" >
+				<img src="img/Home_sketch_64.png" class="imgMenu"/></span>
+			</a> -->
+
 			<a ng-show="menu.top" ng-repeat="topLink in menu.top | filter: linkFilter" href="{{topLink.link}}">
 				<span tooltip="{{topLink.tooltip}}" tooltip-placement="right">
 				<img ng-src="{{topLink.image}}" class="imgMenu"/>

@@ -29,5 +29,9 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 
 		};
 
+		setTimeout(function(){
+			forkit();
+		}, 500);
+
 	}
 ]);

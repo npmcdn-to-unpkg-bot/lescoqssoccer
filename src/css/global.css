@@ -20,13 +20,13 @@ Animate view
 	-webkit-animation: moveToTop .6s ease both;
 	animation: moveToTop .6s ease both;
 }*/
-
-.view-animate.ng-enter .mainContent{
+/*
+.view-animate.ng-enter{
 	opacity: 0.5;
 	position: relative;
 	transform: translateZ(0);
-    	-webkit-transform: translateZ(0);
-}
+    -webkit-transform: translateZ(0);
+}*/
 .view-animate.ng-leave {
 	-webkit-animation: moveToTop .7s ease-in-out both;
 	animation: moveToTop .7s ease-in-out both;
@@ -55,14 +55,28 @@ Bootstrap override
 .hidden-xs, .hidden-sm {
 	display: inline-block!important;
 }
-@media screen and (min-width: 768px) {
-	.navbar-nav {
-		float: inherit;
-}
-}
+
 .btn-cm{
 	background: #eee;
 }
+
+/*
+*
+*Forms
+*
+*/
+
+.creationForm{
+	position: absolute;
+	top: 0;
+	left: 90px;
+	bottom: 0;
+	width: calc(100% - 75px);
+	padding: 20px;
+	padding-top: 50px;
+	overflow-y: scroll;
+}
+
 .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
 	color: #262626;
 	text-decoration: none;

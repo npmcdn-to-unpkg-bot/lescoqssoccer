@@ -12,7 +12,7 @@ angular.module('mean.articles').directive('cmExpandable',
 				element.on('click', function(ev) {
 					ev.preventDefault();
 
-					var marginTop = 0;
+					var marginTop = 10;
 
 					var contentItem = $(element.children()[0]);
 					var contentItemsContainer = element.parent().parent().parent().parent().parent().find('.content');
@@ -33,8 +33,8 @@ angular.module('mean.articles').directive('cmExpandable',
 					setTimeout(function() {
 
 						// expands the placeholder
-						dummy.style.WebkitTransform = 'translate3d(-45px, ' + (scrollY() - marginTop) + 'px, 0px)';
-						dummy.style.transform = 'translate3d(-45px, ' + (scrollY() - marginTop) + 'px, 0px)';
+						dummy.style.WebkitTransform = 'translate3d(-25px, ' + (scrollY() - marginTop) + 'px, 0px)';
+						dummy.style.transform = 'translate3d(-25px, ' + (scrollY() - marginTop) + 'px, 0px)';
 
 					}, 25);
 

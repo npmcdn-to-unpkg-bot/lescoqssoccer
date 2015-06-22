@@ -113,7 +113,7 @@ angular.module('mean.albums').controller('GalleryCtrl', ['$scope', 'Global', '$l
 		//used in subnav
 		$scope.$parent.menu = {
 			middle: [{
-				link: "#!/albums/add",
+				link: "#!/albums/create",
 				image: "img/Draw_Adding_Cross_64.png",
 				tooltip: "hey hey"
 			}]

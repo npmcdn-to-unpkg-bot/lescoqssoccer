@@ -69,13 +69,13 @@ angular.module('mean').config(['$routeProvider',
 		}).
 		when('/albums/:view', {
 			templateUrl: function(params) {
-				return (params.view === 'add') ? 'js/gallery/views/album-detail.html' : 'js/gallery/views/albums.html'
+				return (params.view === 'create') ? 'js/gallery/views/create.html' : 'js/gallery/views/albums.html'
 			},
 			controller: 'AlbumCtrl',
 			resolve: PhotoMgrData
 		}).
 		when('/albums/:view/:albumId', {
-			templateUrl: 'js/gallery/views/album-detail.html',
+			templateUrl: 'js/gallery/views/create.html',
 			controller: 'AlbumCtrl',
 			resolve: PhotoMgrData
 		}).
