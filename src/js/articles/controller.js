@@ -7,7 +7,6 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 		$scope.ArticlesCollection = ArticlesCollection;
 		$scope.articles = Articles;
 
-		$scope.view = 'articles';
 		$scope.dateFormat = "dd MMM yyyy, H'h'mm";
 
 		// Manage search input
@@ -36,22 +35,14 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 			$scope.currentIndex = index;
 		};
 
-		$scope.setPreviousArticle = function(evt){
-
-			evt.preventDefault();
-			evt.stopPropagation();
-
+		$scope.setPreviousArticle = function(){
 			if($scope.currentIndex > 0){
 				$scope.currentIndex --;
 				$scope.selected = $scope.articles[$scope.currentIndex];
 			}
 		};
 
-		$scope.setNextArticle = function(evt){
-
-			evt.preventDefault();
-			evt.stopPropagation();
-
+		$scope.setNextArticle = function(){
 			if($scope.articles.length  > $scope.currentIndex){
 				$scope.currentIndex ++;
 				$scope.selected = $scope.articles[$scope.currentIndex];
@@ -83,6 +74,31 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 			});
 		};
 
+		//used in subnav
+		$scope.$parent.menu = {
+			middle: [{
+				title: "articleCreate",
+				link: "#!/articles/create",
+				image: "img/Draw_Adding_Cross_64.png",
+				tooltip: "Ajouter un petit nouveau",
+				type: "link"
+			},
+			{
+				title: "articlePrev",
+				image: "img/Sketched_up_arrow_triangle_64.png",
+				tooltip: "C'est plus",
+				type: "button",
+				callback: $scope.setPreviousArticle
+			},
+			{
+				title: "articleNext",
+				image: "img/Sketched_down_arrow_triangle_64.png",
+				tooltip: "C'est moins",
+				type: "button",
+				callback: $scope.setNextArticle
+			}]
+		};
+
 		if (!$scope.selected && $scope.articles.length > 0) {
 			$scope.selectArticle($scope.articles[0], 0);
 		}
@@ -106,13 +122,21 @@ angular.module('mean.articles').controller('deleteArticleModalCtrl', ['$scope', 
 
 ]);
 
-angular.module('mean.articles').controller('CreateArticleController', ['$scope', '$location', 'Global', 'ArticlesCollection', 'FileUploader', 'article', 'view',
-	function($scope, $location, Global, ArticlesCollection, FileUploader, Article, view) {
+angular.module('mean.articles').controller('CreateArticleController', ['$scope', '$location', 'Global', 'ArticlesCollection', 'FileUploader', 'article',
+	function($scope, $location, Global, ArticlesCollection, FileUploader, Article) {
 
 		$scope.global = Global;
 		$scope.ArticlesCollection = ArticlesCollection;
 		$scope.article = Article;
-		$scope.view = view;
+
+		$scope.$parent.menu = {
+			middle: [{
+				link: "#!/articles",
+				image: "img/Checklist_paper_sheet_handmade_symbol_64.png",
+				tooltip: "Liste des articles",
+				type: "link"
+			}]
+		};
 
 		$scope.create = function() {
 			$scope.ArticlesCollection.add($scope.article).then(function() {
@@ -153,9 +177,6 @@ var ArticleDetailData = {
 
 	article: function(ArticlesCollection, $route) {
 		return ($route.current.params.articleId) ? ArticlesCollection.findOne($route.current.params.articleId) : null;
-	},
-
-	view: function($route) {
-		return $route.current.params.view;
 	}
+
 };

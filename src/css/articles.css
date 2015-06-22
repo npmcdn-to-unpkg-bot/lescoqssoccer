@@ -199,13 +199,19 @@ div.tooltip, div.tooltip div{
   padding: 10px;
   overflow-y: scroll;
   overflow-x: hidden;
-  width: 400px;
+  width: calc(35% - 35px);
   -webkit-overflow-scrolling: touch;
+  overflow-y: auto;
+  position: absolute;
+  bottom:0;
+  left: calc(65% + 30px);
+  right:0;
+  top:0;
 }
 
 .summary {
   color: #222;
-  /*box-shadow: 5px 5px 5px rgba(210, 210, 210, 0.6);*/
+  width: 100%;
 }
 
 .summary.read {
@@ -229,7 +235,12 @@ div.tooltip, div.tooltip div{
 .summary .description {}
 
 .entries {
-  width: 100%;
+  position: absolute;
+  bottom:0;
+  left: 75px;
+  right:0;
+  top:0;
+  width: calc(65% - 40px);
   padding: 10px;
   padding-left: 30px;
   box-sizing: border-box;
@@ -241,8 +252,8 @@ div.tooltip, div.tooltip div{
 
 .entry {
   width: 100%;
-    -webkit-transition: all 0.5s ease-in-out;
-    box-shadow: 5px 5px 5px rgba(210, 210, 210, 0.6);
+  -webkit-transition: all 0.5s ease-in-out;
+  box-shadow: 5px 5px 5px rgba(210, 210, 210, 0.6);
 }
 
 .entry.read {
@@ -317,7 +328,7 @@ div.tooltip, div.tooltip div{
 /* Search */
 
 #search {
-  width: calc(100% + 5px);
+  width: 100%;
   margin-bottom: -20px;
 }
 

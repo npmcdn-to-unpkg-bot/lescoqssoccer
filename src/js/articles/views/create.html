@@ -1,61 +1,56 @@
-<section class="mainContent">
+<form role="form" data-ng-submit="create()" style="padding-top: 50px;">
 
-	<div class="subview" data-ng-include="'/js/articles/views/subnav.html'"></div>
+	<div class="col-md-2 avatar-box">
+		<div class="imgThumbnail">
+			<img ng-src="{{article.image && article.image || 'img/8962691008_7f489395c9_m.jpg'}}">
+		</div>
+		<button class="btn btn-default" style="margin-top: 30px;">
+		<label for="upload-profile-picture" class="label-upload-profile-picture" style="width: 140px;">
+			Uploader une image
+			<input
+			id="upload-profile-picture"
+			nv-file-select
+			uploader="uploader"
+			type="file"
+			class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
+		</label>
+		</button>
+	</div>
 
-	<form role="form" data-ng-submit="create()" style="padding-top: 50px;">
+	<div class="col-md-9" style="margin-top: 20px;">
 
-		<div class="col-md-2 avatar-box">
-			<div class="imgThumbnail">
-				<img ng-src="{{article.image && article.image || 'img/8962691008_7f489395c9_m.jpg'}}">
-			</div>
-			<button class="btn btn-default" style="margin-top: 30px;">
-			<label for="upload-profile-picture" class="label-upload-profile-picture" style="width: 140px;">
-				Uploader une image
-				<input
-				id="upload-profile-picture"
-				nv-file-select
-				uploader="uploader"
-				type="file"
-				class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
+		<span class="input input--yoshiko" data-ng-class="{'input--filled': article.title}">
+			<input class="input__field input__field--yoshiko" type="text" data-ng-model="article.title" required/>
+			<label class="input__label input__label--yoshiko" for="title">
+				<span class="input__label-content input__label-content--yoshiko">{{'title' | translate}}</span>
 			</label>
-			</button>
+		</span>
+
+		<br/>
+		<span class="input input--yoshiko" data-ng-class="{'input--filled': article.category}">
+			<input class="input__field input__field--yoshiko" type="text" data-ng-model="article.category" required/>
+			<label class="input__label input__label--yoshiko" for="category">
+				<span class="input__label-content input__label-content--yoshiko">Categorie</span>
+			</label>
+		</span>
+
+	</div>
+
+	<div class="col-md-11" style="margin-top: 20px;">
+		<div class="wysiwyg--nao">
+			<wysiwyg
+			textarea-class="input__field--yoshiko"
+			textarea-height="150px"
+			textarea-required
+			ng-model="article.content"
+			enable-bootstrap-title="true"
+			textarea-menu="customMenu">
+			</wysiwyg>
 		</div>
 
-		<div class="col-md-9" style="margin-top: 20px;">
-
-			<span class="input input--yoshiko" data-ng-class="{'input--filled': article.title}">
-				<input class="input__field input__field--yoshiko" type="text" data-ng-model="article.title" required/>
-				<label class="input__label input__label--yoshiko" for="title">
-					<span class="input__label-content input__label-content--yoshiko">{{'title' | translate}}</span>
-				</label>
-			</span>
-
-			<br/>
-			<span class="input input--yoshiko" data-ng-class="{'input--filled': article.category}">
-				<input class="input__field input__field--yoshiko" type="text" data-ng-model="article.category" required/>
-				<label class="input__label input__label--yoshiko" for="category">
-					<span class="input__label-content input__label-content--yoshiko">Categorie</span>
-				</label>
-			</span>
-
+		<div class="modal-footer" style="padding: 19px 0 20px 20px;">
+			<a href="#!/articles" class="btn btn-default" type="button">Retour</a>
+			<button class="btn btn-primary" type="submit">Ajouter</button>
 		</div>
-
-		<div class="col-md-11" style="margin-top: 20px;">
-			<div class="wysiwyg--nao">
-				<wysiwyg
-				textarea-class="input__field--yoshiko"
-				textarea-height="150px"
-				textarea-required
-				ng-model="article.content"
-				enable-bootstrap-title="true"
-				textarea-menu="customMenu">
-				</wysiwyg>
-			</div>
-
-			<div class="modal-footer" style="padding: 19px 0 20px 20px;">
-				<a href="#!/articles" class="btn btn-default" type="button">Retour</a>
-				<button class="btn btn-primary" type="submit">Ajouter</button>
-			</div>
-		</div>
-	</form>
-</section>
+	</div>
+</form>

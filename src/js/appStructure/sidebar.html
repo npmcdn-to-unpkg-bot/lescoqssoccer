@@ -1,11 +1,40 @@
-<div id="cms-sidebar-nav" class="well-sm cms-sidebar-nav bs-sidebar hidden-print">
-	<nav id="cms-sidebar-nav-list" class="nav nav-list">
-		<li ng-repeat="item in menu" ng-class="{ active: isCurrentPath('#!/{{item.link}}')}">
-			<a href="#!/{{item.link}}" class="ajax-link sidebarItem ellipsis hidden">
-				<div class="picto-circle"></div>
-				<img ng-src="img/{{item.icon}}"/>
-				<span class="hidden-xs">{{item.title | translate}}</span>
+<section class="controls no-select">
+	<div class="tControls">
+		<div class="top">
+			<a href="#!home">
+				<span tooltip="Retourner à l'accueil" tooltip-placement="right" >
+				<img src="img/Home_sketch_64.png" class="imgMenu"/></span>
 			</a>
-		</li>
-	</nav>
-</div>
+			<a ng-show="menu.top" ng-repeat="topLink in menu.top | filter: linkFilter" href="{{topLink.link}}">
+				<span tooltip="{{topLink.tooltip}}" tooltip-placement="right">
+				<img ng-src="{{topLink.image}}" class="imgMenu"/>
+			</a>
+			<a ng-show="menu.top" ng-repeat="topLink in menu.top | filter: buttonFilter" href="!#" ng-click="callback($event, topLink.title)">
+				<span tooltip="{{topLink.tooltip}}" tooltip-placement="right">
+				<img ng-src="{{topLink.image}}" class="imgMenu"/>
+			</a>
+		</div>
+
+		<div class="middle">
+			<a ng-show="menu.middle" ng-repeat="middleLink in menu.middle | filter: linkFilter" href="{{middleLink.link}}">
+				<span tooltip="{{middleLink.tooltip}}" tooltip-placement="right">
+				<img ng-src="{{middleLink.image}}" class="imgMenu"/>
+			</a>
+			<a ng-show="menu.middle" ng-repeat="middleLink in menu.middle | filter: buttonFilter" href="!#" ng-click="callback($event, middleLink.title)">
+				<span tooltip="{{middleLink.tooltip}}" tooltip-placement="right">
+				<img ng-src="{{middleLink.image}}" class="imgMenu"/>
+			</a>
+		</div>
+
+		<div class="bottom">
+			<a ng-show="menu.bottom" ng-repeat="bottomLink in menu.bottom | filter: linkFilter" href="{{bottomLink.link}}">
+				<span tooltip="{{bottomLink.tooltip}}" tooltip-placement="right">
+				<img ng-src="{{bottomLink.image}}" class="imgMenu"/>
+			</a>
+			<a ng-show="menu.bottom" ng-repeat="bottomLink in menu.bottom | filter: buttonFilter" href="!#" ng-click="callback($event, bottomLink.title)">
+				<span tooltip="{{bottomLink.tooltip}}" tooltip-placement="right">
+				<img ng-src="{{bottomLink.image}}" class="imgMenu"/>
+			</a>
+		</div>
+	</div>
+</section>
