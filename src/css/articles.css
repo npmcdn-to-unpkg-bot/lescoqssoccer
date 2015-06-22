@@ -133,7 +133,7 @@ section.mainContent {
   box-sizing: border-box;
 }
 
-section.controls div:not(.picto-circle){
+section.controls, .tControls, .top, .middle, .bottom{
   	height: 100%;
 }
 

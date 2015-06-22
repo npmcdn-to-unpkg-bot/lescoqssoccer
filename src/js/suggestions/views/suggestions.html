@@ -1,15 +1,10 @@
-<section class="mainContent">
-
-	<div class="subview" data-ng-include="'/js/suggestions/views/subnav.html'"></div>
-
-	<section class="entries">
-		<ul class="suggestionList">
-			<li class="suggestionItem" data-ng-repeat="suggestion in SuggestionsCollection.all">
-				<a href="#">
-					<h4>{{global.user.name}}, le {{suggestion.created | date:dateFormat}}</h4>
-			        		<p class="three-line-ellipsis">{{suggestion.content}}</p>
-			      	</a>
-			</li>
-		</ul>
-	</section>
+<section class="suggestionsContainer">
+	<ul class="suggestionList">
+		<li class="suggestionItem" data-ng-repeat="suggestion in SuggestionsCollection.all">
+			<a href="#">
+				<h4>{{global.user.name}}, le {{suggestion.created | date:dateFormat}}</h4>
+		        		<p class="three-line-ellipsis">{{suggestion.content}}</p>
+		      	</a>
+		</li>
+	</ul>
 </section>

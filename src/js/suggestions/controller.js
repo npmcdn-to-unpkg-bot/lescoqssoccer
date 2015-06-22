@@ -25,5 +25,14 @@ angular.module('mean.suggestions').controller('SuggestionController', ['$scope',
 				});
 			}
 		}
+
+		$scope.$parent.menu = {
+			middle: [{
+				link: "#!/suggestions/create",
+				image: "img/Checklist_paper_sheet_handmade_symbol_64.png",
+				tooltip: "Ajouter un postit",
+				type: "link"
+			}]
+		};
 	}
 ]);

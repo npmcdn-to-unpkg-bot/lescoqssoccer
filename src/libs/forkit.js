@@ -5,14 +5,14 @@
  *
  * Created by Hakim El Hattab, http://hakim.se
  */
-var forkit = function(){
+window.forkit = function(){
 
 	var STATE_CLOSED = 0,
 		STATE_DETACHED = 1,
 		STATE_OPENED = 2,
 
 		TAG_HEIGHT = 30,
-		TAG_WIDTH = 200,
+		TAG_WIDTH = 75,
 		MAX_STRAIN = 40,
 
 		// Factor of page height that needs to be dragged for the
@@ -198,7 +198,7 @@ var forkit = function(){
 
 	function update() {
 		// Distance between mouse and top right corner
-		var distance = distanceBetween( mouse.x, mouse.y, window.innerWidth, 0 );
+		var distance = distanceBetween( mouse.x, mouse.y, 0, 0 );
 
 		// If we're OPENED the curtainTargetY should ease towards page bottom
 		if( state === STATE_OPENED ) {
@@ -232,50 +232,6 @@ var forkit = function(){
 
 		// Ease towards the target position of the curtain
 		curtainCurrentY += ( curtainTargetY - curtainCurrentY ) * 0.3;
-
-		// If we're dragging or detached we need to simulate
-		// the physical behavior of the ribbon
-		if( dragging || state === STATE_DETACHED ) {
-
-			// Apply forces
-			velocity /= friction;
-			velocity += gravity;
-
-			var containerOffsetX = dom.ribbon.offsetLeft;
-
-			var offsetX = Math.max( ( ( mouse.x - containerOffsetX ) - closedX ) * 0.2, -MAX_STRAIN );
-
-			anchorB.x += ( ( closedX + offsetX ) - anchorB.x ) * 0.1;
-			anchorB.y += velocity;
-
-			var strain = distanceBetween( anchorA.x, anchorA.y, anchorB.x, anchorB.y );
-
-			if( strain > MAX_STRAIN ) {
-				velocity -= Math.abs( strain ) / ( MAX_STRAIN * 1.25 );
-			}
-
-			var dy = Math.max( mouse.y - anchorB.y, 0 ),
-				dx = mouse.x - ( containerOffsetX + anchorB.x );
-
-			// Angle the ribbon towards the mouse but limit it avoid extremes
-			var angle = Math.min( 130, Math.max( 50, Math.atan2( dy, dx ) * 180 / Math.PI ) );
-
-			rotation += ( angle - rotation ) * 0.1;
-		}
-		// Ease ribbon towards the OPENED state
-		else if( state === STATE_OPENED ) {
-			anchorB.x += ( openedX - anchorB.x ) * 0.2;
-			anchorB.y += ( openedY - anchorB.y ) * 0.2;
-
-			rotation += ( 90 - rotation ) * 0.02;
-		}
-		// Ease ribbon towards the CLOSED state
-		else {
-			anchorB.x += ( anchorA.x - anchorB.x ) * 0.2;
-			anchorB.y += ( anchorA.y - anchorB.y ) * 0.2;
-
-			rotation += ( 45 - rotation ) * 0.2;
-		}
 	}
 
 	function render() {
@@ -285,7 +241,7 @@ var forkit = function(){
 		}
 
 		dom.ribbon.style[ prefix( 'transform' ) ] = transform( 0, curtainCurrentY, 0 );
-		dom.ribbonTag.style[ prefix( 'transform' ) ] = transform( anchorB.x, anchorB.y, rotation );
+		// dom.ribbonTag.style[ prefix( 'transform' ) ] = transform( anchorB.x, anchorB.y, rotation );
 
 		var dy = anchorB.y - anchorA.y,
 			dx = anchorB.x - anchorA.x;
@@ -293,7 +249,7 @@ var forkit = function(){
 		var angle = Math.atan2( dy, dx ) * 180 / Math.PI;
 
 		dom.ribbonString.style.width = anchorB.y + 'px';
-		dom.ribbonString.style[ prefix( 'transform' ) ] = transform( anchorA.x, 0, angle );
+		// dom.ribbonString.style[ prefix( 'transform' ) ] = transform( anchorA.x, 0, angle );
 
 	}
 

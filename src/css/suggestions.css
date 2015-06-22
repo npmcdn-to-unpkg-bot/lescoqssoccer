@@ -3,6 +3,18 @@
 Suggestions : post-it;
 
 *****/
+.suggestionsContainer{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+  	padding: 10px;
+ 	padding-right: 55px;
+  	box-sizing: border-box;
+  	-webkit-box-flex: 1;
+  	overflow-y: scroll;
+  	overflow-x: hidden;
+  	-webkit-overflow-scrolling: touch;
+}
 
 ul.suggestionList, li {
 	text-align: center;

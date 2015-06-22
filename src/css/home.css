@@ -145,7 +145,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 }
 
 .menu .menu-inner {
-  position: absolute;
+  position: relative;
   left: 0;
   top: 0;
   right: 0;
@@ -271,11 +271,11 @@ h3, .h3, h5, .h5, .fn-h1, .small-text {
 
 .forkit {
   position: fixed;
-  right: 0;
+  left: 0;
   top: 0;
 
-  width: 200px;
-  height: 150px;
+  width: 75px;
+  height: 80px;
 
   font-family: 'Lato', sans-serif;
   text-decoration: none;
@@ -283,15 +283,13 @@ h3, .h3, h5, .h5, .fn-h1, .small-text {
 }
 .forkit .tag {
   display: block;
-  height: 30px;
-  width: 200px;
+  height: 80px;
+  width: 75px;
 
   color: #fff;
-  background: #aa0000;
+  background: url(../img/Home_sketch_64.png) 5px 5px no-repeat;
   text-align: center;
-  font-size: 13px;
   font-weight: bold;
-  line-height: 30px;
   box-shadow: 0px 0px 10px rgba( 0, 0, 0, 0.4 );
 
   -webkit-transform-origin: 15px 0px;
@@ -300,7 +298,7 @@ h3, .h3, h5, .h5, .fn-h1, .small-text {
        -o-transform-origin: 15px 0px;
           transform-origin: 15px 0px;
 }
-.forkit .tag:after {
+/*.forkit .tag:after {
   content: '';
   display: block;
   position: absolute;
@@ -310,7 +308,7 @@ h3, .h3, h5, .h5, .fn-h1, .small-text {
   height: 26px;
   margin: 1px;
   border: 1px solid rgba( 255, 255, 255, 0.4 );
-}
+}*/
 .forkit .string {
   display: block;
   height: 1px;
@@ -335,4 +333,18 @@ h3, .h3, h5, .h5, .fn-h1, .small-text {
   top: -100%;
   background: #e4e4e4;
   z-index: 12;
+}
+
+.homeTooltip{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 75px;
+  height: 80px;
+  z-index: 12;
+}
+
+.includeView{
+	position: absolute;
+  	top: calc(-100% - 20px);
 }
