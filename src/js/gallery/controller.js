@@ -1,14 +1,16 @@
 'use strict';
 
-angular.module('mean.albums').controller('AlbumCtrl', ['$location', '$scope', '$modal', 'PhotoMgrService', 'album', 'albums', 'view', 'FileUploader',
+angular.module('mean.albums').controller('AlbumCtrl', ['$location', '$scope', '$modal', 'PhotoMgrService', 'album', 'albums', 'FileUploader',
 
-	function($location, $scope, $modal, PhotoMgrService, album, albums, view, FileUploader) {
+	function($location, $scope, $modal, PhotoMgrService, album, albums, FileUploader) {
 
-		//used in subnav.html
-		$scope.view = "add";
-		$scope.section = {
-			'name': 'Album',
-			'url': '/albums'
+		//used in subnav
+		$scope.$parent.menu = {
+			middle: [{
+				link: "#!/albums",
+				image: "img/Draw_Adding_Cross_64.png",
+				tooltip: "hey hey"
+			}]
 		};
 
 		$scope.pmSvc = PhotoMgrService;
@@ -109,10 +111,12 @@ angular.module('mean.albums').controller('GalleryCtrl', ['$scope', 'Global', '$l
 	function($scope, Global, $location, $modal, PhotoMgrService, albums, AlbumsCollection) {
 
 		//used in subnav
-		$scope.view = 'grid';
-		$scope.section = {
-			'name': 'Album',
-			'url': '/albums'
+		$scope.$parent.menu = {
+			middle: [{
+				link: "#!/albums/add",
+				image: "img/Draw_Adding_Cross_64.png",
+				tooltip: "hey hey"
+			}]
 		};
 
 		$scope.global = Global;
@@ -184,10 +188,6 @@ var PhotoMgrData = {
 		} else {
 			return [];
 		}
-	},
-
-	view: function($route) {
-		return $route.current.params.view;
 	}
 };
 

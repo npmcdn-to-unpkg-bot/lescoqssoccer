@@ -25,6 +25,18 @@ Phtotos
 
 .grid__item.photo{
 	border-bottom: 3px solid #bbbbbb;
+	min-height: 200px;
+}
+
+.albumContainer{
+	width: 100%;
+  	padding: 10px;
+ 	padding-right: 55px;
+  	box-sizing: border-box;
+  	-webkit-box-flex: 1;
+  	overflow-y: scroll;
+  	overflow-x: hidden;
+  	-webkit-overflow-scrolling: touch;
 }
 
 .albumTitle {
@@ -63,6 +75,12 @@ Phtotos
 	padding-top: 60px;
 }
 
+.helper{
+	position: absolute;
+	top: calc(50% - 30px);
+	left: calc(50% - 30px);
+}
+
 .photoCell .center {
 	vertical-align: middle;
 }
@@ -73,7 +91,7 @@ Phtotos
 
 .photoCell .left {
 	float: left;
-	margin-top: 10px;
+	margin-top: -39px;
 	margin-left: 10px;
 	height: 40px;
 	width: 40px;

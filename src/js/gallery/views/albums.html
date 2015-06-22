@@ -1,27 +1,22 @@
- <section class="mainContent">
+<section class="albumContainer">
 
- 	<div class="subview" data-ng-include="'/js/gallery/views/subnav.html'"></div>
+	<div class="col-md-12 expandable-container">
 
-	<section class="entries" style="padding-right: 0;">
+		<section class="grid">
+			<div deckgrid class="deckgrid" source="albums" cardTemplate="js/gallery/views/albumCard.html"></div>
+		</section>
 
-		<div class="col-md-12 expandable-container">
+		<section class="content">
+			<div class="scroll-wrap">
+				<cm-reduce template-url="js/gallery/views/view.html" ng-repeat="album in albums | filter:pmSvc.filter" name="{{$index}}">
+				</cm-reduce>
+			</div>
+		</section>
 
-			<section class="grid">
-				<div deckgrid class="deckgrid" source="albums" cardTemplate="js/gallery/views/albumCard.html"></div>
-			</section>
+	</div>
 
-			<section class="content">
-				<div class="scroll-wrap">
-					<cm-reduce template-url="js/gallery/views/view.html" ng-repeat="album in albums | filter:pmSvc.filter" name="{{$index}}">
-					</cm-reduce>
-				</div>
-			</section>
+	<div class="col-md-12" data-ng-show="albums.length === 0">
+		<h4>Pas de photos</h4>
+	</div>
 
-		</div>
-
-		<div class="col-md-12" data-ng-show="albums.length === 0">
-			<h4>Pas de photos</h4>
-		</div>
-
-	</section>
 </section>

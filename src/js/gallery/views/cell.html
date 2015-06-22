@@ -13,6 +13,8 @@
 		<div class="photoCell">
 			<img src="img/trash.png" class="left" ng-click="deleteAlbum(album, $event)" ng-show="mother.global.user._id === card.user"/>
 			<img src="img/pencil.png" class="left" ng-click="editAlbum(album, $event)" ng-show="mother.global.user._id === card.user"/>
+		</div>
+		<div class="helper">
 			<img src="img/magnifier_sketch.png" class="center" ng-class="{'negativeMargin' : mother.global.user._id === card.user}"/>
 		</div>
 	</div>
