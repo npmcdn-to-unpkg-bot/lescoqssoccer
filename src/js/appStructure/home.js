@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.home').controller('HomeController', ['$scope', 'Global',
-	function($scope, Global) {
+angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'TopMenu',
+	function($scope, Global, TopMenu) {
 
 		$scope.global = Global;
 
@@ -36,5 +36,9 @@ angular.module('mean.home').controller('HomeController', ['$scope', 'Global',
 			'link': 'suggestions',
 			'icon': 'light bulbs7.png'
 		}];
+
+		$scope.closeMenu = function(){
+			TopMenu.close();
+		};
 	}
 ]);

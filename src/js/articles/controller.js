@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', '$sce', '$modal', 'Global', 'ArticlesCollection', 'Articles',
-	function($scope, $routeParams, $location, $sce, $modal, Global, ArticlesCollection, Articles) {
+angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', '$sce', '$modal', 'Global', 'ArticlesCollection', 'Articles', 'SubMenu',
+	function($scope, $routeParams, $location, $sce, $modal, Global, ArticlesCollection, Articles, SubMenu) {
 
 		$scope.global = Global;
 		$scope.ArticlesCollection = ArticlesCollection;
@@ -75,7 +75,8 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 		};
 
 		//used in subnav
-		$scope.$parent.menu = {
+		SubMenu.setMenu({
+			view: "articles",
 			middle: [{
 				title: "articleCreate",
 				link: "#!/articles/create",
@@ -97,7 +98,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 				type: "button",
 				callback: $scope.setNextArticle
 			}]
-		};
+		});
 
 		if (!$scope.selected && $scope.articles.length > 0) {
 			$scope.selectArticle($scope.articles[0], 0);
@@ -122,21 +123,22 @@ angular.module('mean.articles').controller('deleteArticleModalCtrl', ['$scope', 
 
 ]);
 
-angular.module('mean.articles').controller('CreateArticleController', ['$scope', '$location', 'Global', 'ArticlesCollection', 'FileUploader', 'article',
-	function($scope, $location, Global, ArticlesCollection, FileUploader, Article) {
+angular.module('mean.articles').controller('CreateArticleController', ['$scope', '$location', 'Global', 'ArticlesCollection', 'FileUploader', 'article', 'SubMenu',
+	function($scope, $location, Global, ArticlesCollection, FileUploader, Article, SubMenu) {
 
 		$scope.global = Global;
 		$scope.ArticlesCollection = ArticlesCollection;
 		$scope.article = Article;
 
-		$scope.$parent.menu = {
+		SubMenu.setMenu({
+			view: "articlesCreate",
 			middle: [{
 				link: "#!/articles",
 				image: "img/Checklist_paper_sheet_handmade_symbol_64.png",
 				tooltip: "Liste des articles",
 				type: "link"
 			}]
-		};
+		});
 
 		$scope.create = function() {
 			$scope.ArticlesCollection.add($scope.article).then(function() {

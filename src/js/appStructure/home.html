@@ -16,7 +16,7 @@
 	<div id="menu" class="menu active">
 		<div class="menu-inner">
 			<nav>
-				<a ng-repeat="item in menu" href="#!/{{item.link}}" class="simple-border-box">
+				<a ng-repeat="item in menu" href="#!/{{item.link}}" class="simple-border-box" ng-click="closeMenu();">
 				<div class="sbb-contents">
 					<img ng-src="img/{{item.icon}}"/>
 					{{item.title | translate}}
