@@ -6,7 +6,6 @@ angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'T
 		$scope.global = Global;
 
 		$scope.isCurrentPath = function (path) {
-
 			var cur_path = "#!" + $location.path().substr(0, path.length);
 			return (cur_path.indexOf(path) !== -1) || (path.indexOf('albums') !== -1 && cur_path.indexOf('gallery') !== -1);
 		};

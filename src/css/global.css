@@ -4,42 +4,24 @@ html, body {
 body {
 	opacity: 1;
 	background-size: cover;
-	/*background: #3fcbba;*/
 }
 
 div, p, a, select, h1, h2, h3, h4{
 	font-family: "WC Mano Negra Bold", "WC Mano Negra", "Impact", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
-/****
 
-Animate view
-
-*****/
-
-/*.view-animate.ng-enter {
-	-webkit-animation: moveToTop .6s ease both;
-	animation: moveToTop .6s ease both;
-}*/
-/*
-.view-animate.ng-enter{
-	opacity: 0.5;
-	position: relative;
-	transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-}*/
-.view-animate.ng-leave {
-	-webkit-animation: moveToTop .7s ease-in-out both;
-	animation: moveToTop .7s ease-in-out both;
-	z-index: 999;
-}
-
-@-webkit-keyframes moveToTop {
-	from { }
-	to { -webkit-transform: translateY(-100%); }
-}
-@keyframes moveToTop {
-	from {-webkit-transform: translateY(0); transform: translateY(0); }
-	to { -webkit-transform: translateY(-100%); transform: translateY(-100%); }
+.linksContainer{
+	width: 100%;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+  	padding: 20px;
+ 	padding-right: 55px;
+  	box-sizing: border-box;
+  	-webkit-box-flex: 1;
+  	overflow-y: scroll;
+  	overflow-x: hidden;
+  	-webkit-overflow-scrolling: touch;
 }
 
 /*
