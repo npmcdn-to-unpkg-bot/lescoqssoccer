@@ -182,7 +182,7 @@ button:focus {
 .placeholder {
   pointer-events: none;
   position: absolute;
-  width: calc(100% + 60px);
+  width: calc(100% + 35px);
   height: 100vh;
   z-index: 100;
   top: 0;
@@ -257,7 +257,7 @@ button:focus {
   padding: 60px 60px 80px 60px;
   pointer-events: none;
   font-size: 0.85em;
-  background-color: #eee;
+  background-color: #e9e9e9 !important;
 }
 .content__item p {
   max-width: 1200px;
