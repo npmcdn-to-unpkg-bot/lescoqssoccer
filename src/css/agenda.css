@@ -1,0 +1,190 @@
+
+/****
+
+Agenda
+
+*****/
+.agendaContainer{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+  	padding: 20px;
+  	width: calc(100% - 75px);
+  	box-sizing: border-box;
+  	-webkit-box-flex: 1;
+  	overflow-y: scroll;
+  	overflow-x: hidden;
+  	-webkit-overflow-scrolling: touch;
+}
+
+div.pastEvents{
+	text-align: center;
+	width: 33%;
+	float: left;
+}
+
+div.comingEvents{
+	float: left;
+	text-align: center;
+	width: 67%;
+	padding: 0 20px 0 0;
+}
+
+.agendaForm .angular-google-map-container {
+	height: 350px;
+	width: calc(100% - 2em);
+}
+.ev2page-col {
+	padding: 2%;
+	border: 1px solid rgba(74, 74, 74, 0.3);
+	width: 100%;
+	line-height: 1;
+}
+.ev2page-col:hover {
+	border: 1px solid rgba(24, 206, 207, 1);
+	cursor: pointer;
+}
+.ev2page-col .ev2page-info p {
+	margin-top: 150px !important
+}
+.ev2page, .ev2page .ev3page {
+	padding: 2%;
+	width: 96%;
+}
+.ev2shr-data, .ev2page-data {
+	color: #1d1d1b;
+	position: absolute;
+	text-align: center;
+	top: 0;
+	left: 10px;
+}
+.ev2shr-day, .ev2page-day {
+	font-size: 54px
+}
+.ev2shr-month, .ev2page-month {
+	text-transform: uppercase;
+	position: relative;
+	font-size: 32px;
+	top: -20px;
+}
+.ev2shr-year, .ev2page-year {
+	text-transform: uppercase;
+	position: relative;
+	font-size: 28px;
+	top: -30px;
+}
+.ev2shr-col, .ev2page-col {
+	margin-bottom: 10px;
+	float: left;
+	padding: 15px;
+}
+.ev2shr-cover, .ev2page-cover {
+	display: inline-block;
+	position: relative;
+	overflow: hidden;
+}
+h2.ev2shr-title, h2.ev2page-title, h2.ev3page-title {
+	font-size: 20px;
+	margin-top: 0px;
+	padding-left: 50px;
+	padding-right: 50px;
+	height: 65px;
+}
+h2.ev2shr-title a, h2.ev2page-title a, h2.ev3page-title a {
+	font-weight: 600;
+	margin-bottom: -10px;
+	color: #1b1b1b;
+}
+.ev2shr-info, .ev2page-info {
+	top: 0px;
+	color: #888;
+	position: relative;
+}
+.ev2shr-venue, .ev2page-venue {
+	margin-top: 3px;
+	float: left;
+	color: #1d1d1b;
+	margin-right: 20px;
+	overflow: hidden;
+	height: 16px;
+	width: 180px;
+}
+.ev2shr-hour, .ev2page-hour {
+	color: #1d1d1b;
+}
+.ev2page-tickets a {
+	text-transform: uppercase;
+	text-decoration: none;
+	float: right;
+	color: white;
+	background: gray;
+	padding: 5px 8px 5px 8px;
+	border-radius: 3px;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+.ev2page-tickets a:hover, .ev3page-tickets a:hover {
+	background: #000;
+	color: #fff;
+}
+.ev2page-week {
+	position: relative;
+	cursor: default;
+	font-size: 36px;
+	color: rgb(4, 189, 242);
+	text-transform: uppercase;
+}
+.ev2page-col .ev2page-week {
+	transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-webkit-transition: all .3s ease-in-out;
+}
+.location-btn {
+	position: absolute;
+	right: 29px;
+}
+.location-btn button {
+	height: 47px;
+}
+
+.eventSmall{
+	min-height: 80px !important;
+	padding-left: 5px !important;
+	padding-right: 5px !important;
+	margin-bottom: 30px;
+}
+
+.eventSmall h2.ev2page-title{
+	padding-left: 0px;
+	padding-right: 0px;
+	height: inherit;
+}
+
+
+/****
+
+Map
+
+*****/
+
+/*#mapBorder {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 440px;
+	width: 800px;
+	background: url('../../img/map_mask.png') no-repeat;
+	background-size: 100%;
+	pointer-events: none;
+}*/
+
+.mapContainer div {
+	background: none;
+}
+.angular-google-map-container {
+	height: 500px;
+	width: 100%;
+	margin-bottom: 30px;
+}
