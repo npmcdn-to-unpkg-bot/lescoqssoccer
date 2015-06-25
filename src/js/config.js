@@ -22,13 +22,24 @@ angular.module('mean').config(['$routeProvider',
 				}
 			}
 		}).
-		when('/agenda/:view', {
-			templateUrl: function(params) {
-				return (params.view === 'create') ? 'js/agenda/views/create.html' : 'js/agenda/views/map.html'
-			}
+		when('/agenda/create', {
+			templateUrl: 'js/agenda/views/create.html',
+			controller: 'CreateAgendaController',
+			resolve: EventDetailData
 		}).
-		when('/agenda/:view/:startDate', {
-			templateUrl: 'js/agenda/views/create.html'
+		when('/agenda/edit/:eventId', {
+			templateUrl: 'js/agenda/views/create.html',
+			controller: 'CreateAgendaController',
+			resolve: EventDetailData
+		}).
+		when('/agenda/map', {
+			templateUrl: 'js/agenda/views/map.html',
+			controller: 'MapController',
+			resolve: {
+				Agenda: function(AgendaCollection) {
+					return AgendaCollection.load();
+				}
+			}
 		}).
 
 		/** ARTICLES ****/
