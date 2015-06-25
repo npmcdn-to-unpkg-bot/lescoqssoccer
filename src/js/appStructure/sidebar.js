@@ -3,7 +3,9 @@
 angular.module('mean.system').controller('SidebarController', ['$scope', 'Global', '$location', 'TopMenu', 'SubMenu',
 
 	function($scope, Global, $location, TopMenu, SubMenu) {
+
 		$scope.global = Global;
+		$scope.subMenu = SubMenu;
 
 		$scope.isCurrentPath = function(path) {
 			var cur_path = "#!" + $location.path().substr(0, path.length);
@@ -23,7 +25,7 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 			evt.preventDefault();
 			evt.stopPropagation();
 
-			_.filter($scope.menu.middle, function(link) {
+			_.filter($scope.subMenu.menu.middle, function(link) {
 				return link.title === title;
 			})[0].callback();
 
@@ -32,13 +34,6 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 		setTimeout(function() {
 			TopMenu.initialize();
 		}, 500);
-
-		SubMenu.registerObserver(function(menu) {
-			$scope.menu = menu;
-			if (!$scope.$$phase) {
-				$scope.$apply();
-			}
-		});
 
 	}
 ]);

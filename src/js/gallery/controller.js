@@ -1,17 +1,17 @@
 'use strict';
 
-angular.module('mean.albums').controller('AlbumCtrl', ['$location', '$scope', '$modal', 'PhotoMgrService', 'album', 'albums', 'FileUploader',
+angular.module('mean.albums').controller('AlbumCtrl', ['$location', '$scope', '$modal', 'PhotoMgrService', 'album', 'albums', 'FileUploader', 'SubMenu',
 
-	function($location, $scope, $modal, PhotoMgrService, album, albums, FileUploader) {
+	function($location, $scope, $modal, PhotoMgrService, album, albums, FileUploader, SubMenu) {
 
 		//used in subnav
-		$scope.$parent.menu = {
+		SubMenu.setMenu({
 			middle: [{
 				link: "#!/albums",
 				image: "img/Draw_Adding_Cross_64.png",
 				tooltip: "hey hey"
 			}]
-		};
+		});
 
 		$scope.pmSvc = PhotoMgrService;
 		$scope.newAlbum = $scope.pmSvc.newAlbum();
@@ -106,18 +106,18 @@ angular.module('mean.albums').controller('AlbumCtrl', ['$location', '$scope', '$
 	}
 ]);
 
-angular.module('mean.albums').controller('GalleryCtrl', ['$scope', 'Global', '$location', '$modal', 'PhotoMgrService', 'albums', 'AlbumsCollection',
+angular.module('mean.albums').controller('GalleryCtrl', ['$scope', 'Global', '$location', '$modal', 'PhotoMgrService', 'albums', 'AlbumsCollection', 'SubMenu',
 
-	function($scope, Global, $location, $modal, PhotoMgrService, albums, AlbumsCollection) {
+	function($scope, Global, $location, $modal, PhotoMgrService, albums, AlbumsCollection, SubMenu) {
 
 		//used in subnav
-		$scope.$parent.menu = {
+		SubMenu.setMenu({
 			middle: [{
 				link: "#!/albums/create",
 				image: "img/Draw_Adding_Cross_64.png",
 				tooltip: "hey hey"
 			}]
-		};
+		});
 
 		$scope.global = Global;
 		$scope.pmSvc = PhotoMgrService;

@@ -5,23 +5,10 @@ angular.module('mean.system').service('SubMenu',
 		var subMenu = {
 
 			menu: {},
-			observerCallback: null,
 
 			setMenu: function(menu){
 				subMenu.menu = menu;
-				this.notifyObserver();
-			},
-
-			registerObserver: function(callback){
-				this.observerCallback = callback;
-			},
-
-			notifyObserver: function(){
-				if(this.observerCallback){
-					this.observerCallback(this.menu);
-				}
 			}
-
 		};
 
 		return subMenu;
