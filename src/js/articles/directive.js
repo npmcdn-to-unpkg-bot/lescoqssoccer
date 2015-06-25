@@ -30,9 +30,6 @@ angular.module('mean.articles').directive('cmExpandable',
 					var dummy = document.createElement('div');
 					dummy.className = (contentItem.hasClass('agendaItem'))? 'placeholder placeholder--trans-in agendaItem' : 'placeholder placeholder--trans-in';
 
-					console.warn(contentItem.outerWidth() );
-					console.warn(contentItemsContainer.outerWidth() );
-
 					// set the width/heigth and position
 					dummy.style.WebkitTransform = 'translate3d(' + (contentItem.position().left) + 'px, ' + (contentItem.position().top ) + 'px, 0px) scale3d(' + (contentItem.outerWidth() + 25) / contentItemsContainer.outerWidth() + ',' + (contentItem.outerHeight()) / getViewport('y') + ',1)';
 					dummy.style.transform = 'translate3d(' + (contentItem.position().left) + 'px, ' + (contentItem.position().top) + 'px, 0px) scale3d(' + (contentItem.outerWidth() + 25) / contentItemsContainer.outerWidth() + ',' + (contentItem.outerHeight()) / getViewport('y') + ',1)';

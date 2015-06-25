@@ -151,7 +151,7 @@ div.tooltip, div.tooltip div{
   height: 100%;
   padding: 5px;
   margin: 0;
-  background-color: #f5f5f5;
+  background-color: #1e2226;
 }
 
 .controls .btn {
@@ -202,7 +202,7 @@ div.tooltip, div.tooltip div{
   overflow-y: auto;
   position: absolute;
   bottom:0;
-  left: calc(65% + 30px);
+  left: calc(65% + 35px);
   right:0;
   top:0;
 }
