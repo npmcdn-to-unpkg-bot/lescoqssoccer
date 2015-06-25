@@ -1,3 +1,5 @@
+var isAnimated = false;
+
 angular.module('mean.articles').directive('cmExpandable',
 	function() {
 		return {
@@ -12,6 +14,11 @@ angular.module('mean.articles').directive('cmExpandable',
 				element.on('click', function(ev) {
 					ev.preventDefault();
 
+					if(isAnimated){
+						return;
+					}
+
+					isAnimated = true;
 					var marginTop = 10;
 
 					var contentItem = $(element.children()[0]);
@@ -110,6 +117,7 @@ angular.module('mean.articles').directive('cmReduce',
 							element.parent().parent().removeClass('content--show');
 
 							$("body").css('overflow', '');
+							isAnimated = false;
 						});
 
 					}, 25);

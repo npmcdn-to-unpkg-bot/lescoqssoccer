@@ -1,25 +1,49 @@
 'use strict';
 
-angular.module('mean.agenda').controller('createController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection', '$modal',
-	function($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection, $modal) {
+angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection', 'event', '$modal', 'SubMenu',
+	function($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection, event, $modal, SubMenu) {
 
 		$scope.agendaCollection = AgendaCollection;
-		$scope.view = $route.current.params.view;
 		$scope.eventTypes = eventTypes;
 		$scope.start = $scope.end = ($route.current && $route.current.params.startDate) ? new Date($route.current.params.startDate) : new Date();
 
-		$scope.init = function() {
+		//used in subnav
+		SubMenu.setMenu({
+			middle: [{
+				link: "#!/agenda",
+				image: "img/24_hours_delivery_64.png",
+				tooltip: "What's next?!",
+				type: "link"
+			},
+			{
+				link: "#!/agenda/calendar",
+				image: "img/Calendar_hand_drawn_tool_64.png",
+				tooltip: "Calendrier",
+				type: "link"
+			},
+			{
+				link: "#!/agenda/map",
+				image: "img/Map_of_roads_64.png",
+				tooltip: "Je suis la carte",
+				type: "link"
+			},
+			{
+				link: "#!/agenda/create",
+				image: "img/Draw_Adding_Cross_64.png",
+				tooltip: "Ajouter un petit nouveau",
+				type: "link"
+			}]
+		});
 
-			$scope.userEvent = {
-				selectedType: $scope.eventTypes[2],
-				title: '',
-				content: '',
-				start: $scope.start,
-				end: $scope.end,
-				photos: [],
-				location: {},
-				allDay: true
-			};
+		$scope.userEvent = event || {
+			selectedType: $scope.eventTypes[2],
+			title: '',
+			content: '',
+			start: $scope.start,
+			end: $scope.end,
+			photos: [],
+			location: {},
+			allDay: true
 		};
 
 		/* add custom event*/
@@ -152,12 +176,47 @@ angular.module('mean.agenda').controller('createController', ['$scope', '$routeP
 	}
 ]);
 
-angular.module('mean.agenda').controller('CalendarController', ['$scope', '$routeParams', '$location', '$route', 'Global', 'AgendaCollection', 'Agenda',
-	function($scope, $routeParams, $location, $route, Global, AgendaCollection, Agenda) {
+var EventDetailData = {
+
+	event: function(AgendaCollection, $route) {
+		return ($route.current.params.eventId) ? ArticlesCollection.findOne($route.current.params.eventId) : null;
+	}
+
+};
+
+angular.module('mean.agenda').controller('ListController', ['$scope', '$routeParams', '$location', '$route', 'Global', 'AgendaCollection', 'Agenda', 'SubMenu',
+	function($scope, $routeParams, $location, $route, Global, AgendaCollection, Agenda, SubMenu) {
 
 		$scope.agendaCollection = AgendaCollection;
 		$scope.agenda = Agenda;
-		$scope.view = "agenda";
+
+		SubMenu.setMenu({
+			middle: [{
+				link: "#!/agenda",
+				image: "img/24_hours_delivery_64.png",
+				tooltip: "What's next?!",
+				type: "link"
+			},
+			{
+				link: "#!/agenda/calendar",
+				image: "img/Calendar_hand_drawn_tool_64.png",
+				tooltip: "Calendrier",
+				type: "link"
+			},
+			{
+				link: "#!/agenda/map",
+				image: "img/Map_of_roads_64.png",
+				tooltip: "Je suis la carte",
+				type: "link"
+			},
+			{
+				link: "#!/agenda/create",
+				image: "img/Draw_Adding_Cross_64.png",
+				tooltip: "Ajouter un petit nouveau",
+				type: "link"
+			}]
+		});
+
 		$scope.obj = {
 			searchTitle: ""
 		};
@@ -187,32 +246,92 @@ angular.module('mean.agenda').controller('CalendarController', ['$scope', '$rout
 	}
 ]);
 
-angular.module('mean.agenda').controller('mapController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection',
-	function($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection) {
+angular.module('mean.agenda').controller('CalendarController', ['$scope', '$routeParams', '$location', '$route', 'Global', 'AgendaCollection', 'Agenda', 'SubMenu',
+	function($scope, $routeParams, $location, $route, Global, AgendaCollection, Agenda, SubMenu) {
 
 		$scope.agendaCollection = AgendaCollection;
-		$scope.view = $route.current.params.view;
+		$scope.agenda = Agenda;
 
-		// Agenda
-		$scope.load = function() {
+		SubMenu.setMenu({
+			middle: [{
+				link: "#!/agenda",
+				image: "img/24_hours_delivery_64.png",
+				tooltip: "What's next?!",
+				type: "link"
+			},
+			{
+				link: "#!/agenda/calendar",
+				image: "img/Calendar_hand_drawn_tool_64.png",
+				tooltip: "Calendrier",
+				type: "link"
+			},
+			{
+				link: "#!/agenda/map",
+				image: "img/Map_of_roads_64.png",
+				tooltip: "Je suis la carte",
+				type: "link"
+			},
+			{
+				link: "#!/agenda/create",
+				image: "img/Draw_Adding_Cross_64.png",
+				tooltip: "Ajouter un petit nouveau",
+				type: "link"
+			}]
+		});
 
-			var promise = $scope.agendaCollection.load();
-			promise.then(function(events) {
-				angular.forEach(events, function(event) {
-					if (event.location && event.location !== "") {
-						$scope.map.markers.push({
-							id: event._id,
-							latitude: event.location.k,
-							longitude: event.location.B,
-							showWindow: false,
-							title: event.title,
-							content: event.content,
-							photos: event.photos
-						});
-					}
-				});
-			});
-		};
+		$scope.calendarView = 'month';
+		$scope.calendarTitle = 'Mon super calendar';
+		$scope.calendarDay = new Date(2013,5,1,1);
+
+		$scope.events = [
+		  {
+		    title: 'My event title', // The title of the event
+		    type: 'info', // The type of the event (determines its color). Can be important, warning, info, inverse, success or special
+		    startsAt: new Date(2013,5,1,1), // A javascript date object for when the event starts
+		    endsAt: new Date(2014,8,26,15), // Optional - a javascript date object for when the event ends
+		    editable: false, // If edit-event-html is set and this field is explicitly set to false then dont make it editable. If set to false will also prevent the event from being dragged and dropped.
+		    deletable: false, // If delete-event-html is set and this field is explicitly set to false then dont make it deleteable
+		    incrementsBadgeTotal: true, //If set to false then will not count towards the badge total amount on the month and year view
+		    recursOn: 'year', // If set the event will recur on the given period. Valid values are year or month
+		    cssClass: 'a-css-class-name' //A CSS class (or more, just separate with spaces) that will be added to the event when it is displayed on each view. Useful for marking an event as selected / active etc
+		  }
+		];
+		$scope.eventTypes = eventTypes;
+	}
+]);
+
+angular.module('mean.agenda').controller('MapController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection', 'Agenda', 'SubMenu',
+	function($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection, Agenda, SubMenu) {
+
+		$scope.agendaCollection = AgendaCollection;
+		$scope.agenda = Agenda;
+
+		SubMenu.setMenu({
+			middle: [{
+				link: "#!/agenda",
+				image: "img/24_hours_delivery_64.png",
+				tooltip: "What's next?!",
+				type: "link"
+			},
+			{
+				link: "#!/agenda/calendar",
+				image: "img/Calendar_hand_drawn_tool_64.png",
+				tooltip: "Calendrier",
+				type: "link"
+			},
+			{
+				link: "#!/agenda/map",
+				image: "img/Map_of_roads_64.png",
+				tooltip: "Je suis la carte",
+				type: "link"
+			},
+			{
+				link: "#!/agenda/create",
+				image: "img/Draw_Adding_Cross_64.png",
+				tooltip: "Ajouter un petit nouveau",
+				type: "link"
+			}]
+		});
 
 		var styles = [{
 			"featureType": "administrative",
@@ -492,6 +611,20 @@ angular.module('mean.agenda').controller('mapController', ['$scope', '$routePara
 			});
 			marker.showWindow = true;
 		};
+
+		angular.forEach($scope.agenda, function(event) {
+			if (event.location && event.location !== "") {
+				$scope.map.markers.push({
+					id: event._id,
+					latitude: event.location.k,
+					longitude: event.location.B,
+					showWindow: false,
+					title: event.title,
+					content: event.content,
+					photos: event.photos
+				});
+			}
+		});
 	}
 ]);
 

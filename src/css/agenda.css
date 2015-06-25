@@ -169,16 +169,18 @@ Map
 
 *****/
 
-/*#mapBorder {
+.mapContainer{
 	position: absolute;
 	top: 0;
-	left: 0;
-	height: 440px;
-	width: 800px;
-	background: url('../../img/map_mask.png') no-repeat;
-	background-size: 100%;
-	pointer-events: none;
-}*/
+	bottom: 0;
+  	padding: 20px;
+  	width: calc(100% - 75px);
+  	box-sizing: border-box;
+  	-webkit-box-flex: 1;
+  	overflow-y: scroll;
+  	overflow-x: hidden;
+  	-webkit-overflow-scrolling: touch;
+}
 
 .mapContainer div {
 	background: none;
@@ -187,4 +189,24 @@ Map
 	height: 500px;
 	width: 100%;
 	margin-bottom: 30px;
+}
+
+/****
+
+Creation
+
+*****/
+
+.agendaForm{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+  	padding: 20px;
+  	padding-top: 50px;
+  	width: calc(100% - 75px);
+  	box-sizing: border-box;
+  	-webkit-box-flex: 1;
+  	overflow-y: scroll;
+  	overflow-x: hidden;
+  	-webkit-overflow-scrolling: touch;
 }

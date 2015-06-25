@@ -78,7 +78,6 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 		SubMenu.setMenu({
 			view: "articles",
 			middle: [{
-				title: "articleCreate",
 				link: "#!/articles/create",
 				image: "img/Draw_Adding_Cross_64.png",
 				tooltip: "Ajouter un petit nouveau",
@@ -131,7 +130,6 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 		$scope.article = Article;
 
 		SubMenu.setMenu({
-			view: "articlesCreate",
 			middle: [{
 				link: "#!/articles",
 				image: "img/Checklist_paper_sheet_handmade_symbol_64.png",

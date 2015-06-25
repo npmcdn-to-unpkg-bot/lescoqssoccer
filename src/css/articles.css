@@ -133,7 +133,7 @@ section.mainContent {
   box-sizing: border-box;
 }
 
-section.controls, .tControls, .top, .middle, .bottom{
+section.controls{
   	height: 100%;
 }
 
@@ -166,32 +166,30 @@ div.tooltip, div.tooltip div{
 }
 
 .tControls {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
+  display: table;
+  height: 100%;
 }
 
 .controls div.top {
   margin-top:15px;
   min-height: 50px;
-  -webkit-box-align: start;
-  -webkit-box-flex: 1;
   text-align: center;
+  display: table-cell;
+  vertical-align: top;
 }
 
 .controls div.middle {
   text-align: center;
   min-height: 185px;
-  display: -webkit-box;
-  -webkit-box-align: center;
-  -webkit-box-flex: 2;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .controls div.bottom {
   text-align: center;
   min-height: 50px;
-  -webkit-box-flex: 1;
-  display: -webkit-box;
-  -webkit-box-align: end;
+  display: table-cell;
+  vertical-align: bottom;
 }
 
 .summaries {
