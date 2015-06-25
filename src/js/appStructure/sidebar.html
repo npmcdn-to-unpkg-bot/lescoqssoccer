@@ -2,7 +2,7 @@
 	<div class="tControls">
 		<div class="top">
 
-			<div class="forkit-curtain">
+			<div class="forkit-curtain" ng-show="!isCurrentPath('home');">
 				<div class="includeView" data-ng-include="'/js/appStructure/home.html'" data-ng-controller="HomeController"></div>
 				<div class="close-button">
 					<button class="close-button close-button--show">
@@ -14,7 +14,7 @@
 			<a class="forkit"
 			data-text=""
 			data-text-detached=""
-			href="#!home">
+			href="#!home" ng-show="!isCurrentPath('home');">
 			</a>
 			<!-- <span class="homeTooltip" tooltip="Retourner à l'accueil" tooltip-placement="right" > -->
 

@@ -6,7 +6,8 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 		$scope.global = Global;
 
 		$scope.isCurrentPath = function(path) {
-			var cur_path = "#!" + $location.path().substr(0, path.length);
+			var cur_path = "#!" + $location.path().substr(0, path.length + 1);
+			console.warn(cur_path);
 			return (cur_path.indexOf(path) !== -1) || (path.indexOf('albums') !== -1 && cur_path.indexOf('gallery') !== -1);
 		};
 

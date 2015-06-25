@@ -2,18 +2,20 @@
 	<div class="menu active">
 		<div class="menu-inner">
 			<nav>
-				<a ng-repeat="item in menu" href="#!/{{item.link}}" class="simple-border-box" ng-click="closeMenu();">
-				<div class="sbb-contents">
-					<img ng-src="img/{{item.icon}}"/>
-					{{item.title | translate}}
-					<span class="small-text">_sweet home./</span>
+				<div class="menu-info">
+					<div class="menu-date">16 Jun</div>
+					<div class="menu-phrase">Yes, finally taco <strong>_Tuesday.</strong></div>
 				</div>
-				</a>
+				<div class="menu-elts">
+					<a ng-repeat="item in menu" href="#!/{{item.link}}" class="simple-border-box" ng-click="closeMenu();">
+						<div class="sbb-contents">
+							<img ng-src="img/{{item.icon}}"/>
+							{{item.title | translate}}
+							<span class="small-text">_sweet home./</span>
+						</div>
+					</a>
+				</div>
 			</nav>
-			<div class="menu-info">
-				<div class="menu-date">16 Jun</div>
-				<div class="menu-phrase">Yes, finally taco <strong>_Tuesday.</strong></div>
-			</div>
 		</div>
 	</div>
 </section>

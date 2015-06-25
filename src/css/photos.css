@@ -132,9 +132,14 @@ img {
     float:left;
 }
 
-.photo {
+.photo:not(.grid__item) {
     background:#fff url(../img/spinner.gif) center 30px no-repeat;
-    border:1px solid rgba(0, 0, 0, .15);
+    border:1px solid black;
+    margin:0 10px 10px 0;
+    position:relative;
+}
+
+.photo.grid__item{
     border-radius:3px;
     margin:0 10px 10px 0;
     position:relative;

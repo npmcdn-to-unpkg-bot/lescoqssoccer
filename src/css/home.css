@@ -24,13 +24,22 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   z-index: 1;
   min-width: 240px;
   display: table;
+  padding: 10px;
 }
 
 .menu .menu-inner .menu-info {
   width: 40%;
-  display: table-cell;
+  float: left;
   vertical-align: top;
-  padding: 80px 0 0 40px;
+  background-color: #e9e9e9;
+  border: 3px solid;
+  margin: 5px 0 6px 0;
+}
+
+.menu-elts{
+	float: left;
+	width: calc(60% - 10px);
+	margin-left: 10px;
 }
 
 .menu .menu-inner .menu-info .menu-phrase {
@@ -92,7 +101,7 @@ strong, b {
 
 .simple-border-box {
   position: relative;
-  display: block;
+  display: inline-block;
   background: #fff;
   border-style: solid;
 }
@@ -104,6 +113,8 @@ strong, b {
   -ms-transform: translateY(0);
   -o-transform: translateY(0);
   transform: translateY(0);
+  color: black;
+  background-color: #e9e9e9;
 }
 
 .menu.active nav a:first-child {
