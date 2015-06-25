@@ -15,6 +15,15 @@ angular.module('mean').config(['$routeProvider',
 		/** AGENDA ****/
 		when('/agenda', {
 			templateUrl: 'js/agenda/views/list.html',
+			controller: 'ListController',
+			resolve: {
+				Agenda: function(AgendaCollection) {
+					return AgendaCollection.load();
+				}
+			}
+		}).
+		when('/agenda/calendar', {
+			templateUrl: 'js/agenda/views/calendar.html',
 			controller: 'CalendarController',
 			resolve: {
 				Agenda: function(AgendaCollection) {

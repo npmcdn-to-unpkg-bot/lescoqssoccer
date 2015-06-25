@@ -16,7 +16,7 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 				type: "link"
 			},
 			{
-				link: "#!/agenda",
+				link: "#!/agenda/calendar",
 				image: "img/Calendar_hand_drawn_tool_64.png",
 				tooltip: "Calendrier",
 				type: "link"
@@ -184,7 +184,7 @@ var EventDetailData = {
 
 };
 
-angular.module('mean.agenda').controller('CalendarController', ['$scope', '$routeParams', '$location', '$route', 'Global', 'AgendaCollection', 'Agenda', 'SubMenu',
+angular.module('mean.agenda').controller('ListController', ['$scope', '$routeParams', '$location', '$route', 'Global', 'AgendaCollection', 'Agenda', 'SubMenu',
 	function($scope, $routeParams, $location, $route, Global, AgendaCollection, Agenda, SubMenu) {
 
 		$scope.agendaCollection = AgendaCollection;
@@ -198,7 +198,7 @@ angular.module('mean.agenda').controller('CalendarController', ['$scope', '$rout
 				type: "link"
 			},
 			{
-				link: "#!/agenda",
+				link: "#!/agenda/calendar",
 				image: "img/Calendar_hand_drawn_tool_64.png",
 				tooltip: "Calendrier",
 				type: "link"
@@ -246,6 +246,60 @@ angular.module('mean.agenda').controller('CalendarController', ['$scope', '$rout
 	}
 ]);
 
+angular.module('mean.agenda').controller('CalendarController', ['$scope', '$routeParams', '$location', '$route', 'Global', 'AgendaCollection', 'Agenda', 'SubMenu',
+	function($scope, $routeParams, $location, $route, Global, AgendaCollection, Agenda, SubMenu) {
+
+		$scope.agendaCollection = AgendaCollection;
+		$scope.agenda = Agenda;
+
+		SubMenu.setMenu({
+			middle: [{
+				link: "#!/agenda",
+				image: "img/24_hours_delivery_64.png",
+				tooltip: "What's next?!",
+				type: "link"
+			},
+			{
+				link: "#!/agenda/calendar",
+				image: "img/Calendar_hand_drawn_tool_64.png",
+				tooltip: "Calendrier",
+				type: "link"
+			},
+			{
+				link: "#!/agenda/map",
+				image: "img/Map_of_roads_64.png",
+				tooltip: "Je suis la carte",
+				type: "link"
+			},
+			{
+				link: "#!/agenda/create",
+				image: "img/Draw_Adding_Cross_64.png",
+				tooltip: "Ajouter un petit nouveau",
+				type: "link"
+			}]
+		});
+
+		$scope.calendarView = 'month';
+		$scope.calendarTitle = 'Mon super calendar';
+		$scope.calendarDay = new Date(2013,5,1,1);
+
+		$scope.events = [
+		  {
+		    title: 'My event title', // The title of the event
+		    type: 'info', // The type of the event (determines its color). Can be important, warning, info, inverse, success or special
+		    startsAt: new Date(2013,5,1,1), // A javascript date object for when the event starts
+		    endsAt: new Date(2014,8,26,15), // Optional - a javascript date object for when the event ends
+		    editable: false, // If edit-event-html is set and this field is explicitly set to false then dont make it editable. If set to false will also prevent the event from being dragged and dropped.
+		    deletable: false, // If delete-event-html is set and this field is explicitly set to false then dont make it deleteable
+		    incrementsBadgeTotal: true, //If set to false then will not count towards the badge total amount on the month and year view
+		    recursOn: 'year', // If set the event will recur on the given period. Valid values are year or month
+		    cssClass: 'a-css-class-name' //A CSS class (or more, just separate with spaces) that will be added to the event when it is displayed on each view. Useful for marking an event as selected / active etc
+		  }
+		];
+		$scope.eventTypes = eventTypes;
+	}
+]);
+
 angular.module('mean.agenda').controller('MapController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection', 'Agenda', 'SubMenu',
 	function($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection, Agenda, SubMenu) {
 
@@ -260,7 +314,7 @@ angular.module('mean.agenda').controller('MapController', ['$scope', '$routePara
 				type: "link"
 			},
 			{
-				link: "#!/agenda",
+				link: "#!/agenda/calendar",
 				image: "img/Calendar_hand_drawn_tool_64.png",
 				tooltip: "Calendrier",
 				type: "link"

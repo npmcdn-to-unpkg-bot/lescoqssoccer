@@ -24,7 +24,7 @@ angular.module('mean', ['ngCookies',
 angular.module('mean.system', []);
 angular.module('mean.home', []);
 angular.module('mean.articles', ['ui.bootstrap', 'angularFileUpload']);
-angular.module('mean.agenda', ['ui.calendar', 'ui.bootstrap', 'google-maps','angularFileUpload']);
+angular.module('mean.agenda', ['mwl.calendar', 'ui.bootstrap', 'google-maps','angularFileUpload']);
 angular.module('mean.users', ['ui.bootstrap', 'angularFileUpload']);
 angular.module('mean.links', []);
 angular.module('mean.notifications', []);

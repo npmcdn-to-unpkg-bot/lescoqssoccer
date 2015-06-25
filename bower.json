@@ -20,12 +20,14 @@
     "angular-translate-loader-static-files": "2.2.0",
     "angular-wysiwyg": "1.2.2",
     "angular-moment": "0.10.1",
-    "angular-deckgrid": "latest"
+    "angular-deckgrid": "latest",
+    "angular-bootstrap-calendar": "0.11.2"
   },
   "resolutions": {
     "jquery": "~2.0.3",
     "es5-shim": ">=3.4.0",
     "angular": "1.2.15",
-    "outlayer": "~1.4.0"
+    "outlayer": "~1.4.0",
+    "bootstrap": "~3.3.4"
   }
 }
