@@ -8,12 +8,7 @@ Suggestions : post-it;
 	top: 0;
 	bottom: 0;
   	padding: 10px;
- 	padding-right: 55px;
-  	box-sizing: border-box;
-  	-webkit-box-flex: 1;
-  	overflow-y: scroll;
-  	overflow-x: hidden;
-  	-webkit-overflow-scrolling: touch;
+  	width: calc(100% - 75px);
 }
 
 ul.suggestionList, li {

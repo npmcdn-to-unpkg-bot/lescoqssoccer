@@ -1,7 +1,7 @@
 <section class="controls no-select">
 	<div class="tControls">
-		<div class="top">
 
+		<div class="top">
 			<div class="forkit-curtain" style="display: none;">
 				<div class="includeView" data-ng-include="'/js/appStructure/home.html'" data-ng-controller="HomeController"></div>
 				<div class="close-button">
@@ -29,11 +29,9 @@
 				<span tooltip="{{topLink.tooltip}}" tooltip-placement="right">
 				<img ng-src="{{topLink.image}}" class="imgMenu"/>
 			</a>
-
 		</div>
 
 		<div class="middle">
-
 			<a ng-show="subMenu.menu.middle" ng-repeat="middleLink in subMenu.menu.middle | filter: linkFilter" href="{{middleLink.link}}">
 				<span tooltip="{{middleLink.tooltip}}" tooltip-placement="right">
 				<img ng-src="{{middleLink.image}}" class="imgMenu"/>
@@ -43,11 +41,9 @@
 				<span tooltip="{{middleLink.tooltip}}" tooltip-placement="right">
 				<img ng-src="{{middleLink.image}}" class="imgMenu"/>
 			</a>
-
 		</div>
 
 		<div class="bottom">
-
 			<a ng-show="subMenu.menu.bottom" ng-repeat="bottomLink in subMenu.menu.bottom | filter: linkFilter" href="{{bottomLink.link}}">
 				<span tooltip="{{bottomLink.tooltip}}" tooltip-placement="right">
 				<img ng-src="{{bottomLink.image}}" class="imgMenu"/>
@@ -57,7 +53,6 @@
 				<span tooltip="{{bottomLink.tooltip}}" tooltip-placement="right">
 				<img ng-src="{{bottomLink.image}}" class="imgMenu"/>
 			</a>
-
 		</div>
 	</div>
 </section>
