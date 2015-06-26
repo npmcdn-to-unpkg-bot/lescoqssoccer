@@ -210,3 +210,12 @@ Creation
   	overflow-x: hidden;
   	-webkit-overflow-scrolling: touch;
 }
+
+/****
+
+Override calendar
+
+*****/
+.events-list {
+  z-index: 10 !important;
+}

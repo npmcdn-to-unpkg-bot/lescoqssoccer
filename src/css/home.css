@@ -50,6 +50,8 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   line-height: 50px;
   letter-spacing: 0.1em;
   font-weight: 300;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .menu .menu-inner .menu-info .menu-date {
@@ -159,7 +161,7 @@ h3, .h3, h5, .h5, .fn-h1, .small-text {
 
   font-family: 'Lato', sans-serif;
   text-decoration: none;
-  z-index: 12;
+  z-index: 13;
   background-color: #f5f5f5;
 }
 .forkit .tag {
@@ -180,10 +182,11 @@ h3, .h3, h5, .h5, .fn-h1, .small-text {
 
 .forkit-curtain {
   position: fixed;
-  width: 100%;
+  width: calc(100% + 5px);
   height: 100%;
   background: #f5f5f5;
-  z-index: 12;
+  z-index: 14;
+  margin-left: -5px;
 }
 
 .homeTooltip{
@@ -192,7 +195,7 @@ h3, .h3, h5, .h5, .fn-h1, .small-text {
   left: 0;
   width: 75px;
   height: 80px;
-  z-index: 12;
+  z-index: 13;
 }
 
 .includeView{

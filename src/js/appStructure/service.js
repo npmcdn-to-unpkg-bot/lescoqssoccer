@@ -92,6 +92,7 @@ angular.module('mean.system').service('TopMenu',
 				dom.ribbon = document.querySelector('.forkit');
 				dom.curtain = document.querySelector('.forkit-curtain');
 				dom.closeButton = document.querySelector('.forkit-curtain .close-button');
+				dom.tooltip = document.querySelector('.homeTooltip');
 
 				if (dom.ribbon) {
 
@@ -106,7 +107,7 @@ angular.module('mean.system').service('TopMenu',
 					dom.ribbonTag = dom.ribbon.querySelector('.tag');
 
 					// Bind events
-					dom.ribbon.addEventListener('click', this.onRibbonClick, false);
+					dom.tooltip.addEventListener('click', this.onRibbonClick, false);
 					document.addEventListener('mousemove', this.onMouseMove, false);
 					document.addEventListener('mousedown', this.onMouseDown, false);
 					document.addEventListener('mouseup', this.onMouseUp, false);
