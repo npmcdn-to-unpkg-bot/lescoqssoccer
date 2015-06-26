@@ -337,6 +337,7 @@ div.tooltip, div.tooltip div{
 .input--makiko {
   overflow: hidden;
   background: gray;
+  margin-bottom: 2em;
 }
 .input__field--makiko {
   width: 100%;

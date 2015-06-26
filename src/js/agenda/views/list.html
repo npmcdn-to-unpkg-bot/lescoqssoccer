@@ -1,8 +1,8 @@
 <div class="agendaContainer expandable-container">
 	<div class="comingEvents">
 		<h3>A venir</h3>
-		<div class="grid__item eventSmall" ng-repeat="event in filteredAgenda = (agenda | filter: isComingEvent) | limitTo:limit">
-			<h2 class="ev2page-title three-line-ellipsis">
+		<div class="grid__item eventSmall" ng-repeat="event in filteredAgenda = (agenda | filter: isPastEvent) | limitTo:limit">
+			<h2 class="ev2page-title ellipsis">
 				<a href="#!">{{event.title}}</a>
 			</h2>
 
@@ -17,6 +17,41 @@
 	</div>
 
 	<div class="calendarContainer">
+		<div class="btn-group">
+            <button
+              class="btn"
+              mwl-date-modifier
+              date="calendarDay"
+              decrement="calendarView">
+              Précédent
+            </button>
+            <button
+              class="btn"
+              mwl-date-modifier
+              date="calendarDay"
+              set-to-today>
+              Aujourd'hui
+            </button>
+            <button
+              class="btn"
+              mwl-date-modifier
+              date="calendarDay"
+              increment="calendarView">
+              Suivant
+            </button>
+        </div>
+
+		<div class="btn-group">
+			<h2 class="text-center">{{ calendarTitle }}</h2>
+		</div>
+
+        <div class="btn-group pull-right">
+	        <label class="btn" ng-model="calendarView" btn-radio="'year'">Year</label>
+	        <label class="btn" ng-model="calendarView" btn-radio="'month'">Month</label>
+	        <label class="btn" ng-model="calendarView" btn-radio="'week'">Week</label>
+	        <label class="btn" ng-model="calendarView" btn-radio="'day'">Day</label>
+	    </div>
+
 		<mwl-calendar
 		view="calendarView"
 		current-day="calendarDay"

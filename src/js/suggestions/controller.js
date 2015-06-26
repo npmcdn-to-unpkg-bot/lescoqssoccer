@@ -1,12 +1,13 @@
 'use strict';
 
-angular.module('mean.suggestions').controller('SuggestionController', ['$scope', '$location', 'Global', 'SuggestionsCollection',
-	function ($scope, $location, Global, SuggestionsCollection) {
+angular.module('mean.suggestions').controller('SuggestionController', ['$scope', '$location', 'Global', 'SuggestionsCollection', 'SubMenu',
+	function ($scope, $location, Global, SuggestionsCollection, SubMenu) {
 
 		$scope.global = Global;
 		$scope.dateFormat = "dd/MM/yyyy";
 		$scope.SuggestionsCollection = SuggestionsCollection;
-		$scope.view = ($location.path().substr(1, $location.path().length) === 'suggestions') ? 'suggestions' : 'create';
+
+		SubMenu.setMenu({});
 
 		$scope.content;
 		$scope.SuggestionsCollection.load();
@@ -25,14 +26,5 @@ angular.module('mean.suggestions').controller('SuggestionController', ['$scope',
 				});
 			}
 		}
-
-		$scope.$parent.menu = {
-			middle: [{
-				link: "#!/suggestions/create",
-				image: "img/Checklist_paper_sheet_handmade_symbol_64.png",
-				tooltip: "Ajouter un postit",
-				type: "link"
-			}]
-		};
 	}
 ]);

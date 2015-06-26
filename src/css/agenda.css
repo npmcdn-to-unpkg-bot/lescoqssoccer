@@ -21,6 +21,8 @@ Agenda
 
 .calendarContainer{
 	margin-top: 190px;
+	padding: 0 15px;
+	text-align: center;
 }
 
 div.pastEvents{
@@ -40,8 +42,8 @@ div.commingEventEmpty{
 }
 
 div.comingEvents .grid__item{
-	width: 33%;
-	margin: auto;
+	width: calc(33% - 20px);
+  	margin: 10px;
 }
 
 .agendaForm .angular-google-map-container {

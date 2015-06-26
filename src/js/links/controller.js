@@ -1,14 +1,15 @@
 'use strict';
 
-angular.module('mean.links').controller('LinkController', ['$scope', 'Global', 'LinksCollection',
-	function ($scope, Global, LinksCollection) {
+angular.module('mean.links').controller('LinkController', ['$scope', 'Global', 'LinksCollection', 'SubMenu',
+	function ($scope, Global, LinksCollection, SubMenu) {
 
 		$scope.global = Global;
 		$scope.dateFormat = "dd/MM/yyyy 'à' H'h'mm";
 		$scope.LinksCollection = LinksCollection;
 		$scope.content;
 
-		//$scope.LinksCollection.load();
+		SubMenu.setMenu({});
+
 		$scope.links = {
 			joan: {
 				author: "Jo",
