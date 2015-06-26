@@ -165,6 +165,10 @@ div.tooltip, div.tooltip div{
   height: 50px;
 }
 
+.imgMenu:hover{
+  transform: scale(1.1);
+}
+
 .tControls {
   display: table;
   height: 100%;

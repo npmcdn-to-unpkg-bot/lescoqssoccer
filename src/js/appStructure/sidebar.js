@@ -32,8 +32,16 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 		};
 
 		setTimeout(function() {
+
 			TopMenu.initialize();
-		}, 500);
+			$('.forkit').show();
+			$('.forkit-curtain').show();
+
+			if($scope.isCurrentPath('home')){
+				TopMenu.open();
+			};
+
+		}, 1000);
 
 	}
 ]);

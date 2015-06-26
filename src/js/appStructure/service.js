@@ -99,10 +99,6 @@ angular.module('mean.system').service('TopMenu',
 					// Fetch label texts from DOM
 					closedText = dom.ribbon.getAttribute('data-text') || '';
 					detachedText = dom.ribbon.getAttribute('data-text-detached') || closedText;
-
-					// Construct the sub-elements required to represent the
-					// tag and string that it hangs from
-					dom.ribbon.innerHTML = '<span class="string"></span><span class="tag">' + closedText + '</span>';
 					dom.ribbonString = dom.ribbon.querySelector('.string');
 					dom.ribbonTag = dom.ribbon.querySelector('.tag');
 
