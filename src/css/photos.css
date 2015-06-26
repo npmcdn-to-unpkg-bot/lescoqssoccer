@@ -42,6 +42,7 @@ Phtotos
   	overflow-y: scroll;
   	overflow-x: hidden;
   	-webkit-overflow-scrolling: touch;
+  	background-color: #f5f5f5;
 }
 
 .albumTitle {

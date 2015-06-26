@@ -193,12 +193,7 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 				image: "img/24_hours_delivery_64.png",
 				tooltip: "What's next?!",
 				type: "link"
-			}, {
-				link: "#!/agenda/calendar",
-				image: "img/Calendar_hand_drawn_tool_64.png",
-				tooltip: "Calendrier",
-				type: "link"
-			}, {
+			},{
 				link: "#!/agenda/map",
 				image: "img/Map_of_roads_64.png",
 				tooltip: "Je suis la carte",
@@ -211,13 +206,7 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 			}]
 		});
 
-		$scope.obj = {
-			searchTitle: ""
-		};
-
-		$scope.nameFilter = function(event) {
-			return (event.title.toLowerCase().indexOf($scope.obj.searchTitle) !== -1) ? event.title : null;
-		};
+		$scope.limit = 3;
 
 		$scope.isPastEvent = function(event) {
 			return moment(event.start).endOf('day').isBefore(new Date()) ? event.start : null;
@@ -234,41 +223,6 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 				$location.path("/agenda");
 			});
 		};
-
-		$scope.events = [];
-		$scope.eventTypes = eventTypes;
-	}
-]);
-
-angular.module('mean.agenda').controller('CalendarController', ['$scope', '$routeParams', '$location', '$route', 'Global', 'AgendaCollection', 'Agenda', 'SubMenu',
-	function($scope, $routeParams, $location, $route, Global, AgendaCollection, Agenda, SubMenu) {
-
-		$scope.agendaCollection = AgendaCollection;
-		$scope.agenda = Agenda;
-
-		SubMenu.setMenu({
-			middle: [{
-				link: "#!/agenda",
-				image: "img/24_hours_delivery_64.png",
-				tooltip: "What's next?!",
-				type: "link"
-			}, {
-				link: "#!/agenda/calendar",
-				image: "img/Calendar_hand_drawn_tool_64.png",
-				tooltip: "Calendrier",
-				type: "link"
-			}, {
-				link: "#!/agenda/map",
-				image: "img/Map_of_roads_64.png",
-				tooltip: "Je suis la carte",
-				type: "link"
-			}, {
-				link: "#!/agenda/create",
-				image: "img/Draw_Adding_Cross_64.png",
-				tooltip: "Ajouter un petit nouveau",
-				type: "link"
-			}]
-		});
 
 		$scope.calendarView = 'month';
 		$scope.calendarTitle = 'Mon super calendar';
@@ -301,11 +255,6 @@ angular.module('mean.agenda').controller('MapController', ['$scope', '$routePara
 				link: "#!/agenda",
 				image: "img/24_hours_delivery_64.png",
 				tooltip: "What's next?!",
-				type: "link"
-			}, {
-				link: "#!/agenda/calendar",
-				image: "img/Calendar_hand_drawn_tool_64.png",
-				tooltip: "Calendrier",
 				type: "link"
 			}, {
 				link: "#!/agenda/map",

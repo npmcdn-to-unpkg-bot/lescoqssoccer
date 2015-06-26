@@ -204,6 +204,7 @@ h3, .h3, h5, .h5, .fn-h1, .small-text {
   height: 100%;
   display: table;
   width: 100%;
+  border-bottom: 1px solid black;
 }
 
 /*

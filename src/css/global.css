@@ -7,7 +7,8 @@ body {
 }
 
 div, p, a, select, h1, h2, h3, h4{
-	font-family: "WC Mano Negra Bold", "WC Mano Negra", "Impact", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+	font-family: "WC Mano Negra", "Impact", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+	font-size: medium;
 }
 
 @font-face {
@@ -23,17 +24,18 @@ div, p, a, select, h1, h2, h3, h4{
 }
 
 .linksContainer{
-	width: 100%;
+	width: calc(100% - 75px);
 	position: absolute;
 	top: 0;
 	bottom: 0;
+	left: 75px;
   	padding: 20px;
- 	padding-right: 55px;
   	box-sizing: border-box;
   	-webkit-box-flex: 1;
   	overflow-y: scroll;
   	overflow-x: hidden;
   	-webkit-overflow-scrolling: touch;
+  	background-color: #f5f5f5;
 }
 
 /*

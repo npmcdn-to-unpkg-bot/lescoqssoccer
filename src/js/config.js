@@ -22,15 +22,6 @@ angular.module('mean').config(['$routeProvider',
 				}
 			}
 		}).
-		when('/agenda/calendar', {
-			templateUrl: 'js/agenda/views/calendar.html',
-			controller: 'CalendarController',
-			resolve: {
-				Agenda: function(AgendaCollection) {
-					return AgendaCollection.load();
-				}
-			}
-		}).
 		when('/agenda/create', {
 			templateUrl: 'js/agenda/views/create.html',
 			controller: 'CreateAgendaController',
