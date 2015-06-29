@@ -1,13 +1,15 @@
 <section class="entries">
 	<article class="entry active articleTitle" ng-show="selected">
 		<div class="row-fluid">
+			<img ng-src="{{selected.user.avatar}}" class="avatarArticle"/>
 			<img src="img/trash.png" class="imageAction" ng-click="remove(selected, $event)" ng-show="global.user._id === selected.user._id"/>
 			<img src="img/pencil.png" class="imageAction" ng-click="edit(selected, $event)" ng-show="global.user._id === selected.user._id"/>
-			<h2>{{selected.title}}</h2>
-			<span class="author">
-				{{selected.user.name}}</span> - le <span class="pub-name">{{selected.created | date:'medium'}}
+			<h2>
+				{{selected.title}}
+			</h2>
+			<span class="pub-name">
+				{{selected.created | date:dateFormat}}
 			</span>
-			<span class="">{{selected.category}}</span>
 			<hr />
 
 			<article class="articleContent active">
@@ -46,8 +48,7 @@
 
 		<div class="articleCellDetail">
 			<p class="ellipsis">
-				<span class="fa fa-user"></span>
-				{{article.user.name}}
+				{{article.title}}
 			</p>
 			<p class="ellipsis">
 				<span class="fa fa-clock-o"></span>

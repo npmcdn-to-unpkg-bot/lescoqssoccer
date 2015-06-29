@@ -29,8 +29,16 @@ Articles
 
 .imageAction{
 	float: right;
-	width: 30px;
+	padding-top: 10px;
+  width: 40px;
 	cursor: pointer;
+}
+
+.avatarArticle{
+  float: left;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
 }
 
 .articleImage{
