@@ -9,6 +9,10 @@ Articles
   	z-index: 9;
 }
 
+.articleCellDetail {
+  margin-top: 10px;
+}
+
 .articleCellDetail p{
   margin-left: 100px;
   text-align: left;
@@ -29,7 +33,7 @@ Articles
 
 .imageAction{
 	float: right;
-	padding-top: 10px;
+	padding-top: 15px;
   width: 40px;
 	cursor: pointer;
 }
@@ -39,6 +43,7 @@ Articles
   border-radius: 50%;
   width: 60px;
   height: 60px;
+  margin-top: 5px;
 }
 
 .articleImage{
@@ -173,7 +178,7 @@ div.tooltip, div.tooltip div{
   height: 50px;
 }
 
-.imgMenu:hover{
+.imgMenu:hover, .imageAction:hover{
   transform: scale(1.1);
 }
 
@@ -266,7 +271,9 @@ div.tooltip, div.tooltip div{
   -webkit-transition: all 0.5s ease-in-out;
 }
 
-.entry.read {
+.entry h1{
+  font-size: xx-large;
+  padding-top: 10px;
 }
 
 .entry.active {

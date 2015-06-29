@@ -9,12 +9,38 @@
 					</div>
 				</div>
 				<div class="menu-elts">
-					<a ng-repeat="item in menu" href="#!/{{item.link}}" class="simple-border-box" ng-click="closeMenu();">
+					<a href="#!/home" class="link link--kukuri color-1" ng-click="closeMenu();" data-letters="Home">
+
 						<div class="sbb-contents">
-							<img ng-src="img/{{item.icon}}"/>
-							{{item.title | translate}}
-							<span class="small-text">_sweet home./</span>
+						Home
+							<!-- <img ng-src="img/human_picto_163.png"/> -->
+							<!-- <span data-letters="Home">Home</span> -->
 						</div>
+					</a>
+					<a href="#!/agenda" class="link link--takiri color-2" ng-click="closeMenu();">
+						<div class="sbb-contents">
+							<img src="img/Time_left_64.png"/>
+							Agenda
+						</div>
+					</a>
+					<a href="#!/articles" class="link link--kumya color-9" ng-click="closeMenu();">
+						<span data-letters="ArTicles">ArTicles</span>
+						<img src="img/News_over_the_radio_64.png"/>
+					</a>
+					<a href="#!/albums" class="link link--nukun color-3" ng-click="closeMenu();">
+						<div class="sbb-contents">
+							<img ng-src="img/photo229.png"/>
+							<span>GallEry</span>
+						</div>
+					</a>
+					<a href="#!/suggestions" class="link link--manko color-7" ng-click="closeMenu();">
+						<div class="menu_suggestions">
+							Suggestions<span>one step</span><span>at a time</span>
+						</div>
+					</a>
+					<a href="#!/links" class="link link--kumya color-5" ng-click="closeMenu();">
+						<img src="img/Sandals_64.png"/>
+						<span data-letters="Espace voyageurs">Espace voyageurs</span>
 					</a>
 				</div>
 			</nav>

@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', '$sce', '$modal', 'Global', 'ArticlesCollection', 'Articles', 'SubMenu',
-	function($scope, $routeParams, $location, $sce, $modal, Global, ArticlesCollection, Articles, SubMenu) {
+angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', '$sce', '$modal', '$timeout', 'Global', 'ArticlesCollection', 'Articles', 'SubMenu',
+	function($scope, $routeParams, $location, $sce, $modal, $timeout, Global, ArticlesCollection, Articles, SubMenu) {
 
 		$scope.global = Global;
 		$scope.ArticlesCollection = ArticlesCollection;
@@ -35,18 +35,33 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 			$scope.currentIndex = index;
 		};
 
-		$scope.setPreviousArticle = function(){
-			if($scope.currentIndex > 0){
-				$scope.currentIndex --;
+		$scope.setPreviousArticle = function() {
+			if ($scope.currentIndex > 0) {
+				$scope.currentIndex--;
 				$scope.selected = $scope.articles[$scope.currentIndex];
+				$scope.scrollToCurrent();
 			}
 		};
 
-		$scope.setNextArticle = function(){
-			if($scope.articles.length  > $scope.currentIndex){
-				$scope.currentIndex ++;
+		$scope.setNextArticle = function() {
+			if ($scope.articles.length > $scope.currentIndex) {
+				$scope.currentIndex++;
 				$scope.selected = $scope.articles[$scope.currentIndex];
+				$scope.scrollToCurrent();
 			}
+		};
+
+		$scope.scrollToCurrent = function() {
+
+			$timeout(function() {
+				var curScrollPos = $('.summaries').scrollTop();
+				var itemTop = $('.summary.active').offset().top - 60;
+				$('.summaries').animate({
+					'scrollTop': curScrollPos + itemTop
+				}, 200);
+				$('.entries article.active')[0].scrollIntoView();
+			}, 0, false);
+
 		};
 
 		$scope.remove = function(article, evt) {
@@ -82,15 +97,13 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 				image: "img/Draw_Adding_Cross_64.png",
 				tooltip: "Ajouter un petit nouveau",
 				type: "link"
-			},
-			{
+			}, {
 				title: "articlePrev",
 				image: "img/Sketched_up_arrow_triangle_64.png",
 				tooltip: "C'est plus",
 				type: "button",
 				callback: $scope.setPreviousArticle
-			},
-			{
+			}, {
 				title: "articleNext",
 				image: "img/Sketched_down_arrow_triangle_64.png",
 				tooltip: "C'est moins",
@@ -101,7 +114,6 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 
 		if (!$scope.selected && $scope.articles.length > 0) {
 			$scope.selectArticle($scope.articles[0], 0);
-			console.warn($scope.selected.user);
 		}
 	}
 ]);

@@ -230,10 +230,10 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 
 		$scope.events = [{
 			title: 'My event title', // The title of the event
-			type: 'success', // The type of the event (determines its color). Can be important, warning, info, inverse, success or special
+			// type: 'success', // The type of the event (determines its color). Can be important, warning, info, inverse, success or special
 			startsAt: new Date(2013, 5, 1, 1), // A javascript date object for when the event starts
 			endsAt: new Date(2013, 5, 17, 15), // Optional - a javascript date object for when the event ends
-			editable: true, // If edit-event-html is set and this field is explicitly set to false then dont make it editable. If set to false will also prevent the event from being dragged and dropped.
+			editable: false, // If edit-event-html is set and this field is explicitly set to false then dont make it editable. If set to false will also prevent the event from being dragged and dropped.
 			deletable: false, // If delete-event-html is set and this field is explicitly set to false then dont make it deleteable
 			incrementsBadgeTotal: true, //If set to false then will not count towards the badge total amount on the month and year view
 			recursOn: 'year', // If set the event will recur on the given period. Valid values are year or month

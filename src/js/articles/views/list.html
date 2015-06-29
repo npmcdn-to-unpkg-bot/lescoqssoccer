@@ -4,9 +4,9 @@
 			<img ng-src="{{selected.user.avatar}}" class="avatarArticle"/>
 			<img src="img/trash.png" class="imageAction" ng-click="remove(selected, $event)" ng-show="global.user._id === selected.user._id"/>
 			<img src="img/pencil.png" class="imageAction" ng-click="edit(selected, $event)" ng-show="global.user._id === selected.user._id"/>
-			<h2>
+			<h1>
 				{{selected.title}}
-			</h2>
+			</h1>
 			<span class="pub-name">
 				{{selected.created | date:dateFormat}}
 			</span>
@@ -14,7 +14,7 @@
 
 			<article class="articleContent active">
 				<div>
-					<img ng-src="{{selected.image && selected.image || 'img/8962691008_7f489395c9_m.jpg'}}" alt="image de {{selected.title}}" title="{{selected.title}}" class="articleImage">
+					<img ng-src="{{selected.image && selected.image || 'img/heaven_earth_drib.jpg'}}" alt="image de {{selected.title}}" title="{{selected.title}}" class="articleImage">
 				</div>
 				<div ng-bind-html="getFormattedContent(selected.content)"></div>
 			</article>
