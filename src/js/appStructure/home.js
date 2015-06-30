@@ -4,6 +4,8 @@ angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Glo
 	function($scope, $sce, Global, TopMenu) {
 
 		$scope.global = Global;
+		$scope.date = new Date();
+		$scope.dateFormat = "dd MMM yyyy";
 
 		$scope.isCurrentPath = function (path) {
 			var cur_path = "#!" + $location.path().substr(0, path.length);

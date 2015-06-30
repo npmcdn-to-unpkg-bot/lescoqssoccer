@@ -2,46 +2,43 @@
 	<div class="menu active">
 		<div class="menu-inner">
 			<nav>
-				<div class="menu-info">
+				<div class="menu-info color-11">
 					<div class="menu-phrase">
-						<p>16 Jun</p>
+						<p>{{date | date:dateFormat}}</p>
 						Yes, finally taco <strong>_Tuesday.</strong>
 					</div>
 				</div>
 				<div class="menu-elts">
-					<a href="#!/home" class="link link--kukuri color-1" ng-click="closeMenu();" data-letters="Home">
-
-						<div class="sbb-contents">
-						Home
-							<!-- <img ng-src="img/human_picto_163.png"/> -->
-							<!-- <span data-letters="Home">Home</span> -->
-						</div>
-					</a>
-					<a href="#!/agenda" class="link link--takiri color-2" ng-click="closeMenu();">
-						<div class="sbb-contents">
-							<img src="img/Time_left_64.png"/>
+					<div class="menu_elt menu_home color-3">
+						<a class="link link--kukuri" href="#!/home" data-letters="Home">Home</a>
+					</div>
+					<div class="menu_elt menu_agenda color-9">
+						<a href="#!/agenda" class="link link--takiri" ng-click="closeMenu();">
 							Agenda
-						</div>
-					</a>
-					<a href="#!/articles" class="link link--kumya color-9" ng-click="closeMenu();">
-						<span data-letters="ArTicles">ArTicles</span>
-						<img src="img/News_over_the_radio_64.png"/>
-					</a>
-					<a href="#!/albums" class="link link--nukun color-3" ng-click="closeMenu();">
-						<div class="sbb-contents">
-							<img ng-src="img/photo229.png"/>
+						</a>
+					</div>
+					<div class="menu_elt menu_articles color-9">
+						<a href="#!/articles" class="link link--kumya" ng-click="closeMenu();">
+							<span data-letters="ArTicles">ArTicles</span>
+						</a>
+					</div>
+					<div class="menu_elt menu_gallery color-3">
+						<a href="#!/albums" class="link link--nukun" ng-click="closeMenu();">
 							<span>GallEry</span>
-						</div>
-					</a>
-					<a href="#!/suggestions" class="link link--manko color-7" ng-click="closeMenu();">
-						<div class="menu_suggestions">
-							Suggestions<span>one step</span><span>at a time</span>
-						</div>
-					</a>
-					<a href="#!/links" class="link link--kumya color-5" ng-click="closeMenu();">
-						<img src="img/Sandals_64.png"/>
-						<span data-letters="Espace voyageurs">Espace voyageurs</span>
-					</a>
+						</a>
+					</div>
+					<div class="menu_elt menu_suggestions color-3">
+						<a href="#!/suggestions" class="link link--manko" ng-click="closeMenu();">
+							<div class="menu_suggestions">
+								Suggestions
+							</div>
+						</a>
+					</div>
+					<div class="menu_elt menu_links color-9">
+						<a href="#!/links" class="link link--kumya" ng-click="closeMenu();">
+							<span data-letters="Voyageurs">Voyageurs</span>
+						</a>
+					</div>
 				</div>
 			</nav>
 		</div>
