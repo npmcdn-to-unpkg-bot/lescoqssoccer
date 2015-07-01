@@ -10,26 +10,23 @@ angular.module('mean.links').controller('LinkController', ['$scope', 'Global', '
 
 		SubMenu.setMenu({});
 
-		$scope.links = {
-			joan: {
+		$scope.links = [{
 				author: "Jo",
 				adress: "http://objectifjapon.wordpress.com",
 				image: "img/jojo.jpg",
 				title: "objectifjapon TKT"
-			},
-			nico: {
+			},{
 				author: "Nico et Amélie",
 				adress: "http://deux-noix-nz.blogspot.fr",
 				image: "img/nico.jpg",
 				title: "Deux noix au pays des kiwis"
-			},
-			momo:{
+			},{
 				author: "Momo et Céline",
 				adress: "http://bandedemickeysen4l.com/",
 				image: "img/momo.jpeg",
 				title: "Bande de Mickeys en 4L"
 			}
-		};
+		];
 
 		$scope.add = function () {
 

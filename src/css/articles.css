@@ -4,6 +4,44 @@ Articles
 
 *****/
 
+[ng-cloak] {
+  display: none;
+}
+
+body ::-webkit-scrollbar {
+  height: 16px;
+  overflow: visible;
+  width: 16px;
+}
+body ::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, .05);
+  background-clip: padding-box;
+  border: solid transparent;
+  min-height: 28px;
+  padding: 100px 0 0;
+  box-shadow: inset 1px 1px 0 rgba(0,0,0,.1),inset 0 -1px 0 rgba(0,0,0,.07);
+  border-width: 1px 1px 1px 6px;
+}
+body ::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+body ::-webkit-scrollbar-button {
+  height: 0;
+  width: 0;
+}
+::-webkit-scrollbar-track {
+  background-clip: padding-box;
+  border: solid transparent;
+  border-width: 0 0 0 4px;
+}
+body ::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+html {
+  height: 100%;
+}
+
 .articleCell{
 	width: 135px;
   	z-index: 9;
@@ -14,7 +52,6 @@ Articles
 }
 
 .articleCellDetail p{
-  margin-left: 100px;
   text-align: left;
 }
 
@@ -55,7 +92,7 @@ Articles
 }
 
 .articleItem{
-  padding: 20px 55px 20px;
+  padding: 20px;
   position: relative;
   cursor: pointer;
   text-align: center;
@@ -82,44 +119,36 @@ Articles
   opacity: 1 !important;
 }
 
-
-
-[ng-cloak] {
+.articleItem:not(.active) .arrow{
   display: none;
 }
 
-body ::-webkit-scrollbar {
-  height: 16px;
-  overflow: visible;
-  width: 16px;
-}
-body ::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, .05);
-  background-clip: padding-box;
-  border: solid transparent;
-  min-height: 28px;
-  padding: 100px 0 0;
-  box-shadow: inset 1px 1px 0 rgba(0,0,0,.1),inset 0 -1px 0 rgba(0,0,0,.07);
-  border-width: 1px 1px 1px 6px;
-}
-body ::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-body ::-webkit-scrollbar-button {
-  height: 0;
-  width: 0;
-}
-::-webkit-scrollbar-track {
-  background-clip: padding-box;
-  border: solid transparent;
-  border-width: 0 0 0 4px;
-}
-body ::-webkit-scrollbar-corner {
-  background: transparent;
+.articleItem.active .arrow {
+  width: 14px;
+  height: 28px;
+  overflow: hidden;
+  position: absolute;
+  left: -14px;
+  top: 50%;
+  margin-top: -14px;
 }
 
-html {
-  height: 100%;
+.articleItem.active .arrow:after {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-box-shadow: 1px 1px 2px rgba(0,0,0,0.15),1px 1px 0 rgba(0,0,0,0.1);
+  -moz-box-shadow: 1px 1px 2px rgba(0,0,0,0.15),1px 1px 0 rgba(0,0,0,0.1);
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.15),1px 1px 0 rgba(0,0,0,0.1);
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: #f5f5f5;
+  top: 7px;
+  right: -7px;
 }
 
 .navbar .navbar-inner {

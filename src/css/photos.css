@@ -190,5 +190,15 @@ img {
 
 .deckgrid[deckgrid]::before {
     content: '4 .column.size-1-4';
-    	font-size: 0;
+    font-size: 0;
+}
+
+.deckgrid.col4[deckgrid]::before {
+    content: '4 .column.size-1-4';
+    font-size: 0;
+}
+
+.deckgrid.col3[deckgrid]::before {
+    content: '3 .column.size-1-3';
+    font-size: 0;
  }

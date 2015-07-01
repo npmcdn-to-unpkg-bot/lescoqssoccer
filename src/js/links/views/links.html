@@ -1,21 +1,6 @@
 <section class="linksContainer">
-	<div class="adpage1-col wz-last" data-ng-repeat="link in links">
-		<a href="{{link.adress}}" target="_blank">
-		    <div class="adpage1-cover" st>
-		    	<div class="scotch"></div>
-		        <div class="wz-wrap wz-hover">
-		          	<img ng-src="{{link.image && link.image || 'img/8962691008_7f489395c9_m.jpg'}}" alt="" class="linkImage" scale="0">
-		          	<div class="he-view">
-		             	<div class="bg a0">
-		             	</div>
-				  	</div>
-		       	</div>
-		    </div>
-	       	<div class="adpage-info">
-	          	<div class="adpage-title">{{link.title}}</div>
-	          	<div class="adpage-des"> {{link.author}}</div>
-	       </div>
- 		</a>
- 	</div>
+	<section class="grid">
+		<div deckgrid class="deckgrid col3" source="links" cardTemplate="js/links/views/linkCard.html"></div>
+	</section>
 </section>
 
