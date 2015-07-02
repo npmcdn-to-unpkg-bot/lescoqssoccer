@@ -67,6 +67,22 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   vertical-align: middle;
 }
 
+.menu-phrase p {
+    width: 100%;
+    white-space:nowrap;
+    overflow:hidden;
+    -webkit-animation: type 5s steps(50, end);
+    animation: type 5s steps(50, end);
+}
+
+@keyframes type{
+    from { width: 0; }
+}
+
+@-webkit-keyframes type{
+    from { width: 0; }
+}
+
 .menu .menu-inner .menu-info .menu-date {
   font-weight: 600;
   margin-bottom: 50px;
@@ -565,14 +581,15 @@ Spinner
   overflow: hidden;
   white-space: nowrap;
   width: 0%;
-  -webkit-transition: width 0.5s;
-  transition: width 0.5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
   -webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
   transition-timing-function: cubic-bezier(0.7,0,0.3,1);
 }
 
 .link--kumya:hover span::before {
   width: 100%;
+  height: 150px;
 }
 
 /* Manko */
