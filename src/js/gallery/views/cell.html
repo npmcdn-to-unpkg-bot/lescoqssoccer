@@ -1,26 +1,24 @@
-<div class="grid__item photo">
-
-	<div class="scotch"></div>
-	<div class="photo-wrapper">
+<div class="photo">
+	<figure class="effect-steve">
 		<img
 		src=""
 		data-ng-src="{{card.coverPicPath && card.coverPicPath || 'img/8962691008_7f489395c9_m.jpg'}}"
 		class="animation-fade photoCard"
 		data-imageloaded data-loadedclass="animation-faded">
-	</div>
-
-	<div class="albumOverlay">
-		<div class="photoCell">
-			<img src="img/trash.png" class="left" ng-click="deleteAlbum(album, $event)" ng-show="mother.global.user._id === card.user"/>
-			<img src="img/pencil.png" class="left" ng-click="editAlbum(album, $event)" ng-show="mother.global.user._id === card.user"/>
-		</div>
-		<div class="helper">
-			<img src="img/magnifier_sketch.png" class="center" ng-class="{'negativeMargin' : mother.global.user._id === card.user}"/>
-		</div>
-	</div>
-
-	<div class="albumTitle ellipsis">
-		{{card.name}}
-	</div>
-
+		<figcaption>
+			<h2 class="alignCenter albumTitle ellipsis">{{card.name}}</h2>
+			<p class="alignCenter">
+				<img
+				src="img/pencil.png"
+				class="photoAction"
+				ng-click="mother.editAlbum(card._id, $event);"
+				ng-show="mother.global.user._id === card.user"/>
+				<img
+				src="img/trash.png"
+				class="photoAction"
+				ng-click="mother.deleteAlbum(album, $event);"
+				ng-show="mother.global.user._id === card.user"/>
+			</p>
+		</figcaption>
+	</figure>
 </div>

@@ -8,8 +8,8 @@ angular.module('mean.albums').controller('AlbumCtrl', ['$location', '$scope', '$
 		SubMenu.setMenu({
 			middle: [{
 				link: "#!/albums",
-				image: "img/Draw_Adding_Cross_64.png",
-				tooltip: "hey hey"
+				image: "img/Left_arrow_sketch_64.png",
+				tooltip: "Back back dans les bacs!"
 			}]
 		});
 
@@ -115,7 +115,7 @@ angular.module('mean.albums').controller('GalleryCtrl', ['$scope', 'Global', '$l
 			middle: [{
 				link: "#!/albums/create",
 				image: "img/Draw_Adding_Cross_64.png",
-				tooltip: "hey hey"
+				tooltip: "C'est plus!"
 			}]
 		});
 
@@ -123,12 +123,12 @@ angular.module('mean.albums').controller('GalleryCtrl', ['$scope', 'Global', '$l
 		$scope.pmSvc = PhotoMgrService;
 		$scope.albums = albums;
 
-		$scope.editAlbum = function(album, evt) {
+		$scope.editAlbum = function(id, evt) {
 
 			evt.preventDefault();
 			evt.stopPropagation();
 
-			$location.path("/albums/edit/" + album._id);
+			$location.path("/albums/edit/" + id);
 		};
 
 		$scope.deleteAlbum = function(deletedAlbum, evt) {

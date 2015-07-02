@@ -27,7 +27,7 @@
 
 .grid figure img {
 	position: relative;
-	display: block;
+	/*display: block;*/
 	opacity: 0.8;
 }
 

@@ -47,10 +47,5 @@ angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Glo
 		$scope.closeMenu = function(){
 			TopMenu.close();
 		};
-
-		$scope.getFormattedContent = function(html) {
-			console.warn(html);
-			return $sce.trustAsHtml(html);
-		};
 	}
 ]);
