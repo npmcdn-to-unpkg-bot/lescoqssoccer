@@ -63,16 +63,18 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   line-height: 50px;
   letter-spacing: 0.1em;
   font-weight: 300;
-  display: table-cell;
-  vertical-align: middle;
+  vertical-align: top;
+  margin-top: 20px;
+  padding: 15px;
 }
 
 .menu-phrase p {
-    width: 100%;
-    white-space:nowrap;
-    overflow:hidden;
+    /*width: 100%;
+    white-space: pre-wrap;
+    overflow: hidden;
     -webkit-animation: type 5s steps(50, end);
-    animation: type 5s steps(50, end);
+    animation: type 5s steps(50, end);*/
+    text-align: left;
 }
 
 @keyframes type{
@@ -99,8 +101,8 @@ strong, b {
   z-index: 2;
   padding: 0;
   overflow-y: hidden;
-  width: 80%;
-  margin-left: 10%;
+  width: 90%;
+  margin-left: 5%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

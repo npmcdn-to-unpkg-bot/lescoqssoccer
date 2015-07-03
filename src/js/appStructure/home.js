@@ -7,7 +7,7 @@ angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Glo
 		$scope.date = new Date();
 		$scope.dateFormat = "dd MMM yyyy";
 
-		$scope.isCurrentPath = function (path) {
+		$scope.isCurrentPath = function(path) {
 			var cur_path = "#!" + $location.path().substr(0, path.length);
 			return (cur_path.indexOf(path) !== -1) || (path.indexOf('albums') !== -1 && cur_path.indexOf('gallery') !== -1);
 		};
@@ -46,6 +46,25 @@ angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Glo
 
 		$scope.closeMenu = function(){
 			TopMenu.close();
+		};
+
+		setTimeout(function(){
+			$scope.captionLength = 0;
+			$scope.testTypingEffect();
+		}, 700);
+
+		$scope.testTypingEffect = function() {
+			$scope.caption = "Hola senor! Ça y est le site tant désiré (ou pas) est là, j'ai essayé de faire quelque chose assez simple pour que même les plus mauvais d'entre vous (et la concurrence est rude) s'en sorte, alors maintenant à vous pour le contenu, ça donne!!!!";
+			$scope.type();
+		}
+
+		$scope.type = function() {
+			if($scope.captionLength < $scope.caption.length){
+				$('#caption').html($scope.caption.substr(0, $scope.captionLength++));
+				setTimeout($scope.type, 70);
+			} else {
+				$("#cadonne").show();
+			}
 		};
 	}
 ]);
