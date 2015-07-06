@@ -267,7 +267,6 @@ div.tooltip, div.tooltip div{
   opacity: 1.0;
 }
 
-.summary .icon {}
 .summary .pub-name {
   font-size: 0.9em;
 }
@@ -275,8 +274,6 @@ div.tooltip, div.tooltip div{
   font-size: 0.9em;
   text-align: right;
 }
-.summary .title {}
-.summary .description {}
 
 .entries {
   position: absolute;
@@ -292,7 +289,6 @@ div.tooltip, div.tooltip div{
   overflow-y: scroll;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
-  background-color: #f5f5f5;
 }
 
 .entry {
@@ -316,11 +312,10 @@ div.tooltip, div.tooltip div{
 .entry .actions {
   text-align: right;
 }
-.entry .title {}
-.entry .author {}
-.entry .pub-name {}
-.entry hr {}
-.entry .post-content {}
+
+.entry .pub-name {
+    margin-left: -75px;
+}
 
 .entry .post-content img {
   margin: 5px;
@@ -421,5 +416,12 @@ div.tooltip, div.tooltip div{
   transform: scale3d(38, 38, 1);
 }
 .input__field--makiko:focus, .input__field--makiko.searchFocus {
-  border: 1px solid #18cecf;
+  border: 1px solid #1e2226;
 }
+
+/***
+*
+*CREATE
+*
+***/
+

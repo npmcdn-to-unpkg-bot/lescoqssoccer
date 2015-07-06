@@ -1,7 +1,7 @@
 <section class="entries">
 	<article class="entry active articleTitle" ng-show="selected">
 		<div class="row-fluid">
-			<img ng-src="{{selected.user.avatar}}" class="avatarArticle"/>
+			<img ng-src="{{selected.user.avatar}}" class="avatarArticle" tooltip="{{selected.user.name}}" tooltip-placement="right"/>
 			<img src="img/trash.png" class="imageAction" ng-click="remove(selected, $event)" ng-show="global.user._id === selected.user._id"/>
 			<img src="img/pencil.png" class="imageAction" ng-click="edit(selected, $event)" ng-show="global.user._id === selected.user._id"/>
 			<h1>
