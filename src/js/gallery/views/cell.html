@@ -1,23 +1,27 @@
 <div class="photo">
-	<figure class="effect-steve">
+	<figure class="effect-zoe">
 		<img
 		src=""
 		data-ng-src="{{card.coverPicPath && card.coverPicPath || 'img/8962691008_7f489395c9_m.jpg'}}"
 		class="animation-fade photoCard"
 		data-imageloaded data-loadedclass="animation-faded">
 		<figcaption>
-			<h2 class="alignCenter albumTitle ellipsis">{{card.name}}</h2>
-			<p class="alignCenter">
-				<img
-				src="img/pencil.png"
-				class="photoAction"
-				ng-click="mother.editAlbum(card._id, $event);"
-				ng-show="mother.global.user._id === card.user"/>
-				<img
-				src="img/trash.png"
-				class="photoAction"
-				ng-click="mother.deleteAlbum(album, $event);"
-				ng-show="mother.global.user._id === card.user"/>
+			<h2>{{card.name}}<span>#1</span></h2>
+			<p class="icon-links">
+				<a href="#!">
+					<img
+					src="img/pencil.png"
+					class="photoAction"
+					ng-click="mother.editAlbum(card._id, $event);"
+					ng-show="mother.global.user._id === card.user"/>
+				</a>
+				<a href="#">
+					<img
+					src="img/trash.png"
+					class="photoAction"
+					ng-click="mother.deleteAlbum(album, $event);"
+					ng-show="mother.global.user._id === card.user"/>
+				</a>
 			</p>
 		</figcaption>
 	</figure>

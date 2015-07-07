@@ -190,7 +190,7 @@ button:focus {
   background:#eee;
   -webkit-transform-origin: 0 0;
   transform-origin: 0 0;
-  border: 3px solid rgb(4, 189, 242);
+  border: 3px solid #1e2226;
   opacity: 0.8;
 }
 

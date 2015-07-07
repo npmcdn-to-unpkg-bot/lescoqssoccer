@@ -99,7 +99,7 @@ img {
 }
 
 .photo:not(.grid__item) {
-    background:#fff url(../img/spinner.gif) center 30px no-repeat;
+    /*background:#fff url(../img/spinner.gif) center 30px no-repeat;*/
     border:1px solid black;
     margin:0 10px 10px 0;
     position:relative;
@@ -168,89 +168,114 @@ img {
     font-size: 0;
  }
 
-/*-----------------*/
-/***** Steve *****/
-/*-----------------*/
+/*---------------*/
+/***** Zoe *****/
+/*---------------*/
 
-figure.effect-steve {
-	z-index: auto;
-	overflow: visible;
-	background: #000;
-}
-
-figure.effect-steve:before,
-figure.effect-steve h2:before {
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: -1;
-	width: 100%;
-	height: 100%;
-	background: #000;
-	content: '';
-	-webkit-transition: opacity 0.35s;
-	transition: opacity 0.35s;
-}
-
-figure.effect-steve:before {
-	box-shadow: 0 3px 30px rgba(0,0,0,0.8);
-	opacity: 0;
-}
-
-figure.effect-steve figcaption {
-	z-index: 1;
-}
-
-figure.effect-steve img {
-	opacity: 1;
+figure.effect-zoe figcaption {
+	cursor: pointer;
+	top: auto;
+	bottom: 0;
+	padding: 1em !important;
+	height: 3.75em;
+	background: rgba(245,245,245, 0.6) !important;
+	color: #1e2226 !important;
 	-webkit-transition: -webkit-transform 0.35s;
 	transition: transform 0.35s;
-	-webkit-transform: perspective(1000px) translate3d(0,0,0);
-	transform: perspective(1000px) translate3d(0,0,0);
+	-webkit-transform: translate3d(0,100%,0);
+	transform: translate3d(0,100%,0);
 }
 
-figure.effect-steve h2,
-figure.effect-steve p {
-	background: #fff;
-	color: #2d434e;
+figure.effect-zoe h2 {
+	float: left;
 }
 
-figure.effect-steve h2 {
-	position: relative;
-	margin-top: 2em;
-	padding: 0.25em;
+figure.effect-zoe p.icon-links a {
+	float: right;
+	color: #3c4a50;
+	font-size: 1.4em;
 }
 
-figure.effect-steve h2:before {
-	box-shadow: 0 1px 10px rgba(0,0,0,0.5);
+figure.effect-zoe:hover p.icon-links a:hover,
+figure.effect-zoe:hover p.icon-links a:focus {
+	color: #252d31;
 }
 
-figure.effect-steve p {
-	margin-top: 1em;
-	padding: 0.5em;
-	font-weight: 800;
+figure.effect-zoe p.description {
+	position: absolute;
+	bottom: 8em;
+	padding: 2em;
+	color: #fff;
+	text-transform: none;
+	font-size: 90%;
 	opacity: 0;
-	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-	transition: opacity 0.35s, transform 0.35s;
-	-webkit-transform: scale3d(0.9,0.9,1);
-	transform: scale3d(0.9,0.9,1);
+	-webkit-transition: opacity 0.35s;
+	transition: opacity 0.35s;
+	-webkit-backface-visibility: hidden; /* Fix for Chrome 37.0.2062.120 (Mac) */
 }
 
-figure.effect-steve:hover:before {
+figure.effect-zoe h2,
+figure.effect-zoe p.icon-links a {
+	-webkit-transition: -webkit-transform 0.35s;
+	transition: transform 0.35s;
+	-webkit-transform: translate3d(0,200%,0);
+	transform: translate3d(0,200%,0);
+}
+
+figure.effect-zoe p.icon-links a span::before {
+	display: inline-block;
+	padding: 8px 10px;
+	font-family: 'feathericons';
+	speak: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-eye::before {
+	content: '\e000';
+}
+
+.icon-paper-clip::before {
+	content: '\e001';
+}
+
+.icon-heart::before {
+	content: '\e024';
+}
+
+figure.effect-zoe h2 {
+	display: inline-block;
+	font-size: xx-large;
+  	padding: 5px;
+}
+
+figure.effect-zoe:hover p.description {
 	opacity: 1;
 }
 
-figure.effect-steve:hover img {
-	-webkit-transform: perspective(1000px) translate3d(0,0,21px);
-	transform: perspective(1000px) translate3d(0,0,21px);
+figure.effect-zoe:hover figcaption,
+figure.effect-zoe:hover h2,
+figure.effect-zoe:hover p.icon-links a {
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
 }
 
-figure.effect-steve:hover h2:before {
-	opacity: 0;
+figure.effect-zoe:hover h2 {
+	-webkit-transition-delay: 0.05s;
+	transition-delay: 0.05s;
 }
 
-figure.effect-steve:hover p {
-	opacity: 1;
-	-webkit-transform: scale3d(1,1,1);
-	transform: scale3d(1,1,1);
+figure.effect-zoe:hover p.icon-links a:nth-child(3) {
+	-webkit-transition-delay: 0.1s;
+	transition-delay: 0.1s;
+}
+
+figure.effect-zoe:hover p.icon-links a:nth-child(2) {
+	-webkit-transition-delay: 0.15s;
+	transition-delay: 0.15s;
+}
+
+figure.effect-zoe:hover p.icon-links a:first-child {
+	-webkit-transition-delay: 0.2s;
+	transition-delay: 0.2s;
 }
