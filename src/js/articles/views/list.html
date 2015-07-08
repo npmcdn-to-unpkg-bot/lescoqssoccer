@@ -18,6 +18,19 @@
 				<div ng-bind-html="getFormattedContent(selected.content)"></div>
 			</article>
 
+			<form role="form" data-ng-submit="addComment()">
+				<span class="input input--yoshiko" data-ng-class="{'input--filled': comment}">
+					<textarea class="input__field input__field--yoshiko" type="text" name="content" data-ng-model="comment" required>
+					</textarea>
+					<label class="input__label input__label--yoshiko" for="content">
+						<span class="input__label-content input__label-content--yoshiko">Ajouter un commentaire</span>
+					</label>
+				</span>
+				<div class="input">
+					<button class="btn btn-primary" style="float:right;" type="submit">{{'common_ok' | translate}}</button>
+				</div>
+			</form>
+
 		</div>
 	</article>
 </section>

@@ -7,7 +7,14 @@ angular.module('mean.suggestions').controller('SuggestionController', ['$scope',
 		$scope.dateFormat = "dd/MM/yyyy";
 		$scope.SuggestionsCollection = SuggestionsCollection;
 
-		SubMenu.setMenu({});
+		SubMenu.setMenu({
+			middle: [{
+				link: "#!/suggestions/create",
+				image: "img/Draw_Adding_Cross_64.png",
+				tooltip: "C'est plus!!",
+				type: "link"
+			}]
+		});
 
 		$scope.content;
 		$scope.SuggestionsCollection.load();

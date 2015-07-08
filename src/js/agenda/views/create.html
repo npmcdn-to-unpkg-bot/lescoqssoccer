@@ -21,7 +21,7 @@
 
 	<br/>
 	<div class="input input--yoshiko" data-ng-class="{'input--filled': userEvent.start}">
-		<input class="input__field input__field--yoshiko"
+		<input class="input__field input__field--yoshiko inputWithButton"
 		type="text"
 		name="start"
 		datepicker-popup="{{format}}"
@@ -34,7 +34,7 @@
 		<label class="input__label input__label--yoshiko" for="start">
 			<span class="input__label-content input__label-content--yoshiko">{{'startdate' | translate}}</span>
 		</label>
-		<span class="input-group-btn location-btn">
+		<span class="input-group-btn datepicker-btn">
 		<button class="btn btn-cm" ng-click="open($event, 'start')">
 		<i class="glyphicon glyphicon-calendar"></i>
 		</button>
@@ -52,13 +52,13 @@
 
 	<br/>
 	<div class="input input--yoshiko" data-ng-class="{'input--filled': search}">
-		<input class="input__field input__field--yoshiko" type="text" data-ng-model="search"/>
+		<input class="input__field input__field--yoshiko inputWithButton" type="text" data-ng-model="search"/>
 		<label class="input__label input__label--yoshiko" for="search">
 			<span class="input__label-content input__label-content--yoshiko">Localisation</span>
 		</label>
 		<span class="input-group-btn location-btn">
 		<button
-		class="btn btn-cm	"
+		class="btn btn-cm"
 		type="button"
 		ng-click="geoCode()"
 		ng-disabled="search.length === 0"
@@ -66,19 +66,19 @@
 		&nbsp;<i class="glyphicon glyphicon-search"></i>
 		</button>
 		</span>
+
+		<google-map
+		center="map.center"
+		zoom="map.zoom"
+		draggable="true"
+		events="map.events"
+		options="map.options"
+		control="map.control">
+
+			<marker ng-repeat="m in map.markers" coords="m" events="m.events" options ="m.options">
+			</marker>
+		</google-map>
 	</div>
-
-	<google-map
-	center="map.center"
-	zoom="map.zoom"
-	draggable="true"
-	events="map.events"
-	options="map.options"
-	control="map.control">
-
-		<marker ng-repeat="m in map.markers" coords="m" events="m.events" options ="m.options">
-		</marker>
-	</google-map>
 
 	<div class="input">
 		<button class="btn btn-primary" style="float:right;" type="submit">{{'common_ok' | translate}}</button>

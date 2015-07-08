@@ -22,14 +22,6 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 			return $sce.trustAsHtml(html);
 		};
 
-		$scope.edit = function(article, evt) {
-
-			evt.preventDefault();
-			evt.stopPropagation();
-
-			$location.path("/articles/edit/" + article._id);
-		};
-
 		$scope.selectArticle = function(article, index) {
 			$scope.selected = article;
 			$scope.currentIndex = index;
@@ -62,6 +54,26 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 				$('.entries article.active')[0].scrollIntoView();
 			}, 0, false);
 
+		};
+
+		$scope.addComment = function(){
+
+			var comment = {
+				date: new Date,
+				content: $scope.comment
+			};
+
+			console.warn(comment);
+			$scope.comment = "";
+
+		};
+
+		$scope.edit = function(article, evt) {
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			$location.path("/articles/edit/" + article._id);
 		};
 
 		$scope.remove = function(article, evt) {

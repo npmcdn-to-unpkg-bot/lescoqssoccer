@@ -86,7 +86,7 @@ html {
   height: 200px;
   position: absolute;
   left: 20px;
-  top: -10px;
+  top: -20px;
   opacity: 0.4;
   z-index: -5;
 }

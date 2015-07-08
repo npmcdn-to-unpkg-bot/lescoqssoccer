@@ -10,24 +10,19 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 		//used in subnav
 		SubMenu.setMenu({
 			middle: [{
+				link: "#!/agenda/create",
+				image: "img/Draw_Adding_Cross_64.png",
+				tooltip: "C'est plus!!",
+				type: "link"
+			},{
 				link: "#!/agenda",
 				image: "img/24_hours_delivery_64.png",
 				tooltip: "What's next?!",
 				type: "link"
-			}, {
-				link: "#!/agenda/calendar",
-				image: "img/Calendar_hand_drawn_tool_64.png",
-				tooltip: "Calendrier",
-				type: "link"
-			}, {
+			},{
 				link: "#!/agenda/map",
 				image: "img/Map_of_roads_64.png",
 				tooltip: "Je suis la carte",
-				type: "link"
-			}, {
-				link: "#!/agenda/create",
-				image: "img/Draw_Adding_Cross_64.png",
-				tooltip: "Ajouter un petit nouveau",
 				type: "link"
 			}]
 		});
@@ -48,6 +43,7 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 
 			$scope.userEvent.type = $scope.userEvent.selectedType.identifier;
 
+			console.warn($scope.userEvent);
 			var promise = $scope.agendaCollection.add($scope.userEvent);
 			promise.then(function(userEvent) {
 				$location.path("/agenda");
@@ -134,7 +130,10 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 
 						var loc = results[0].geometry.location;
 						$scope.search = results[0].formatted_address;
-						$scope.userEvent.location = loc;
+						$scope.userEvent.location = {
+							latitude: loc.A,
+							longitude: loc.F
+						};
 						$scope.gotoLocation(loc.lat(), loc.lng());
 
 					} else {
@@ -189,6 +188,11 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 
 		SubMenu.setMenu({
 			middle: [{
+				link: "#!/agenda/create",
+				image: "img/Draw_Adding_Cross_64.png",
+				tooltip: "C'est plus!!",
+				type: "link"
+			},{
 				link: "#!/agenda",
 				image: "img/24_hours_delivery_64.png",
 				tooltip: "What's next?!",
@@ -198,15 +202,11 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 				image: "img/Map_of_roads_64.png",
 				tooltip: "Je suis la carte",
 				type: "link"
-			}, {
-				link: "#!/agenda/create",
-				image: "img/Draw_Adding_Cross_64.png",
-				tooltip: "Ajouter un petit nouveau",
-				type: "link"
 			}]
 		});
 
 		$scope.limit = 3;
+		$scope.start = 0;
 
 		$scope.isPastEvent = function(event) {
 			return moment(event.start).endOf('day').isBefore(new Date()) ? event.start : null;
@@ -214,6 +214,26 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 
 		$scope.isComingEvent = function(event) {
 			return moment(event.start).endOf('day').isAfter(new Date()) ? event.start : null;
+		};
+
+		$scope.previous = function(evt){
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			if($scope.start > 0){
+				$scope.start--;
+			}
+		};
+
+		$scope.next = function(evt){
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			if($scope.start < $scope.filteredAgenda.length - $scope.limit){
+				$scope.start++;
+			}
 		};
 
 		$scope.update = function(userEvent) {
@@ -228,17 +248,20 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 		$scope.calendarTitle = 'Mon super calendar';
 		$scope.calendarDay = new Date();
 
-		$scope.events = [{
-			title: 'My event title', // The title of the event
-			// type: 'success', // The type of the event (determines its color). Can be important, warning, info, inverse, success or special
-			startsAt: new Date(2013, 5, 1, 1), // A javascript date object for when the event starts
-			endsAt: new Date(2013, 5, 17, 15), // Optional - a javascript date object for when the event ends
-			editable: false, // If edit-event-html is set and this field is explicitly set to false then dont make it editable. If set to false will also prevent the event from being dragged and dropped.
-			deletable: false, // If delete-event-html is set and this field is explicitly set to false then dont make it deleteable
-			incrementsBadgeTotal: true, //If set to false then will not count towards the badge total amount on the month and year view
-			recursOn: 'year', // If set the event will recur on the given period. Valid values are year or month
-			cssClass: 'a-css-class-name' //A CSS class (or more, just separate with spaces) that will be added to the event when it is displayed on each view. Useful for marking an event as selected / active etc
-		}];
+		$scope.events = [];
+		angular.forEach($scope.agenda, function(userEvent) {
+			$scope.events.push({
+				title: userEvent.title, // The title of the event
+				type: 'success', // The type of the event (determines its color). Can be important, warning, info, inverse, success or special
+				startsAt: userEvent.start, // A javascript date object for when the event starts
+				endsAt: userEvent.start, // Optional - a javascript date object for when the event ends
+				editable: false, // If edit-event-html is set and this field is explicitly set to false then dont make it editable. If set to false will also prevent the event from being dragged and dropped.
+				deletable: false, // If delete-event-html is set and this field is explicitly set to false then dont make it deleteable
+				incrementsBadgeTotal: true, //If set to false then will not count towards the badge total amount on the month and year view
+				recursOn: 'year', // If set the event will recur on the given period. Valid values are year or month
+				cssClass: 'a-css-class-name' //A CSS class (or more, just separate with spaces) that will be added to the event when it is displayed on each view. Useful for marking an event as selected / active etc
+			});
+		});
 
 		$scope.eventTypes = eventTypes;
 	}
@@ -252,270 +275,22 @@ angular.module('mean.agenda').controller('MapController', ['$scope', '$routePara
 
 		SubMenu.setMenu({
 			middle: [{
+				link: "#!/agenda/create",
+				image: "img/Draw_Adding_Cross_64.png",
+				tooltip: "C'est plus!!",
+				type: "link"
+			},{
 				link: "#!/agenda",
 				image: "img/24_hours_delivery_64.png",
 				tooltip: "What's next?!",
 				type: "link"
-			}, {
+			},{
 				link: "#!/agenda/map",
 				image: "img/Map_of_roads_64.png",
 				tooltip: "Je suis la carte",
 				type: "link"
-			}, {
-				link: "#!/agenda/create",
-				image: "img/Draw_Adding_Cross_64.png",
-				tooltip: "Ajouter un petit nouveau",
-				type: "link"
 			}]
 		});
-
-		var styles = [{
-			"featureType": "administrative",
-			"elementType": "labels.text.fill",
-			"stylers": [{
-				"color": "#444444"
-			}]
-		}, {
-			"featureType": "administrative.country",
-			"elementType": "geometry",
-			"stylers": [{
-				"visibility": "on"
-			}, {
-				"hue": "#ff0000"
-			}]
-		}, {
-			"featureType": "administrative.locality",
-			"elementType": "labels",
-			"stylers": [{
-				"visibility": "on"
-			}, {
-				"hue": "#ff0000"
-			}]
-		}, {
-			"featureType": "administrative.locality",
-			"elementType": "labels.text",
-			"stylers": [{
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "administrative.locality",
-			"elementType": "labels.text.fill",
-			"stylers": [{
-				"visibility": "on"
-			}, {
-				"hue": "#ff0000"
-			}]
-		}, {
-			"featureType": "administrative.locality",
-			"elementType": "labels.text.stroke",
-			"stylers": [{
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "administrative.locality",
-			"elementType": "labels.icon",
-			"stylers": [{
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "administrative.neighborhood",
-			"elementType": "all",
-			"stylers": [{
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "administrative.neighborhood",
-			"elementType": "geometry",
-			"stylers": [{
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "administrative.neighborhood",
-			"elementType": "geometry.fill",
-			"stylers": [{
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "administrative.neighborhood",
-			"elementType": "geometry.stroke",
-			"stylers": [{
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "administrative.neighborhood",
-			"elementType": "labels",
-			"stylers": [{
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "administrative.neighborhood",
-			"elementType": "labels.icon",
-			"stylers": [{
-				"visibility": "on"
-			}, {
-				"hue": "#ff0000"
-			}]
-		}, {
-			"featureType": "administrative.land_parcel",
-			"elementType": "geometry",
-			"stylers": [{
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "administrative.land_parcel",
-			"elementType": "geometry.fill",
-			"stylers": [{
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "administrative.land_parcel",
-			"elementType": "geometry.stroke",
-			"stylers": [{
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "administrative.land_parcel",
-			"elementType": "labels",
-			"stylers": [{
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "administrative.land_parcel",
-			"elementType": "labels.text",
-			"stylers": [{
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "administrative.land_parcel",
-			"elementType": "labels.text.fill",
-			"stylers": [{
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "administrative.land_parcel",
-			"elementType": "labels.text.stroke",
-			"stylers": [{
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "administrative.land_parcel",
-			"elementType": "labels.icon",
-			"stylers": [{
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "landscape",
-			"elementType": "all",
-			"stylers": [{
-				"color": "#f2f2f2"
-			}]
-		}, {
-			"featureType": "landscape.man_made",
-			"elementType": "geometry",
-			"stylers": [{
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "landscape.man_made",
-			"elementType": "geometry.fill",
-			"stylers": [{
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "landscape.man_made",
-			"elementType": "geometry.stroke",
-			"stylers": [{
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "landscape.man_made",
-			"elementType": "labels",
-			"stylers": [{
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "landscape.man_made",
-			"elementType": "labels.text",
-			"stylers": [{
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "landscape.man_made",
-			"elementType": "labels.text.fill",
-			"stylers": [{
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "landscape.man_made",
-			"elementType": "labels.text.stroke",
-			"stylers": [{
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "poi",
-			"elementType": "all",
-			"stylers": [{
-				"visibility": "off"
-			}]
-		}, {
-			"featureType": "poi.attraction",
-			"elementType": "geometry",
-			"stylers": [{
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "poi.attraction",
-			"elementType": "labels",
-			"stylers": [{
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "road",
-			"elementType": "all",
-			"stylers": [{
-				"saturation": -100
-			}, {
-				"lightness": 45
-			}]
-		}, {
-			"featureType": "road.highway",
-			"elementType": "all",
-			"stylers": [{
-				"visibility": "simplified"
-			}]
-		}, {
-			"featureType": "road.arterial",
-			"elementType": "labels.icon",
-			"stylers": [{
-				"visibility": "off"
-			}]
-		}, {
-			"featureType": "road.local",
-			"elementType": "geometry",
-			"stylers": [{
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "road.local",
-			"elementType": "labels",
-			"stylers": [{
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "transit",
-			"elementType": "all",
-			"stylers": [{
-				"visibility": "off"
-			}]
-		}, {
-			"featureType": "water",
-			"elementType": "all",
-			"stylers": [{
-				"color": "#002142"
-			}, {
-				"visibility": "on"
-			}]
-		}];
 
 		$scope.map = {
 			control: {
@@ -534,7 +309,7 @@ angular.module('mean.agenda').controller('MapController', ['$scope', '$routePara
 				minZoom: 3,
 				styles: styles
 			},
-			zoom: 8,
+			zoom: 6,
 			dragging: false,
 			bounds: {},
 			markers: [],
@@ -548,16 +323,16 @@ angular.module('mean.agenda').controller('MapController', ['$scope', '$routePara
 			marker.showWindow = true;
 		};
 
-		angular.forEach($scope.agenda, function(event) {
-			if (event.location && event.location !== "") {
+		angular.forEach($scope.agenda, function(userEvent) {
+			if (userEvent.location && userEvent.location !== "") {
 				$scope.map.markers.push({
-					id: event._id,
-					latitude: event.location.k,
-					longitude: event.location.B,
+					id: userEvent._id,
+					latitude: userEvent.location.latitude,
+					longitude: userEvent.location.longitude,
 					showWindow: false,
-					title: event.title,
-					content: event.content,
-					photos: event.photos
+					title: userEvent.title,
+					content: userEvent.content,
+					photos: userEvent.photos
 				});
 			}
 		});
@@ -580,17 +355,24 @@ angular.module('mean.agenda').controller('unknowLocationCtrl', ['$scope', '$moda
 
 var eventTypes = [{
 	identifier: 'restaurant',
-	name: 'Resto'
+	name: 'Resto',
+	image: "img/3d5c45b634304f99146a9e3913307a2f.jpg"
 }, {
 	identifier: 'holidays',
-	name: 'Vacances'
+	name: 'Vacances',
+	image: "img/3d5c45b634304f99146a9e3913307a2f.jpg"
 }, {
 	identifier: 'party',
-	name: 'Soirée'
+	name: 'Soirée',
+	image: "img/400x300beer.jpg"
 }, {
 	identifier: 'weekend',
-	name: 'Week-end'
+	name: 'Week-end',
+	image: "img/400x300beer.jpg"
 }, {
 	identifier: 'other',
-	name: 'Autres'
+	name: 'Autres',
+	image: "img/400x300beer.jpg"
 }];
+
+var styles = [{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#555555"},{"visibility":"on"}]}];

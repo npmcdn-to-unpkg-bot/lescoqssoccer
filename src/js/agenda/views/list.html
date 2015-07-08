@@ -1,7 +1,12 @@
 <div class="agendaContainer expandable-container">
 	<div class="comingEvents">
-		<h3>A venir</h3>
-		<div class="grid__item eventSmall" ng-repeat="event in filteredAgenda = (agenda | filter: isPastEvent) | limitTo:limit">
+		<h3 class="agendaListTitle">Quoi de beau à venir.... ?!</h3>
+		<div
+		class="grid__item eventSmall"
+		ng-repeat="event in filteredAgenda = (agenda | filter: isPastEvent) | limitToCustom:limit:start">
+
+			<img class="imgEvent" ng-src="{{ eventTypes | getImageByIdentifier:event.type}}">
+
 			<h2 class="ev2page-title ellipsis">
 				<a href="#!">{{event.title}}</a>
 			</h2>
@@ -9,6 +14,15 @@
 			<div class="ev2page-tickets">
 				<a href="#!">{{ eventTypes | getNameByIdentifier:event.type}}</a>
 			</div>
+		</div>
+
+		<div class="eventLeft">
+			<a href="#!" ng-click="previous($event);">
+				<img src="img/Back_arrow_circular_symbol_32.png">
+			</a>
+			<a href="#!" ng-click="next($event);">
+				<img src="img/agenda_arrow_right.png">
+			</a>
 		</div>
 
 		<div class="commingEventEmpty" data-ng-show="filteredAgenda.length === 0">
@@ -19,23 +33,23 @@
 	</div>
 
 	<div class="calendarContainer">
-		<div class="btn-group pull-left">
+		<div class="btn-group pull-left monthGroupBtn">
             <button
-              class="btn"
+              class="btn previousMonth"
               mwl-date-modifier
               date="calendarDay"
               decrement="calendarView">
               Précédent
             </button>
             <button
-              class="btn"
+              class="btn todayBtn"
               mwl-date-modifier
               date="calendarDay"
               set-to-today>
               Aujourd'hui
             </button>
             <button
-              class="btn"
+              class="btn nextMonth"
               mwl-date-modifier
               date="calendarDay"
               increment="calendarView">
@@ -44,14 +58,14 @@
         </div>
 
 		<div class="btn-group">
-			<h2 class="text-center">{{ calendarTitle }}</h2>
+			<h2 class="text-center calendarMonthTitle">{{ calendarTitle }}</h2>
 		</div>
 
         <div class="btn-group pull-right">
-	        <label class="btn" ng-model="calendarView" btn-radio="'year'">Year</label>
-	        <label class="btn" ng-model="calendarView" btn-radio="'month'">Month</label>
-	        <label class="btn" ng-model="calendarView" btn-radio="'week'">Week</label>
-	        <label class="btn" ng-model="calendarView" btn-radio="'day'">Day</label>
+	        <label class="btn" ng-model="calendarView" btn-radio="'year'">Année</label>
+	        <label class="btn" ng-model="calendarView" btn-radio="'month'">Mois</label>
+	        <label class="btn" ng-model="calendarView" btn-radio="'week'">Semaine</label>
+	        <label class="btn" ng-model="calendarView" btn-radio="'day'">Jour</label>
 	    </div>
 
 		<mwl-calendar

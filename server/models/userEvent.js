@@ -41,10 +41,10 @@ var UserEventSchema = new Schema( {
 		type: Array
 	},
 	location: {
-		k: {
+		latitude: {
 			type: String
 		},
-		B: {
+		longitude: {
 			type: String
 		}
 	},

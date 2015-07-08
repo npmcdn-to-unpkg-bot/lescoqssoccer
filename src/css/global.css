@@ -41,6 +41,12 @@ Bootstrap override
 	background: #eee;
 }
 
+hr {
+  margin: 30px 50px;
+  border: inherit;
+  border-top: 1px solid rgba(0,0,0,0.15);
+}
+
 /*
 *
 *Forms
@@ -516,5 +522,5 @@ select.input__field--yoshiko:focus, .wysiwyg-textarea:focus {
 }
 .input__field--yoshiko:focus, .input--yoshiko.input--filled .input__field--yoshiko {
 	background-color: transparent;
-	border-color: rgb(4, 189, 242);
+	border-color: #515151;
 }

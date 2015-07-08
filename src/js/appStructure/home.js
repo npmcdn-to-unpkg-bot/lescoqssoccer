@@ -3,7 +3,6 @@
 angular.module('mean.home').controller('HomeController', ['$scope', 'Global', '$location', 'TopMenu',
 	function($scope, Global, $location, TopMenu) {
 
-		console.warn(Global.user);
 		$scope.global = Global;
 		$scope.date = new Date();
 		$scope.dateFormat = "dd MMM yyyy";
