@@ -58,37 +58,37 @@ html {
 .articleContent{
 	display: inline-block;
 	padding-bottom: 30px;
-}
-
-.articleTitle{
-	padding-right: 30px;
-}
-
-.articleTitle h2{
-	padding-left: 60px;
+  margin-top: 30px;
 }
 
 .imageAction{
-	float: right;
+	float: left;
 	padding-top: 15px;
   width: 40px;
 	cursor: pointer;
 }
 
+.avatarArticleParent{
+  width: 100%;
+  text-align: center;
+}
+
 .avatarArticle{
-  float: left;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  margin-top: 5px;
+  width: 100px;
+  height: 100px;
+  margin-top: 40px;
 }
 
 .articleImage{
-	display: block;
-	border-radius: 50%;
 	margin: 1em auto;
-	width: 150px;
-	height: 150px;
+  width: 100%;
+  height: 200px;
+  position: absolute;
+  left: 20px;
+  top: -10px;
+  opacity: 0.4;
+  z-index: -5;
 }
 
 .articleItem{
@@ -298,7 +298,8 @@ div.tooltip, div.tooltip div{
 
 .entry h1{
   font-size: xx-large;
-  padding-top: 10px;
+  padding-top: 30px;
+  margin-right: 80px;
 }
 
 .entry.active {
@@ -311,10 +312,6 @@ div.tooltip, div.tooltip div{
 }
 .entry .actions {
   text-align: right;
-}
-
-.entry .pub-name {
-    margin-left: -75px;
 }
 
 .entry .post-content img {
