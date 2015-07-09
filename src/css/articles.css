@@ -51,26 +51,38 @@ html {
   margin-top: 10px;
 }
 
+.articleCellDetail h3{
+	text-transform: uppercase;
+  	text-align: center;
+  	color: black;
+  	font-weight: 600;
+}
+
 .articleCellDetail p{
   text-align: left;
+  color: rgb(85, 85, 85);
+    font-style: italic;
+    opacity: 0.8;
 }
 
 .articleContent{
 	display: inline-block;
 	padding-bottom: 30px;
-  margin-top: 30px;
+  	margin-top: 30px;
 }
 
 .imageAction{
 	float: left;
 	padding-top: 15px;
-  width: 40px;
+  	width: 40px;
 	cursor: pointer;
 }
 
 .avatarArticleParent{
   width: 100%;
   text-align: center;
+
+  z-index: 5;
 }
 
 .avatarArticle{
@@ -78,24 +90,23 @@ html {
   width: 100px;
   height: 100px;
   margin-top: 40px;
+  z-index: 6;
 }
 
 .articleImage{
-	margin: 1em auto;
+margin: 1em auto;
   width: 100%;
   height: 200px;
   position: absolute;
   left: 20px;
   top: -20px;
   opacity: 0.4;
-  z-index: -5;
 }
 
 .articleItem{
   padding: 20px;
   position: relative;
   cursor: pointer;
-  text-align: center;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -112,11 +123,13 @@ html {
 }
 
 .articleItem:not(.active){
-  opacity: 0.3;
+  opacity: 0.4;
+  background-color: rgb(233, 233, 233);
 }
 
 .articleItem *{
   opacity: 1 !important;
+  color: rgb(85, 85, 85);
 }
 
 .articleItem:not(.active) .arrow{
@@ -129,7 +142,7 @@ html {
   overflow: hidden;
   position: absolute;
   left: -14px;
-  top: 50%;
+  top: 78%;
   margin-top: -14px;
 }
 
@@ -146,7 +159,7 @@ html {
   position: absolute;
   width: 14px;
   height: 14px;
-  background: #f5f5f5;
+  background-color: rgb(233, 233, 233);
   top: 7px;
   right: -7px;
 }
@@ -243,28 +256,48 @@ div.tooltip, div.tooltip div{
   padding: 10px;
   overflow-y: scroll;
   overflow-x: hidden;
-  width: calc(35% - 35px);
+  width: 300px;
   -webkit-overflow-scrolling: touch;
   overflow-y: auto;
   position: absolute;
   bottom:0;
-  left: calc(65% + 35px);
+  left: calc(100% - 300px);
   right:0;
   top:0;
+  background-color: #f5f5f5;
 }
 
 .summary {
   color: #222;
   width: 100%;
+  padding: 0;
+}
+
+.summary img{
+	width: 100%;
+	max-height: 150px;
+}
+
+.summary p, .summary h3{
+	padding: 0 20px;
+	max-height: 50px;
+}
+
+.summary span{
+	vertical-align: top;
+	text-align: left;
+	font-style: italic;
 }
 
 .summary.read {
   opacity: 0.6;
+  background-color: #f5f5f5;
 }
 
 .summary.active {
   background-color: #f5f5f5;
   opacity: 1.0;
+  background-color: rgb(233, 233, 233);
 }
 
 .summary .pub-name {
@@ -281,7 +314,7 @@ div.tooltip, div.tooltip div{
   left: 75px;
   right:0;
   top:0;
-  width: calc(65% - 40px);
+  width: calc(100% - 375px);
   padding: 10px;
   padding-left: 30px;
   box-sizing: border-box;
@@ -289,6 +322,7 @@ div.tooltip, div.tooltip div{
   overflow-y: scroll;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+    background-color: #f5f5f5;
 }
 
 .entry {
@@ -414,6 +448,36 @@ div.tooltip, div.tooltip div{
 }
 .input__field--makiko:focus, .input__field--makiko.searchFocus {
   border: 1px solid #1e2226;
+}
+
+.iconLike{
+	display: inline-block;
+	position: relative;
+	height: 25px;
+	width: 25px;
+	margin-bottom: 16px;
+	border: 1px solid #555;
+	border-radius: 51%;
+  	background-size: 48px 48px;
+  	  margin: 0 5px 0 20px;
+	  padding: 0;
+	  outline: 0;
+	  font-weight: inherit;
+	  font-style: inherit;
+	  font-size: 100%;
+	  font-family: inherit;
+	  vertical-align: baseline;
+}
+
+.iconCalendar{
+	background: url(../img/Time_Zones_32.png) center no-repeat;
+}
+
+.summaryContent, .summaryContent *{
+	font-family: verdana !important;
+	font-size: 14px !important;
+  	line-height: normal !important;
+  	color: black !important;
 }
 
 /***
