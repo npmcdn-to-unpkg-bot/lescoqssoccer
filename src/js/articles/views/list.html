@@ -59,12 +59,14 @@
 		class="linkImage articleCell">
 
 		<div class="articleCellDetail">
-			<p class="ellipsis">
+			<h3 class="ellipsis">
 				{{article.title}}
-			</p>
+			</h3>
 			<p class="ellipsis">
-				<span class="fa fa-clock-o"></span>
-				{{article.created | date:dateFormat}}
+				<div class="iconLike iconCalendar"></div>
+				<span>{{article.created | date:dateFormat}}</span>
+			</p>
+			<p class="three-line-ellipsis summaryContent" ng-bind-html="getFormattedContent(article.content)">
 			</p>
 		</div>
 		<span class="arrow"></span>
