@@ -67,8 +67,9 @@ html {
 
 .articleContent{
 	display: inline-block;
-	padding-bottom: 30px;
-  	margin-top: 30px;
+	padding-bottom: 25px;
+  margin-top: 60px;
+  text-align: left;
 }
 
 .imageAction{
@@ -94,13 +95,14 @@ html {
 }
 
 .articleImage{
-margin: 1em auto;
+  margin: 1em auto;
   width: 100%;
-  height: 200px;
+  height: 300px;
   position: absolute;
-  left: 20px;
+  left: 0px;
   top: -20px;
   opacity: 0.4;
+  z-index: -1;
 }
 
 .articleItem{
@@ -254,6 +256,7 @@ div.tooltip, div.tooltip div{
 .summaries {
   box-sizing: border-box;
   padding: 10px;
+  padding-top: 20px;
   overflow-y: scroll;
   overflow-x: hidden;
   width: 300px;
@@ -263,8 +266,7 @@ div.tooltip, div.tooltip div{
   bottom:0;
   left: calc(100% - 300px);
   right:0;
-  top:0;
-  background-color: #f5f5f5;
+  top:63px;
 }
 
 .summary {
@@ -283,7 +285,7 @@ div.tooltip, div.tooltip div{
 	max-height: 50px;
 }
 
-.summary span{
+.summary span:not(.faIcon){
 	vertical-align: top;
 	text-align: left;
 	font-style: italic;
@@ -322,7 +324,8 @@ div.tooltip, div.tooltip div{
   overflow-y: scroll;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
-    background-color: #f5f5f5;
+  background-color: #f5f5f5;
+  z-index: -2;
 }
 
 .entry {
@@ -333,7 +336,7 @@ div.tooltip, div.tooltip div{
 .entry h1{
   font-size: xx-large;
   padding-top: 30px;
-  margin-right: 80px;
+  margin-right: 130px;
 }
 
 .entry.active {
@@ -400,13 +403,16 @@ div.tooltip, div.tooltip div{
 /* Search */
 
 #search {
-  width: 100%;
+  width: 265px;
   margin-bottom: -20px;
+  position: fixed;
+  right: 26px;
+  top: 1px;
 }
 
 .input--makiko {
   overflow: hidden;
-  background: gray;
+  background: rgba(0,0,0,0.4);
   margin-bottom: 2em;
 }
 .input__field--makiko {
@@ -415,7 +421,6 @@ div.tooltip, div.tooltip div{
   color: #797693;
   z-index: 10;
   font-weight: 500;
-  line-height: 2em;
 }
 .input__label--makiko {
   position: absolute;
@@ -430,7 +435,7 @@ div.tooltip, div.tooltip div{
   width: 20px;
   height: 25px;
   top: 40%;
-  left: 10px;
+  left: 20px;
   background: url(../img/search.svg) no-repeat center center;
   background-size: 100%;
   -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.7, 0, 0.3, 1);
@@ -438,7 +443,7 @@ div.tooltip, div.tooltip div{
 }
 .input__label-content--makiko {
   display: block;
-  padding: 1.1em 0 0 2.75em;
+  padding: 0.9em 0 0 2.75em;
   -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.7, 0, 0.3, 1);
   transition: transform 0.4s cubic-bezier(0.7, 0, 0.3, 1);
 }
@@ -453,32 +458,121 @@ div.tooltip, div.tooltip div{
 .iconLike{
 	display: inline-block;
 	position: relative;
-	height: 25px;
-	width: 25px;
+	height: 55px;
+	width: 55px;
 	margin-bottom: 16px;
 	border: 1px solid #555;
 	border-radius: 51%;
-  	background-size: 48px 48px;
-  	  margin: 0 5px 0 20px;
-	  padding: 0;
-	  outline: 0;
-	  font-weight: inherit;
-	  font-style: inherit;
-	  font-size: 100%;
-	  font-family: inherit;
-	  vertical-align: baseline;
+  background-size: 48px 48px !important;
+  margin: 0 5px 0 10px;
+	padding: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+
+.iconSidebar{
+  display: inline-block;
+  position: relative;
+  height: 55px;
+  width: 55px;
+  border-radius: 51%;
+  margin: 10px 3px;
+  padding: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
 }
 
 .iconCalendar{
 	background: url(../img/Time_Zones_32.png) center no-repeat;
 }
 
+.iconEdit{
+  background: url(../img/Edit_Draw_Pencil_64.png) center no-repeat;
+}
+
+.iconTrash{
+  background: url(../img/Cancel_Music_64.png) center no-repeat;
+}
+
+.iconPlus{
+  background: url(../img/Add_Song_64.png) center no-repeat;
+}
+
+.iconUp{
+  background: url(../img/Navigate_up_arrow_64.png) center no-repeat;
+}
+
+.iconDown{
+  background: url(../img/Navigate_down_arrow_64.png) center no-repeat;
+}
+
+.iconPhoto{
+  background: url(../img/Photo_camera_filled_tool_64.png) center no-repeat;
+  border-color: white;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.iconFeather{
+  background: url(../img/Feather_natural_animal_shape_64.png) center no-repeat;
+  position: absolute;
+  left: 0;
+  z-index: 2;
+}
+
 .summaryContent, .summaryContent *{
 	font-family: verdana !important;
 	font-size: 14px !important;
-  	line-height: normal !important;
-  	color: black !important;
+  line-height: normal !important;
+  color: black !important;
+  overflow: hidden;
 }
+
+.articleCommentInput{
+  width: calc(100% - 35px);
+  margin-left: 50px;
+}
+
+.articleCommentInput .arrow {
+  width: 14px;
+  height: 28px;
+  overflow: hidden;
+  position: absolute;
+  left: -17px;
+  top: 15px;
+}
+
+.articleCommentInput .arrow:after {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-box-shadow: 1px 1px 2px rgba(0,0,0,0.15),1px 1px 0 rgba(0,0,0,0.1);
+  -moz-box-shadow: 1px 1px 2px rgba(0,0,0,0.15),1px 1px 0 rgba(0,0,0,0.1);
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.15),1px 1px 0 rgba(0,0,0,0.1);
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background-color: rgb(233, 233, 233);
+  top: 7px;
+  right: -7px;
+}
+
+.articleCommentInput.input--filled .arrow:after{
+  background-color: black !important;
+}
+
 
 /***
 *
@@ -486,3 +580,11 @@ div.tooltip, div.tooltip div{
 *
 ***/
 
+.createArticleImage{
+  margin-top: 30px;
+  text-align: center;
+}
+
+.createArticleForm .col-md-12{
+  width: calc(100% - 70px);
+}

@@ -88,15 +88,11 @@ h3, .h3, h5, .h5, .fn-h1, .small-text {
 .menu_home a{
   width: 100%;
   height: 100%;
-  font-size: 70px;
-  height: 45vh;
+  font-size: larger;
 }
 
 .menu_suggestions{
   font-size: xx-large !important;
-  height: 21vh !important;
-  margin-top: 45vh !important;
-  position: absolute;
 }
 
 .menu_suggestions a{
@@ -105,7 +101,7 @@ h3, .h3, h5, .h5, .fn-h1, .small-text {
 
 .menu_infos{
   width: 66.666% !important;
-  height: 34.1vh !important;
+  height: 33vh !important;
   text-align: left;
   color: wheat;
   font-size: xx-large;
@@ -115,12 +111,15 @@ h3, .h3, h5, .h5, .fn-h1, .small-text {
 }
 
 .menu_infos p{
-  margin: 20px 50px;
-  height: 100%;
+  height: calc(100% + 21px);
   vertical-align: middle;
   display: block;
   text-align: left;
-  font-size: inherit;
+  background-color: #000;
+  border: 1px solid #000;
+  color: #00ff00;
+  padding: 8px;
+  font-family: courier new;
 }
 
 .menu_infos span{
@@ -139,7 +138,7 @@ h3, .h3, h5, .h5, .fn-h1, .small-text {
 }
 
 .menu_cadonne{
-  height: 34vh;
+  height: 33vh;
   width: 33.33333333%;
   float: left;
 }
@@ -162,7 +161,7 @@ h3, .h3, h5, .h5, .fn-h1, .small-text {
   bottom: 0;
   right: 0;
   padding: 20px;
-  background: azure;
+  background: white;
 }
 
 /*Forkit*/

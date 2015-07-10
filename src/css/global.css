@@ -173,13 +173,14 @@ hr {
 	vertical-align: bottom;
 	width: 165px;
 	height: 130px;
+	text-align: center;
+  	width: 100%;
 }
 .imgThumbnail>img {
 	vertical-align: middle;
-	border-radius: 5px;
 	vertical-align: bottom;
-	width: 165px;
-	height: 153px;
+	width: 300px;
+	height: 200px;
 }
 .my-drop-zone {
 	border: dotted 3px lightgray;
@@ -429,7 +430,6 @@ Forms
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-	font-family: "WC Mano Negra Bold", "WC Mano Negra", "Impact", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 20px;
 }
 .input__label-content {
@@ -525,3 +525,4 @@ select.input__field--yoshiko:focus, .wysiwyg-textarea:focus {
 	background-color: transparent;
 	border-color: #515151;
 }
+

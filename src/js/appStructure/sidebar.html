@@ -22,20 +22,23 @@
 			</a>
 
 			<a ng-show="subMenu.menu.top" ng-repeat="topLink in subMenu.menu.top | filter: buttonFilter" href="!#" ng-click="callback($event, topLink.title)">
-				<span tooltip="{{topLink.tooltip}}" tooltip-placement="right">
+				<span tooltip="{{topLink.tooltip}}" tooltip-placement="right"></span>
 				<img ng-src="{{topLink.image}}" class="imgMenu"/>
 			</a>
 		</div>
 
 		<div class="middle">
 			<a ng-show="subMenu.menu.middle" ng-repeat="middleLink in subMenu.menu.middle | filter: linkFilter" href="{{middleLink.link}}">
-				<span tooltip="{{middleLink.tooltip}}" tooltip-placement="right">
-				<img ng-src="{{middleLink.image}}" class="imgMenu"/>
+				<span tooltip="{{middleLink.tooltip}}" tooltip-placement="right"></span>
+				<div class="iconSidebar imageAction" ng-class="middleLink.imgClass"></div>
 			</a>
 
 			<a ng-show="subMenu.menu.middle" ng-repeat="middleLink in subMenu.menu.middle | filter: buttonFilter" href="!#" ng-click="callback($event, middleLink.title)">
-				<span tooltip="{{middleLink.tooltip}}" tooltip-placement="right">
-				<img ng-src="{{middleLink.image}}" class="imgMenu"/>
+
+				<!-- <img ng-src="{{middleLink.image}}" class="imgMenu"/> -->
+				<div class="iconSidebar imageAction" ng-class="middleLink.imgClass">
+					<span tooltip="{{middleLink.tooltip}}" tooltip-placement="right"></span>
+				</div>
 			</a>
 		</div>
 

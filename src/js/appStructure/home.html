@@ -2,11 +2,9 @@
 	<div class="menu-inner">
 		<nav>
 			<div class="menu-elts">
-				<div class="menu_elt menu_home color-1">
-					<a class="link link--kukuri" href="#!/links" data-letters="Voyageurs" ng-click="closeMenu();">
-					Voyageurs
-					<img src="img/Sandals_64.png" class="linksLogo">
-					</a>
+				<div class="menu_elt menu_infos color-11">
+					<span>{{date | date:dateFormat}}</span>
+					<p id="caption"></p>
 				</div>
 				<div class="menu_elt menu_user">
 					<a href="#!/profile" ng-click="closeMenu();">
@@ -18,6 +16,9 @@
 						Agenda
 					</a>
 				</div>
+				<div class="menu_elt menu_cadonne" style="display: none;">
+					<img id="cadonne" src="img/YJMyY0g.gif">
+				</div>
 				<div class="menu_elt menu_suggestions color-2">
 					<a href="#!/suggestions" class="link link--manko" ng-click="closeMenu();">
 						<div>
@@ -25,22 +26,21 @@
 						</div>
 					</a>
 				</div>
-				<div class="menu_elt menu_gallery color-4">
-					<a href="#!/albums" class="link link--nukun" ng-click="closeMenu();">
-						<span>GallEry</span>
-					</a>
-				</div>
 				<div class="menu_elt menu_articles color-3">
 					<a href="#!/articles" class="link link--kumya" ng-click="closeMenu();">
 						<span data-letters="ArTicles">ArTicles</span>
 					</a>
 				</div>
-				<div class="menu_elt menu_infos color-11">
-					<span>{{date | date:dateFormat}}</span>
-					<p id="caption"></p>
+				<div class="menu_elt menu_home color-1">
+					<a class="link link--kukuri" href="#!/links" data-letters="Voyageurs" ng-click="closeMenu();">
+					Voyageurs
+					<img src="img/Sandals_64.png" class="linksLogo">
+					</a>
 				</div>
-				<div class="menu_elt menu_cadonne" style="display: none;">
-					<img id="cadonne" src="img/YJMyY0g.gif">
+				<div class="menu_elt menu_gallery color-4">
+					<a href="#!/albums" class="link link--nukun" ng-click="closeMenu();">
+						<span>Photos</span>
+					</a>
 				</div>
 			</div>
 		</nav>

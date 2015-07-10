@@ -36,7 +36,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 		};
 
 		$scope.setNextArticle = function() {
-			if ($scope.articles.length > $scope.currentIndex) {
+			if ($scope.articles.length - 1 > $scope.currentIndex) {
 				$scope.currentIndex++;
 				$scope.selected = $scope.articles[$scope.currentIndex];
 				$scope.scrollToCurrent();
@@ -108,16 +108,19 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 				link: "#!/articles/create",
 				image: "img/Draw_Adding_Cross_64.png",
 				tooltip: "Ajouter un petit nouveau",
+				imgClass:"iconPlus",
 				type: "link"
 			}, {
 				title: "articlePrev",
 				image: "img/Sketched_up_arrow_triangle_64.png",
 				tooltip: "C'est plus",
+				imgClass:"iconUp",
 				type: "button",
 				callback: $scope.setPreviousArticle
 			}, {
 				title: "articleNext",
 				image: "img/Sketched_down_arrow_triangle_64.png",
+				imgClass:"iconDown",
 				tooltip: "C'est moins",
 				type: "button",
 				callback: $scope.setNextArticle
