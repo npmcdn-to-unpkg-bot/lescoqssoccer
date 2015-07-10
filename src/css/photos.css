@@ -59,9 +59,8 @@ Phtotos
 	vertical-align: middle;
 }
 
-.photoAction{
-	height: 2em;
-	cursor: pointer;
+.photoAction:hover{
+	transform: scale(1.1);
 }
 
 .alignCenter{

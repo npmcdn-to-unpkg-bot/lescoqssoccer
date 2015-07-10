@@ -106,9 +106,9 @@ angular.module('mean.albums').controller('AlbumCtrl', ['$location', '$scope', '$
 	}
 ]);
 
-angular.module('mean.albums').controller('GalleryCtrl', ['$scope', 'Global', '$location', '$modal', 'PhotoMgrService', 'albums', 'AlbumsCollection', 'SubMenu',
+angular.module('mean.albums').controller('GalleryCtrl', ['$scope', 'Global', '$http', '$routeParams', '$window', '$location', '$modal', 'PhotoMgrService', 'albums', 'AlbumsCollection', 'SubMenu',
 
-	function($scope, Global, $location, $modal, PhotoMgrService, albums, AlbumsCollection, SubMenu) {
+	function($scope, Global, $http, $routeParams, $window, $location, $modal, PhotoMgrService, albums, AlbumsCollection, SubMenu) {
 
 		//used in subnav
 		SubMenu.setMenu({
@@ -155,6 +155,21 @@ angular.module('mean.albums').controller('GalleryCtrl', ['$scope', 'Global', '$l
 
 			});
 
+		};
+
+		$scope.download = function(albumId, evt) {
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			$http.post('/download/' + albumId).success(function(data) {
+				if (data.success) // File has been successfuly created...
+				{
+					$window.open('/file/' + albumId, "_blank");
+				}
+			}).error(function(data) {
+				// Handle Error
+			});
 		};
 	}
 ]);

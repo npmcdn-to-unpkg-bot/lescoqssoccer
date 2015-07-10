@@ -26,4 +26,8 @@ module.exports = function ( app ) {
 	/** Gallery - returns all photos with album = id **/
 	app.get( '/gallery/:id', albums.findAllPhotosInAlbum );
 
+	/**Download**/
+	app.post('/download/:id', albums.download);
+	app.get('/file/:id', albums.getZipFile);
+
 };

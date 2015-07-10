@@ -6,23 +6,29 @@
 		class="animation-fade photoCard"
 		data-imageloaded data-loadedclass="animation-faded">
 		<figcaption>
-			<h2>{{card.name}}<span>#1</span></h2>
 			<p class="icon-links">
 				<a href="#!">
-					<img
-					src="img/pencil.png"
-					class="photoAction"
+					<span
+					class="iconLike iconDownload photoAction"
+					ng-click="mother.download(card._id, $event);"
+					ng-show="mother.global.user._id === card.user">
+					</span>
+					<span
+					class="iconLike iconEdit photoAction"
 					ng-click="mother.editAlbum(card._id, $event);"
-					ng-show="mother.global.user._id === card.user"/>
-				</a>
-				<a href="#">
-					<img
-					src="img/trash.png"
-					class="photoAction"
-					ng-click="mother.deleteAlbum(album, $event);"
-					ng-show="mother.global.user._id === card.user"/>
+					ng-show="mother.global.user._id === card.user">
+					</span>
+					<span
+					class="iconLike iconTrash photoAction"
+					ng-click="mother.deleteAlbum(card, $event);"
+					ng-show="mother.global.user._id === card.user">
+					</span>
 				</a>
 			</p>
 		</figcaption>
 	</figure>
+
+	<div class="photo-description">
+		<h2>{{card.name}}</h2>
+	</div>
 </div>
