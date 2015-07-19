@@ -14,31 +14,40 @@ angular.module('mean.home').controller('HomeController', ['$scope', 'Global', '$
 			return (cur_path.indexOf(path) !== -1) || (path.indexOf('albums') !== -1 && cur_path.indexOf('gallery') !== -1);
 		};
 
-		$scope.closeMenu = function(){
+		$scope.closeMenu = function() {
 			TopMenu.close();
 		};
 
 		$scope.type = function() {
-			if($scope.captionLength < $scope.caption.length){
+			if ($scope.captionLength < $scope.caption.length) {
 				$('#caption').html($scope.caption.substr(0, $scope.captionLength++) + " |");
 				setTimeout($scope.type, 70);
 			} else {
-				setTimeout(function(){
+				setTimeout(function() {
 					$(".menu_cadonne").show();
 				}, 70);
 			}
 		};
 
-		if($scope.isCurrentPath('home')){
-			setTimeout(function(){
-				$scope.captionLength = 0;
-				$scope.type();
-			}, 700);
-		} else {
-			setTimeout(function(){
-				$('#caption').html($scope.caption);
-				$(".menu_cadonne").slideDown("slow");
-			}, 700);
-		}
+		$scope.content = "";
+
+		$scope.action = function(content) {
+			if(content !== ""){
+				$scope.content = "";
+				$(".terminal-user").before('<p class="terminal--input">' + content + '</p>');
+			}
+		};
+
+		// if($scope.isCurrentPath('home')){
+		// 	setTimeout(function(){
+		// 		$scope.captionLength = 0;
+		// 		$scope.type();
+		// 	}, 700);
+		// } else {
+		// 	setTimeout(function(){
+		// 		$('#caption').html($scope.caption);
+		// 		$(".menu_cadonne").slideDown("slow");
+		// 	}, 700);
+		// }
 	}
 ]);

@@ -6,10 +6,16 @@ angular.module( 'mean.articles' ).factory( 'Articles', [ '$resource',
 		return $resource( 'articles/:articleId', {
 			articleId: '@_id'
 		}, {
-			update: {
-				method: 'PUT'
+			'save': {
+				method: 'POST'
 			},
-			query: {
+			'update': {
+				method: 'PUT',
+				params: {
+					articleId: '@articleId'
+				},
+			},
+			'query': {
 				method: 'GET',
 				isArray: true
 			},
@@ -33,7 +39,6 @@ angular.module( 'mean.articles' ).service( 'ArticlesCollection', [ 'Global', 'Ar
 			},
 
 			findOne: function ( articleId ) {
-
 				return Articles.get( {
 					articleId: articleId
 				}, function ( article ) {
@@ -42,21 +47,20 @@ angular.module( 'mean.articles' ).service( 'ArticlesCollection', [ 'Global', 'Ar
 			},
 
 			add: function ( article ) {
-
 				return Articles.save({}, article, function (data) {
 					return data;
 				}).$promise;
 			},
 
 			update: function ( article ) {
-
-				return Articles.update( {}, article, function ( data ) {
+				return Articles.update( {
+					articleId: article._id
+				}, article, function ( data ) {
 					return data;
 				} ).$promise;
 			},
 
 			remove: function ( article ) {
-
 				return Articles.delete( {}, article, function ( data ) {
 					return data;
 				} ).$promise;

@@ -1,24 +1,52 @@
+
+
 <section class="entries">
-	<article class="entry active articleTitle" ng-show="selected">
-		<div class="row-fluid">
-			<div class="iconLike iconEdit imageAction" ng-click="edit(selected, $event)" ng-show="global.user._id === selected.user._id"></div>
-			<div class="iconLike iconTrash imageAction" ng-click="remove(selected, $event)" ng-show="global.user._id === selected.user._id"></div>
-			<h1 class="ellipsis">
-				{{selected.title}}
-			</h1>
-			<span class="pub-name">
-				{{selected.created | date:dateFormat}}
-			</span>
-			<div>
-				<img ng-src="{{selected.user.avatar}}" class="avatarArticle" tooltip="{{selected.user.name}}" tooltip-placement="right"/>
+	<section class="main clearfix">
+
+		<section class="top">
+			<div class="wrapper content_header clearfix">
+				<div class="work_nav">
+
+					<ul class="btn clearfix">
+						<li><a href="#" class="previous" data-title="Previous"></a></li>
+						<li><a href="index.html" class="grid" data-title="Portfolio"></a></li>
+						<li><a href="#" class="next" data-title="Next"></a></li>
+					</ul>
+
+				</div><!-- end work_nav -->
+				<h1 class="title">{{selected.title}}</h1>
 			</div>
-			<!-- <img ng-src="{{selected.image && selected.image || 'img/heaven_earth_drib.jpg'}}" alt="image de {{selected.title}}" title="{{selected.title}}" class="articleImage"> -->
+		</section><!-- end top -->
 
-			<article class="articleContent active">
-				<div ng-bind-html="getFormattedContent(selected.content)"></div>
-			</article>
+		<section class="wrapper">
+			<div class="magneticContent">
+				<div>
+					<img ng-src="{{selected.user.avatar}}" class="avatarArticle"/>
+					{{selected.user.name}} le {{selected.created | date:dateFormat}}
+				</div>
 
-			<form role="form" data-ng-submit="addComment()">
+				<article class="articleContent active">
+					<div ng-bind-html="getFormattedContent(selected.content)"></div>
+				</article>
+
+				<h2>Quisque non semper justo</h2>
+
+				<p>Commodo at blandit vitae, placerat in sem. Morbi ornare nec felis in euismod. Suspendisse vulputate orci ultrices enim facilisis, vel lobortis magna rhoncus. Integer mattis at elit vitae adipiscing. Cras imperdiet cursus nunc quis ullamcorper.</p>
+
+				<p>vel tempus libero diam vel arcu. Etiam id tincidunt tortor. Nam auctor consequat quam, vel mattis dui laoreet a. Nunc condimentum iaculis tortor, id eleifend nulla mattis lobortis. Pellentesque semper blandit odio, id tempor lorem imperdiet eu. Ut sagittis sagittis consectetur ,Maecenas eget risus eros. Nunc venenatis ante a rutrum cursus.</p>
+
+
+				<p>Commodo at blandit vitae, placerat in sem. Morbi ornare nec felis in euismod. Suspendisse vulputate orci ultrices enim facilisis, vel lobortis magna rhoncus. Integer mattis at elit vitae adipiscing. Cras imperdiet cursus nunc quis ullamcorper.</p>
+
+
+				<h1>H1 : Quisque non semper justo</h1>
+				<h2>H2 : Quisque non semper justo</h2>
+				<h3>H3 : Quisque non semper justo</h3>
+				<h4>H4 : Quisque non semper justo</h4>
+				<h5>H5 : Quisque non semper justo</h5>
+				<h6>H6 : Quisque non semper justo</h6>
+
+				<form role="form" data-ng-submit="addComment()">
 				<div class="iconLike iconFeather imageAction"></div>
 				<span class="input input--yoshiko articleCommentInput" data-ng-class="{'input--filled': comment}">
 					<textarea class="input__field input__field--yoshiko" type="text" name="content" data-ng-model="comment" required style="margin-right: 5px; color: inherit; min-height: inherit;">
@@ -38,7 +66,22 @@
 					</button>
 				</div>
 			</form>
-
+			</div><!-- end content -->
+		</section>
+	</section><!-- end main -->
+	<article class="entry active articleTitle" ng-show="selected">
+		<div class="row-fluid">
+			<div class="iconLike iconEdit imageAction" ng-click="edit(selected, $event)" ng-show="global.user._id === selected.user._id"></div>
+			<div class="iconLike iconTrash imageAction" ng-click="remove(selected, $event)" ng-show="global.user._id === selected.user._id"></div>
+			<h1 class="ellipsis">
+				{{selected.title}}
+			</h1>
+			<span class="pub-name">
+				{{selected.created | date:dateFormat}}
+			</span>
+			<div>
+				<img ng-src="{{selected.user.avatar}}" class="avatarArticle" tooltip="{{selected.user.name}}" tooltip-placement="right"/>
+			</div>
 		</div>
 	</article>
 </section>

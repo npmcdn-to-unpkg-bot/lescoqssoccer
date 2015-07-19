@@ -1,48 +1,89 @@
 <section class="homeContainer">
-	<div class="menu-inner">
-		<nav>
-			<div class="menu-elts">
-				<div class="menu_elt menu_infos color-11">
-					<span>{{date | date:dateFormat}}</span>
-					<p id="caption"></p>
+	<div class="grid-wrap">
+		<div class="grid-col bp1-col-one-half bp2-col-one-third" style="padding-left: 0;">
+			<div class='square-box terminal-box' style="height: 65vh;">
+				<div class='square-content'>
+					<div class=" terminal ">
+						  <p class=" terminal--header ">Last login: Sun Sep 15 11:11:50 on ttys000</p>
+						  <p class=" terminal--input ">whoami</p>
+						  <p class=" terminal--output ">Rafael Rinaldi</p>
+						  <p class=" terminal--input ">find ~ -name secret-of-life</p>
+						  <p class=" terminal--output ">42</p>
+						  <p class=" terminal--input ">which planet</p>
+						  <p class=" terminal--output ">/usr/milky-way/earth</p>
+						  <p class=" terminal--input ">node</p>
+						  <p class=" terminal--output is-not-defined "></p>
+						  <p class=" terminal--output is-console ">console.log(sprintf(msg, 'awesome'));</p>
+						  <p class="terminal--output">CSS3 is awesome!</p>
+						  <p class=" terminal--output is-not-defined "></p>
+
+						  <p class="terminal--input terminal-user">
+						  	<span data-ng-bind="content">
+						  	</span>
+						  	<textarea
+						  		class="terminal--textarea"
+								data-ng-model="content"
+						  		ng-keydown="$event.which === 13 && action(content)"/>
+						  </p>
+					</div>
 				</div>
-				<div class="menu_elt menu_user">
-					<a href="#!/profile" ng-click="closeMenu();">
-						<img src="img/blip.png" class="homeAvatar"/>
-					</a>
-				</div>
-				<div class="menu_elt menu_agenda color-5">
-					<a href="#!/agenda" class="link link--takiri" ng-click="closeMenu();">
-						Agenda
-					</a>
-				</div>
-				<div class="menu_elt menu_cadonne" style="display: none;">
-					<img id="cadonne" src="img/YJMyY0g.gif">
-				</div>
-				<div class="menu_elt menu_suggestions color-2">
-					<a href="#!/suggestions" class="link link--manko" ng-click="closeMenu();">
-						<div>
-							Suggestions
-						</div>
-					</a>
-				</div>
-				<div class="menu_elt menu_articles color-3">
-					<a href="#!/articles" class="link link--kumya" ng-click="closeMenu();">
-						<span data-letters="ArTicles">ArTicles</span>
-					</a>
-				</div>
-				<div class="menu_elt menu_home color-1">
-					<a class="link link--kukuri" href="#!/links" data-letters="Voyageurs" ng-click="closeMenu();">
-					Voyageurs
-					<img src="img/Sandals_64.png" class="linksLogo">
-					</a>
-				</div>
-				<div class="menu_elt menu_gallery color-4">
-					<a href="#!/albums" class="link link--nukun" ng-click="closeMenu();">
-						<span>Photos</span>
+			</div>
+			<img id="cadonne" src="img/YJMyY0g.gif" style="margin-top: 1vh; height: 31vh; width: 100%;">
+		</div>
+		<div class="grid-col bp1-col-one-third bp2-col-one-third">
+			<div class='island square-box user-box' style="height: 60vh;">
+				<div class='square-content'>
+					 <a href="#!/profile" ng-click="closeMenu();">
+						<img ng-src="{{global.user.avatar && global.user.avatar || 'img/blip.png'}}" class="homeAvatar"/>
 					</a>
 				</div>
 			</div>
-		</nav>
+			<div class='island square-box' style="margin-top: 1vh; height: 36vh;">
+				<h3>test</h3>
+			</div>
+		</div>
+		<div class="grid-col bp1-col-one-third bp2-col-one-third">
+			<div class="grid-wrap">
+				<div class="grid-col bp1-col-one-third bp2-col-one-half" style="padding-left: 0;">
+					<div class="island square-box" style="height: 32vh;">
+						<div class='square-content'>
+							<a href="#!/albums" class="link link--kumya" ng-click="closeMenu();">
+							<span data-letters="Photos">Photos</span>
+							</a>
+						</div>
+					</div>
+					<div class="island square-box" style="margin-top: 1vh; height: 32vh;">
+						<div class='square-content'>
+							<a href="#!/links" class="link link--kumya" ng-click="closeMenu();">
+								<span data-letters="Voyageurs">Voyageurs</span>
+							</a>
+						</div>
+					</div>
+					<div class="island square-box" style="margin-top: 1vh; height: 31vh;">
+						<div class='square-content'>
+							<a href="#!/suggestions" class="link link--kumya" ng-click="closeMenu();">
+								<span data-letters="Suggestions">Suggestions</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="grid-col bp1-col-one-third bp2-col-one-half">
+					<div class="island square-box" style="height: 48vh;">
+						<div class='square-content'>
+							<a href="#!/agenda" class="link link--kumya" ng-click="closeMenu();">
+							<span data-letters="Agenda">Agenda</span>
+							</a>
+						</div>
+					</div>
+					<div class="island square-box" style="margin-top: 1vh; height: 48vh;">
+						<div class='square-content'>
+							<a href="#!/articles" class="link link--kumya" ng-click="closeMenu();">
+							<span data-letters="Articles">Articles</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </section>

@@ -7,6 +7,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 		$scope.ArticlesCollection = ArticlesCollection;
 		$scope.articles = Articles;
 
+		console.warn($scope.articles);
 		$scope.dateFormat = "dd MMM yyyy, H'h'mm";
 
 		// Manage search input
@@ -58,12 +59,15 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 
 		$scope.addComment = function(){
 
-			var comment = {
-				date: new Date,
+			$scope.selected.comments.push({
+				user: $scope.global.user._id,
 				content: $scope.comment
-			};
+			});
 
-			console.warn(comment);
+			$scope.ArticlesCollection.update($scope.selected).then(function() {
+				$location.path("/articles");
+			});
+
 			$scope.comment = "";
 
 		};
@@ -107,7 +111,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 			middle: [{
 				link: "#!/articles/create",
 				image: "img/Draw_Adding_Cross_64.png",
-				tooltip: "Ajouter un petit nouveau",
+				tooltip: "C'est plus",
 				imgClass:"iconPlus",
 				type: "link"
 			}, {
@@ -167,9 +171,17 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 		});
 
 		$scope.create = function() {
-			$scope.ArticlesCollection.add($scope.article).then(function() {
-				$location.path("/articles");
-			});
+
+			if(!$scope.article._id){
+				$scope.ArticlesCollection.add($scope.article).then(function() {
+					$location.path("/articles");
+				});
+			} else {
+				console.warn("update");
+				$scope.ArticlesCollection.update($scope.article).then(function() {
+					$location.path("/articles");
+				});
+			}
 		};
 
 		$scope.uploader = new FileUploader({
@@ -204,7 +216,7 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 var ArticleDetailData = {
 
 	article: function(ArticlesCollection, $route) {
-		return ($route.current.params.articleId) ? ArticlesCollection.findOne($route.current.params.articleId) : null;
+		return ($route.current.params.articleId) ? ArticlesCollection.findOne($route.current.params.articleId) : {};
 	}
 
 };

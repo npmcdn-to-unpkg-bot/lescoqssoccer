@@ -33,7 +33,21 @@ var ArticleSchema = new Schema({
     	user: {
         		type: Schema.ObjectId,
         		ref: 'User'
-    	}
+    	},
+    	comments: [ new Schema({
+    		created: {
+	        		type: Date,
+	        		default: Date.now
+	    	},
+    		user: {
+	        		type: Schema.ObjectId,
+	        		ref: 'User'
+	    	},
+	    	content: {
+	        		type: String,
+	        		default: ''
+	    	}
+	})]
 });
 /**
  * Validations
