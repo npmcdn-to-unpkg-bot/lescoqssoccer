@@ -3,7 +3,6 @@
 Articles
 
 *****/
-
 [ng-cloak] {
   display: none;
 }
@@ -44,7 +43,7 @@ html {
 
 .articleCell{
 	width: 135px;
-  	z-index: 9;
+  z-index: 9;
 }
 
 .articleCellDetail {
@@ -72,13 +71,6 @@ html {
   text-align: left;
 }
 
-.imageAction{
-	float: left;
-	padding-top: 15px;
-  	width: 40px;
-	cursor: pointer;
-}
-
 .avatarArticleParent{
   width: 100%;
   text-align: center;
@@ -87,7 +79,6 @@ html {
 }
 
 .avatarArticle{
-  border-radius: 50%;
   border: 1px solid;
   width: 50px;
   height: 50px;
@@ -256,7 +247,7 @@ div.tooltip, div.tooltip div{
 
 .summaries {
   box-sizing: border-box;
-  padding: 0 10px;
+  padding: 10px 0 20px 10px;
   overflow-y: scroll;
   overflow-x: hidden;
   width: 300px;
@@ -266,7 +257,7 @@ div.tooltip, div.tooltip div{
   bottom:0;
   left: calc(100% - 300px);
   right:0;
-  top:60px;
+  top:0px;
 }
 
 .summary {
@@ -323,7 +314,6 @@ div.tooltip, div.tooltip div{
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   background-color: #f5f5f5;
-  z-index: -2;
 }
 
 .entry {
@@ -399,15 +389,6 @@ div.tooltip, div.tooltip div{
 
 
 /* Search */
-
-#search {
-  width: 265px;
-  margin-bottom: -20px;
-  position: fixed;
-  right: 26px;
-  top: 1px;
-}
-
 .input--makiko {
   overflow: hidden;
   background: rgba(0,0,0,0.4);
@@ -454,22 +435,11 @@ div.tooltip, div.tooltip div{
 }
 
 .iconLike{
-	display: inline-block;
-	position: relative;
-	height: 55px;
-	width: 55px;
-	margin-bottom: 16px;
-	border: 1px solid #555;
-	border-radius: 51%;
-  background-size: 48px 48px !important;
-  margin: 0 5px 0 10px;
-	padding: 0;
-	outline: 0;
-	font-weight: inherit;
-	font-style: inherit;
-	font-size: 100%;
-	font-family: inherit;
-	vertical-align: baseline;
+	height: 40px;
+	width: 40px;
+  background-size: 20px 20px !important;
+  float: left;
+  cursor: pointer;
 }
 
 .iconSidebar{
@@ -489,35 +459,35 @@ div.tooltip, div.tooltip div{
 }
 
 .iconCalendar{
-	background: url(../img/Time_Zones_32.png) center no-repeat;
+	background: url(../img/Time_Zones_32.png) center no-repeat white;
 }
 
 .iconEdit{
-  background: url(../img/Edit_Draw_Pencil_64.png) center no-repeat;
+  background: url(../img/Edit_Draw_Pencil_64.png) center no-repeat white;
 }
 
 .iconTrash{
-  background: url(../img/Cancel_Music_64.png) center no-repeat;
+  background: url(../img/Cancel_Music_64.png) center no-repeat white;
 }
 
 .iconPlus{
-  background: url(../img/Add_Song_64.png) center no-repeat;
+  background: url(../img/Add_Song_64.png) center no-repeat white;
 }
 
 .iconUp{
-  background: url(../img/Navigate_up_arrow_64.png) center no-repeat;
+  background: url(../img/Navigate_up_arrow_64.png) center no-repeat white;
 }
 
 .iconDown{
-  background: url(../img/Navigate_down_arrow_64.png) center no-repeat;
+  background: url(../img/Navigate_down_arrow_64.png) center no-repeat white;
 }
 
 .iconDownload{
-  background: url(../img/Download_folder_64.png) center no-repeat;
+  background: url(../img/Download_folder_64.png) center no-repeat white;
 }
 
 .iconPhoto{
-  background: url(../img/Photo_camera_filled_tool_64.png) center no-repeat;
+  background: url(../img/Photo_camera_filled_tool_64.png) center no-repeat white;
   border-color: white;
   position: absolute;
   top: 10px;
@@ -525,56 +495,31 @@ div.tooltip, div.tooltip div{
 }
 
 .iconFeather{
-  background: url(../img/Feather_natural_animal_shape_64.png) center no-repeat;
-  position: absolute;
-  left: 0;
+  float: right;
+  background: url(../img/Speech_balloon_oval_symbol_64.png) center no-repeat white;
   z-index: 2;
+  border: 1px solid lightgray;
 }
 
 .summaryContent, .summaryContent *{
-font-family: verdana !important;
- font-size: 14px !important;
+  font-family: verdana !important;
+  font-size: 14px !important;
   line-height: normal !important;
   color: black !important;
   overflow: hidden;
 }
 
 .articleCommentInput{
-  width: calc(100% - 35px);
-  margin-left: 50px;
+  margin-bottom: 40px;
 }
 
-.articleCommentInput .arrow {
-  width: 14px;
-  height: 28px;
-  overflow: hidden;
-  position: absolute;
-  left: -17px;
-  top: 15px;
+.articleCommentInput.input--filled{
+  margin-bottom: 0;
 }
 
-.articleCommentInput .arrow:after {
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
-  -webkit-box-shadow: 1px 1px 2px rgba(0,0,0,0.15),1px 1px 0 rgba(0,0,0,0.1);
-  -moz-box-shadow: 1px 1px 2px rgba(0,0,0,0.15),1px 1px 0 rgba(0,0,0,0.1);
-  box-shadow: 1px 1px 2px rgba(0,0,0,0.15),1px 1px 0 rgba(0,0,0,0.1);
-  content: "";
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  background-color: rgb(233, 233, 233);
-  top: 7px;
-  right: -7px;
+.articleCommentInput:not(.input--filled) .iconFeather{
+  display: none;
 }
-
-.articleCommentInput.input--filled .arrow:after{
-  background-color: black !important;
-}
-
 
 /***
 *
@@ -831,14 +776,10 @@ h1, h2, h3, h4, h5 ,h6{
     background-position: -41px 0!important;
 }
 
-
-
-
-
-
 /*  Main  */
 .main{
-    width: 100%;
+  margin-left: 250px;
+    width: calc(100% - 250px);
     height: 100%;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -848,12 +789,6 @@ h1, h2, h3, h4, h5 ,h6{
     background: #f6f6f6;
     clear: both;
 }
-
-
-
-
-
-
 
 /*  Home/portfolio  */
 .main .work{
@@ -910,12 +845,6 @@ h1, h2, h3, h4, h5 ,h6{
     border-top: 1px solid #bfbbbb;
 }
 
-
-
-
-
-
-
 /*  Inner Page  */
 .top{
     width: 100%;
@@ -957,6 +886,10 @@ h1, h2, h3, h4, h5 ,h6{
     height: 40px;
     background: url('../img/p_navigation.png') no-repeat;
     background-position: 0 0;
+}
+
+.work_nav a:hover{
+  transform: scale(1.1);
 }
 
 .work_nav a.previous{
@@ -1018,7 +951,8 @@ h1, h2, h3, h4, h5 ,h6{
     font-family: "raleway-regular", arial;
     font-size: 15px;
     line-height: 24px;
-    margin-bottom: 60px;
+    margin-top: 10px;
+    margin-bottom: 30px;
 }
 
 .magneticContent h1,
@@ -1034,12 +968,6 @@ h1, h2, h3, h4, h5 ,h6{
     margin-bottom: 30px;
 
 }
-
-
-
-
-
-
 
 /*  Contact page map  */
 #map .map_adresse{
@@ -1063,12 +991,6 @@ h1, h2, h3, h4, h5 ,h6{
 #map img{
     max-width: none;
 }
-
-
-
-
-
-
 
 /*  Tooltip  */
 .tooltip{

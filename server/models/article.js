@@ -40,7 +40,7 @@ var ArticleSchema = new Schema({
 	        		default: Date.now
 	    	},
     		user: {
-	        		type: Schema.ObjectId,
+	        		type: Schema.Types.ObjectId,
 	        		ref: 'User'
 	    	},
 	    	content: {
@@ -59,9 +59,9 @@ ArticleSchema.path('title').validate(function(title) {
  * Statics
  */
 ArticleSchema.statics.load = function(id, cb) {
-   	 this.findOne({
-        		_id: id
-    	}).populate('user', 'name username').exec(cb);
+   	this.findOne({
+        _id: id
+    }).populate('user', 'name username').populate( 'comments.user', 'name username avatar', null, { sort: { 'created': -1 } }).exec(cb);
 };
 
 mongoose.model('Article', ArticleSchema);

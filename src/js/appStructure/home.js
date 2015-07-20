@@ -14,9 +14,9 @@ angular.module('mean.home').controller('HomeController', ['$scope', 'Global', '$
 			return (cur_path.indexOf(path) !== -1) || (path.indexOf('albums') !== -1 && cur_path.indexOf('gallery') !== -1);
 		};
 
-		$scope.closeMenu = function() {
-			TopMenu.close();
-		};
+		// $scope.closeMenu = function() {
+		// 	TopMenu.close();
+		// };
 
 		$scope.type = function() {
 			if ($scope.captionLength < $scope.caption.length) {
@@ -38,16 +38,16 @@ angular.module('mean.home').controller('HomeController', ['$scope', 'Global', '$
 			}
 		};
 
-		// if($scope.isCurrentPath('home')){
-		// 	setTimeout(function(){
-		// 		$scope.captionLength = 0;
-		// 		$scope.type();
-		// 	}, 700);
-		// } else {
-		// 	setTimeout(function(){
-		// 		$('#caption').html($scope.caption);
-		// 		$(".menu_cadonne").slideDown("slow");
-		// 	}, 700);
-		// }
+		if($scope.isCurrentPath('home')){
+			setTimeout(function(){
+				$scope.captionLength = 0;
+				$scope.type();
+			}, 700);
+		} else {
+			setTimeout(function(){
+				$('#caption').html($scope.caption);
+				$(".menu_cadonne").slideDown("slow");
+			}, 700);
+		}
 	}
 ]);

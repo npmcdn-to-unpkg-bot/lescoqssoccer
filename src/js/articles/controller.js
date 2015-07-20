@@ -7,10 +7,20 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 		$scope.ArticlesCollection = ArticlesCollection;
 		$scope.articles = Articles;
 
-		console.warn($scope.articles);
+		$scope.menu = [{
+			link: "#!/articles",
+			name: "Liste des articles",
+			selected: true
+		},{
+			link: "#!/articles/create",
+			name: "Ajouter un article",
+			image: "img/Draw_Adding_Cross_64.png"
+		}];
+
 		$scope.dateFormat = "dd MMM yyyy, H'h'mm";
 
 		// Manage search input
+		$scope.hasSearch = true;
 		$scope.obj = {
 			searchTitle: ""
 		};
@@ -28,7 +38,11 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 			$scope.currentIndex = index;
 		};
 
-		$scope.setPreviousArticle = function() {
+		$scope.setPreviousArticle = function(evt) {
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
 			if ($scope.currentIndex > 0) {
 				$scope.currentIndex--;
 				$scope.selected = $scope.articles[$scope.currentIndex];
@@ -36,7 +50,11 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 			}
 		};
 
-		$scope.setNextArticle = function() {
+		$scope.setNextArticle = function(evt) {
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
 			if ($scope.articles.length - 1 > $scope.currentIndex) {
 				$scope.currentIndex++;
 				$scope.selected = $scope.articles[$scope.currentIndex];
@@ -52,7 +70,6 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 				$('.summaries').animate({
 					'scrollTop': curScrollPos + itemTop
 				}, 200);
-				$('.entries article.active')[0].scrollIntoView();
 			}, 0, false);
 
 		};
@@ -61,15 +78,14 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 
 			$scope.selected.comments.push({
 				user: $scope.global.user._id,
-				content: $scope.comment
+				content: $scope.comment,
+				created: moment(new Date()).toISOString()
 			});
 
 			$scope.ArticlesCollection.update($scope.selected).then(function() {
 				$location.path("/articles");
+				$scope.comment = "";
 			});
-
-			$scope.comment = "";
-
 		};
 
 		$scope.edit = function(article, evt) {
@@ -105,32 +121,6 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 			});
 		};
 
-		//used in subnav
-		SubMenu.setMenu({
-			view: "articles",
-			middle: [{
-				link: "#!/articles/create",
-				image: "img/Draw_Adding_Cross_64.png",
-				tooltip: "C'est plus",
-				imgClass:"iconPlus",
-				type: "link"
-			}, {
-				title: "articlePrev",
-				image: "img/Sketched_up_arrow_triangle_64.png",
-				tooltip: "C'est plus",
-				imgClass:"iconUp",
-				type: "button",
-				callback: $scope.setPreviousArticle
-			}, {
-				title: "articleNext",
-				image: "img/Sketched_down_arrow_triangle_64.png",
-				imgClass:"iconDown",
-				tooltip: "C'est moins",
-				type: "button",
-				callback: $scope.setNextArticle
-			}]
-		});
-
 		if (!$scope.selected && $scope.articles.length > 0) {
 			$scope.selectArticle($scope.articles[0], 0);
 		}
@@ -161,14 +151,16 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 		$scope.ArticlesCollection = ArticlesCollection;
 		$scope.article = Article;
 
-		SubMenu.setMenu({
-			middle: [{
-				link: "#!/articles",
-				image: "img/Checklist_paper_sheet_handmade_symbol_64.png",
-				tooltip: "Liste des articles",
-				type: "link"
-			}]
-		});
+		//used in subnav
+		$scope.menu = [{
+			link: "#!/articles",
+			name: "Liste des articles",
+			selected: true
+		},{
+			link: "#!/articles/create",
+			name: "Ajouter un article",
+			image: "img/Draw_Adding_Cross_64.png"
+		}];
 
 		$scope.create = function() {
 

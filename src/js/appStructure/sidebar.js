@@ -31,17 +31,17 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 
 		};
 
-		setTimeout(function() {
+		// setTimeout(function() {
 
-			TopMenu.initialize();
-			$('.forkit').show();
-			$('.forkit-curtain').show();
+		// 	TopMenu.initialize();
+		// 	$('.forkit').show();
+		// 	$('.forkit-curtain').show();
 
-			if($scope.isCurrentPath('home')){
-				TopMenu.open();
-			};
+		// 	if($scope.isCurrentPath('home')){
+		// 		TopMenu.open();
+		// 	};
 
-		}, 1000);
+		// }, 1000);
 
 	}
 ]);

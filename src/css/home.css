@@ -52,7 +52,6 @@ Grid system
     text-align: center;
 }
 
-------------------------------------------------------------- */
 /* -- Use this wrapper if you want to divide your columns -- */
 .divide-bottom {
   border-bottom: 1px solid #ccc;

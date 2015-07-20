@@ -5,13 +5,15 @@ angular.module('mean.albums').controller('AlbumCtrl', ['$location', '$scope', '$
 	function($location, $scope, $modal, PhotoMgrService, album, albums, FileUploader, SubMenu) {
 
 		//used in subnav
-		SubMenu.setMenu({
-			middle: [{
-				link: "#!/albums",
-				image: "img/Left_arrow_sketch_64.png",
-				tooltip: "Back back dans les bacs!"
-			}]
-		});
+		$scope.menu = [{
+			link: "#!/albums",
+			name: "Liste des albums",
+			selected: true
+		},{
+			link: "#!/albums/create",
+			name: "Ajouter un album",
+			image: "img/Draw_Adding_Cross_64.png"
+		}];
 
 		$scope.pmSvc = PhotoMgrService;
 		$scope.newAlbum = $scope.pmSvc.newAlbum();
@@ -111,13 +113,15 @@ angular.module('mean.albums').controller('GalleryCtrl', ['$scope', 'Global', '$h
 	function($scope, Global, $http, $routeParams, $window, $location, $modal, PhotoMgrService, albums, AlbumsCollection, SubMenu) {
 
 		//used in subnav
-		SubMenu.setMenu({
-			middle: [{
-				link: "#!/albums/create",
-				image: "img/Draw_Adding_Cross_64.png",
-				tooltip: "C'est plus!"
-			}]
-		});
+		$scope.menu = [{
+			link: "#!/albums",
+			name: "Liste des albums",
+			selected: true
+		},{
+			link: "#!/albums/create",
+			name: "Ajouter un album",
+			image: "img/Draw_Adding_Cross_64.png"
+		}];
 
 		$scope.global = Global;
 		$scope.pmSvc = PhotoMgrService;
@@ -163,8 +167,7 @@ angular.module('mean.albums').controller('GalleryCtrl', ['$scope', 'Global', '$h
 			evt.stopPropagation();
 
 			$http.post('/download/' + albumId).success(function(data) {
-				if (data.success) // File has been successfuly created...
-				{
+				if (data.success){
 					$window.open('/file/' + albumId, "_blank");
 				}
 			}).error(function(data) {
