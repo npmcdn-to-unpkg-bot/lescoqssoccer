@@ -14,7 +14,7 @@ angular.module('mean.system').service('SideMenu',
 				sideMenu.show = true;
 			},
 
-			hasSearch: function(hasSearch){
+			setSearchInput: function(hasSearch){
 				sideMenu.hasSearch = hasSearch;
 			},
 

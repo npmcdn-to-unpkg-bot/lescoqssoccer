@@ -129,7 +129,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 			}]
 		});
 
-		SideMenu.hasSearch(true);
+		SideMenu.setSearchInput(true);
 
 		if (!$scope.selected && $scope.articles.length > 0) {
 			$scope.selectArticle($scope.articles[0], 0);

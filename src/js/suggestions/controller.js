@@ -7,7 +7,7 @@ angular.module('mean.suggestions').controller('SuggestionController', ['$scope',
 		$scope.dateFormat = "dd/MM/yyyy";
 		$scope.SuggestionsCollection = SuggestionsCollection;
 
-		SideMenu.hasSearch(false);
+		SideMenu.setSearchInput(false);
 		SideMenu.setMenu({
 			middle: [{
 				link: "#!/suggestions/create",

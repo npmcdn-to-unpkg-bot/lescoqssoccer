@@ -8,7 +8,7 @@ angular.module('mean.links').controller('LinkController', ['$scope', 'Global', '
 		$scope.content;
 
 		SideMenu.setMenu({});
-		SideMenu.hasSearch(false);
+		SideMenu.setSearchInput(false);
 
 		$scope.links = [{
 				author: "Jo",
