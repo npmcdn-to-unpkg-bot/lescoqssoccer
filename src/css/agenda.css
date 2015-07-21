@@ -8,9 +8,9 @@ Agenda
 	position: absolute;
 	top: 0;
 	bottom: 0;
-	left: 75px;
+	left: 250px;
   	padding: 20px;
-  	width: calc(100% - 75px);
+  	width: calc(100% - 250px);
   	box-sizing: border-box;
   	-webkit-box-flex: 1;
   	overflow-y: scroll;
@@ -229,7 +229,8 @@ Map
 	position: absolute;
 	top: 0;
 	bottom: 0;
-  	width: calc(100% - 55px);
+	left: 250px;
+  	width: calc(100% - 250px);
   	box-sizing: border-box;
   	-webkit-box-flex: 1;
   	overflow-y: scroll;

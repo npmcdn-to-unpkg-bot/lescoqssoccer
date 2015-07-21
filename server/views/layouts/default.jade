@@ -3,5 +3,6 @@ html(lang='en', xmlns='http://www.w3.org/1999/xhtml', itemscope='itemscope', ite
   include ../includes/head
   body
     section.mainContent
-        block content
+      .subview(data-ng-include="'js/appStructure/sidebar.html'", data-ng-controller="SidebarController", data-role="navigation")
+      block content
   include ../includes/foot

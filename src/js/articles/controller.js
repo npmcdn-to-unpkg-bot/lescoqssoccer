@@ -1,26 +1,15 @@
 'use strict';
 
-angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', '$sce', '$modal', '$timeout', 'Global', 'ArticlesCollection', 'Articles', 'SubMenu',
-	function($scope, $routeParams, $location, $sce, $modal, $timeout, Global, ArticlesCollection, Articles, SubMenu) {
+angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', '$sce', '$modal', '$timeout', 'Global', 'ArticlesCollection', 'Articles', 'SideMenu',
+	function($scope, $routeParams, $location, $sce, $modal, $timeout, Global, ArticlesCollection, Articles, SideMenu) {
 
 		$scope.global = Global;
 		$scope.ArticlesCollection = ArticlesCollection;
 		$scope.articles = Articles;
 
-		$scope.menu = [{
-			link: "#!/articles",
-			name: "Liste des articles",
-			selected: true
-		},{
-			link: "#!/articles/create",
-			name: "Ajouter un article",
-			image: "img/Draw_Adding_Cross_64.png"
-		}];
-
 		$scope.dateFormat = "dd MMM yyyy, H'h'mm";
 
 		// Manage search input
-		$scope.hasSearch = true;
 		$scope.obj = {
 			searchTitle: ""
 		};
@@ -121,6 +110,27 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 			});
 		};
 
+		//used in subnav
+		SideMenu.setMenu({
+			view: "articles",
+			middle: [{
+				link: "#!/articles/create",
+				image: "img/Draw_Adding_Cross_64.png",
+				tooltip: "Liste des articles",
+				imgClass:"iconPlus",
+				type: "link"
+			}, {
+				title: "articlePrev",
+				image: "img/Sketched_up_arrow_triangle_64.png",
+				tooltip: "Ajouter un article",
+				imgClass:"iconUp",
+				type: "button",
+				callback: $scope.setPreviousArticle
+			}]
+		});
+
+		SideMenu.hasSearch(true);
+
 		if (!$scope.selected && $scope.articles.length > 0) {
 			$scope.selectArticle($scope.articles[0], 0);
 		}
@@ -144,23 +154,25 @@ angular.module('mean.articles').controller('deleteArticleModalCtrl', ['$scope', 
 
 ]);
 
-angular.module('mean.articles').controller('CreateArticleController', ['$scope', '$location', 'Global', 'ArticlesCollection', 'FileUploader', 'article', 'SubMenu',
-	function($scope, $location, Global, ArticlesCollection, FileUploader, Article, SubMenu) {
+angular.module('mean.articles').controller('CreateArticleController', ['$scope', '$location', 'Global', 'ArticlesCollection', 'FileUploader', 'article', 'SideMenu',
+	function($scope, $location, Global, ArticlesCollection, FileUploader, Article, SideMenu) {
 
 		$scope.global = Global;
 		$scope.ArticlesCollection = ArticlesCollection;
 		$scope.article = Article;
 
-		//used in subnav
-		$scope.menu = [{
-			link: "#!/articles",
-			name: "Liste des articles",
-			selected: true
-		},{
-			link: "#!/articles/create",
-			name: "Ajouter un article",
-			image: "img/Draw_Adding_Cross_64.png"
-		}];
+		SideMenu.setMenu({
+			view: "articles",
+			middle: [{
+				link: "#!/articles/create",
+				image: "img/Draw_Adding_Cross_64.png",
+				tooltip: "C'est plus",
+				imgClass:"iconPlus",
+				type: "link"
+			}]
+		});
+
+		SideMenu.hasSearch(false);
 
 		$scope.create = function() {
 

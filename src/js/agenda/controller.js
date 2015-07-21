@@ -1,14 +1,14 @@
 'use strict';
 
-angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection', 'event', '$modal', 'SubMenu',
-	function($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection, event, $modal, SubMenu) {
+angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection', 'event', '$modal', 'SideMenu',
+	function($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection, event, $modal, SideMenu) {
 
 		$scope.agendaCollection = AgendaCollection;
 		$scope.eventTypes = eventTypes;
 		$scope.start = $scope.end = ($route.current && $route.current.params.startDate) ? new Date($route.current.params.startDate) : new Date();
 
 		//used in subnav
-		SubMenu.setMenu({
+		SideMenu.setMenu({
 			middle: [{
 				link: "#!/agenda/create",
 				image: "img/Draw_Adding_Cross_64.png",
@@ -180,13 +180,13 @@ var EventDetailData = {
 
 };
 
-angular.module('mean.agenda').controller('ListController', ['$scope', '$routeParams', '$location', '$route', 'Global', 'AgendaCollection', 'Agenda', 'SubMenu',
-	function($scope, $routeParams, $location, $route, Global, AgendaCollection, Agenda, SubMenu) {
+angular.module('mean.agenda').controller('ListController', ['$scope', '$routeParams', '$location', '$route', 'Global', 'AgendaCollection', 'Agenda', 'SideMenu',
+	function($scope, $routeParams, $location, $route, Global, AgendaCollection, Agenda, SideMenu) {
 
 		$scope.agendaCollection = AgendaCollection;
 		$scope.agenda = Agenda;
 
-		SubMenu.setMenu({
+		SideMenu.setMenu({
 			middle: [{
 				link: "#!/agenda/create",
 				image: "img/Draw_Adding_Cross_64.png",
@@ -267,13 +267,13 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 	}
 ]);
 
-angular.module('mean.agenda').controller('MapController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection', 'Agenda', 'SubMenu',
-	function($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection, Agenda, SubMenu) {
+angular.module('mean.agenda').controller('MapController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection', 'Agenda', 'SideMenu',
+	function($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection, Agenda, SideMenu) {
 
 		$scope.agendaCollection = AgendaCollection;
 		$scope.agenda = Agenda;
 
-		SubMenu.setMenu({
+		SideMenu.setMenu({
 			middle: [{
 				link: "#!/agenda/create",
 				image: "img/Draw_Adding_Cross_64.png",

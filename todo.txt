@@ -1,3 +1,2 @@
 - Ajouter profil utilisateur
-- Ajouter commentaire
 - Ajouter magnific popup

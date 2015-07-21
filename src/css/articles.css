@@ -307,7 +307,7 @@ div.tooltip, div.tooltip div{
   left: 250px;
   right:0;
   top:0;
-  width: calc(100% - 550px);
+  width: calc(100% - 250px);
   box-sizing: border-box;
   -webkit-box-flex: 1;
   overflow-y: scroll;
@@ -392,7 +392,7 @@ div.tooltip, div.tooltip div{
 .input--makiko {
   overflow: hidden;
   background: rgba(0,0,0,0.4);
-  margin-bottom: 2em;
+  margin-bottom: 0;
 }
 .input__field--makiko {
   width: 100%;
@@ -431,7 +431,8 @@ div.tooltip, div.tooltip div{
   transform: scale3d(38, 38, 1);
 }
 .input__field--makiko:focus, .input__field--makiko.searchFocus {
-  border: 1px solid #1e2226;
+  border-top: 1px solid #1e2226;
+  border-bottom: 1px solid #1e2226;
 }
 
 .iconLike{
@@ -635,150 +636,55 @@ h1, h2, h3, h4, h5 ,h6{
     *zoom: 1;
 }
 
-    header{
-        display: block;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 250px;
-        min-height: 100%;
-        padding: 0;
-        background: #ffffff;
-        float: left;
-        overflow: hidden;
-        z-index: 9999;
-    }
-
-    header .logo{
-        margin-top: 100px;
-    }
-
-    header nav ul{
-        display: block;
-        overflow: hidden;
-        margin-top: 100px;
-        list-style: none;
-    }
-
-    header nav ul li{
-        display: block;
-        margin-bottom: 30px;
-    }
-
-    header nav ul li a{
-        color: #454545;
-        font-family: "raleway-regular", arial;
-        font-size: 14px;
-        text-decoration: none;
-        letter-spacing: 1px;
-    }
-
-    header nav ul li a:hover,
-    header nav ul li a.selected{
-        color: #969595;
-    }
-
-    header .footer{
-        position: absolute;
-        bottom: 50px;
-    }
-
-    header ul.social{
-        list-style: none;
-        margin-bottom: 5px;
-    }
-
-    header ul.social li{
-        display: block;
-        float: left;
-        position: relative;
-        margin: 0 15px 15px 0;
-    }
-
-
-    header ul.social li a{
-        display: block;
-        width: 30px;
-        height: 30px;
-        background: url('../img/sm.png') no-repeat;
-        background-position: 0 0;
-    }
-
-
-    header ul.social li a:hover{
-        background: url('../img/sm_hover.png') no-repeat;
-    }
-
-
-
-    header ul.social li a.fb,
-    header ul.social li a.fb:hover{
-        background-position: 0 0;
-    }
-
-
-    header ul.social li a.google,
-    header ul.social li a.google:hover{
-        background-position: -31px 0;
-    }
-
-    header ul.social li a.behance,
-    header ul.social li a.behance:hover{
-        background-position: -62px 0;
-    }
-
-    header ul.social li a.twitter,
-    header ul.social li a.twitter:hover{
-        background-position: -93px 0;
-    }
-
-    header ul.social li a.dribble,
-    header ul.social li a.dribble:hover{
-        background-position: -124px 0;
-    }
-
-    header ul.social li a.rss,
-    header ul.social li a.rss:hover{
-        background-position: -155px 0;
-    }
-
-    header .rights p{
-        color: #454545;
-        font-family: "raleway-regular", arial;
-        font-size: 11px;
-        letter-spacing: 1px;
-        line-height: 18px;
-    }
-
-    header .rights a{
-        font-family: "raleway-bold", arial;
-        font-weight: bold;
-        text-decoration: none;
-    }
-    #menu_icon,
-    .close_menu{
-        display: none;
-    }
-#menu_icon,
-.close_menu{
-    float: right;
-    margin-right: 40px;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    background: url('../img/men_icons.png') no-repeat;
+header{
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    min-height: 100%;
+    padding: 0;
+    background: #ffffff;
+    float: left;
+    overflow: hidden;
+    z-index: 9999;
 }
 
-#menu_icon{
-    background-position: 0 0;
+header .logo{
+    margin-top: 100px;
 }
-.close_menu{
-    background-position: -41px 0!important;
+
+header nav ul{
+    display: block;
+    overflow: hidden;
+    list-style: none;
 }
+
+header nav ul li a{
+      display: block;
+      padding: 0.7em 1em 0.7em 1.8em;
+      outline: none;
+      border-bottom: 1px solid rgba(0,0,0,0.2);
+      text-shadow: 0 0 1px rgba(255,255,255,0.1);
+      color: #515050;
+      -webkit-transition: background 0.3s, box-shadow 0.3s;
+      -moz-transition: background 0.3s, box-shadow 0.3s;
+      transition: background 0.3s, box-shadow 0.3s;
+}
+
+header nav ul li:first-child a{
+      border-top: 1px solid rgba(0,0,0,0.2);
+}
+
+header nav ul li a:hover{
+  color: white;
+  background: #515050;
+}
+
 
 /*  Main  */
 .main{
-  margin-left: 250px;
+    margin-left: 250px;
     width: calc(100% - 250px);
     height: 100%;
     -moz-box-sizing: border-box;
@@ -793,7 +699,7 @@ h1, h2, h3, h4, h5 ,h6{
 /*  Home/portfolio  */
 .main .work{
     display: block;
-    width: 33.33333333333333%;
+    width: 33.33%;
     height: auto;
     float: left;
     position: relative;

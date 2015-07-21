@@ -44,7 +44,7 @@ angular.module('mean').config(['$routeProvider',
 
 		/** ARTICLES ****/
 		when('/articles', {
-			templateUrl: 'js/articles/views/list.html',
+			templateUrl: 'js/articles/views/listSquare.html',
 			controller: 'ArticlesController',
 			resolve: {
 				Articles: function(ArticlesCollection) {

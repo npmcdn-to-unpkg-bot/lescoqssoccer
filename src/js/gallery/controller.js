@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('mean.albums').controller('AlbumCtrl', ['$location', '$scope', '$modal', 'PhotoMgrService', 'album', 'albums', 'FileUploader', 'SubMenu',
+angular.module('mean.albums').controller('AlbumCtrl', ['$location', '$scope', '$modal', 'PhotoMgrService', 'album', 'albums', 'FileUploader', 'SideMenu',
 
-	function($location, $scope, $modal, PhotoMgrService, album, albums, FileUploader, SubMenu) {
+	function($location, $scope, $modal, PhotoMgrService, album, albums, FileUploader, SideMenu) {
 
 		//used in subnav
 		$scope.menu = [{
@@ -108,20 +108,18 @@ angular.module('mean.albums').controller('AlbumCtrl', ['$location', '$scope', '$
 	}
 ]);
 
-angular.module('mean.albums').controller('GalleryCtrl', ['$scope', 'Global', '$http', '$routeParams', '$window', '$location', '$modal', 'PhotoMgrService', 'albums', 'AlbumsCollection', 'SubMenu',
+angular.module('mean.albums').controller('GalleryCtrl', ['$scope', 'Global', '$http', '$routeParams', '$window', '$location', '$modal', 'PhotoMgrService', 'albums', 'AlbumsCollection', 'SideMenu',
 
-	function($scope, Global, $http, $routeParams, $window, $location, $modal, PhotoMgrService, albums, AlbumsCollection, SubMenu) {
+	function($scope, Global, $http, $routeParams, $window, $location, $modal, PhotoMgrService, albums, AlbumsCollection, SideMenu) {
 
 		//used in subnav
-		$scope.menu = [{
-			link: "#!/albums",
-			name: "Liste des albums",
-			selected: true
-		},{
-			link: "#!/albums/create",
-			name: "Ajouter un album",
-			image: "img/Draw_Adding_Cross_64.png"
-		}];
+		SideMenu.setMenu({
+			middle: [{
+				link: "#!/albums/create",
+				image: "img/Draw_Adding_Cross_64.png",
+				tooltip: "C'est plus!"
+			}]
+		});
 
 		$scope.global = Global;
 		$scope.pmSvc = PhotoMgrService;

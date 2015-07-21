@@ -1,11 +1,39 @@
 'use strict';
 
-angular.module('mean.system').controller('SidebarController', ['$scope', 'Global', '$location', 'TopMenu', 'SubMenu',
+angular.module('mean.system').service('SideMenu',
+	function() {
 
-	function($scope, Global, $location, TopMenu, SubMenu) {
+		var sideMenu = {
+
+			menu: {},
+			show: true,
+			hasSearch: false,
+
+			setMenu: function(menu){
+				sideMenu.menu = menu;
+				sideMenu.show = true;
+			},
+
+			hasSearch: function(hasSearch){
+				sideMenu.hasSearch = hasSearch;
+			},
+
+			hide: function(){
+				sideMenu.show = false;
+			}
+		};
+
+		return sideMenu;
+
+	}
+);
+
+angular.module('mean.system').controller('SidebarController', ['$scope', 'Global', '$location', 'SideMenu',
+
+	function($scope, Global, $location, SideMenu) {
 
 		$scope.global = Global;
-		$scope.subMenu = SubMenu;
+		$scope.sideMenu = SideMenu;
 
 		$scope.isCurrentPath = function(path) {
 			var cur_path = "#!" + $location.path().substr(0, path.length + 1);
@@ -25,23 +53,10 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 			evt.preventDefault();
 			evt.stopPropagation();
 
-			_.filter($scope.subMenu.menu.middle, function(link) {
+			_.filter($scope.sideMenu.menu.middle, function(link) {
 				return link.title === title;
 			})[0].callback();
 
 		};
-
-		// setTimeout(function() {
-
-		// 	TopMenu.initialize();
-		// 	$('.forkit').show();
-		// 	$('.forkit-curtain').show();
-
-		// 	if($scope.isCurrentPath('home')){
-		// 		TopMenu.open();
-		// 	};
-
-		// }, 1000);
-
 	}
 ]);

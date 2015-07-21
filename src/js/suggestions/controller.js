@@ -1,13 +1,14 @@
 'use strict';
 
-angular.module('mean.suggestions').controller('SuggestionController', ['$scope', '$location', 'Global', 'SuggestionsCollection', 'SubMenu',
-	function ($scope, $location, Global, SuggestionsCollection, SubMenu) {
+angular.module('mean.suggestions').controller('SuggestionController', ['$scope', '$location', 'Global', 'SuggestionsCollection', 'SideMenu',
+	function ($scope, $location, Global, SuggestionsCollection, SideMenu) {
 
 		$scope.global = Global;
 		$scope.dateFormat = "dd/MM/yyyy";
 		$scope.SuggestionsCollection = SuggestionsCollection;
 
-		SubMenu.setMenu({
+		SideMenu.hasSearch(false);
+		SideMenu.setMenu({
 			middle: [{
 				link: "#!/suggestions/create",
 				image: "img/Draw_Adding_Cross_64.png",

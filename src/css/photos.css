@@ -9,8 +9,9 @@ Phtotos
 	top: 0;
 	bottom: 0;
 	left: 250px;
-	width: calc(100% - 220px);
+	width: calc(100% - 250px);
   	padding: 10px;
+ 	padding-left: 25px;
   	box-sizing: border-box;
   	-webkit-box-flex: 1;
   	overflow-y: scroll;

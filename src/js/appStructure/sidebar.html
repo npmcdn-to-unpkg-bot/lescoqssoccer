@@ -1,9 +1,9 @@
-<header>
+<header ng-if="sideMenu.show">
 	<div class="logo" style="text-align: center;">
 		<a href="#!/home">Accueil</a>
 	</div>
 	<nav>
-		<div id="search" ng-if="hasSearch">
+		<div id="search" ng-if="sideMenu.hasSearch">
 			<span class="input input--makiko">
 				<input class="input__field input__field--makiko" type="text" data-ng-class="{'searchFocus': obj.searchTitle}" data-ng-model="obj.searchTitle" name="search"/>
 				<label class="input__label input__label--makiko" for="search">
@@ -12,9 +12,9 @@
 			</span>
 		</div>
 		<ul style="padding: 0;">
-			<li ng-repeat="item in menu track by $index" data-ng-class="{'selected' : item.selected}">
+			<li ng-repeat="item in sideMenu.menu.middle" data-ng-class="{'selected' : item.selected}">
 				<a href="{{item.link}}">
-					{{item.name}}
+					{{item.tooltip}}
 				</a>
 			</li>
 		</ul>
