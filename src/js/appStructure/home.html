@@ -1,90 +1,174 @@
-<section class="homeContainer">
-
-	<div class="grid-wrap">
-		<div class="grid-col bp1-col-one-half bp2-col-one-third" style="padding-left: 0;">
-			<div class='square-box terminal-box' style="height: 65vh;">
-				<div class='square-content'>
-					<div class=" terminal ">
-						  <p class=" terminal--header ">Last login: Sun Sep 15 11:11:50 on ttys000</p>
-						  <p class=" terminal--input ">whoami</p>
-						  <p class=" terminal--output ">Rafael Rinaldi</p>
-						  <p class=" terminal--input ">find ~ -name secret-of-life</p>
-						  <p class=" terminal--output ">42</p>
-						  <p class=" terminal--input ">which planet</p>
-						  <p class=" terminal--output ">/usr/milky-way/earth</p>
-						  <p class=" terminal--input ">node</p>
-						  <p class=" terminal--output is-not-defined "></p>
-						  <p class=" terminal--output is-console ">console.log(sprintf(msg, 'awesome'));</p>
-						  <p class="terminal--output">CSS3 is awesome!</p>
-						  <p class=" terminal--output is-not-defined "></p>
-
-						  <p class="terminal--input terminal-user">
-						  	<span data-ng-bind="content">
-						  	</span>
-						  	<textarea
-						  		class="terminal--textarea"
-								data-ng-model="content"
-						  		ng-keydown="$event.which === 13 && action(content)"/>
-						  </p>
-					</div>
-				</div>
-			</div>
-			<img id="cadonne" src="img/YJMyY0g.gif" style="margin-top: 1vh; height: 31vh; width: 100%;">
-		</div>
-		<div class="grid-col bp1-col-one-third bp2-col-one-third">
-			<div class='island square-box user-box' style="height: 60vh;">
-				<div class='square-content'>
-					 <a href="#!/profile" ng-click="closeMenu();">
-						<img ng-src="{{global.user.avatar && global.user.avatar || 'img/blip.png'}}" class="homeAvatar"/>
-					</a>
-				</div>
-			</div>
-			<div class='island square-box' style="margin-top: 1vh; height: 36vh;">
-				<h3>test</h3>
-			</div>
-		</div>
-		<div class="grid-col bp1-col-one-third bp2-col-one-third">
-			<div class="grid-wrap">
-				<div class="grid-col bp1-col-one-third bp2-col-one-half" style="padding-left: 0;">
-					<div class="island square-box" style="height: 32vh;">
-						<div class='square-content'>
-							<a href="#!/albums" class="link link--kumya" ng-click="closeMenu();">
-							<span data-letters="Photos">Photos</span>
-							</a>
-						</div>
-					</div>
-					<div class="island square-box" style="margin-top: 1vh; height: 32vh;">
-						<div class='square-content'>
-							<a href="#!/links" class="link link--kumya" ng-click="closeMenu();">
-								<span data-letters="Voyageurs">Voyageurs</span>
-							</a>
-						</div>
-					</div>
-					<div class="island square-box" style="margin-top: 1vh; height: 31vh;">
-						<div class='square-content'>
-							<a href="#!/suggestions" class="link link--kumya" ng-click="closeMenu();">
-								<span data-letters="Suggestions">Suggestions</span>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="grid-col bp1-col-one-third bp2-col-one-half">
-					<div class="island square-box" style="height: 48vh;">
-						<div class='square-content'>
-							<a href="#!/agenda" class="link link--kumya" ng-click="closeMenu();">
-							<span data-letters="Agenda">Agenda</span>
-							</a>
-						</div>
-					</div>
-					<div class="island square-box" style="margin-top: 1vh; height: 48vh;">
-						<div class='square-content'>
-							<a href="#!/articles" class="link link--kumya" ng-click="closeMenu();">
-							<span data-letters="Articles">Articles</span>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+<section class="rightcontainer">
+    <!-- HOME SLIDER -->
+    <div class="slider-container">
+    <div id="home-slider">
+        <div>
+            <img src="img/photos/large2.jpg" alt="">
+            <div class="ns_slideContent">
+                <div><span>Welcome to Spider</span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <img src="img/photos/large1.jpg" alt="">
+            <div class="ns_slideContent">
+                <div><span>Responsive Design</span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <img src="img/photos/large3.jpg" alt="">
+            <div class="ns_slideContent">
+                <div><span>HTML5 & CSS3</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- ICONS -->
+    <div class="icon-container-bg">
+        <div class="icon-container-filter"></div>
+        <div class="icon-container bottom-slider">
+            <div class="icon">
+                <div class="diamond">
+                    <img src="img/icons/clock.png" alt="" />
+                </div>
+                <h3>Responsive</h3>
+                <p>Lorem ipsum dolor elit aut vel eum sed nescius quo singulis</p>
+            </div>
+            <div class="icon">
+                <div class="diamond">
+                    <img src="img/icons/knife.png" alt="" />
+                </div>
+                <h3>Unique Design</h3>
+                <p>Lorem ipsum dolor elit aut vel eum sed nescius quo singulis</p>
+            </div>
+            <div class="icon">
+                <div class="diamond">
+                    <img src="img/icons/calc.png" alt="" />
+                </div>
+                <h3>Cross Browser</h3>
+                <p>Lorem ipsum dolor elit aut vel eum sed nescius quo singulis</p>
+            </div>
+        </div>
+    </div>
+    <!-- PAGE CONTENT -->
+    <div class="pagecontent">
+        <!-- HALFBOX -->
+        <div class="half-box">
+            <div class="half-left">
+                <h3>What We Do</h3>
+                <!-- ACCORDION -->
+                <div id="accordion-container">
+                    <div class="accordion-header">Web Design</div>
+                    <div class="accordion-content">
+                        <p>Vestibulum porta, tortor elementum luctus dictum, est odio egestas justo, dapibus aliquet sem nisl vel augue. Fusce eu sapien tortor, a consequat nunc. Nunc pulvinar consequat turpis, sed vulputate nibh lacinia rutrum. Nam laoreet pulvinar eros, sit amet sodales est venenatis eu. Fusce eu sapien tortor, a consequat nunc. Nunc pulvinar consequat turpis, sed vulputate nibh lacinia rutrum.</p>
+                    </div>
+                    <div class="accordion-header">Graphic Design</div>
+                    <div class="accordion-content">
+                        <p>Vestibulum porta, tortor elementum luctus dictum, est odio egestas justo, dapibus aliquet sem nisl vel augue. Fusce eu sapien tortor, a consequat nunc. Nunc pulvinar consequat turpis, sed vulputate nibh lacinia rutrum. Nam laoreet pulvinar eros, sit amet sodales est venenatis eu. Fusce eu sapien tortor, a consequat nunc. Nunc pulvinar consequat turpis, sed vulputate nibh lacinia rutrum.</p>
+                    </div>
+                    <div class="accordion-header">Hosting Service</div>
+                    <div class="accordion-content">
+                        <p>Vestibulum porta, tortor elementum luctus dictum, est odio egestas justo, dapibus aliquet sem nisl vel augue. Fusce eu sapien tortor, a consequat nunc. Nunc pulvinar consequat turpis, sed vulputate nibh lacinia rutrum. Nam laoreet pulvinar eros, sit amet sodales est venenatis eu. Fusce eu sapien tortor, a consequat nunc. Nunc pulvinar consequat turpis, sed vulputate nibh lacinia rutrum.</p>
+                    </div>
+                </div>
+                <p>Aut culpa eiusmod aliquip, illum e cernantur, fore a tempor do ingeniis ab anim quamquam do an quid quae varias nescius, ea esse senserit familiaritatem qui cillum ne laboris eu varias.</p>
+            </div>
+            <div class="half-right">
+                <h3>Why Choose Us</h3>
+                <p>Se est concursionibus nam qui sint iudicem possumus de ita de aliqua admodum ubi sunt mentitum fabulas hic in elit fidelissimae, ne irure offendit laborum, nulla si vidisse, hic in elit quorum.</p>
+                <!-- ROUNDED LIST -->
+                <ol class="rounded-list">
+                    <li><span>Over 10 years experience</span>
+                    </li>
+                    <li><span>Fast Delivery</span>
+                    </li>
+                    <li><span>Live Customer Service</span>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- TITLE -->
+    <div class="subtitle light">
+        <h3>Testimonials</h3>
+    </div>
+    <div id="rotator-container">
+        <div id="cbp-qtrotator" class="cbp-qtrotator">
+            <div class="cbp-qtcontent">
+                <div class="img-diamond">
+                    <img src="img/photos/team1.jpg" alt="" />
+                </div>
+                <div class="blockquote">
+                    <p>Incurreret nam arbitror graviterque a vidisse quo si varias voluptate, quorum firmissimum iudicem quorum incurreret, a cernantur ne vidisse, occaecat duis noster.</p>
+                    <div class="footer">Albert Camus</div>
+                </div>
+            </div>
+            <div class="cbp-qtcontent">
+                <div class="img-diamond">
+                    <img src="img/photos/team2.jpg" alt="" />
+                </div>
+                <div class="blockquote">
+                    <p>Occaecat aliqua ipsum eu velit hic qui anim incur reret iudicem ut veniam cernantur transf errem, ex velit in veniam. Consequat cohaer escant se ullamco, appellat.</p>
+                    <div class="footer">Salvador Dali</div>
+                </div>
+            </div>
+            <div class="cbp-qtcontent">
+                <div class="img-diamond">
+                    <img src="img/photos/team3.jpg" alt="" />
+                </div>
+                <div class="blockquote">
+                    <p>Si quamquam est appellat a nulla est si tamen probant. Id ad dolor ingeniis, dolor quibusdam an fore culpa, quid se ubi tamen proident, malis probant onibus.</p>
+                    <div class="footer">Michelangelo</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- TITLE -->
+    <div class="subtitle light">
+        <h3>Latest Blog Posts</h3>
+    </div>
+    <!-- POST 1 -->
+    <article class="blogcontainer">
+        <!-- POST IMAGE -->
+        <div class="blogimage" data-image="img/photos/blog2.jpg">
+            <a href="single-post.html"></a>
+        </div>
+        <!-- POST CONTENT -->
+        <div class="postcontent">
+            <h4><a href="single-post.html">Malis imitarentur offendit</a></h4>
+            <p class="postdate">February 27, 2014</p>
+            <p>Malis imitarentur offendit tamen laboris. Vidisse est sin labo ne e lorem despicati, nam veniam probant nostrud qui ipsum et litteris se aliqua.</p>
+            <a href="single-post.html" class="button">Read More...</a>
+        </div>
+    </article>
+    <!-- POST 2 -->
+    <article class="blogcontainer">
+        <!-- POST IMAGE -->
+        <div class="blogimage" data-image="img/photos/blog1.jpg">
+            <a href="single-post.html"></a>
+        </div>
+        <!-- POST CONTENT -->
+        <div class="postcontent">
+            <h4><a href="single-post.html">Vidisse est sin labo ingeniis</a></h4>
+            <p class="postdate">February 24, 2014</p>
+            <p>In eram commodo. Ullamco ubi mandaremus et hic irure et fore, quae expetendis et vidisse qui aliqua graviterque mentitum sunt cupidatat, ex iudicem.</p>
+            <a href="single-post.html" class="button">Read More...</a>
+        </div>
+    </article>
+    <!-- POST 3 -->
+    <article class="blogcontainer lastpost">
+        <!-- POST IMAGE -->
+        <div class="blogimage" data-image="img/photos/blog3.jpg">
+            <a href="single-post.html"></a>
+        </div>
+        <!-- POST CONTENT -->
+        <div class="postcontent">
+            <h4><a href="single-post.html">Si quamquam est appellat</a></h4>
+            <p class="postdate">February 16, 2014</p>
+            <p>Id nisi aliquip praetermissum. Cupidatat est esse, noster an quamquam non nulla. Cupidatat ea nostrud, irure nostrud pariatur, fugiat doctrina.</p>
+            <a href="single-post.html" class="button">Read More...</a>
+        </div>
+    </article>
 </section>
