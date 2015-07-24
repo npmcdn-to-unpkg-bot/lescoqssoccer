@@ -1,112 +1,46 @@
-<section class="entries">
-	<section class="clearfix">
+<section class="rightcontainer">
 
-		<section class="top">
-			<div class="wrapper content_header clearfix">
-				<div class="work_nav">
+    <!-- TITLE -->
+    <div class="subtitle">
+        <h1>Blog</h1>
+    </div>
 
-					<div
-					class="iconLike iconEdit imageAction"
-					ng-click="edit(selected, $event)"
-					ng-show="global.user._id === selected.user._id"
-					style="margin-top: 7px;">
-					</div>
+    <!-- POST 1 -->
+    <article class="blogcontainer" ng-repeat="article in articles | filter: nameFilter">
 
-					<div
-					class="iconLike iconTrash imageAction"
-					ng-click="remove(selected, $event)"
-					ng-show="global.user._id === selected.user._id"
-					style="margin-left: 2px; margin-top: 7px;">
-					</div>
+        <!-- POST IMAGE -->
+        <div class="blogimage" data-image="{{article.image}}">
+            <a href="#!/articles/{{article._id}}"></a>
+        </div>
 
-					<ul class="btn clearfix" style="padding: 6px 0;">
-						<li>
-							<a href="#!" class="previous" data-title="Previous" ng-click="setPreviousArticle($event);"></a>
-						</li>
-						<li>
-							<a href="#!" class="next" data-title="Next" ng-click="setNextArticle($event);"></a>
-						</li>
-					</ul>
-				</div>
+        <!-- POST CONTENT -->
+        <div class="postcontent">
+            <h3><a href="#!/articles/{{article._id}}">{{article.title}}</a></h3>
+            <p class="postdate">{{article.created | date:dateFormat}}</p>
+            <div ng-bind-html="getFormattedContent(article.content)"></div>
+        </div>
+    </article>
 
-				<h1 class="title">{{selected.title}}</h1>
-
-			</div>
-		</section>
-
-		<section class="wrapper">
-			<div class="magneticContent">
-				<div>
-					<img ng-src="{{selected.user.avatar}}" class="avatarArticle"/>
-					{{selected.user.name}} le {{selected.created | date:dateFormat}}
-				</div>
-
-				<article class="articleContent active">
-					<div ng-bind-html="getFormattedContent(selected.content)"></div>
-				</article>
-
-				<form role="form" data-ng-submit="addComment()" style="margin-top: 15px;">
-					<span
-					class="input input--yoshiko articleCommentInput"
-					data-ng-class="{'input--filled': comment}">
-						<textarea
-						type="text"
-						name="content"
-						data-ng-model="comment"
-						class="input__field input__field--yoshiko"
-						style="color: inherit; min-height: inherit;"
-						required>
-						</textarea>
-						<label class="input__label input__label--yoshiko" for="content">
-							<span class="input__label-content input__label-content--yoshiko">
-								Ajouter unee conneeerie...
-							</span>
-						</label>
-						<div
-							class="iconLike iconFeather imageAction"
-							ng-click="addComment()">
-						</div>
-					</span>
-				</form>
-
-				<div ng-repeat="comment in selected.comments | orderBy:'-created'">
-					<img ng-src="{{comment.user.avatar && comment.user.avatar || global.user.avatar}}" class="avatarArticle"/>
-					{{comment.user.name || global.user.name}} le&nbsp;
-					<i style="opacity: 0.5;">{{comment.created | date:dateFormat}}</i>
-					<p>{{comment.content}}</p>
-				</div>
-
-			</div>
-		</section>
-	</section>
+    <!-- PAGER -->
+    <div class="blogpager">
+        <div class="previous">
+            <a href="#" class="button">&#8249; Older Posts</a>
+        </div>
+        <div class="next">
+            <a href="#" class="button">Newer Posts &#8250;</a>
+        </div>
+    </div>
 </section>
 
-<!-- <section class="summaries">
+<!-- <div
+class="iconLike iconEdit imageAction"
+ng-click="edit(selected, $event)"
+ng-show="global.user._id === selected.user._id"
+style="margin-top: 7px;">
+</div>
 
-	<article ng-repeat="article in articles | filter: nameFilter"
-		id="{{article._id}}"
-		class="articleItem summary"
-		ng-class="{active: selected && selected._id === article._id}"
-		ng-click="selectArticle(article, $index);">
-
-		<img
-		ng-src="{{article.image && article.image || 'img/heaven_earth_drib.jpg'}}"
-		alt=""
-		scale="0"
-		class="linkImage articleCell">
-
-		<div class="articleCellDetail">
-			<h3 class="ellipsis">
-				{{article.title}}
-			</h3>
-			<p class="ellipsis">
-				<span class="fa fa-clock-o faIcon"></span>
-				<span>{{article.created | date:dateFormat}}</span>
-			</p>
-			<p class="three-line-ellipsis summaryContent" ng-bind-html="getFormattedContent(article.content)">
-			</p>
-		</div>
-		<span class="arrow"></span>
-	</article>
-
-</section> -->
+<div
+class="iconLike iconTrash imageAction"
+ng-click="remove(selected, $event)"
+ng-show="global.user._id === selected.user._id"
+style="margin-left: 2px; margin-top: 7px;"> -->

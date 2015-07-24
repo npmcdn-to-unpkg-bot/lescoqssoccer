@@ -5,7 +5,7 @@
             <span>Menu</span>
         </div>
         <div class="close-icon">
-            <span>Close</span>
+            <span>Fermer</span>
         </div>
     </div>
     <img class="logo" src="img/logo2.png" alt="" />
@@ -27,91 +27,30 @@
         <!-- MENU -->
         <nav id="mainmenu">
             <ul>
-                <li>
-                    <a href="#">Home</a>
-                    <ul>
-                        <li>
-                            <a href="#!/albums">Style 1</a>
-                        </li>
-                        <li>
-                            <a href="index2.html">Style 2</a>
+                <li ng-repeat="item in menu">
+                    <a href="{{item.link}}">{{item.name}}</a>
+                    <ul ng-if="item.children">
+                        <li ng-repeat="subItem in item.children">
+                            <a href="{{subItem.link}}">{{subItem.name}}</a>
                         </li>
                     </ul>
-                </li>
-                <li>
-                    <a href="about.html">About Us</a>
-                </li>
-                <li>
-                    <a href="services.html">Services</a>
-                </li>
-                <li>
-                    <a href="#">Portfolio</a>
-                    <ul>
-                        <li><a href="portfolio-three.html">3 Column</a>
-                        </li>
-                        <li><a href="portfolio-four.html">4 Column</a>
-                        </li>
-                        <li><a href="portfolio-five.html">5 Column</a>
-                        </li>
-                    </ul>
-                </li>
-                <li><a href="features.html">Other Features</a>
-                </li>
-                <li><a href="blog.html">Blog</a>
-                </li>
-                <li><a href="single-post.html">Single Post</a>
-                </li>
-                <li><a href="contact.html">Contact</a>
                 </li>
             </ul>
         </nav>
         <hr/>
 
-        <h5>Search</h5>
+        <h5>Recherche</h5>
         <form id="searchform" class="searchbox">
-            <input type="text" id="search" class="searchtext" placeholder="Keyword..." />
+            <input type="text" id="search" class="searchtext" placeholder="Rechercher..." />
             <input type="submit" class="button" name="submit" value="Go" />
         </form>
         <hr/>
 
         <!-- RECENT POSTS -->
-        <h5>Recent Posts</h5>
+        <h5>Derniers articles</h5>
         <ul class="recentposts">
-            <li>
-                <a href="single-post.html">Suspendisse ipsum urna</a>
-            </li>
-            <li>
-                <a href="single-post.html">Pellentesque eget por</a>
-            </li>
-            <li>
-                <a href="single-post.html">Aliquam sit amet urne</a>
-            </li>
-            <li>
-                <a href="single-post.html">Ornare dapibus ornare et</a>
-            </li>
-            <li>
-                <a href="single-post.html">Donec et odio et amet</a>
-            </li>
-        </ul>
-        <hr/>
-
-        <!-- CATEGORIES -->
-        <h5>Categories</h5>
-        <ul class="recentposts">
-            <li>
-                <a href="single-post.html">Malis imitarentur</a>
-            </li>
-            <li>
-                <a href="single-post.html">Vidisse est sint</a>
-            </li>
-            <li>
-                <a href="single-post.html">Nam veniam probant</a>
-            </li>
-            <li>
-                <a href="single-post.html">Ex ea cohaerescant</a>
-            </li>
-            <li>
-                <a href="single-post.html">Quem aute aut labore</a>
+            <li ng-repeat="article in recentPosts">
+                <a href="{{article.link}}">{{article.name}}</a>
             </li>
         </ul>
         <hr/>
@@ -119,13 +58,8 @@
         <!-- TAGS -->
         <h5>Tags</h5>
         <div class="tags-container">
-            <a class="tags" href="#">Voluptate</a>
-            <a class="tags" href="#">Deserani</a>
-            <a class="tags" href="#">Quo eram</a>
-            <a class="tags" href="#">Mentitum amet sit</a>
-            <a class="tags" href="#">Cillum</a>
-            <a class="tags" href="#">Incurreret</a>
-            <a class="tags" href="#">Eram amet aliqua</a>
+            <a class="tags" href="#" ng-repeat="tag in articlesTags">{{tag}}</a>
         </div>
+
     </div>
 </aside>

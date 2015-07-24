@@ -40,24 +40,69 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 			return (cur_path.indexOf(path) !== -1) || (path.indexOf('albums') !== -1 && cur_path.indexOf('gallery') !== -1);
 		};
 
-		$scope.linkFilter = function(item) {
-			return !item.type || item.type === "link";
-		};
+		$scope.menu = [{
+			name: "Home",
+			link: "!#",
+			children: [{
+				name: "Albums",
+				link: "#!/albums",
+			},
+			{
+				name: "Style 2",
+				link: "index2.html",
+			}]
+		},
+		{
+			name: "About Us",
+			link: "about.html"
+		},
+		{
+			name: "Portfolio",
+			link: "#!"
+		},
+		{
+			name: "Other Features",
+			link: "features.html"
+		},
+		{
+			name: "Blog",
+			link: "#!/articles"
+		},
+		{
+			name: "Single Post",
+			link: "single-post.html"
+		},
+		{
+			name: "Contact",
+			link: "contact.html"
+		}];
 
-		$scope.buttonFilter = function(item) {
-			return item.type === "button";
-		};
+		$scope.recentPosts = [
+			{
+				name: "Suspendisse ipsum urna",
+				link: "single-post.html"
+			},
+			{
+				name: "Suspendisse ipsum urna",
+				link: "single-post.html"
+			},
+			{
+				name: "Suspendisse ipsum urna",
+				link: "single-post.html"
+			},{
+				name: "Suspendisse ipsum urna",
+				link: "single-post.html"
+			},
+			{
+				name: "Suspendisse ipsum urna",
+				link: "single-post.html"
+			},{
+				name: "Suspendisse ipsum urna",
+				link: "single-post.html"
+			}
+		];
 
-		$scope.callback = function(evt, title) {
-
-			evt.preventDefault();
-			evt.stopPropagation();
-
-			_.filter($scope.sideMenu.menu.middle, function(link) {
-				return link.title === title;
-			})[0].callback();
-
-		};
+		$scope.articlesTags = ["Deserani", "Quo eram", "Mentitum amet sit", "Cillum", "Incurreret", "Eram amet aliqua"];
 
 		setTimeout(function() {
 

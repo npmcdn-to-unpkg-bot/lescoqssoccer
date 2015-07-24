@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', '$sce', '$modal', '$timeout', 'Global', 'ArticlesCollection', 'Articles', 'SideMenu',
-	function($scope, $routeParams, $location, $sce, $modal, $timeout, Global, ArticlesCollection, Articles, SideMenu) {
+angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', '$sce', '$modal', '$timeout', 'Global', 'ArticlesCollection', 'Articles',
+	function($scope, $routeParams, $location, $sce, $modal, $timeout, Global, ArticlesCollection, Articles) {
 
 		$scope.global = Global;
 		$scope.ArticlesCollection = ArticlesCollection;
@@ -20,47 +20,6 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 		//Format html content from article content edit by wysiwyg
 		$scope.getFormattedContent = function(html) {
 			return $sce.trustAsHtml(html);
-		};
-
-		$scope.selectArticle = function(article, index) {
-			$scope.selected = article;
-			$scope.currentIndex = index;
-		};
-
-		$scope.setPreviousArticle = function(evt) {
-
-			evt.preventDefault();
-			evt.stopPropagation();
-
-			if ($scope.currentIndex > 0) {
-				$scope.currentIndex--;
-				$scope.selected = $scope.articles[$scope.currentIndex];
-				$scope.scrollToCurrent();
-			}
-		};
-
-		$scope.setNextArticle = function(evt) {
-
-			evt.preventDefault();
-			evt.stopPropagation();
-
-			if ($scope.articles.length - 1 > $scope.currentIndex) {
-				$scope.currentIndex++;
-				$scope.selected = $scope.articles[$scope.currentIndex];
-				$scope.scrollToCurrent();
-			}
-		};
-
-		$scope.scrollToCurrent = function() {
-
-			$timeout(function() {
-				var curScrollPos = $('.summaries').scrollTop();
-				var itemTop = $('.summary.active').offset().top - 60;
-				$('.summaries').animate({
-					'scrollTop': curScrollPos + itemTop
-				}, 200);
-			}, 0, false);
-
 		};
 
 		$scope.addComment = function(){
@@ -109,31 +68,6 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 
 			});
 		};
-
-		//used in subnav
-		SideMenu.setMenu({
-			view: "articles",
-			middle: [{
-				link: "#!/articles/create",
-				image: "img/Draw_Adding_Cross_64.png",
-				tooltip: "Liste des articles",
-				imgClass:"iconPlus",
-				type: "link"
-			}, {
-				title: "articlePrev",
-				image: "img/Sketched_up_arrow_triangle_64.png",
-				tooltip: "Ajouter un article",
-				imgClass:"iconUp",
-				type: "button",
-				callback: $scope.setPreviousArticle
-			}]
-		});
-
-		SideMenu.setSearchInput(true);
-
-		if (!$scope.selected && $scope.articles.length > 0) {
-			$scope.selectArticle($scope.articles[0], 0);
-		}
 	}
 ]);
 
@@ -154,25 +88,84 @@ angular.module('mean.articles').controller('deleteArticleModalCtrl', ['$scope', 
 
 ]);
 
-angular.module('mean.articles').controller('CreateArticleController', ['$scope', '$location', 'Global', 'ArticlesCollection', 'FileUploader', 'article', 'SideMenu',
-	function($scope, $location, Global, ArticlesCollection, FileUploader, Article, SideMenu) {
+angular.module('mean.articles').controller('ArticleDetailController', ['$scope', '$routeParams', '$location', '$sce', '$modal', '$timeout', 'Global', 'ArticlesCollection', 'Article',
+	function($scope, $routeParams, $location, $sce, $modal, $timeout, Global, ArticlesCollection, Article) {
 
 		$scope.global = Global;
 		$scope.ArticlesCollection = ArticlesCollection;
 		$scope.article = Article;
 
-		SideMenu.setMenu({
-			view: "articles",
-			middle: [{
-				link: "#!/articles/create",
-				image: "img/Draw_Adding_Cross_64.png",
-				tooltip: "C'est plus",
-				imgClass:"iconPlus",
-				type: "link"
-			}]
-		});
+		$scope.dateFormat = "dd MMM yyyy, H'h'mm";
 
-		SideMenu.hasSearch(false);
+		// Manage search input
+		$scope.obj = {
+			searchTitle: ""
+		};
+		$scope.nameFilter = function(article) {
+			return (article.title.toLowerCase().indexOf($scope.obj.searchTitle) !== -1) ? article.title : null;
+		};
+
+		//Format html content from article content edit by wysiwyg
+		$scope.getFormattedContent = function(html) {
+			return $sce.trustAsHtml(html);
+		};
+
+		$scope.addComment = function(){
+
+			$scope.selected.comments.push({
+				user: $scope.global.user._id,
+				content: $scope.comment,
+				created: moment(new Date()).toISOString()
+			});
+
+			$scope.ArticlesCollection.update($scope.selected).then(function() {
+				$location.path("/articles");
+				$scope.comment = "";
+			});
+		};
+
+		$scope.edit = function(article, evt) {
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			$location.path("/articles/edit/" + article._id);
+		};
+
+		$scope.remove = function(article, evt) {
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			var modalInstance = $modal.open({
+				templateUrl: 'js/articles/views/modal/deleteArticleModal.html',
+				controller: 'deleteArticleModalCtrl',
+				resolve: {
+					article: function() {
+						return article;
+					}
+				}
+			});
+
+			modalInstance.result.then(function() {
+
+				// Delete the article and either update article list or redirect to it
+				$scope.ArticlesCollection.remove(article).then(function(response) {
+					$scope.articles.splice(window._.indexOf($scope.articles, article), 1);
+				});
+
+			});
+		};
+	}
+]);
+
+
+angular.module('mean.articles').controller('CreateArticleController', ['$scope', '$location', 'Global', 'ArticlesCollection', 'FileUploader', 'article',
+	function($scope, $location, Global, ArticlesCollection, FileUploader, Article) {
+
+		$scope.global = Global;
+		$scope.ArticlesCollection = ArticlesCollection;
+		$scope.article = Article;
 
 		$scope.create = function() {
 
@@ -219,8 +212,8 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 
 var ArticleDetailData = {
 
-	article: function(ArticlesCollection, $route) {
-		return ($route.current.params.articleId) ? ArticlesCollection.findOne($route.current.params.articleId) : {};
+	Article: function(ArticlesCollection, $route) {
+		return ArticlesCollection.findOne($route.current.params.id);
 	}
 
 };

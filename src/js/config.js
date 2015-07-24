@@ -44,13 +44,18 @@ angular.module('mean').config(['$routeProvider',
 
 		/** ARTICLES ****/
 		when('/articles', {
-			templateUrl: 'js/articles/views/listSquare.html',
+			templateUrl: 'js/articles/views/list.html',
 			controller: 'ArticlesController',
 			resolve: {
 				Articles: function(ArticlesCollection) {
 					return ArticlesCollection.load();
 				}
 			}
+		}).
+		when('/articles/:id', {
+			templateUrl: 'js/articles/views/single.html',
+			controller: 'ArticleDetailController',
+			resolve: ArticleDetailData
 		}).
 		when('/articles/create', {
 			templateUrl: 'js/articles/views/create.html',
