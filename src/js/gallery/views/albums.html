@@ -1,26 +1,41 @@
-<section class="albumContainer">
+<section class="rightcontainer">
 
-	<div class="col-md-12 expandable-container">
+    <!-- PAGE TITLE -->
+    <div class="page-title">
 
-		<section class="grid">
-			<div deckgrid class="deckgrid col3" source="albums" cardTemplate="js/gallery/views/albumCard.html">
-			</div>
-		</section>
+        <!-- PAGE TITLE TRANSPARENT BG -->
+        <div class="bgfilter"></div>
+        <h1>3 Column Portfolio</h1>
+        <div class="page-title-box">
+            <p>Malis imitarentur offendit tamen laboris. Vidisse est sint laborum ne e lorem despicationes, nam veniam probant nostrud qui ipsum et litteris se aliqua. Ea iis aute proident, eiusmod cohaerescant ea commodo, se quo elit incididunt a nulla admodum incurreret. Ab malis fabulas.
+            </p>
+        </div>
+    </div>
 
-		<section class="content">
-			<div class="scroll-wrap">
-				<cm-reduce
-				template-url="js/gallery/views/view.html"
-				ng-repeat="album in albums | filter:pmSvc.filter"
-				name="{{$index}}">
-				</cm-reduce>
-			</div>
-		</section>
+    <!-- FILTERS -->
+    <ul id="filters1" class="filters">
+        <li>
+            <a href="#" data-filter="all" class="active">All</a>
+        </li>
+        <li>
+            <a href="#" data-filter="photos">Photos</a>
+        </li>
+        <li>
+            <a href="#" data-filter="videos">Videos</a>
+        </li>
+        <li>
+            <a href="#" data-filter="links">Links</a>
+        </li>
+    </ul>
+    <div class="clear"></div>
 
-	</div>
-
-	<div class="col-md-12" data-ng-show="albums.length === 0">
-		<h4>Pas de photos</h4>
-	</div>
+    <!-- GALLERY -->
+    <ul id="gridbox1" class="sp-portfolio three-column">
+        <li data-filter="photos" ng-repeat="album in albums">
+            <a class="clb-photo" href="#!/albums/{{album._id}}">
+                <img ng-src="{{album.coverPicPath && album.coverPicPath || 'img/photos/8.jpg'}}" alt="" />
+            </a>
+        </li>
+    </ul>
 
 </section>

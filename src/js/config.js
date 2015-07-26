@@ -52,7 +52,7 @@ angular.module('mean').config(['$routeProvider',
 				}
 			}
 		}).
-		when('/articles/:id', {
+		when('/article/:id', {
 			templateUrl: 'js/articles/views/single.html',
 			controller: 'ArticleDetailController',
 			resolve: ArticleDetailData

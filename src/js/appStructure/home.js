@@ -1,15 +1,12 @@
 'use strict';
 
-angular.module('mean.home').controller('HomeController', ['$scope', 'Global', '$location', 'SideMenu',
-	function($scope, Global, $location, SideMenu) {
+angular.module('mean.home').controller('HomeController', ['$scope', 'Global', '$location',
+	function($scope, Global, $location) {
 
 		$scope.global = Global;
 		$scope.date = new Date();
 		$scope.dateFormat = "dd MMM yyyy";
 
-		$scope.animationClass = "pop";
-
-		SideMenu.hide();
 		$scope.caption = "arosepizant@OAB-mint-arosepizant : ~/Documents/development/flb-dev $ Hola senor! Ça y est le site tant désiré (ou pas) est là, j'ai essayé de faire quelque chose assez simple pour que même les plus mauvais d'entre vous (et la concurrence est rude) s'en sorte, alors maintenant à vous pour le contenu, ça donne!!!!";
 
 		$scope.isCurrentPath = function(path) {

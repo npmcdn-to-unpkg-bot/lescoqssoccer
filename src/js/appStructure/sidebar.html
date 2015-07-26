@@ -1,17 +1,17 @@
 <div id="menu-bar">
 
-    <div class="menu-icons">
-        <div class="menu-bar-icon">
-            <span>Menu</span>
-        </div>
-        <div class="close-icon">
-            <span>Fermer</span>
-        </div>
-    </div>
-    <img class="logo" src="img/logo2.png" alt="" />
+	<div class="menu-icons">
+		<div class="menu-bar-icon">
+			<span>Menu</span>
+		</div>
+		<div class="close-icon">
+			<span>Fermer</span>
+		</div>
+	</div>
+	<img class="logo" src="img/logo2.png" alt="" />
 
-    <!-- BACK TO TOP BUTTON -->
-    <a href="#" class="back-to-top"></a>
+	<!-- BACK TO TOP BUTTON -->
+	<a href="#" class="back-to-top"></a>
 </div>
 
 <!-- TRANSPARENT OPEN MENU BG -->
@@ -19,47 +19,51 @@
 
 <!-- SIDEBAR -->
 <aside class="leftcontainer">
-    <div class="leftcontainer-inner">
+	<div class="leftcontainer-inner">
 
-        <img class="logo" src="img/logo.png" alt="" />
-        <hr/>
+		<img class="logo" src="img/logo.png" alt="" />
+		<hr/>
 
-        <!-- MENU -->
-        <nav id="mainmenu">
-            <ul>
-                <li ng-repeat="item in menu">
-                    <a href="{{item.link}}">{{item.name}}</a>
-                    <ul ng-if="item.children">
-                        <li ng-repeat="subItem in item.children">
-                            <a href="{{subItem.link}}">{{subItem.name}}</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-        <hr/>
+		<!-- MENU -->
+		<nav id="mainmenu">
+			<ul>
+				<li ng-repeat="item in menu">
+					<a
+					id="{{item.id}}"
+					href="{{item.link}}"
+					ng-click="closeSidebar($event, item);"
+					ng-class="{'has-sub': item.children, 'selected' : isCurrentPath(item)}">{{item.name}}</a>
+					<ul ng-if="item.children">
+						<li ng-repeat="subItem in item.children">
+							<a href="{{subItem.link}}" ng-click="closeSidebar($event, subItem);">{{subItem.name}}</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+		<hr/>
 
-        <h5>Recherche</h5>
-        <form id="searchform" class="searchbox">
-            <input type="text" id="search" class="searchtext" placeholder="Rechercher..." />
-            <input type="submit" class="button" name="submit" value="Go" />
-        </form>
-        <hr/>
+		<!-- SEARCH -->
+		<h5>Recherche</h5>
+		<form id="searchform" class="searchbox">
+			<input type="text" id="search" class="searchtext" placeholder="Rechercher..." />
+			<input type="submit" class="button" name="submit" value="Go" />
+		</form>
+		<hr/>
 
-        <!-- RECENT POSTS -->
-        <h5>Derniers articles</h5>
-        <ul class="recentposts">
-            <li ng-repeat="article in recentPosts">
-                <a href="{{article.link}}">{{article.name}}</a>
-            </li>
-        </ul>
-        <hr/>
+		<!-- RECENT POSTS -->
+		<h5>Derniers articles</h5>
+		<ul class="recentposts">
+			<li ng-repeat="article in recentPosts">
+				<a href="{{article.link}}">{{article.name}}</a>
+			</li>
+		</ul>
+		<hr/>
 
-        <!-- TAGS -->
-        <h5>Tags</h5>
-        <div class="tags-container">
-            <a class="tags" href="#" ng-repeat="tag in articlesTags">{{tag}}</a>
-        </div>
-
-    </div>
+		<!-- TAGS -->
+		<h5>Tags</h5>
+		<div class="tags-container">
+			<a class="tags" href="#" ng-repeat="tag in articlesTags">{{tag}}</a>
+		</div>
+	</div>
 </aside>

@@ -22,7 +22,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 			return $sce.trustAsHtml(html);
 		};
 
-		$scope.addComment = function(){
+		$scope.addComment = function() {
 
 			$scope.selected.comments.push({
 				user: $scope.global.user._id,
@@ -68,6 +68,14 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 
 			});
 		};
+
+		setTimeout(function() {
+			jQuery(".blogimage").each(function() {
+				if (jQuery(this).attr('data-image')) {
+					jQuery(this).backstretch(jQuery(this).data('image'));
+				}
+			});
+		}, 500);
 	}
 ]);
 
@@ -110,7 +118,7 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 			return $sce.trustAsHtml(html);
 		};
 
-		$scope.addComment = function(){
+		$scope.addComment = function() {
 
 			$scope.selected.comments.push({
 				user: $scope.global.user._id,
@@ -160,7 +168,7 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 ]);
 
 
-angular.module('mean.articles').controller('CreateArticleController', ['$scope', '$location', 'Global', 'ArticlesCollection', 'FileUploader', 'article',
+angular.module('mean.articles').controller('CreateArticleController', ['$scope', '$location', 'Global', 'ArticlesCollection', 'FileUploader', 'Article',
 	function($scope, $location, Global, ArticlesCollection, FileUploader, Article) {
 
 		$scope.global = Global;
@@ -169,7 +177,7 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 
 		$scope.create = function() {
 
-			if(!$scope.article._id){
+			if (!$scope.article._id) {
 				$scope.ArticlesCollection.add($scope.article).then(function() {
 					$location.path("/articles");
 				});
@@ -213,7 +221,7 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 var ArticleDetailData = {
 
 	Article: function(ArticlesCollection, $route) {
-		return ArticlesCollection.findOne($route.current.params.id);
+		return ($route.current.params.id) ? ArticlesCollection.findOne($route.current.params.id) : null;
 	}
 
 };

@@ -1,31 +1,11 @@
 'use strict';
 
-angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection', 'event', '$modal', 'SideMenu',
-	function($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection, event, $modal, SideMenu) {
+angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection', 'event', '$modal',
+	function($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection, event, $modal) {
 
 		$scope.agendaCollection = AgendaCollection;
 		$scope.eventTypes = eventTypes;
 		$scope.start = $scope.end = ($route.current && $route.current.params.startDate) ? new Date($route.current.params.startDate) : new Date();
-
-		//used in subnav
-		SideMenu.setMenu({
-			middle: [{
-				link: "#!/agenda/create",
-				image: "img/Draw_Adding_Cross_64.png",
-				tooltip: "C'est plus!!",
-				type: "link"
-			},{
-				link: "#!/agenda",
-				image: "img/24_hours_delivery_64.png",
-				tooltip: "What's next?!",
-				type: "link"
-			},{
-				link: "#!/agenda/map",
-				image: "img/Map_of_roads_64.png",
-				tooltip: "Je suis la carte",
-				type: "link"
-			}]
-		});
 
 		$scope.userEvent = event || {
 			selectedType: $scope.eventTypes[2],
@@ -180,30 +160,11 @@ var EventDetailData = {
 
 };
 
-angular.module('mean.agenda').controller('ListController', ['$scope', '$routeParams', '$location', '$route', 'Global', 'AgendaCollection', 'Agenda', 'SideMenu',
-	function($scope, $routeParams, $location, $route, Global, AgendaCollection, Agenda, SideMenu) {
+angular.module('mean.agenda').controller('ListController', ['$scope', '$routeParams', '$location', '$route', 'Global', 'AgendaCollection', 'Agenda',
+	function($scope, $routeParams, $location, $route, Global, AgendaCollection, Agenda) {
 
 		$scope.agendaCollection = AgendaCollection;
 		$scope.agenda = Agenda;
-
-		SideMenu.setMenu({
-			middle: [{
-				link: "#!/agenda/create",
-				image: "img/Draw_Adding_Cross_64.png",
-				tooltip: "C'est plus!!",
-				type: "link"
-			},{
-				link: "#!/agenda",
-				image: "img/24_hours_delivery_64.png",
-				tooltip: "What's next?!",
-				type: "link"
-			},{
-				link: "#!/agenda/map",
-				image: "img/Map_of_roads_64.png",
-				tooltip: "Je suis la carte",
-				type: "link"
-			}]
-		});
 
 		$scope.limit = 3;
 		$scope.start = 0;
@@ -267,30 +228,11 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 	}
 ]);
 
-angular.module('mean.agenda').controller('MapController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection', 'Agenda', 'SideMenu',
-	function($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection, Agenda, SideMenu) {
+angular.module('mean.agenda').controller('MapController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection', 'Agenda',
+	function($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection, Agenda) {
 
 		$scope.agendaCollection = AgendaCollection;
 		$scope.agenda = Agenda;
-
-		SideMenu.setMenu({
-			middle: [{
-				link: "#!/agenda/create",
-				image: "img/Draw_Adding_Cross_64.png",
-				tooltip: "C'est plus!!",
-				type: "link"
-			},{
-				link: "#!/agenda",
-				image: "img/24_hours_delivery_64.png",
-				tooltip: "What's next?!",
-				type: "link"
-			},{
-				link: "#!/agenda/map",
-				image: "img/Map_of_roads_64.png",
-				tooltip: "Je suis la carte",
-				type: "link"
-			}]
-		});
 
 		$scope.map = {
 			control: {

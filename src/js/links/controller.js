@@ -1,14 +1,11 @@
 'use strict';
 
-angular.module('mean.links').controller('LinkController', ['$scope', 'Global', '$window', 'LinksCollection', 'SideMenu',
-	function ($scope, Global, $window, LinksCollection, SideMenu) {
+angular.module('mean.links').controller('LinkController', ['$scope', 'Global', '$window', 'LinksCollection',
+	function ($scope, Global, $window, LinksCollection) {
 
 		$scope.global = Global;
 		$scope.LinksCollection = LinksCollection;
 		$scope.content;
-
-		SideMenu.setMenu({});
-		SideMenu.setSearchInput(false);
 
 		$scope.links = [{
 				author: "Jo",
