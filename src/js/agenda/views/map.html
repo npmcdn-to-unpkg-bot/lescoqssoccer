@@ -1,31 +1,40 @@
-<div class="mapContainer">
-	<google-map
-	center="map.center"
-	zoom="map.zoom"
-	draggable="true"
-	dragging="map.dragging"
-	bounds="map.bounds"
-	events="map.events"
-	options="map.options"
-	control="map.control">
-		<marker ng-repeat="m in map.markers" coords="m" click="onMarkerClicked(m);">
-			<window isIconVisibleOnClick="true" show="m.showWindow">
-			<div>
+<section class="rightcontainer">
 
-				<!-- TODO: Slider -->
-				<div style="display: inline-block;">
-					<p style="text-align: center">{{m.title}}</p>
+    <!-- TITLE -->
+    <div class="subtitle maintitle">
+        <h1>Map</h1>
+    </div>
 
-					<img
-					class="imgThumbnail"
-					ng-src="{{m.photos.length > 0 && m.photos[0].path || 'img/8962691008_7f489395c9_m.jpg'}}"
-					style="height: 80px; width: 80px; margin-bottom: 15px; margin-left: 0; margin-right: 5px;">
-					</img>
-					<p style="display: inline-block; vertical-align: top;">{{m.content}}</p>
+    <!-- GOOGLE MAP -->
+	<div id="google-map" class="flex-video google-map">
 
-				</div>
-			</div>
-			</window>
-		</marker>
-	</google-map>
-</div>
+		<google-map
+		center="map.center"
+		zoom="map.zoom"
+		draggable="true"
+		dragging="map.dragging"
+		bounds="map.bounds"
+		events="map.events"
+		options="map.options"
+		control="map.control">
+
+			<marker
+			ng-repeat="m in map.markers"
+			icon="'img/icons/pin.png'"
+			coords="m"
+			animation="google.maps.Animation.DROP"
+			click="onMarkerClicked(m);">
+
+				<window isIconVisibleOnClick="true" show="m.showWindow">
+					<div>
+						<div style="display: inline-block;">
+							<p style="text-align: center">{{m.title}}</p>
+							<p style="display: inline-block; vertical-align: top;">{{m.content}}</p>
+						</div>
+					</div>
+				</window>
+
+			</marker>
+		</google-map>
+	</div>
+</section>

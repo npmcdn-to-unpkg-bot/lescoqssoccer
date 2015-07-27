@@ -269,7 +269,6 @@ blockquote,i,em {
     width: 100%;
     height: auto;
     text-align: left;
-    display: none;
 }
 .page-title h1{
     margin-bottom: 0px;
@@ -1666,10 +1665,12 @@ textarea {
     padding-top:0;
 }
 .flex-video.google-map {
+    width: 100%;
+    height: 100%;
     margin-bottom:0px;
     margin-top:0px;
-    padding-bottom:45%;
     border: none !important;
+    padding-bottom: 0;
 }
 .flex-video.google-map:after {
 	bottom:-1px;
@@ -1970,6 +1971,22 @@ PERSONNAL STYLES
 
 cm-sidebar{
 	position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#google-map>.angular-google-map>div{
+    display: block !important;
+}
+
+.angular-google-map{
+    height: 100%;
+    width: 100%;
+}
+
+google-map .angular-google-map-container {
+    height: 85vh;
+    width: 100%;
 }
 
 .slide-pop {
@@ -2021,4 +2038,120 @@ cm-sidebar{
 	opacity: 0;
 	-webkit-transform: scale(.5);
 	transform: scale(.5);
+}
+
+.deckgrid {
+    margin:auto;
+    padding:10px;
+}
+
+.deckgrid[deckgrid]::before {
+    content: '5 .column.size-1-5';
+    font-size: 0;
+    visibility:hidden;
+}
+
+.deckgrid .column {
+    float:left;
+}
+
+.photo {
+    background:#fff url(images/spinner.gif) center 30px no-repeat;
+    border:1px solid rgba(0, 0, 0, .15);
+    border-radius:3px;
+    margin:0 10px 10px 0;
+    position:relative;
+}
+
+.photo .photo-index {
+    background:rgba(0, 0, 0, .9);
+    color:#fff;
+    position:absolute;
+    height:100%;
+    text-align:center;
+    width:100%;
+    z-index:99;
+}
+
+.photo .photo-index p:first-child {
+    margin-top:10px;
+}
+
+.photo .photo-wrapper {
+    min-height:60px;
+}
+
+.photo .photo-description {
+    padding:15px;
+}
+
+.deckgrid .column.size-1-5 {
+    width:200px;
+}
+
+.deckgrid .column.size-1-4 {
+    width:200px;
+}
+
+.deckgrid .column.size-1-3 {
+    width:250px;
+}
+
+.deckgrid .column.size-1-2 {
+    width:250px;
+}
+
+.deckgrid .column.size-1-1 {
+    width:280px;
+}
+
+@media screen and (max-width: 1000px) {
+    .deckgrid {
+        width:800px;
+    }
+
+    .deckgrid[deckgrid]::before {
+        content: '4 .column.size-1-4';
+    }
+}
+
+@media screen and (max-width: 840px) {
+    .deckgrid {
+        width:760px;
+    }
+
+    .deckgrid[deckgrid]::before {
+        content: '3 .column.size-1-3';
+    }
+}
+
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .deckgrid {
+        margin:100px auto;
+        width:500px;
+    }
+
+    .deckgrid[deckgrid]::before {
+        content: '2 .column.size-1-2';
+    }
+}
+
+@media only screen and (max-device-width : 320px),
+       only screen and (max-width : 480px) {
+
+    .l-header {
+        font-size:80%;
+        margin-top:145px;
+        padding:5px;
+        text-align:center;
+    }
+
+    .deckgrid {
+        width:280px;
+    }
+
+    .deckgrid[deckgrid]::before {
+        content: '1 .column.size-1-1';
+    }
 }

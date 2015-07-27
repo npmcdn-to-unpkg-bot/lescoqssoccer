@@ -166,7 +166,7 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 		$scope.agendaCollection = AgendaCollection;
 		$scope.agenda = Agenda;
 
-		$scope.limit = 3;
+		$scope.limit = 6;
 		$scope.start = 0;
 
 		$scope.isPastEvent = function(event) {
@@ -175,26 +175,6 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 
 		$scope.isComingEvent = function(event) {
 			return moment(event.start).endOf('day').isAfter(new Date()) ? event.start : null;
-		};
-
-		$scope.previous = function(evt){
-
-			evt.preventDefault();
-			evt.stopPropagation();
-
-			if($scope.start > 0){
-				$scope.start--;
-			}
-		};
-
-		$scope.next = function(evt){
-
-			evt.preventDefault();
-			evt.stopPropagation();
-
-			if($scope.start < $scope.filteredAgenda.length - $scope.limit){
-				$scope.start++;
-			}
 		};
 
 		$scope.update = function(userEvent) {
@@ -245,13 +225,25 @@ angular.module('mean.agenda').controller('MapController', ['$scope', '$routePara
 				longitude: 5.724523999999974000
 			},
 			options: {
+		        mapTypeControl: true,
+		        zoomControl: true,
+		        zoomControlOptions: {
+		            style: google.maps.ZoomControlStyle.MEDIUM,
+		            position: google.maps.ControlPosition.LEFT_BOTTOM
+		        },
 				streetViewControl: true,
 				panControl: true,
 				maxZoom: 20,
 				minZoom: 3,
-				styles: styles
+				styles: [{
+					featureType: "all",
+					elementType: "all",
+					stylers: [{
+						saturation: -100
+					}]
+				}]
 			},
-			zoom: 6,
+			zoom: 12,
 			dragging: false,
 			bounds: {},
 			markers: [],
@@ -298,23 +290,21 @@ angular.module('mean.agenda').controller('unknowLocationCtrl', ['$scope', '$moda
 var eventTypes = [{
 	identifier: 'restaurant',
 	name: 'Resto',
-	image: "img/3d5c45b634304f99146a9e3913307a2f.jpg"
+	image: "img/photos/office2-thumb.jpg"
 }, {
 	identifier: 'holidays',
 	name: 'Vacances',
-	image: "img/3d5c45b634304f99146a9e3913307a2f.jpg"
+	image: "img/photos/office3-thumb.jpg"
 }, {
 	identifier: 'party',
 	name: 'Soirée',
-	image: "img/400x300beer.jpg"
+	image: "img/photos/office6-thumb.jpg"
 }, {
 	identifier: 'weekend',
 	name: 'Week-end',
-	image: "img/400x300beer.jpg"
+	image: "img/photos/office5-thumb.jpg"
 }, {
 	identifier: 'other',
 	name: 'Autres',
-	image: "img/400x300beer.jpg"
+	image: "img/photos/office6-thumb.jpg"
 }];
-
-var styles = [{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#555555"},{"visibility":"on"}]}];

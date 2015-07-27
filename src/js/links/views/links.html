@@ -1,121 +1,44 @@
-<section class="main clearfix">
-		<div class="work grid">
-			<a href="{{card.adress}}" target="_blank">
-				<figure class="effect-julia">
+<section class="rightcontainer">
 
-					<img
-					src="img/jojo.jpg"
-					class="animation-fade photoCard"
-					data-imageloaded data-loadedclass="animation-faded"/>
+	<!-- PAGE TITLE -->
+	<div class="page-title">
 
-					<figcaption>
-						<h2>objectifjapon TKT</h2>
-						<div>
-							<p>Jo</p>
-						</div>
-					</figcaption>
+	    <!-- PAGE TITLE TRANSPARENT BG -->
+	    <div class="bgfilter"></div>
+	    <h1>Ailleurs sur le web</h1>
+	    <div class="page-title-box">
+	        <p>Malis imitarentur offendit tamen laboris. Vidisse est sint laborum ne e lorem despicationes, nam veniam probant nostrud qui ipsum et litteris se aliqua. Ea iis aute proident, eiusmod cohaerescant ea commodo, se quo elit incididunt a nulla admodum incurreret. Ab malis fabulas.
+	        </p>
+	    </div>
+	</div>
 
-				</figure>
-			</a>
-		</div>
+	<!-- FILTERS -->
+	<ul id="filters1" class="filters">
+	    <li>
+	        <a href="#!" data-filter="all" class="active">All</a>
+	    </li>
+	    <li>
+	        <a href="#!" data-filter="conneries">Conneries</a>
+	    </li>
+	    <li>
+	        <a href="#!" data-filter="links">Liens</a>
+	    </li>
+	</ul>
+	<div class="clear"></div>
 
-		<div class="work">
-			<a href="inner.html">
-				<img src="img/jojo.jpg" class="media" alt=""/>
-				<div class="caption" style="opacity: 1;">
-					<div class="work_title">
-						<h1>culpa qui officia deserunt mollit,
-						dezdez d zed ezd ezd
-						dzeez dze d ezd ezd </h1>
-					</div>
-				</div>
-			</a>
-		</div>
+	<!-- GALLERY -->
+	<ul id="gridbox1" class="sp-portfolio four-column">
+		<li data-filter="conneries">
+	        <a class="clb-link" href="#!" ng-click="getUselessSite($event);">
+	            <img src="img/tQEHA2B.gif" alt="" />
+	        </a>
+	    </li>
+	    <li data-filter="links" ng-repeat="link in links">
+	        <a class="clb-link" href="{{link.adress}}" target="_blank">
+	            <img ng-src="{{link.image}}" alt="" />
+	        </a>
+	    </li>
+	</ul>
 
-		<div class="work grid">
-			<a href="{{card.adress}}" target="_blank">
-				<figure class="effect-julia">
-
-					<img
-					src="img/nico.jpg"
-					class="animation-fade photoCard"
-					data-imageloaded data-loadedclass="animation-faded"/>
-
-					<figcaption>
-						<h2>Deux noix au pays des kiwis</h2>
-						<div>
-							<p>Nico et Amélie</p>
-						</div>
-					</figcaption>
-
-				</figure>
-			</a>
-		</div>
-
-			<div class="work">
-			<a href="inner.html">
-				<img src="img/jojo.jpg" class="media" alt=""/>
-				<div class="caption" style="opacity: 1;">
-					<div class="work_title">
-						<h1>culpa qui officia deserunt mollit</h1>
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="work grid">
-			<a href="{{card.adress}}" target="_blank">
-				<figure class="effect-julia">
-
-					<img
-					src="img/momo.jpeg"
-					class="animation-fade photoCard"
-					data-imageloaded data-loadedclass="animation-faded"/>
-
-					<figcaption>
-						<h2>Bande de Mickeys en 4L</h2>
-						<div>
-							<p>Momo et Céline</p>
-						</div>
-					</figcaption>
-
-				</figure>
-			</a>
-		</div>
-
-		<div class="work">
-			<a href="inner.html">
-				<img src="img/jojo.jpg" class="media" alt=""/>
-				<div class="caption" style="opacity: 1;">
-					<div class="work_title">
-						<h1>culpa qui officia deserunt mollit</h1>
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="work grid uselessSiteContainer">
-			<a href="#!" ng-click="getUselessSite($event);">
-				<figure class="effect-julia">
-
-					<img
-					src=""
-					data-ng-src="img/tQEHA2B.gif"
-					class="animation-fade photoCard"
-					data-imageloaded data-loadedclass="animation-faded"/>
-
-				</figure>
-			</a>
-		</div>
-
-		<div class="work">
-			<a href="inner.html">
-				<img src="img/jojo.jpg" class="media" alt=""/>
-				<div class="caption" style="opacity: 1;">
-					<div class="work_title">
-						<h1>culpa qui officia deserunt mollit</h1>
-					</div>
-				</div>
-			</a>
-		</div>
+	<cm-portfolio></cm-portfolio>
 </section>

@@ -7,13 +7,9 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 		$scope.global = Global;
 
 		$scope.menu = [{
-			name: "Home",
+			name: "Accueil",
 			link: "#!/home",
 			id: 'home'
-		}, {
-			name: "Photos",
-			link: "#!/albums",
-			id: 'albums'
 		}, {
 			name: "Blog",
 			link: "#!/articles",
@@ -29,6 +25,18 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 				name: "Carte",
 				link: "#!/agenda/map",
 			}]
+		}, {
+			name: "Photos",
+			link: "#!/albums",
+			id: 'albums'
+		}, {
+			name: "Liens",
+			link: "#!/links",
+			id: 'links'
+		}, {
+			name: "Suggestions",
+			link: "#!/suggestions",
+			id: 'suggestions'
 		}];
 
 		$scope.recentPosts = [{

@@ -269,7 +269,6 @@ blockquote,i,em {
     width: 100%;
     height: auto;
     text-align: left;
-    display: none;
 }
 .page-title h1{
     margin-bottom: 0px;

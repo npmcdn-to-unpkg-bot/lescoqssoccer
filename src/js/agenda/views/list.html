@@ -1,60 +1,53 @@
-<div class="agendaContainer expandable-container">
-	<div class="comingEvents">
-		<h3 class="agendaListTitle">Quoi de beau à venir.... ?!</h3>
-		<div
-		class="grid__item eventSmall"
-		ng-repeat="event in filteredAgenda = (agenda | filter: isPastEvent) | limitToCustom:limit:start">
+<section class="rightcontainer">
 
-			<img class="imgEvent" ng-src="{{ eventTypes | getImageByIdentifier:event.type}}">
+    <!-- TITLE -->
+    <div class="subtitle">
+        <h1>Quoi de beau à venir...?!</h1>
+        <a href="#!/agenda/create" class="add-icon">
+        </a>
+    </div>
 
-			<h2 class="ev2page-title ellipsis">
-				<a href="#!">{{event.title}}</a>
-			</h2>
+    <!-- PHOTO CAROUSEL -->
+    <data-owl-carousel class="owl-carousel photo-carousel owl-theme owl-loaded">
+      	<div owl-carousel-item="{{event._id}}"
+      	ng-repeat="event in filteredAgenda = (agenda | filter: isPastEvent) | limitToCustom:limit:start ">
+        	<img ng-src="{{ eventTypes | getImageByIdentifier:event.type}}">
+      	</div>
+    </data-owl-carousel>
 
-			<div class="ev2page-tickets">
-				<a href="#!">{{ eventTypes | getNameByIdentifier:event.type}}</a>
-			</div>
-		</div>
-
-		<div class="eventLeft">
-			<a href="#!" ng-click="previous($event);">
-				<img src="img/Back_arrow_circular_symbol_32.png">
-			</a>
-			<a href="#!" ng-click="next($event);">
-				<img src="img/agenda_arrow_right.png">
-			</a>
-		</div>
-
-		<div class="commingEventEmpty" data-ng-show="filteredAgenda.length === 0">
-			<h4>FAR... Y'a rien à faire !!!!</h4>
-		</div>
-
-		<hr/>
+    <div data-ng-show="filteredAgenda.length === 0">
+		<h4>FAR... Y'a rien à faire !!!!</h4>
 	</div>
 
-	<div class="calendarContainer">
+    <!-- PAGE CONTENT -->
+    <div class="pagecontent">
+
 		<div class="btn-group pull-left monthGroupBtn">
-            <button
+
+            <input
+              type="button"
               class="btn previousMonth"
               mwl-date-modifier
               date="calendarDay"
-              decrement="calendarView">
-              Précédent
-            </button>
-            <button
+              decrement="calendarView"
+              value="Précédent"/>
+
+            <input
+              type="button"
               class="btn todayBtn"
               mwl-date-modifier
               date="calendarDay"
-              set-to-today>
-              Aujourd'hui
-            </button>
-            <button
+              set-to-today
+              value="Aujourd'hui">
+
+            <input
+              type="button"
               class="btn nextMonth"
               mwl-date-modifier
               date="calendarDay"
-              increment="calendarView">
-              Suivant
-            </button>
+              increment="calendarView"
+              value="Suivant">
+
         </div>
 
 		<div class="btn-group">
@@ -81,5 +74,7 @@
 		on-delete-event-click="eventDeleted(calendarEvent)"
 		auto-open="true">
 		</mwl-calendar>
-	<div>
+
+	</div>
+
 </div>
