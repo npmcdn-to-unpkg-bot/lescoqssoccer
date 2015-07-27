@@ -1,16 +1,18 @@
 <section class="rightcontainer">
 
-	<!-- TITLE -->
-	<div class="subtitle">
-		<h1>La fine équipe</h1>
-	</div>
+	<!-- PAGE TITLE -->
+	<div class="page-title">
 
-	<!-- OUR TEAM CAROUSEL -->
-	<data-team-carousel class="owl-carousel owl-theme owl-loaded">
+		<!-- PAGE TITLE TRANSPARENT BG -->
+		<div class="bgfilter"></div>
+		<h1>La fine équipe</h1>
+
+		<!-- OUR TEAM CAROUSEL -->
+		<data-team-carousel class="owl-carousel owl-theme owl-loaded">
 		<figure
-		ng-repeat="user in team track by $index"
-		team-carousel-item="{{$index}}"
-		class="our-team">
+			ng-repeat="user in team track by $index"
+			team-carousel-item="{{$index}}"
+			class="our-team">
 			<img src="img/photos/team2.jpg" alt="" />
 			<figcaption>
 				<div>
@@ -20,13 +22,13 @@
 					<ul class="our-team-icons">
 						<li>
 							<a href="#!">
-								<img class="social-icon" src="img/zoom.png" alt="" />
+							<img class="social-icon" src="img/zoom.png" alt="" />
 							</a>
 						</li>
 					</ul>
 				</div>
 			</figcaption>
 		</figure>
-	</data-team-carousel>
-
+		</data-team-carousel>
+	</div>
 </section>

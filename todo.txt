@@ -1,2 +1,4 @@
-- Ajouter profil utilisateur
-- Ajouter magnific popup
+- Ajouter profil utilisateur - Section team
+- Cote de popularité / tache cron d'envoie de point en début de semaine / trouver systeme
+- Section vote
+- Enrichissement section lien / partager vidéos youtube - site - etc
