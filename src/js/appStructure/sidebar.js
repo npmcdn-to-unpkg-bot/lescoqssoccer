@@ -11,6 +11,10 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 			link: "#!/home",
 			id: 'home'
 		}, {
+			name: "Team",
+			link: "#!/team",
+			id: 'team'
+		}, {
 			name: "Blog",
 			link: "#!/articles",
 			id: 'articles'

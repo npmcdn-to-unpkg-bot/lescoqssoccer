@@ -1,4 +1,11 @@
-'use strict';
+angular.module('mean.users').controller('TeamController', ['$scope', 'Global',
+	function($scope, Global) {
+
+		$scope.global = Global;
+		$scope.team = [1,2,3,4,5,6,6,7];
+
+	}
+]);
 
 angular.module( 'mean.users' ).controller( 'ProfileController', [ '$scope', 'Global', 'Users', '$translate', 'FileUploader',
 

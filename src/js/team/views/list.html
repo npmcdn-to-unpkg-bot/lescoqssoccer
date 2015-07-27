@@ -1,0 +1,42 @@
+<section class="rightcontainer">
+
+	<!-- TITLE -->
+	<div class="subtitle">
+		<h1>La fine équipe</h1>
+	</div>
+
+	<!-- OUR TEAM CAROUSEL -->
+	<data-team-carousel class="owl-carousel photo-carousel owl-theme owl-loaded">
+		<figure
+		ng-repeat="user in team track by $index"
+		team-carousel-item="{{$index}}"
+		class="our-team">
+			<img src="img/photos/team2.jpg" alt="" />
+			<figcaption>
+				<div>
+					<h5>Jonathan Doe</h5>
+					<p>General Manager</p>
+					<!-- SOCIAL ICONS -->
+					<ul class="our-team-icons">
+						<li>
+							<a href="#">
+							<img class="social-icon" src="img/social-icons/facebook.png" alt="Facebook" />
+							</a>
+						</li>
+						<li>
+							<a href="#">
+							<img class="social-icon" src="img/social-icons/twitter.png" alt="Twitter" />
+							</a>
+						</li>
+						<li>
+							<a href="#">
+							<img class="social-icon" src="img/social-icons/pinterest.png" alt="Pinterest" />
+							</a>
+						</li>
+					</ul>
+				</div>
+			</figcaption>
+		</figure>
+	</data-team-carousel>
+
+</section>

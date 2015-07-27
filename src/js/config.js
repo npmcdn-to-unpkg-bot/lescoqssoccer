@@ -106,9 +106,15 @@ angular.module('mean').config(['$routeProvider',
 			controller: 'SuggestionController',
 		}).
 
+		when('/team', {
+			templateUrl: 'js/team/views/list.html',
+			controller: 'TeamController'
+		}).
+
 		/** PROFILE ****/
 		when('/profile', {
-			templateUrl: 'js/profile/profile.html'
+			templateUrl: 'js/team/views/profile.html',
+			controller: 'ProfileController'
 		}).
 
 		/** DEFAULT ****/
