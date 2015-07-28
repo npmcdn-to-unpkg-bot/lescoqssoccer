@@ -354,7 +354,7 @@ blockquote,i,em {
     background-image: url(../img/close.png);
     display: none;
 }
-.add-icon {
+.add-icon, .add-icon-sub {
     width: 110px;
     height: 100%;
     position: absolute;
@@ -367,7 +367,7 @@ blockquote,i,em {
     -o-transition: background-color 0.4s ease-in-out;
     -ms-transition: background-color 0.4s ease-in-out;
 }
-.add-icon::after {
+.add-icon::after, .add-icon-sub::after{
     content: "";
     background-image: url(../img/plus-sign2.svg);
      position: absolute;
@@ -382,8 +382,17 @@ blockquote,i,em {
     -o-transition: background-color 0.4s ease-in-out;
     -ms-transition: background-color 0.4s ease-in-out;
 }
+
 .add-icon:hover {
-	background-color: #eb5656;
+    background-color: #eb5656;
+}
+
+.add-icon-sub::after {
+    width: 40px;
+}
+
+.add-icon-sub:hover {
+    background-color: #414141;
 }
 
 /* ================= SIDEBAR  ================== */
@@ -1594,7 +1603,7 @@ input[type="text"].oversize, input[type="email"].oversize, input[type="number"].
 	font-size:15px;
 	padding:4px 5px
 }
-input[type="text"], input[type="email"], input[type="number"], input[type="date"], input[type="password"] {
+input[type="text"], input[type="email"], input[type="number"], input[type="date"], input[type="password"], select {
     max-width: 480px;
 }
 input[type="text"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="date"]:focus, textarea:focus, input[type="password"]:focus {
@@ -1964,7 +1973,6 @@ textarea {
 /*****
 PERSONNAL STYLES
 ****/
-
 #mainmenu ul > li > a.selected {
     color: #eb5656;
 }
@@ -1987,6 +1995,20 @@ cm-sidebar{
 google-map .angular-google-map-container {
     height: 85vh;
     width: 100%;
+}
+
+select {
+    padding: 5px 8px;
+    margin-bottom: 20px;
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    background: #eb5656;
+}
+
+select:focus {
+    outline: none;
 }
 
 
@@ -2107,6 +2129,7 @@ Deckgrid configurations
 
 .photo .photo-wrapper {
     min-height:60px;
+    overflow: hidden;
 }
 
 .photo .photo-description {

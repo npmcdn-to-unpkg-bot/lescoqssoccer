@@ -1,11 +1,23 @@
-<section data-ng-controller="LinkController">
-	<article>
-		<div class="col-md-6">
-			<a href="#!/links">
-				<button class="btn btn-default">
-					{{'common_back' | translate}}
-				</button>
-			</a>
-		</div>
-	</article>
+<section class="rightcontainer">
+
+	<div class="subtitle">
+	    <h1>Nouveau lien</h1>
+	</div>
+
+	<div class="pagecontent">
+		<form class="comment-form" role="form" data-ng-submit="create()">
+
+			<label>Type de lien</label>
+			<select>
+				<option>Lien</option>
+				<option>Vidéo</option>
+				<option>Connerie</option>
+			</select>
+
+			<label>Contenu</label>
+			<input type="text" data-ng-model="link.content" required/>
+
+			<input type="submit" class="button" value="Ajouter" />
+		</form>
+	</div>
 </section>

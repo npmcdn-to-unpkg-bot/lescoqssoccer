@@ -74,7 +74,8 @@ angular.module('mean').config(['$routeProvider',
 			controller: 'LinkController'
 		}).
 		when('/links/create', {
-			templateUrl: 'js/links/views/create.html'
+			templateUrl: 'js/links/views/create.html',
+			controller: 'LinkController'
 		}).
 
 		/** ALBUMS ****/
