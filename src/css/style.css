@@ -1989,6 +1989,32 @@ google-map .angular-google-map-container {
     width: 100%;
 }
 
+
+/*
+Agenda
+*/
+.text-center{
+    text-align: center;
+}
+
+.uppercase{
+    text-transform: uppercase;
+}
+
+.cal-row-fluid:hover span, .cal-row-fluid:hover .cal-cell1{
+    color: #8b0000;
+}
+
+/***
+Albums
+***/
+.albumContainer{
+    padding: 20px 50px;
+}
+
+/***
+Transitions animations
+****/
 .slide-pop {
 	left: 0;
 	top: 0;
@@ -2040,13 +2066,16 @@ google-map .angular-google-map-container {
 	transform: scale(.5);
 }
 
+/***
+Deckgrid configurations
+****/
 .deckgrid {
     margin:auto;
     padding:10px;
 }
 
 .deckgrid[deckgrid]::before {
-    content: '5 .column.size-1-5';
+    content: '3 .column.size-1-3';
     font-size: 0;
     visibility:hidden;
 }
@@ -2056,9 +2085,8 @@ google-map .angular-google-map-container {
 }
 
 .photo {
-    background:#fff url(images/spinner.gif) center 30px no-repeat;
+    background:#fff;
     border:1px solid rgba(0, 0, 0, .15);
-    border-radius:3px;
     margin:0 10px 10px 0;
     position:relative;
 }
@@ -2085,41 +2113,38 @@ google-map .angular-google-map-container {
     padding:15px;
 }
 
+.photo a:hover{
+    text-decoration: none;
+    color: #bbbbbb;
+}
+
 .deckgrid .column.size-1-5 {
-    width:200px;
+    width: 20%;
 }
 
 .deckgrid .column.size-1-4 {
-    width:200px;
+    width: 25%;
 }
 
 .deckgrid .column.size-1-3 {
-    width:250px;
+    width: 33.33%;
 }
 
 .deckgrid .column.size-1-2 {
-    width:250px;
+    width: 50%;
 }
 
 .deckgrid .column.size-1-1 {
-    width:280px;
+    width: 100%;
 }
 
 @media screen and (max-width: 1000px) {
-    .deckgrid {
-        width:800px;
-    }
-
     .deckgrid[deckgrid]::before {
         content: '4 .column.size-1-4';
     }
 }
 
 @media screen and (max-width: 840px) {
-    .deckgrid {
-        width:760px;
-    }
-
     .deckgrid[deckgrid]::before {
         content: '3 .column.size-1-3';
     }
@@ -2127,11 +2152,6 @@ google-map .angular-google-map-container {
 
 
 @media screen and (min-width: 481px) and (max-width: 768px) {
-    .deckgrid {
-        margin:100px auto;
-        width:500px;
-    }
-
     .deckgrid[deckgrid]::before {
         content: '2 .column.size-1-2';
     }
@@ -2145,10 +2165,6 @@ google-map .angular-google-map-container {
         margin-top:145px;
         padding:5px;
         text-align:center;
-    }
-
-    .deckgrid {
-        width:280px;
     }
 
     .deckgrid[deckgrid]::before {

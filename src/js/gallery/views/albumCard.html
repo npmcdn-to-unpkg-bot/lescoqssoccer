@@ -1,15 +1,6 @@
 <li data-filter="photos">
 	<div class="photo clb-photo">
-
-	    <a href="" data-ng-click="card.showIndex = !card.showIndex">
-	        <div class="photo-index" data-ng-if="card.showIndex">
-	            <p>The $index of the card is</p>
-
-	            <p class="balloon-wrapper">
-	                <span class="balloon">{{card.$index}}</span>
-	            </p>
-	        </div>
-
+	    <a href="!#/albums/{{card._id}}">
 	        <div class="photo-wrapper">
 	            <img
 	            style="width: 100%;"
@@ -19,10 +10,8 @@
 	            data-imageloaded data-loadedclass="animation-faded">
 	        </div>
 
-
 	        <div class="photo-description">
 	            <h3>{{card.name}}</h3>
-	            <p>Nice photo, eh.</p>
 	        </div>
 	    </a>
 	</div>

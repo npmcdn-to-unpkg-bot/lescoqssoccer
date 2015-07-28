@@ -193,7 +193,7 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 		angular.forEach($scope.agenda, function(userEvent) {
 			$scope.events.push({
 				title: userEvent.title, // The title of the event
-				type: 'success', // The type of the event (determines its color). Can be important, warning, info, inverse, success or special
+				type: 'inverse', // The type of the event (determines its color). Can be important, warning, info, inverse, success or special
 				startsAt: userEvent.start, // A javascript date object for when the event starts
 				endsAt: userEvent.start, // Optional - a javascript date object for when the event ends
 				editable: false, // If edit-event-html is set and this field is explicitly set to false then dont make it editable. If set to false will also prevent the event from being dragged and dropped.
