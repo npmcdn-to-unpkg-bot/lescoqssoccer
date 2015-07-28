@@ -1,20 +1,26 @@
 <section class="rightcontainer">
 
 	<div class="subtitle">
-	    <h1>Nouvel évènement</h1>
+	    <h1>{{userEvent.title || 'Nouvel évènement'}}</h1>
+		<a href="#!" class="add-icon">
+		OK
+        </a>
 	</div>
 
 	<div class="pagecontent">
-		<form class="agendaForm" role="form" data-ng-submit="create();">
+		<form role="form">
 
-			<input type="text" name="title" placeholder="Titre" data-ng-model="userEvent.title" required/>
+			<label for="title">Titre</label>
+			<input type="text" name="title" data-ng-model="userEvent.title" required/>
 
+			<label for="selectedType">Type</label>
 			<select
 				name="selectedType"
 				data-ng-model="userEvent.selectedType"
 				ng-options="eventType.name for eventType in eventTypes">
 			</select>
 
+			<label for="start">Début</label>
 			<div>
 				<input
 				type="text"
@@ -26,13 +32,31 @@
 				show-weeks="false"
 				show-button-bar="false"
 				required/>
-					<span class="input-group-btn datepicker-btn">
-						<button class="btn btn-cm" ng-click="open($event, 'start')">
-							<i class="glyphicon glyphicon-calendar"></i>
-						</button>
-					</span>
 			</div>
 
+			<label for="end">Fin</label>
+			<div>
+				<input
+				type="text"
+				name="end"
+				datepicker-popup="{{format}}"
+				data-ng-model="userEvent.end"
+				is-open="$parent.openedEndDate"
+				datepicker-options="dateOptions"
+				show-weeks="false"
+				show-button-bar="false"
+				required/>
+			</div>
+
+			<label for="repeat">Répéter</label>
+			<select name="repeat">
+				<option>Pas répéter</option>
+				<option>Toutes les semaines</option>
+				<option>Toutes les mois</option>
+				<option>Toutes les ans</option>
+			</select>
+
+			<label for="content">Contenu</label>
 			<textarea
 				type="text"
 				name="content"
@@ -40,20 +64,17 @@
 				required>
 			</textarea>
 
-			<div class="input input--yoshiko" data-ng-class="{'input--filled': search}">
-				<input type="text" data-ng-model="search"/>
-				<span class="input-group-btn location-btn">
-				<button
-				class="btn btn-cm"
-				type="button"
-				ng-click="geoCode()"
-				ng-disabled="search.length === 0"
-				title="search" >
-				&nbsp;<i class="glyphicon glyphicon-search"></i>
-				</button>
-				</span>
+			<label for="localisation">Lieux</label>
+			<input class="localisation" name="localisation" type="text" data-ng-model="search"/>
+			<input
+			class="button localisationButton"
+			type="button"
+			ng-click="geoCode()"
+			ng-disabled="search.length === 0"
+			title="search"
+			value="GO"/>
 
-				<google-map
+			<google-map
 				center="map.center"
 				zoom="map.zoom"
 				draggable="true"
@@ -71,8 +92,6 @@
 
 				</google-map>
 			</div>
-
-			<input type="submit" class="button" value="Ajouter l'article" />
 		</form>
 
 	</div>

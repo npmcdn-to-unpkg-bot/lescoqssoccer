@@ -88,7 +88,9 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 						$scope.userEvent.location = {
 							k: marker.getPosition().lat(),
 							B: marker.getPosition().lng()
-						}
+						};
+
+						$scope.geocodePosition(marker.getPosition());
 					}
 				},
 				options: {
@@ -96,6 +98,30 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 				}
 			}],
 			doUgly: true
+		};
+
+		$scope.geocodePosition = function(pos) {
+
+			if (!this.geocoder) this.geocoder = new google.maps.Geocoder();
+
+			this.geocoder.geocode({
+				latLng: pos
+			}, function(responses) {
+				if (responses && responses.length > 0) {
+
+					$scope.search = responses[0].formatted_address;
+
+					if (!$scope.$$phase) {
+						$scope.$apply();
+					}
+
+				} else {
+					$modal.open({
+						templateUrl: 'js/agenda/views/modal/unknownLocation.html',
+						controller: 'unknowLocationCtrl'
+					});
+				}
+			});
 		};
 
 		$scope.geoCode = function() {
@@ -225,12 +251,12 @@ angular.module('mean.agenda').controller('MapController', ['$scope', '$routePara
 				longitude: 5.724523999999974000
 			},
 			options: {
-		        mapTypeControl: true,
-		        zoomControl: true,
-		        zoomControlOptions: {
-		            style: google.maps.ZoomControlStyle.MEDIUM,
-		            position: google.maps.ControlPosition.LEFT_BOTTOM
-		        },
+				mapTypeControl: true,
+				zoomControl: true,
+				zoomControlOptions: {
+					style: google.maps.ZoomControlStyle.MEDIUM,
+					position: google.maps.ControlPosition.LEFT_BOTTOM
+				},
 				streetViewControl: true,
 				panControl: true,
 				maxZoom: 20,

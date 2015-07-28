@@ -1983,23 +1983,28 @@ cm-sidebar{
     height: 100%;
 }
 
-#google-map>.angular-google-map>div{
-    display: block !important;
+.ellipsis {
+    overflow: hidden;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.angular-google-map{
-    height: 100%;
-    width: 100%;
+.two-line-ellipsis {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
-google-map .angular-google-map-container {
-    height: 85vh;
-    width: 100%;
+.three-line-ellipsis {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 select {
     padding: 5px 8px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     width: 100%;
     border: none;
     box-shadow: none;
@@ -2015,6 +2020,21 @@ select:focus {
 /*
 Agenda
 */
+
+#google-map>.angular-google-map>div{
+    display: block !important;
+}
+
+.angular-google-map{
+    height: 100%;
+    width: 100%;
+}
+
+google-map .angular-google-map-container {
+    height: 85vh;
+    width: 100%;
+}
+
 .text-center{
     text-align: center;
 }
@@ -2025,6 +2045,23 @@ Agenda
 
 .cal-row-fluid:hover span, .cal-row-fluid:hover .cal-cell1{
     color: #8b0000;
+}
+
+input[type="text"].localisation {
+    width: 90% !important;
+    max-width: inherit;
+    height: 100%;
+    float:left;
+    margin: 0px;
+    border-right: none !important;
+}
+.localisationButton {
+    line-height: 2;
+    width:10% !important;
+    float:right;
+    top:0;
+    margin:0px;
+    height: 100%;
 }
 
 /***
