@@ -1,68 +1,77 @@
 <section class="rightcontainer">
 
 	<div class="subtitle">
-	    <h1>{{userEvent.title || 'Nouvel évènement'}}</h1>
+		<h1>{{userEvent.title || 'Nouvel évènement'}}</h1>
 		<a href="#!" class="add-icon">
 		OK
-        </a>
+		</a>
 	</div>
-
 	<div class="pagecontent">
 		<form role="form">
+			<div class="contactcontainer">
+				<!-- CONTACT RIGHT -->
+				<div class="contact-right">
 
-			<label for="title">Titre</label>
-			<input type="text" name="title" data-ng-model="userEvent.title" required/>
+					<label for="selectedType">Type</label>
+					<select
+						name="selectedType"
+						data-ng-model="userEvent.selectedType"
+						ng-options="eventType.name for eventType in eventTypes">
+					</select>
 
-			<label for="selectedType">Type</label>
-			<select
-				name="selectedType"
-				data-ng-model="userEvent.selectedType"
-				ng-options="eventType.name for eventType in eventTypes">
-			</select>
+					<label for="end">Fin</label>
+					<div>
+						<input
+						type="text"
+						name="end"
+						datepicker-popup="{{format}}"
+						data-ng-model="userEvent.end"
+						is-open="$parent.openedEndDate"
+						datepicker-options="dateOptions"
+						show-weeks="false"
+						show-button-bar="false"
+						required/>
+					</div>
 
-			<label for="start">Début</label>
-			<div>
-				<input
-				type="text"
-				name="start"
-				datepicker-popup="{{format}}"
-				data-ng-model="userEvent.start"
-				is-open="$parent.openedStartDate"
-				datepicker-options="dateOptions"
-				show-weeks="false"
-				show-button-bar="false"
-				required/>
+					<label for="content">Contenu</label>
+					<textarea
+					type="text"
+					name="content"
+					data-ng-model="userEvent.content"
+					required>
+					</textarea>
+				</div>
+				<!-- CONTACT LEFT -->
+				<div class="contact-left">
+
+					<label for="title">Titre</label>
+					<input type="text" name="title" data-ng-model="userEvent.title" required/>
+
+					<label for="start">Début</label>
+					<div>
+						<input
+						type="text"
+						name="start"
+						datepicker-popup="{{format}}"
+						data-ng-model="userEvent.start"
+						is-open="$parent.openedStartDate"
+						datepicker-options="dateOptions"
+						show-weeks="false"
+						show-button-bar="false"
+						required/>
+					</div>
+
+					<label for="repeat">Répéter</label>
+					<select name="repeat">
+						<option>Pas répéter</option>
+						<option>Toutes les semaines</option>
+						<option>Toutes les mois</option>
+						<option>Toutes les ans</option>
+					</select>
+
+				</div>
 			</div>
-
-			<label for="end">Fin</label>
-			<div>
-				<input
-				type="text"
-				name="end"
-				datepicker-popup="{{format}}"
-				data-ng-model="userEvent.end"
-				is-open="$parent.openedEndDate"
-				datepicker-options="dateOptions"
-				show-weeks="false"
-				show-button-bar="false"
-				required/>
-			</div>
-
-			<label for="repeat">Répéter</label>
-			<select name="repeat">
-				<option>Pas répéter</option>
-				<option>Toutes les semaines</option>
-				<option>Toutes les mois</option>
-				<option>Toutes les ans</option>
-			</select>
-
-			<label for="content">Contenu</label>
-			<textarea
-				type="text"
-				name="content"
-				data-ng-model="userEvent.content"
-				required>
-			</textarea>
+			<div class="clear"></div>
 
 			<label for="localisation">Lieux</label>
 			<input class="localisation" name="localisation" type="text" data-ng-model="search"/>
@@ -73,26 +82,22 @@
 			ng-disabled="search.length === 0"
 			title="search"
 			value="GO"/>
-
 			<google-map
-				center="map.center"
-				zoom="map.zoom"
-				draggable="true"
-				events="map.events"
-				options="map.options"
-				control="map.control">
-
-					<marker
-					ng-repeat="m in map.markers"
-					coords="m"
-					events="m.events"
-					options ="m.options"
-					icon="'img/icons/pin.png'">
-					</marker>
-
-				</google-map>
-			</div>
-		</form>
-
-	</div>
+			center="map.center"
+			zoom="map.zoom"
+			draggable="true"
+			events="map.events"
+			options="map.options"
+			control="map.control">
+			<marker
+				ng-repeat="m in map.markers"
+				coords="m"
+				events="m.events"
+				options ="m.options"
+				icon="'img/icons/pin.png'">
+			</marker>
+			</google-map>
+		</div>
+	</form>
+</div>
 </section>

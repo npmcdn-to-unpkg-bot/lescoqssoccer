@@ -1345,8 +1345,6 @@ blockquote,i,em {
     background-size: 40px 40px;
     width: 100%;
     padding: 40px;
-    margin-bottom:40px;
-    margin-top:40px;
     -webkit-animation: animate-bg 5s linear infinite;
     -moz-animation: animate-bg 5s linear infinite;
     -o-animation: animate-bg 5s linear infinite;
@@ -2003,6 +2001,7 @@ cm-sidebar{
 }
 
 select {
+    height: 52px;
     padding: 5px 8px;
     margin-bottom: 40px;
     width: 100%;
@@ -2064,6 +2063,9 @@ input[type="text"].localisation {
     height: 100%;
 }
 
+.localisationButton:not(:hover) {
+    background-color: #313131 !important;
+}
 /***
 Albums
 ***/
