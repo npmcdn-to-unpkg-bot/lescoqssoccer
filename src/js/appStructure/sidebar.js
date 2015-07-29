@@ -77,36 +77,39 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 
 		$scope.closeSidebar = function(evt, item) {
 
-			var checkElement = $($("#" + item.id).parent().find('ul')[0]);
+			if(item){
 
-			if (item.children && (checkElement.is(':visible'))) {
+				var checkElement = $($("#" + item.id).parent().find('ul')[0]);
 
-				evt.preventDefault();
-				evt.stopPropagation();
+				if (item.children && (checkElement.is(':visible'))) {
 
-				checkElement.slideUp(300);
-				$("#" + item.id).removeClass("has-sub2");
-				$("#" + item.id).addClass("has-sub");
-				checkElement.removeClass("animated-fast fadeInLeft");
-				checkElement.addClass("animated-fast fadeOut");
+					evt.preventDefault();
+					evt.stopPropagation();
+
+					checkElement.slideUp(300);
+					$("#" + item.id).removeClass("has-sub2");
+					$("#" + item.id).addClass("has-sub");
+					checkElement.removeClass("animated-fast fadeInLeft");
+					checkElement.addClass("animated-fast fadeOut");
+				}
+
+				if (item.children && (!checkElement.is(':visible'))) {
+
+					evt.preventDefault();
+					evt.stopPropagation();
+
+					jQuery('#mainmenu ul ul:visible').slideUp(300);
+					checkElement.slideDown(100);
+					jQuery('#mainmenu > ul > li:has(ul) > a').removeClass("has-sub2");
+					jQuery('#mainmenu > ul > li:has(ul) > a').addClass("has-sub");
+					$("#" + item.id).addClass("has-sub2");
+					checkElement.removeClass("animated-fast fadeOut");
+					checkElement.addClass("animated-fast fadeInLeft");
+				}
 			}
 
-			if (item.children && (!checkElement.is(':visible'))) {
 
-				evt.preventDefault();
-				evt.stopPropagation();
-
-				jQuery('#mainmenu ul ul:visible').slideUp(300);
-				checkElement.slideDown(100);
-				jQuery('#mainmenu > ul > li:has(ul) > a').removeClass("has-sub2");
-				jQuery('#mainmenu > ul > li:has(ul) > a').addClass("has-sub");
-				$("#" + item.id).addClass("has-sub2");
-				checkElement.removeClass("animated-fast fadeOut");
-				checkElement.addClass("animated-fast fadeInLeft");
-			}
-
-
-			if (item.children) {
+			if (item && item.children) {
 				return false;
 			} else {
 

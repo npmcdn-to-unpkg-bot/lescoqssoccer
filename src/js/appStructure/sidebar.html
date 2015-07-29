@@ -21,7 +21,12 @@
 <aside class="leftcontainer">
 	<div class="leftcontainer-inner">
 
-		<img class="logo" src="img/logo.png" alt="" />
+		<!-- SEARCH -->
+		<h5>Recherche</h5>
+		<form id="searchform" class="searchbox">
+			<input type="text" id="search" class="searchtext" placeholder="Rechercher..." />
+			<input type="submit" class="button" name="submit" value="Go" />
+		</form>
 		<hr/>
 
 		<!-- MENU -->
@@ -43,16 +48,11 @@
 		</nav>
 		<hr/>
 
-		<!-- SEARCH -->
-		<h5>Recherche</h5>
-		<form id="searchform" class="searchbox">
-			<input type="text" id="search" class="searchtext" placeholder="Rechercher..." />
-			<input type="submit" class="button" name="submit" value="Go" />
-		</form>
-		<hr/>
-
 		<!-- RECENT POSTS -->
-		<h5>Déconnexion</h5>
+		<h5>Profile</h5>
+		<a href="#!/profile" ng-click="closeSidebar($event);">
+			<img class="contact-img" ng-src="{{global.user.avatar}}">
+		</a>
 		<a href="/signout">
 			<input type="button" class="button" value="Se déconnecter"/>
 		</a>
