@@ -23,18 +23,16 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 
 			$scope.userEvent.type = $scope.userEvent.selectedType.identifier;
 
-			console.warn($scope.userEvent);
-			var promise = $scope.agendaCollection.add($scope.userEvent);
-			promise.then(function(userEvent) {
+			$scope.agendaCollection.add($scope.userEvent).then(function(userEvent) {
 				$location.path("/agenda");
 			});
-
 		};
 
 		/***
 		Date picker management
 		 ***/
 		$scope.open = function($event, datepicker) { //Manage opening of two datepickers
+
 			$event.preventDefault();
 			$event.stopPropagation();
 
@@ -49,8 +47,14 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 
 		//Update min value for end date of userEvent if startDate increase
 		$scope.$watch('userEvent.start', function(newValue, oldValue) {
-			if (newValue > oldValue) {
+			if (newValue > $scope.userEvent.end) {
 				$scope.userEvent.end = $scope.userEvent.start;
+			}
+		});
+
+		$scope.$watch('userEvent.end', function(newValue, oldValue) {
+			if (newValue < $scope.userEvent.start) {
+				$scope.userEvent.start = $scope.userEvent.end;
 			}
 		});
 
@@ -76,7 +80,14 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 			options: {
 				streetViewControl: true,
 				panControl: true,
-				scrollwheel: false
+				scrollwheel: false,
+				styles: [{
+					featureType: "all",
+					elementType: "all",
+					stylers: [{
+						saturation: -100
+					}]
+				}]
 			},
 			zoom: 8,
 			markers: [{
@@ -212,7 +223,7 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 		};
 
 		$scope.calendarView = 'month';
-		$scope.calendarTitle = 'Mon super calendar';
+		$scope.calendarTitle = '';
 		$scope.calendarDay = new Date();
 
 		$scope.events = [];

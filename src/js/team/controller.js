@@ -1,15 +1,25 @@
-angular.module('mean.users').controller('TeamController', ['$scope', 'Global',
-	function($scope, Global) {
+'use strict';
+
+angular.module('mean.users').controller('TeamController', ['$scope', 'Global', 'Team',
+	function($scope, Global, Team) {
 
 		$scope.global = Global;
-		$scope.team = [1,2,3,4,5,6,6,7];
+		$scope.team = Team;
+
+		$scope.showUser = function(evt, user){
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			//show selected user
+		}
 
 	}
 ]);
 
-angular.module( 'mean.users' ).controller( 'ProfileController', [ '$scope', 'Global', 'Users', '$translate', 'FileUploader',
+angular.module('mean.users').controller('ProfileController', ['$scope', 'Global', 'Users', '$translate', 'FileUploader',
 
-	function ( $scope, Global, Users, $translate, FileUploader ) {
+	function($scope, Global, Users, $translate, FileUploader) {
 
 		$scope.global = Global;
 		$scope.user;
@@ -17,17 +27,17 @@ angular.module( 'mean.users' ).controller( 'ProfileController', [ '$scope', 'Glo
 		/***
 			AVATAR
 		***/
-		$scope.uploader = new FileUploader( {
+		$scope.uploader = new FileUploader({
 			scope: $scope,
 			url: '/upload/photo',
 			autoUpload: true,
-			formData: [ {
+			formData: [{
 				key: 'value'
-			} ]
-		} );
+			}]
+		});
 
-		$scope.uploader.onCompleteItem = function ( item, response, status, headers ) {
-			console.info( 'Complete', item, response );
+		$scope.uploader.onCompleteItem = function(item, response, status, headers) {
+			console.info('Complete', item, response);
 			$scope.user.avatar = response.path;
 			$scope.update();
 		};
@@ -38,47 +48,58 @@ angular.module( 'mean.users' ).controller( 'ProfileController', [ '$scope', 'Glo
 		$scope.percent;
 		$scope.max = 10;
 
-		$scope.hoveringOver = function ( value ) {
+		$scope.hoveringOver = function(value) {
 			$scope.overStar = value;
 			$scope.percent = 100 * (value / $scope.max);
 		};
 
-		$scope.updateSkill = function ( skill ) {
+		$scope.updateSkill = function(skill) {
 			skill.value = $scope.overStar;
 			skill.percent = 100 * ($scope.overStar / $scope.max);
 		};
 
-		$scope.addSkill = function () {
+		$scope.addSkill = function() {
 
-			if ( !user.skills )
+			if (!user.skills){
 				user.skills = [];
+			}
 
-			$scope.user.skills.push( {
+			$scope.user.skills.push({
 				name: this.skillName,
 				value: 7,
 				percent: 70
-			} );
+			});
 		};
 
 		/***
 			MODEL
 		***/
-		$scope.load = function () {
-			Users.get( {
+		$scope.load = function() {
+			Users.get({
 				userId: Global.user._id
-			}, function ( user ) {
+			}, function(user) {
 				$scope.user = user;
-			} );
+			});
 		};
 
-		$scope.update = function () {
-			$scope.user.$update( function ( response ) {
+		$scope.update = function() {
+			$scope.user.$update(function(response) {
 				Global.user = response;
-			} );
+			});
 		};
 
-		$scope.changeLanguage = function ( key ) {
-			$translate.use( key );
+		$scope.changeLanguage = function(key) {
+			$translate.use(key);
 		};
 	}
-] );
+]);
+
+var TeamData = {
+
+	Team: function(Users) {
+		return Users.query({}, function(users) {
+			return users;
+		}).$promise;;
+	}
+
+};

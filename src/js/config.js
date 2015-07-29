@@ -109,7 +109,8 @@ angular.module('mean').config(['$routeProvider',
 
 		when('/team', {
 			templateUrl: 'js/team/views/list.html',
-			controller: 'TeamController'
+			controller: 'TeamController',
+			resolve: TeamData
 		}).
 
 		/** PROFILE ****/

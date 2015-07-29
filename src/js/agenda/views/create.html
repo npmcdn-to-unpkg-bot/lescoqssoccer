@@ -1,16 +1,21 @@
 <section class="rightcontainer">
 
 	<div class="subtitle">
-		<h1>{{userEvent.title || 'Nouvel évènement'}}</h1>
+		<h1 class="ellipsis">{{userEvent.title || 'Nouvel évènement'}}</h1>
 		<a href="#!" class="add-icon">
 		OK
 		</a>
 	</div>
+
 	<div class="pagecontent">
 		<form role="form">
 			<div class="contactcontainer">
-				<!-- CONTACT RIGHT -->
-				<div class="contact-right">
+
+				<!-- CONTACT LEFT -->
+				<div class="contact-left">
+
+					<label for="title">Nom</label>
+					<input type="text" name="title" data-ng-model="userEvent.title" required/>
 
 					<label for="selectedType">Type</label>
 					<select
@@ -19,20 +24,6 @@
 						ng-options="eventType.name for eventType in eventTypes">
 					</select>
 
-					<label for="end">Fin</label>
-					<div>
-						<input
-						type="text"
-						name="end"
-						datepicker-popup="{{format}}"
-						data-ng-model="userEvent.end"
-						is-open="$parent.openedEndDate"
-						datepicker-options="dateOptions"
-						show-weeks="false"
-						show-button-bar="false"
-						required/>
-					</div>
-
 					<label for="content">Contenu</label>
 					<textarea
 					type="text"
@@ -40,12 +31,11 @@
 					data-ng-model="userEvent.content"
 					required>
 					</textarea>
-				</div>
-				<!-- CONTACT LEFT -->
-				<div class="contact-left">
 
-					<label for="title">Titre</label>
-					<input type="text" name="title" data-ng-model="userEvent.title" required/>
+				</div>
+
+				<!-- CONTACT RIGHT -->
+				<div class="contact-right">
 
 					<label for="start">Début</label>
 					<div>
@@ -55,6 +45,20 @@
 						datepicker-popup="{{format}}"
 						data-ng-model="userEvent.start"
 						is-open="$parent.openedStartDate"
+						datepicker-options="dateOptions"
+						show-weeks="false"
+						show-button-bar="false"
+						required/>
+					</div>
+
+					<label for="end">Fin</label>
+					<div>
+						<input
+						type="text"
+						name="end"
+						datepicker-popup="{{format}}"
+						data-ng-model="userEvent.end"
+						is-open="$parent.openedEndDate"
 						datepicker-options="dateOptions"
 						show-weeks="false"
 						show-button-bar="false"
@@ -82,6 +86,7 @@
 			ng-disabled="search.length === 0"
 			title="search"
 			value="GO"/>
+
 			<google-map
 			center="map.center"
 			zoom="map.zoom"
@@ -97,7 +102,6 @@
 				icon="'img/icons/pin.png'">
 			</marker>
 			</google-map>
-		</div>
-	</form>
-</div>
+		</form>
+	</div>
 </section>

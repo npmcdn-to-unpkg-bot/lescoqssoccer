@@ -2057,6 +2057,7 @@ input[type="text"].localisation {
 .localisationButton {
     line-height: 2;
     width:10% !important;
+    border: 0 !important;
     float:right;
     top:0;
     margin:0px;
@@ -2066,6 +2067,20 @@ input[type="text"].localisation {
 .localisationButton:not(:hover) {
     background-color: #313131 !important;
 }
+
+.dropdown-menu button{
+    border-radius: 0 !important;
+    border-color: transparent;
+}
+
+.btn-info, .btn-info:hover{
+    background-color: #eb5656;
+}
+
+.btn-info:hover{
+    border-color: black;
+}
+
 /***
 Albums
 ***/

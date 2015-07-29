@@ -52,18 +52,10 @@
 		<hr/>
 
 		<!-- RECENT POSTS -->
-		<h5>Derniers articles</h5>
-		<ul class="recentposts">
-			<li ng-repeat="article in recentPosts">
-				<a href="{{article.link}}">{{article.name}}</a>
-			</li>
-		</ul>
-		<hr/>
+		<h5>Déconnexion</h5>
+		<a href="/signout">
+			<input type="button" class="button" value="Se déconnecter"/>
+		</a>
 
-		<!-- TAGS -->
-		<h5>Tags</h5>
-		<div class="tags-container">
-			<a class="tags" href="#" ng-repeat="tag in articlesTags">{{tag}}</a>
-		</div>
 	</div>
 </aside>

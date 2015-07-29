@@ -117,3 +117,20 @@ exports.user = function ( req, res, next, id ) {
 		next();
 	} );
 };
+
+/**
+ * Return all users
+ */
+exports.team = function ( req, res) {
+	User.find({}, '-password -salt -hashed_password -__v -provider').exec( function ( err, users ) {
+		if ( err ) {
+			res.render( 'error', {
+				status: 500
+			} );
+		} else {
+			res.jsonp( users );
+		}
+	} );
+};
+
+
