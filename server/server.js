@@ -77,5 +77,9 @@ console.log( 'Express app started on port ' + port );
 // Initializing logger
 logger.init( app, passport, mongoose );
 
+// Start crons
+var cronjob = require('./cron.js');
+cronjob.startCron();
+
 // Expose app
 exports = module.exports = app;

@@ -1,18 +1,15 @@
-<form class="agendaForm" role="form" data-ng-submit="add();">
-	<span class="input input--yoshiko" data-ng-class="{'input--filled': content}">
-		<textarea class="input__field input__field--yoshiko" type="text" name="content" data-ng-model="content" required>
-		</textarea>
-		<label class="input__label input__label--yoshiko" for="content">
-			<span class="input__label-content input__label-content--yoshiko">{{'suggestions_add' | translate}}</span>
-		</label>
-	</span>
-	<div class="input">
-		<button
-			class="btn btn-cm"
-			type="submit"
-			title="{{'suggestions_add' | translate}}"
-			style="float:right;">
-			<i class="glyphicon glyphicon-ok"></i>
-		</button>
+<section class="rightcontainer">
+
+	<div class="subtitle">
+		<h1 class="ellipsis">Nouvelle suggestion</h1>
+		<a href="#!" class="add-icon" data-ng-click="add($event)">
+		</a>
 	</div>
-</form>
+
+	<div class="pagecontent">
+		<form role="form">
+			<textarea  name="content" data-ng-model="content" required>
+			</textarea>
+		</form>
+	</div>
+</section>

@@ -1,10 +1,23 @@
-<section class="suggestionsContainer">
-	<ul class="suggestionList">
-		<li class="suggestionItem" data-ng-repeat="suggestion in SuggestionsCollection.all">
-			<a href="#">
-				<h4>{{global.user.name}}, le {{suggestion.created | date:dateFormat}}</h4>
-		        <p class="three-line-ellipsis">{{suggestion.content}}</p>
-		    </a>
-		</li>
-	</ul>
+<section class="rightcontainer">
+
+    <!-- TITLE -->
+    <div class="subtitle light">
+        <h3>Suggestions</h3>
+        <a href="#!/suggestions/create" class="add-icon">
+        </a>
+    </div>
+
+    <div id="rotator-container">
+        <div id="cbp-qtrotator" class="cbp-qtrotator">
+            <div class="cbp-qtcontent" ng-repeat="suggestion in SuggestionsCollection.all" style="position: inherit; opacity: 1;">
+                <div class="img-diamond">
+                    <img ng-src="{{suggestion.user.avatar || 'img/photos/team1.jpg'}}" alt="" />
+                </div>
+                <div class="blockquote">
+                    <p>{{suggestion.content}}</p>
+                    <div class="footer">{{suggestion.user.name}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>

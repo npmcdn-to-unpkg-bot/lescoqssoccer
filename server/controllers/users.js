@@ -133,4 +133,19 @@ exports.team = function ( req, res) {
 	} );
 };
 
+/**
+ * Increment coins of all users (call by cron)
+ */
+exports.incrementUsersPoints = function(){
 
+	User.update({}, {$inc : { coins : 10}}, function(err, affectedRows){
+
+		if ( err ) {
+			console.warn("err: " + err);
+		} else {
+			console.warn("Count of updated users " + affectedRows);
+		}
+
+	});
+
+};

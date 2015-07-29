@@ -1,6 +1,6 @@
 var isAnimated = false;
 
-angular.module('mean.articles').directive('cmSidebar',
+angular.module('mean.system').directive('cmSidebar',
 	function() {
 		return {
 			restrict: 'E',
@@ -71,6 +71,55 @@ angular.module('mean.articles').directive('cmSidebar',
 					setTimeout(function() {
 						jQuery('#menu-bar').find('.menu-bar-icon').fadeIn();
 					}, 400);
+				});
+			}
+		}
+	}
+);
+
+angular.module('mean.system').directive('cmPortfolio',
+	function() {
+		return {
+			restrict: 'E',
+			transclude: true,
+			link: function($scope, element, attrs) {
+
+				jQuery("#filters1").dysaniagrid({
+					galleryid: "#gridbox1"
+				});
+
+			}
+		}
+	}
+);
+
+angular.module('mean.system').directive('cmColorbox',
+	function() {
+		return {
+			restrict: 'E',
+			transclude: true,
+			link: function($scope, element, attrs) {
+				setTimeout(function() {
+					jQuery(".clb-photo").colorbox({
+						maxWidth: '95%',
+						maxHeight: '95%',
+						photo: true
+					});
+				}, 500);
+			}
+		}
+	}
+);
+
+angular.module('mean.system').directive('cmRotator',
+	function() {
+		return {
+			restrict: 'E',
+			transclude: true,
+			link: function($scope, element, attrs) {
+				jQuery('#cbp-qtrotator').cbpQTRotator({
+					speed: 700,
+					interval: 7000
 				});
 			}
 		}
