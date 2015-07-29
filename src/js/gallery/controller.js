@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('mean.albums').controller('AlbumCtrl', ['$location', '$scope', '$modal', 'PhotoMgrService', 'album', 'albums', 'FileUploader',
+angular.module('mean.albums').controller('AlbumDetailController', ['$location', '$scope', '$modal', 'PhotoMgrService', 'album', 'FileUploader',
 
-	function($location, $scope, $modal, PhotoMgrService, album, albums, FileUploader) {
+	function($location, $scope, $modal, PhotoMgrService, album, FileUploader) {
 
 		$scope.pmSvc = PhotoMgrService;
 		$scope.newAlbum = $scope.pmSvc.newAlbum();
@@ -84,7 +84,7 @@ angular.module('mean.albums').controller('AlbumCtrl', ['$location', '$scope', '$
 				$scope.displayPhotos.push(data.photo);
 				$scope.displayPhoto = data.photo;
 
-				if (!albums.coverPicPath) {
+				if (!$scope.album.coverPicPath) {
 					$scope.setCoverPic(data.photo);
 				}
 			});
@@ -97,23 +97,25 @@ angular.module('mean.albums').controller('AlbumCtrl', ['$location', '$scope', '$
 	}
 ]);
 
-angular.module('mean.albums').controller('GalleryCtrl', ['$scope', 'Global', '$http', '$routeParams', '$window', '$location', '$modal', 'PhotoMgrService', 'albums', 'AlbumsCollection',
+angular.module('mean.albums').controller('AlbumsController', ['$scope', 'Global', '$http', '$window', '$modal','albums',
 
-	function($scope, Global, $http, $routeParams, $window, $location, $modal, PhotoMgrService, albums, AlbumsCollection) {
+	function($scope, Global, $http, $window, $modal, albums) {
+
+		$scope.global = Global;
+		$scope.albums = albums;
+
+	}
+]);
+
+angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global', '$http', '$window', '$modal', 'PhotoMgrService', 'album',
+
+	function($scope, Global, $http, $window, $modal, PhotoMgrService, album) {
 
 		$scope.global = Global;
 		$scope.pmSvc = PhotoMgrService;
-		$scope.albums = albums;
+		$scope.album = album;
 
-		$scope.editAlbum = function(id, evt) {
-
-			evt.preventDefault();
-			evt.stopPropagation();
-
-			$location.path("/albums/edit/" + id);
-		};
-
-		$scope.deleteAlbum = function(deletedAlbum, evt) {
+		$scope.deleteAlbum = function(evt) {
 
 			evt.preventDefault();
 			evt.stopPropagation();
@@ -123,7 +125,7 @@ angular.module('mean.albums').controller('GalleryCtrl', ['$scope', 'Global', '$h
 				controller: 'deleteAlbumModalCtrl',
 				resolve: {
 					album: function() {
-						return deletedAlbum;
+						return $scope.album;
 					}
 				}
 			});
@@ -131,39 +133,27 @@ angular.module('mean.albums').controller('GalleryCtrl', ['$scope', 'Global', '$h
 			modalInstance.result.then(function() {
 
 				// Delete the album and either update album list or redirect to it
-				$scope.pmSvc.deleteAlbum(deletedAlbum).then(function() {
-					$scope.albums.splice(window._.indexOf($scope.albums, deletedAlbum), 1); //remove from list
+				$scope.pmSvc.deleteAlbum($scope.album).then(function() {
+					$scope.albums.splice(window._.indexOf($scope.albums, $scope.album), 1); //remove from list
 				});
 
 			});
 
 		};
 
-		$scope.download = function(albumId, evt) {
+		$scope.download = function(evt) {
 
 			evt.preventDefault();
 			evt.stopPropagation();
 
-			$http.post('/download/' + albumId).success(function(data) {
+			$http.post('/download/' + $scope.album._id).success(function(data) {
 				if (data.success) {
-					$window.open('/file/' + albumId, "_blank");
+					$window.open('/file/' + $scope.album._id, "_blank");
 				}
 			}).error(function(data) {
 				// Handle Error
 			});
 		};
-
-		setTimeout(function() {
-			jQuery(".clb-photo").colorbox({
-				maxWidth: '95%',
-				maxHeight: '95%'
-			});
-			jQuery(".clb-iframe").colorbox({
-				iframe: true,
-				width: "80%",
-				height: "80%"
-			});
-		}, 500);
 	}
 ]);
 
@@ -176,23 +166,9 @@ var PhotoMgrData = {
 		}).$promise : new AlbumsCollection();
 	},
 
-	photo: function(PhotosCollection, $route) {
-		return $route.current.params.photoId ? Photo.get({
-			id: $route.current.params.photoId
-		}).$promise : new PhotosCollection();
-	},
-
 	albums: function(AlbumsCollection, $route, $location) { //return all albums only if URL /albums/* but not /albums/add
 		if (RegExp('\/albums').test($location.path()) && $route.current.params.view !== 'add') {
 			return AlbumsCollection.query().$promise;
-		} else {
-			return [];
-		}
-	},
-
-	photos: function(PhotosCollection, $route, $location) { //return all photos only if URL /photos/* but not /photos/add
-		if (RegExp('\/photos').test($location.path()) && $route.current.params.view !== 'add') {
-			return PhotosCollection.query().$promise;
 		} else {
 			return [];
 		}

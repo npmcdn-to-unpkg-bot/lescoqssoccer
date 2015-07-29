@@ -9,16 +9,24 @@ angular.module('mean.articles').directive('cmPortfolio',
 					galleryid: "#gridbox1"
 				});
 
-				jQuery(".clb-photo").colorbox({
-					maxWidth: '95%',
-					maxHeight: '95%'
-				});
+			}
+		}
+	}
+);
 
-				jQuery(".clb-iframe").colorbox({
-					iframe: true,
-					width: "80%",
-					height: "80%"
-				});
+angular.module('mean.articles').directive('cmColorbox',
+	function() {
+		return {
+			restrict: 'E',
+			transclude: true,
+			link: function($scope, element, attrs) {
+				setTimeout(function() {
+					jQuery(".clb-photo").colorbox({
+						maxWidth: '95%',
+						maxHeight: '95%',
+						photo: true
+					});
+				}, 500);
 			}
 		}
 	}

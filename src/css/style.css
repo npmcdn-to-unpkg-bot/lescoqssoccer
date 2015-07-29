@@ -2015,6 +2015,11 @@ select:focus {
     outline: none;
 }
 
+.modal-footer-custom{
+    margin-top: 30px;
+    padding-bottom: 30px;
+}
+
 
 /*
 Agenda
@@ -2085,6 +2090,10 @@ input[type="text"].localisation {
 Albums
 ***/
 .albumContainer{
+    padding: 20px 50px;
+}
+
+.photosContainer{
     padding: 20px 50px;
 }
 
