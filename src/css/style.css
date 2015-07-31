@@ -2086,6 +2086,22 @@ input[type="text"].localisation {
     border-color: black;
 }
 
+.cm-wysiwyg:not(:focus){
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.articleSummary{
+    max-height: 65px;
+    overflow: hidden;
+}
+
+.articleSummary *{
+    all: initial;
+    color: white !important;
+    font-size: 15px !important;
+}
+
 /***
 Albums
 ***/

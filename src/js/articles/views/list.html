@@ -11,7 +11,7 @@
     <article class="blogcontainer" ng-repeat="article in articles | filter: nameFilter">
 
         <!-- POST IMAGE -->
-        <div class="blogimage" data-image="{{article.image}}">
+        <div class="blogimage" data-image="{{article.image || 'img/photos/2-s.jpg'}}">
             <a href="#!/articles/view/{{article._id}}"></a>
         </div>
 
@@ -19,7 +19,7 @@
         <div class="postcontent">
             <h3><a href="#!/articles/view/{{article._id}}">{{article.title}}</a></h3>
             <p class="postdate">{{article.created | date:dateFormat}}</p>
-            <div ng-bind-html="getFormattedContent(article.content)"></div>
+            <div ng-bind-html="getFormattedContent(article.content)" class="articleSummary"></div>
         </div>
     </article>
 
