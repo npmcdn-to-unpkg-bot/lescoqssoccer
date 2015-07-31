@@ -26,10 +26,9 @@ angular.module( 'mean.articles' ).factory( 'Articles', [ '$resource',
 /**
  * ArticleModel service
  **/
-angular.module( 'mean.articles' ).service( 'ArticlesCollection', [ 'Global', 'Articles',
-	function ( Global, Articles ) {
+angular.module( 'mean.articles' ).service( 'ArticlesCollection', [ 'Articles',
+	function ( Articles ) {
 
-		var global = Global;
 		var ArticlesCollection = {
 
 			load: function () {

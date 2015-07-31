@@ -68,14 +68,6 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 
 			});
 		};
-
-		setTimeout(function() {
-			jQuery(".blogimage").each(function() {
-				if (jQuery(this).attr('data-image')) {
-					jQuery(this).backstretch(jQuery(this).data('image'));
-				}
-			});
-		}, 500);
 	}
 ]);
 
@@ -182,7 +174,6 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 					$location.path("/articles");
 				});
 			} else {
-				console.warn("update");
 				$scope.ArticlesCollection.update($scope.article).then(function() {
 					$location.path("/articles");
 				});

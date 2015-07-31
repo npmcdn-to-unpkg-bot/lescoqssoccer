@@ -1,4 +1,4 @@
-var isAnimated = false;
+'use strict';
 
 angular.module('mean.system').directive('cmSidebar',
 	function() {
@@ -21,7 +21,6 @@ angular.module('mean.system').directive('cmSidebar',
 
 				/* SIDEBAR ANIMATIONS */
 				jQuery('#menu-bar').find('.menu-bar-icon').click(function() {
-					"use strict";
 					jQuery('body').find('#menu-bar').addClass('menucolor');
 					jQuery('body').find('#menu-bg').fadeIn();
 					jQuery('body').find('.leftcontainer').show();
@@ -38,7 +37,6 @@ angular.module('mean.system').directive('cmSidebar',
 				});
 
 				jQuery('#menu-bg').click(function() {
-					"use strict";
 					jQuery('body').find('#menu-bar').removeClass('menucolor');
 					jQuery('body').find('#menu-bg').fadeOut();
 					if (jQuery(window).width() > 480) {
@@ -56,7 +54,6 @@ angular.module('mean.system').directive('cmSidebar',
 				});
 
 				jQuery('#menu-bar').find('.close-icon').click(function() {
-					"use strict";
 					jQuery('body').find('#menu-bar').removeClass('menucolor');
 					jQuery('body').find('#menu-bg').fadeOut();
 					if (jQuery(window).width() > 480) {
@@ -121,6 +118,24 @@ angular.module('mean.system').directive('cmRotator',
 					speed: 700,
 					interval: 7000
 				});
+			}
+		}
+	}
+);
+
+angular.module('mean.system').directive('cmBackstretch',
+	function() {
+		return {
+			restrict: 'E',
+			transclude: true,
+			link: function($scope, element, attrs) {
+				setTimeout(function() {
+					jQuery(".blogimage").each(function() {
+						if (jQuery(this).attr('data-image')) {
+							jQuery(this).backstretch(jQuery(this).data('image'));
+						}
+					});
+				}, 500);
 			}
 		}
 	}

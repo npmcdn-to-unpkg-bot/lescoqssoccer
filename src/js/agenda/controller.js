@@ -203,8 +203,11 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 		$scope.agendaCollection = AgendaCollection;
 		$scope.agenda = Agenda;
 
-		$scope.limit = 6;
-		$scope.start = 0;
+		//Calendar config
+		$scope.calendarView = 'month';
+		$scope.calendarTitle = '';
+		$scope.calendarDay = new Date();
+		$scope.eventTypes = eventTypes;
 
 		$scope.isPastEvent = function(event) {
 			return moment(event.start).endOf('day').isBefore(new Date()) ? event.start : null;
@@ -222,10 +225,6 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 			});
 		};
 
-		$scope.calendarView = 'month';
-		$scope.calendarTitle = '';
-		$scope.calendarDay = new Date();
-
 		$scope.events = [];
 		angular.forEach($scope.agenda, function(userEvent) {
 			$scope.events.push({
@@ -241,7 +240,7 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 			});
 		});
 
-		$scope.eventTypes = eventTypes;
+
 	}
 ]);
 

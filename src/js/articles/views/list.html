@@ -7,12 +7,12 @@
         </a>
     </div>
 
-    <!-- POST 1 -->
+    <!-- POSTS -->
     <article class="blogcontainer" ng-repeat="article in articles | filter: nameFilter">
 
         <!-- POST IMAGE -->
         <div class="blogimage" data-image="{{article.image}}">
-            <a href="#!/articles/{{article._id}}"></a>
+            <a href="#!/articles/view/{{article._id}}"></a>
         </div>
 
         <!-- POST CONTENT -->
@@ -26,12 +26,14 @@
     <!-- PAGER -->
     <div class="blogpager">
         <div class="previous">
-            <a href="#" class="button">&#8249; Older Posts</a>
+            <a href="#!" class="button">&#8249; Précédents</a>
         </div>
         <div class="next">
-            <a href="#" class="button">Newer Posts &#8250;</a>
+            <a href="#!" class="button">Suivants &#8250;</a>
         </div>
     </div>
+
+    <cm-Backstretch></cm-Backstretch>
 </section>
 
 <!-- <div
