@@ -1,13 +1,10 @@
 'use strict';
 
-angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', '$sce', '$modal', '$timeout', 'Global', 'ArticlesCollection', 'Articles',
-	function($scope, $routeParams, $location, $sce, $modal, $timeout, Global, ArticlesCollection, Articles) {
+angular.module('mean.articles').controller('ArticlesController', ['$scope', '$sce', 'Global','Articles',
+	function($scope, $sce, Global, Articles) {
 
 		$scope.global = Global;
-		$scope.ArticlesCollection = ArticlesCollection;
 		$scope.articles = Articles;
-
-		$scope.dateFormat = "dd MMM yyyy, H'h'mm";
 
 		// Manage search input
 		$scope.obj = {
@@ -21,16 +18,30 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 		$scope.getFormattedContent = function(html) {
 			return $sce.trustAsHtml(html);
 		};
+	}
+]);
+
+angular.module('mean.articles').controller('ArticleDetailController', ['$scope', '$location', '$sce', '$modal', 'Global', 'ArticlesCollection', 'Article',
+	function($scope, $location, $sce, $modal, Global, ArticlesCollection, Article) {
+
+		$scope.global = Global;
+		$scope.ArticlesCollection = ArticlesCollection;
+		$scope.article = Article;
+
+		//Format html content from article content edit by wysiwyg
+		$scope.getFormattedContent = function(html) {
+			return $sce.trustAsHtml(html);
+		};
 
 		$scope.addComment = function() {
 
-			$scope.selected.comments.push({
+			$scope.article.comments.push({
 				user: $scope.global.user._id,
 				content: $scope.comment,
 				created: moment(new Date()).toISOString()
 			});
 
-			$scope.ArticlesCollection.update($scope.selected).then(function() {
+			$scope.ArticlesCollection.update($scope.article).then(function() {
 				$location.path("/articles");
 				$scope.comment = "";
 			});
@@ -61,9 +72,9 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 
 			modalInstance.result.then(function() {
 
-				// Delete the article and either update article list or redirect to it
+				// Delete the article and redirect to article list
 				$scope.ArticlesCollection.remove(article).then(function(response) {
-					$scope.articles.splice(window._.indexOf($scope.articles, article), 1);
+					$location.path("/articles");
 				});
 
 			});
@@ -87,78 +98,6 @@ angular.module('mean.articles').controller('deleteArticleModalCtrl', ['$scope', 
 	}
 
 ]);
-
-angular.module('mean.articles').controller('ArticleDetailController', ['$scope', '$routeParams', '$location', '$sce', '$modal', '$timeout', 'Global', 'ArticlesCollection', 'Article',
-	function($scope, $routeParams, $location, $sce, $modal, $timeout, Global, ArticlesCollection, Article) {
-
-		$scope.global = Global;
-		$scope.ArticlesCollection = ArticlesCollection;
-		$scope.article = Article;
-
-		$scope.dateFormat = "dd MMM yyyy, H'h'mm";
-
-		// Manage search input
-		$scope.obj = {
-			searchTitle: ""
-		};
-		$scope.nameFilter = function(article) {
-			return (article.title.toLowerCase().indexOf($scope.obj.searchTitle) !== -1) ? article.title : null;
-		};
-
-		//Format html content from article content edit by wysiwyg
-		$scope.getFormattedContent = function(html) {
-			return $sce.trustAsHtml(html);
-		};
-
-		$scope.addComment = function() {
-
-			$scope.selected.comments.push({
-				user: $scope.global.user._id,
-				content: $scope.comment,
-				created: moment(new Date()).toISOString()
-			});
-
-			$scope.ArticlesCollection.update($scope.selected).then(function() {
-				$location.path("/articles");
-				$scope.comment = "";
-			});
-		};
-
-		$scope.edit = function(article, evt) {
-
-			evt.preventDefault();
-			evt.stopPropagation();
-
-			$location.path("/articles/edit/" + article._id);
-		};
-
-		$scope.remove = function(article, evt) {
-
-			evt.preventDefault();
-			evt.stopPropagation();
-
-			var modalInstance = $modal.open({
-				templateUrl: 'js/articles/views/modal/deleteArticleModal.html',
-				controller: 'deleteArticleModalCtrl',
-				resolve: {
-					article: function() {
-						return article;
-					}
-				}
-			});
-
-			modalInstance.result.then(function() {
-
-				// Delete the article and either update article list or redirect to it
-				$scope.ArticlesCollection.remove(article).then(function(response) {
-					$scope.articles.splice(window._.indexOf($scope.articles, article), 1);
-				});
-
-			});
-		};
-	}
-]);
-
 
 angular.module('mean.articles').controller('CreateArticleController', ['$scope', '$location', 'Global', 'ArticlesCollection', 'FileUploader', 'Article',
 	function($scope, $location, Global, ArticlesCollection, FileUploader, Article) {

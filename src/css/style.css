@@ -933,7 +933,13 @@ blockquote,i,em {
     background-repeat: no-repeat;
     margin: 0px;
     font-size: 24px;
+    display:inherit;
 }
+
+.featured-image-date input{
+    margin-top: -30px;
+}
+
 .postcontent {
     float: left;
     width: 60%;
@@ -2086,6 +2092,10 @@ input[type="text"].localisation {
     border-color: black;
 }
 
+/***
+Articles
+***/
+
 .cm-wysiwyg:not(:focus){
     background: rgba(255, 255, 255, 0.1);
     color: #fff;
@@ -2100,6 +2110,14 @@ input[type="text"].localisation {
     all: initial;
     color: white !important;
     font-size: 15px !important;
+}
+
+.articleContent{
+    padding-bottom: 30px;
+}
+
+.noCommentLabel{
+    font-weight: 200;
 }
 
 /***
