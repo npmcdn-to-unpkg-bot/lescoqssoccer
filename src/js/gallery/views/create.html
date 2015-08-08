@@ -1,69 +1,57 @@
 <section class="rightcontainer">
 
 	<div class="subtitle">
-	    <h1>Nouvel article</h1>
+		<h1>{{album.name || 'Nouvel album'}}</h1>
+		<a href="#!" class="ok-icon" data-ng-click="saveAlbum()">
+		</a>
 	</div>
-
 	<div class="pagecontent">
 		<form role="form">
 
-			<div class="form-group">
-				<span
-				class="input input--yoshiko"
-				data-ng-class="{'input--filled': album.name && album.name !== ''}"
-				style="margin-bottom: 0;">
-					<input class="input__field input__field--yoshiko" type="text" name="name" data-ng-model="album.name" ng-mouseleave="saveAlbum(album, !(album._id))" required/>
-					<label class="input__label input__label--yoshiko" for="name">
-						<span class="input__label-content input__label-content--yoshiko">{{'gallery_name' | translate}}</span>
-					</label>
-				</span>
-				<hr/>
-			</div>
-
+			<label for="name" class="control-label">{{'gallery_name' | translate}}</label>
+			<input type="text" name="name" data-ng-model="album.name" ng-mouseleave="saveAlbum(album, !(album._id))" required/>
 			<div class="form-group">
 				<button
-				class="btn"
+				class="button"
 				ng-click="uploadFiles();"
 				data-ng-disabled="!album.name">
-					<span tooltip="Rentre d'abord un nom" tooltip-placement="right" ng-show="!album.name"></span>
+				<span tooltip="Rentre d'abord un nom" tooltip-placement="right" ng-show="!album.name"></span>
 					Ajouter des photos
 				</button>
 			</div>
+			<hr/>
 
-			<div class="form-group" data-ng-disabled="displayPhotos.length === 0">
-				<label for="name" class="control-label">{{'gallery_cover' | translate}}</label>
-				<select
-					class="form-control input-sm"
-					data-ng-model="album.coverPic"
-					data-ng-change="setCoverPic(coverPic)"
-					data-ng-options="f as f.name for f in displayPhotos">
-				</select>
-			</div>
+			<label for="cover" class="control-label">{{'gallery_cover' | translate}}</label>
+			<select
+				name="cover"
+				data-ng-disabled="displayPhotos.length === 0"
+				data-ng-model="album.coverPic"
+				data-ng-change="setCoverPic(coverPic)"
+				data-ng-options="f as f.name for f in displayPhotos">
+			</select>
 
-			<div class="form-group">
-				<table class="table table-striped table-hover">
-					<tbody>
-						<tr data-ng-repeat="photo in displayPhotos">
-							<td>
-								<a href="#!/albums/detail/{{album._id}}">{{$index +1}}</a>
-							</td>
-							<td>
-								<a>
-									<img data-ng-src="{{photo.filepath}}" style="width: 150px; height: auto;">
-								</a>
-							</td>
-							<td>
-								<a href="#!/albums/detail/{{album._id}}">{{photo.name}}</a>
-							</td>
-							<td style="text-align: center">
-								<a ng-click="deletePhoto(photo);">
-									<span class="glyphicon glyphicon-trash" title="Delete Photo"/>
-								</a>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+			<table class="table table-striped table-hover">
+				<tbody>
+					<tr data-ng-repeat="photo in displayPhotos">
+						<td>
+							<a href="#!/albums/detail/{{album._id}}">{{$index +1}}</a>
+						</td>
+						<td>
+							<a>
+								<img data-ng-src="{{photo.filepath}}" style="width: 150px; height: auto;">
+							</a>
+						</td>
+						<td>
+							<a href="#!/albums/detail/{{album._id}}">{{photo.name}}</a>
+						</td>
+						<td style="text-align: center">
+							<a ng-click="deletePhoto(photo);">
+							<span class="glyphicon glyphicon-trash" title="Delete Photo"/>
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</form>
 	</div>
 </section>

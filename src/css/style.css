@@ -354,7 +354,7 @@ blockquote,i,em {
     background-image: url(../img/close.png);
     display: none;
 }
-.add-icon, .add-icon-sub {
+.add-icon, .add-icon-sub, .ok-icon {
     width: 110px;
     height: 100%;
     position: absolute;
@@ -383,11 +383,28 @@ blockquote,i,em {
     -ms-transition: background-color 0.4s ease-in-out;
 }
 
-.add-icon:hover {
-    background-color: #eb5656;
+.ok-icon::after{
+    content: "OK";
+    font-family: 'droid_sansregular';
+    font-size: 44px;
+    position: absolute;
+    top:20px;
+    right: 30px;
+    height: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    -webkit-transition: background-color 0.4s ease-in-out;
+    -moz-transition: background-color 0.4s ease-in-out;
+    -o-transition: background-color 0.4s ease-in-out;
+    -ms-transition: background-color 0.4s ease-in-out;
 }
 
-.add-icon-sub::after {
+.add-icon:hover, .ok-icon:hover {
+    background-color: #eb5656;
+    color: inherit;
+}
+
+.add-icon-sub::after{
     width: 40px;
 }
 
@@ -2087,6 +2104,16 @@ input[type="text"].localisation {
 
 .btn-info:hover{
     border-color: black;
+}
+
+.btn{
+	border-radius: 0 !important;
+}
+
+.btn:focus {
+    outline: thin dotted !important;
+    outline-offset: -2px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
 /***

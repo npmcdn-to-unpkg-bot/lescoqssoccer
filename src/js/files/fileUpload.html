@@ -1,7 +1,6 @@
-<div class="modal-header">
+<div class="info-box" style="display: inline-block;">
+	<span class="info-box-close" data-ng-click="cancel()"></span>
 	<h4>Sélectionner les photos à ajouter</h4>
-</div>
-<div class="modal-body">
 	<div class="col-md-3">
 
 		<div ng-show="uploader.isHTML5">
@@ -54,8 +53,8 @@
 			</div>
 		</div>
 	</div>
-</div>
-<div class="modal-footer">
-	<button type="button" class="btn btn-default" data-ng-click="cancel()">Cancel</button>
-	<button type="button" class="btn btn-success" data-ng-click="ok()">Ok</button>
+	<div class="modal-footer-custom">
+		<input type="button" class="button pull-right" value="Ajouter" data-ng-click="ok()"/>
+		<input type="button" class="button pull-right" value="Annuler" data-ng-click="cancel()"/>
+	</div>
 </div>
