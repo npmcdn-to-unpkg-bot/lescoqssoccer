@@ -1544,48 +1544,10 @@ blockquote,i,em {
 	padding: 40px 0px 40px 0px;
 	width: 100%;
 }
-/* ================= FLICKR  ================== */
- .flickr-box {
-    margin: 0px 0px -5px 0px;
-    padding: 0px;
-    overflow: hidden;
-    width: 105%;
-    position: relative;
-}
-.flickr-box li {
-    list-style:none;
-    float:left;
-    margin-right:5px;
-    margin-bottom:5px;
-    padding:0px;
-    height:67px;
-    background-image:none !important;
-    display: inline-block;
-}
-.flickr-box li:last-child {
-    margin-right:0px;
-}
-.flickr-box li {
-    border:none !important;
-}
-.flickr-box li img {
-    display:block;
-    -webkit-transition:all 0.4s ease-in-out;
-    -moz-transition:all 0.4s ease-in-out;
-    -o-transition:all 0.4s ease-in-out;
-    transition:all 0.4s ease-in-out;
-    width: 67px;
-    height: auto;
-    opacity:0.5;
-}
-.flickr-box li img:hover {
-    opacity:1;
-}
 /* ================= FLEX IMAGE ================== */
 .caption-image {
     position:relative;
     margin-bottom:90px;
-    margin-top: 40px;
 }
 .caption-image img {
     width:100%;
@@ -2040,6 +2002,23 @@ select:focus {
     padding-bottom: 30px;
 }
 
+.edit-profile-avatar .button.button-change-profile-picture .label-upload-profile-picture {
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+.manual-file-chooser {
+	position: absolute;
+	width: 240px;
+	margin-left: -50px;
+	margin-top: -25px;
+	padding: 5px;
+	opacity: .0001;
+}
+
+.pointer:hover{
+	cursor: pointer;
+}
 
 /*
 Agenda
