@@ -1842,9 +1842,6 @@ textarea {
 	-o-transition-property:width, background-color;
 	transition-property:width, background-color;
 }
-.skillbar:last-child {
-    margin-bottom: 0px;
-}
 .skillbar-title {
 	position:absolute;
 	top:0;

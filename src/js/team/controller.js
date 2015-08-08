@@ -22,7 +22,7 @@ angular.module('mean.users').controller('ProfileController', ['$scope', 'Global'
 	function($scope, Global, Users, $translate, FileUploader) {
 
 		$scope.global = Global;
-		$scope.user;
+		$scope.user = Global.user;
 
 		/***
 			AVATAR
