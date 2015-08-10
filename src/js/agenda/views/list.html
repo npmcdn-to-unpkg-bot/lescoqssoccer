@@ -2,24 +2,25 @@
 
 		<!-- TITLE -->
 		<div class="subtitle">
-			<h1>Quoi de beau à venir...?!</h1>
+			<h1>Agenda</h1>
 			<a href="#!/agenda/create" class="add-icon">
 			</a>
 		</div>
 
-		<!-- PHOTO CAROUSEL -->
-		<data-owl-carousel class="owl-carousel photo-carousel owl-theme owl-loaded">
-			<div owl-carousel-item="{{event._id}}"
-			ng-repeat="event in filteredAgenda = (agenda | filter: isComingEvent)">
-				<img ng-src="{{ eventTypes | getImageByIdentifier:event.type}}">
-			</div>
-			<div data-ng-show="filteredAgenda.length === 0" owl-carousel-item="">
-				<h4>FAR... Y'a rien à faire !!!!</h4>
-			</div>
-		</data-owl-carousel>
-
 		<!-- PAGE CONTENT -->
 		<div class="pagecontent text-center">
+
+			<!-- PHOTO CAROUSEL -->
+			<h1>Prochainement...</h1>
+			<data-owl-carousel class="owl-carousel photo-carousel owl-theme owl-loaded">
+				<div owl-carousel-item="{{event._id}}" ng-repeat="event in filteredAgenda = (agenda | filter: isComingEvent)">
+					<img ng-src="{{ eventTypes | getImageByIdentifier:event.eventType}}">
+				</div>
+				<div data-ng-show="filteredAgenda.length === 0" owl-carousel-item="">
+					<img src="img/rien.jpg" alt="vide" style="max-height: 35vh;">
+				</div>
+			</data-owl-carousel>
+			<hr/>
 
 			<div class="btn-group pull-left monthGroupBtn">
 				<input
@@ -61,7 +62,7 @@
 			<mwl-calendar
 			view="calendarView"
 			current-day="calendarDay"
-			events="events"
+			events="agenda"
 			view-title="calendarTitle"
 			on-event-click="$scope.update(calendarEvent)"
 			on-event-drop="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"

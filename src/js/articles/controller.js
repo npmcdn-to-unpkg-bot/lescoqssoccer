@@ -22,6 +22,11 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$sc
 		$scope.getFormattedContent = function(html) {
 			return $sce.trustAsHtml(html);
 		};
+
+		$scope.totalItems = 64;
+		$scope.pageChanged = function(newPage) {
+			$location.path("/articles/" + (newPage + 1));
+		};
 	}
 ]);
 

@@ -1,31 +1,51 @@
 'use strict';
 
-angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection', 'event', '$modal',
-	function($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection, event, $modal) {
+angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$location', '$route', 'Global', 'AgendaCollection', 'event', '$modal',
+	function($scope, $location, $route, Global, AgendaCollection, event, $modal) {
 
 		$scope.agendaCollection = AgendaCollection;
 		$scope.eventTypes = eventTypes;
-		$scope.start = $scope.end = ($route.current && $route.current.params.startDate) ? new Date($route.current.params.startDate) : new Date();
+		$scope.startsAt = $scope.endsAt = ($route.current && $route.current.params.startDate) ? new Date($route.current.params.startDate) : new Date();
+
+		$scope.eventRepeater = [{
+			'identifier' : 'none',
+			'value': 'Pas répéter'
+		},{
+			'identifier' : 'week',
+			'value': 'Toutes les semaines'
+		},{
+			'identifier' : 'month',
+			'value': 'Tous les mois'
+		},{
+			'identifier' : 'year',
+			'value': 'Tous les ans'
+		}];
 
 		$scope.userEvent = event || {
-			selectedType: $scope.eventTypes[2],
 			title: '',
+			type: 'inverse',
+			eventType: $scope.eventTypes[2].identifier,
 			content: '',
-			start: $scope.start,
-			end: $scope.end,
-			photos: [],
-			location: {},
-			allDay: true
+			startsAt: $scope.startsAt,
+			endsAt: $scope.endsAt,
+			editable: false,
+			deletable: false,
+			incrementsBadgeTotal: true,
+			recursOn: $scope.eventRepeater[0].identifier,
+			location: {}
 		};
 
 		/* add custom event*/
 		$scope.create = function() {
 
-			$scope.userEvent.type = $scope.userEvent.selectedType.identifier;
+			if($scope.userEvent.recursOn === "none"){
+				$scope.userEvent.recursOn = undefined;
+			}
 
 			$scope.agendaCollection.add($scope.userEvent).then(function(userEvent) {
 				$location.path("/agenda");
 			});
+
 		};
 
 		/***
@@ -36,7 +56,7 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 			$event.preventDefault();
 			$event.stopPropagation();
 
-			if (datepicker === 'start') {
+			if (datepicker === 'startsAt') {
 				$scope.openedStartDate = !$scope.openedStartDate;
 				$scope.openedEndDate = false;
 			} else {
@@ -46,15 +66,15 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 		};
 
 		//Update min value for end date of userEvent if startDate increase
-		$scope.$watch('userEvent.start', function(newValue, oldValue) {
-			if (newValue > $scope.userEvent.end) {
-				$scope.userEvent.end = $scope.userEvent.start;
+		$scope.$watch('userEvent.startsAt', function(newValue, oldValue) {
+			if (newValue > $scope.userEvent.endsAt) {
+				$scope.userEvent.endsAt = $scope.userEvent.startsAt;
 			}
 		});
 
-		$scope.$watch('userEvent.end', function(newValue, oldValue) {
-			if (newValue < $scope.userEvent.start) {
-				$scope.userEvent.start = $scope.userEvent.end;
+		$scope.$watch('userEvent.endsAt', function(newValue, oldValue) {
+			if (newValue < $scope.userEvent.startsAt) {
+				$scope.userEvent.startsAt = $scope.userEvent.endsAt;
 			}
 		});
 
@@ -197,50 +217,31 @@ var EventDetailData = {
 
 };
 
-angular.module('mean.agenda').controller('ListController', ['$scope', '$routeParams', '$location', '$route', 'Global', 'AgendaCollection', 'Agenda',
-	function($scope, $routeParams, $location, $route, Global, AgendaCollection, Agenda) {
+angular.module('mean.agenda').controller('ListController', ['$scope', '$routeParams', '$filter', '$location', '$route', 'Global', 'AgendaCollection', 'Agenda',
+	function($scope, $routeParams, $filter, $location, $route, Global, AgendaCollection, Agenda) {
 
 		$scope.agendaCollection = AgendaCollection;
+		$scope.eventTypes = eventTypes;
 		$scope.agenda = Agenda;
 
 		//Calendar config
 		$scope.calendarView = 'month';
-		$scope.calendarTitle = '';
 		$scope.calendarDay = new Date();
-		$scope.eventTypes = eventTypes;
+		$scope.calendarTitle = '';
 
-		$scope.isPastEvent = function(event) {
-			return moment(event.start).endOf('day').isBefore(new Date()) ? event.start : null;
+		$scope.isPastEvent = function(userEvent) {
+			return moment(userEvent.startsAt).endOf('day').isBefore(new Date()) ? userEvent.startsAt : null;
 		};
 
-		$scope.isComingEvent = function(event) {
-			return moment(event.start).endOf('day').isAfter(new Date()) ? event.start : null;
+		$scope.isComingEvent = function(userEvent) {
+			return moment(userEvent.startsAt).endOf('day').isAfter(new Date()) ? userEvent.startsAt : null;
 		};
 
 		$scope.update = function(userEvent) {
-
-			var promise = $scope.agendaCollection.update(userEvent);
-			promise.then(function(newUserEvent) {
+			$scope.agendaCollection.update(userEvent).then(function(newUserEvent) {
 				$location.path("/agenda");
 			});
 		};
-
-		$scope.events = [];
-		angular.forEach($scope.agenda, function(userEvent) {
-			$scope.events.push({
-				title: userEvent.title, // The title of the event
-				type: 'inverse', // The type of the event (determines its color). Can be important, warning, info, inverse, success or special
-				startsAt: userEvent.start, // A javascript date object for when the event starts
-				endsAt: userEvent.start, // Optional - a javascript date object for when the event ends
-				editable: false, // If edit-event-html is set and this field is explicitly set to false then dont make it editable. If set to false will also prevent the event from being dragged and dropped.
-				deletable: false, // If delete-event-html is set and this field is explicitly set to false then dont make it deleteable
-				incrementsBadgeTotal: true, //If set to false then will not count towards the badge total amount on the month and year view
-				recursOn: 'year', // If set the event will recur on the given period. Valid values are year or month
-				cssClass: 'a-css-class-name' //A CSS class (or more, just separate with spaces) that will be added to the event when it is displayed on each view. Useful for marking an event as selected / active etc
-			});
-		});
-
-
 	}
 ]);
 
