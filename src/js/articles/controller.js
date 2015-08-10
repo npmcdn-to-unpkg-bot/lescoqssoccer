@@ -1,10 +1,14 @@
 'use strict';
 
-angular.module('mean.articles').controller('ArticlesController', ['$scope', '$sce', 'Global','Articles',
-	function($scope, $sce, Global, Articles) {
+angular.module('mean.articles').controller('ArticlesController', ['$scope', '$sce', 'Global','Articles', 'Page',
+	function($scope, $sce, Global, Articles, Page) {
 
 		$scope.global = Global;
 		$scope.articles = Articles;
+		$scope.page = parseInt(Page);
+
+		$scope.previous = ($scope.page === 0) ? 0 : $scope.page-1;
+		$scope.next = $scope.page+1;
 
 		// Manage search input
 		$scope.obj = {

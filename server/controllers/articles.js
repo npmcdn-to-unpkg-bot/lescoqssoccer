@@ -88,7 +88,9 @@ exports.show = function ( req, res ) {
  * List of articles
  */
 exports.all = function ( req, res ) {
-	Article.find({}).sort( '-created' ).populate( 'user', 'name username avatar').populate( 'comments.user').exec( function ( err, articles ) {
+	var perPage = 10;
+	var page = req.params.page;
+	Article.find({}).sort( '-created' ).limit(perPage).skip(perPage * page).populate( 'user', 'name username avatar').populate( 'comments.user').exec( function ( err, articles ) {
 		if ( err ) {
 			res.render( 'error', {
 				status: 500

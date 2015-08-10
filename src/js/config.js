@@ -47,8 +47,23 @@ angular.module('mean').config(['$routeProvider',
 			templateUrl: 'js/articles/views/list.html',
 			controller: 'ArticlesController',
 			resolve: {
-				Articles: function(ArticlesCollection) {
-					return ArticlesCollection.load();
+				Articles: function(ArticlesCollection, $route) {
+					return ArticlesCollection.load(0);
+				},
+				Page: function() {
+					return 0;
+				}
+			}
+		}).
+		when('/articles/:page', {
+			templateUrl: 'js/articles/views/list.html',
+			controller: 'ArticlesController',
+			resolve: {
+				Articles: function(ArticlesCollection, $route) {
+					return ArticlesCollection.load($route.current.params.page);
+				},
+				Page: function($route) {
+					return $route.current.params.page;
 				}
 			}
 		}).

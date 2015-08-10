@@ -3,8 +3,8 @@
 //Articles service used for Articles REST endpoint
 angular.module( 'mean.articles' ).factory( 'Articles', [ '$resource',
 	function ( $resource ) {
-		return $resource( 'articles/:articleId', {
-			articleId: '@_id'
+		return $resource( 'articles/:param', {
+			param: '@param'
 		}, {
 			'save': {
 				method: 'POST'
@@ -12,7 +12,7 @@ angular.module( 'mean.articles' ).factory( 'Articles', [ '$resource',
 			'update': {
 				method: 'PUT',
 				params: {
-					articleId: '@articleId'
+					param: '@articleId'
 				},
 			},
 			'query': {
@@ -31,8 +31,8 @@ angular.module( 'mean.articles' ).service( 'ArticlesCollection', [ 'Articles',
 
 		var ArticlesCollection = {
 
-			load: function () {
-				return Articles.query( {}, function ( articles ) {
+			load: function (page) {
+				return Articles.query( {}, {param:page}, function ( articles ) {
 					return articles;
 				} ).$promise;
 			},
