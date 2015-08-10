@@ -1,10 +1,11 @@
 'use strict';
 
-angular.module('mean.articles').controller('ArticlesController', ['$scope', '$sce', 'Global','Articles',
-	function($scope, $sce, Global, Articles) {
+angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Global', '$location', '$sce', 'Articles',
+	function($scope, Global, $location, $sce, Articles) {
 
 		$scope.global = Global;
 		$scope.articles = Articles;
+		$scope.page = 0;
 
 		// Manage search input
 		$scope.obj = {
@@ -17,6 +18,11 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$sc
 		//Format html content from article content edit by wysiwyg
 		$scope.getFormattedContent = function(html) {
 			return $sce.trustAsHtml(html);
+		};
+
+		$scope.totalItems = 64;
+		$scope.pageChanged = function(newPage) {
+			$location.path("/articles/" + (newPage + 1));
 		};
 	}
 ]);

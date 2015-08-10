@@ -27,7 +27,6 @@ exports.create = function ( req, res ) {
 	var userEvent = new UserEvent( req.body );
 	userEvent.user = req.user;
 
-	console.warn(userEvent);
 	userEvent.save( function ( err ) {
 		if ( err ) {
 			return res.send( 'agenda', {

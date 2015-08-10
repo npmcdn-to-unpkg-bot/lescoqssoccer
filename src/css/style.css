@@ -1015,6 +1015,7 @@ blockquote,i,em {
     display:inline-block;
     vertical-align:bottom;
     margin: 0px;
+    text-align: center;
 }
 .blogpager .button {
     margin: 0px !important;
@@ -2018,6 +2019,44 @@ select:focus {
 
 .pointer:hover{
 	cursor: pointer;
+}
+
+.pagination>li:first-child>a, .pagination>li:first-child>span {
+   margin-left: inherit;
+   border-top-left-radius: 0;
+   border-bottom-left-radius: 0;
+}
+
+.pagination>li>a, .pagination>li>span {
+   background-color: transparent;
+   line-height: 1.5;
+   color: #fff;
+}
+
+.pagination>li:last-child>a, .pagination>li:last-child>span {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover {
+  z-index: 3;
+  color: black;
+  background-color: #fff;
+  border-color: #fff;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+  z-index: 2;
+  color: black;
+  cursor: default;
+  background-color: #fff;
+  border-color: #fff;
+}
+
+.pagination {
+  padding-left: 0;
+  margin: 30px 0;
+  border-radius: 4px;
 }
 
 /*

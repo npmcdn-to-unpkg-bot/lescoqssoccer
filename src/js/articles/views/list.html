@@ -26,12 +26,15 @@
 
     <!-- FOOTER: PREVIOUS AND NEXT BUTTONS -->
     <div class="blogpager">
-        <div class="previous">
-            <a href="#!" class="button">&#8249; Précédents</a>
-        </div>
-        <div class="next">
-            <a href="#!" class="button">Suivants &#8250;</a>
-        </div>
+
+        <pagination
+        previous-text="&#8249; Précédents"
+        next-text="Suivants &#8250;"
+        total-items="totalItems"
+        page="page"
+        on-select-page="pageChanged(page)">
+        </pagination>
+
     </div>
 
     <cm-Backstretch></cm-Backstretch>

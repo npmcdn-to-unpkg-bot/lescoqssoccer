@@ -19,8 +19,8 @@
 					<label for="selectedType">Type</label>
 					<select
 						name="selectedType"
-						data-ng-model="userEvent.selectedType"
-						ng-options="eventType.name for eventType in eventTypes">
+						data-ng-model="userEvent.eventType"
+						ng-options="eventType.identifier as eventType.name for eventType in eventTypes">
 					</select>
 
 					<label for="content">Contenu</label>
@@ -36,13 +36,13 @@
 				<!-- CONTACT RIGHT -->
 				<div class="contact-right">
 
-					<label for="start">Début</label>
+					<label for="startsAt">Début</label>
 					<div>
 						<input
 						type="text"
-						name="start"
+						name="startsAt"
 						datepicker-popup="{{format}}"
-						data-ng-model="userEvent.start"
+						data-ng-model="userEvent.startsAt"
 						is-open="$parent.openedStartDate"
 						datepicker-options="dateOptions"
 						show-weeks="false"
@@ -50,13 +50,13 @@
 						required/>
 					</div>
 
-					<label for="end">Fin</label>
+					<label for="endsAt">Fin</label>
 					<div>
 						<input
 						type="text"
-						name="end"
+						name="endsAt"
 						datepicker-popup="{{format}}"
-						data-ng-model="userEvent.end"
+						data-ng-model="userEvent.endsAt"
 						is-open="$parent.openedEndDate"
 						datepicker-options="dateOptions"
 						show-weeks="false"
@@ -65,11 +65,10 @@
 					</div>
 
 					<label for="repeat">Répéter</label>
-					<select name="repeat">
-						<option>Pas répéter</option>
-						<option>Toutes les semaines</option>
-						<option>Toutes les mois</option>
-						<option>Toutes les ans</option>
+					<select
+						name="repeat"
+						data-ng-model="userEvent.recursOn"
+						ng-options="recurseOn.identifier as recurseOn.value for recurseOn in eventRepeater">
 					</select>
 
 				</div>
