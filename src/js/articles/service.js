@@ -47,8 +47,8 @@ angular.module('mean.articles').service('ArticlesCollection', ['Articles', 'Arti
 			},
 
 			getItemsCount: function() {
-				return ArticlesCount.get({}, function(itemsCount) {
-					return itemsCount;
+				return ArticlesCount.get({}, function(result) {
+					return result.count;
 				}).$promise;
 			},
 

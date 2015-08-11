@@ -126,7 +126,9 @@ exports.getItemsCount = function(req, res) {
 
 		} else {
 
-			res.jsonp(count);
+			res.jsonp({
+				count: count
+			});
 
 		}
 	});

@@ -7,7 +7,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 		$scope.articles = Articles;
 
 		$scope.page = parseInt(Page);
-		$scope.totalItems = ItemsCount;
+		$scope.totalItems = ItemsCount.count;
 
 		//Format html content from article content edit by wysiwyg
 		$scope.getFormattedContent = function(html) {
@@ -45,7 +45,6 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 			});
 
 			$scope.ArticlesCollection.update($scope.article).then(function() {
-				$location.path("/articles");
 				$scope.comment = "";
 			});
 		};

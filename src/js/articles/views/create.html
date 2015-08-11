@@ -1,7 +1,9 @@
 <section class="rightcontainer">
 
 	<div class="subtitle">
-	    <h1>Nouvel article</h1>
+	    <h1 class="ellipsis">{{article.title || 'Nouvel article'}}</h1>
+	    <a href="#!" class="ok-icon" data-ng-click="create()">
+	    </a>
 	</div>
 
 	<!-- ARTICLE IMAGE -->
@@ -12,7 +14,15 @@
         <div class="icon-container bottom-slider" style="text-align: center;">
             <div class="icon" style="float: inherit;">
                 <div class="diamond">
-                    <img src="img/icons/clock.png" alt=""/>
+        		<input type="text" data-ng-model="article.title" required/>
+                		<label for="upload-profile-picture" class="label-upload-profile-picture">
+			<input
+			id="upload-profile-picture"
+			nv-file-select
+			uploader="uploader"
+			type="file"
+			class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
+		</label>
                 </div>
             </div>
         </div>
@@ -20,20 +30,7 @@
 
 	<!-- ARTICLE CONTENT -->
 	<div class="pagecontent">
-		<form class="comment-form" role="form" data-ng-submit="create()">
-
-			<label for="upload-profile-picture" class="label-upload-profile-picture" style="width: 140px;">
-				Changer d'image
-				<input
-				id="upload-profile-picture"
-				nv-file-select
-				uploader="uploader"
-				type="file"
-				class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
-			</label>
-
-			<label>Titre</label>
-			<input type="text" data-ng-model="article.title" required/>
+		<form role="form">
 
 			<wysiwyg
 			textarea-class="cm-wysiwyg"
@@ -43,8 +40,6 @@
 			enable-bootstrap-title="true"
 			textarea-menu="customMenu">
 			</wysiwyg>
-
-			<input type="submit" class="button" value="Ajouter l'article" />
 		</form>
 	</div>
 </section>

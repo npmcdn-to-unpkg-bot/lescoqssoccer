@@ -83,7 +83,7 @@ angular.module('mean').config(['$routeProvider',
 			controller: 'ArticleDetailController',
 			resolve: ArticleDetailData
 		}).
-		when('/articles/edit/:articleId', {
+		when('/articles/edit/:id', {
 			templateUrl: 'js/articles/views/create.html',
 			controller: 'CreateArticleController',
 			resolve: ArticleDetailData
