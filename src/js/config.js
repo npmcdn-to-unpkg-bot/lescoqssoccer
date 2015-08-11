@@ -47,11 +47,14 @@ angular.module('mean').config(['$routeProvider',
 			templateUrl: 'js/articles/views/list.html',
 			controller: 'ArticlesController',
 			resolve: {
-				Articles: function(ArticlesCollection, $route) {
-					return ArticlesCollection.load(0);
+				Articles: function(ArticlesCollection) {
+					return ArticlesCollection.load(1);
 				},
 				Page: function() {
-					return 0;
+					return 1;
+				},
+				ItemsCount: function(ArticlesCollection){
+					return ArticlesCollection.getItemsCount();
 				}
 			}
 		}).
@@ -64,6 +67,9 @@ angular.module('mean').config(['$routeProvider',
 				},
 				Page: function($route) {
 					return $route.current.params.page;
+				},
+				ItemsCount: function(ArticlesCollection){
+					return ArticlesCollection.getItemsCount();
 				}
 			}
 		}).

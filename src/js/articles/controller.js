@@ -1,31 +1,25 @@
 'use strict';
 
-angular.module('mean.articles').controller('ArticlesController', ['$scope', '$sce', 'Global','Articles', 'Page',
-	function($scope, $sce, Global, Articles, Page) {
+angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Global', '$location', '$sce', 'Articles', 'Page', 'ItemsCount',
+	function($scope, Global, $location, $sce, Articles, Page, ItemsCount) {
 
 		$scope.global = Global;
 		$scope.articles = Articles;
+
 		$scope.page = parseInt(Page);
-
-		$scope.previous = ($scope.page === 0) ? 0 : $scope.page-1;
-		$scope.next = $scope.page+1;
-
-		// Manage search input
-		$scope.obj = {
-			searchTitle: ""
-		};
-		$scope.nameFilter = function(article) {
-			return (article.title.toLowerCase().indexOf($scope.obj.searchTitle) !== -1) ? article.title : null;
-		};
+		$scope.totalItems = ItemsCount;
 
 		//Format html content from article content edit by wysiwyg
 		$scope.getFormattedContent = function(html) {
 			return $sce.trustAsHtml(html);
 		};
 
-		$scope.totalItems = 64;
 		$scope.pageChanged = function(newPage) {
-			$location.path("/articles/" + (newPage + 1));
+			if(newPage === 1){
+				$location.path("/articles");
+			} else{
+				$location.path("/articles/" + newPage);
+			}
 		};
 	}
 ]);

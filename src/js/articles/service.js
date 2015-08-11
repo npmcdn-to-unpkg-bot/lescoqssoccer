@@ -1,10 +1,10 @@
 'use strict';
 
 //Articles service used for Articles REST endpoint
-angular.module( 'mean.articles' ).factory( 'Articles', [ '$resource',
-	function ( $resource ) {
-		return $resource( 'articles/:param', {
-			param: '@param'
+angular.module('mean.articles').factory('Articles', ['$resource',
+	function($resource) {
+		return $resource('articles/:articleId', {
+			articleId: '@_id'
 		}, {
 			'save': {
 				method: 'POST'
@@ -12,60 +12,75 @@ angular.module( 'mean.articles' ).factory( 'Articles', [ '$resource',
 			'update': {
 				method: 'PUT',
 				params: {
-					param: '@articleId'
-				},
+					articleId: '@articleId'
+				}
 			},
 			'query': {
 				method: 'GET',
 				isArray: true
-			},
-		} );
+			}
+		});
 	}
-] );
+]);
+
+//Articles service used for get articles items count
+angular.module('mean.articles').factory('ArticlesCount', ['$resource',
+	function($resource) {
+		return $resource('articlesCount');
+	}
+]);
+
 
 /**
  * ArticleModel service
  **/
-angular.module( 'mean.articles' ).service( 'ArticlesCollection', [ 'Articles',
-	function ( Articles ) {
+angular.module('mean.articles').service('ArticlesCollection', ['Articles', 'ArticlesCount',
+
+	function(Articles, ArticlesCount) {
 
 		var ArticlesCollection = {
 
-			load: function (page) {
-				return Articles.query( {}, {param:page}, function ( articles ) {
+			load: function(page) {
+				return Articles.query({page:page-1, perPage: 10}, function(articles) {
 					return articles;
-				} ).$promise;
+				}).$promise;
 			},
 
-			findOne: function ( articleId ) {
-				return Articles.get( {
+			getItemsCount: function() {
+				return ArticlesCount.get({}, function(itemsCount) {
+					return itemsCount;
+				}).$promise;
+			},
+
+			findOne: function(articleId) {
+				return Articles.get({
 					articleId: articleId
-				}, function ( article ) {
+				}, function(article) {
 					return article;
-				} ).$promise;
+				}).$promise;
 			},
 
-			add: function ( article ) {
-				return Articles.save({}, article, function (data) {
+			add: function(article) {
+				return Articles.save({}, article, function(data) {
 					return data;
 				}).$promise;
 			},
 
-			update: function ( article ) {
-				return Articles.update( {
+			update: function(article) {
+				return Articles.update({
 					articleId: article._id
-				}, article, function ( data ) {
+				}, article, function(data) {
 					return data;
-				} ).$promise;
+				}).$promise;
 			},
 
-			remove: function ( article ) {
-				return Articles.delete( {}, article, function ( data ) {
+			remove: function(article) {
+				return Articles.delete({}, article, function(data) {
 					return data;
-				} ).$promise;
+				}).$promise;
 			}
 		}
 
 		return ArticlesCollection;
 	}
-] );
+]);

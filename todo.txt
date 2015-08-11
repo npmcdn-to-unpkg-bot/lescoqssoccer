@@ -1,5 +1,8 @@
-- Ajouter profil utilisateur - Section team
+- Section team
 - Cote de popularité / tache cron d'envoie de point en début de semaine / trouver systeme
 - Section vote (dans les suggestions)
 - Enrichissement section lien / partager vidéos youtube - site - etc
 - Pagination : articles, suggestions, photos
+- Back bouton
+- Page accueil => description différentes sections
+- Homogénéisation vues

@@ -46,10 +46,10 @@ var UserEventSchema = new Schema( {
 		trim: true
 	},
 	editable:{
-		type: boolean
+		type: Boolean
 	},
 	deletable:{
-		type: boolean
+		type: Boolean
 	},
 	incrementsBadgeTotal:{
 		type: String,
