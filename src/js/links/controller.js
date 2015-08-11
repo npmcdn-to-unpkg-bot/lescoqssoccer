@@ -44,19 +44,22 @@ angular.module('mean.links').controller('LinkController', ['$scope', 'Global', '
 			adress: "http://objectifjapon.wordpress.com",
 			image: "img/jojo.jpg",
 			title: "objectifjapon TKT",
-			type: "clb-link"
+			type: "links",
+			cssclass: "clb-link"
 		}, {
 			author: "Nico et Amélie",
-			adress: "https://www.youtube.com/watch?v=Og_-il-NSKg",
+			adress: "http://www.youtube.com/embed/eh-0knDpn5g",
 			image: "img/nico.jpg",
 			title: "Deux noix au pays des kiwis",
-			type: "clb-iframe"
+			type: "videos",
+			cssclass: "clb-iframe"
 		}, {
 			author: "Momo et Céline",
 			adress: "http://bandedemickeysen4l.com/",
 			image: "img/momo.jpeg",
 			title: "Bande de Mickeys en 4L",
-			type: "clb-link"
+			type: "links",
+			cssclass: "clb-link"
 		}];
 
 		$scope.add = function() {

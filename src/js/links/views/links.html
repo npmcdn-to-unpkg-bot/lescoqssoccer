@@ -23,6 +23,9 @@
 	    <li>
 	        <a href="#!" data-filter="links">Liens</a>
 	    </li>
+	    <li>
+	        <a href="#!" data-filter="videos">Liens</a>
+	    </li>
 	    <a href="#!/links/create" class="add-icon-sub">
         </a>
 	</ul>
@@ -35,13 +38,13 @@
 	            <img src="img/tQEHA2B.gif" alt="" />
 	        </a>
 	    </li>
-	    <li data-filter="links" ng-repeat="link in links">
-	        <a class="{{link.type}}" href="{{link.adress}}" ng-attr-target="{{(link.type !== 'clb-iframe') ? '_blank' : undefined}}">
+	    <li ng-repeat="link in links" data-filter="{{link.type}}">
+	        <a class="{{link.cssclass}}" href="{{link.adress}}" ng-attr-target="{{(link.cssclass !== 'clb-iframe') ? '_blank' : undefined}}">
 	            <img ng-src="{{link.image}}" alt="" />
 	        </a>
 	    </li>
 	</ul>
 
 	<cm-portfolio></cm-portfolio>
-	<cm-colorbox></cm-colorbox>
+	<cm-colorboxvideos></cm-colorboxvideos>
 </section>

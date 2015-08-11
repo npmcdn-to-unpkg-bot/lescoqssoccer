@@ -90,7 +90,7 @@ angular.module('mean.system').directive('cmPortfolio',
 	}
 );
 
-angular.module('mean.system').directive('cmColorbox',
+angular.module('mean.system').directive('cmColorboxphotos',
 	function() {
 		return {
 			restrict: 'E',
@@ -101,6 +101,24 @@ angular.module('mean.system').directive('cmColorbox',
 						maxWidth: '95%',
 						maxHeight: '95%',
 						photo: true
+					});
+				}, 500);
+			}
+		}
+	}
+);
+
+angular.module('mean.system').directive('cmColorboxvideos',
+	function() {
+		return {
+			restrict: 'E',
+			transclude: true,
+			link: function($scope, element, attrs) {
+				setTimeout(function() {
+					jQuery(".clb-iframe").colorbox({
+						width: '80%',
+						height: '80%',
+						iframe: true
 					});
 				}, 500);
 			}
