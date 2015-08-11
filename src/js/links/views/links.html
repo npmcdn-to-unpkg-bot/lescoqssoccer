@@ -15,7 +15,7 @@
 	<!-- FILTERS -->
 	<ul id="filters1" class="filters">
 	    <li>
-	        <a href="#!" data-filter="all" class="active">All</a>
+	        <a href="#!" data-filter="all" class="active">Tous</a>
 	    </li>
 	    <li>
 	        <a href="#!" data-filter="conneries">Conneries</a>
@@ -36,11 +36,12 @@
 	        </a>
 	    </li>
 	    <li data-filter="links" ng-repeat="link in links">
-	        <a class="clb-link" href="{{link.adress}}" target="_blank">
+	        <a class="{{link.type}}" href="{{link.adress}}" ng-attr-target="{{(link.type !== 'clb-iframe') ? '_blank' : undefined}}">
 	            <img ng-src="{{link.image}}" alt="" />
 	        </a>
 	    </li>
 	</ul>
 
 	<cm-portfolio></cm-portfolio>
+	<cm-colorbox></cm-colorbox>
 </section>

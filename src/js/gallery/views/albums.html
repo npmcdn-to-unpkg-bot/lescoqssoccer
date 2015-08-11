@@ -1,20 +1,40 @@
 <section class="rightcontainer">
 
-	<!-- PAGE TITLE -->
-	<div class="page-title" style="padding-bottom: 0;">
+    <!-- TITLE -->
+    <div class="subtitle">
+        <h3>Albums photos</h3>
+        <a href="#!/albums/create" class="add-icon">
+        </a>
+    </div>
 
-		<!-- PAGE TITLE TRANSPARENT BG -->
-		<div class="bgfilter"></div>
-		<h1>Photos</h1>
-		<div class="page-title-box">
-			<p>Malis imitarentur offendit tamen laboris. Vidisse est sint laborum ne e lorem despicationes, nam veniam probant nostrud qui ipsum et litteris se aliqua.
-			</p>
-		</div>
-	</div>
+	<!-- PAGE CONTENT -->
+    <div class="pagecontent albumContainer">
 
-	<!-- GALLERY -->
-	<ul id="gridbox1" class="sp-portfolio albumContainer">
-		<div deckgrid class="deckgrid" source="albums" cardTemplate="js/gallery/views/albumCard.html"></div>
-	</ul>
+        <!-- HALFBOX -->
+        <div class="half-box">
+            <div class="half-left">
+                <figure class="caption-image" ng-repeat="album in albums" ng-if="$even">
+                    <div>
+                    	<a href="#!/albums/view/{{album._id}}">
+                        	<img data-ng-src="{{album.coverPicPath || 'img/photos/contact.jpg'}}" alt=""/>
+                        	<img class="iframeAdd" src="img/iframe.png" alt=""/>
+                        </a>
+                    </div>
+                    <figcaption>{{album.name}}</figcaption>
+                </figure>
+            </div>
 
+            <div class="half-right">
+                <figure class="caption-image" ng-repeat="album in albums" ng-if="$odd">
+                    <div class="photo-wrapper">
+                    	<a href="#!/albums/view/{{album._id}}">
+                        	<img data-ng-src="{{album.coverPicPath || 'img/photos/contact.jpg'}}" alt=""/>
+                        	<img class="iframeAdd" src="img/iframe.png" alt=""/>
+                        </a>
+                    </div>
+                    <figcaption>{{album.name}}</figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
 </section>

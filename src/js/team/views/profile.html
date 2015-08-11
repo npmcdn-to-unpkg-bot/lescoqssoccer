@@ -2,6 +2,8 @@
 	<!-- TITLE -->
 	<div class="subtitle">
 		<h1>Profil</h1>
+		<a href="#!" class="ok-icon" data-ng-click="update()">
+		</a>
 	</div>
 
 	<!-- PAGE CONTENT -->
@@ -10,16 +12,19 @@
 		<!-- HALFBOX -->
 		<div class="half-box">
 			<div class="half-left">
+
 				<h2>Présentation</h2>
 				<img ng-src="{{user.avatar || 'img/avatar.png'}}" class="flex-image" alt="" />
 
-				<input
-				name="uploadAvatar"
-				class="button"
-				value="Changer l'avatar"
-				nv-file-select
-				uploader="uploader"
-				type="file"/>
+				<label class="label-upload-profile-picture button" style="margin: inherit;">
+					Parcourir
+					<input
+					nv-file-select
+					type="file"
+					uploader="uploader"
+					class="manual-file-chooser js-manual-file-chooser js-avatar-field"
+					name="uploadLinkImage"/>
+				</label>
 
 				<label>{{'profile_firstname' | translate}}</label>
 				<input type="text" data-ng-model="user.name" required/>
@@ -66,7 +71,6 @@
 				ng-disabled="skillName === 0"
 				value="+"/>
 
-				<input type="submit" class="button pull-right" value="Enregistrer les modifs">
 			</div>
 		</div>
 	</div>

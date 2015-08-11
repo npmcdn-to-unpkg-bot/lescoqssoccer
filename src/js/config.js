@@ -73,14 +73,14 @@ angular.module('mean').config(['$routeProvider',
 				}
 			}
 		}).
-		when('/articles/view/:id', {
-			templateUrl: 'js/articles/views/single.html',
-			controller: 'ArticleDetailController',
-			resolve: ArticleDetailData
-		}).
 		when('/articles/create', {
 			templateUrl: 'js/articles/views/create.html',
 			controller: 'CreateArticleController',
+			resolve: ArticleDetailData
+		}).
+		when('/articles/view/:id', {
+			templateUrl: 'js/articles/views/single.html',
+			controller: 'ArticleDetailController',
 			resolve: ArticleDetailData
 		}).
 		when('/articles/edit/:articleId', {

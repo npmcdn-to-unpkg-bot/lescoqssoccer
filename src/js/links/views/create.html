@@ -2,22 +2,47 @@
 
 	<div class="subtitle">
 	    <h1>Nouveau lien</h1>
+	    <a href="#!" class="ok-icon" data-ng-click="create()">
+		</a>
 	</div>
 
 	<div class="pagecontent">
-		<form class="comment-form" role="form" data-ng-submit="create()">
+		<form name="linkForm" role="form">
 
-			<label>Type de lien</label>
-			<select>
-				<option>Lien</option>
-				<option>Vidéo</option>
-				<option>Connerie</option>
-			</select>
+			<div class="half-box">
+				<div class="half-left" style="text-align: center;">
 
-			<label>Contenu</label>
-			<input type="text" data-ng-model="link.content" required/>
+                    <img ng-src="{{link.image || 'img/photos/5-s.jpg'}}" class="flex-image" alt="" />
 
-			<input type="submit" class="button" value="Ajouter" />
+					<label class="label-upload-profile-picture button" style="margin: inherit;">
+						Parcourir
+						<input
+						nv-file-select
+						type="file"
+						uploader="uploader"
+						class="manual-file-chooser js-manual-file-chooser js-avatar-field"
+						name="uploadLinkImage"/>
+					</label>
+
+				</div>
+
+				<div class="half-right">
+
+					<label for="title">Titre</label>
+					<input type="text" name="title" data-ng-model="link.title" required/>
+
+					<label for="linkType">Type de lien</label>
+					<select
+						name="linkType"
+						data-ng-model="link.type"
+						ng-options="type.identifier as type.value for type in options">
+					</select>
+
+					<label for="link">Lien</label>
+					<input type="url" name="link" data-ng-model="link.adress" required/>
+				</div>
+			</div>
+
 		</form>
 	</div>
 </section>

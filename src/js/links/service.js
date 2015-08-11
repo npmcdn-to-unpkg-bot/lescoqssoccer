@@ -22,13 +22,6 @@ angular.module('mean.links').service('LinksCollection', ['Global', 'Links',
 		var global = Global;
 		var LinksCollection = {
 
-			all: [],
-			filtered: [],
-			selected: null,
-			selectedIdx: null,
-			readCount: 0,
-			starredCount: 0,
-
 			load: function () {
 
 				Links.query(function (links) {
