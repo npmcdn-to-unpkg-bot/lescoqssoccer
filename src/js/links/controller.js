@@ -1,30 +1,64 @@
 'use strict';
 
-angular.module('mean.links').controller('LinkController', ['$scope', 'Global', '$window', 'LinksCollection', 'FileUploader',
-	function($scope, Global, $window, LinksCollection, FileUploader) {
+angular.module('mean.links').controller('LinkController', ['$scope', 'Global', '$window', 'Links',
+	function($scope, Global, $window, Links) {
+
+		$scope.global = Global;
+		$scope.links = Links;
+
+		// $scope.links = [{
+		// 	adress: "http://objectifjapon.wordpress.com",
+		// 	image: "img/jojo.jpg",
+		// 	title: "objectifjapon TKT",
+		// 	type: "links"
+		// }, {
+		// 	adress: "http://www.youtube.com/embed/eh-0knDpn5g",
+		// 	image: "img/nico.jpg",
+		// 	title: "Deux noix au pays des kiwis",
+		// 	type: "videos"
+		// }, {
+		// 	adress: "http://bandedemickeysen4l.com/",
+		// 	image: "img/momo.jpeg",
+		// 	title: "Bande de Mickeys en 4L",
+		// 	type: "links"
+		// }];
+
+		$scope.getCssClass = function(type) {
+			if (type === 'links' || type === 'bullsheets') {
+				return 'clb-link';
+			}
+			if (type === 'videos') {
+				return 'clb-iframe';
+			}
+		};
+
+		$scope.getUselessSite = function(evt) {
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			$window.open(uselessSites[Math.round(Math.random() * uselessSites.length - 1)][0], "_blank");
+		};
+
+	}
+]);
+
+angular.module('mean.links').controller('CreateLinkController', ['$scope', 'Global', '$location', 'Links', 'LinksCollection', 'FileUploader',
+	function($scope, Global, $location, Links, LinksCollection, FileUploader) {
 
 		$scope.global = Global;
 		$scope.LinksCollection = LinksCollection;
 
-		$scope.options = [{
-			identifier: "clb-link",
-			value: "Lien"
-		}, {
-			identifier: "clb-iframe",
-			value: "Vidéo"
-		}, {
-			identifier: "clb-link",
-			value: "Connerie"
-		}];
-
+		//Initialize object
 		$scope.link = {
 			title: "",
-			image: "",
-			author: "",
+			image: "img/photos/5-s.jpg",
+			user: $scope.global.user._id,
 			adress: "",
 			type: $scope.options[0].identifier
 		};
 
+		//Uploader configurations
 		$scope.uploader = new FileUploader({
 			scope: $scope,
 			url: '/upload/photo',
@@ -39,45 +73,26 @@ angular.module('mean.links').controller('LinkController', ['$scope', 'Global', '
 			$scope.link.image = response.path;
 		};
 
-		$scope.links = [{
-			author: "Jo",
-			adress: "http://objectifjapon.wordpress.com",
-			image: "img/jojo.jpg",
-			title: "objectifjapon TKT",
-			type: "links",
-			cssclass: "clb-link"
+		//Types options
+		$scope.options = [{
+			identifier: "links",
+			value: "Lien"
 		}, {
-			author: "Nico et Amélie",
-			adress: "http://www.youtube.com/embed/eh-0knDpn5g",
-			image: "img/nico.jpg",
-			title: "Deux noix au pays des kiwis",
-			type: "videos",
-			cssclass: "clb-iframe"
+			identifier: "videos",
+			value: "Vidéo"
 		}, {
-			author: "Momo et Céline",
-			adress: "http://bandedemickeysen4l.com/",
-			image: "img/momo.jpeg",
-			title: "Bande de Mickeys en 4L",
-			type: "links",
-			cssclass: "clb-link"
+			identifier: "bullsheets",
+			value: "Connerie"
 		}];
 
-		$scope.add = function() {
-			$scope.LinksCollection.add($scope.link, function() {
-				$scope.content = "";
+		$scope.create = function() {
+			$scope.LinksCollection.add($scope.link).then(function() {
+				$location.path("/links");
 			});
 		};
-
-		$scope.getUselessSite = function(evt) {
-
-			evt.preventDefault();
-			evt.stopPropagation();
-
-			$window.open(uselessSites[Math.round(Math.random() * uselessSites.length - 1)][0], "_blank");
-		};
-
 	}
 ]);
+
 
 var uselessSites = [
 	['http://heeeeeeeey.com/', false, 7],

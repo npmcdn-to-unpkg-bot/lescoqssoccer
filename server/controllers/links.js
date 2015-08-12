@@ -25,10 +25,9 @@ exports.link = function ( req, res, next, id ) {
 exports.create = function ( req, res ) {
 
 	var link = new Link( req.body );
-	link.user = req.user;
 
 	link.save( function ( err ) {
-		console.log( err );
+		console.log( "Error when create link: " + err );
 		if ( err ) {
 			return res.send( 'users/signup', {
 				errors: err.errors,

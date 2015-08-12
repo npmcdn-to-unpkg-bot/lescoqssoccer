@@ -92,11 +92,16 @@ angular.module('mean').config(['$routeProvider',
 		/** LINKS ****/
 		when('/links', {
 			templateUrl: 'js/links/views/links.html',
-			controller: 'LinkController'
+			controller: 'LinkController',
+			resolve: {
+				Links: function(LinksCollection, $route) {
+					return LinksCollection.load();
+				}
+			}
 		}).
 		when('/links/create', {
 			templateUrl: 'js/links/views/create.html',
-			controller: 'LinkController'
+			controller: 'CreateLinkController'
 		}).
 
 		/** ALBUMS ****/

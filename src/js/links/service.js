@@ -6,8 +6,14 @@ angular.module('mean.links').factory('Links', ['$resource',
 		return $resource('links/:linkId', {
 			linkId: '@_id'
 		}, {
-			update: {
-				method: 'PUT'
+			'save': {
+				method: 'POST'
+			},
+			'update': {
+				method: 'PUT',
+				params: {
+					linkId: '@linkId'
+				}
 			}
 		});
 	}
@@ -16,73 +22,41 @@ angular.module('mean.links').factory('Links', ['$resource',
 /**
  * linkModel service
  **/
-angular.module('mean.links').service('LinksCollection', ['Global', 'Links',
-	function (Global, Links) {
+angular.module('mean.links').service('LinksCollection', ['Links',
+	function (Links) {
 
-		var global = Global;
 		var LinksCollection = {
 
-			load: function () {
-
-				Links.query(function (links) {
-
-					LinksCollection.all = [];
-					angular.forEach(links, function (link) {
-
-						LinksCollection.all.push(link);
-						LinksCollection.all.sort(function (linkA, linkB) {
-							return new Date(linkB.created).getTime() - new Date(linkA.created).getTime();
-						});
-
-						LinksCollection.filtered = LinksCollection.all;
-						LinksCollection.readCount = LinksCollection.all.reduce(function (count, link) {
-							return link.read ? count : count;
-						}, 0);
-						LinksCollection.starredCount = LinksCollection.all.reduce(function (count, link) {
-							return link.starred ? count : count;
-						}, 0);
-						LinksCollection.selected = LinksCollection.selected ? LinksCollection.all.filter(function (link) {
-							return link.id == LinksCollection.selected.id;
-						})[0] : null;
-					});
-				});
+			load: function(page) {
+				return Links.query({page:page-1, perPage: 10}, function(links) {
+					return links;
+				}).$promise;
 			},
 
-			add: function (link, callback) {
-
-				var linkModel = new Links(link);
-
-				linkModel.$save(function (response) {
-					LinksCollection.load();
-					callback.call();
-				});
+			getItemsCount: function() {
+				// return LinksCount.get({}, function(result) {
+				// 	return result.count;
+				// }).$promise;
 			},
 
-			update: function (index, callback) {
-
-				if (index) {
-					LinksCollection.filtered[index].$update(function (response) {
-						LinksCollection.filtered[index] = response;
-
-						if (callback)
-							callback.call();
-					});
-				} else {
-					if (callback)
-						callback.call();
-				}
+			add: function(link) {
+				return Links.save({}, link, function(data) {
+					return data;
+				}).$promise;
 			},
 
-			remove: function (index, callback) {
-				if (index) {
-					$scope.filtered[index].$remove(function (response) {
-						if (callback)
-							callback.call();
-					});
-				} else {
-					if (callback)
-						callback.call();
-				}
+			update: function(link) {
+				return Links.update({
+					linkId: link._id
+				}, link, function(data) {
+					return data;
+				}).$promise;
+			},
+
+			remove: function(link) {
+				return Links.delete({}, link, function(data) {
+					return data;
+				}).$promise;
 			}
 		}
 

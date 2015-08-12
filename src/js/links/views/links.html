@@ -27,7 +27,7 @@
 	        <a href="#!" data-filter="videos">Vidéos</a>
 	    </li>
 	    <a href="#!/links/create" class="add-icon-sub">
-        	</a>
+        </a>
 	</ul>
 	<div class="clear"></div>
 
@@ -39,7 +39,7 @@
 	        </a>
 	    </li>
 	    <li ng-repeat="link in links" data-filter="{{link.type}}">
-	        <a class="{{link.cssclass}}" href="{{link.adress}}" ng-attr-target="{{(link.cssclass !== 'clb-iframe') ? '_blank' : undefined}}">
+	        <a class="{{getCssClass(link.type)}}" href="{{link.adress}}" ng-attr-target="{{(link.cssclass !== 'clb-iframe') ? '_blank' : undefined}}">
 	            <img ng-src="{{link.image}}" alt="" />
 	        </a>
 	    </li>
