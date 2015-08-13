@@ -32,6 +32,8 @@
             <h3><a href="#!/articles/view/{{article._id}}">{{article.title}}</a></h3>
             <p class="postdate">{{article.created | date:"dd MMM yyyy, H'h'mm"}}</p>
             <div ng-bind-html="getFormattedContent(article.content)" class="articleSummary"></div>
+            <p></p>
+            <a href="#!/articles/view/{{article._id}}" class="button">Read More...</a>
         </div>
 
     </article>

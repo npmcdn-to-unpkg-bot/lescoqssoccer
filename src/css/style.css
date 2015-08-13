@@ -2038,6 +2038,7 @@ select:focus {
   cursor: default;
   background-color: #fff;
   border-color: #fff;
+  margin: 0 20px;
 }
 
 .pagination {
