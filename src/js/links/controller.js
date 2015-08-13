@@ -6,22 +6,22 @@ angular.module('mean.links').controller('LinkController', ['$scope', 'Global', '
 		$scope.global = Global;
 		$scope.links = Links;
 
-		// $scope.links = [{
-		// 	adress: "http://objectifjapon.wordpress.com",
-		// 	image: "img/jojo.jpg",
-		// 	title: "objectifjapon TKT",
-		// 	type: "links"
-		// }, {
-		// 	adress: "http://www.youtube.com/embed/eh-0knDpn5g",
-		// 	image: "img/nico.jpg",
-		// 	title: "Deux noix au pays des kiwis",
-		// 	type: "videos"
-		// }, {
-		// 	adress: "http://bandedemickeysen4l.com/",
-		// 	image: "img/momo.jpeg",
-		// 	title: "Bande de Mickeys en 4L",
-		// 	type: "links"
-		// }];
+		$scope.links = [{
+			adress: "http://objectifjapon.wordpress.com",
+			image: "img/jojo.jpg",
+			title: "objectifjapon TKT",
+			type: "links"
+		}, {
+			adress: "http://www.youtube.com/embed/eh-0knDpn5g",
+			image: "img/nico.jpg",
+			title: "Deux noix au pays des kiwis",
+			type: "videos"
+		}, {
+			adress: "http://bandedemickeysen4l.com/",
+			image: "img/momo.jpeg",
+			title: "Bande de Mickeys en 4L",
+			type: "links"
+		}];
 
 		$scope.getCssClass = function(type) {
 			if (type === 'links' || type === 'bullsheets') {

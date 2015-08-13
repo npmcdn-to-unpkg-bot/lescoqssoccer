@@ -153,6 +153,14 @@ label {
 .label {
     padding: 10px 15px 10px 15px;
     display: inline-block;
+    font-size: inherit;
+     font-weight: inherit;
+     line-height: inherit;
+     color: inherit;
+     text-align: inherit;
+     white-space: inherit;
+     vertical-align: inherit;
+     border-radius: inherit;
 }
 hr {
     clear:both;
@@ -368,6 +376,21 @@ blockquote,i,em {
     -o-transition: background-color 0.4s ease-in-out;
     -ms-transition: background-color 0.4s ease-in-out;
 }
+
+.calendar-icon {
+    width: 110px;
+    height: 100%;
+    position: absolute;
+    top:0;
+    right: 110px;
+    padding: 0 30px;
+    cursor: pointer;
+    -webkit-transition: background-color 0.4s ease-in-out;
+    -moz-transition: background-color 0.4s ease-in-out;
+    -o-transition: background-color 0.4s ease-in-out;
+    -ms-transition: background-color 0.4s ease-in-out;
+}
+
 .add-icon::after, .add-icon-sub::after{
     content: "";
     background-image: url(../img/plus-sign2.svg);
@@ -383,7 +406,22 @@ blockquote,i,em {
     -o-transition: background-color 0.4s ease-in-out;
     -ms-transition: background-color 0.4s ease-in-out;
 }
-
+.calendar-icon::after{
+    content: "";
+    background-image: url(../img/calendar140.png);
+    background-size: 50px 50px;
+    position: absolute;
+    top:0;
+    right: 30px;
+    width: 50px;
+    height: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    -webkit-transition: background-color 0.4s ease-in-out;
+    -moz-transition: background-color 0.4s ease-in-out;
+    -o-transition: background-color 0.4s ease-in-out;
+    -ms-transition: background-color 0.4s ease-in-out;
+}
 .ok-icon::after{
     content: "OK";
     font-family: 'droid_sansregular';
@@ -400,7 +438,7 @@ blockquote,i,em {
     -ms-transition: background-color 0.4s ease-in-out;
 }
 
-.add-icon:hover, .ok-icon:hover {
+.add-icon:hover, .ok-icon:hover, .calendar-icon:hover {
     background-color: #eb5656;
     color: inherit;
 }
@@ -1931,6 +1969,13 @@ textarea {
 /*****
 PERSONNAL STYLES
 ****/
+@media (min-width: 768px){
+	.calendarPopup .modal-dialog {
+	    width: 90%;
+	    margin: 30px auto;
+	}
+}
+
 
 a:focus{
     text-decoration: none;

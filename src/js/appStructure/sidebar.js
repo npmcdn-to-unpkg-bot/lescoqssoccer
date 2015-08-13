@@ -20,15 +20,15 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 			id: 'articles'
 		}, {
 			name: "Agenda",
-			link: "#!",
-			id: 'agenda',
-			children: [{
-				name: "Planning",
-				link: "#!/agenda",
-			}, {
-				name: "Carte",
-				link: "#!/agenda/map",
-			}]
+			link: "#!/agenda",
+			id: 'agenda'
+			// children: [{
+			// 	name: "Planning",
+			// 	link: "#!/agenda",
+			// }, {
+			// 	name: "Carte",
+			// 	link: "#!/agenda/map",
+			// }]
 		}, {
 			name: "Photos",
 			link: "#!/albums",

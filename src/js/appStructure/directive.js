@@ -158,3 +158,21 @@ angular.module('mean.system').directive('cmBackstretch',
 		}
 	}
 );
+
+angular.module('mean.system').directive('cmProgressbar',
+	function() {
+		return {
+			restrict: 'E',
+			transclude: true,
+			link: function($scope, element, attrs) {
+				setTimeout(function() {
+					jQuery('.skillbar').each(function() {
+						jQuery(this).find('.skillbar-bar').animate({
+							width: jQuery(this).attr('data-percent')
+						}, 4000);
+					});
+				}, 500);
+			}
+		}
+	}
+);

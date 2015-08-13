@@ -8,16 +8,16 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 		$scope.startsAt = $scope.endsAt = ($route.current && $route.current.params.startDate) ? new Date($route.current.params.startDate) : new Date();
 
 		$scope.eventRepeater = [{
-			'identifier' : 'none',
+			'identifier': 'none',
 			'value': 'Pas répéter'
-		},{
-			'identifier' : 'week',
+		}, {
+			'identifier': 'week',
 			'value': 'Toutes les semaines'
-		},{
-			'identifier' : 'month',
+		}, {
+			'identifier': 'month',
 			'value': 'Tous les mois'
-		},{
-			'identifier' : 'year',
+		}, {
+			'identifier': 'year',
 			'value': 'Tous les ans'
 		}];
 
@@ -38,7 +38,7 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 		/* add custom event*/
 		$scope.create = function() {
 
-			if($scope.userEvent.recursOn === "none"){
+			if ($scope.userEvent.recursOn === "none") {
 				$scope.userEvent.recursOn = undefined;
 			}
 
@@ -117,8 +117,8 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 				events: {
 					dragend: function(marker, eventName, model) {
 						$scope.userEvent.location = {
-							k: marker.getPosition().lat(),
-							B: marker.getPosition().lng()
+							latitude: marker.getPosition().lat(),
+							longitude: marker.getPosition().lng()
 						};
 
 						$scope.geocodePosition(marker.getPosition());
@@ -147,6 +147,7 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 					}
 
 				} else {
+
 					$modal.open({
 						templateUrl: 'js/agenda/views/modal/unknownLocation.html',
 						controller: 'unknowLocationCtrl'
@@ -217,17 +218,31 @@ var EventDetailData = {
 
 };
 
-angular.module('mean.agenda').controller('ListController', ['$scope', '$routeParams', '$filter', '$location', '$route', 'Global', 'AgendaCollection', 'Agenda',
-	function($scope, $routeParams, $filter, $location, $route, Global, AgendaCollection, Agenda) {
+angular.module('mean.agenda').controller('ListController', ['$scope', '$routeParams', '$filter', '$location', '$route', 'Global', 'AgendaCollection', 'Agenda', '$modal',
+	function($scope, $routeParams, $filter, $location, $route, Global, AgendaCollection, Agenda, $modal) {
 
 		$scope.agendaCollection = AgendaCollection;
 		$scope.eventTypes = eventTypes;
 		$scope.agenda = Agenda;
 
-		//Calendar config
-		$scope.calendarView = 'month';
-		$scope.calendarDay = new Date();
-		$scope.calendarTitle = '';
+		$scope.eventTypes = eventTypes;
+
+		$scope.openCalendar = function(evt) {
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			$modal.open({
+				templateUrl: 'js/agenda/views/modal/calendar.html',
+				controller: 'calendarCtrl',
+				windowClass: 'calendarPopup',
+				resolve: {
+					Agenda: function() {
+						return AgendaCollection.load();
+					}
+				}
+			});
+		};
 
 		$scope.isPastEvent = function(userEvent) {
 			return moment(userEvent.startsAt).endOf('day').isBefore(new Date()) ? userEvent.startsAt : null;
@@ -242,14 +257,6 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 				$location.path("/agenda");
 			});
 		};
-	}
-]);
-
-angular.module('mean.agenda').controller('MapController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection', 'Agenda',
-	function($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection, Agenda) {
-
-		$scope.agendaCollection = AgendaCollection;
-		$scope.agenda = Agenda;
 
 		$scope.map = {
 			control: {
@@ -269,7 +276,7 @@ angular.module('mean.agenda').controller('MapController', ['$scope', '$routePara
 					position: google.maps.ControlPosition.LEFT_BOTTOM
 				},
 				streetViewControl: true,
-				panControl: true,
+				panControl: false,
 				maxZoom: 20,
 				minZoom: 3,
 				styles: [{
@@ -294,25 +301,60 @@ angular.module('mean.agenda').controller('MapController', ['$scope', '$routePara
 			marker.showWindow = true;
 		};
 
-		angular.forEach($scope.agenda, function(userEvent) {
+		angular.forEach($scope.agenda, function(userEvent, $index) {
+
 			if (userEvent.location && userEvent.location !== "") {
 				$scope.map.markers.push({
 					id: userEvent._id,
 					latitude: userEvent.location.latitude,
 					longitude: userEvent.location.longitude,
-					showWindow: false,
+					showWindow: $index === 1,
 					title: userEvent.title,
-					content: userEvent.content,
-					photos: userEvent.photos
+					content: userEvent.content
 				});
 			}
 		});
+
+		$scope.resizeMap = function() {
+			$("#google-map").css('height', 'calc(100vh - ' + ($("#agendaCarousel").height() + 104) + "px)");
+			$("google-map .angular-google-map-container").css('height', 'calc(100vh - ' + ($("#agendaCarousel").height() + 104) + "px)");
+		};
+
+		$scope.$watch(
+			function() {
+				return $("#agendaCarousel").height();
+			},
+			function(newValue, oldValue) {
+				$scope.resizeMap();
+			}
+		);
 	}
 ]);
 
 angular.module('mean.agenda').controller('unknowLocationCtrl', ['$scope', '$modalInstance',
 
 	function($scope, $modalInstance) {
+
+		$scope.ok = function(result) {
+			$modalInstance.close(result);
+		};
+
+		$scope.cancel = function() {
+			$modalInstance.dismiss('cancel');
+		};
+	}
+]);
+
+angular.module('mean.agenda').controller('calendarCtrl', ['$scope', '$modalInstance', 'Agenda',
+
+	function($scope, $modalInstance, Agenda) {
+
+		$scope.agenda = Agenda;
+
+		//Calendar config
+		$scope.calendarView = 'month';
+		$scope.calendarDay = new Date();
+		$scope.calendarTitle = '';
 
 		$scope.ok = function(result) {
 			$modalInstance.close(result);

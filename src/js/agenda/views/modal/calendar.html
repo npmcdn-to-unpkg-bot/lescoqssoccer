@@ -1,0 +1,50 @@
+<div class="info-box" style="text-align:center;">
+	<span class="info-box-close" data-ng-click="cancel()"></span>
+	<div class="btn-group pull-left monthGroupBtn">
+		<input
+		type="button"
+		class="btn previousMonth"
+		mwl-date-modifier
+		date="calendarDay"
+		decrement="calendarView"
+		value="Précédent"/>
+
+		<input
+		type="button"
+		class="btn todayBtn"
+		mwl-date-modifier
+		date="calendarDay"
+		set-to-today
+		value="Aujourd'hui"/>
+		<input
+		type="button"
+		class="btn nextMonth"
+		mwl-date-modifier
+		date="calendarDay"
+		increment="calendarView"
+		value="Suivant"/>
+	</div>
+	<div class="btn-group">
+		<h2 class="uppercase">{{ calendarTitle }}</h2>
+	</div>
+	<div class="btn-group pull-right">
+		<label class="btn" ng-model="calendarView" btn-radio="'year'">Année</label>
+		<label class="btn" ng-model="calendarView" btn-radio="'month'">Mois</label>
+		<label class="btn" ng-model="calendarView" btn-radio="'week'">Semaine</label>
+		<label class="btn" ng-model="calendarView" btn-radio="'day'">Jour</label>
+	</div>
+
+	<mwl-calendar
+	view="calendarView"
+	current-day="calendarDay"
+	events="agenda"
+	view-title="calendarTitle"
+	on-event-click="$scope.update(calendarEvent)"
+	on-event-drop="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+	edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
+	delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
+	on-edit-event-click="eventEdited(calendarEvent)"
+	on-delete-event-click="eventDeleted(calendarEvent)"
+	auto-open="true">
+	</mwl-calendar>
+</div>

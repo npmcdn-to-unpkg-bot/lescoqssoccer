@@ -32,15 +32,6 @@ angular.module('mean').config(['$routeProvider',
 			controller: 'CreateAgendaController',
 			resolve: EventDetailData
 		}).
-		when('/agenda/map', {
-			templateUrl: 'js/agenda/views/map.html',
-			controller: 'MapController',
-			resolve: {
-				Agenda: function(AgendaCollection) {
-					return AgendaCollection.load();
-				}
-			}
-		}).
 
 		/** ARTICLES ****/
 		when('/articles', {
@@ -58,6 +49,11 @@ angular.module('mean').config(['$routeProvider',
 				}
 			}
 		}).
+		when('/articles/create', {
+			templateUrl: 'js/articles/views/create.html',
+			controller: 'CreateArticleController',
+			resolve: ArticleDetailData
+		}).
 		when('/articles/:page', {
 			templateUrl: 'js/articles/views/list.html',
 			controller: 'ArticlesController',
@@ -72,11 +68,6 @@ angular.module('mean').config(['$routeProvider',
 					return ArticlesCollection.getItemsCount();
 				}
 			}
-		}).
-		when('/articles/create', {
-			templateUrl: 'js/articles/views/create.html',
-			controller: 'CreateArticleController',
-			resolve: ArticleDetailData
 		}).
 		when('/articles/view/:id', {
 			templateUrl: 'js/articles/views/single.html',

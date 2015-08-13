@@ -11,13 +11,12 @@
 
 		<!-- HALFBOX -->
 		<div class="half-box">
-			<div class="half-left">
+			<div class="half-left" style="text-align: center;">
 
-				<h2>Présentation</h2>
 				<img ng-src="{{user.avatar || 'img/avatar.png'}}" class="flex-image" alt="" />
 
-				<label class="label-upload-profile-picture button" style="margin: inherit;">
-					Parcourir
+				<label class="label-upload-profile-picture button" style="margin: -10px;">
+					Change l'avatar
 					<input
 					nv-file-select
 					type="file"
@@ -25,6 +24,35 @@
 					class="manual-file-chooser js-manual-file-chooser js-avatar-field"
 					name="uploadLinkImage"/>
 				</label>
+
+				<h2 style="text-align: left; margin-top: 30px;">Skills</h2>
+
+				<div class="skills">
+					<div class="skillbar" data-ng-repeat="skill in user.skills" data-percent="{{skill.percent}}%">
+						<div class="skillbar-title"><span>{{skill.name}}</span></div>
+						<div class="skillbar-bar"></div>
+						<div class="skill-bar-percent">{{skill.percent}}%</div>
+						<a ng-click="removeSkill(skill);" style="position: absolute; top: 10px; right: -40px;">
+							<img src="css/img/close.png" title="Supprimer la photo" style="width: 20px; vertical-align: sub;" />
+						</a>
+					</div>
+				</div>
+
+				<hr style="margin: 0;" />
+
+				<input type="text" placeholder="Nouvelle compétence" data-ng-model="skillName"/>
+				<input
+				class="button pull-right"
+				type="button"
+				ng-click="addSkill()"
+				ng-disabled="skillName === 0"
+				value="Ajouter"/>
+
+			</div>
+
+			<div class="half-right">
+
+				<h2>Infos du compte</h2>
 
 				<label>{{'profile_firstname' | translate}}</label>
 				<input type="text" data-ng-model="user.name" required/>
@@ -47,31 +75,10 @@
 				<label>Présentation</label>
 				<textarea data-ng-model="presentation">
 				</textarea>
-			</div>
-
-			<div class="half-right">
-
-				<h2>Skills</h2>
-				<p>Minim singulis pariatur. De eram exercitation, cillum admodum non expetendis. Te qui sunt mandaremus.</p>
-
-				<div class="skills">
-					<div class="skillbar" data-ng-repeat="skill in user.skills" data-percent="{{skill.value}}">
-						<div class="skillbar-title"><span>{{skill.name}}</span>
-						</div>
-						<div class="skillbar-bar"></div>
-						<div class="skill-bar-percent">{{skill.value}}%</div>
-					</div>
-				</div>
-
-				<input type="text" placeholder="Ajouter une compétence" data-ng-model="skillName"/>
-				<input
-				class="button"
-				type="button"
-				ng-click="addSkill()"
-				ng-disabled="skillName === 0"
-				value="+"/>
 
 			</div>
 		</div>
 	</div>
+	<cm-progressbar>
+	</cm-progressbar>
 </section>

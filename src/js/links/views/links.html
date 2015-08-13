@@ -1,50 +1,43 @@
 <section class="rightcontainer">
 
-	<!-- PAGE TITLE -->
-	<div class="page-title">
-
-	    <!-- PAGE TITLE TRANSPARENT BG -->
-	    <div class="bgfilter"></div>
-	    <h1>Ailleurs sur le web</h1>
-	    <div class="page-title-box">
-	        <p>Malis imitarentur offendit tamen laboris. Vidisse est sint laborum ne e lorem despicationes, nam veniam probant nostrud qui ipsum et litteris se aliqua. Ea iis aute proident, eiusmod cohaerescant ea commodo, se quo elit incididunt a nulla admodum incurreret. Ab malis fabulas.
-	        </p>
-	    </div>
+	<!-- TITLE -->
+	<div class="subtitle">
+		<h1>Partage</h1>
 	</div>
-
 	<!-- FILTERS -->
 	<ul id="filters1" class="filters">
-	    <li>
-	        <a href="#!" data-filter="all" class="active">Tous</a>
-	    </li>
-	    <li>
-	        <a href="#!" data-filter="conneries">Conneries</a>
-	    </li>
-	    <li>
-	        <a href="#!" data-filter="links">Liens</a>
-	    </li>
-	    <li>
-	        <a href="#!" data-filter="videos">Vidéos</a>
-	    </li>
-	    <a href="#!/links/create" class="add-icon-sub">
-        </a>
+		<li>
+			<a href="#!" data-filter="all" class="active">Tous</a>
+		</li>
+		<li>
+			<a href="#!" data-filter="conneries">Conneries</a>
+		</li>
+		<li>
+			<a href="#!" data-filter="links">Liens</a>
+		</li>
+		<li>
+			<a href="#!" data-filter="videos">Vidéos</a>
+		</li>
+		<a href="#!/links/create" class="add-icon-sub">
+		</a>
 	</ul>
 	<div class="clear"></div>
 
 	<!-- GALLERY -->
 	<ul id="gridbox1" class="sp-portfolio four-column">
 		<li data-filter="conneries">
-	        <a class="clb-link" href="#!" ng-click="getUselessSite($event);">
-	            <img src="img/tQEHA2B.gif" alt="" />
-	        </a>
-	    </li>
-	    <li ng-repeat="link in links" data-filter="{{link.type}}">
-	        <a class="{{getCssClass(link.type)}}" href="{{link.adress}}" ng-attr-target="{{(link.cssclass !== 'clb-iframe') ? '_blank' : undefined}}">
-	            <img ng-src="{{link.image}}" alt="" />
-	        </a>
-	    </li>
+			<a class="clb-link" href="#!" ng-click="getUselessSite($event);">
+				<img src="img/tQEHA2B.gif" alt="" style="height: 250px !important;" />
+			</a>
+		</li>
+		<li ng-repeat="link in links" data-filter="{{link.type}}">
+			<a class="{{getCssClass(link.type)}}" href="{{link.adress}}" ng-attr-target="{{(link.cssclass !== 'clb-iframe') ? '_blank' : undefined}}">
+			<img ng-src="{{link.image}}" alt="" style="height: 250px !important;"/>
+			</a>
+		</li>
 	</ul>
 
 	<cm-portfolio></cm-portfolio>
 	<cm-colorboxvideos></cm-colorboxvideos>
+
 </section>

@@ -1,4 +1,4 @@
-/* ---------------------- 
+/* ----------------------
 Stylesheet Guide
 -------------------------
 
@@ -505,9 +505,9 @@ input:focus, textarea:focus {
     color:#313131;
 	background-color:#fff;
 }
-.flex-video.google-map:after {
+/*.flex-video.google-map:after {
     border-bottom-color:#eb5656;
-}
+}*/
 /* ================= FLEX IMAGE ================== */
 .caption-image img {
     border:10px solid #ed6767;
