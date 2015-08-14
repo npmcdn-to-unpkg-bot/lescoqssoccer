@@ -11,10 +11,6 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 			link: "#!/home",
 			id: 'home'
 		}, {
-			name: "Team",
-			link: "#!/team",
-			id: 'team'
-		}, {
 			name: "Blog",
 			link: "#!/articles",
 			id: 'articles'
@@ -41,29 +37,11 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 			name: "Suggestions",
 			link: "#!/suggestions",
 			id: 'suggestions'
+		}, {
+			name: "Team",
+			link: "#!/team",
+			id: 'team'
 		}];
-
-		$scope.recentPosts = [{
-			name: "Suspendisse ipsum urna",
-			link: "single-post.html"
-		}, {
-			name: "Suspendisse ipsum urna",
-			link: "single-post.html"
-		}, {
-			name: "Suspendisse ipsum urna",
-			link: "single-post.html"
-		}, {
-			name: "Suspendisse ipsum urna",
-			link: "single-post.html"
-		}, {
-			name: "Suspendisse ipsum urna",
-			link: "single-post.html"
-		}, {
-			name: "Suspendisse ipsum urna",
-			link: "single-post.html"
-		}];
-
-		$scope.articlesTags = ["Deserani", "Quo eram", "Mentitum amet sit", "Cillum", "Incurreret", "Eram amet aliqua"];
 
 		$scope.isCurrentPath = function(item) {
 
@@ -107,7 +85,6 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 					checkElement.addClass("animated-fast fadeInLeft");
 				}
 			}
-
 
 			if (item && item.children) {
 				return false;

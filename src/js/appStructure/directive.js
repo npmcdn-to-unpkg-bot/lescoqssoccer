@@ -69,6 +69,25 @@ angular.module('mean.system').directive('cmSidebar',
 						jQuery('#menu-bar').find('.menu-bar-icon').fadeIn();
 					}, 400);
 				});
+
+				jQuery('.back-to-top').click(function(event) {
+					event.preventDefault();
+					jQuery('html, body').animate({
+						scrollTop: 0
+					}, 500);
+					return false;
+				});
+
+				setTimeout(function() {
+					$(".leftcontainer").mCustomScrollbar({
+						scrollInertia: 400,
+						autoHideScrollbar: true,
+						theme: "light",
+						advanced: {
+							updateOnContentResize: true
+						}
+					});
+				}, 500);
 			}
 		}
 	}
@@ -171,6 +190,51 @@ angular.module('mean.system').directive('cmProgressbar',
 							width: jQuery(this).attr('data-percent')
 						}, 4000);
 					});
+				}, 500);
+			}
+		}
+	}
+);
+
+angular.module('mean.system').directive('cmAccordion',
+	function() {
+		return {
+			restrict: 'E',
+			transclude: true,
+			link: function($scope, element, attrs) {
+				setTimeout(function() {
+					jQuery('.accordion-header').toggleClass('inactive-header');
+					jQuery('.accordion-header').click(function() {
+						if (jQuery(this).is('.inactive-header')) {
+							jQuery('.active-header').toggleClass('active-header').toggleClass('inactive-header').next().slideToggle().toggleClass('open-content');
+							jQuery(this).toggleClass('active-header').toggleClass('inactive-header');
+							jQuery(this).next().slideToggle().toggleClass('open-content');
+						} else {
+							jQuery(this).toggleClass('active-header').toggleClass('inactive-header');
+							jQuery(this).next().slideToggle().toggleClass('open-content');
+						}
+					});
+				}, 500);
+			}
+		}
+	}
+);
+
+angular.module('mean.system').directive('cmWordrotator',
+	function() {
+		return {
+			restrict: 'E',
+			transclude: true,
+			link: function($scope, element, attrs) {
+				setTimeout(function() {
+					jQuery("#words").wordsrotator({
+			            stopOnHover: true,
+			            changeOnClick: true,
+			            words: ['Bienvenue sur le site', 'Articles', 'Photos', 'Vidéos', 'Conneries', '...'],
+			            animationIn: "lightSpeedIn",
+			            animationOut: "lightSpeedOut",
+			            speed: 2000
+			        });
 				}, 500);
 			}
 		}
