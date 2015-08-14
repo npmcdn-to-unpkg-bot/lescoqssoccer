@@ -2097,6 +2097,38 @@ select:focus {
     padding: 7px 12px;
 }
 
+.login-box{
+    background-color: #eb5656;
+    padding: 30px;
+    margin: 50px auto;
+    width: auto;
+    display: table;
+}
+
+.signin{
+    width: 350px;
+}
+
+.signup{
+    width: 800px;
+}
+
+.login-box input{
+    width: 350px;
+}
+
+.login-box img{
+    margin-bottom: 50px;
+}
+
+.isite-avatar, .login-box .footer{
+    text-align: center;
+}
+
+.signup .half-left, .signup .half-right{
+    margin-bottom: 30px;
+}
+
 /*
 Agenda
 */
