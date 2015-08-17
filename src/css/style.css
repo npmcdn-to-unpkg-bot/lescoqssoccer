@@ -271,6 +271,7 @@ blockquote,i,em {
 .pagecontent {
     padding: 60px;
     position: relative;
+    min-height: calc(100vh - 104px);
 }
 .page-title {
     padding: 60px 0px 60px 0px;
@@ -2156,6 +2157,10 @@ select:focus {
     margin-bottom: 30px;
 }
 
+.secondLine{
+    margin-top: 60px;
+}
+
 /*
 Agenda
 */
@@ -2450,4 +2455,48 @@ Deckgrid configurations
     .deckgrid[deckgrid]::before {
         content: '1 .column.size-1-1';
     }
+}
+
+/***
+Profile
+****/
+
+.accordion-skill{
+    padding-bottom: 70px;
+}
+
+.accordion-skill .skillbar{
+    width: calc(100% - 40px);
+}
+
+.accordion-skill hr{
+    margin: 0;
+}
+
+.accordion-skill input{
+    display: inline-block;
+}
+
+.accordion-skill input[type="text"]{
+    width: calc(100% - 112px);
+}
+
+.accordion-skill input[type="number"]{
+    width: 80px;
+}
+
+.skillpercent{
+    margin-left: 10px;
+}
+
+.removeSkill{
+    position: absolute;
+    top: 10px;
+    right: -40px;
+}
+
+.removeSkill img{
+    width: 20px;
+    vertical-align: sub;
+    cursor: pointer;
 }
