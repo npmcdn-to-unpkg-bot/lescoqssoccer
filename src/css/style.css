@@ -1585,6 +1585,33 @@ blockquote,i,em {
 	padding: 40px 0px 40px 0px;
 	width: 100%;
 }
+/* ================= FLICKR  ================== */
+ .flickr-box {
+    padding: 0px;
+    overflow: hidden;
+    position: relative;
+}
+.flickr-box li {
+    list-style:none;
+    margin-right:5px;
+    padding:0px;
+    background-image:none !important;
+    display: inline-block;
+}
+.flickr-box li {
+    border:none !important;
+}
+.flickr-box li img {
+    display:block;
+    -webkit-transition:all 0.4s ease-in-out;
+    -moz-transition:all 0.4s ease-in-out;
+    -o-transition:all 0.4s ease-in-out;
+    transition:all 0.4s ease-in-out;
+    opacity: 0.5;
+}
+.flickr-box li img:hover {
+    opacity:1;
+}
 /* ================= FLEX IMAGE ================== */
 .caption-image {
     position:relative;
@@ -2279,7 +2306,7 @@ Albums
 }
 
 .albumContainer a img:hover {
-    opacity:0.2;
+    opacity: 0.5;
 }
 
 .iframeAdd{
@@ -2359,7 +2386,7 @@ Deckgrid configurations
 }
 
 .deckgrid[deckgrid]::before {
-    content: '3 .column.size-1-3';
+    content: '5 .column.size-1-5';
     font-size: 0;
     visibility:hidden;
 }

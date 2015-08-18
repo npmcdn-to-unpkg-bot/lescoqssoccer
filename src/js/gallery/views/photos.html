@@ -5,6 +5,7 @@
 		<h1>{{album.name}}</h1>
 	</div>
 
+	<!-- ACTION BAR -->
 	<ul class="filters">
 		<li>
 			<a href="#!" data-ng-click="download($event);">Télécharger</a>
@@ -19,9 +20,10 @@
 	<div class="clear"></div>
 
 	<!-- GALLERY -->
-	<ul class="sp-portfolio photosContainer" style="background-color: #414141;">
+	<ul class="photosContainer flickr-box">
 		<div deckgrid class="deckgrid" source="album.photoList" cardTemplate="js/gallery/views/photoCard.html"></div>
 	</ul>
 
 	<cm-colorboxphotos></cm-colorboxphotos>
+
 </section>

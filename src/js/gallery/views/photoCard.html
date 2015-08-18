@@ -1,14 +1,10 @@
-<li data-filter="photos">
-	<div class="photo">
-	    <a href="{{card._id.filepath || 'img/photos/contact.jpg'}}" class="clb-photo" data-rel="photos">
-	        <div class="photo-wrapper">
-	            <img
-	            style="width: 100%;"
-	            src=""
-	            data-ng-src="{{card._id.filepath || 'img/photos/contact.jpg'}}"
-	            class="animation-fade"
-	            data-imageloaded data-loadedclass="animation-faded">
-	        </div>
-	    </a>
-	</div>
+<li>
+    <a href="{{card._id.filepath || 'img/photos/contact.jpg'}}" class="clb-photo cboxElement" data-rel="photos">
+        <img
+        src=""
+        style="width: 100%;"
+        data-ng-src="{{card._id.filepath || 'img/photos/contact.jpg'}}"
+        class="animation-fade"
+        data-imageloaded data-loadedclass="animation-faded">
+    </a>
 </li>

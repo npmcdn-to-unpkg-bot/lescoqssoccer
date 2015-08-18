@@ -49,6 +49,18 @@ angular.module('mean.links').controller('CreateLinkController', ['$scope', 'Glob
 		$scope.global = Global;
 		$scope.LinksCollection = LinksCollection;
 
+		//Types options
+		$scope.options = [{
+			identifier: "links",
+			value: "Lien"
+		}, {
+			identifier: "videos",
+			value: "Vidéo"
+		}, {
+			identifier: "bullsheets",
+			value: "Connerie"
+		}];
+
 		//Initialize object
 		$scope.link = {
 			title: "",
@@ -56,6 +68,10 @@ angular.module('mean.links').controller('CreateLinkController', ['$scope', 'Glob
 			user: $scope.global.user._id,
 			adress: "",
 			type: $scope.options[0].identifier
+		};
+
+		$scope.hideAlert = function(){
+			$scope.isAlertHidden = true;
 		};
 
 		//Uploader configurations
@@ -72,18 +88,6 @@ angular.module('mean.links').controller('CreateLinkController', ['$scope', 'Glob
 			console.info('Complete', item, response);
 			$scope.link.image = response.path;
 		};
-
-		//Types options
-		$scope.options = [{
-			identifier: "links",
-			value: "Lien"
-		}, {
-			identifier: "videos",
-			value: "Vidéo"
-		}, {
-			identifier: "bullsheets",
-			value: "Connerie"
-		}];
 
 		$scope.create = function() {
 			$scope.LinksCollection.add($scope.link).then(function() {
