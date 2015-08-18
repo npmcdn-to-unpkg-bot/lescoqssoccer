@@ -2,5 +2,7 @@
 - Section vote (dans les suggestions)
 
 - Pagination : articles, suggestions, photos
-- Back bouton
-- Homogénéisation vues
+- Creation de photos => faire quelque chose de plus propre
+
+Bug:
+- Skill dans profile

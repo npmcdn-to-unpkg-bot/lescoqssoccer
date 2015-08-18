@@ -242,9 +242,9 @@ blockquote:after {
 .sp-portfolio li {
     background-color: #414141;
 }
-.sp-portfolio li a {
+/*.sp-portfolio li a {
     background-color: #eb5656;
-}
+}*/
 /* ================= BLOG ================== */
 .postcontent {
     background-color: #eb5656;
