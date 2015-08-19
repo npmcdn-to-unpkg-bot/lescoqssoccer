@@ -224,8 +224,35 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 		$scope.agendaCollection = AgendaCollection;
 		$scope.eventTypes = eventTypes;
 		$scope.agenda = Agenda;
+		$scope.selectedEvent = (Agenda.length > 0) ? Agenda[0] : null;
 
-		$scope.eventTypes = eventTypes;
+		$scope.setSelectedEvent = function(evt, userEvent) {
+
+			if (evt) {
+				evt.preventDefault();
+				evt.stopPropagation();
+			}
+
+			$scope.selectedEvent = userEvent;
+		};
+
+		$scope.getFormattedDate = function(date) {
+			return $filter('date')(date, "dd MMM yyyy");;
+		};
+
+		$scope.update = function(userEvent) {
+			$scope.agendaCollection.update(userEvent).then(function(newUserEvent) {
+				$location.path("/agenda");
+			});
+		};
+
+		$scope.isPastEvent = function(userEvent) {
+			return moment(userEvent.startsAt).endOf('day').isBefore(new Date()) ? userEvent.startsAt : null;
+		};
+
+		$scope.isComingEvent = function(userEvent) {
+			return moment(userEvent.startsAt).endOf('day').isAfter(new Date()) ? userEvent.startsAt : null;
+		};
 
 		$scope.openCalendar = function(evt) {
 
@@ -239,22 +266,11 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 				resolve: {
 					Agenda: function() {
 						return AgendaCollection.load();
+					},
+					EventClick: function() {
+						return $scope.setSelectedEvent;
 					}
 				}
-			});
-		};
-
-		$scope.isPastEvent = function(userEvent) {
-			return moment(userEvent.startsAt).endOf('day').isBefore(new Date()) ? userEvent.startsAt : null;
-		};
-
-		$scope.isComingEvent = function(userEvent) {
-			return moment(userEvent.startsAt).endOf('day').isAfter(new Date()) ? userEvent.startsAt : null;
-		};
-
-		$scope.update = function(userEvent) {
-			$scope.agendaCollection.update(userEvent).then(function(newUserEvent) {
-				$location.path("/agenda");
 			});
 		};
 
@@ -345,9 +361,9 @@ angular.module('mean.agenda').controller('unknowLocationCtrl', ['$scope', '$moda
 	}
 ]);
 
-angular.module('mean.agenda').controller('calendarCtrl', ['$scope', '$modalInstance', 'Agenda',
+angular.module('mean.agenda').controller('calendarCtrl', ['$scope', '$modalInstance', 'Agenda', 'EventClick',
 
-	function($scope, $modalInstance, Agenda) {
+	function($scope, $modalInstance, Agenda, EventClick) {
 
 		$scope.agenda = Agenda;
 
@@ -356,8 +372,10 @@ angular.module('mean.agenda').controller('calendarCtrl', ['$scope', '$modalInsta
 		$scope.calendarDay = new Date();
 		$scope.calendarTitle = '';
 
-		$scope.ok = function(result) {
-			$modalInstance.close(result);
+		$scope.eventClick = function(evt, userEvent) {
+
+			EventClick(evt, userEvent);
+			$scope.cancel();
 		};
 
 		$scope.cancel = function() {

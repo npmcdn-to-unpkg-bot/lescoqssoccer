@@ -1161,7 +1161,7 @@ blockquote,i,em {
     background-repeat:no-repeat;
     background-image:url('../img/zoom.png');
 }
-.photo-carousel a img:hover {
+.photo-carousel a img:not(.eventSelected):hover {
     opacity:0.2;
     transform: scale(1.5) rotate(15deg);
     -webkit-transform: scale(1.5) rotate(15deg);
@@ -2159,6 +2159,14 @@ select:focus {
 /*
 Agenda
 */
+
+data-owl-carousel img:not(.eventSelected){
+	opacity: 0.1;
+}
+
+data-owl-carousel img.eventSelected{
+	cursor: default;
+}
 
 #google-map>.angular-google-map>div{
     display: block !important;
