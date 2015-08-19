@@ -224,7 +224,6 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 		$scope.agendaCollection = AgendaCollection;
 		$scope.eventTypes = eventTypes;
 		$scope.agenda = Agenda;
-		$scope.selectedEvent = (Agenda.length > 0) ? Agenda[0] : null;
 
 		$scope.setSelectedEvent = function(evt, userEvent) {
 
@@ -236,8 +235,20 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 			$scope.selectedEvent = userEvent;
 		};
 
+		$scope.setPreviousElement = function(){
+			var index = (window._.indexOf($scope.filteredAgenda, $scope.selectedEvent) - 1 > 0) ? window._.indexOf($scope.filteredAgenda, $scope.selectedEvent) - 1 : 0;
+			$scope.setSelectedEvent(null, $scope.filteredAgenda[index]);
+			$scope.$apply();
+		};
+
+		$scope.setNextElement = function(){
+			var index = (window._.indexOf($scope.filteredAgenda, $scope.selectedEvent) + 1 < $scope.filteredAgenda.length) ? window._.indexOf($scope.filteredAgenda, $scope.selectedEvent) + 1 : $scope.filteredAgenda.length;
+			$scope.setSelectedEvent(null, $scope.filteredAgenda[index]);
+			$scope.$apply();
+		};
+
 		$scope.getFormattedDate = function(date) {
-			return $filter('date')(date, "dd MMM yyyy");;
+			return $filter('date')(date, "dd MMM yyyy");
 		};
 
 		$scope.update = function(userEvent) {

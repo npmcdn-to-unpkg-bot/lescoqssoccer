@@ -13,7 +13,7 @@
 	<data-owl-carousel id="agendaCarousel" class="owl-carousel photo-carousel owl-theme owl-loaded">
 		<div owl-carousel-item="{{event._id}}" ng-repeat="event in filteredAgenda = (agenda | filter: isComingEvent)">
 			<a href="#!" ng-click="setSelectedEvent($event, event);" style="background: none;">
-				<img ng-src="{{ eventTypes | getImageByIdentifier:event.eventType}}" ng-class="{'eventSelected' : event._id === selectedEvent._id}">
+			<img ng-src="{{ eventTypes | getImageByIdentifier:event.eventType}}" ng-class="{'eventSelected' : event._id === selectedEvent._id}">
 			</a>
 		</div>
 		<div data-ng-show="filteredAgenda.length === 0" owl-carousel-item="">
@@ -22,13 +22,18 @@
 	</data-owl-carousel>
 
 	<!-- EVENT INFOS -->
-	<div class="contactcontainer" style="display: flex;">
+	<div class="contactcontainer" ng-show="selectedEvent" style="display: flex;">
 		<div class="blogcontainer" style="float: left; width: 50%; padding: 30px; background: #eb5656;">
 			<h3>{{selectedEvent.title}}</h3>
-			<p class="postdate txt-label">{{selectedEvent.startsAt | date:"dd MMM yyyy"}}{{(selectedEvent.endsAt !==  selectedEvent.startsAt) ? " - " + getFormattedDate(selectedEvent.endsAt) : ""}}</p>
-			<p class="txt-label"><span class="label"><strong>Contenu </strong>{{selectedEvent.content}}</span>
+			<p class="postdate txt-label">
+			{{selectedEvent.startsAt | date:"dd MMM yyyy"}}{{(selectedEvent.endsAt !==  selectedEvent.startsAt) ? " - " + getFormattedDate(selectedEvent.endsAt) : ""}}
 			</p>
-			<p class="txt-label"><span class="label"><strong>Type </strong>{{ eventTypes | getNameByIdentifier:selectedEvent.eventType}}</span>
+			<p class="txt-label"><span class="label"><strong>{{ eventTypes | getNameByIdentifier:selectedEvent.eventType}}</strong></span>
+			</p>
+			<p class="txt-label">
+			<span class="label">
+			<strong>Contenu </strong>{{selectedEvent.content}}
+			</span>
 			</p>
 		</div>
 		<div style="float: right; width: 50%; background: #eb5656; padding: 30px;">
