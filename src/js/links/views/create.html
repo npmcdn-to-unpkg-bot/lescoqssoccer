@@ -39,6 +39,12 @@
 
 					<label for="adress">Url</label>
 					<input type="url" name="adress" data-ng-model="link.adress" required/>
+
+					<div class="info-box" ng-show="link.type === 'videos' && !isAlertHidden">
+                        <span class="info-box-close" ng-click="hideAlert()"></span>
+                        <h4>Attention !</h4>
+                        <p>Si c'est une vidéo Youtube, penser à mettre "embed" après http://youtube.com, sinon ça ne marchera pas. <br/> Ex: <b>http://www.youtube.com/embed/eh-0knDpn5g</b></p>
+                    </div>
 				</div>
 			</div>
 

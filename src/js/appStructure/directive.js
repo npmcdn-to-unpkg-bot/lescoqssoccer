@@ -188,9 +188,9 @@ angular.module('mean.system').directive('cmProgressbar',
 					jQuery('.skillbar').each(function() {
 						jQuery(this).find('.skillbar-bar').animate({
 							width: jQuery(this).attr('data-percent')
-						}, 4000);
+						}, 2000);
 					});
-				}, 500);
+				});
 			}
 		}
 	}

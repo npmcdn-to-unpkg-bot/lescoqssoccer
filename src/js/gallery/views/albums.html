@@ -17,19 +17,16 @@
                     <div>
                     	<a href="#!/albums/view/{{album._id}}">
                         	<img data-ng-src="{{album.coverPicPath || 'img/photos/contact.jpg'}}" alt=""/>
-                        	<img class="iframeAdd" src="img/iframe.png" alt=""/>
                         </a>
                     </div>
                     <figcaption>{{album.name}}</figcaption>
                 </figure>
             </div>
-
             <div class="half-right">
                 <figure class="caption-image" ng-repeat="album in albums" ng-if="$odd">
                     <div class="photo-wrapper">
                     	<a href="#!/albums/view/{{album._id}}">
                         	<img data-ng-src="{{album.coverPicPath || 'img/photos/contact.jpg'}}" alt=""/>
-                        	<img class="iframeAdd" src="img/iframe.png" alt=""/>
                         </a>
                     </div>
                     <figcaption>{{album.name}}</figcaption>

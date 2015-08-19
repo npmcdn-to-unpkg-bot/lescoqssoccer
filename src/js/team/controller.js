@@ -6,7 +6,7 @@ angular.module('mean.users').controller('TeamController', ['$scope', 'Global', '
 		$scope.global = Global;
 		$scope.team = Team;
 
-		$scope.showUser = function(evt, user){
+		$scope.showUser = function(evt, user) {
 
 			evt.preventDefault();
 			evt.stopPropagation();
@@ -17,12 +17,16 @@ angular.module('mean.users').controller('TeamController', ['$scope', 'Global', '
 	}
 ]);
 
-angular.module('mean.users').controller('ProfileController', ['$scope', 'Global', 'Users', '$translate', 'FileUploader',
+angular.module('mean.users').controller('ProfileController', ['$scope', 'Global', 'User', '$translate', 'FileUploader',
 
-	function($scope, Global, Users, $translate, FileUploader) {
+	function($scope, Global, User, $translate, FileUploader) {
 
 		$scope.global = Global;
-		$scope.user = Global.user;
+		$scope.user = User;
+		$scope.skill = {
+			name: "",
+			value: 50
+		};
 
 		/***
 			AVATAR
@@ -39,57 +43,55 @@ angular.module('mean.users').controller('ProfileController', ['$scope', 'Global'
 		$scope.uploader.onCompleteItem = function(item, response, status, headers) {
 			console.info('Complete', item, response);
 			$scope.user.avatar = response.path;
-			$scope.update();
 		};
 
 		/***
 			SKILLS
 		***/
-		$scope.percent;
-		$scope.max = 10;
-
-		$scope.hoveringOver = function(value) {
-			$scope.overStar = value;
-			$scope.percent = 100 * (value / $scope.max);
-		};
-
-		$scope.updateSkill = function(skill) {
-			skill.value = $scope.overStar;
-			skill.percent = 100 * ($scope.overStar / $scope.max);
+		$scope.initSkill = function() {
+			$scope.skill = {
+				name: "",
+				value: 50
+			};
 		};
 
 		$scope.addSkill = function() {
 
-			if (!user.skills){
-				user.skills = [];
+			if (!$scope.user.skills) {
+				$scope.user.skills = [];
 			}
 
-			$scope.user.skills.push({
-				name: this.skillName,
-				value: 7,
-				percent: 70
+			var currentSkill = $scope.skill;
+			$scope.user.skills.push(currentSkill);
+
+			setTimeout(function() {
+				$("[name='" + currentSkill.name + "']").animate({
+					width: currentSkill.value + "%"
+				}, 1000);
 			});
+
+			$scope.initSkill();
+
+		};
+
+		$scope.removeSkill = function(index) {
+			$scope.user.skills.splice(index, 1);
+		};
+
+		/***
+			SETTINGS
+		***/
+		$scope.changeLanguage = function(key) {
+			$translate.use(key);
 		};
 
 		/***
 			MODEL
 		***/
-		$scope.load = function() {
-			Users.get({
-				userId: Global.user._id
-			}, function(user) {
-				$scope.user = user;
-			});
-		};
-
 		$scope.update = function() {
 			$scope.user.$update(function(response) {
 				Global.user = response;
 			});
-		};
-
-		$scope.changeLanguage = function(key) {
-			$translate.use(key);
 		};
 	}
 ]);
@@ -99,6 +101,18 @@ var TeamData = {
 	Team: function(Users) {
 		return Users.query({}, function(users) {
 			return users;
+		}).$promise;;
+	}
+
+};
+
+var ProfileData = {
+
+	User: function(Users, Global) {
+		return Users.get({
+			userId: Global.user._id
+		}, function(user) {
+			return user;
 		}).$promise;;
 	}
 
