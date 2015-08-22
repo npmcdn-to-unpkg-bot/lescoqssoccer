@@ -1,0 +1,36 @@
+<section class="rightcontainer">
+
+	<!-- PAGE TITLE -->
+	<div class="page-title">
+
+		<!-- PAGE TITLE TRANSPARENT BG -->
+		<div class="bgfilter"></div>
+		<h1>La fine équipe</h1>
+
+		<!-- OUR TEAM CAROUSEL -->
+		<data-team-carousel class="owl-carousel owl-theme owl-loaded">
+			<figure
+				ng-repeat="user in team track by $index"
+				team-carousel-item="{{$index}}"
+				class="our-team">
+				<img ng-src="{{user.avatar || 'img/photos/team2.jpg'}}" alt="user.name" />
+				<figcaption>
+					<div>
+						<h5>{{user.name}}</h5>
+						<p>{{user.email}}</p>
+
+						<!-- SOCIAL ICONS -->
+						<ul class="our-team-icons">
+							<li>
+								<a href="#!" data-ng-click="showUserDetail($event, user)">
+									<img class="social-icon" src="img/zoom.png" alt="" />
+								</a>
+							</li>
+						</ul>
+
+					</div>
+				</figcaption>
+			</figure>
+		</data-team-carousel>
+	</div>
+</section>

@@ -2052,7 +2052,7 @@ textarea {
 PERSONNAL STYLES
 ****/
 @media (min-width: 768px){
-	.calendarPopup .modal-dialog {
+	.calendarPopup .modal-dialog, .userDetailPopup .modal-dialog {
 	    width: 90%;
 	    margin: 30px auto;
 	}

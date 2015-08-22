@@ -1,0 +1,29 @@
+<div class="info-box pagecontent" style="text-align:center;">
+	<span class="info-box-close" data-ng-click="cancel()"></span>
+
+	<!-- HALFBOX -->
+	<div class="contactcontainer">
+		<div class="contact-left" style="text-align: center;">
+			<img ng-src="{{user.avatar || 'img/avatar.png'}}" class="flex-image" alt="" />
+			<h2>Skills</h2>
+			<div class="skills" ng-show="user.skills.length > 0">
+				<div class="skillbar" ng-repeat="skill in user.skills" data-percent="{{skill.value}}%">
+					<div class="skillbar-title"><span>{{skill.name}}</span></div>
+					<div class="skillbar-bar" name="{{skill.name}}"></div>
+					<div class="skill-bar-percent">{{skill.value}}%</div>
+				</div>
+			</div>
+		</div>
+		<div class="contact-right">
+			<h2>Contact Info</h2>
+			<p class="txt-label" style="margin-bottom: 20px;"><span class="label"><strong>{{'profile_firstname' | translate}}</strong> {{user.name}}</span>
+			<p class="txt-label" style="margin-bottom: 20px;"><span class="label"><strong>{{'profile_lastname' | translate}}</strong> {{user.lastname}}</span>
+			<p class="txt-label" style="margin-bottom: 20px;"><span class="label"><strong>{{'profile_username' | translate}}</strong> {{user.username}}</span>
+			<p class="txt-label" style="margin-bottom: 20px;"><span class="label">{{user.presentation}}</span>
+		</div>
+	</div>
+</div>
+<cm-progressbar>
+</cm-progressbar>
+<cm-accordion>
+</cm-accordion>
