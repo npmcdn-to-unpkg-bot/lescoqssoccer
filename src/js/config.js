@@ -128,14 +128,14 @@ angular.module('mean').config(['$routeProvider',
 		}).
 
 		when('/team', {
-			templateUrl: 'js/team/views/list.html',
+			templateUrl: 'js/users/views/list.html',
 			controller: 'TeamController',
 			resolve: TeamData
 		}).
 
 		/** PROFILE ****/
 		when('/profile', {
-			templateUrl: 'js/team/views/profile.html',
+			templateUrl: 'js/users/views/profile.html',
 			controller: 'ProfileController',
 			resolve: ProfileData
 		}).

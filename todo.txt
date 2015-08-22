@@ -5,4 +5,3 @@
 - Creation de photos => faire quelque chose de plus propre
 
 Bug:
-- Skill dans profile
