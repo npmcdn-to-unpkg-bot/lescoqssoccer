@@ -13,7 +13,7 @@
 	<data-owl-carousel id="agendaCarousel" class="owl-carousel photo-carousel owl-theme owl-loaded">
 		<div owl-carousel-item="{{event._id}}" ng-repeat="event in filteredAgenda = (agenda | filter: isComingEvent)">
 			<a href="#!" ng-click="setSelectedEvent($event, event);" style="background: none;">
-			<img ng-src="{{ eventTypes | getImageByIdentifier:event.eventType}}" ng-class="{'eventSelected' : event._id === selectedEvent._id}">
+			<img ng-src="{{ eventTypes | getImageByIdentifier:event.eventType}}" ng-class="{'eventSelected' : event._id === selectedEvent._id}" class="lazyOwl">
 			</a>
 		</div>
 		<div data-ng-show="filteredAgenda.length === 0" owl-carousel-item="">

@@ -233,15 +233,19 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 			}
 
 			$scope.selectedEvent = userEvent;
+
+			if ($scope.selectedEvent.location) {
+				$scope.map.center = $scope.selectedEvent.location;
+			}
 		};
 
-		$scope.setPreviousElement = function(){
+		$scope.setPreviousElement = function() {
 			var index = (window._.indexOf($scope.filteredAgenda, $scope.selectedEvent) - 1 > 0) ? window._.indexOf($scope.filteredAgenda, $scope.selectedEvent) - 1 : 0;
 			$scope.setSelectedEvent(null, $scope.filteredAgenda[index]);
 			$scope.$apply();
 		};
 
-		$scope.setNextElement = function(){
+		$scope.setNextElement = function() {
 			var index = (window._.indexOf($scope.filteredAgenda, $scope.selectedEvent) + 1 < $scope.filteredAgenda.length) ? window._.indexOf($scope.filteredAgenda, $scope.selectedEvent) + 1 : $scope.filteredAgenda.length;
 			$scope.setSelectedEvent(null, $scope.filteredAgenda[index]);
 			$scope.$apply();
@@ -321,13 +325,6 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 			doUgly: true
 		};
 
-		$scope.onMarkerClicked = function(marker) {
-			angular.forEach($scope.map.markers, function(marker) {
-				marker.showWindow = false;
-			});
-			marker.showWindow = true;
-		};
-
 		angular.forEach($scope.agenda, function(userEvent, $index) {
 
 			if (userEvent.location && userEvent.location !== "") {
@@ -335,7 +332,7 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 					id: userEvent._id,
 					latitude: userEvent.location.latitude,
 					longitude: userEvent.location.longitude,
-					showWindow: $index === 1,
+					showWindow: $index === 0,
 					title: userEvent.title,
 					content: userEvent.content
 				});
@@ -343,8 +340,8 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 		});
 
 		$scope.resizeMap = function() {
-			$("#google-map").css('height', 'calc(100vh - ' + ($("#agendaCarousel").height() + 104) + "px)");
-			$("google-map .angular-google-map-container").css('height', 'calc(100vh - ' + ($("#agendaCarousel").height() + 104) + "px)");
+			$("#google-map").css('height', 'calc(100vh - ' + ($("#agendaCarousel").height() + 164) + "px)");
+			$("google-map .angular-google-map-container").css('height', 'calc(100vh - ' + ($("#agendaCarousel").height() + 164) + "px)");
 		};
 
 		$scope.$watch(

@@ -28,13 +28,13 @@ angular.module('mean.agenda').directive("owlCarousel", function() {
 					lazyLoad: true,
 					responsive: {
 						480: {
-							items: 2
+							items: 4
 						},
 						640: {
-							items: 3
+							items: 6
 						},
 						800: {
-							items: 4
+							items: 8
 						}
 					}
 				});

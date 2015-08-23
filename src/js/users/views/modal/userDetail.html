@@ -4,7 +4,7 @@
 	<!-- HALFBOX -->
 	<div class="contactcontainer">
 		<div class="contact-left" style="text-align: center;">
-			<img ng-src="{{user.avatar || 'img/avatar.png'}}" class="flex-image" alt="" />
+			<img ng-src="{{user.avatar || 'img/avatar.png'}}" class="flex-image" alt="" style="max-height: 300px;width: auto;" />
 			<h2>Skills</h2>
 			<div class="skills" ng-show="user.skills.length > 0">
 				<div class="skillbar" ng-repeat="skill in user.skills" data-percent="{{skill.value}}%">
