@@ -12,15 +12,20 @@ angular.module('mean.links').controller('LinkController', ['$scope', 'Global', '
 			title: "objectifjapon TKT",
 			type: "links"
 		}, {
-			adress: "http://www.youtube.com/embed/eh-0knDpn5g",
+			adress: "http://deux-noix-nz.blogspot.fr/",
 			image: "img/nico.jpg",
 			title: "Deux noix au pays des kiwis",
-			type: "videos"
+			type: "links"
 		}, {
 			adress: "http://bandedemickeysen4l.com/",
 			image: "img/momo.jpeg",
 			title: "Bande de Mickeys en 4L",
 			type: "links"
+		}, {
+			adress: "http://player.vimeo.com/video/123552751",
+			image: "img/512928821_590x332.webp",
+			title: "Demo de loup",
+			type: "videos"
 		}];
 
 		$scope.getCssClass = function(type) {
@@ -70,7 +75,7 @@ angular.module('mean.links').controller('CreateLinkController', ['$scope', 'Glob
 			type: $scope.options[0].identifier
 		};
 
-		$scope.hideAlert = function(){
+		$scope.hideAlert = function() {
 			$scope.isAlertHidden = true;
 		};
 

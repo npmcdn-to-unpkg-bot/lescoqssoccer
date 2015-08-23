@@ -13,7 +13,7 @@
 				ng-repeat="user in team track by $index"
 				team-carousel-item="{{$index}}"
 				class="our-team">
-				<img ng-src="{{user.avatar || 'img/photos/team2.jpg'}}" alt="user.name" />
+				<img ng-src="{{user.avatar || 'img/photos/team2.jpg'}}" alt="user.name"/>
 				<figcaption>
 					<div>
 						<h5>{{user.name}}</h5>
@@ -23,7 +23,7 @@
 						<ul class="our-team-icons">
 							<li>
 								<a href="#!" data-ng-click="showUserDetail($event, user)">
-									<img class="social-icon" src="img/zoom.png" alt="" />
+									<img class="social-icon" src="img/zoom.png" alt="" style="padding: 30px;"/>
 								</a>
 							</li>
 						</ul>
