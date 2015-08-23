@@ -39,6 +39,10 @@ angular.module('mean.agenda').directive("owlCarousel", function() {
 					}
 				});
 
+				scope.$on('$destroy', function() {
+					$(element).data('owlCarousel').trigger('remove.owl.carousel', 0);
+				});
+
 				$(".owl-next").click(function() {
 					scope.setNextElement();
 				});

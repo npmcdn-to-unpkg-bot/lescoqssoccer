@@ -1,18 +1,18 @@
 <section class="rightcontainer">
 
 	<div class="subtitle">
+		<a href="#!/agenda" class="back-icon">
+		</a>
 		<h1 class="ellipsis">{{userEvent.title || 'Nouvel évènement'}}</h1>
 		<a href="#!" class="ok-icon" data-ng-click="create()">
 		</a>
 	</div>
-
 	<div class="pagecontent">
 		<form role="form">
 			<div class="contactcontainer">
 
 				<!-- CONTACT LEFT -->
 				<div class="contact-left">
-
 					<label for="title">Nom</label>
 					<input type="text" name="title" data-ng-model="userEvent.title" required/>
 
@@ -22,7 +22,6 @@
 						data-ng-model="userEvent.eventType"
 						ng-options="eventType.identifier as eventType.name for eventType in eventTypes">
 					</select>
-
 					<label for="content">Contenu</label>
 					<textarea
 					type="text"
@@ -32,7 +31,6 @@
 					</textarea>
 
 				</div>
-
 				<!-- CONTACT RIGHT -->
 				<div class="contact-right">
 
@@ -49,7 +47,6 @@
 						show-button-bar="false"
 						required/>
 					</div>
-
 					<label for="endsAt">Fin</label>
 					<div>
 						<input
@@ -70,7 +67,6 @@
 						data-ng-model="userEvent.recursOn"
 						ng-options="recurseOn.identifier as recurseOn.value for recurseOn in eventRepeater">
 					</select>
-
 				</div>
 			</div>
 			<div class="clear"></div>
@@ -84,7 +80,6 @@
 			ng-disabled="search.length === 0"
 			title="search"
 			value="GO"/>
-
 			<google-map
 			center="map.center"
 			zoom="map.zoom"

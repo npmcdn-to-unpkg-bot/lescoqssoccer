@@ -1,21 +1,22 @@
 <section class="rightcontainer">
 
 	<div class="subtitle">
-	    <h1 class="ellipsis">{{article.title || 'Nouvel article'}}</h1>
-	    <a href="#!" class="ok-icon" data-ng-click="create()">
-	    </a>
+		<a href="#!/articles" class="back-icon">
+		</a>
+		<h1 class="ellipsis">{{article.title || 'Nouvel article'}}</h1>
+		<a href="#!" class="ok-icon" data-ng-click="create()">
+		</a>
 	</div>
-
 	<!-- ARTICLE IMAGE -->
 	<div>
 		<img ng-src="{{article.image && article.image || 'img/photos/large2.jpg'}}" style="width: 100%;">
 	</div>
 	<div class="icon-container-bg" style="padding-bottom: 0;">
-        <div class="icon-container bottom-slider" style="text-align: center;">
-            <div class="icon" style="float: inherit;">
-                <div class="diamond">
-	        		<input type="text" data-ng-model="article.title" required/>
-	        		<label for="upload-profile-picture" class="label-upload-profile-picture">
+		<div class="icon-container bottom-slider" style="text-align: center;">
+			<div class="icon" style="float: inherit;">
+				<div class="diamond">
+					<input type="text" data-ng-model="article.title" required/>
+					<label for="upload-profile-picture" class="label-upload-profile-picture">
 						<input
 						id="upload-profile-picture"
 						nv-file-select
@@ -23,15 +24,14 @@
 						type="file"
 						class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
 					</label>
-                </div>
-            </div>
-        </div>
-    </div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- ARTICLE CONTENT -->
 	<div class="pagecontent">
 		<form role="form">
-
 			<wysiwyg
 			textarea-class="cm-wysiwyg"
 			textarea-height="200px"

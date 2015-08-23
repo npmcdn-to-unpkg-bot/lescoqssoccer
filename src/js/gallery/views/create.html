@@ -1,17 +1,17 @@
 <section class="rightcontainer">
 
 	<div class="subtitle">
+		<a href="#!/albums" class="back-icon">
+		</a>
 		<h1>{{album.name || 'Nouvel album'}}</h1>
 		<a href="#!" class="ok-icon" data-ng-click="saveAlbum()">
 		</a>
 	</div>
-
 	<div class="pagecontent">
 		<form role="form">
 
 			<label for="name" class="control-label">{{'gallery_name' | translate}}</label>
 			<input type="text" name="name" data-ng-model="album.name" ng-mouseleave="saveAlbum(album, !(album._id))" required/>
-
 			<hr/>
 
 			<h2>Photos</h2>
@@ -20,10 +20,9 @@
 			ng-click="uploadFiles();"
 			data-ng-disabled="!album.name"
 			style="margin-bottom: 30px;">
-				<span tooltip="Rentre d'abord un nom" tooltip-placement="right" ng-show="!album.name"></span>
+			<span tooltip="Rentre d'abord un nom" tooltip-placement="right" ng-show="!album.name"></span>
 			Ajouter des photos
 			</button>
-
 			<label for="cover" class="control-label">{{'gallery_cover' | translate}}</label>
 			<select
 				name="cover"
@@ -34,7 +33,6 @@
 			</select>
 
 			<br/>
-
 			<!-- ALBUM IMAGES -->
 			<figure class="caption-image" data-ng-repeat="photo in displayPhotos" style="width: 33%; display: inline-block;">
 				<div>
@@ -42,7 +40,7 @@
 				</div>
 				<figcaption>
 					<a ng-click="deletePhoto(photo);">
-						<img src="css/img/close.png" title="Supprimer la photo" style="width: 40px; vertical-align: sub;" />
+					<img src="css/img/close.png" title="Supprimer la photo" style="width: 40px; vertical-align: sub;" />
 					</a>
 				</figcaption>
 			</figure>
