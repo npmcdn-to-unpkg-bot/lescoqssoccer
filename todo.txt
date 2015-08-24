@@ -3,5 +3,6 @@
 
 - Pagination : articles, suggestions, photos
 - Creation de photos => faire quelque chose de plus propre
+- Création articles => formulaire !!
 
 Bug:
