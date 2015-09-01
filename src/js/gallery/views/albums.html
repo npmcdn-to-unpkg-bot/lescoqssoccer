@@ -1,37 +1,15 @@
-<section class="rightcontainer">
+<section class="rightcontainer" style="background-color: #eb5656;">
 
-    <!-- TITLE -->
-    <div class="subtitle">
-        <h1>Albums photos</h1>
-        <a href="#!/albums/create" class="add-icon">
-        </a>
-    </div>
+	<!-- TITLE -->
+	<div class="subtitle">
+		<h1>Albums photos</h1>
+		<a href="#!/albums/create" class="add-icon">
+		</a>
+	</div>
 
 	<!-- PAGE CONTENT -->
-    <div class="pagecontent albumContainer">
+	<div class="photosContainer">
+		<div deckgrid class="deckgrid deckgrid3" source="albums" cardTemplate="js/gallery/views/albumCard.html"></div>
+	</div>
 
-        <!-- HALFBOX -->
-        <div class="half-box">
-            <div class="half-left">
-                <figure class="caption-image" ng-repeat="album in albums" ng-if="$even">
-                    <div>
-                    	<a href="#!/albums/view/{{album._id}}">
-                        	<img data-ng-src="{{album.coverPicPath || 'img/photos/contact.jpg'}}" alt=""/>
-                        </a>
-                    </div>
-                    <figcaption>{{album.name}}</figcaption>
-                </figure>
-            </div>
-            <div class="half-right">
-                <figure class="caption-image" ng-repeat="album in albums" ng-if="$odd">
-                    <div class="photo-wrapper">
-                    	<a href="#!/albums/view/{{album._id}}">
-                        	<img data-ng-src="{{album.coverPicPath || 'img/photos/contact.jpg'}}" alt=""/>
-                        </a>
-                    </div>
-                    <figcaption>{{album.name}}</figcaption>
-                </figure>
-            </div>
-        </div>
-    </div>
 </section>
