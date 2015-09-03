@@ -15,15 +15,19 @@ angular.module('mean.users').directive("teamCarousel", function() {
 					lazyLoad: true,
 					responsive: {
 						480: {
-							items: 1
+							items: 3
 						},
 						640: {
-							items: 2
+							items: 6
 						},
 						900: {
-							items: 3
+							items: 6
 						}
 					}
+				});
+
+				scope.$on('$destroy', function() {
+					$(element).data('owlCarousel').trigger('remove.owl.carousel', 0);
 				});
 			};
 		}

@@ -1,36 +1,30 @@
 <section class="rightcontainer">
 
-	<!-- PAGE TITLE -->
-	<div class="page-title">
+	<div class="subtitle">
+        <h1>La fine équipe</h1>
+    </div>
 
-		<!-- PAGE TITLE TRANSPARENT BG -->
-		<div class="bgfilter"></div>
-		<h1>La fine équipe</h1>
+	<div class="pagecontent">
+		<div class="box" ng-repeat="user in team">
+      		<div class="boxInner">
+      			<a href="#!" data-ng-click="showUserDetail($event, user)">
+					<img ng-src="{{user.avatar || 'img/photos/team2.jpg'}}" alt="user.name"/>
+					<div class="titleBox">{{user.name || user.username}}</div>
+				</a>
+			</div>
+		</div>
 
-		<!-- OUR TEAM CAROUSEL -->
-		<data-team-carousel class="owl-carousel owl-theme owl-loaded">
-			<figure
-				ng-repeat="user in team track by $index"
-				team-carousel-item="{{$index}}"
-				class="our-team">
-				<img ng-src="{{user.avatar || 'img/photos/team2.jpg'}}" alt="user.name"/>
-				<figcaption>
-					<div>
-						<h5>{{user.name}}</h5>
-						<p>{{user.email}}</p>
+		<hr/>
+		<h2>Classement de la semaine</h2>
+        <dl class="faq">
+            <dt>Deserunt lorem voluptate</dt>
+            <dd>Si quamquam est appellat a nulla est si tamen probant. Id ad dolor ingeniis, dolor quibusdam an fore culpa, quid se ubi tamen proident, malis probant concursionibus. A quorum familiaritatem, aliquip multos probant.O quid laboris ut nam eu illum mentitum. Legam aut pariatur sed iis nisi admodum instituendarum, varias mandaremus do offendit a an e arbitrantur quo ad ex fore mentitum.</dd>
+            <dt>Officia magna si quibusdam</dt>
+            <dd>Occaecat aliqua ipsum eu velit hic qui anim incurreret iudicem ut veniam cernantur transferrem, ex velit in veniam. Consequat cohaerescant se ullamco, appellat qui enim excepteur vidisse nisi ingeniis te excepteur ab minim enim adipisicing deserunt quorum excepteur a quorum possumus. O quid laboris ut nam eu illum mentitum. Legam aut pariatur sed iis nisi admodum instituendarum.</dd>
+            <dt>Multos voluptate hic</dt>
+            <dd>Incurreret nam arbitror graviterque a vidisse quo si varias voluptate, quorum firmissimum iudicem quorum incurreret, a cernantur ne vidisse, occaecat duis noster doctrina anim. O quid laboris ut nam eu illum mentitum. Legam aut pariatur sed iis nisi admodum instituendarum, varias mandaremus do offendit a an e arbitrantur quo ad ex fore mentitum varias mandaremus do offendit a an e arbitrantur quo ad ex fore mentitum</dd>
+        </dl>
 
-						<!-- SOCIAL ICONS -->
-						<ul class="our-team-icons">
-							<li>
-								<a href="#!" data-ng-click="showUserDetail($event, user)">
-									<img class="social-icon" src="img/zoom.png" alt="" style="padding: 30px;"/>
-								</a>
-							</li>
-						</ul>
-
-					</div>
-				</figcaption>
-			</figure>
-		</data-team-carousel>
 	</div>
+
 </section>
