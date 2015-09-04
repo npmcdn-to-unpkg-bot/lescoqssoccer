@@ -18,10 +18,12 @@
         <!-- POST CONTENT -->
         <div class="postcontent">
             <h3><a href="#!/articles/view/{{article._id}}">{{article.title}}</a></h3>
-            <p class="postdate">{{article.created | date:"dd MMM yyyy, H'h'mm"}}</p>
+            <p class="postdate">{{article.created | date:"dd MMM yyyy, H'h'mm"}} </p>
             <div ng-bind-html="getFormattedContent(article.content)" class="articleSummary"></div>
             <p></p>
-            <a href="#!/articles/view/{{article._id}}" class="button">Lire la suite...</a>
+            <a class="tags" href="#" ng-repeat="category in article.categories">
+                {{category.value}}
+            </a>
         </div>
 
     </article>

@@ -7,38 +7,44 @@
 		<a href="#!" class="ok-icon" data-ng-click="create()">
 		</a>
 	</div>
-	<!-- ARTICLE IMAGE -->
-	<div>
-		<img ng-src="{{article.image && article.image || 'img/photos/large2.jpg'}}" style="width: 100%;">
-	</div>
-	<div class="icon-container-bg" style="padding-bottom: 0;">
-		<div class="icon-container bottom-slider" style="text-align: center;">
-			<div class="icon" style="float: inherit;">
-				<div class="diamond">
-					<input type="text" data-ng-model="article.title" required/>
-					<label for="upload-profile-picture" class="label-upload-profile-picture">
+
+	<div class="pagecontent">
+		<form role="form">
+			<h2>Infos</h2>
+			<div class="half-box">
+				<div class="half-left" style="text-align: center;">
+					<img ng-src="{{article.image && article.image || 'img/photos/large2.jpg'}}" class="flex-image" alt=""/>
+					<label class="label-upload-profile-picture button" style="margin: -10px;">
+						Change l'image
 						<input
-						id="upload-profile-picture"
 						nv-file-select
-						uploader="uploader"
 						type="file"
+						uploader="uploader"
 						class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
 					</label>
 				</div>
-			</div>
-		</div>
-	</div>
+				<div class="half-right">
 
-	<!-- ARTICLE CONTENT -->
-	<div class="pagecontent">
-		<form role="form">
+					<label style="float">Titre de l'article</label>
+					<input type="text" data-ng-model="article.title" required/>
+
+					<label style="float">Categories</label>
+					<div class="tags-container">
+	                    <a class="tags" href="#" ng-repeat="category in categories" ng-click="toggleCategory(category, $event)">
+	                    	{{category.value}}
+	                    </a>
+	                </div>
+
+				</div>
+			</div>
+			<h2 style="margin-top: 50px;">Contenu de l'article</h2>
 			<wysiwyg
-			textarea-class="cm-wysiwyg"
-			textarea-height="200px"
-			textarea-required
-			ng-model="article.content"
-			enable-bootstrap-title="true"
-			textarea-menu="customMenu">
+				textarea-class="cm-wysiwyg"
+				textarea-height="200px"
+				textarea-required
+				ng-model="article.content"
+				enable-bootstrap-title="true"
+				textarea-menu="customMenu">
 			</wysiwyg>
 		</form>
 	</div>

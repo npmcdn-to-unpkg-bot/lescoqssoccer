@@ -10,6 +10,11 @@
     <!-- DATE AND ACTIONS -->
     <div class="featured-image-date">
         <p>{{article.created | date:"dd MMM yyyy, H'h'mm"}}</p>
+        <div class="tags-container" style="margin-top: 30px;" ng-show="article.categories && article.categories.length > 0">
+            <a class="tags" href="#" ng-repeat="category in article.categories">
+                {{category.value}}
+            </a>
+        </div>
         <input
         type="button"
         class="button pull-right"

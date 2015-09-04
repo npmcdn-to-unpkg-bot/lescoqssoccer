@@ -8,24 +8,23 @@
 	<input type="radio" id="books" value="4" name="tractor" />
 
 	  <nav>
-	  <label for="profile" class='fontawesome-camera-retro'></label>
-	  <label for="settings" class='fontawesome-film'></label>
-	  <label for="posts" class='fontawesome-calendar'></label>
-	  <label for="books" class='fontawesome-list-alt'></label>
+	  <label for="profile" class='fontawesome-user'></label>
+	  <label for="posts" class='fontawesome-cogs'></label>
+	  <label for="books" class='fontawesome-comments'></label>
 	  </nav>
 
 	  <article class='uno'>
 	    <h2>
 	      <img ng-src="{{user.avatar || 'img/avatar.png'}}" alt=''/>
-	      {{user.name}}
-	      <span>Spanish Css blog</span></h2>
+	      {{user.name || user.username}}
+	      <span>Présentation</span>
+	    </h2>
 	   <footer>
 	    <ul>
-	      <li class='fontawesome-link'></li>
-	      <li class='fontawesome-paper-clip'></li>
-	      <li class='fontawesome-sitemap'></li>
-	      <li class='fontawesome-wrench'></li>
-	      <li class='fontawesome-magic'></li>
+	      <a href="#"><li class='fontawesome-hand-right'></li></a>
+	      <a href="#"><li class='fontawesome-beer'></li></a>
+	      <a href="#"><li class='fontawesome-coffee'></li></a>
+	      <a href="#"><li class='fontawesome-hand-left'></li></a>
 	    </ul>
 	   </footer>
 	  </article>
@@ -34,24 +33,21 @@
 	    <p>Si hay algún fenómeno en la web que sea lo más parecido a las setas eso son los blogs, cursos y enseñanzas web. Todo lo relativo a la divulgación, de cualquier materia o parcela del conocimiento humano, angelical o mefistofélico, tiene su oferta, sus "maestros" y sus cocinillas visionarios.</p>
 	  </article>
 
-	  <article class='tres fontawesome-file-alt'>
-	    <ol>
-	      <li>Dimensionado de imágenes y objetos en CSS</li>
-	      <li>Evita pulsaciones no deseadas al hacer scroll</li>
-	      <li>¿Qué es CSS?</li>
-	      <li>CSS Style Attributes. La especificación</li>
-	      <li>Múltiples labels por cada input </li>
-	      <li>Sintaxis de Css y Glosario de términos</li>
-	    </ol>
+	  <article class='tres'>
+	  	<h2 style="margin-bottom: 30px;">Compétences</h2>
+	    <div class="skills" ng-show="user.skills.length > 0">
+			<div class="skillbar" ng-repeat="skill in user.skills" data-percent="{{skill.value}}%" style="margin-bottom:20px;">
+				<div class="skillbar-title" style="position:absolute; z-index: 2;"><span>{{skill.name}}</span></div>
+				<div class="skillbar-bar" name="{{skill.name}}"></div>
+				<div class="skill-bar-percent" style="position:absolute;">{{skill.value}}%</div>
+			</div>
+		</div>
+		<div class="skills" ng-show="user.skills.length === 0">
+			<p>Ce pauvre gars ne sait rien faire...</p>
+		</div>
 	  </article>
 
-	  <article class='cuatro fontawesome-copy'>
-	    <dl>
-	      <dt>Guía de Transiciones Css</dt>
-	      <dd>Todas y cada una de las propiedades css que componen el grupo de las transitions con demos.</dd>
-	      <dt>@Font-face y sus problemas</dt>
-	      <dd>Los problemas más comunes y sus soluciones, que suelen presentarse al utilizar la regla @font-face de Css para mostrar los textos en tipografías distintas a las safety fonts.</dd>
-	    </dl>
+	  <article class='cuatro'>
 	  </article>
 	</section>
 </div>

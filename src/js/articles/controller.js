@@ -15,9 +15,9 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 		};
 
 		$scope.pageChanged = function(newPage) {
-			if(newPage === 1){
+			if (newPage === 1) {
 				$location.path("/articles");
-			} else{
+			} else {
 				$location.path("/articles/" + newPage);
 			}
 		};
@@ -106,21 +106,55 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 
 		$scope.global = Global;
 		$scope.ArticlesCollection = ArticlesCollection;
-		$scope.article = Article;
-
-		$scope.create = function() {
-
-			if (!$scope.article._id) {
-				$scope.ArticlesCollection.add($scope.article).then(function() {
-					$location.path("/articles");
-				});
-			} else {
-				$scope.ArticlesCollection.update($scope.article).then(function() {
-					$location.path("/articles");
-				});
-			}
+		$scope.article = Article || {
+			title: "",
+			categories: [],
+			content: "",
+			image:""
 		};
 
+		/***
+		CATEGORIES
+		***/
+		$scope.categories = [{
+			id: "1",
+			value: "Voluptate"
+		}, {
+			id: "2",
+			value: "Deserani"
+		}, {
+			id: "3",
+			value: "Quo eram"
+		}, {
+			id: "4",
+			value: "Mentitum amet sit"
+		}, {
+			id: "5",
+			value: "Cillum"
+		}, {
+			id: "6",
+			value: "Incurreret"
+		}, {
+			id: "7",
+			value: "Eram amet aliqua"
+		}];
+
+		$scope.toggleCategory = function(category, evt){
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			if($scope.article.categories.indexOf(category) === -1){
+				$scope.article.categories.push(category);
+			} else{
+				$scope.article.categories.splice($scope.article.categories.indexOf(category), 1);
+			}
+
+		};
+
+		/***
+		FILE UPLOAD CONFIG
+		***/
 		$scope.uploader = new FileUploader({
 			scope: $scope,
 			url: '/upload/photo',
@@ -134,7 +168,9 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 			$scope.article.image = response.path;
 		};
 
-		// Use by wysiwyg
+		/***
+		WYSIWYG CONFIG
+		***/
 		$scope.customMenu = [
 			['bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript'],
 			['font'],
@@ -146,6 +182,19 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 			['code', 'quote', 'paragragh'],
 			['link', 'image']
 		];
+
+		$scope.create = function() {
+
+			if (!$scope.article._id) {
+				$scope.ArticlesCollection.add($scope.article).then(function() {
+					$location.path("/articles");
+				});
+			} else {
+				$scope.ArticlesCollection.update($scope.article).then(function() {
+					$location.path("/articles");
+				});
+			}
+		};
 
 	}
 ]);
