@@ -29,24 +29,23 @@
 				<div id="accordion-container" style="margin-top: 0;">
 					<div class="accordion-header">Infos du compte</div>
 					<div class="accordion-content">
+
 						<label>{{'profile_firstname' | translate}}</label>
 						<input type="text" data-ng-model="user.name" required/>
 
 						<label>{{'profile_lastname' | translate}}</label>
 						<input type="text" data-ng-model="user.lastname" required/>
+
 						<label>{{'profile_email' | translate}}</label>
 						<input type="text" data-ng-model="user.email" required/>
 
 						<label>{{'profile_username' | translate}}</label>
 						<input type="text" data-ng-model="user.username" required/>
-						<label>{{'profile_password' | translate}}</label>
-						<input type="password" data-ng-model="heyhey" required/>
 
-						<label>{{'profile_confirm' | translate}}</label>
-						<input type="password" data-ng-model="heyhey" required/>
 						<label>Présentation</label>
-						<textarea data-ng-model="presentation">
+						<textarea data-ng-model="user.presentation">
 						</textarea>
+
 					</div>
 
 					<div class="accordion-header">Skills</div>
