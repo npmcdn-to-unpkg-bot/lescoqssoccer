@@ -2372,6 +2372,18 @@ Albums
 	opacity: 0.3;
 }
 
+.editAlbumFigure{
+    width: 33%;
+    display: inline-block;
+}
+
+.editAlbumFigure figcaption img{
+    width: 40px; vertical-align: sub;
+}
+
+.editAlbumFigure figcaption img:hover{
+    cursor: pointer;
+}
 
 /***
 Transitions animations

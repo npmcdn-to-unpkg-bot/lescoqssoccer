@@ -1,8 +1,14 @@
+Reste à faire:
+
 - Section team + Cote de popularité / tache cron d'envoie de point en début de semaine / trouver systeme
 - Section vote (dans les suggestions)
+- Recherche
 
-- Pagination : articles, suggestions, photos
-- Creation de photos => faire quelque chose de plus propre
-- Création articles => formulaire !!
+- Pagination : suggestions, photos
+- Articles: tags
+- Metadatas du site
+
+Performance - Améliorations:
+- Uploader fichiers dans un espace temporaire
 
 Bug:

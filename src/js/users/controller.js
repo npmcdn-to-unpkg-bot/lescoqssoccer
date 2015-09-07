@@ -6,15 +6,6 @@ angular.module('mean.users').controller('TeamController', ['$scope', 'Global', '
 		$scope.global = Global;
 		$scope.team = Team;
 
-		$scope.showUser = function(evt, user) {
-
-			evt.preventDefault();
-			evt.stopPropagation();
-
-			//show selected user
-		};
-
-
 		$scope.showUserDetail = function(evt, user) {
 
 			evt.preventDefault();

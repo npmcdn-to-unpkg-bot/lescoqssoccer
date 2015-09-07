@@ -4,43 +4,53 @@
 		<a href="#!/albums" class="back-icon">
 		</a>
 		<h1>{{album.name || 'Nouvel album'}}</h1>
-		<a href="#!" class="ok-icon" data-ng-click="saveAlbum()">
+		<a href="#!" class="ok-icon" data-ng-click="saveAlbum($event)">
 		</a>
 	</div>
 	<div class="pagecontent">
+
+		<div class="info-box" ng-show="showInfo" style="margin-bottom: 30px;">
+            <span class="info-box-close" ng-click="hideInfo()"></span>
+            <h4>Mets au moins une photo!!</h4>
+        </div>
+
 		<form role="form">
+			<div class="half-box">
 
-			<label for="name" class="control-label">{{'gallery_name' | translate}}</label>
-			<input type="text" name="name" data-ng-model="album.name" ng-mouseleave="saveAlbum(album, !(album._id))" required/>
-			<hr/>
+				<div class="half-left">
+					<label for="name" class="control-label">{{'gallery_name' | translate}}</label>
+					<input type="text" name="name" data-ng-model="album.name" required/>
+				</div>
 
-			<h2>Photos</h2>
+				<div class="half-right">
+					<label for="cover" class="control-label">{{'gallery_cover' | translate}}</label>
+					<select
+						name="cover"
+						ng-model="album.coverPicPath"
+						data-ng-options="photo.filepath as photo.name for photo in album.photoList"
+						style="margin-bottom: 0;">
+					</select>
+				</div>
+
+			</div>
+
 			<button
 			class="button"
 			ng-click="uploadFiles();"
-			data-ng-disabled="!album.name"
 			style="margin-bottom: 30px;">
-			<span tooltip="Rentre d'abord un nom" tooltip-placement="right" ng-show="!album.name"></span>
 			Ajouter des photos
 			</button>
-			<label for="cover" class="control-label">{{'gallery_cover' | translate}}</label>
-			<select
-				name="cover"
-				data-ng-disabled="displayPhotos.length === 0"
-				data-ng-model="album.coverPic"
-				data-ng-change="setCoverPic(coverPic)"
-				data-ng-options="f as f.name for f in displayPhotos">
-			</select>
 
 			<br/>
+
 			<!-- ALBUM IMAGES -->
-			<figure class="caption-image" data-ng-repeat="photo in displayPhotos" style="width: 33%; display: inline-block;">
+			<figure class="caption-image editAlbumFigure" data-ng-repeat="photo in album.photoList">
 				<div>
 					<img data-ng-src="{{photo.filepath}}"/>
 				</div>
 				<figcaption>
 					<a ng-click="deletePhoto(photo);">
-					<img src="css/img/close.png" title="Supprimer la photo" style="width: 40px; vertical-align: sub;" />
+						<img src="css/img/close.png" title="Supprimer la photo"/>
 					</a>
 				</figcaption>
 			</figure>

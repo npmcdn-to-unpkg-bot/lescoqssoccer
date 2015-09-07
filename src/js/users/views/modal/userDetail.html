@@ -2,54 +2,58 @@
 	<span class="info-box-close" data-ng-click="cancel()"></span>
 
 	<section class="userDetail">
-	<input type="radio" id="profile" value="1" name="tractor" checked='checked' />
-	<input type="radio" id="settings" value="2" name="tractor" />
-	<input type="radio" id="posts" value="3" name="tractor" />
-	<input type="radio" id="books" value="4" name="tractor" />
+		<input type="radio" id="profile" value="1" name="tractor" checked='checked' />
+		<input type="radio" id="settings" value="2" name="tractor" />
+		<input type="radio" id="posts" value="3" name="tractor" />
+		<input type="radio" id="books" value="4" name="tractor" />
 
-	  <nav>
-	  <label for="profile" class='fontawesome-user'></label>
-	  <label for="posts" class='fontawesome-cogs'></label>
-	  <label for="books" class='fontawesome-comments'></label>
-	  </nav>
+		<nav>
+		  	<label for="profile" class='fontawesome-user'></label>
+		  	<label for="posts" class='fontawesome-cogs'></label>
+		  	<label for="books" class='fontawesome-comments'></label>
+		</nav>
 
-	  <article class='uno'>
-	    <h2>
-	      <img ng-src="{{user.avatar || 'img/avatar.png'}}" alt=''/>
-	      {{user.name || user.username}}
-	      <span>{{user.presentation || "Pas de présentation"}}</span>
-	    </h2>
-	   <footer>
-	    <ul>
-	      <a href="#"><li class='fontawesome-hand-right'></li></a>
-	      <a href="#"><li class='fontawesome-beer'></li></a>
-	      <a href="#"><li class='fontawesome-coffee'></li></a>
-	      <a href="#"><li class='fontawesome-hand-left'></li></a>
-	    </ul>
-	   </footer>
-	  </article>
+	  	<article class='uno'>
+	    	<h2>
+	      		<img ng-src="{{user.avatar || 'img/avatar.png'}}" alt=''/>
+	      		{{user.name || user.username}}
+	      		<span>{{user.presentation || "Pas de présentation"}}</span>
+	    	</h2>
+	   		<footer>
+	    		<ul>
+	      			<a href="#"><li class='fontawesome-hand-right'></li></a>
+	      			<a href="#"><li class='fontawesome-beer'></li></a>
+	     			<a href="#"><li class='fontawesome-coffee'></li></a>
+	      			<a href="#"><li class='fontawesome-hand-left'></li></a>
+	    		</ul>
+	   		</footer>
+	  	</article>
 
-	  <article class='dos fontawesome-wrench'>
-	    <p>Si hay algún fenómeno en la web que sea lo más parecido a las setas eso son los blogs, cursos y enseñanzas web. Todo lo relativo a la divulgación, de cualquier materia o parcela del conocimiento humano, angelical o mefistofélico, tiene su oferta, sus "maestros" y sus cocinillas visionarios.</p>
-	  </article>
+	  	<article class='dos fontawesome-wrench'>
+	    	<p>Si hay algún fenómeno en la web que sea lo más parecido a las setas eso son los blogs, cursos y enseñanzas web. Todo lo relativo a la divulgación, de cualquier materia o parcela del conocimiento humano, angelical o mefistofélico, tiene su oferta, sus "maestros" y sus cocinillas visionarios.</p>
+	  	</article>
 
-	  <article class='tres'>
-	  	<h2 style="margin-bottom: 30px;">Compétences</h2>
-	    <div class="skills" ng-show="user.skills.length > 0">
-			<div class="skillbar" ng-repeat="skill in user.skills" data-percent="{{skill.value}}%" style="margin-bottom:20px;">
-				<div class="skillbar-title" style="position:absolute; z-index: 2;"><span>{{skill.name}}</span></div>
-				<div class="skillbar-bar" name="{{skill.name}}"></div>
-				<div class="skill-bar-percent" style="position:absolute;">{{skill.value}}%</div>
-			</div>
-		</div>
-		<div class="skills" ng-show="user.skills.length === 0">
-			<p>Ce pauvre gars ne sait rien faire...</p>
-		</div>
-	  </article>
+	  	<article class='tres'>
+	  		<h2 style="margin-bottom: 30px;">Compétences</h2>
+	   			<div class="skills" ng-show="user.skills.length > 0">
+					<div class="skillbar" ng-repeat="skill in user.skills" data-percent="{{skill.value}}%" style="margin-bottom:20px;">
+						<div class="skillbar-title" style="position:absolute; z-index: 2;">
+							<span>{{skill.name}}</span>
+						</div>
+						<div class="skillbar-bar" name="{{skill.name}}"></div>
+						<div class="skill-bar-percent" style="position:absolute;">{{skill.value}}%</div>
+					</div>
+				</div>
+				<div class="skills" ng-show="user.skills.length === 0">
+					<p>Ce pauvre gars ne sait rien faire...</p>
+				</div>
+	  	</article>
 
-	  <article class='cuatro'>
-	  </article>
+	  	<article class='cuatro'>
+	  	</article>
+
 	</section>
 </div>
+
 <cm-progressbar>
 </cm-progressbar>

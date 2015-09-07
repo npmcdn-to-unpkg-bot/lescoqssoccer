@@ -58,7 +58,7 @@ angular.module('mean.links').service('LinksCollection', ['Links',
 					return data;
 				}).$promise;
 			}
-		}
+		};
 
 		return LinksCollection;
 	}

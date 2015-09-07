@@ -1,41 +1,38 @@
 'use strict';
 
-angular.module('mean.albums').controller('AlbumDetailController', ['$location', '$scope', '$modal', 'PhotoMgrService', 'album', 'FileUploader',
+angular.module('mean.albums').controller('AlbumDetailController', ['$location', '$scope', 'Global', '$modal', 'AlbumService', 'album', 'FileUploader',
 
-	function($location, $scope, $modal, PhotoMgrService, album, FileUploader) {
+	function($location, $scope, Global, $modal, AlbumService, album, FileUploader) {
 
-		$scope.pmSvc = PhotoMgrService;
-		$scope.newAlbum = $scope.pmSvc.newAlbum();
-		$scope.pmSvc.filter = '';
+		$scope.global = Global;
 		$scope.album = album;
-		$scope.displayPhotos = [];
 
-		window._.each(album.photoList, function(entry) {
-			$scope.displayPhotos.push(entry._id);
-		});
+		$scope.saveAlbum = function(evt) {
 
-		if ($scope.displayPhotos.length > 0) {
-			$scope.displayPhoto = $scope.displayPhotos[0];
-			$scope.coverPic = window._.findWhere($scope.displayPhotos, {
-				_id: album.coverPic
-			})
-		};
+			evt.preventDefault();
+			evt.stopPropagation();
 
-		$scope.saveAlbum = function(album, redirect) {
+			if($scope.album.photoList.length > 0){
 
-			if (!album._id) { //album is new
-				album.photos = [];
-				album.order = albums.length;
-			}
-
-			$scope.pmSvc.saveAlbum(album).then(function(data) {
-
-				if (redirect) {
-					$location.path('/albums/detail/' + data._id);
-				} else {
-					$scope.newAlbum = $scope.pmSvc.newAlbum();
+				if(!$scope.album.coverPicPath){
+					$scope.album.coverPicPath = $scope.album.photoList[0].filepath;
 				}
-			});
+
+				if ($scope.album._id) {
+					AlbumService.updateAlbum($scope.album).then(function(data) {
+						$location.path('/albums/view/' + data._id);
+					});
+				} else {
+					AlbumService.saveAlbum($scope.album).then(function(data) {
+						$location.path('/albums/view/' + data._id);
+					});
+				}
+
+			} else {
+
+				$scope.showInfo = true;
+
+			}
 		};
 
 		$scope.uploadFiles = function() {
@@ -59,45 +56,26 @@ angular.module('mean.albums').controller('AlbumDetailController', ['$location', 
 			$scope.uploader.onCompleteItem = function(item, response, status, headers) {
 				console.info('Complete', item, response);
 
-				$scope.photo = PhotoMgrService.newPhoto({
+				$scope.album.photoList.push({
+					id: $scope.global.guid(),
 					filepath: response.path,
 					name: response.name
 				});
 
-				$scope.pmSvc.savePhoto($scope.photo).then(function(photo) {
-					return photo;
-				}).then(function(photo) {
-					$scope.addPhotoToAlbum(photo);
-				});
 			};
 		};
 
-		$scope.setCoverPic = function(photo) { //used by select to set photoId and path of the album's cover photo
-			$scope.album.coverPicPath = photo.filepath;
-			$scope.album.coverPic = photo._id;
-		};
-
-		$scope.addPhotoToAlbum = function(addedPhoto) {
-
-			$scope.pmSvc.editAlbumPhotos('add', addedPhoto, album).$promise.then(function(data) {
-
-				$scope.displayPhotos.push(data.photo);
-				$scope.displayPhoto = data.photo;
-
-				if (!$scope.album.coverPicPath) {
-					$scope.setCoverPic(data.photo);
-				}
-			});
-		};
-
 		$scope.deletePhoto = function(removedPhoto) {
-			$scope.displayPhotos.splice(window._.indexOf($scope.displayPhotos, removedPhoto), 1);
-			$scope.pmSvc.editAlbumPhotos('remove', removedPhoto, album);
+			$scope.album.photoList.splice(window._.indexOf($scope.album.photoList, removedPhoto), 1);
+		};
+
+		$scope.hideInfo = function() {
+			$scope.showInfo = false;
 		};
 	}
 ]);
 
-angular.module('mean.albums').controller('AlbumsController', ['$scope', 'Global', '$http', '$window', '$modal','albums',
+angular.module('mean.albums').controller('AlbumsController', ['$scope', 'Global', '$http', '$window', '$modal', 'albums',
 
 	function($scope, Global, $http, $window, $modal, albums) {
 
@@ -107,12 +85,11 @@ angular.module('mean.albums').controller('AlbumsController', ['$scope', 'Global'
 	}
 ]);
 
-angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global', '$http', '$window', '$modal', 'PhotoMgrService', 'album',
+angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global', '$http', '$window', '$modal', 'AlbumService', 'album',
 
-	function($scope, Global, $http, $window, $modal, PhotoMgrService, album) {
+	function($scope, Global, $http, $window, $modal, AlbumService, album) {
 
 		$scope.global = Global;
-		$scope.pmSvc = PhotoMgrService;
 		$scope.album = album;
 
 		$scope.deleteAlbum = function(evt) {
@@ -133,7 +110,7 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 			modalInstance.result.then(function() {
 
 				// Delete the album and either update album list or redirect to it
-				$scope.pmSvc.deleteAlbum($scope.album).then(function() {
+				AlbumService.deleteAlbum($scope.album).then(function() {
 					$scope.albums.splice(window._.indexOf($scope.albums, $scope.album), 1); //remove from list
 				});
 
@@ -163,7 +140,7 @@ var PhotoMgrData = {
 	album: function(AlbumsCollection, $route) {
 		return $route.current.params.albumId ? AlbumsCollection.get({
 			id: $route.current.params.albumId
-		}).$promise : new AlbumsCollection();
+		}).$promise : {photoList: []};
 	},
 
 	albums: function(AlbumsCollection, $route, $location) { //return all albums only if URL /albums/* but not /albums/add
