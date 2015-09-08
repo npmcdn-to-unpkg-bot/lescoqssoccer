@@ -85,9 +85,9 @@ angular.module('mean.albums').controller('AlbumsController', ['$scope', 'Global'
 	}
 ]);
 
-angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global', '$http', '$window', '$modal', 'AlbumService', 'album',
+angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global', '$location', '$http', '$window', '$modal', 'AlbumService', 'album',
 
-	function($scope, Global, $http, $window, $modal, AlbumService, album) {
+	function($scope, Global, $location, $http, $window, $modal, AlbumService, album) {
 
 		$scope.global = Global;
 		$scope.album = album;
@@ -111,7 +111,7 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 
 				// Delete the album and either update album list or redirect to it
 				AlbumService.deleteAlbum($scope.album).then(function() {
-					$scope.albums.splice(window._.indexOf($scope.albums, $scope.album), 1); //remove from list
+					$location.path('/albums');
 				});
 
 			});

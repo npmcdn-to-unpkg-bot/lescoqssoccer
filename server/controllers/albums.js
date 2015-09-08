@@ -52,9 +52,19 @@ exports.updateAlbum = function(req, res) {
 exports.deleteAlbum = function(req, res) {
 	Album.findById(req.params.id, function(err, doc) {
 		if (!err) {
+
+			var files = _.extend({}, doc.photoList);
 			doc.remove(function() {
 				res.send(req.body);
+
+				//remove files on filesystem
+				_.each(files, function(file){
+					if(file.filepath){
+						fs.unlink(file.filepath);
+					}
+				});
 			});
+
 		} else {
 			console.log("error: " + err);
 		}
