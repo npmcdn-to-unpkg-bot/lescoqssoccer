@@ -272,6 +272,7 @@ blockquote,i,em {
     padding: 60px;
     position: relative;
     min-height: calc(100vh - 104px);
+    display: -webkit-box;
 }
 .page-title {
     padding: 60px 0px 60px 0px;
@@ -2373,7 +2374,6 @@ Albums
 }
 
 .editAlbumFigure{
-    width: 33%;
     display: inline-block;
 }
 
@@ -2383,6 +2383,8 @@ Albums
 
 .editAlbumFigure figcaption img:hover{
     cursor: pointer;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
 }
 
 /***
@@ -2506,6 +2508,14 @@ Deckgrid configurations
 
 .deckgrid3 .column.size-1-3 {
     padding: 0 10px;
+}
+
+.deckgrid3.createAlbum .column.size-1-3:first-child {
+    padding: 0 10px 0 0;
+}
+
+.deckgrid3.createAlbum .column.size-1-3:last-child {
+    padding: 0 0 0 10px;
 }
 
 .deckgrid .column.size-1-3 {
