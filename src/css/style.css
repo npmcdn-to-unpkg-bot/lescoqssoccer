@@ -2807,11 +2807,14 @@ section.userDetail {
 }
 .userDetail nav:after {
   content:'';
-  width: 33.33%;
+  width: 33.34%;
   height: 5rem;
   background: #414141;
   position: absolute;
   transition: .5s;
+}
+.userDetail nav:not(:last-child):after {
+  width: 33.34%;
 }
 .userDetail input {
   display: none;

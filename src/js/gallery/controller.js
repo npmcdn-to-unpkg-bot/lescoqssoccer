@@ -134,7 +134,7 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 	}
 ]);
 
-//To Pre-load Album & Photo data before route change
+//To Pre-load Album before route change
 var PhotoMgrData = {
 
 	album: function(AlbumsCollection, $route) {
