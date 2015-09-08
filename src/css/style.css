@@ -272,7 +272,6 @@ blockquote,i,em {
     padding: 60px;
     position: relative;
     min-height: calc(100vh - 104px);
-    display: -webkit-box;
 }
 .page-title {
     padding: 60px 0px 60px 0px;

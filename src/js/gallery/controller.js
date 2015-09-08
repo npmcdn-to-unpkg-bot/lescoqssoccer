@@ -12,7 +12,7 @@ angular.module('mean.albums').controller('AlbumDetailController', ['$location', 
 			evt.preventDefault();
 			evt.stopPropagation();
 
-			if($scope.album.photoList.length > 0){
+			if($scope.album.name !== "" && $scope.album.photoList.length > 0){
 
 				if(!$scope.album.coverPicPath){
 					$scope.album.coverPicPath = $scope.album.photoList[0].filepath;
@@ -75,9 +75,9 @@ angular.module('mean.albums').controller('AlbumDetailController', ['$location', 
 	}
 ]);
 
-angular.module('mean.albums').controller('AlbumsController', ['$scope', 'Global', '$http', '$window', '$modal', 'albums',
+angular.module('mean.albums').controller('AlbumsController', ['$scope', 'Global', 'albums',
 
-	function($scope, Global, $http, $window, $modal, albums) {
+	function($scope, Global, albums) {
 
 		$scope.global = Global;
 		$scope.albums = albums;
