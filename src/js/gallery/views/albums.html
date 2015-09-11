@@ -7,13 +7,14 @@
 		</a>
 	</div>
 
-	<!-- PAGE CONTENT -->
-	<div class="photosContainer">
-		<div deckgrid class="deckgrid deckgrid3" source="albums" cardTemplate="js/gallery/views/albumCard.html"></div>
-	</div>
-
+	<!-- EMPTY SECTION -->
 	<div class="pagecontent" ng-show="albums.length === 0" style="text-align: center;">
 		<h4>Pas encore d'albums</h4>
+	</div>
+
+	<!-- PAGE CONTENT -->
+	<div class="photosContainer" ng-show="albums.length > 0">
+		<div deckgrid class="deckgrid deckgrid3" source="albums" cardTemplate="js/gallery/views/albumCard.html"></div>
 	</div>
 
 </section>

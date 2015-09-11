@@ -2340,6 +2340,11 @@ Articles
     font-weight: 200;
 }
 
+.postcontent .tags:hover{
+    background-color: #414141;
+    cursor: default;
+}
+
 /***
 Albums
 ***/
