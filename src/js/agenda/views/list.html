@@ -5,13 +5,14 @@
 		<h1>Agenda</h1>
 		<a href="#!/agenda/create" class="add-icon">
 		</a>
-		<a href="#!" class="calendar-icon" ng-click="openCalendar($event)">
+		<a href="#!" class="calendar-icon" ng-click="openCalendar($event)" ng-show="filteredAgenda.length > 0">
 		</a>
 	</div>
 
 	<!-- EMPTY SECTION -->
 	<div class="pagecontent" style="text-align: center;" ng-show="filteredAgenda.length === 0">
-		<h4>Pas d'évènement</h4>
+		<img src="img/ycoeBe8Mi.png" style="width:200px; height:200px;">
+		<h4 style="width: 500px; margin: auto;">Pas d'évènement encore coco, créer en un petit là-haut pour organiser quelque chose avé les copaings!</h4>
 	</div>
 
 	<!-- EVENT CAROUSEL -->
