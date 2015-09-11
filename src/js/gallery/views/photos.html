@@ -11,10 +11,10 @@
 		<li>
 			<a href="#!" data-ng-click="download($event);">Télécharger</a>
 		</li>
-		<li ng-show="global.user._id === album.user">
+		<li ng-show="global.user._id === album.user._id">
 			<a href="#!/albums/edit/{{album._id}}">Editer</a>
 		</li>
-		<li ng-show="global.user._id === album.user">
+		<li ng-show="global.user._id === album.user._id">
 			<a href="#!" data-ng-click="deleteAlbum($event);">Supprimer</a>
 		</li>
 	</ul>

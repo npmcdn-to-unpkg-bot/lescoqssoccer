@@ -5,5 +5,8 @@
 		data-imageloaded data-loadedclass="animation-faded" alt="" style="border: 10px solid white;" />
 		</a>
 	</div>
-	<figcaption class="two-line-ellipsis" style="padding: 10px; bottom: inherit; left: inherit; line-height: inherit; height: inherit; position: relative;background: white; color: #414141;">{{card.name}}</figcaption>
+	<figcaption style="padding: 10px; bottom: inherit; left: inherit; line-height: inherit; height: inherit; position: relative;background: white; color: #414141;">
+		<h4 style="margin-bottom: 20px;">{{card.name}}</h4>
+		<p>Créé par {{card.user.username}}, le {{card.created | date:"dd/MM"}}</p>
+	</figcaption>
 </figure>

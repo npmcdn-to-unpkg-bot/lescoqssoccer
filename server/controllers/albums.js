@@ -9,7 +9,7 @@ exports.findAllAlbums = function(req, res) {
 		sort: {
 			name: 1
 		}
-	}).exec(function(err, albums) {
+	}).populate('user').exec(function(err, albums) {
 		res.send(albums);
 	})
 };
@@ -17,7 +17,7 @@ exports.findAllAlbums = function(req, res) {
 exports.findAlbumById = function(req, res) {
 	Album.findOne({
 		_id: req.params.id
-	}).populate('photoList._id').exec(function(err, album) {
+	}).populate('user').exec(function(err, album) {
 		if (err) console.log("error finding album: " + err)
 		console.warn(album);
 		res.send(album);
@@ -80,14 +80,14 @@ exports.download = function(req, res) {
 
 	Album.findOne({
 		_id: id
-	}).populate('photoList._id').exec(function(err, album) {
+	}).exec(function(err, album) {
 		if (err) console.log("error: " + err);
 
 		archive.pipe(output);
 
 		//add each photo of the album to the archive
 		_.each(album.photoList, function(entry) {
-			src.push(entry._id.filepath.split('public/img/users/').pop());
+			src.push(entry.filepath.split('public/img/users/').pop());
 		});
 
 		archive.bulk([{

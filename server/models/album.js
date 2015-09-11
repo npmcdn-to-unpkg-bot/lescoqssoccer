@@ -23,6 +23,10 @@ var albumSchema = new Schema({
         }
     }) ],
 	user: {type : mongoose.Schema.ObjectId, ref : 'User'},
+    created: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 // Export album model

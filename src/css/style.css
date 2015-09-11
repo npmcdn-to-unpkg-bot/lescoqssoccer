@@ -2374,6 +2374,10 @@ Albums
 }
 
 .photoDetail:hover{
+    opacity: 0.3;
+}
+
+.photoDetail:hover{
 	opacity: 0.3;
 }
 
