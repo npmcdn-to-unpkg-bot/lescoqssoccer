@@ -259,6 +259,9 @@ blockquote:after {
 .blogimage:before {
     border-left-color:#eb5656;
 }
+.blogimage.suggestion:before {
+    border-left-color:#ed6767;
+}
 .blogcontainer p.postdate{
     color:#fff;
 }
