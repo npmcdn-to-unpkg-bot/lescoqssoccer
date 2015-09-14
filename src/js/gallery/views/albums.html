@@ -1,9 +1,9 @@
-<section class="rightcontainer" style="background-color: #eb5656;">
+<section class="rightcontainer" style="background-color: #ebebeb;">
 
 	<!-- TITLE -->
-	<div class="subtitle">
-		<h1>Albums photos</h1>
-		<a href="#!/albums/create" class="add-icon">
+	<div class="subtitle" style="text-align: left; color: #666666; background-color: white; margin: 10px;">
+		<h1 style="font-size: 25px;">Albums photos</h1>
+		<a href="#!/albums/create" class="add-icon" style="background-color: #666666">
 		</a>
 	</div>
 
@@ -14,7 +14,7 @@
 
 	<!-- PAGE CONTENT -->
 	<div class="photosContainer" ng-show="albums.length > 0">
-		<div deckgrid class="deckgrid deckgrid3" source="albums" cardTemplate="js/gallery/views/albumCard.html"></div>
+		<div deckgrid class="deckgrid deckgrid3" style="transition: all 0.4s ease-in-out;" source="albums" cardTemplate="js/gallery/views/albumCard.html"></div>
 	</div>
 
 </section>
