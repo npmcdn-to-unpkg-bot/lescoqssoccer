@@ -17,14 +17,10 @@ module.exports = function ( app ) {
 	/** Album C.R.U.D. **/
 	app.post( '/albums', albums.addAlbum );
 	app.get( '/albums', albums.findAllAlbums );
-	app.post( '/albums/:id/:action/:photoId', albums.editAlbumPhotos )
 	app.get( '/albums/:id', albums.findAlbumById );
 	app.put( '/albums/:id', albums.updateAlbum );
 	app.post( '/albums/:id', albums.updateAlbum );
 	app.delete( '/albums/:id', albums.deleteAlbum );
-
-	/** Gallery - returns all photos with album = id **/
-	app.get( '/gallery/:id', albums.findAllPhotosInAlbum );
 
 	/**Download**/
 	app.post('/download/:id', albums.download);

@@ -89,7 +89,7 @@ exports.show = function(req, res) {
  * List of suggestions
  */
 exports.all = function(req, res) {
-    Suggestion.find().sort('-created').populate('user', 'name username').exec(function(err, suggestions) {
+    Suggestion.find().sort('-created').populate('user', 'name username avatar').exec(function(err, suggestions) {
         if (err) {
             res.render('error', {
                 status: 500

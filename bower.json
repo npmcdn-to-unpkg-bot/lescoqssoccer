@@ -27,7 +27,6 @@
     "jquery": "~2.0.3",
     "es5-shim": ">=3.4.0",
     "angular": "1.2.15",
-    "outlayer": "~1.4.0",
     "bootstrap": "~3.3.4"
   }
 }

@@ -1,21 +1,20 @@
-<div class="modal-header">
+<div class="info-box" style="display: inline-block;">
+	<span class="info-box-close" data-ng-click="cancel()"></span>
 	<h4>Sélectionner les photos à ajouter</h4>
-</div>
-<div class="modal-body">
 	<div class="col-md-3">
 
 		<div ng-show="uploader.isHTML5">
 			<div class="well my-drop-zone"
 				nv-file-drop="{ url: '/foo' }"
 				nv-file-over="another-file-over-class"
-				uploader="uploader" style="text-align:center";>
+				uploader="uploader" style="text-align:center; color: black;";>
 				Déposer des images
 			</div>
 		</div>
-		<button class="btn btn-default col-md-12">
-		<label for="upload-profile-picture" class="label-upload-profile-picture">
+		<button class="button pointer">
+		<label for="upload-profile-picture" class="label-upload-profile-picture" style="margin: inherit;">
 			Parcourir
-			<input nv-file-select type="file" multiple  uploader="uploader" class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
+			<input nv-file-select type="file" multiple uploader="uploader" class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
 		</label>
 		</button>
 	</div>
@@ -54,8 +53,4 @@
 			</div>
 		</div>
 	</div>
-</div>
-<div class="modal-footer">
-	<button type="button" class="btn btn-default" data-ng-click="cancel()">Cancel</button>
-	<button type="button" class="btn btn-success" data-ng-click="ok()">Ok</button>
 </div>

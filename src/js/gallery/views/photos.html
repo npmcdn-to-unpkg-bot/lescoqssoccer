@@ -1,0 +1,29 @@
+<section class="rightcontainer">
+
+	<!-- PAGE TITLE -->
+	<div class="subtitle">
+		<h1>{{album.name}}</h1>
+		<a href="#!/albums" class="back-icon">
+		</a>
+	</div>
+	<!-- ACTION BAR -->
+	<ul class="filters">
+		<li>
+			<a href="#!" data-ng-click="download($event);">Télécharger</a>
+		</li>
+		<li ng-show="global.user._id === album.user._id">
+			<a href="#!/albums/edit/{{album._id}}">Editer</a>
+		</li>
+		<li ng-show="global.user._id === album.user._id">
+			<a href="#!" data-ng-click="deleteAlbum($event);">Supprimer</a>
+		</li>
+	</ul>
+	<div class="clear"></div>
+
+	<!-- GALLERY -->
+	<ul class="photosContainer flickr-box">
+		<div deckgrid class="deckgrid" source="album.photoList" cardTemplate="js/gallery/views/photoCard.html"></div>
+	</ul>
+	<cm-colorboxphotos></cm-colorboxphotos>
+
+</section>

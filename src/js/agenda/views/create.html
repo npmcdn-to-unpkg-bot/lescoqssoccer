@@ -1,87 +1,101 @@
-<form class="agendaForm" role="form" data-ng-submit="create();">
+<section class="rightcontainer">
 
-	<span class="input input--yoshiko" data-ng-class="{'input--filled': userEvent.title}">
-		<input class="input__field input__field--yoshiko" type="text" name="title" data-ng-model="userEvent.title" required/>
-		<label class="input__label input__label--yoshiko" for="title">
-			<span class="input__label-content input__label-content--yoshiko">{{'title' | translate}}</span>
-		</label>
-	</span>
-	<br/>
-
-	<span class="input input--yoshiko input--filled">
-		<select class="input__field--yoshiko"
-			name="selectedType"
-			data-ng-model="userEvent.selectedType"
-			ng-options="eventType.name for eventType in eventTypes">
-		</select>
-		<label class="input__label input__label--yoshiko" for="selectedType">
-			<span class="input__label-content input__label-content--yoshiko">{{'type' | translate}}</span>
-		</label>
-	</span>
-
-	<br/>
-	<div class="input input--yoshiko" data-ng-class="{'input--filled': userEvent.start}">
-		<input class="input__field input__field--yoshiko inputWithButton"
-		type="text"
-		name="start"
-		datepicker-popup="{{format}}"
-		data-ng-model="userEvent.start"
-		is-open="$parent.openedStartDate"
-		datepicker-options="dateOptions"
-		show-weeks="false"
-		show-button-bar="false"
-		required/>
-		<label class="input__label input__label--yoshiko" for="start">
-			<span class="input__label-content input__label-content--yoshiko">{{'startdate' | translate}}</span>
-		</label>
-		<span class="input-group-btn datepicker-btn">
-		<button class="btn btn-cm" ng-click="open($event, 'start')">
-		<i class="glyphicon glyphicon-calendar"></i>
-		</button>
-		</span>
+	<div class="subtitle">
+		<a href="#!/agenda" class="back-icon">
+		</a>
+		<h1 class="ellipsis">{{userEvent.title || 'Nouvel évènement'}}</h1>
+		<a href="#!" class="ok-icon" data-ng-click="create()">
+		</a>
 	</div>
-	<br/>
+	<div class="pagecontent">
+		<form role="form">
+			<div class="contactcontainer">
 
-	<span class="input input--yoshiko" data-ng-class="{'input--filled': userEvent.content}">
-		<textarea class="input__field input__field--yoshiko" type="text" name="content" data-ng-model="userEvent.content" required>
-		</textarea>
-		<label class="input__label input__label--yoshiko" for="content">
-			<span class="input__label-content input__label-content--yoshiko">{{'content' | translate}}</span>
-		</label>
-	</span>
+				<!-- CONTACT LEFT -->
+				<div class="contact-left">
+					<label for="title">Nom</label>
+					<input type="text" name="title" data-ng-model="userEvent.title" required/>
 
-	<br/>
-	<div class="input input--yoshiko" data-ng-class="{'input--filled': search}">
-		<input class="input__field input__field--yoshiko inputWithButton" type="text" data-ng-model="search"/>
-		<label class="input__label input__label--yoshiko" for="search">
-			<span class="input__label-content input__label-content--yoshiko">Localisation</span>
-		</label>
-		<span class="input-group-btn location-btn">
-		<button
-		class="btn btn-cm"
-		type="button"
-		ng-click="geoCode()"
-		ng-disabled="search.length === 0"
-		title="search" >
-		&nbsp;<i class="glyphicon glyphicon-search"></i>
-		</button>
-		</span>
+					<label for="selectedType">Type</label>
+					<select
+						name="selectedType"
+						data-ng-model="userEvent.eventType"
+						ng-options="eventType.identifier as eventType.name for eventType in eventTypes">
+					</select>
+					<label for="content">Contenu</label>
+					<textarea
+					type="text"
+					name="content"
+					data-ng-model="userEvent.content"
+					required>
+					</textarea>
 
-		<google-map
-		center="map.center"
-		zoom="map.zoom"
-		draggable="true"
-		events="map.events"
-		options="map.options"
-		control="map.control">
+				</div>
+				<!-- CONTACT RIGHT -->
+				<div class="contact-right">
 
-			<marker ng-repeat="m in map.markers" coords="m" events="m.events" options ="m.options">
+					<label for="startsAt">Début</label>
+					<div>
+						<input
+						type="text"
+						name="startsAt"
+						datepicker-popup="{{format}}"
+						data-ng-model="userEvent.startsAt"
+						is-open="$parent.openedStartDate"
+						datepicker-options="dateOptions"
+						show-weeks="false"
+						show-button-bar="false"
+						required/>
+					</div>
+					<label for="endsAt">Fin</label>
+					<div>
+						<input
+						type="text"
+						name="endsAt"
+						datepicker-popup="{{format}}"
+						data-ng-model="userEvent.endsAt"
+						is-open="$parent.openedEndDate"
+						datepicker-options="dateOptions"
+						show-weeks="false"
+						show-button-bar="false"
+						required/>
+					</div>
+
+					<label for="repeat">Répéter</label>
+					<select
+						name="repeat"
+						data-ng-model="userEvent.recursOn"
+						ng-options="recurseOn.identifier as recurseOn.value for recurseOn in eventRepeater">
+					</select>
+				</div>
+			</div>
+			<div class="clear"></div>
+
+			<label for="localisation">Lieux</label>
+			<input class="localisation" name="localisation" type="text" data-ng-model="search"/>
+			<input
+			class="button localisationButton"
+			type="button"
+			ng-click="geoCode()"
+			ng-disabled="search.length === 0"
+			title="search"
+			value="GO"/>
+			<google-map
+			center="map.center"
+			zoom="map.zoom"
+			draggable="true"
+			events="map.events"
+			options="map.options"
+			control="map.control">
+			<marker
+				ng-repeat="m in map.markers"
+				coords="m"
+				events="m.events"
+				options ="m.options"
+				icon="'img/icons/pin.png'">
 			</marker>
-		</google-map>
+			</google-map>
+			<cm-map></cm-map>
+		</form>
 	</div>
-
-	<div class="input">
-		<button class="btn btn-primary" style="float:right;" type="submit">{{'common_ok' | translate}}</button>
-	</div>
-
-</form>
+</section>

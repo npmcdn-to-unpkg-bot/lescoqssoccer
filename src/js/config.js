@@ -9,7 +9,7 @@ angular.module('mean').config(['$routeProvider',
 		/** HOME ****/
 		when('/home', {
 			templateUrl: 'js/appStructure/home.html',
-			controller: 'HomeController',
+			controller: 'HomeController'
 		}).
 
 		/** AGENDA ****/
@@ -32,23 +32,20 @@ angular.module('mean').config(['$routeProvider',
 			controller: 'CreateAgendaController',
 			resolve: EventDetailData
 		}).
-		when('/agenda/map', {
-			templateUrl: 'js/agenda/views/map.html',
-			controller: 'MapController',
-			resolve: {
-				Agenda: function(AgendaCollection) {
-					return AgendaCollection.load();
-				}
-			}
-		}).
 
 		/** ARTICLES ****/
 		when('/articles', {
-			templateUrl: 'js/articles/views/listSquare.html',
+			templateUrl: 'js/articles/views/list.html',
 			controller: 'ArticlesController',
 			resolve: {
 				Articles: function(ArticlesCollection) {
-					return ArticlesCollection.load();
+					return ArticlesCollection.load(1);
+				},
+				Page: function() {
+					return 1;
+				},
+				ItemsCount: function(ArticlesCollection){
+					return ArticlesCollection.getItemsCount();
 				}
 			}
 		}).
@@ -57,7 +54,27 @@ angular.module('mean').config(['$routeProvider',
 			controller: 'CreateArticleController',
 			resolve: ArticleDetailData
 		}).
-		when('/articles/edit/:articleId', {
+		when('/articles/:page', {
+			templateUrl: 'js/articles/views/list.html',
+			controller: 'ArticlesController',
+			resolve: {
+				Articles: function(ArticlesCollection, $route) {
+					return ArticlesCollection.load($route.current.params.page);
+				},
+				Page: function($route) {
+					return $route.current.params.page;
+				},
+				ItemsCount: function(ArticlesCollection){
+					return ArticlesCollection.getItemsCount();
+				}
+			}
+		}).
+		when('/articles/view/:id', {
+			templateUrl: 'js/articles/views/single.html',
+			controller: 'ArticleDetailController',
+			resolve: ArticleDetailData
+		}).
+		when('/articles/edit/:id', {
 			templateUrl: 'js/articles/views/create.html',
 			controller: 'CreateArticleController',
 			resolve: ArticleDetailData
@@ -66,28 +83,37 @@ angular.module('mean').config(['$routeProvider',
 		/** LINKS ****/
 		when('/links', {
 			templateUrl: 'js/links/views/links.html',
-			controller: 'LinkController'
+			controller: 'LinkController',
+			resolve: {
+				Links: function(LinksCollection, $route) {
+					return LinksCollection.load();
+				}
+			}
 		}).
 		when('/links/create', {
-			templateUrl: 'js/links/views/create.html'
+			templateUrl: 'js/links/views/create.html',
+			controller: 'CreateLinkController'
 		}).
 
 		/** ALBUMS ****/
 		when('/albums', {
 			templateUrl: 'js/gallery/views/albums.html',
-			controller: 'GalleryCtrl',
+			controller: 'AlbumsController',
 			resolve: PhotoMgrData
 		}).
-		when('/albums/:view', {
-			templateUrl: function(params) {
-				return (params.view === 'create') ? 'js/gallery/views/create.html' : 'js/gallery/views/albums.html'
-			},
-			controller: 'AlbumCtrl',
+		when('/albums/view/:albumId', {
+			templateUrl: 'js/gallery/views/photos.html',
+			controller: 'PhotosController',
 			resolve: PhotoMgrData
 		}).
-		when('/albums/:view/:albumId', {
+		when('/albums/create', {
+			templateUrl:'js/gallery/views/create.html',
+			controller: 'AlbumDetailController',
+			resolve: PhotoMgrData
+		}).
+		when('/albums/edit/:albumId', {
 			templateUrl: 'js/gallery/views/create.html',
-			controller: 'AlbumCtrl',
+			controller: 'AlbumDetailController',
 			resolve: PhotoMgrData
 		}).
 
@@ -101,9 +127,17 @@ angular.module('mean').config(['$routeProvider',
 			controller: 'SuggestionController',
 		}).
 
+		when('/team', {
+			templateUrl: 'js/users/views/list.html',
+			controller: 'TeamController',
+			resolve: TeamData
+		}).
+
 		/** PROFILE ****/
 		when('/profile', {
-			templateUrl: 'js/profile/profile.html'
+			templateUrl: 'js/users/views/profile.html',
+			controller: 'ProfileController',
+			resolve: ProfileData
 		}).
 
 		/** DEFAULT ****/

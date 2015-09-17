@@ -1,0 +1,89 @@
+<section class="rightcontainer">
+
+	<!-- TITLE -->
+	<div class="subtitle">
+		<h1>Profil</h1>
+		<a href="#!" class="ok-icon" data-ng-click="update()">
+		</a>
+	</div>
+
+	<!-- PAGE CONTENT -->
+	<div class="pagecontent">
+
+		<!-- HALFBOX -->
+		<div class="half-box">
+			<div class="half-left" style="text-align: center;">
+				<img ng-src="{{user.avatar || 'img/avatar.png'}}" class="flex-image" alt="" />
+
+				<label class="label-upload-profile-picture button" style="margin: -10px;">
+					Change l'avatar
+					<input
+					nv-file-select
+					type="file"
+					uploader="uploader"
+					class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
+				</label>
+			</div>
+			<div class="half-right">
+
+				<div id="accordion-container" style="margin-top: 0;">
+					<div class="accordion-header">Infos du compte</div>
+					<div class="accordion-content">
+
+						<label>{{'profile_firstname' | translate}}</label>
+						<input type="text" data-ng-model="user.name" required/>
+
+						<label>{{'profile_lastname' | translate}}</label>
+						<input type="text" data-ng-model="user.lastname" required/>
+
+						<label>{{'profile_email' | translate}}</label>
+						<input type="text" data-ng-model="user.email" required/>
+
+						<label>{{'profile_username' | translate}}</label>
+						<input type="text" data-ng-model="user.username" required/>
+
+						<label>Présentation</label>
+						<textarea data-ng-model="user.presentation">
+						</textarea>
+
+					</div>
+
+					<div class="accordion-header">Skills</div>
+					<div class="accordion-content accordion-skill">
+						<div class="skills" ng-show="user.skills.length > 0">
+							<div class="skillbar" ng-repeat="skill in user.skills" data-percent="{{skill.value}}%">
+								<div class="skillbar-title"><span>{{skill.name}}</span></div>
+								<div class="skillbar-bar" name="{{skill.name}}"></div>
+								<div class="skill-bar-percent">{{skill.value}}%</div>
+								<a ng-click="removeSkill(skill);" class="removeSkill">
+									<img src="img/delete.png" title="Supprimer la compétence"/>
+								</a>
+							</div>
+						</div>
+						<hr ng-show="user.skills.length > 0"/>
+						<input type="text" placeholder="Nouvelle compétence" data-ng-model="skill.name"/>
+						<input type="number" data-ng-model="skill.value" min="0" max="100"/>
+						<span class="skillpercent">%</span>
+						<input
+						class="button pull-right"
+						type="button"
+						ng-click="addSkill();"
+						ng-disabled="skillName === 0"
+						value="Ajouter"/>
+					</div>
+					<div class="accordion-header">Paramètres</div>
+					<div class="accordion-content">
+						<p>Vestibulum porta, tortor elementum luctus dictum, est odio egestas justo, dapibus aliquet sem nisl vel augue. Fusce eu sapien tortor, a consequat nunc. Nunc pulvinar consequat turpis, sed vulputate nibh lacinia rutrum. Nam laoreet pulvinar eros, sit amet sodales est venenatis eu. Fusce eu sapien tortor, a consequat nunc. Nunc pulvinar consequat turpis, sed vulputate nibh lacinia rutrum.</p>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<cm-progressbar>
+	</cm-progressbar>
+
+	<cm-accordion>
+	</cm-accordion>
+</section>

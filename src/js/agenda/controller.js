@@ -1,51 +1,48 @@
 'use strict';
 
-angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection', 'event', '$modal', 'SideMenu',
-	function($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection, event, $modal, SideMenu) {
+angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$location', '$route', 'Global', 'AgendaCollection', 'event', '$modal',
+	function($scope, $location, $route, Global, AgendaCollection, event, $modal) {
 
 		$scope.agendaCollection = AgendaCollection;
 		$scope.eventTypes = eventTypes;
-		$scope.start = $scope.end = ($route.current && $route.current.params.startDate) ? new Date($route.current.params.startDate) : new Date();
+		$scope.startsAt = $scope.endsAt = ($route.current && $route.current.params.startDate) ? new Date($route.current.params.startDate) : new Date();
 
-		//used in subnav
-		SideMenu.setMenu({
-			middle: [{
-				link: "#!/agenda/create",
-				image: "img/Draw_Adding_Cross_64.png",
-				tooltip: "C'est plus!!",
-				type: "link"
-			},{
-				link: "#!/agenda",
-				image: "img/24_hours_delivery_64.png",
-				tooltip: "What's next?!",
-				type: "link"
-			},{
-				link: "#!/agenda/map",
-				image: "img/Map_of_roads_64.png",
-				tooltip: "Je suis la carte",
-				type: "link"
-			}]
-		});
+		$scope.eventRepeater = [{
+			'identifier': 'none',
+			'value': 'Pas répéter'
+		}, {
+			'identifier': 'week',
+			'value': 'Toutes les semaines'
+		}, {
+			'identifier': 'month',
+			'value': 'Tous les mois'
+		}, {
+			'identifier': 'year',
+			'value': 'Tous les ans'
+		}];
 
 		$scope.userEvent = event || {
-			selectedType: $scope.eventTypes[2],
 			title: '',
+			type: 'inverse',
+			eventType: $scope.eventTypes[2].identifier,
 			content: '',
-			start: $scope.start,
-			end: $scope.end,
-			photos: [],
-			location: {},
-			allDay: true
+			startsAt: $scope.startsAt,
+			endsAt: $scope.endsAt,
+			editable: false,
+			deletable: false,
+			incrementsBadgeTotal: true,
+			recursOn: $scope.eventRepeater[0].identifier,
+			location: {}
 		};
 
 		/* add custom event*/
 		$scope.create = function() {
 
-			$scope.userEvent.type = $scope.userEvent.selectedType.identifier;
+			if ($scope.userEvent.recursOn === "none") {
+				$scope.userEvent.recursOn = undefined;
+			}
 
-			console.warn($scope.userEvent);
-			var promise = $scope.agendaCollection.add($scope.userEvent);
-			promise.then(function(userEvent) {
+			$scope.agendaCollection.add($scope.userEvent).then(function(userEvent) {
 				$location.path("/agenda");
 			});
 
@@ -55,10 +52,11 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 		Date picker management
 		 ***/
 		$scope.open = function($event, datepicker) { //Manage opening of two datepickers
+
 			$event.preventDefault();
 			$event.stopPropagation();
 
-			if (datepicker === 'start') {
+			if (datepicker === 'startsAt') {
 				$scope.openedStartDate = !$scope.openedStartDate;
 				$scope.openedEndDate = false;
 			} else {
@@ -68,9 +66,15 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 		};
 
 		//Update min value for end date of userEvent if startDate increase
-		$scope.$watch('userEvent.start', function(newValue, oldValue) {
-			if (newValue > oldValue) {
-				$scope.userEvent.end = $scope.userEvent.start;
+		$scope.$watch('userEvent.startsAt', function(newValue, oldValue) {
+			if (newValue > $scope.userEvent.endsAt) {
+				$scope.userEvent.endsAt = $scope.userEvent.startsAt;
+			}
+		});
+
+		$scope.$watch('userEvent.endsAt', function(newValue, oldValue) {
+			if (newValue < $scope.userEvent.startsAt) {
+				$scope.userEvent.startsAt = $scope.userEvent.endsAt;
 			}
 		});
 
@@ -96,7 +100,14 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 			options: {
 				streetViewControl: true,
 				panControl: true,
-				scrollwheel: false
+				scrollwheel: false,
+				styles: [{
+					featureType: "all",
+					elementType: "all",
+					stylers: [{
+						saturation: -100
+					}]
+				}]
 			},
 			zoom: 8,
 			markers: [{
@@ -106,9 +117,11 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 				events: {
 					dragend: function(marker, eventName, model) {
 						$scope.userEvent.location = {
-							k: marker.getPosition().lat(),
-							B: marker.getPosition().lng()
-						}
+							latitude: marker.getPosition().lat(),
+							longitude: marker.getPosition().lng()
+						};
+
+						$scope.geocodePosition(marker.getPosition());
 					}
 				},
 				options: {
@@ -116,6 +129,31 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 				}
 			}],
 			doUgly: true
+		};
+
+		$scope.geocodePosition = function(pos) {
+
+			if (!this.geocoder) this.geocoder = new google.maps.Geocoder();
+
+			this.geocoder.geocode({
+				latLng: pos
+			}, function(responses) {
+				if (responses && responses.length > 0) {
+
+					$scope.search = responses[0].formatted_address;
+
+					if (!$scope.$$phase) {
+						$scope.$apply();
+					}
+
+				} else {
+
+					$modal.open({
+						templateUrl: 'js/agenda/views/modal/unknownLocation.html',
+						controller: 'unknowLocationCtrl'
+					});
+				}
+			});
 		};
 
 		$scope.geoCode = function() {
@@ -180,117 +218,76 @@ var EventDetailData = {
 
 };
 
-angular.module('mean.agenda').controller('ListController', ['$scope', '$routeParams', '$location', '$route', 'Global', 'AgendaCollection', 'Agenda', 'SideMenu',
-	function($scope, $routeParams, $location, $route, Global, AgendaCollection, Agenda, SideMenu) {
+angular.module('mean.agenda').controller('ListController', ['$scope', '$routeParams', '$filter', '$location', '$route', 'Global', 'AgendaCollection', 'Agenda', '$modal',
+	function($scope, $routeParams, $filter, $location, $route, Global, AgendaCollection, Agenda, $modal) {
 
 		$scope.agendaCollection = AgendaCollection;
+		$scope.eventTypes = eventTypes;
 		$scope.agenda = Agenda;
 
-		SideMenu.setMenu({
-			middle: [{
-				link: "#!/agenda/create",
-				image: "img/Draw_Adding_Cross_64.png",
-				tooltip: "C'est plus!!",
-				type: "link"
-			},{
-				link: "#!/agenda",
-				image: "img/24_hours_delivery_64.png",
-				tooltip: "What's next?!",
-				type: "link"
-			},{
-				link: "#!/agenda/map",
-				image: "img/Map_of_roads_64.png",
-				tooltip: "Je suis la carte",
-				type: "link"
-			}]
-		});
+		$scope.setSelectedEvent = function(evt, userEvent) {
 
-		$scope.limit = 3;
-		$scope.start = 0;
+			if (evt) {
+				evt.preventDefault();
+				evt.stopPropagation();
+			}
 
-		$scope.isPastEvent = function(event) {
-			return moment(event.start).endOf('day').isBefore(new Date()) ? event.start : null;
-		};
+			$scope.selectedEvent = userEvent;
 
-		$scope.isComingEvent = function(event) {
-			return moment(event.start).endOf('day').isAfter(new Date()) ? event.start : null;
-		};
-
-		$scope.previous = function(evt){
-
-			evt.preventDefault();
-			evt.stopPropagation();
-
-			if($scope.start > 0){
-				$scope.start--;
+			if ($scope.selectedEvent.location) {
+				$scope.map.center = $scope.selectedEvent.location;
 			}
 		};
 
-		$scope.next = function(evt){
+		$scope.setPreviousElement = function() {
+			var index = (window._.indexOf($scope.filteredAgenda, $scope.selectedEvent) - 1 > 0) ? window._.indexOf($scope.filteredAgenda, $scope.selectedEvent) - 1 : 0;
+			$scope.setSelectedEvent(null, $scope.filteredAgenda[index]);
+			$scope.$apply();
+		};
 
-			evt.preventDefault();
-			evt.stopPropagation();
+		$scope.setNextElement = function() {
+			var index = (window._.indexOf($scope.filteredAgenda, $scope.selectedEvent) + 1 < $scope.filteredAgenda.length) ? window._.indexOf($scope.filteredAgenda, $scope.selectedEvent) + 1 : $scope.filteredAgenda.length;
+			$scope.setSelectedEvent(null, $scope.filteredAgenda[index]);
+			$scope.$apply();
+		};
 
-			if($scope.start < $scope.filteredAgenda.length - $scope.limit){
-				$scope.start++;
-			}
+		$scope.getFormattedDate = function(date) {
+			return $filter('date')(date, "dd MMM yyyy");
 		};
 
 		$scope.update = function(userEvent) {
-
-			var promise = $scope.agendaCollection.update(userEvent);
-			promise.then(function(newUserEvent) {
+			$scope.agendaCollection.update(userEvent).then(function(newUserEvent) {
 				$location.path("/agenda");
 			});
 		};
 
-		$scope.calendarView = 'month';
-		$scope.calendarTitle = 'Mon super calendar';
-		$scope.calendarDay = new Date();
+		$scope.isPastEvent = function(userEvent) {
+			return moment(userEvent.startsAt).endOf('day').isBefore(new Date()) ? userEvent.startsAt : null;
+		};
 
-		$scope.events = [];
-		angular.forEach($scope.agenda, function(userEvent) {
-			$scope.events.push({
-				title: userEvent.title, // The title of the event
-				type: 'success', // The type of the event (determines its color). Can be important, warning, info, inverse, success or special
-				startsAt: userEvent.start, // A javascript date object for when the event starts
-				endsAt: userEvent.start, // Optional - a javascript date object for when the event ends
-				editable: false, // If edit-event-html is set and this field is explicitly set to false then dont make it editable. If set to false will also prevent the event from being dragged and dropped.
-				deletable: false, // If delete-event-html is set and this field is explicitly set to false then dont make it deleteable
-				incrementsBadgeTotal: true, //If set to false then will not count towards the badge total amount on the month and year view
-				recursOn: 'year', // If set the event will recur on the given period. Valid values are year or month
-				cssClass: 'a-css-class-name' //A CSS class (or more, just separate with spaces) that will be added to the event when it is displayed on each view. Useful for marking an event as selected / active etc
+		$scope.isComingEvent = function(userEvent) {
+			return moment(userEvent.startsAt).endOf('day').isAfter(new Date()) ? userEvent.startsAt : null;
+		};
+
+		$scope.openCalendar = function(evt) {
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			$modal.open({
+				templateUrl: 'js/agenda/views/modal/calendar.html',
+				controller: 'calendarCtrl',
+				windowClass: 'calendarPopup',
+				resolve: {
+					Agenda: function() {
+						return AgendaCollection.load();
+					},
+					EventClick: function() {
+						return $scope.setSelectedEvent;
+					}
+				}
 			});
-		});
-
-		$scope.eventTypes = eventTypes;
-	}
-]);
-
-angular.module('mean.agenda').controller('MapController', ['$scope', '$routeParams', '$location', '$route', '$filter', 'Global', 'AgendaCollection', 'Agenda', 'SideMenu',
-	function($scope, $routeParams, $location, $route, $filter, Global, AgendaCollection, Agenda, SideMenu) {
-
-		$scope.agendaCollection = AgendaCollection;
-		$scope.agenda = Agenda;
-
-		SideMenu.setMenu({
-			middle: [{
-				link: "#!/agenda/create",
-				image: "img/Draw_Adding_Cross_64.png",
-				tooltip: "C'est plus!!",
-				type: "link"
-			},{
-				link: "#!/agenda",
-				image: "img/24_hours_delivery_64.png",
-				tooltip: "What's next?!",
-				type: "link"
-			},{
-				link: "#!/agenda/map",
-				image: "img/Map_of_roads_64.png",
-				tooltip: "Je suis la carte",
-				type: "link"
-			}]
-		});
+		};
 
 		$scope.map = {
 			control: {
@@ -303,39 +300,58 @@ angular.module('mean.agenda').controller('MapController', ['$scope', '$routePara
 				longitude: 5.724523999999974000
 			},
 			options: {
+				mapTypeControl: true,
+				zoomControl: true,
+				zoomControlOptions: {
+					style: google.maps.ZoomControlStyle.MEDIUM,
+					position: google.maps.ControlPosition.LEFT_BOTTOM
+				},
 				streetViewControl: true,
-				panControl: true,
+				panControl: false,
 				maxZoom: 20,
 				minZoom: 3,
-				styles: styles
+				styles: [{
+					featureType: "all",
+					elementType: "all",
+					stylers: [{
+						saturation: -100
+					}]
+				}]
 			},
-			zoom: 6,
+			zoom: 12,
 			dragging: false,
 			bounds: {},
 			markers: [],
 			doUgly: true
 		};
 
-		$scope.onMarkerClicked = function(marker) {
-			angular.forEach($scope.map.markers, function(marker) {
-				marker.showWindow = false;
-			});
-			marker.showWindow = true;
-		};
+		angular.forEach($scope.agenda, function(userEvent, $index) {
 
-		angular.forEach($scope.agenda, function(userEvent) {
 			if (userEvent.location && userEvent.location !== "") {
 				$scope.map.markers.push({
 					id: userEvent._id,
 					latitude: userEvent.location.latitude,
 					longitude: userEvent.location.longitude,
-					showWindow: false,
+					showWindow: $index === 0,
 					title: userEvent.title,
-					content: userEvent.content,
-					photos: userEvent.photos
+					content: userEvent.content
 				});
 			}
 		});
+
+		$scope.resizeMap = function() {
+			$("#google-map").css('height', 'calc(100vh - ' + ($("#agendaCarousel").height() + 164) + "px)");
+			$("google-map .angular-google-map-container").css('height', 'calc(100vh - ' + ($("#agendaCarousel").height() + 164) + "px)");
+		};
+
+		$scope.$watch(
+			function() {
+				return $("#agendaCarousel").height();
+			},
+			function(newValue, oldValue) {
+				$scope.resizeMap();
+			}
+		);
 	}
 ]);
 
@@ -353,26 +369,47 @@ angular.module('mean.agenda').controller('unknowLocationCtrl', ['$scope', '$moda
 	}
 ]);
 
+angular.module('mean.agenda').controller('calendarCtrl', ['$scope', '$modalInstance', 'Agenda', 'EventClick',
+
+	function($scope, $modalInstance, Agenda, EventClick) {
+
+		$scope.agenda = Agenda;
+
+		//Calendar config
+		$scope.calendarView = 'month';
+		$scope.calendarDay = new Date();
+		$scope.calendarTitle = '';
+
+		$scope.eventClick = function(evt, userEvent) {
+
+			EventClick(evt, userEvent);
+			$scope.cancel();
+		};
+
+		$scope.cancel = function() {
+			$modalInstance.dismiss('cancel');
+		};
+	}
+]);
+
 var eventTypes = [{
 	identifier: 'restaurant',
 	name: 'Resto',
-	image: "img/3d5c45b634304f99146a9e3913307a2f.jpg"
+	image: "img/photos/office2-thumb.jpg"
 }, {
 	identifier: 'holidays',
 	name: 'Vacances',
-	image: "img/3d5c45b634304f99146a9e3913307a2f.jpg"
+	image: "img/photos/office3-thumb.jpg"
 }, {
 	identifier: 'party',
 	name: 'Soirée',
-	image: "img/400x300beer.jpg"
+	image: "img/photos/office6-thumb.jpg"
 }, {
 	identifier: 'weekend',
 	name: 'Week-end',
-	image: "img/400x300beer.jpg"
+	image: "img/photos/office5-thumb.jpg"
 }, {
 	identifier: 'other',
 	name: 'Autres',
-	image: "img/400x300beer.jpg"
+	image: "img/photos/office6-thumb.jpg"
 }];
-
-var styles = [{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#555555"},{"visibility":"on"}]}];

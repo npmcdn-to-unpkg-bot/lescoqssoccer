@@ -1,78 +1,50 @@
 'use strict';
 
-angular.module('mean.articles').controller('ArticlesController', ['$scope', '$routeParams', '$location', '$sce', '$modal', '$timeout', 'Global', 'ArticlesCollection', 'Articles', 'SideMenu',
-	function($scope, $routeParams, $location, $sce, $modal, $timeout, Global, ArticlesCollection, Articles, SideMenu) {
+angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Global', '$location', '$sce', 'Articles', 'Page', 'ItemsCount',
+	function($scope, Global, $location, $sce, Articles, Page, ItemsCount) {
 
 		$scope.global = Global;
-		$scope.ArticlesCollection = ArticlesCollection;
 		$scope.articles = Articles;
 
-		$scope.dateFormat = "dd MMM yyyy, H'h'mm";
-
-		// Manage search input
-		$scope.obj = {
-			searchTitle: ""
-		};
-		$scope.nameFilter = function(article) {
-			return (article.title.toLowerCase().indexOf($scope.obj.searchTitle) !== -1) ? article.title : null;
-		};
+		$scope.page = parseInt(Page);
+		$scope.totalItems = ItemsCount.count;
 
 		//Format html content from article content edit by wysiwyg
 		$scope.getFormattedContent = function(html) {
 			return $sce.trustAsHtml(html);
 		};
 
-		$scope.selectArticle = function(article, index) {
-			$scope.selected = article;
-			$scope.currentIndex = index;
-		};
-
-		$scope.setPreviousArticle = function(evt) {
-
-			evt.preventDefault();
-			evt.stopPropagation();
-
-			if ($scope.currentIndex > 0) {
-				$scope.currentIndex--;
-				$scope.selected = $scope.articles[$scope.currentIndex];
-				$scope.scrollToCurrent();
+		$scope.pageChanged = function(newPage) {
+			if (newPage === 1) {
+				$location.path("/articles");
+			} else {
+				$location.path("/articles/" + newPage);
 			}
 		};
+	}
+]);
 
-		$scope.setNextArticle = function(evt) {
+angular.module('mean.articles').controller('ArticleDetailController', ['$scope', '$location', '$sce', '$modal', 'Global', 'ArticlesCollection', 'Article',
+	function($scope, $location, $sce, $modal, Global, ArticlesCollection, Article) {
 
-			evt.preventDefault();
-			evt.stopPropagation();
+		$scope.global = Global;
+		$scope.ArticlesCollection = ArticlesCollection;
+		$scope.article = Article;
 
-			if ($scope.articles.length - 1 > $scope.currentIndex) {
-				$scope.currentIndex++;
-				$scope.selected = $scope.articles[$scope.currentIndex];
-				$scope.scrollToCurrent();
-			}
+		//Format html content from article content edit by wysiwyg
+		$scope.getFormattedContent = function(html) {
+			return $sce.trustAsHtml(html);
 		};
 
-		$scope.scrollToCurrent = function() {
+		$scope.addComment = function() {
 
-			$timeout(function() {
-				var curScrollPos = $('.summaries').scrollTop();
-				var itemTop = $('.summary.active').offset().top - 60;
-				$('.summaries').animate({
-					'scrollTop': curScrollPos + itemTop
-				}, 200);
-			}, 0, false);
-
-		};
-
-		$scope.addComment = function(){
-
-			$scope.selected.comments.push({
+			$scope.article.comments.push({
 				user: $scope.global.user._id,
 				content: $scope.comment,
 				created: moment(new Date()).toISOString()
 			});
 
-			$scope.ArticlesCollection.update($scope.selected).then(function() {
-				$location.path("/articles");
+			$scope.ArticlesCollection.update($scope.article).then(function() {
 				$scope.comment = "";
 			});
 		};
@@ -102,38 +74,13 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$ro
 
 			modalInstance.result.then(function() {
 
-				// Delete the article and either update article list or redirect to it
+				// Delete the article and redirect to article list
 				$scope.ArticlesCollection.remove(article).then(function(response) {
-					$scope.articles.splice(window._.indexOf($scope.articles, article), 1);
+					$location.path("/articles");
 				});
 
 			});
 		};
-
-		//used in subnav
-		SideMenu.setMenu({
-			view: "articles",
-			middle: [{
-				link: "#!/articles/create",
-				image: "img/Draw_Adding_Cross_64.png",
-				tooltip: "Liste des articles",
-				imgClass:"iconPlus",
-				type: "link"
-			}, {
-				title: "articlePrev",
-				image: "img/Sketched_up_arrow_triangle_64.png",
-				tooltip: "Ajouter un article",
-				imgClass:"iconUp",
-				type: "button",
-				callback: $scope.setPreviousArticle
-			}]
-		});
-
-		SideMenu.setSearchInput(true);
-
-		if (!$scope.selected && $scope.articles.length > 0) {
-			$scope.selectArticle($scope.articles[0], 0);
-		}
 	}
 ]);
 
@@ -154,40 +101,60 @@ angular.module('mean.articles').controller('deleteArticleModalCtrl', ['$scope', 
 
 ]);
 
-angular.module('mean.articles').controller('CreateArticleController', ['$scope', '$location', 'Global', 'ArticlesCollection', 'FileUploader', 'article', 'SideMenu',
-	function($scope, $location, Global, ArticlesCollection, FileUploader, Article, SideMenu) {
+angular.module('mean.articles').controller('CreateArticleController', ['$scope', '$location', 'Global', 'ArticlesCollection', 'FileUploader', 'Article',
+	function($scope, $location, Global, ArticlesCollection, FileUploader, Article) {
 
 		$scope.global = Global;
 		$scope.ArticlesCollection = ArticlesCollection;
-		$scope.article = Article;
-
-		SideMenu.setMenu({
-			view: "articles",
-			middle: [{
-				link: "#!/articles/create",
-				image: "img/Draw_Adding_Cross_64.png",
-				tooltip: "C'est plus",
-				imgClass:"iconPlus",
-				type: "link"
-			}]
-		});
-
-		SideMenu.hasSearch(false);
-
-		$scope.create = function() {
-
-			if(!$scope.article._id){
-				$scope.ArticlesCollection.add($scope.article).then(function() {
-					$location.path("/articles");
-				});
-			} else {
-				console.warn("update");
-				$scope.ArticlesCollection.update($scope.article).then(function() {
-					$location.path("/articles");
-				});
-			}
+		$scope.article = Article || {
+			title: "",
+			categories: [],
+			content: "",
+			image:""
 		};
 
+		/***
+		CATEGORIES
+		***/
+		$scope.categories = [{
+			id: "1",
+			value: "Voluptate"
+		}, {
+			id: "2",
+			value: "Deserani"
+		}, {
+			id: "3",
+			value: "Quo eram"
+		}, {
+			id: "4",
+			value: "Mentitum amet sit"
+		}, {
+			id: "5",
+			value: "Cillum"
+		}, {
+			id: "6",
+			value: "Incurreret"
+		}, {
+			id: "7",
+			value: "Eram amet aliqua"
+		}];
+
+		$scope.toggleCategory = function(category, evt){
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			if($scope.article.categories.indexOf(category) === -1){
+				$scope.article.categories.push(category);
+			} else{
+				$scope.article.categories.splice($scope.article.categories.indexOf(category), 1);
+			}
+
+		};
+
+		/***
+		FILE UPLOAD CONFIG
+		***/
 		$scope.uploader = new FileUploader({
 			scope: $scope,
 			url: '/upload/photo',
@@ -201,7 +168,9 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 			$scope.article.image = response.path;
 		};
 
-		// Use by wysiwyg
+		/***
+		WYSIWYG CONFIG
+		***/
 		$scope.customMenu = [
 			['bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript'],
 			['font'],
@@ -214,13 +183,26 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 			['link', 'image']
 		];
 
+		$scope.create = function() {
+
+			if (!$scope.article._id) {
+				$scope.ArticlesCollection.add($scope.article).then(function() {
+					$location.path("/articles");
+				});
+			} else {
+				$scope.ArticlesCollection.update($scope.article).then(function() {
+					$location.path("/articles");
+				});
+			}
+		};
+
 	}
 ]);
 
 var ArticleDetailData = {
 
-	article: function(ArticlesCollection, $route) {
-		return ($route.current.params.articleId) ? ArticlesCollection.findOne($route.current.params.articleId) : {};
+	Article: function(ArticlesCollection, $route) {
+		return ($route.current.params.id) ? ArticlesCollection.findOne($route.current.params.id) : null;
 	}
 
 };

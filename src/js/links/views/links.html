@@ -1,121 +1,44 @@
-<section class="main clearfix">
-		<div class="work grid">
-			<a href="{{card.adress}}" target="_blank">
-				<figure class="effect-julia">
+<section class="rightcontainer">
 
-					<img
-					src="img/jojo.jpg"
-					class="animation-fade photoCard"
-					data-imageloaded data-loadedclass="animation-faded"/>
+	<!-- TITLE -->
+	<div class="subtitle">
+		<h1>Partage</h1>
+		<a href="#!/links/create" class="add-icon">
+		</a>
+	</div>
 
-					<figcaption>
-						<h2>objectifjapon TKT</h2>
-						<div>
-							<p>Jo</p>
-						</div>
-					</figcaption>
+	<!-- FILTERS -->
+	<ul id="filters1" class="filters">
+		<li>
+			<a href="#!" data-filter="all" class="active">Tous</a>
+		</li>
+		<li>
+			<a href="#!" data-filter="conneries">Conneries</a>
+		</li>
+		<li>
+			<a href="#!" data-filter="links">Liens</a>
+		</li>
+		<li>
+			<a href="#!" data-filter="videos">Vidéos</a>
+		</li>
+	</ul>
+	<div class="clear"></div>
 
-				</figure>
+	<!-- GALLERY -->
+	<ul id="gridbox1" class="sp-portfolio four-column">
+		<li data-filter="conneries">
+			<a class="clb-link" href="#!" ng-click="getUselessSite($event);">
+				<img src="img/dude-wtf.jpg" alt="" style="height: 250px !important;" />
 			</a>
-		</div>
-
-		<div class="work">
-			<a href="inner.html">
-				<img src="img/jojo.jpg" class="media" alt=""/>
-				<div class="caption" style="opacity: 1;">
-					<div class="work_title">
-						<h1>culpa qui officia deserunt mollit,
-						dezdez d zed ezd ezd
-						dzeez dze d ezd ezd </h1>
-					</div>
-				</div>
+		</li>
+		<li ng-repeat="link in links" data-filter="{{link.type}}">
+			<a class="{{getCssClass(link.type)}}" href="{{link.adress}}" ng-attr-target="{{(link.cssclass !== 'clb-iframe') ? '_blank' : undefined}}">
+			<img ng-src="{{link.image}}" alt="" style="height: 250px !important;"/>
 			</a>
-		</div>
+		</li>
+	</ul>
 
-		<div class="work grid">
-			<a href="{{card.adress}}" target="_blank">
-				<figure class="effect-julia">
+	<cm-portfolio></cm-portfolio>
+	<cm-colorboxvideos></cm-colorboxvideos>
 
-					<img
-					src="img/nico.jpg"
-					class="animation-fade photoCard"
-					data-imageloaded data-loadedclass="animation-faded"/>
-
-					<figcaption>
-						<h2>Deux noix au pays des kiwis</h2>
-						<div>
-							<p>Nico et Amélie</p>
-						</div>
-					</figcaption>
-
-				</figure>
-			</a>
-		</div>
-
-			<div class="work">
-			<a href="inner.html">
-				<img src="img/jojo.jpg" class="media" alt=""/>
-				<div class="caption" style="opacity: 1;">
-					<div class="work_title">
-						<h1>culpa qui officia deserunt mollit</h1>
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="work grid">
-			<a href="{{card.adress}}" target="_blank">
-				<figure class="effect-julia">
-
-					<img
-					src="img/momo.jpeg"
-					class="animation-fade photoCard"
-					data-imageloaded data-loadedclass="animation-faded"/>
-
-					<figcaption>
-						<h2>Bande de Mickeys en 4L</h2>
-						<div>
-							<p>Momo et Céline</p>
-						</div>
-					</figcaption>
-
-				</figure>
-			</a>
-		</div>
-
-		<div class="work">
-			<a href="inner.html">
-				<img src="img/jojo.jpg" class="media" alt=""/>
-				<div class="caption" style="opacity: 1;">
-					<div class="work_title">
-						<h1>culpa qui officia deserunt mollit</h1>
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="work grid uselessSiteContainer">
-			<a href="#!" ng-click="getUselessSite($event);">
-				<figure class="effect-julia">
-
-					<img
-					src=""
-					data-ng-src="img/tQEHA2B.gif"
-					class="animation-fade photoCard"
-					data-imageloaded data-loadedclass="animation-faded"/>
-
-				</figure>
-			</a>
-		</div>
-
-		<div class="work">
-			<a href="inner.html">
-				<img src="img/jojo.jpg" class="media" alt=""/>
-				<div class="caption" style="opacity: 1;">
-					<div class="work_title">
-						<h1>culpa qui officia deserunt mollit</h1>
-					</div>
-				</div>
-			</a>
-		</div>
 </section>

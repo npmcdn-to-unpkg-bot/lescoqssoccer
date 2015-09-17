@@ -1,2 +1,14 @@
-- Ajouter profil utilisateur
-- Ajouter magnific popup
+Reste à faire:
+
+- Section team + Cote de popularité / tache cron d'envoie de point en début de semaine / trouver systeme
+- Section vote (dans les suggestions)
+- Recherche
+
+- Pagination : suggestions, photos
+- Articles: tags
+- Metadatas du site
+
+Performance - Améliorations:
+- Uploader fichiers dans un espace temporaire
+
+Bug:

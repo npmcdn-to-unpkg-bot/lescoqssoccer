@@ -1,85 +1,77 @@
-<div class="agendaContainer expandable-container">
-	<div class="comingEvents">
-		<h3 class="agendaListTitle">Quoi de beau à venir.... ?!</h3>
-		<div
-		class="grid__item eventSmall"
-		ng-repeat="event in filteredAgenda = (agenda | filter: isPastEvent) | limitToCustom:limit:start">
+<section class="rightcontainer">
 
-			<img class="imgEvent" ng-src="{{ eventTypes | getImageByIdentifier:event.type}}">
-
-			<h2 class="ev2page-title ellipsis">
-				<a href="#!">{{event.title}}</a>
-			</h2>
-
-			<div class="ev2page-tickets">
-				<a href="#!">{{ eventTypes | getNameByIdentifier:event.type}}</a>
-			</div>
-		</div>
-
-		<div class="eventLeft">
-			<a href="#!" ng-click="previous($event);">
-				<img src="img/Back_arrow_circular_symbol_32.png">
-			</a>
-			<a href="#!" ng-click="next($event);">
-				<img src="img/agenda_arrow_right.png">
-			</a>
-		</div>
-
-		<div class="commingEventEmpty" data-ng-show="filteredAgenda.length === 0">
-			<h4>FAR... Y'a rien à faire !!!!</h4>
-		</div>
-
-		<hr/>
+	<!-- TITLE -->
+	<div class="subtitle">
+		<h1>Agenda</h1>
+		<a href="#!/agenda/create" class="add-icon">
+		</a>
+		<a href="#!" class="calendar-icon" ng-click="openCalendar($event)" ng-show="filteredAgenda.length > 0">
+		</a>
 	</div>
 
-	<div class="calendarContainer">
-		<div class="btn-group pull-left monthGroupBtn">
-            <button
-              class="btn previousMonth"
-              mwl-date-modifier
-              date="calendarDay"
-              decrement="calendarView">
-              Précédent
-            </button>
-            <button
-              class="btn todayBtn"
-              mwl-date-modifier
-              date="calendarDay"
-              set-to-today>
-              Aujourd'hui
-            </button>
-            <button
-              class="btn nextMonth"
-              mwl-date-modifier
-              date="calendarDay"
-              increment="calendarView">
-              Suivant
-            </button>
-        </div>
+	<!-- EMPTY SECTION -->
+	<div class="pagecontent" style="text-align: center;" ng-show="filteredAgenda.length === 0">
+		<img src="img/ycoeBe8Mi.png" style="width:200px; height:200px;">
+		<h4 style="width: 500px; margin: auto;">Pas d'évènement encore coco, créer en un petit là-haut pour organiser quelque chose avé les copaings!</h4>
+	</div>
 
-		<div class="btn-group">
-			<h2 class="text-center calendarMonthTitle">{{ calendarTitle }}</h2>
+	<!-- EVENT CAROUSEL -->
+	<data-owl-carousel id="agendaCarousel" class="owl-carousel photo-carousel owl-theme owl-loaded" ng-show="filteredAgenda.length > 0">
+		<div owl-carousel-item="{{event._id}}" ng-repeat="event in filteredAgenda = (agenda | filter: isComingEvent)">
+			<a href="#!" ng-click="setSelectedEvent($event, event);" style="background: none;">
+			<img ng-src="{{ eventTypes | getImageByIdentifier:event.eventType}}" ng-class="{'eventSelected' : event._id === selectedEvent._id}" class="lazyOwl">
+			</a>
+		</div>
+	</data-owl-carousel>
+
+	<!-- EVENT INFOS -->
+	<div class="contactcontainer" ng-show="selectedEvent" style="display: flex;">
+
+		<div class="blogcontainer" style="float: left; width: 50%; padding: 30px; background: #eb5656;">
+			<h3>{{selectedEvent.title}}</h3>
+			<p class="postdate txt-label">
+			{{selectedEvent.startsAt | date:"dd MMM yyyy"}}{{(selectedEvent.endsAt !==  selectedEvent.startsAt) ? " - " + getFormattedDate(selectedEvent.endsAt) : ""}}
+			</p>
+			<p class="txt-label"><span class="label"><strong>{{ eventTypes | getNameByIdentifier:selectedEvent.eventType}}</strong></span>
+			</p>
+			<p class="txt-label">
+			<span class="label">
+			<strong>Contenu </strong>{{selectedEvent.content}}
+			</span>
+			</p>
 		</div>
 
-        <div class="btn-group pull-right">
-	        <label class="btn" ng-model="calendarView" btn-radio="'year'">Année</label>
-	        <label class="btn" ng-model="calendarView" btn-radio="'month'">Mois</label>
-	        <label class="btn" ng-model="calendarView" btn-radio="'week'">Semaine</label>
-	        <label class="btn" ng-model="calendarView" btn-radio="'day'">Jour</label>
-	    </div>
+		<div style="float: right; width: 50%; background: #eb5656; padding: 30px;">
 
-		<mwl-calendar
-		view="calendarView"
-		current-day="calendarDay"
-		events="events"
-		view-title="calendarTitle"
-		on-event-click="eventClicked(calendarEvent)"
-		on-event-drop="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
-		edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
-		delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
-		on-edit-event-click="eventEdited(calendarEvent)"
-		on-delete-event-click="eventDeleted(calendarEvent)"
-		auto-open="true">
-		</mwl-calendar>
-	<div>
-</div>
+			<!-- GOOGLE MAP -->
+			<div id="google-map" class="flex-video google-map" style="border: 10px solid white !important;">
+				<google-map
+				center="map.center"
+				zoom="map.zoom"
+				draggable="true"
+				dragging="map.dragging"
+				bounds="map.bounds"
+				events="map.events"
+				options="map.options"
+				control="map.control">
+				<marker
+					ng-repeat="m in map.markers"
+					icon="'img/icons/pin.png'"
+					coords="m"
+					animation="google.maps.Animation.DROP"
+					click="onMarkerClicked(m);">
+					<window isIconVisibleOnClick="true" show="m.showWindow">
+					<div>
+						<div style="display: inline-block;">
+							<p style="text-align: center">{{m.title}}</p>
+							<p style="display: inline-block; vertical-align: top;">{{m.content}}</p>
+						</div>
+					</div>
+					</window>
+				</marker>
+				</google-map>
+			</div>
+		</div>
+	</div>
+
+</section>

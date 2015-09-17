@@ -19,16 +19,15 @@ var LinkSchema = new Schema( {
 		default: '',
 		trim: true
 	},
-	content: {
-		type: String,
-		default: '',
-		trim: true
-	},
-	url: {
+	image: {
 		type: String,
 		default: ''
 	},
-	image: {
+	adress: {
+		type: String,
+		default: ''
+	},
+	type: {
 		type: String,
 		default: ''
 	},

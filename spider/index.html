@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Spider</title>
+    <!-- META TAGS -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=0,width=device-width,height=device-height,initial-scale=1,maximum-scale=1" />
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <!-- CSS FILES -->
+    <link href="css/normalize.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/nerveslider.css" rel="stylesheet" type="text/css">
+    <link href="css/colorbox.css" rel="stylesheet" type="text/css">
+    <link href="css/colors.css" rel="stylesheet" type="text/css">
+    <link href="css/animate.min.css" rel="stylesheet" type="text/css">
+    <link href="css/scrollbar.css" rel="stylesheet" type="text/css">
+    <link href="css/media.css" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    <script src="js/modernizr.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <!-- MAIN CONTAINER -->
+    <div class="maincontainer">
+        <div id="menu-bar">
+            <div class="menu-icons">
+                <div class="menu-bar-icon"><span>Menu</span>
+                </div>
+                <div class="close-icon"><span>Close</span>
+                </div>
+            </div>
+            <img class="logo" src="img/logo2.png" alt="" />
+            <!-- BACK TO TOP BUTTON -->
+            <a href="#" class="back-to-top"></a>
+        </div>
+        <!-- TRANSPARENT OPEN MENU BG -->
+        <div id="menu-bg"></div>
+        <!-- SIDEBAR -->
+        <aside class="leftcontainer">
+            <div class="leftcontainer-inner">
+                <img class="logo" src="img/logo.png" alt="" />
+                <hr/>
+                <!-- MENU -->
+                <nav id="mainmenu">
+                    <ul>
+                        <li><a href="#">Home</a>
+                            <ul>
+                                <li><a href="index.html">Style 1</a>
+                                </li>
+                                <li><a href="index2.html">Style 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="about.html">About Us</a>
+                        </li>
+                        <li><a href="services.html">Services</a>
+                        </li>
+                        <li><a href="#">Portfolio</a>
+                            <ul>
+                                <li><a href="portfolio-three.html">3 Column</a>
+                                </li>
+                                <li><a href="portfolio-four.html">4 Column</a>
+                                </li>
+                                <li><a href="portfolio-five.html">5 Column</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="features.html">Other Features</a>
+                        </li>
+                        <li><a href="blog.html">Blog</a>
+                        </li>
+                        <li><a href="single-post.html">Single Post</a>
+                        </li>
+                        <li><a href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                </nav>
+                <hr/>
+                <h5>Search</h5>
+                <form id="searchform" class="searchbox">
+                    <input type="text" id="search" class="searchtext" placeholder="Keyword..." />
+                    <input type="submit" class="button" name="submit" value="Go" />
+                </form>
+                <hr/>
+                <!-- RECENT POSTS -->
+                <h5>Recent Posts</h5>
+                <ul class="recentposts">
+                    <li>
+                        <a href="single-post.html">Suspendisse ipsum urna</a>
+                    </li>
+                    <li>
+                        <a href="single-post.html">Pellentesque eget por</a>
+                    </li>
+                    <li>
+                        <a href="single-post.html">Aliquam sit amet urne</a>
+                    </li>
+                    <li>
+                        <a href="single-post.html">Ornare dapibus ornare et</a>
+                    </li>
+                    <li>
+                        <a href="single-post.html">Donec et odio et amet</a>
+                    </li>
+                </ul>
+                <hr/>
+                <!-- FLICKR -->
+                <h5>Flickr Feed</h5>
+                <ul id="cbox" class="flickr-box"></ul>
+                <div class="clear"></div>
+                <hr/>
+                <!-- CATEGORIES -->
+                <h5>Categories</h5>
+                <ul class="recentposts">
+                    <li>
+                        <a href="single-post.html">Malis imitarentur</a>
+                    </li>
+                    <li>
+                        <a href="single-post.html">Vidisse est sint</a>
+                    </li>
+                    <li>
+                        <a href="single-post.html">Nam veniam probant</a>
+                    </li>
+                    <li>
+                        <a href="single-post.html">Ex ea cohaerescant</a>
+                    </li>
+                    <li>
+                        <a href="single-post.html">Quem aute aut labore</a>
+                    </li>
+                </ul>
+                <hr/>
+                <!-- TAGS -->
+                <h5>Tags</h5>
+                <div class="tags-container">
+                    <a class="tags" href="#">Voluptate</a>
+                    <a class="tags" href="#">Deserani</a>
+                    <a class="tags" href="#">Quo eram</a>
+                    <a class="tags" href="#">Mentitum amet sit</a>
+                    <a class="tags" href="#">Cillum</a>
+                    <a class="tags" href="#">Incurreret</a>
+                    <a class="tags" href="#">Eram amet aliqua</a>
+                </div>
+            </div>
+        </aside>
+        <div class="pagecontainer">
+            <section class="rightcontainer">
+                <!-- HOME SLIDER -->
+                <div class="slider-container">
+                <div id="home-slider">
+                    <div>
+                        <img src="img/photos/large2.jpg" alt="">
+                        <div class="ns_slideContent">
+                            <div><span>Welcome to Spider</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="img/photos/large1.jpg" alt="">
+                        <div class="ns_slideContent">
+                            <div><span>Responsive Design</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="img/photos/large3.jpg" alt="">
+                        <div class="ns_slideContent">
+                            <div><span>HTML5 & CSS3</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!-- ICONS -->
+                <div class="icon-container-bg">
+                    <div class="icon-container-filter"></div>
+                    <div class="icon-container bottom-slider">
+                        <div class="icon">
+                            <div class="diamond">
+                                <img src="img/icons/clock.png" alt="" />
+                            </div>
+                            <h3>Responsive</h3>
+                            <p>Lorem ipsum dolor elit aut vel eum sed nescius quo singulis</p>
+                        </div>
+                        <div class="icon">
+                            <div class="diamond">
+                                <img src="img/icons/knife.png" alt="" />
+                            </div>
+                            <h3>Unique Design</h3>
+                            <p>Lorem ipsum dolor elit aut vel eum sed nescius quo singulis</p>
+                        </div>
+                        <div class="icon">
+                            <div class="diamond">
+                                <img src="img/icons/calc.png" alt="" />
+                            </div>
+                            <h3>Cross Browser</h3>
+                            <p>Lorem ipsum dolor elit aut vel eum sed nescius quo singulis</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- PAGE CONTENT -->
+                <div class="pagecontent">
+                    <!-- HALFBOX -->
+                    <div class="half-box">
+                        <div class="half-left">
+                            <h3>What We Do</h3>
+                            <!-- ACCORDION -->
+                            <div id="accordion-container">
+                                <div class="accordion-header">Web Design</div>
+                                <div class="accordion-content">
+                                    <p>Vestibulum porta, tortor elementum luctus dictum, est odio egestas justo, dapibus aliquet sem nisl vel augue. Fusce eu sapien tortor, a consequat nunc. Nunc pulvinar consequat turpis, sed vulputate nibh lacinia rutrum. Nam laoreet pulvinar eros, sit amet sodales est venenatis eu. Fusce eu sapien tortor, a consequat nunc. Nunc pulvinar consequat turpis, sed vulputate nibh lacinia rutrum.</p>
+                                </div>
+                                <div class="accordion-header">Graphic Design</div>
+                                <div class="accordion-content">
+                                    <p>Vestibulum porta, tortor elementum luctus dictum, est odio egestas justo, dapibus aliquet sem nisl vel augue. Fusce eu sapien tortor, a consequat nunc. Nunc pulvinar consequat turpis, sed vulputate nibh lacinia rutrum. Nam laoreet pulvinar eros, sit amet sodales est venenatis eu. Fusce eu sapien tortor, a consequat nunc. Nunc pulvinar consequat turpis, sed vulputate nibh lacinia rutrum.</p>
+                                </div>
+                                <div class="accordion-header">Hosting Service</div>
+                                <div class="accordion-content">
+                                    <p>Vestibulum porta, tortor elementum luctus dictum, est odio egestas justo, dapibus aliquet sem nisl vel augue. Fusce eu sapien tortor, a consequat nunc. Nunc pulvinar consequat turpis, sed vulputate nibh lacinia rutrum. Nam laoreet pulvinar eros, sit amet sodales est venenatis eu. Fusce eu sapien tortor, a consequat nunc. Nunc pulvinar consequat turpis, sed vulputate nibh lacinia rutrum.</p>
+                                </div>
+                            </div>
+                            <p>Aut culpa eiusmod aliquip, illum e cernantur, fore a tempor do ingeniis ab anim quamquam do an quid quae varias nescius, ea esse senserit familiaritatem qui cillum ne laboris eu varias.</p>
+                        </div>
+                        <div class="half-right">
+                            <h3>Why Choose Us</h3>
+                            <p>Se est concursionibus nam qui sint iudicem possumus de ita de aliqua admodum ubi sunt mentitum fabulas hic in elit fidelissimae, ne irure offendit laborum, nulla si vidisse, hic in elit quorum.</p>
+                            <!-- ROUNDED LIST -->
+                            <ol class="rounded-list">
+                                <li><span>Over 10 years experience</span>
+                                </li>
+                                <li><span>Fast Delivery</span>
+                                </li>
+                                <li><span>Live Customer Service</span>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- TITLE -->
+                <div class="subtitle light">
+                    <h3>Testimonials</h3>
+                </div>
+                <div id="rotator-container">
+                    <div id="cbp-qtrotator" class="cbp-qtrotator">
+                        <div class="cbp-qtcontent">
+                            <div class="img-diamond">
+                                <img src="img/photos/team1.jpg" alt="" />
+                            </div>
+                            <div class="blockquote">
+                                <p>Incurreret nam arbitror graviterque a vidisse quo si varias voluptate, quorum firmissimum iudicem quorum incurreret, a cernantur ne vidisse, occaecat duis noster.</p>
+                                <div class="footer">Albert Camus</div>
+                            </div>
+                        </div>
+                        <div class="cbp-qtcontent">
+                            <div class="img-diamond">
+                                <img src="img/photos/team2.jpg" alt="" />
+                            </div>
+                            <div class="blockquote">
+                                <p>Occaecat aliqua ipsum eu velit hic qui anim incur reret iudicem ut veniam cernantur transf errem, ex velit in veniam. Consequat cohaer escant se ullamco, appellat.</p>
+                                <div class="footer">Salvador Dali</div>
+                            </div>
+                        </div>
+                        <div class="cbp-qtcontent">
+                            <div class="img-diamond">
+                                <img src="img/photos/team3.jpg" alt="" />
+                            </div>
+                            <div class="blockquote">
+                                <p>Si quamquam est appellat a nulla est si tamen probant. Id ad dolor ingeniis, dolor quibusdam an fore culpa, quid se ubi tamen proident, malis probant onibus.</p>
+                                <div class="footer">Michelangelo</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- TITLE -->
+                <div class="subtitle light">
+                    <h3>Latest Blog Posts</h3>
+                </div>
+                <!-- POST 1 -->
+                <article class="blogcontainer">
+                    <!-- POST IMAGE -->
+                    <div class="blogimage" data-image="img/photos/blog2.jpg">
+                        <a href="single-post.html"></a>
+                    </div>
+                    <!-- POST CONTENT -->
+                    <div class="postcontent">
+                        <h4><a href="single-post.html">Malis imitarentur offendit</a></h4>
+                        <p class="postdate">February 27, 2014</p>
+                        <p>Malis imitarentur offendit tamen laboris. Vidisse est sin labo ne e lorem despicati, nam veniam probant nostrud qui ipsum et litteris se aliqua.</p>
+                        <a href="single-post.html" class="button">Read More...</a>
+                    </div>
+                </article>
+                <!-- POST 2 -->
+                <article class="blogcontainer">
+                    <!-- POST IMAGE -->
+                    <div class="blogimage" data-image="img/photos/blog1.jpg">
+                        <a href="single-post.html"></a>
+                    </div>
+                    <!-- POST CONTENT -->
+                    <div class="postcontent">
+                        <h4><a href="single-post.html">Vidisse est sin labo ingeniis</a></h4>
+                        <p class="postdate">February 24, 2014</p>
+                        <p>In eram commodo. Ullamco ubi mandaremus et hic irure et fore, quae expetendis et vidisse qui aliqua graviterque mentitum sunt cupidatat, ex iudicem.</p>
+                        <a href="single-post.html" class="button">Read More...</a>
+                    </div>
+                </article>
+                <!-- POST 3 -->
+                <article class="blogcontainer lastpost">
+                    <!-- POST IMAGE -->
+                    <div class="blogimage" data-image="img/photos/blog3.jpg">
+                        <a href="single-post.html"></a>
+                    </div>
+                    <!-- POST CONTENT -->
+                    <div class="postcontent">
+                        <h4><a href="single-post.html">Si quamquam est appellat</a></h4>
+                        <p class="postdate">February 16, 2014</p>
+                        <p>Id nisi aliquip praetermissum. Cupidatat est esse, noster an quamquam non nulla. Cupidatat ea nostrud, irure nostrud pariatur, fugiat doctrina.</p>
+                        <a href="single-post.html" class="button">Read More...</a>
+                    </div>
+                </article>
+            </section>
+        </div>
+        <!-- FOOTER -->
+        <footer id="footer">
+            <div id="footer-widgets">
+                <!-- WIDGET 1 -->
+                <div class="footer-widget">
+                    <h5>Get In Touch</h5>
+                    <p><strong>Address:</strong> Lorem ipsum street 1283 New York/United States
+                    </p>
+                    <p><strong>Phone:</strong> 317-456-2564
+                    </p>
+                    <p><strong>E-mail:</strong> youremail@yoursite.com
+                    </p>
+                </div>
+                <!-- WIDGET 2 -->
+                <div class="footer-widget">
+                    <h5>Popular Posts</h5>
+                    <ul>
+                        <li>
+                            <a href="single-post.html">Lorem Ipsum dolor eget</a>
+                        </li>
+                        <li>
+                            <a href="single-post.html">Nibh mauris lucem id</a>
+                        </li>
+                        <li>
+                            <a href="single-post.html">Donec in lorem mauris</a>
+                        </li>
+                        <li>
+                            <a href="single-post.html">Auctor mauris urna loe</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- WIDGET 3 -->
+                <div class="footer-widget">
+                    <h5>Tags</h5>
+                    <div class="tags-container">
+                        <a class="tags" href="#">Voluptate</a>
+                        <a class="tags" href="#">Deserani</a>
+                        <a class="tags" href="#">Quo eram</a>
+                        <a class="tags" href="#">Mentitum amet sit</a>
+                        <a class="tags" href="#">Cillum</a>
+                        <a class="tags" href="#">Incurreret</a>
+                        <a class="tags" href="#">Eram amet aliqua</a>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="footer-info">
+                <!-- COPYRIGHT -->
+                <div class="credits">Copyright Egemenerd</div>
+                <!-- SOCIAL ICONS -->
+                <ul class="social-icons">
+                    <li>
+                        <a href="#">
+                            <img class="social-icon" src="img/social-icons/facebook.png" alt="Facebook" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img class="social-icon" src="img/social-icons/twitter.png" alt="Twitter" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img class="social-icon" src="img/social-icons/pinterest.png" alt="Pinterest" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img class="social-icon" src="img/social-icons/google+.png" alt="Google+" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img class="social-icon" src="img/social-icons/youtube.png" alt="YouTube" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JS FILES -->
+    <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="js/jquery-ui-custom.min.js" type="text/javascript"></script>
+    <script src="js/nerveslider.min.js" type="text/javascript"></script>
+    <script src="js/backstretch.min.js" type="text/javascript"></script>
+    <script src="js/accordion.js" type="text/javascript"></script>
+    <script src="js/jquery.cbpQTRotator.min.js" type="text/javascript"></script>
+    <script src="js/scrollbar.js" type="text/javascript"></script>
+    <script src="js/jquery.colorbox-min.js" type="text/javascript"></script>
+    <script src="js/jflickrfeed.min.js" type="text/javascript"></script>
+    <script src="js/custom.js" type="text/javascript"></script>
+    <!-- TESTIMONIALS JS -->
+    <script type="text/javascript">
+        jQuery(function () {
+            jQuery('#cbp-qtrotator').cbpQTRotator({
+                speed: 700,
+                interval: 7000
+            });
+
+        });
+    </script>
+    <!-- TESTIMONIALS BG IMAGE -->
+    <script type="text/javascript">
+        jQuery(window).load(function () {
+            "use strict";
+            if (jQuery(window).width() > 480) {
+                jQuery('#rotator-container').backstretch("img/photos/grid2.jpg");
+            }
+        });
+    </script>
+    <!-- SLIDER -->
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            "use strict";
+            jQuery('.ns_slideContent').find('div span').addClass('animated fadeInRight');
+            jQuery("#home-slider").nerveSlider({
+                sliderAutoPlay: true,
+                slideTransitionDelay: 5000,
+                sliderWidth: "100%",
+                sliderHeight: "100%",
+                sliderHeightAdaptable: false,
+                sliderResizable: true,
+                sliderKeepAspectRatio: false,
+                slideTransitionSpeed: 1000,
+                slideTransitionEasing: "easeOutExpo",
+                showDots: false,
+                slideTransitionStart: function () {
+                    jQuery('.ns_slideContent').find('div span').hide();
+                    jQuery('.ns_slideContent').find('div span').removeClass('animated fadeInRight');
+                },
+                slideTransitionComplete: function () {
+                    jQuery('.ns_slideContent').find('div span').show();
+                    jQuery('.ns_slideContent').find('div span').addClass('animated fadeInRight');
+                }
+            });
+        });
+    </script>
+    <!-- POST IMAGE LOOP -->
+    <script type="text/javascript">
+        jQuery(window).load(function () {
+            "use strict";
+            jQuery(".blogimage").each(function () {
+                if (jQuery(this).attr('data-image')) {
+                    jQuery(this).backstretch(jQuery(this).data('image'));
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

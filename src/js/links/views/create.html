@@ -1,11 +1,52 @@
-<section data-ng-controller="LinkController">
-	<article>
-		<div class="col-md-6">
-			<a href="#!/links">
-				<button class="btn btn-default">
-					{{'common_back' | translate}}
-				</button>
-			</a>
-		</div>
-	</article>
+<section class="rightcontainer">
+
+	<div class="subtitle">
+	    <h1>Nouveau lien</h1>
+	    <a href="#!" class="ok-icon" data-ng-click="create()">
+		</a>
+	</div>
+
+	<div class="pagecontent">
+		<form name="linkForm" role="form">
+
+			<div class="half-box">
+				<div class="half-left" style="text-align: center;">
+
+                    <img ng-src="{{link.image || 'img/photos/5-s.jpg'}}" class="flex-image" alt="" />
+
+					<label class="label-upload-profile-picture button" style="margin: inherit;">
+						Parcourir
+						<input
+						nv-file-select
+						type="file"
+						uploader="uploader"
+						class="manual-file-chooser js-manual-file-chooser js-avatar-field"
+						name="uploadLinkImage"/>
+					</label>
+
+				</div>
+
+				<div class="half-right">
+
+					<label for="adress">Adresse du lien</label>
+					<input type="url" name="adress" data-ng-model="link.adress" placeholder="http://" required/>
+
+					<div class="info-box" ng-show="link.type === 'videos' && !isAlertHidden">
+                        <span class="info-box-close" ng-click="hideAlert()"></span>
+                        <h4>Attention !</h4>
+                        <p>Si c'est une vidéo Youtube, penser à mettre "embed" après http://youtube.com, sinon ça ne marchera pas. <br/> Ex: <b>http://www.youtube.com/embed/eh-0knDpn5g</b></p>
+                    </div>
+
+					<label for="linkType">Type de lien</label>
+					<select
+						name="linkType"
+						data-ng-model="link.type"
+						ng-options="type.identifier as type.value for type in options">
+					</select>
+
+				</div>
+			</div>
+
+		</form>
+	</div>
 </section>

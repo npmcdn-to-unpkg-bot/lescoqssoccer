@@ -1,0 +1,72 @@
+<section class="rightcontainer">
+
+    <!-- TITLE -->
+    <div class="subtitle">
+        <h1>{{article.title}}</h1>
+        <a href="#!/articles" class="back-icon">
+        </a>
+    </div>
+
+    <!-- DATE AND ACTIONS -->
+    <div class="featured-image-date">
+        <p>{{article.created | date:"dd MMM yyyy, H'h'mm"}}</p>
+        <div class="tags-container" style="margin-top: 30px;" ng-show="article.categories && article.categories.length > 0">
+            <a class="tags" href="#" ng-repeat="category in article.categories">
+                {{category.value}}
+            </a>
+        </div>
+        <input
+        type="button"
+        class="button pull-right"
+        value="Supprimer"
+        ng-click="remove(article, $event)"
+        ng-show="global.user._id === article.user._id"/>
+        <input
+        type="button"
+        class="button pull-right"
+        value="Editer"
+        ng-click="edit(article, $event)"
+        ng-show="global.user._id === article.user._id"/>
+    </div>
+
+    <!-- ARTICLE IMAGE -->
+    <div>
+        <img ng-src="{{article.image && article.image || 'img/photos/large2.jpg'}}" style="width: 100%;">
+    </div>
+
+    <div class="pagecontent">
+
+        <!-- ARTICLE CONTENT-->
+        <article>
+            <div ng-bind-html="getFormattedContent(article.content)" class="articleContent"></div>
+        </article>
+
+        <!-- COMMENTS LIST -->
+        <h3>Commentaires</h3>
+
+        <div
+        class="comments"
+        ng-class="{'reply': comment.isReply}"
+        ng-repeat="comment in article.comments | orderBy:'-created'">
+            <p class="meta">
+                <a href="#!">{{comment.user.name || global.user.name}}</a> - {{comment.created | date:dateFormat}}
+            </p>
+            <div class="comments_content">
+                <p>{{comment.content}}</p>
+                <a href="#!" class="reply">Répondre</a>
+                <div class="clr"></div>
+                <div class="reply_icon"></div>
+            </div>
+        </div>
+
+        <h5 class="noCommentLabel" ng-if="article.comments.length === 0">Aucun commentaires</h5>
+
+        <!-- COMMENT FORM -->
+        <h4>Nouveau commentaire</h4>
+        <form class="comment-form" data-ng-submit="addComment()">
+            <textarea data-ng-model="comment" rows="5" cols="60"></textarea>
+            <input type="submit" class="button pull-right" value="Ajouter" />
+        </form>
+    </div>
+
+</section>

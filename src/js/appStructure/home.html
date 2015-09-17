@@ -1,90 +1,75 @@
-<section class="homeContainer">
+<section class="rightcontainer">
 
-	<div class="grid-wrap">
-		<div class="grid-col bp1-col-one-half bp2-col-one-third" style="padding-left: 0;">
-			<div class='square-box terminal-box' style="height: 65vh;">
-				<div class='square-content'>
-					<div class=" terminal ">
-						  <p class=" terminal--header ">Last login: Sun Sep 15 11:11:50 on ttys000</p>
-						  <p class=" terminal--input ">whoami</p>
-						  <p class=" terminal--output ">Rafael Rinaldi</p>
-						  <p class=" terminal--input ">find ~ -name secret-of-life</p>
-						  <p class=" terminal--output ">42</p>
-						  <p class=" terminal--input ">which planet</p>
-						  <p class=" terminal--output ">/usr/milky-way/earth</p>
-						  <p class=" terminal--input ">node</p>
-						  <p class=" terminal--output is-not-defined "></p>
-						  <p class=" terminal--output is-console ">console.log(sprintf(msg, 'awesome'));</p>
-						  <p class="terminal--output">CSS3 is awesome!</p>
-						  <p class=" terminal--output is-not-defined "></p>
+	<!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 130" class="lamp">
+		<g>
+			<circle ng-non-bindable class="bulb" style="" cx="30" cy="109.3" r="10.7"/>
+			<line style="fill:none;stroke:#D7D5AF;stroke-width:0.263;stroke-linecap:round;stroke-miterlimit:10;" x1="28.1" y1="108.1" x2="27.4" y2="113.4"/>
+			<line style="fill:none;stroke:#D7D5AF;stroke-width:0.263;stroke-linecap:round;stroke-miterlimit:10;" x1="32" y1="108.1" x2="32.6" y2="113.4"/>
+			<polyline ng-non-bindable style="fill:none;stroke:#D7D5AF;stroke-width:0.263;stroke-linecap:round;stroke-miterlimit:10;" points="27.8,113.5 28.3,112.8 28.8,113.5 29.6,112.8 30,113.5 30.7,112.9 31.2,113.5 31.8,112.8 32.3,113.5"/>
+		</g>
+		<rect x="20.7" y="66.7" style="fill:#2D2D2F;" width="18.6" height="15.6"/>
+		<rect x="28.5" y="0" style="fill:#2D2D2F;" width="3" height="66.7"/>
+		<path style="fill:#2D2D2F;" d="M30,80.3c-16.6,0-30,13.4-30,30h60C60,93.8,46.6,80.3,30,80.3z"/>
+		<path style="fill:#2D2D2F;" d="M30,80.3c-16.6,0-30,13.4-30,30h60C60,93.8,46.6,80.3,30,80.3z"/>
+	</svg> -->
 
-						  <p class="terminal--input terminal-user">
-						  	<span data-ng-bind="content">
-						  	</span>
-						  	<textarea
-						  		class="terminal--textarea"
-								data-ng-model="content"
-						  		ng-keydown="$event.which === 13 && action(content)"/>
-						  </p>
-					</div>
-				</div>
+	<!-- SLOGAN -->
+	<div class="slogan" style="display: block; position: relative; z-index: 0; background: none;">
+		<!-- SLOGAN TRANSPARENT BG -->
+		<div class="bgfilter"></div>
+		<h1><span id="words"></span></h1>
+		<p>Quo eram amet aliqua incurreret et de velit duis aut iudicem. Culpa voluptatibus incurreret magna deserunt legam iudicem. Non nisi graviterque.</p>
+	</div>
+
+	<!-- ICONS -->
+	<div class="icon-container-bg homeContainer">
+		<div class="icon-container-filter"></div>
+		<div class="icon-container">
+			<div class="icon">
+				<a href="#!/articles" class="diamond">
+				<img src="img/icons/blog.png" alt="" />
+				</a>
+				<h3>Articles</h3>
+				<p>Lorem ipsum dolor elit aut vel eum sed nescius quo singulis</p>
 			</div>
-			<img id="cadonne" src="img/YJMyY0g.gif" style="margin-top: 1vh; height: 31vh; width: 100%;">
-		</div>
-		<div class="grid-col bp1-col-one-third bp2-col-one-third">
-			<div class='island square-box user-box' style="height: 60vh;">
-				<div class='square-content'>
-					 <a href="#!/profile" ng-click="closeMenu();">
-						<img ng-src="{{global.user.avatar && global.user.avatar || 'img/blip.png'}}" class="homeAvatar"/>
-					</a>
-				</div>
+			<div class="icon">
+				<a href="#!/albums" class="diamond">
+				<img src="img/icons/albums.png" alt="" />
+				</a>
+				<h3>Photo</h3>
+				<p>Lorem ipsum dolor elit aut vel eum sed nescius quo singulis</p>
 			</div>
-			<div class='island square-box' style="margin-top: 1vh; height: 36vh;">
-				<h3>test</h3>
+			<div class="icon">
+				<a href="#!/agenda" class="diamond">
+				<img src="img/icons/calendar.png" alt="" />
+				</a>
+				<h3>Agenda</h3>
+				<p>Lorem ipsum dolor elit aut vel eum sed nescius quo singulis</p>
 			</div>
-		</div>
-		<div class="grid-col bp1-col-one-third bp2-col-one-third">
-			<div class="grid-wrap">
-				<div class="grid-col bp1-col-one-third bp2-col-one-half" style="padding-left: 0;">
-					<div class="island square-box" style="height: 32vh;">
-						<div class='square-content'>
-							<a href="#!/albums" class="link link--kumya" ng-click="closeMenu();">
-							<span data-letters="Photos">Photos</span>
-							</a>
-						</div>
-					</div>
-					<div class="island square-box" style="margin-top: 1vh; height: 32vh;">
-						<div class='square-content'>
-							<a href="#!/links" class="link link--kumya" ng-click="closeMenu();">
-								<span data-letters="Voyageurs">Voyageurs</span>
-							</a>
-						</div>
-					</div>
-					<div class="island square-box" style="margin-top: 1vh; height: 31vh;">
-						<div class='square-content'>
-							<a href="#!/suggestions" class="link link--kumya" ng-click="closeMenu();">
-								<span data-letters="Suggestions">Suggestions</span>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="grid-col bp1-col-one-third bp2-col-one-half">
-					<div class="island square-box" style="height: 48vh;">
-						<div class='square-content'>
-							<a href="#!/agenda" class="link link--kumya" ng-click="closeMenu();">
-							<span data-letters="Agenda">Agenda</span>
-							</a>
-						</div>
-					</div>
-					<div class="island square-box" style="margin-top: 1vh; height: 48vh;">
-						<div class='square-content'>
-							<a href="#!/articles" class="link link--kumya" ng-click="closeMenu();">
-							<span data-letters="Articles">Articles</span>
-							</a>
-						</div>
-					</div>
-				</div>
+			<div class="icon secondLine">
+				<a href="#!/links" class="diamond">
+				<img src="img/icons/links.png" alt="" />
+				</a>
+				<h3>Liens</h3>
+				<p>Lorem ipsum dolor elit aut vel eum sed nescius quo singulis</p>
+			</div>
+			<div class="icon secondLine">
+				<a href="#!/suggestions" class="diamond">
+				<img src="img/icons/suggestions.png" alt="" />
+				</a>
+				<h3>Suggestions</h3>
+				<p>Lorem ipsum dolor elit aut vel eum sed nescius quo singulis</p>
+			</div>
+			<div class="icon secondLine">
+				<a href="#!/team" class="diamond" style="background: white;">
+				<img src="img/icons/team.png" alt="" />
+				</a>
+				<h3>L'équipe</h3>
+				<p>Lorem ipsum dolor elit aut vel eum sed nescius quo singulis</p>
 			</div>
 		</div>
 	</div>
+	<cm-wordrotator>
+	</cm-wordrotator>
+
 </section>

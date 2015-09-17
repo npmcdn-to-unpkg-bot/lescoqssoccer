@@ -1,65 +1,51 @@
-<cm-sidebar menu="menu">
-</cm-sidebar>
+<section class="rightcontainer">
 
-<div class="creationForm">
-	<form role="form">
+	<div class="subtitle">
+		<a href="#!/albums" class="back-icon">
+		</a>
+		<h1>{{album.name || 'Nouvel album'}}</h1>
+		<a href="#!" class="ok-icon" data-ng-click="saveAlbum($event)">
+		</a>
+	</div>
+	<div class="pagecontent">
 
-		<div class="form-group">
-			<span
-			class="input input--yoshiko"
-			data-ng-class="{'input--filled': album.name && album.name !== ''}"
-			style="margin-bottom: 0;">
-				<input class="input__field input__field--yoshiko" type="text" name="name" data-ng-model="album.name" ng-mouseleave="saveAlbum(album, !(album._id))" required/>
-				<label class="input__label input__label--yoshiko" for="name">
-					<span class="input__label-content input__label-content--yoshiko">{{'gallery_name' | translate}}</span>
-				</label>
-			</span>
-			<hr/>
-		</div>
+		<div class="info-box" ng-show="showInfo" style="margin-bottom: 30px;">
+            <span class="info-box-close" ng-click="hideInfo()"></span>
+            <h4>Mets au moins une photo!!</h4>
+        </div>
 
-		<div class="form-group">
+		<form role="form">
+			<div class="half-box">
+
+				<div class="half-left">
+					<label for="name" class="control-label">{{'gallery_name' | translate}}</label>
+					<input type="text" name="name" data-ng-model="album.name" required/>
+				</div>
+
+				<div class="half-right">
+					<label for="cover" class="control-label">{{'gallery_cover' | translate}}</label>
+					<select
+						name="cover"
+						ng-model="album.coverPicPath"
+						data-ng-options="photo.filepath as photo.name for photo in album.photoList"
+						style="margin-bottom: 0;">
+					</select>
+				</div>
+
+			</div>
+
 			<button
-			class="btn"
+			class="button"
 			ng-click="uploadFiles();"
-			data-ng-disabled="!album.name">
-				<span tooltip="Rentre d'abord un nom" tooltip-placement="right" ng-show="!album.name"></span>
-				Ajouter des photos
+			style="margin-bottom: 30px;">
+			Ajouter des photos
 			</button>
-		</div>
 
-		<div class="form-group" data-ng-disabled="displayPhotos.length === 0">
-			<label for="name" class="control-label">{{'gallery_cover' | translate}}</label>
-			<select
-				class="form-control input-sm"
-				data-ng-model="album.coverPic"
-				data-ng-change="setCoverPic(coverPic)"
-				data-ng-options="f as f.name for f in displayPhotos">
-			</select>
-		</div>
+			<br/>
 
-		<div class="form-group">
-			<table class="table table-striped table-hover">
-				<tbody>
-					<tr data-ng-repeat="photo in displayPhotos">
-						<td>
-							<a href="#!/albums/detail/{{album._id}}">{{$index +1}}</a>
-						</td>
-						<td>
-							<a>
-								<img data-ng-src="{{photo.filepath}}" style="width: 150px; height: auto;">
-							</a>
-						</td>
-						<td>
-							<a href="#!/albums/detail/{{album._id}}">{{photo.name}}</a>
-						</td>
-						<td style="text-align: center">
-							<a ng-click="deletePhoto(photo);">
-								<span class="glyphicon glyphicon-trash" title="Delete Photo"/>
-							</a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</form>
-</div>
+			<!-- ALBUM IMAGES -->
+			<div deckgrid class="deckgrid deckgrid3 createAlbum" source="album.photoList" cardTemplate="js/gallery/views/createCard.html" style="padding: 0; display: -webkit-box;"></div>
+
+		</form>
+	</div>
+</section>

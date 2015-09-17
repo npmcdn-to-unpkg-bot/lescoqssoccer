@@ -1,26 +1,19 @@
 'use strict';
 
-angular.module('mean.suggestions').controller('SuggestionController', ['$scope', '$location', 'Global', 'SuggestionsCollection', 'SideMenu',
-	function ($scope, $location, Global, SuggestionsCollection, SideMenu) {
+angular.module('mean.suggestions').controller('SuggestionController', ['$scope', '$location', 'Global', 'SuggestionsCollection',
+	function ($scope, $location, Global, SuggestionsCollection) {
 
 		$scope.global = Global;
 		$scope.dateFormat = "dd/MM/yyyy";
 		$scope.SuggestionsCollection = SuggestionsCollection;
 
-		SideMenu.setSearchInput(false);
-		SideMenu.setMenu({
-			middle: [{
-				link: "#!/suggestions/create",
-				image: "img/Draw_Adding_Cross_64.png",
-				tooltip: "C'est plus!!",
-				type: "link"
-			}]
-		});
-
 		$scope.content;
 		$scope.SuggestionsCollection.load();
 
-		$scope.add = function () {
+		$scope.add = function (evt) {
+
+			evt.preventDefault();
+			evt.stopPropagation();
 
 			if(this.content !== ""){
 

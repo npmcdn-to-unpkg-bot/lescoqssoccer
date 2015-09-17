@@ -1,49 +1,51 @@
-<form class="createArticleForm" role="form" data-ng-submit="create()">
+<section class="rightcontainer">
 
-	<div class="createArticleImage">
-		<div class="imgThumbnail">
-			<img ng-src="{{article.image && article.image || 'img/8962691008_7f489395c9_m.jpg'}}">
-		</div>
-
-		<button class="btn btn-default" style="margin-top: 70px;">
-		<label for="upload-profile-picture" class="label-upload-profile-picture" style="width: 140px;">
-			Changer d'image
-			<input
-			id="upload-profile-picture"
-			nv-file-select
-			uploader="uploader"
-			type="file"
-			class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
-		</label>
-		</button>
+	<div class="subtitle">
+		<a href="#!/articles" class="back-icon">
+		</a>
+		<h1 class="ellipsis">{{article.title || 'Nouvel article'}}</h1>
+		<a href="#!" class="ok-icon" data-ng-click="create()">
+		</a>
 	</div>
 
-	<div class="col-md-12" style="margin-top: 20px;">
+	<div class="pagecontent">
+		<form role="form">
+			<h2>Infos</h2>
+			<div class="half-box">
+				<div class="half-left" style="text-align: center;">
+					<img ng-src="{{article.image && article.image || 'img/photos/large2.jpg'}}" class="flex-image" alt=""/>
+					<label class="label-upload-profile-picture button" style="margin: -10px;">
+						Change l'image
+						<input
+						nv-file-select
+						type="file"
+						uploader="uploader"
+						class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
+					</label>
+				</div>
+				<div class="half-right">
 
-		<span class="input input--yoshiko" data-ng-class="{'input--filled': article.title}" style="margin-bottom: 20px;">
-			<input class="input__field input__field--yoshiko" type="text" data-ng-model="article.title" required/>
-			<label class="input__label input__label--yoshiko" for="title">
-				<span class="input__label-content input__label-content--yoshiko">{{'title' | translate}}</span>
-			</label>
-		</span>
+					<label style="float">Titre de l'article</label>
+					<input type="text" data-ng-model="article.title" required/>
 
-	</div>
+					<label style="float">Categories</label>
+					<div class="tags-container">
+	                    <a class="tags" href="#" ng-repeat="category in categories" ng-click="toggleCategory(category, $event)">
+	                    	{{category.value}}
+	                    </a>
+	                </div>
 
-	<div class="col-md-12">
-		<div class="wysiwyg--nao">
+				</div>
+			</div>
+			<h2 style="margin-top: 50px;">Contenu de l'article</h2>
 			<wysiwyg
-			textarea-class="input__field--yoshiko"
-			textarea-height="200px"
-			textarea-required
-			ng-model="article.content"
-			enable-bootstrap-title="false"
-			textarea-menu="customMenu">
+				textarea-class="cm-wysiwyg"
+				textarea-height="200px"
+				textarea-required
+				ng-model="article.content"
+				enable-bootstrap-title="true"
+				textarea-menu="customMenu">
 			</wysiwyg>
-		</div>
-
-		<div class="modal-footer" style="padding: 19px 0 20px 20px;">
-			<a href="#!/articles" class="btn btn-default" type="button">Retour</a>
-			<button class="btn btn-primary" type="submit">Ajouter</button>
-		</div>
+		</form>
 	</div>
-</form>
+</section>

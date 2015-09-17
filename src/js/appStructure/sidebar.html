@@ -1,22 +1,61 @@
-<header ng-if="sideMenu.show">
-	<div class="logo" style="text-align: center;">
-		<a href="#!/home">Accueil</a>
-	</div>
-	<nav>
-		<div id="search" ng-if="sideMenu.hasSearch">
-			<span class="input input--makiko">
-				<input class="input__field input__field--makiko" type="text" data-ng-class="{'searchFocus': obj.searchTitle}" data-ng-model="obj.searchTitle" name="search"/>
-				<label class="input__label input__label--makiko" for="search">
-					<span class="input__label-content input__label-content--makiko">Rechercher</span>
-				</label>
-			</span>
+<div id="menu-bar">
+
+	<div class="menu-icons">
+		<div class="menu-bar-icon">
+			<span>Menu</span>
 		</div>
-		<ul style="padding: 0;">
-			<li ng-repeat="item in sideMenu.menu.middle" data-ng-class="{'selected' : item.selected}">
-				<a href="{{item.link}}">
-					{{item.tooltip}}
-				</a>
-			</li>
-		</ul>
-	</nav>
-</header>
+		<div class="close-icon">
+			<span>Fermer</span>
+		</div>
+	</div>
+	<!-- <img class="logo" src="img/logo2.png" alt="" /> -->
+
+	<!-- BACK TO TOP BUTTON -->
+	<a href="#" class="back-to-top"></a>
+</div>
+
+<!-- OVERLAY WHEN OPEN MENU -->
+<div id="menu-bg"></div>
+
+<!-- SIDEBAR -->
+<aside class="leftcontainer">
+	<div class="leftcontainer-inner">
+
+		<!-- SEARCH -->
+		<h5>Recherche</h5>
+		<form id="searchform" class="searchbox">
+			<input type="text" id="search" class="searchtext" placeholder="Rechercher..." />
+			<input type="submit" class="button" name="submit" value="Go" />
+		</form>
+		<hr/>
+
+		<!-- MENU -->
+		<nav id="mainmenu">
+			<ul>
+				<li ng-repeat="item in menu">
+					<a
+					id="{{item.id}}"
+					href="{{item.link}}"
+					ng-click="closeSidebar($event, item);"
+					ng-class="{'has-sub': item.children, 'selected' : isCurrentPath(item)}">{{item.name}}</a>
+					<ul ng-if="item.children">
+						<li ng-repeat="subItem in item.children">
+							<a href="{{subItem.link}}" ng-click="closeSidebar($event, subItem);">{{subItem.name}}</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+		<hr/>
+
+		<!-- RECENT POSTS -->
+		<h5>Profile</h5>
+		<a href="#!/profile" ng-click="closeSidebar($event);">
+			<img class="contact-img" ng-src="{{global.user.avatar}}">
+		</a>
+		<a href="/signout">
+			<input type="button" class="button" value="Se déconnecter"/>
+		</a>
+
+	</div>
+</aside>

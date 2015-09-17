@@ -9,48 +9,15 @@ exports.findAllAlbums = function(req, res) {
 		sort: {
 			name: 1
 		}
-	}).populate('photoList._id').exec(function(err, albums) {
+	}).populate('user').exec(function(err, albums) {
 		res.send(albums);
-	})
-};
-
-exports.findAllPhotosInAlbum = function(req, res) {
-	Album.findOne({
-		_id: req.params.id
-	}).populate('photoList._id').select('photoList._id').exec(function(err, album) {
-		var photos = [];
-		_.each(album.photoList, function(entry) {
-			photos.push(entry._id); //entry._id represents entire photo document
-		})
-		res.send(photos)
-	})
-};
-
-exports.editAlbumPhotos = function(req, res) {
-
-	var action = req.params.action;
-	var albumId = req.params.id;
-	var photoId = req.params.photoId;
-
-	Album.findById(albumId, function(err, album) {
-		if (err) console.log("Error finding album: " + err)
-
-		if (action === 'add') {
-			album.addPhoto(photoId, function(data) {
-				res.send(data);
-			});
-		} else { // action === 'remove'
-			album.removePhoto(photoId, function(data) {
-				res.send(data);
-			});
-		}
 	})
 };
 
 exports.findAlbumById = function(req, res) {
 	Album.findOne({
 		_id: req.params.id
-	}).populate('photoList._id').exec(function(err, album) {
+	}).populate('user').exec(function(err, album) {
 		if (err) console.log("error finding album: " + err)
 		console.warn(album);
 		res.send(album);
@@ -72,7 +39,6 @@ exports.addAlbum = function(req, res) {
 exports.updateAlbum = function(req, res) {
 	Album.findById(req.params.id, function(err, album) {
 		delete req.body._id;
-		delete req.body.photoList;
 		if (err) console.log("error: " + err)
 		_.extend(album, req.body);
 		album.save(function(err, album, numAffected) {
@@ -86,9 +52,19 @@ exports.updateAlbum = function(req, res) {
 exports.deleteAlbum = function(req, res) {
 	Album.findById(req.params.id, function(err, doc) {
 		if (!err) {
+
+			var files = _.extend({}, doc.photoList);
 			doc.remove(function() {
 				res.send(req.body);
+
+				//remove files on filesystem
+				_.each(files, function(file){
+					if(file.filepath){
+						fs.unlink(file.filepath);
+					}
+				});
 			});
+
 		} else {
 			console.log("error: " + err);
 		}
@@ -104,14 +80,14 @@ exports.download = function(req, res) {
 
 	Album.findOne({
 		_id: id
-	}).populate('photoList._id').exec(function(err, album) {
+	}).exec(function(err, album) {
 		if (err) console.log("error: " + err);
 
 		archive.pipe(output);
 
 		//add each photo of the album to the archive
 		_.each(album.photoList, function(entry) {
-			src.push(entry._id.filepath.split('public/img/users/').pop());
+			src.push(entry.filepath.split('public/img/users/').pop());
 		});
 
 		archive.bulk([{

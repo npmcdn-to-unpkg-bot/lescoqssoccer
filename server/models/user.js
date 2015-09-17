@@ -34,11 +34,8 @@ var UserSchema = new Schema( {
 		}
 	},
 	skills:[],
-	facebook: {},
-	twitter: {},
-	github: {},
-	google: {},
-	linkedin: {}
+	coins: Number,
+	presentation: String
 } );
 
 /**
