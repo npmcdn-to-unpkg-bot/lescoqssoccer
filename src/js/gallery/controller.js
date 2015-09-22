@@ -12,9 +12,9 @@ angular.module('mean.albums').controller('AlbumDetailController', ['$location', 
 			evt.preventDefault();
 			evt.stopPropagation();
 
-			if($scope.album.name !== "" && $scope.album.photoList.length > 0){
+			if ($scope.album.name !== "" && $scope.album.photoList.length > 0) {
 
-				if(!$scope.album.coverPicPath){
+				if (!$scope.album.coverPicPath) {
 					$scope.album.coverPicPath = $scope.album.photoList[0].filepath;
 				}
 
@@ -131,21 +131,36 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 				// Handle Error
 			});
 		};
+
+		setTimeout(function() {
+			$('.Collage').collagePlus({
+				'fadeSpeed'     : 2000,
+				'targetHeight'  : 200
+			});
+		}, 500);
+
+		$( window ).resize(function() {
+		  	$('.Collage').collagePlus({
+				'fadeSpeed'     : 2000,
+				'targetHeight'  : 200
+			});
+		});
 	}
 ]);
 
 //To Pre-load Album before route change
 var PhotoMgrData = {
 
-	album: function(AlbumsCollection, $route) {
-		return $route.current.params.albumId ? AlbumsCollection.get({
-			id: $route.current.params.albumId
-		}).$promise : {photoList: []};
+	album: function(AlbumService, $route) {
+		console.warn()
+		return $route.current.params.albumId ? AlbumService.getAlbum($route.current.params.albumId) : {
+			photoList: []
+		};
 	},
 
-	albums: function(AlbumsCollection, $route, $location) { //return all albums only if URL /albums/* but not /albums/add
+	albums: function(AlbumService, $route, $location) { //return all albums only if URL /albums/* but not /albums/add
 		if (RegExp('\/albums').test($location.path()) && $route.current.params.view !== 'add') {
-			return AlbumsCollection.query().$promise;
+			return AlbumService.getAllAlbums();
 		} else {
 			return [];
 		}

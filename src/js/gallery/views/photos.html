@@ -1,28 +1,36 @@
-<section class="rightcontainer">
-
-	<!-- PAGE TITLE -->
-	<div class="subtitle">
-		<h1>{{album.name}}</h1>
-		<a href="#!/albums" class="back-icon">
-		</a>
-	</div>
-	<!-- ACTION BAR -->
-	<ul class="filters">
-		<li>
-			<a href="#!" data-ng-click="download($event);">Télécharger</a>
-		</li>
-		<li ng-show="global.user._id === album.user._id">
-			<a href="#!/albums/edit/{{album._id}}">Editer</a>
-		</li>
-		<li ng-show="global.user._id === album.user._id">
-			<a href="#!" data-ng-click="deleteAlbum($event);">Supprimer</a>
-		</li>
+<div class="clearfix filters filter-floating">
+	<ul style="top:30px; right: 78px;">
+	    <li><a href="#!" data-ng-click="download($event);">Télécharger</a></li>
+	    <li><a href="#!/albums/edit/{{album._id}}">Editer</a></li>
+	    <li><a href="#!" data-ng-click="deleteAlbum($event);">Supprimer</a></li>
 	</ul>
-	<div class="clear"></div>
-
-	<!-- GALLERY -->
-	<ul class="photosContainer flickr-box">
-		<div deckgrid class="deckgrid" source="album.photoList" cardTemplate="js/gallery/views/photoCard.html"></div>
-	</ul>
-
-</section>
+	<div class="filter-floating-triggle hidden-phone" style="top:30px; right: 40px;"><i class="fa fa-cogs"></i></div>
+</div>
+<div class="post type-post status-publish format-link has-post-thumbnail hentry category-blog category-uncategorized">
+    <div class="row-fluid two-cols-layout" style="min-height: 799px;">
+        <div id="content_wrap" style="padding: 50px 60px 60px 60px;">
+            <div class="title-bar-wrap" style="padding: 0 0 40px 0;">
+                <div id="title-wrap">
+                    <div class="title-wrap-inn">
+                        <div id="main-title">
+                            <h1 class="main-title">{{album.name}}</h1>
+                            <div class="post-meta">
+                                <span class="post-meta-unit date">Créé le: {{album.created | date:"dd MMM yyyy"}}</span>
+                                <br>
+                                <span class="post-meta-unit date">Auteur: {{album.user.name || album.user.username}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End #title-wrap-->
+            </div>
+            <section class="Collage effect-parent gallery-collage lightbox-photoswipe">
+				<div class="Image_Wrapper" data-lightbox="true" ng-repeat="photo in album.photoList">
+					<a ng-href="{{photo.filepath}}" class="lightbox-item">
+						<img ng-src="{{photo.filepath}}">
+					</a>
+				</div>
+			</section>
+        </div>
+    </div>
+</div>

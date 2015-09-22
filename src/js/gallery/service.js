@@ -48,6 +48,7 @@ angular.module('mean.albums').service('AlbumService', ['AlbumsCollection', 'Phot
 				return AlbumsCollection.get({
 					id: id
 				}, function(data) {
+					console.warn(data);
 					return data;
 				}).$promise;
 			},
