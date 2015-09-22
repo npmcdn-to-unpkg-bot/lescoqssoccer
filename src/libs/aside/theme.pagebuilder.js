@@ -169,14 +169,15 @@ function ThemePageBuilder() {
 
 		}
 
-		//Pagebuild: Liquid List
-		var _moudle_liquidlist = jQuery('.moudle .isotope-liquid-list');
-		if (_moudle_liquidlist.length) {
-			ux_pb.liquidlist();
-		}
-
 		//Pagebuild: Liquid Click
 		setTimeout(function() {
+
+			//Pagebuild: Liquid List
+			var _moudle_liquidlist = jQuery('.moudle .isotope-liquid-list');
+			if (_moudle_liquidlist.length) {
+				ux_pb.liquidlist();
+			}
+
 			var _moudle_liquidimage = jQuery('.moudle .liquid_list_image');
 			if (_moudle_liquidimage.length) {
 				_moudle_liquidimage.each(function() {

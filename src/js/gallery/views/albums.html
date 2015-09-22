@@ -2,7 +2,7 @@
 
 	<section class="liquid-expand-wrap albumDetailBrick" style="padding: 0px; display: none">
 	    <h1 class="liquid-title post-bgcolor-default">
-	        <a href="content-portfolio-images-on-right.html" title="{{selectedAlbum.name}}" style="text-transform:uppercase;">
+	        <a ng-href="#!/albums/view/{{selectedAlbum._id}}" title="{{selectedAlbum.name}}" style="text-transform:uppercase;">
 	        	{{selectedAlbum.name}}
 	        </a>
 	        <i class="icon-m-close-thin liquid-item-close"></i>
@@ -63,7 +63,7 @@
                                             </div>
                                             <div class="isotope masonry isotope-liquid-list less-space isotope_fade" data-space="0px" data-size="medium" data-width="width4" data-words=""
                                                 data-social="false" data-ratio="imagebox-thumb">
-                                                <div class="width2 isotope-item hover-effect" ng-repeat="album in albums" data-num="$index+1">
+                                                <div class="width2 isotope-item hover-effect" ng-repeat="album in albums">
                                                     <div class="inside liquid_inside brick-inside">
                                                         <div class="brick-content brick-hover bg-theme-color-10">
                                                             <a class="liquid_list_image" data-postid="{{album._id}}"

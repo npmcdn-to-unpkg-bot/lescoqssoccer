@@ -2553,3 +2553,11 @@ body{padding-top:0;}
 .f_col{clear:left;margin-left:0;}
 .f_col[class*="span"] { margin-left:0;}
 .fullwidth-wrap>.row-fluid .isotope.less-space { }
+
+.Collage img{
+	opacity: 0.4;
+}
+
+.Collage img:hover{
+	opacity: 1;
+}

@@ -82,9 +82,9 @@ angular.module('mean.albums').controller('AlbumsController', ['$scope', 'Global'
 		$scope.global = Global;
 		$scope.albums = albums;
 
-		$scope.selectAlbum = function(albumId){
+		$scope.selectAlbum = function(albumId) {
 
-			$scope.selectedAlbum = _.filter(albums, function(album){
+			$scope.selectedAlbum = _.filter(albums, function(album) {
 				return album._id === albumId;
 			})[0];
 
@@ -139,20 +139,6 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 				// Handle Error
 			});
 		};
-
-		setTimeout(function() {
-			$('.Collage').collagePlus({
-				'fadeSpeed'     : 2000,
-				'targetHeight'  : 200
-			});
-		}, 500);
-
-		$( window ).resize(function() {
-		  	$('.Collage').collagePlus({
-				'fadeSpeed'     : 2000,
-				'targetHeight'  : 200
-			});
-		});
 	}
 ]);
 

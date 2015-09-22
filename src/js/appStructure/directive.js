@@ -677,18 +677,40 @@ angular.module('mean.system').directive('cmMobileMenu',
 	}
 );
 
-angular.module('mean.system').directive('cmPortfolio',
-	function() {
+angular.module('mean.system').directive('cmPortfolio', ['$timeout',
+	function($timeout) {
 		return {
 			restrict: 'E',
 			transclude: true,
 			link: function($scope, element, attrs) {
 
-				// jQuery("#filters1").dysaniagrid({
-				// 	galleryid: "#gridbox1"
-				// });
+				$timeout(function() {
+
+					$scope.collage = function() {
+						$('.Collage').collagePlus({
+							'fadeSpeed': 2000,
+							'targetHeight': 200
+						});
+					};
+
+					var timer = null;
+					var width = $(window).width();
+
+					$(window).bind('resize', function() {
+						if ($(window).width() != width) {
+							// hide all the images until we resize them
+							$('.Collage').css('opacity', 0.2);
+							// set a timer to re-apply the plugin
+							if (timer) clearTimeout(timer);
+							timer = setTimeout($scope.collage, 250);
+							width = $(window).width();
+						}
+					});
+
+					$scope.collage();
+				}, 500);
 
 			}
 		}
 	}
-);
+]);
