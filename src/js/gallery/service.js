@@ -48,7 +48,6 @@ angular.module('mean.albums').service('AlbumService', ['AlbumsCollection', 'Phot
 				return AlbumsCollection.get({
 					id: id
 				}, function(data) {
-					console.warn(data);
 					return data;
 				}).$promise;
 			},
@@ -60,7 +59,6 @@ angular.module('mean.albums').service('AlbumService', ['AlbumsCollection', 'Phot
 			},
 
 			saveAlbum: function(album) {
-				console.warn(album);
 				return AlbumsCollection.save({}, album, function(data) {
 					return data;
 				}).$promise;

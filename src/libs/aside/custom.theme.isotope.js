@@ -135,7 +135,7 @@ function ThemeIsotope(){
 					width = Math.floor(container.width() / 5);
 				} else if (container.width() > 1279) {
 					width = Math.floor(container.width() / 5);
-				} else if (container.width() > 1023) {
+				} else if (container.width() > 900) {
 					width = Math.floor(container.width() / 5);
 				} else if (container.width() > 767) {
 					width = Math.floor(container.width() / 3);

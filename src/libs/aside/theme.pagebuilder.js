@@ -131,7 +131,7 @@ function ThemePageBuilder() {
 		}
 
 		//Fullwrap init
-		//ux_pb.fullwrapsize();
+		ux_pb.fullwrapsize();
 		ux_pb.fullwraptabs();
 		//parallax
 		if (jQuery('html').hasClass('no-touch') && theme_win.width() > 768) {
@@ -569,14 +569,14 @@ function ThemePageBuilder() {
 
 	//Pagebuild: Liquid Responsive
 	this.liquidresponsive = function() {
-		/*
+
 				var _moudle_liquid_list = jQuery('.moudle .isotope-liquid-list');
 				_moudle_liquid_list.each(function(){
 					var liquid_width = jQuery(this).width();
 					if( liquid_width < 480 ){
 						jQuery('head').append('<style>.liquid-more-icon i{ display:none; }</style>');
 					}
-				});*/
+				});
 	}
 
 	//Pagebuild: Liquid Column

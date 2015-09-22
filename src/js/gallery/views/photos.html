@@ -6,32 +6,71 @@
 	</ul>
 	<div class="filter-floating-triggle hidden-phone" style="top:30px; right: 40px;"><i class="fa fa-cogs"></i></div>
 </div>
+
 <div class="post type-post status-publish format-link has-post-thumbnail hentry category-blog category-uncategorized">
-	<div class="row-fluid two-cols-layout" >
-		<div id="content_wrap" style="padding: 50px 60px 60px 60px;">
+	<div class="row-fluid two-cols-layout" style="min-height: 800px;">
+		<div id="content_wrap" style="padding: 50px 0 60px 0;">
 			<div class="title-bar-wrap" style="padding: 0 0 40px 0;">
 				<div id="title-wrap">
 					<div class="title-wrap-inn">
-						<div id="main-title">
+						<div id="main-title" style="padding-left: 60px;">
 							<h1 class="main-title">{{album.name}}</h1>
 							<div class="post-meta">
-								<span class="post-meta-unit date">Créé le: {{album.created | date:"dd MMM yyyy"}}</span>
+								<span class="post-meta-unit date">
+								Créé le: {{album.created | date:"dd MMM yyyy"}}
+								</span>
 								<br>
-								<span class="post-meta-unit date">Auteur: {{album.user.name || album.user.username}}</span>
+								<span class="post-meta-unit date">
+								Auteur: {{album.user.name || album.user.username}}
+								</span>
 							</div>
 						</div>
 					</div>
 				</div>
 				<!--End #title-wrap-->
 			</div>
-			<section class="Collage effect-parent gallery-collage lightbox-photoswipe">
-				<div class="Image_Wrapper" data-lightbox="true" ng-repeat="photo in album.photoList">
-					<a ng-href="{{photo.filepath}}" class="lightbox-item">
-					<img ng-src="{{photo.filepath}}">
-					</a>
+			<div class="row-fluid">
+				<div class="span12 moudle bottom-space-no" style="">
+					<!--Portfolio isotope-->
+					<div class="row-fluid">
+						<div class="container-isotope " style=" " data-post="20140406-081941-855">
+							<div id="isotope-load" style="display: none;">
+								<div class="ux-loading"></div>
+								<div class="ux-loading-transform">
+									<div class="loading-dot1">
+										&nbsp;
+									</div>
+									<div class="loading-dot2">
+										&nbsp;
+									</div>
+								</div>
+							</div>
+							<div class="isotope masonry isotope_fade" data-space="2px" data-size="brick">
+								<div class="width-and-medium isotope-item brick-with-img" ng-repeat="photo in album.photoList">
+									<div class="inside brick-inside post-bgcolor-default">
+										<a title="{{photo.name}}" class="brick-link brick-link-gray">
+										<div class="brick-hover-mask brick-hover">
+											<!-- <h3 class="brick-title">{{photo.name}}</h3> -->
+										</div>
+										<div class="brick-content brick-grey">
+											<img ng-src="{{photo.filepath}}" class="grayscale wp-post-image" alt="{{photo.name}}">
+											<div class="brick-conteng-bg"></div>
+										</div>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-			</section>
+			</div>
 		</div>
 	</div>
 </div>
-<cm-portfolio></cm-portfolio>
+
+<script type="text/javascript">
+jQuery(document).ready(function() {
+var ux_pb = new ThemePageBuilder();
+ux_pb.init();
+});
+</script>
