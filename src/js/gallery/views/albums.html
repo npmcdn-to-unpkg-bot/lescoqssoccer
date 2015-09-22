@@ -1,23 +1,32 @@
-<section class="liquid-expand-wrap albumDetailBrick" style="padding: 0px; display: none">
-    <h1 class="liquid-title post-bgcolor-default">
-        <a href="content-portfolio-images-on-right.html" title="PORTFOLIO POST INFO LEFT">PORTFOLIO POST INFO LEFT</a>
-        <i class="icon-m-close-thin liquid-item-close"></i>
-    </h1>
-    <div class="liquid-body">
-        <div class="liquid-body-des">
-            <p>Dis parturient tortor placerat! Sed. Placerat risus amet amet purus turpis elit penatibus mauris diam, sed pid. Duis. Non platea lorem ut mus mauris. Rhoncus etiam.</p>
-        </div><!--End liquid-body-des-->
-        <ul class="liquid-body-thumbs clearfix">
-            <li><a href="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/04/IMG_4783.jpg" title="IMG_4783" class="imgwrap" data-lightbox="image1"><img width="100" height="100" src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/04/IMG_4783-400x400.jpg"></a></li>
-            <li><a href="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/04/IMG_4784.jpg" title="IMG_4784" class="imgwrap" data-lightbox="image1"><img width="100" height="100" src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/04/IMG_4784-400x400.jpg"></a></li>
-        </ul>
-    </div><!--End liquid-body-->
-    <div class="liquid-more">
-        <a href="content-portfolio-images-on-right.html" class="liquid-more-icon " title="PORTFOLIO POST INFO LEFT"><i class="icon-m-right-arrow-curved"></i>Read more...</a>
-    </div><!--End liquid-more-->
-</section>
-
 <div id="post-55" class="post-55 page type-page status-publish hentry">
+
+	<section class="liquid-expand-wrap albumDetailBrick" style="padding: 0px; display: none">
+	    <h1 class="liquid-title post-bgcolor-default">
+	        <a href="content-portfolio-images-on-right.html" title="{{selectedAlbum.name}}" style="text-transform:uppercase;">
+	        	{{selectedAlbum.name}}
+	        </a>
+	        <i class="icon-m-close-thin liquid-item-close"></i>
+	    </h1>
+	    <div class="liquid-body">
+	        <div class="liquid-body-des">
+	            <p>Dis parturient tortor placerat! Sed. Placerat risus amet amet purus turpis elit penatibus mauris diam, sed pid. Duis. Non platea lorem ut mus mauris. Rhoncus etiam.</p>
+	        </div>
+	        <ul class="liquid-body-thumbs clearfix">
+	            <li ng-repeat="photo in selectedAlbum.photoList | limitTo:5">
+	            	<a ng-href="{{photo.filepath}}" title="IMG_4783" class="imgwrap" data-lightbox="image1">
+	            		<img width="100" height="100" ng-src="{{photo.filepath}}">
+	            	</a>
+	            </li>
+	        </ul>
+	    </div>
+	    <div class="liquid-more">
+	        <a ng-href="#!/albums/view/{{selectedAlbum._id}}" class="liquid-more-icon " title="{{selectedAlbum.name}}">
+	        	<i class="icon-m-right-arrow-curved"></i>
+	        	Voir plus...
+	        </a>
+	    </div>
+	</section>
+
 	<div class="row-fluid " style="min-height: 799px;">
 		<div id="content_wrap" class="">
 			<div class="content-wrap-inn ">
@@ -26,7 +35,7 @@
 						<div id="title-wrap">
 							<div class="title-wrap-inn">
 								<div id="main-title">
-									<h1 class="main-title">LES PHOTOS</h1>
+									<h1 class="main-title">SOUVENIRS SOUVENIRS</h1>
 								</div>
 								<div class="post-expert">Mattis scelerisque nisi, in, ac risus montes. Proin, integer est magna lundium odio diam mus, cursus placerat, vut magnis pellentesque dictumst.</div>
 							</div>
@@ -36,409 +45,69 @@
 					<!--End #title-bar-wrap"-->
 				</div>
 				<div class="pagebuilder-wrap">
-					<div class="fullwrap_moudle">
-						<div class="row-fluid">
-							<div class="fullwidth-wrap parallax "
-								style="background-position: 50% 0px;" data-speed="19">
-								<div class="row-fluid">
-									<div class="span12 moudle bottom-space-no">
-										<div class="container-isotope clear"
-											data-post="20140326-131115-261">
-											<a name="20140326-131115-261" class="20140326-131115-261"></a>
-											<div id="isotope-load" style="display: none;">
-												<div class="ux-loading"></div>
-												<div class="ux-loading-transform">
-													<div class="loading-dot1">&nbsp;</div>
-													<div class="loading-dot2">&nbsp;</div>
-												</div>
-											</div>
-											<div class="isotope masonry isotope-liquid-list less-space isotope_fade" data-space="0px" data-size="medium" data-width="width4" data-words=""
-												data-social="false" data-ratio="imagebox-thumb">
-												<div class="width2 isotope-item hover-effect"
-													data-num="1">
-													<div class="inside liquid_inside brick-inside">
-														<div class="brick-content brick-hover bg-theme-color-10">
-															<a href="content-portfolio-images-on-right.html"
-															class="liquid_list_image" data-postid="671"
-															data-color="bg-theme-color-10" data-type="image">
-															<div class="brick-hover-mask">
-																<h3 class="brick-title">PORTFOLIO POST INFO LEFT</h3>
-															</div> <img
-															src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/04/IMG_4783-400x400.jpg"
-															class="attachment-imagebox-thumb wp-post-image"
-															alt="IMG_4783">
-															</a>
-														</div>
-														<!--End brick-content-->
-													</div>
-													<!--End inside-->
-													<div style="display: none; margin: 0px 0 0 0px;" class="inside liquid-loading-wrap bg-theme-color-10">
-														<div class="ux-loading"></div>
-														<div class="ux-loading-transform">
-															<div class="loading-dot1">&nbsp;</div>
-															<div class="loading-dot2">&nbsp;</div>
-														</div>
-														<img src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/04/IMG_4783-400x400.jpg"
-														class="liquid-hide wp-post-image" alt="IMG_4783">
-													</div>
-												</div>
-												<div class="width2 isotope-item hover-effect"
-													data-num="2">
-													<div class="inside liquid_inside brick-inside">
-														<div class="brick-content brick-hover bg-theme-color-10">
-															<a href="content-portfolio-images-on-right.html"
-															class="liquid_list_image" data-postid="183"
-															data-color="bg-theme-color-10" data-type="image">
-															<div class="brick-hover-mask">
-																<h3 class="brick-title">EXPIRED SHAPES</h3>
-															</div> <img
-															src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/04/Expired-shapes-2-400x400.png"
-															class="attachment-imagebox-thumb wp-post-image"
-															alt="Expired-shapes-2">
-															</a>
-														</div>
-														<!--End brick-content-->
-													</div>
-													<!--End inside-->
-													<div style="display: none; margin: 0px 0 0 0px;"
-														class="inside liquid-loading-wrap bg-theme-color-10">
-														<div class="ux-loading"></div>
-														<div class="ux-loading-transform">
-															<div class="loading-dot1">&nbsp;</div>
-															<div class="loading-dot2">&nbsp;</div>
-														</div>
-														<img src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/04/Expired-shapes-2-400x400.png"
-														class="liquid-hide wp-post-image" alt="Expired-shapes-2">
-													</div>
-												</div>
-												<div class="width2 isotope-item hover-effect"
-													data-num="3">
-													<div class="inside liquid_inside brick-inside">
-														<div class="brick-content brick-hover bg-theme-color-10">
-															<a href="content-portfolio-images-on-right.html"
-															class="liquid_list_image" data-postid="176"
-															data-color="bg-theme-color-10" data-type="image">
-															<div class="brick-hover-mask">
-																<h3 class="brick-title">PORTFOLIO POST FULLWIDTH</h3>
-															</div> <img
-															src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/04/Paper-Hot-Cup-Mock-Up-vol-2-400x400.jpg"
-															class="attachment-imagebox-thumb wp-post-image"
-															alt="Paper-Hot-Cup-Mock-Up-vol-2">
-															</a>
-														</div>
-														<!--End brick-content-->
-													</div>
-													<!--End inside-->
-													<div style="display: none; margin: 0px 0 0 0px;" class="inside liquid-loading-wrap bg-theme-color-10">
-														<div class="ux-loading"></div>
-														<div class="ux-loading-transform">
-															<div class="loading-dot1">&nbsp;</div>
-															<div class="loading-dot2">&nbsp;</div>
-														</div>
-														<img src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/04/Paper-Hot-Cup-Mock-Up-vol-2-400x400.jpg"
-														class="liquid-hide wp-post-image"
-														alt="Paper-Hot-Cup-Mock-Up-vol-2">
-													</div>
-												</div>
-												<div class="width2 isotope-item hover-effect"
-													data-num="4">
-													<div class="inside liquid_inside brick-inside">
-														<div class="brick-content brick-hover bg-theme-color-10">
-															<a href="content-portfolio-images-on-left.html"
-															class="liquid_list_image" data-postid="162"
-															data-color="bg-theme-color-10" data-type="image">
-															<div class="brick-hover-mask">
-																<h3 class="brick-title">HIPSTER WIZARD</h3>
-															</div> <img
-															src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/04/Hipster-Wizard-0-400x400.jpg"
-															class="attachment-imagebox-thumb wp-post-image"
-															alt="Hipster-Wizard-0">
-															</a>
-														</div>
-														<!--End brick-content-->
-													</div>
-													<!--End inside-->
-													<div style="display: none; margin: 0px 0 0 0px;" class="inside liquid-loading-wrap bg-theme-color-10">
-														<div class="ux-loading"></div>
-														<div class="ux-loading-transform">
-															<div class="loading-dot1">&nbsp;</div>
-															<div class="loading-dot2">&nbsp;</div>
-														</div>
-														<img src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/04/Hipster-Wizard-0-400x400.jpg"
-														class="liquid-hide wp-post-image" alt="Hipster-Wizard-0">
-													</div>
-												</div>
-												<div class="width2 isotope-item hover-effect"
-													data-num="5">
-													<div class="inside liquid_inside brick-inside">
-														<div class="brick-content brick-hover bg-theme-color-10">
-															<a href="content-portfolio-fullwidth.html"
-															class="liquid_list_image" data-postid="158"
-															data-color="bg-theme-color-10" data-type="image"
-															>
-															<div class="brick-hover-mask">
-																<h3 class="brick-title">FULLWIDTH PORTFOLIO POST
-																SLIDER</h3>
-															</div> <img
-															src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/04/Perspective-App-Screen-Presentation-MockUp-400x400.jpg"
-															class="attachment-imagebox-thumb wp-post-image"
-															alt="Perspective-App-Screen-Presentation-MockUp">
-															</a>
-														</div>
-														<!--End brick-content-->
-													</div>
-													<!--End inside-->
-													<div style="display: none; margin: 0px 0 0 0px;" class="inside liquid-loading-wrap bg-theme-color-10">
-														<div class="ux-loading"></div>
-														<div class="ux-loading-transform">
-															<div class="loading-dot1">&nbsp;</div>
-															<div class="loading-dot2">&nbsp;</div>
-														</div>
-														<img src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/04/Perspective-App-Screen-Presentation-MockUp-400x400.jpg"
-														class="liquid-hide wp-post-image"
-														alt="Perspective-App-Screen-Presentation-MockUp">
-													</div>
-												</div>
-												<div class="width2 isotope-item hover-effect"
-													data-num="6">
-													<div class="inside liquid_inside brick-inside">
-														<div class="brick-content brick-hover bg-theme-color-10">
-															<a href="content-portfolio-fullwidth.html"
-															class="liquid_list_image" data-postid="143"
-															data-color="bg-theme-color-10" data-type="image"
-															>
-															<div class="brick-hover-mask">
-																<h3 class="brick-title">FULLWIDTH PORTFOLIO POST
-																SLIDER</h3>
-															</div> <img
-															src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/04/Paper-Hot-Cup-Mock-Up-vol-0-400x400.png"
-															class="attachment-imagebox-thumb wp-post-image"
-															alt="Paper-Hot-Cup-Mock-Up-vol-0">
-															</a>
-														</div>
-														<!--End brick-content-->
-													</div>
-													<!--End inside-->
-													<div style="display: none; margin: 0px 0 0 0px;" class="inside liquid-loading-wrap bg-theme-color-10">
-														<div class="ux-loading"></div>
-														<div class="ux-loading-transform">
-															<div class="loading-dot1">&nbsp;</div>
-															<div class="loading-dot2">&nbsp;</div>
-														</div>
-														<img src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/04/Paper-Hot-Cup-Mock-Up-vol-0-400x400.png"
-														class="liquid-hide wp-post-image"
-														alt="Paper-Hot-Cup-Mock-Up-vol-0">
-													</div>
-												</div>
-												<div class="width2 isotope-item hover-effect"
-													data-num="7">
-													<div class="inside liquid_inside brick-inside">
-														<div class="brick-content brick-hover bg-theme-color-10">
-															<a href="content-portfolio-images-on-right.html"
-															class="liquid_list_image" data-postid="138"
-															data-color="bg-theme-color-10" data-type="image"
-															>
-															<div class="brick-hover-mask">
-																<h3 class="brick-title">LONG TEXT CONTENT ON LEFT</h3>
-															</div> <img width="400" height="400"
-															src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/04/Creative_Business_Card_Vol03_1-400x400.jpg"
-															class="attachment-imagebox-thumb wp-post-image"
-															alt="Creative_Business_Card_Vol03_1">
-															</a>
-														</div>
-														<!--End brick-content-->
-													</div>
-													<!--End inside-->
-													<div style="display: none; margin: 0px 0 0 0px;" class="inside liquid-loading-wrap bg-theme-color-10">
-														<div class="ux-loading"></div>
-														<div class="ux-loading-transform">
-															<div class="loading-dot1">&nbsp;</div>
-															<div class="loading-dot2">&nbsp;</div>
-														</div>
-														<img src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/04/Creative_Business_Card_Vol03_1-400x400.jpg"
-														class="liquid-hide wp-post-image"
-														alt="Creative_Business_Card_Vol03_1">
-													</div>
-												</div>
-												<div class="width2 isotope-item hover-effect"
-													data-num="8">
-													<div class="inside liquid_inside brick-inside">
-														<div class="brick-content brick-hover bg-theme-color-10">
-															<a href="content-portfolio-slider.html"
-															class="liquid_list_image" data-postid="133"
-															data-color="bg-theme-color-10" data-type="image"
-															>
-															<div class="brick-hover-mask">
-																<h3 class="brick-title">ATMOSPHERE</h3>
-															</div> <img
-															src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/04/mikkolagerstedt_detour-400x400.jpg"
-															class="attachment-imagebox-thumb wp-post-image"
-															alt="mikkolagerstedt_detour">
-															</a>
-														</div>
-														<!--End brick-content-->
-													</div>
-													<!--End inside-->
-													<div style="display: none; margin: 0px 0 0 0px;" class="inside liquid-loading-wrap bg-theme-color-10">
-														<div class="ux-loading"></div>
-														<div class="ux-loading-transform">
-															<div class="loading-dot1">&nbsp;</div>
-															<div class="loading-dot2">&nbsp;</div>
-														</div>
-														<img
-														src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/04/mikkolagerstedt_detour-400x400.jpg"
-														class="liquid-hide wp-post-image"
-														alt="mikkolagerstedt_detour">
-													</div>
-												</div>
-												<div class="width2 isotope-item hover-effect"
-													data-num="9">
-													<div class="inside liquid_inside brick-inside">
-														<div class="brick-content brick-hover bg-theme-color-10">
-															<a
-															href="content-portfolio-images-on-left.html"
-															class="liquid_list_image" data-postid="129"
-															data-color="bg-theme-color-10" data-type="image"
-															>
-															<div class="brick-hover-mask">
-																<h3 class="brick-title">TRIVALENT BRAND IDENTITY</h3>
-															</div> <img
-															src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/04/Trivalent-Brand-Identity-01-400x400.png"
-															class="attachment-imagebox-thumb wp-post-image"
-															alt="Trivalent Brand Identity 01">
-															</a>
-														</div>
-														<!--End brick-content-->
-													</div>
-													<!--End inside-->
-													<div style="display: none; margin: 0px 0 0 0px;" class="inside liquid-loading-wrap bg-theme-color-10">
-														<div class="ux-loading"></div>
-														<div class="ux-loading-transform">
-															<div class="loading-dot1">&nbsp;</div>
-															<div class="loading-dot2">&nbsp;</div>
-														</div>
-														<img
-														src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/04/Trivalent-Brand-Identity-01-400x400.png"
-														class="liquid-hide wp-post-image"
-														alt="Trivalent Brand Identity 01">
-													</div>
-												</div>
-												<div class="width2 isotope-item hover-effect"
-													data-num="10">
-													<div class="inside liquid_inside brick-inside">
-														<div class="brick-content brick-hover bg-theme-color-10">
-															<a
-															href="content-portfolio-slider.html"
-															class="liquid_list_image" data-postid="151"
-															data-color="bg-theme-color-10" data-type="image"
-															>
-															<div class="brick-hover-mask">
-																<h3 class="brick-title">REACCIONES.</h3>
-															</div> <img width="400" height="400"
-															src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/04/Reacciónes-2-400x400.jpg"
-															class="attachment-imagebox-thumb wp-post-image"
-															alt="Reacciónes 2">
-															</a>
-														</div>
-														<!--End brick-content-->
-													</div>
-													<!--End inside-->
-													<div style="display: none; margin: 0px 0 0 0px;"
-														class="inside liquid-loading-wrap bg-theme-color-10">
-														<div class="ux-loading"></div>
-														<div class="ux-loading-transform">
-															<div class="loading-dot1">&nbsp;</div>
-															<div class="loading-dot2">&nbsp;</div>
-														</div>
-														<img
-														src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/04/Reacciónes-2-400x400.jpg"
-														class="liquid-hide wp-post-image" alt="Reacciónes 2">
-													</div>
-												</div>
-												<div class="width2 isotope-item hover-effect"
-													data-num="11">
-													<div class="inside liquid_inside brick-inside">
-														<div class="brick-content brick-hover bg-theme-color-10">
-															<a
-															href="content-portfolio-images-on-left.html"
-															class="liquid_list_image" data-postid="172"
-															data-color="bg-theme-color-10" data-type="image">
-															<div class="brick-hover-mask">
-																<h3 class="brick-title">GAME CHANGERS</h3>
-															</div> <img
-															src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/03/Game-Changers-1-400x400.png"
-															class="attachment-imagebox-thumb wp-post-image"
-															alt="Game-Changers-1">
-															</a>
-														</div>
-														<!--End brick-content-->
-													</div>
-													<!--End inside-->
-													<div style="display: none; margin: 0px 0 0 0px;"
-														class="inside liquid-loading-wrap bg-theme-color-10">
-														<div class="ux-loading"></div>
-														<div class="ux-loading-transform">
-															<div class="loading-dot1">&nbsp;</div>
-															<div class="loading-dot2">&nbsp;</div>
-														</div>
-														<img
-														src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/03/Game-Changers-1-400x400.png"
-														class="liquid-hide wp-post-image" alt="Game-Changers-1">
-													</div>
-												</div>
-												<div class="width2 isotope-item hover-effect"
-													data-num="12">
-													<div class="inside liquid_inside brick-inside">
-														<div class="brick-content brick-hover bg-theme-color-10">
-															<a
-															href="content-portfolio-images-on-left.html"
-															class="liquid_list_image" data-postid="69"
-															data-color="bg-theme-color-10" data-type="image"
-															>
-															<div class="brick-hover-mask">
-																<h3 class="brick-title">MASONRY PORTFOLIO WITH
-																RIGHT SIDEBAR</h3>
-															</div> <img width="400" height="400"
-															src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/03/Twin-Peaks-tribute-Character-design-400x400.jpg"
-															class="attachment-imagebox-thumb wp-post-image"
-															alt="Twin-Peaks-tribute-Character-design">
-															</a>
-														</div>
-														<!--End brick-content-->
-													</div>
-													<!--End inside-->
-													<div style="display: none; margin: 0px 0 0 0px;"
-														class="inside liquid-loading-wrap bg-theme-color-10">
-														<div class="ux-loading"></div>
-														<div class="ux-loading-transform">
-															<div class="loading-dot1">&nbsp;</div>
-															<div class="loading-dot2">&nbsp;</div>
-														</div>
-														<img width="400" height="400"
-														src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/03/Twin-Peaks-tribute-Character-design-400x400.jpg"
-														class="liquid-hide wp-post-image"
-														alt="Twin-Peaks-tribute-Character-design">
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="clearfix pagenums tw_style page_twitter">
-											<a data-post="20140326-131115-261" data-postid="56"
-											data-paged="2" data-count="2" data-module="liquid-list" data-aurl="nextpage/more.html" href="#" class="not_pagination">Load More</a>
-										</div>
-										<script type="text/javascript">
-										jQuery(document).ready(function() {
-										var ux_pb = new ThemePageBuilder();
-										ux_pb.init();
-										});
-										JS_PATH = './js';
-										</script>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+                	<div class="fullwrap_moudle">
+                        <div class="row-fluid">
+                            <div class="fullwidth-wrap parallax "
+                                style="background-position: 50% 0px;" data-speed="19">
+                                <div class="row-fluid">
+                                    <div class="span12 moudle bottom-space-no">
+                                        <div class="container-isotope clear"
+                                            data-post="20140326-131115-261">
+                                            <a name="20140326-131115-261" class="20140326-131115-261"></a>
+                                            <div id="isotope-load" style="display: none;">
+                                                <div class="ux-loading"></div>
+                                                <div class="ux-loading-transform">
+                                                    <div class="loading-dot1">&nbsp;</div>
+                                                    <div class="loading-dot2">&nbsp;</div>
+                                                </div>
+                                            </div>
+                                            <div class="isotope masonry isotope-liquid-list less-space isotope_fade" data-space="0px" data-size="medium" data-width="width4" data-words=""
+                                                data-social="false" data-ratio="imagebox-thumb">
+                                                <div class="width2 isotope-item hover-effect" ng-repeat="album in albums" data-num="$index+1">
+                                                    <div class="inside liquid_inside brick-inside">
+                                                        <div class="brick-content brick-hover bg-theme-color-10">
+                                                            <a class="liquid_list_image" data-postid="{{album._id}}"
+                                                                data-color="bg-theme-color-10" data-type="image">
+                                                                <div class="brick-hover-mask">
+                                                                    <h3 class="brick-title" style="text-transform: uppercase;">{{album.name}}</h3>
+                                                                </div> <img
+                                                                ng-src="{{album.coverPicPath}}"
+                                                                class="attachment-imagebox-thumb wp-post-image"
+                                                                alt="IMG_4783">
+                                                            </a>
+                                                        </div>
+                                                        <!--End brick-content-->
+                                                    </div>
+                                                    <!--End inside-->
+                                                    <div style="display: none; margin: 0px 0 0 0px;" class="inside liquid-loading-wrap bg-theme-color-10">
+                                                        <div class="ux-loading"></div>
+                                                        <div class="ux-loading-transform">
+                                                            <div class="loading-dot1">&nbsp;</div>
+                                                            <div class="loading-dot2">&nbsp;</div>
+                                                        </div>
+                                                        <img src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/04/IMG_4783-400x400.jpg"
+                                                            class="liquid-hide wp-post-image" alt="IMG_4783">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix pagenums tw_style page_twitter">
+                                            <a data-post="20140326-131115-261" data-postid="56"
+                                                data-paged="2" data-count="2" data-module="liquid-list" data-aurl="nextpage/more.html" href="#" class="not_pagination">Load More</a>
+                                        </div>
+                                        <script type="text/javascript">
+                                            jQuery(document).ready(function() {
+                                                var ux_pb = new ThemePageBuilder();
+                                                ux_pb.init();
+                                            });
+                                            JS_PATH = './js';
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 			</div>
 			<!--End content-wrap-inn-->
 		</div>

@@ -176,13 +176,15 @@ function ThemePageBuilder() {
 		}
 
 		//Pagebuild: Liquid Click
-		var _moudle_liquidimage = jQuery('.moudle .liquid_list_image');
-		if (_moudle_liquidimage.length) {
-			_moudle_liquidimage.each(function() {
-				jQuery(this).css('cursor', 'pointer');
-				ux_pb.liquidclick(jQuery(this));
-			})
-		}
+		setTimeout(function() {
+			var _moudle_liquidimage = jQuery('.moudle .liquid_list_image');
+			if (_moudle_liquidimage.length) {
+				_moudle_liquidimage.each(function() {
+					jQuery(this).css('cursor', 'pointer');
+					ux_pb.liquidclick(jQuery(this));
+				})
+			}
+		}, 500);
 
 		//Pagebuild: Pagenums Click
 		var _moudle_pagenums = jQuery('.moudle .pagenums .select_pagination');
@@ -869,7 +871,7 @@ function ThemePageBuilder() {
 		el.click(function() {
 			var _this = jQuery(this);
 			player_wrap.jPlayer("stop");
-
+			angular.element('#post-55').scope().selectAlbum(_this.attr("data-postid"));
 			var _this_liquid_handler = jQuery('.liquid_handler');
 			if (_this_liquid_handler.length == 0) {
 				_this.addClass('liquid_handler');

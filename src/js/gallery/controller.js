@@ -82,6 +82,14 @@ angular.module('mean.albums').controller('AlbumsController', ['$scope', 'Global'
 		$scope.global = Global;
 		$scope.albums = albums;
 
+		$scope.selectAlbum = function(albumId){
+
+			$scope.selectedAlbum = _.filter(albums, function(album){
+				return album._id === albumId;
+			})[0];
+
+			$scope.$apply();
+		};
 	}
 ]);
 
@@ -149,15 +157,15 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 ]);
 
 //To Pre-load Album before route change
-var PhotoMgrData = {
-
+var AlbumData = {
 	album: function(AlbumService, $route) {
-		console.warn()
 		return $route.current.params.albumId ? AlbumService.getAlbum($route.current.params.albumId) : {
 			photoList: []
 		};
-	},
+	}
+};
 
+var AlbumsData = {
 	albums: function(AlbumService, $route, $location) { //return all albums only if URL /albums/* but not /albums/add
 		if (RegExp('\/albums').test($location.path()) && $route.current.params.view !== 'add') {
 			return AlbumService.getAllAlbums();

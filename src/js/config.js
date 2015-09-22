@@ -99,22 +99,22 @@ angular.module('mean').config(['$routeProvider',
 		when('/albums', {
 			templateUrl: 'js/gallery/views/albums.html',
 			controller: 'AlbumsController',
-			resolve: PhotoMgrData
+			resolve: AlbumsData
 		}).
 		when('/albums/view/:albumId', {
 			templateUrl: 'js/gallery/views/photos.html',
 			controller: 'PhotosController',
-			resolve: PhotoMgrData
+			resolve: AlbumData
 		}).
 		when('/albums/create', {
 			templateUrl:'js/gallery/views/create.html',
 			controller: 'AlbumDetailController',
-			resolve: PhotoMgrData
+			resolve: AlbumData
 		}).
 		when('/albums/edit/:albumId', {
 			templateUrl: 'js/gallery/views/create.html',
 			controller: 'AlbumDetailController',
-			resolve: PhotoMgrData
+			resolve: AlbumData
 		}).
 
 		/** SUGGESTIONS ****/
