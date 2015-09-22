@@ -7,50 +7,50 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 		$scope.global = Global;
 
 		$scope.menu = [{
-			name: "Accueil",
+			name: "ACCUEIL",
 			link: "#!/home",
 			id: 'home'
 		}, {
-			name: "Blog",
-			link: "#!/articles",
-			id: 'articles'
+			name: "ARTICLES",
+			id: 'articles',
+			children: [{
+				name: "Le fourre-tout",
+				link: "#!/articles",
+			}, {
+				name: "Le blog",
+				link: "#!",
+			}]
 		}, {
-			name: "Agenda",
+			name: "AGENDA",
 			link: "#!/agenda",
 			id: 'agenda'
-			// children: [{
-			// 	name: "Planning",
-			// 	link: "#!/agenda",
-			// }, {
-			// 	name: "Carte",
-			// 	link: "#!/agenda/map",
-			// }]
 		}, {
-			name: "Photos",
+			name: "PHOTOS",
 			link: "#!/albums",
 			id: 'albums'
 		}, {
-			name: "Liens",
-			link: "#!/links",
-			id: 'links'
-		}, {
-			name: "Suggestions",
-			link: "#!/suggestions",
-			id: 'suggestions'
-		}, {
-			name: "Team",
+			name: "L'EQUIPE",
 			link: "#!/team",
 			id: 'team'
+		}, {
+			name: "AUTRES",
+			id: 'suggestions',
+			children: [{
+				name: "Suggestions",
+				link: "#!/suggestions",
+			}, {
+				name: "Votes",
+				link: "#!",
+			}, {
+				name: "Bugs",
+				link: "#!",
+			}]
 		}];
 
 		$scope.isCurrentPath = function(item) {
 
-			if (item.children) {
-				return false;
-			}
-
-			var cur_path = "#!" + $location.path().substr(0, item.link.length + 1);
-			return (cur_path.indexOf(item.link) !== -1) || (item.link.indexOf('albums') !== -1 && cur_path.indexOf('gallery') !== -1);
+			var cur_path = "#!" + $location.path().substr(0, item.id.length + 1);
+			return (cur_path.indexOf(item.id) !== -1) || (item.id.indexOf('albums') !== -1 && cur_path.indexOf('gallery') !== -1);
 		};
 
 	}
