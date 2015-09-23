@@ -677,15 +677,61 @@ angular.module('mean.system').directive('cmMobileMenu',
 	}
 );
 
-angular.module('mean.system').directive('cmPhotos',
+angular.module('mean.system').directive('cmGalleria',
 	function() {
 		return {
 			restrict: 'E',
 			transclude: true,
 			link: function($scope, element, attrs) {
 				setTimeout(function() {
-					$('.grayscale')['gray']();
-				}, 500);
+					if (jQuery('.galleria').length) {
+
+						console.warn('galleria');
+
+						// Page fullwidth slider template. Fix height issue in ios7 ipad landscape mode.
+						if (jQuery('.page-portfolio-template').length) {
+							if (navigator.userAgent.match(/iPad;.*CPU.*OS 7_\d/i)) {
+								jQuery('html').addClass('ipad ios7');
+							}
+						}
+
+						jQuery('.galleria').each(function() {
+
+							var
+								slider_h = window.innerHeight,
+								crop = jQuery(this).data('crop'),
+								transition = jQuery(this).data('transition'),
+								interval = jQuery(this).data('interval');
+
+							jQuery(this).galleria({
+								idleMode: false,
+								transition: transition, //fade, slide
+								autoplay: interval, //timer
+								responsive: true,
+								thumbnails: false,
+								showImagenav: true,
+								imageCrop: crop, // fit: false, fill: true
+								height: slider_h
+							});
+							console.log(slider_h);
+
+						});
+
+						var screen_size = _win.width();
+
+						_win.resize(function() {
+							var before_resize = screen_size;
+							screen_size = _win.width();
+							width_change = Math.abs(before_resize - screen_size);
+
+							if (width_change > 150) {
+								window.setTimeout('location.reload()', 10);
+							}
+
+						});
+
+					}
+				});
 			}
 		}
 	}
