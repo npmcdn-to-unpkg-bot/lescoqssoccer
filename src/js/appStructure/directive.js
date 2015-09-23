@@ -686,7 +686,7 @@ angular.module('mean.system').directive('cmGalleria',
 				setTimeout(function() {
 					if (jQuery('.galleria').length) {
 
-						console.warn('galleria');
+						var  _win    = jQuery(window);
 
 						// Page fullwidth slider template. Fix height issue in ios7 ipad landscape mode.
 						if (jQuery('.page-portfolio-template').length) {
@@ -704,16 +704,15 @@ angular.module('mean.system').directive('cmGalleria',
 								interval = jQuery(this).data('interval');
 
 							jQuery(this).galleria({
-								idleMode: false,
+								idleMode: true,
 								transition: transition, //fade, slide
 								autoplay: interval, //timer
 								responsive: true,
-								thumbnails: false,
+								thumbnails: true,
 								showImagenav: true,
 								imageCrop: crop, // fit: false, fill: true
 								height: slider_h
 							});
-							console.log(slider_h);
 
 						});
 
@@ -721,8 +720,8 @@ angular.module('mean.system').directive('cmGalleria',
 
 						_win.resize(function() {
 							var before_resize = screen_size;
-							screen_size = _win.width();
-							width_change = Math.abs(before_resize - screen_size);
+							var screen_size = _win.width();
+							var width_change = Math.abs(before_resize - screen_size);
 
 							if (width_change > 150) {
 								window.setTimeout('location.reload()', 10);
