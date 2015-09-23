@@ -5,6 +5,7 @@
 		</a>
 		<h1>{{album.name || 'Nouvel album'}}</h1>
 		<a href="#!" class="ok-icon" data-ng-click="saveAlbum($event)">
+			save
 		</a>
 	</div>
 	<div class="pagecontent">
@@ -49,3 +50,10 @@
 		</form>
 	</div>
 </section>
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        var ux_pb = new ThemePageBuilder();
+        ux_pb.init();
+    });
+</script>

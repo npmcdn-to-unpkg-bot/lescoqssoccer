@@ -139,27 +139,12 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 				// Handle Error
 			});
 		};
-	}
-]);
 
-//To Pre-load Album before route change
-var AlbumData = {
-	album: function(AlbumService, $route) {
-		return $route.current.params.albumId ? AlbumService.getAlbum($route.current.params.albumId) : {
-			photoList: []
-		};
-	}
-};
-
-var AlbumsData = {
-	albums: function(AlbumService, $route, $location) { //return all albums only if URL /albums/* but not /albums/add
-		if (RegExp('\/albums').test($location.path()) && $route.current.params.view !== 'add') {
-			return AlbumService.getAllAlbums();
-		} else {
-			return [];
+		$scope.update = function(){
+			$location.path('/albums/edit/' + $scope.album._id);
 		}
 	}
-};
+]);
 
 angular.module('mean.albums').controller('modalInstanceCtrl', ['$scope', '$modalInstance',
 
@@ -190,3 +175,22 @@ angular.module('mean.albums').controller('deleteAlbumModalCtrl', ['$scope', '$mo
 		};
 	}
 ]);
+
+//To Pre-load Album before route change
+var AlbumData = {
+	album: function(AlbumService, $route) {
+		return $route.current.params.albumId ? AlbumService.getAlbum($route.current.params.albumId) : {
+			photoList: []
+		};
+	}
+};
+
+var AlbumsData = {
+	albums: function(AlbumService, $route, $location) { //return all albums only if URL /albums/* but not /albums/add
+		if (RegExp('\/albums').test($location.path()) && $route.current.params.view !== 'add') {
+			return AlbumService.getAllAlbums();
+		} else {
+			return [];
+		}
+	}
+};
