@@ -39,11 +39,8 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 				name: "Suggestions",
 				link: "#!/suggestions",
 			}, {
-				name: "Votes",
-				link: "#!",
-			}, {
 				name: "Bugs",
-				link: "#!",
+				link: "#!/issues",
 			}]
 		}];
 
