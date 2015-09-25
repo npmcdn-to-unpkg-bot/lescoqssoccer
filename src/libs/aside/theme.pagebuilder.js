@@ -185,6 +185,9 @@ function ThemePageBuilder() {
 					ux_pb.liquidclick(jQuery(this));
 				})
 			}
+
+			$(".isotope.masonry.isotope_fade").css('visibility', 'visible');
+
 		}, 500);
 
 		//Pagebuild: Pagenums Click

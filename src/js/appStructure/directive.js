@@ -652,16 +652,16 @@ angular.module('mean.system').directive('cmGalleria',
 								transition = jQuery(this).data('transition'),
 								interval = jQuery(this).data('interval');
 
-							jQuery(this).galleria({
+							var galleria = jQuery(this).galleria({
 								idleMode: true,
 								transition: transition, //fade, slide
-								autoplay: interval, //timer
 								responsive: true,
 								thumbnails: true,
 								showImagenav: true,
 								imageCrop: crop, // fit: false, fill: true
 								height: slider_h,
-								lightbox: true
+								clicknext: true,
+								show: $scope.currentItem || 0
 							});
 
 						});
@@ -680,7 +680,7 @@ angular.module('mean.system').directive('cmGalleria',
 						});
 
 					}
-				});
+				}, 500);
 			}
 		}
 	}

@@ -2695,7 +2695,7 @@ Deckgrid configurations
     width: auto;
 }
 
-#mytextarea {
+#ephox_mytextarea {
     margin:10px 0;
-    height:200px;
+    height:400px !important;
 }

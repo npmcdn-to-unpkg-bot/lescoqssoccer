@@ -45,17 +45,17 @@
 									</div>
 								</div>
 							</div>
-							<div class="isotope masonry isotope_fade" data-space="2px" data-size="brick">
+							<div class="isotope masonry isotope_fade" data-space="2px" data-size="brick" style="visibility:hidden;">
 								<div class="width-and-medium isotope-item brick-with-img" ng-repeat="photo in album.photoList">
 									<div class="inside brick-inside post-bgcolor-default" style="padding: 2px; background: white; overflow: hidden;">
-										<a title="{{photo.name}}" class="brick-link brick-link-gray">
-										<div class="brick-hover-mask brick-hover">
-											<!-- <h3 class="brick-title">{{photo.name}}</h3> -->
-										</div>
-										<div class="brick-content brick-grey">
-											<img ng-src="{{photo.filepath}}" class="grayscale wp-post-image" alt="{{photo.name}}">
-											<div class="brick-conteng-bg"></div>
-										</div>
+										<a ng-href="#!/albums/sliderView/{{album._id}}" class="brick-link brick-link-gray">
+											<div class="brick-hover-mask brick-hover">
+												<!-- <h3 class="brick-title">{{photo.name}}</h3> -->
+											</div>
+											<div class="brick-content brick-grey">
+												<img ng-src="{{photo.filepath}}" class="grayscale wp-post-image" alt="{{photo.name}}">
+												<div class="brick-conteng-bg"></div>
+											</div>
 										</a>
 									</div>
 								</div>

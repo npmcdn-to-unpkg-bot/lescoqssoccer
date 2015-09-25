@@ -190,8 +190,6 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 
 			$scope.article.content = editor.content.get();
 
-			console.warn($scope.article.content);
-
 			if (!$scope.article._id) {
 				$scope.ArticlesCollection.add($scope.article).then(function() {
 					$location.path("/articles");
@@ -209,7 +207,7 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 var ArticleDetailData = {
 
 	Article: function(ArticlesCollection, $route) {
-		return ($route.current.params.id) ? ArticlesCollection.findOne($route.current.params.id) : null;
+		return ($route.current.params.id) ? ArticlesCollection.findOne($route.current.params.id) : {title:"TITRE"};
 	}
 
 };

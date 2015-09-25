@@ -146,6 +146,15 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 	}
 ]);
 
+angular.module('mean.albums').controller('PhotosSliderController', ['$scope', 'Global', 'album',
+
+	function($scope, Global, album) {
+
+		$scope.global = Global;
+		$scope.album = album;
+	}
+]);
+
 angular.module('mean.albums').controller('modalInstanceCtrl', ['$scope', '$modalInstance',
 
 	function($scope, $modalInstance) {

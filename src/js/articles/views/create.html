@@ -1,46 +1,39 @@
-<section class="rightcontainer">
-
-	<div class="subtitle">
-		<a href="#!/articles" class="back-icon">
-		</a>
-		<h1 class="ellipsis">{{article.title || 'Nouvel article'}}</h1>
-		<a href="#!" class="ok-icon" data-ng-click="create()">
-		</a>
-	</div>
-
-	<div class="pagecontent">
-		<form role="form" ng-submit="create()">
-			<h2>Infos</h2>
-			<div class="half-box">
-				<div class="half-left" style="text-align: center;">
-					<img ng-src="{{article.image && article.image || 'img/photos/large2.jpg'}}" class="flex-image" alt=""/>
-					<label class="label-upload-profile-picture button" style="margin: -10px;">
-						Change l'image
-						<input
-						nv-file-select
-						type="file"
-						uploader="uploader"
-						class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
-					</label>
+<div id="post-1039" class="post type-post status-publish format-standard hentry category-blog">
+	<div class="row-fluid two-cols-layout" style="min-height: 799px;">
+		<div id="content_wrap" class="span10" style="margin-left: 9%;">
+			<div class="title-bar-wrap " id="title-bar" style="padding: 50px 0;">
+				<div id="title-wrap">
+					<div class="title-wrap-inn">
+						<div id="main-title">
+							<h1 class="main-title">Nouvel article</h1>
+						</div>
+					</div>
 				</div>
-				<div class="half-right">
-
-					<label style="float">Titre de l'article</label>
-					<input type="text" data-ng-model="article.title" required/>
-
-					<label style="float">Categories</label>
-					<div class="tags-container">
-	                    <a class="tags" href="#" ng-repeat="category in categories" ng-click="toggleCategory(category, $event)">
-	                    	{{category.value}}
-	                    </a>
-	                </div>
-
+				<!--End #title-wrap-->
+			</div>
+			<div id="comments">
+				<div id="respondwrap">
+					<div id="respond" class="comment-respond">
+						<form role="form" ng-submit="create()">
+							<p class="span6">
+							<input name="title" type="text" data-ng-model="article.title"
+							class="requiredFieldcomm" size="30"
+							aria-required="true" tabindex="1"
+							onfocus="if(this.value=='TITRE'){this.value='';}"
+							onblur="if(this.value==''){this.value='TITRE';}">
+							</p>
+							<p class="span12" style="margin-left: 0;">
+							<textarea id="mytextarea"></textarea>
+							</p>
+							<p class="form-submit span12" style="text-align: right; margin-left: 0;">
+							<input name="submit" type="submit" id="submit" value="SEND">
+						</form>
+					</div>
+					<!-- #respond -->
 				</div>
 			</div>
-			<h2 style="margin-top: 50px;">Contenu de l'article</h2>
-		    <textarea id="mytextarea"></textarea>
-		    <button type="submit">Submit</button>
-		</form>
+			<!-- #comments -->
+		</div>
 	</div>
-</section>
+</div>
 <cm-wysiwyg></cm-wysiwyg>
