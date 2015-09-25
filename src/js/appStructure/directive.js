@@ -116,57 +116,7 @@ angular.module('mean.system').directive('cmSidebar',
 
 				}
 
-
-				// Call galleria slider
-
-				if (jQuery('.galleria').length) {
-
-					// Page fullwidth slider template. Fix height issue in ios7 ipad landscape mode.
-					if (jQuery('.page-portfolio-template').length) {
-						if (navigator.userAgent.match(/iPad;.*CPU.*OS 7_\d/i)) {
-							jQuery('html').addClass('ipad ios7');
-						}
-					}
-
-					jQuery('.galleria').each(function() {
-
-						var
-							slider_h = window.innerHeight,
-							crop = jQuery(this).data('crop'),
-							transition = jQuery(this).data('transition'),
-							interval = jQuery(this).data('interval');
-
-						jQuery(this).galleria({
-							idleMode: false,
-							transition: transition, //fade, slide
-							autoplay: interval, //timer
-							responsive: true,
-							thumbnails: false,
-							showImagenav: true,
-							imageCrop: crop, // fit: false, fill: true
-							height: slider_h
-						});
-						console.log(slider_h);
-
-					});
-
-					var screen_size = _win.width();
-
-					_win.resize(function() {
-						var before_resize = screen_size;
-						screen_size = _win.width();
-						width_change = Math.abs(before_resize - screen_size);
-
-						if (width_change > 150) {
-							window.setTimeout('location.reload()', 10);
-						}
-
-					});
-
-				}
-
 				// Slider wrap size
-
 				function top_slider() {
 
 					var
@@ -186,7 +136,6 @@ angular.module('mean.system').directive('cmSidebar',
 				} //End function
 
 				if (jQuery('#top-slider').length) {
-
 					top_slider();
 				}
 
@@ -686,7 +635,7 @@ angular.module('mean.system').directive('cmGalleria',
 				setTimeout(function() {
 					if (jQuery('.galleria').length) {
 
-						var  _win    = jQuery(window);
+						var _win = jQuery(window);
 
 						// Page fullwidth slider template. Fix height issue in ios7 ipad landscape mode.
 						if (jQuery('.page-portfolio-template').length) {
@@ -711,7 +660,8 @@ angular.module('mean.system').directive('cmGalleria',
 								thumbnails: true,
 								showImagenav: true,
 								imageCrop: crop, // fit: false, fill: true
-								height: slider_h
+								height: slider_h,
+								lightbox: true
 							});
 
 						});
@@ -730,6 +680,28 @@ angular.module('mean.system').directive('cmGalleria',
 						});
 
 					}
+				});
+			}
+		}
+	}
+);
+
+angular.module('mean.system').directive('cmWysiwyg',
+	function() {
+		return {
+			restrict: 'E',
+			transclude: true,
+			link: function($scope, element, attrs) {
+				setTimeout(function() {
+
+					var config = {
+						paste: {
+							// Override default paste behavior, removing all inline styles
+							style: 'clean'
+						}
+					};
+
+					var editor = textboxio.replace('#mytextarea', config);
 				});
 			}
 		}

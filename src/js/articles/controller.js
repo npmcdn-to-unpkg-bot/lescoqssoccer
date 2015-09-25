@@ -185,6 +185,13 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 
 		$scope.create = function() {
 
+			var editors = textboxio.get('#mytextarea');
+          	var editor = editors[0];
+
+			$scope.article.content = editor.content.get();
+
+			console.warn($scope.article.content);
+
 			if (!$scope.article._id) {
 				$scope.ArticlesCollection.add($scope.article).then(function() {
 					$location.path("/articles");

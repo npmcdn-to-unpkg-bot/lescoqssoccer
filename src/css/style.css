@@ -898,10 +898,10 @@ body.single .pagebuilder-wrap{
 .galleria-info-text,.galleria-info-link,.galleria-info-close{
   background: none;
 }
-.galleria-info-close,
+/*.galleria-info-close,
 .galleria-info-description{
   display: none;
-}
+}*/
 .galleria-info-text {
   display: block;
 }
@@ -2693,4 +2693,9 @@ Deckgrid configurations
     height: 60px;
     min-width: 60px;
     width: auto;
+}
+
+#mytextarea {
+    margin:10px 0;
+    height:200px;
 }
