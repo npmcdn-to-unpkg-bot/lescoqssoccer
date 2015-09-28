@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Global', '$location', '$sce', 'Articles', 'Page', 'ItemsCount',
-	function($scope, Global, $location, $sce, Articles, Page, ItemsCount) {
+angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Global', '$location', '$sce', '$modal', 'Articles', 'Page', 'ItemsCount',
+	function($scope, Global, $location, $sce, $modal, Articles, Page, ItemsCount) {
 
 		$scope.global = Global;
 		$scope.articles = Articles;
@@ -20,6 +20,16 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 			} else {
 				$location.path("/articles/" + newPage);
 			}
+		};
+
+		$scope.add = function(evt) {
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			var modalInstance = $modal.open({
+				templateUrl: 'js/articles/views/modal/chooseArticleType.html'
+			});
 		};
 	}
 ]);

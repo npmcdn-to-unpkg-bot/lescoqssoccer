@@ -146,12 +146,13 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 	}
 ]);
 
-angular.module('mean.albums').controller('PhotosSliderController', ['$scope', 'Global', 'album',
+angular.module('mean.albums').controller('PhotosSliderController', ['$scope', 'Global', 'album', 'currentIndex',
 
-	function($scope, Global, album) {
+	function($scope, Global, album, currentIndex) {
 
 		$scope.global = Global;
 		$scope.album = album;
+		$scope.current = currentIndex;
 	}
 ]);
 
@@ -191,6 +192,17 @@ var AlbumData = {
 		return $route.current.params.albumId ? AlbumService.getAlbum($route.current.params.albumId) : {
 			photoList: []
 		};
+	}
+};
+
+var AlbumSliderData = {
+	album: function(AlbumService, $route) {
+		return $route.current.params.albumId ? AlbumService.getAlbum($route.current.params.albumId) : {
+			photoList: []
+		};
+	},
+	currentIndex: function($route) {
+		return $route.current.params.currentIndex;
 	}
 };
 

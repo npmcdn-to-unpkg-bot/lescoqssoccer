@@ -1,52 +1,51 @@
-<section class="rightcontainer">
-
-	<div class="subtitle">
-	    <h1>Nouveau lien</h1>
-	    <a href="#!" class="ok-icon" data-ng-click="create()">
-		</a>
-	</div>
-
-	<div class="pagecontent">
-		<form name="linkForm" role="form">
-
-			<div class="half-box">
-				<div class="half-left" style="text-align: center;">
-
-                    <img ng-src="{{link.image || 'img/photos/5-s.jpg'}}" class="flex-image" alt="" />
-
-					<label class="label-upload-profile-picture button" style="margin: inherit;">
-						Parcourir
-						<input
-						nv-file-select
-						type="file"
-						uploader="uploader"
-						class="manual-file-chooser js-manual-file-chooser js-avatar-field"
-						name="uploadLinkImage"/>
-					</label>
-
+<div id="post-1039" class="post type-post status-publish format-standard hentry category-blog">
+	<div class="row-fluid two-cols-layout" style="min-height: 799px;">
+		<div id="content_wrap" class="span10" style="margin-left: 9%;">
+			<div class="title-bar-wrap " id="title-bar" style="padding: 50px 0;">
+				<div id="title-wrap">
+					<div class="title-wrap-inn">
+						<div id="main-title">
+							<h1 class="main-title">Nouvelle vidéo</h1>
+						</div>
+					</div>
 				</div>
-
-				<div class="half-right">
-
-					<label for="adress">Adresse du lien</label>
-					<input type="url" name="adress" data-ng-model="link.adress" placeholder="http://" required/>
-
-					<div class="info-box" ng-show="link.type === 'videos' && !isAlertHidden">
-                        <span class="info-box-close" ng-click="hideAlert()"></span>
-                        <h4>Attention !</h4>
-                        <p>Si c'est une vidéo Youtube, penser à mettre "embed" après http://youtube.com, sinon ça ne marchera pas. <br/> Ex: <b>http://www.youtube.com/embed/eh-0knDpn5g</b></p>
-                    </div>
-
-					<label for="linkType">Type de lien</label>
-					<select
-						name="linkType"
-						data-ng-model="link.type"
-						ng-options="type.identifier as type.value for type in options">
-					</select>
-
+				<!--End #title-wrap-->
+			</div>
+			<div id="comments">
+				<div id="respondwrap">
+					<div id="respond" class="comment-respond">
+						<form role="form" ng-submit="create()">
+							<p class="span12">
+							<input name="title" type="text" data-ng-model="article.title"
+							class="requiredFieldcomm" size="30"
+							aria-required="true" tabindex="1"
+							onfocus="if(this.value=='TITRE'){this.value='';}"
+							onblur="if(this.value==''){this.value='TITRE';}">
+							</p>
+							<p class="span12" style="margin-left: 0;">
+							<input name="videoLink" type="url" data-ng-model="article.videoLink"
+							class="requiredFieldcomm" size="30"
+							aria-required="true" tabindex="1"
+							onfocus="if(this.value=='http://'){this.value='';}"
+							onblur="if(this.value==''){this.value='http://';}">
+							</p>
+							<div class="span12 moudle bottom-space-50" style="margin-left: 0;">
+								<div class="message-box box-bgcolor2 box-type2">
+									<a name="20140404-044746-875" class="20140404-044746-875"></a>
+									<p class="box-close">
+									<i class="icon-m-close-circle"></i>
+									</p>
+									Si c'est une vidéo Youtube, penser à mettre "embed" après http://youtube.com, sinon ça ne marchera pas. <br/> Ex: <b>http://www.youtube.com/embed/eh-0knDpn5g</b>
+								</div>
+							</div>
+							<p class="form-submit span12" style="text-align: right; margin-left: 0;">
+							<input name="submit" type="submit" id="submit" value="AJOUTER">
+						</form>
+					</div>
+					<!-- #respond -->
 				</div>
 			</div>
-
-		</form>
+			<!-- #comments -->
+		</div>
 	</div>
-</section>
+</div>

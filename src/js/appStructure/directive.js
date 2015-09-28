@@ -646,8 +646,7 @@ angular.module('mean.system').directive('cmGalleria',
 
 						jQuery('.galleria').each(function() {
 
-							var
-								slider_h = window.innerHeight,
+							var slider_h = window.innerHeight,
 								crop = jQuery(this).data('crop'),
 								transition = jQuery(this).data('transition'),
 								interval = jQuery(this).data('interval');
@@ -661,7 +660,7 @@ angular.module('mean.system').directive('cmGalleria',
 								imageCrop: crop, // fit: false, fill: true
 								height: slider_h,
 								clicknext: true,
-								show: $scope.currentItem || 0
+								show: $scope.current || 0
 							});
 
 						});
@@ -707,3 +706,18 @@ angular.module('mean.system').directive('cmWysiwyg',
 		}
 	}
 );
+
+// angular.module('mean.system').directive('cmBlogPost',
+// 	function() {
+// 		return {
+// 			restrict: 'E',
+// 			templateUrl: 'js/articles/views/tiles/standard.html',
+// 			scope: {
+// 				'model': '=source'
+// 			},
+// 			resolve: {
+// 				article: function() {}
+// 			}
+// 		}
+// 	}
+// );

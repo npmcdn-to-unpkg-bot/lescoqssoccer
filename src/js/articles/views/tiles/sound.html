@@ -1,0 +1,22 @@
+<div class="filter_audio filter_blog width2 isotope-item audio">
+	<div class="inside" style="margin:40px 0 0 40px;">
+		<div>
+			<div class="item_topbar post-bgcolor-default">
+				<a ng-href="#!/articles/{{article._id}}" title="{{article.title}}" class="item_link"></a>
+			</div>
+			<div class="item_des post-bgcolor-default">
+				<h2 class="item_title">
+					<a href="content-audio-soundcloud.html" title="{{article.title}}">
+					{{article.title}}
+					</a>
+				</h2>
+				<div class="soundcloudWrapper">
+					<iframe width="100%" height="166" scrolling="no" frameborder="no" ng-src="{{article.audioLink}}"></iframe>
+				</div>
+				<div class="like clear"></div>
+				<!--End like-->
+			</div>
+		</div>
+	</div>
+	<!--End inside-->
+</div>

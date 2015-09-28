@@ -1,0 +1,22 @@
+<div class="filter_blog filter_video filter_vimeo width2 isotope-item video">
+	<div class="inside" style="margin:40px 0 0 40px;">
+		<div>
+			<div class="item_topbar post-bgcolor-default">
+				<a href="#!/articles/{{article._id}}" title="{{article.title}}" class="item_link"></a>
+			</div>
+			<div class="videoWrapper vimeo">
+				<iframe ng-src="{{article.videoLink}}" width="100%" height="auto" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+			</div>
+			<div class="item_des post-bgcolor-default">
+				<h2 class="item_title">
+					<a href="content-video-embed.html" title="{{article.title}}">
+					{{article.title}}
+					</a>
+				</h2>
+				<div class="like clear"></div>
+				<!--End like-->
+			</div>
+		</div>
+	</div>
+	<!--End inside-->
+</div>
