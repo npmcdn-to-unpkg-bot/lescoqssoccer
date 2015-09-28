@@ -660,7 +660,12 @@ angular.module('mean.system').directive('cmGalleria',
 								imageCrop: crop, // fit: false, fill: true
 								height: slider_h,
 								clicknext: true,
-								show: $scope.current || 0
+								show: $scope.current || 0,
+								preload: 'all'
+							});
+
+							Galleria.ready(function(options) {
+								this.lazyLoadChunks(5);
 							});
 
 						});
@@ -707,17 +712,18 @@ angular.module('mean.system').directive('cmWysiwyg',
 	}
 );
 
-// angular.module('mean.system').directive('cmBlogPost',
-// 	function() {
-// 		return {
-// 			restrict: 'E',
-// 			templateUrl: 'js/articles/views/tiles/standard.html',
-// 			scope: {
-// 				'model': '=source'
-// 			},
-// 			resolve: {
-// 				article: function() {}
-// 			}
-// 		}
-// 	}
-// );
+angular.module('mean.system').directive('cmBlogPost',
+	function() {
+		return {
+			restrict: 'E',
+			transclude: true,
+			scope: {
+				article: "=article"
+			},
+			templateUrl: function(elem, attrs) {
+				console.warn(scope.article);
+				return attrs.templateUrl || 'js/articles/views/create.html';
+			}
+		}
+	}
+);
