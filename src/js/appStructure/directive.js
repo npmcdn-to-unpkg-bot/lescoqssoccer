@@ -716,14 +716,14 @@ angular.module('mean.system').directive('cmBlogPost',
 	function() {
 		return {
 			restrict: 'E',
-			transclude: true,
-			scope: {
-				article: "=article"
+			replace: true,
+			link: function(scope, element, attrs) {
+				scope.contentUrl = 'js/articles/views/tiles/' + attrs.type + '.html';
+				attrs.$observe("type", function(postType) {
+					scope.contentUrl = 'js/articles/views/tiles/' + postType + '.html';
+				});
 			},
-			templateUrl: function(elem, attrs) {
-				console.warn(scope.article);
-				return attrs.templateUrl || 'js/articles/views/create.html';
-			}
+			template: '<div ng-include="contentUrl"></div>'
 		}
 	}
 );

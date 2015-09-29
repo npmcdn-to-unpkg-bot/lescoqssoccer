@@ -27,9 +27,14 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 			evt.preventDefault();
 			evt.stopPropagation();
 
-			var modalInstance = $modal.open({
-				templateUrl: 'js/articles/views/modal/chooseArticleType.html'
+			$scope.modalInstance = $modal.open({
+				templateUrl: 'js/articles/views/modal/chooseArticleType.html',
+				scope: $scope
 			});
+		};
+
+		$scope.closeModal = function(){
+			$scope.modalInstance.close();
 		};
 	}
 ]);
@@ -196,7 +201,7 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 		$scope.create = function() {
 
 			var editors = textboxio.get('#mytextarea');
-          	var editor = editors[0];
+          			var editor = editors[0];
 
 			$scope.article.content = editor.content.get();
 
