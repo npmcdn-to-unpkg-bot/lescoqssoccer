@@ -1,11 +1,19 @@
+<div class="clearfix filters filter-floating">
+	<ul style="top:30px; right: 78px;">
+		<li><a href="#!" data-ng-click="edit($event);">Editer</a></li>
+		<li><a href="#!" data-ng-click="remove($event);">Supprimer</a></li>
+	</ul>
+	<div class="filter-floating-triggle hidden-phone" style="top:30px; right: 40px;"><i class="fa fa-cogs"></i></div>
+</div>
+
 <div id="post-1039" class="post type-post status-publish format-standard hentry category-blog">
 	<div class="row-fluid two-cols-layout" style="min-height: 799px;">
 		<div id="content_wrap" class="span8">
-			<div class="title-bar-wrap " id="title-bar">
+			<div class="title-bar-wrap " id="title-bar" style="padding: 50px 0; max-height: 280px;">
 				<div id="title-wrap">
 					<div class="title-wrap-inn">
 						<div id="main-title">
-							<h1 class="main-title">{{article.title}}</h1>
+							<h1 class="main-title" style="text-transform: uppercase;">{{article.title}}</h1>
 							<div class="post-meta">
 								<span class="post-meta-unit date">Date: {{article.created | date:"dd MMM yyyy"}}</span> <span
 								class="post-meta-unit tag"></span>
@@ -52,7 +60,7 @@
 		</div>
 		<!--end content_wrap-->
 		<aside id="sidebar-widget" class="span4">
-			<ul class="sidebar_widget">
+			<ul class="sidebar_widget" style="padding-top: 130px;">
 				<li id="categories-2" class="widget-container widget_categories"><h3
 					class="widget-title">Categories</h3>
 					<ul>

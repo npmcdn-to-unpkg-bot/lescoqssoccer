@@ -1,9 +1,9 @@
-<div class="info-box">
+<div class="message-box">
 	<span class="info-box-close" data-ng-click="cancel()"></span>
 	<h4>Confirmation pour supprimer - {{article.title}}</h4>
 	<p>T'es sur de vouloir supprimer "{{article.title}}"?</p>
-	<div class="modal-footer-custom">
-		<input type="button" class="button pull-right" value="Supprimer" data-ng-click="ok()"/>
-		<input type="button" class="button pull-right" value="Annuler" data-ng-click="cancel()"/>
+	<div style="text-align: right; margin-top: 30px;">
+		<input type="submit" value="Annuler" data-ng-click="cancel()"/>
+		<input type="submit" value="Supprimer" data-ng-click="ok()"/>
 	</div>
 </div>

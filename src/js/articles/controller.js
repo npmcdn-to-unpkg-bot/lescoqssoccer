@@ -33,7 +33,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 			});
 		};
 
-		$scope.closeModal = function(){
+		$scope.closeModal = function() {
 			$scope.modalInstance.close();
 		};
 	}
@@ -64,15 +64,15 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 			});
 		};
 
-		$scope.edit = function(article, evt) {
+		$scope.edit = function(evt) {
 
 			evt.preventDefault();
 			evt.stopPropagation();
 
-			$location.path("/articles/edit/" + article._id);
+			$location.path("/articles/edit/" + $scope.article._id);
 		};
 
-		$scope.remove = function(article, evt) {
+		$scope.remove = function(evt) {
 
 			evt.preventDefault();
 			evt.stopPropagation();
@@ -82,7 +82,7 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 				controller: 'deleteArticleModalCtrl',
 				resolve: {
 					article: function() {
-						return article;
+						return $scope.article;
 					}
 				}
 			});
@@ -90,7 +90,7 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 			modalInstance.result.then(function() {
 
 				// Delete the article and redirect to article list
-				$scope.ArticlesCollection.remove(article).then(function(response) {
+				$scope.ArticlesCollection.remove($scope.article).then(function(response) {
 					$location.path("/articles");
 				});
 
@@ -125,7 +125,7 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 			title: "",
 			categories: [],
 			content: "",
-			image:""
+			image: ""
 		};
 
 		/***
@@ -154,14 +154,14 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 			value: "Eram amet aliqua"
 		}];
 
-		$scope.toggleCategory = function(category, evt){
+		$scope.toggleCategory = function(category, evt) {
 
 			evt.preventDefault();
 			evt.stopPropagation();
 
-			if($scope.article.categories.indexOf(category) === -1){
+			if ($scope.article.categories.indexOf(category) === -1) {
 				$scope.article.categories.push(category);
-			} else{
+			} else {
 				$scope.article.categories.splice($scope.article.categories.indexOf(category), 1);
 			}
 
@@ -201,7 +201,7 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 		$scope.create = function() {
 
 			var editors = textboxio.get('#mytextarea');
-          			var editor = editors[0];
+			var editor = editors[0];
 
 			$scope.article.content = editor.content.get();
 
@@ -222,7 +222,9 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 var ArticleDetailData = {
 
 	Article: function(ArticlesCollection, $route) {
-		return ($route.current.params.id) ? ArticlesCollection.findOne($route.current.params.id) : {title:"TITRE"};
+		return ($route.current.params.id) ? ArticlesCollection.findOne($route.current.params.id) : {
+			title: "TITRE"
+		};
 	}
 
 };

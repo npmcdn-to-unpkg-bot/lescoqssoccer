@@ -2699,3 +2699,94 @@ Deckgrid configurations
     margin:10px 0;
     height:400px !important;
 }
+
+.ellipsis {
+    overflow: hidden;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.two-line-ellipsis {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.three-line-ellipsis {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.manual-file-chooser {
+  position: absolute;
+  width: 150px;
+  margin-left: -50px;
+  margin-top: -25px;
+  padding: 5px;
+  opacity: .0001;
+    cursor: pointer;
+}
+
+.label-upload-profile-picture:hover, .pointer:hover{
+  cursor: pointer;
+}
+
+.pagination>li:first-child>a, .pagination>li:first-child>span {
+   margin-left: inherit;
+   border-top-left-radius: 0 !important;
+   border-bottom-left-radius: 0 !important;
+}
+
+.pagination>li>a, .pagination>li>span {
+    color: #fff !important;
+    border: 0 !important;
+    height: 40px;
+    line-height: 40px !important;
+    padding: 0 !important;
+}
+
+.pagination>li:last-child>a, .pagination>li:last-child>span {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover {
+  z-index: 3;
+  color: black;
+  background-color: #fff;
+  border-color: #fff;
+}
+
+.pagination ul > li > a, .pagination ul > li > span {
+    background-color: transparent !important;
+}
+
+.pagination ul > li > a:hover, .pagination ul > li > a:focus, .pagination ul > .active > a, .pagination ul > .active > span {
+    background-color: #FF5533 !important;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+  z-index: 2;
+  color: white !important;
+  cursor: default;
+  background-color: #FF5533 !important;
+  border-color: #fff;
+  margin: 0 20px;
+  border: 0;
+  height: 40px;
+  line-height: 40px;
+  padding: 0;
+}
+
+.pagination ul > li:first-child > a, .pagination ul > li:last-child > a{
+  padding: 0 10px !important;
+}
+
+.pagination {
+  padding-left: 0;
+  border-radius: 0;
+}

@@ -14,7 +14,7 @@
 			<div id="comments">
 				<div id="respondwrap">
 					<div id="respond" class="comment-respond">
-						<form role="form" ng-submit="create()">
+						<form role="form">
 							<p class="span6">
 							<input name="title" type="text" data-ng-model="article.title"
 							class="requiredFieldcomm" size="30"
@@ -26,7 +26,7 @@
 							<textarea id="mytextarea"></textarea>
 							</p>
 							<p class="form-submit span12" style="text-align: right; margin-left: 0;">
-							<input name="submit" type="submit" id="submit" value="AJOUTER">
+							<input type="button" id="submit" value="AJOUTER" ng-click="create();">
 						</form>
 					</div>
 					<!-- #respond -->
