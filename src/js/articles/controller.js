@@ -116,7 +116,7 @@ angular.module('mean.articles').controller('deleteArticleModalCtrl', ['$scope', 
 
 ]);
 
-angular.module('mean.articles').controller('CreateArticleController', ['$scope', '$location', 'Global', 'ArticlesCollection', 'FileUploader', 'Article',
+angular.module('mean.articles').controller('CreateArticleStandardController', ['$scope', '$location', 'Global', 'ArticlesCollection', 'FileUploader', 'Article',
 	function($scope, $location, Global, ArticlesCollection, FileUploader, Article) {
 
 		$scope.global = Global;
@@ -219,11 +219,112 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 	}
 ]);
 
+angular.module('mean.articles').controller('CreateArticleOtherController', ['$scope', '$location', 'Global', 'ArticlesCollection', 'FileUploader', 'Article',
+	function($scope, $location, Global, ArticlesCollection, FileUploader, Article) {
+
+		$scope.global = Global;
+		$scope.ArticlesCollection = ArticlesCollection;
+		$scope.article = Article;
+
+		switch($scope.article.type){
+			case "link":
+				$scope.title = "Nouveau lien";
+				break;
+			case "video":
+				$scope.title = "Nouvelle vidéo";
+				break;
+			case "audio":
+				$scope.title = "Nouveau son";
+				break;
+		}
+
+		/***
+		CATEGORIES
+		***/
+		$scope.categories = [{
+			id: "1",
+			value: "Voluptate"
+		}, {
+			id: "2",
+			value: "Deserani"
+		}, {
+			id: "3",
+			value: "Quo eram"
+		}, {
+			id: "4",
+			value: "Mentitum amet sit"
+		}, {
+			id: "5",
+			value: "Cillum"
+		}, {
+			id: "6",
+			value: "Incurreret"
+		}, {
+			id: "7",
+			value: "Eram amet aliqua"
+		}];
+
+		$scope.toggleCategory = function(category, evt) {
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			if ($scope.article.categories.indexOf(category) === -1) {
+				$scope.article.categories.push(category);
+			} else {
+				$scope.article.categories.splice($scope.article.categories.indexOf(category), 1);
+			}
+
+		};
+
+		/***
+		FILE UPLOAD CONFIG
+		***/
+		$scope.uploader = new FileUploader({
+			scope: $scope,
+			url: '/upload/photo',
+			autoUpload: true,
+			formData: [{
+				key: 'value'
+			}]
+		});
+
+		$scope.uploader.onCompleteItem = function(item, response, status, headers) {
+			$scope.article.image = response.path;
+		};
+
+		$scope.create = function() {
+
+			if($scope.article.type==="link"){
+				$scope.article.linkAdress = [];
+				$scope.article.linkAdress.push({
+					value:"Nouveau lien",
+					adress: $scope.linkAdress
+				})
+			}
+
+			if (!$scope.article._id) {
+				$scope.ArticlesCollection.add($scope.article).then(function() {
+					$location.path("/articles");
+				});
+			} else {
+				$scope.ArticlesCollection.update($scope.article).then(function() {
+					$location.path("/articles");
+				});
+			}
+		};
+
+	}
+]);
+
 var ArticleDetailData = {
 
-	Article: function(ArticlesCollection, $route) {
+	Article: function(ArticlesCollection, $route, $location) {
 		return ($route.current.params.id) ? ArticlesCollection.findOne($route.current.params.id) : {
-			title: "TITRE"
+			title: "TITRE",
+			type: $location.path().split("/").pop(),
+			linkAdress: "ADRESSE (http://)",
+			description: "DESCRIPTION"
 		};
 	}
 

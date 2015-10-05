@@ -49,9 +49,11 @@ angular.module('mean').config(['$routeProvider',
 				}
 			}
 		}).
-		when('/articles/create', {
-			templateUrl: 'js/articles/views/create.html',
-			controller: 'CreateArticleController',
+		when('/articles/create/:view', {
+			templateUrl: function(view){
+				return (view === "standard") ? 'js/articles/views/creation/standard.html' : 'js/articles/views/creation/others.html';
+			},
+			controller: (view === "standard") ? 'CreateArticleStandardController' : 'CreateArticleOtherController',
 			resolve: ArticleDetailData
 		}).
 		when('/articles/:page', {
@@ -69,12 +71,12 @@ angular.module('mean').config(['$routeProvider',
 				}
 			}
 		}).
-		when('/articles/view/:id', {
-			templateUrl: 'js/articles/views/single.html',
+		when('/articles/view/:view/:id', {
+			templateUrl: 'js/articles/views/detail/standard.html',
 			controller: 'ArticleDetailController',
 			resolve: ArticleDetailData
 		}).
-		when('/articles/edit/:id', {
+		when('/articles/edit/:view/:id', {
 			templateUrl: 'js/articles/views/create.html',
 			controller: 'CreateArticleController',
 			resolve: ArticleDetailData

@@ -51,12 +51,12 @@
 					<div class="clearfix pagenums">
 						<div class="pagination">
 							<pagination
-						        previous-text="&#8249; Précédents"
-						        next-text="Suivants &#8250;"
-						        total-items="totalItems"
-						        page="page"
-						        on-select-page="pageChanged(page)">
-						    </pagination>
+							previous-text="&#8249; Précédents"
+							next-text="Suivants &#8250;"
+							total-items="totalItems"
+							page="page"
+							on-select-page="pageChanged(page)">
+							</pagination>
 						</div>
 						</div><!--End pagenums-->
 					</div>
@@ -68,18 +68,36 @@
 				ux_pb.init();
 			}, 500);
 			</script>
-		</div>
 		</div><!--End content-wrap-inn-->
 		</div><!--end content_wrap-->
 	</div>
 </div>
-<div class="hidden-phone addButton">
+<div id="float-bar" class="hidden-phone">
 	<div class="float-bar-inn-wrap">
-		</div><!--End float inn-->
-		<a href="#!" ng-click="add($event)">
-		<div id="float-bar-triggler">
-			<i class="float-bar-triggler-inn"></i>
+		<div class="float-bar-inn">
+			<!--Social network share icon-->
+			<div class="float-bar-social-share">
+				<a href="#!/articles/create/standard" class="social-share-facebook" style="display: inline-block;">
+					<i class="float-bar-triggler-inn"></i>
+				</a>
+				<a href="#!/articles/create/video" class="social-share-twitter" style="display: inline-block;margin-left: 30px;">
+					<i class="float-bar-triggler-inn"></i>
+				</a>
+				<a href="#!/articles/create/link" class="social-share-twitter" style="display: inline-block;margin-left: 30px;">
+					<i class="float-bar-triggler-inn"></i>
+				</a>
+
+				<button class="social-share-twitter" onclick="javascript:window.open('https://twitter.com/share?url=http://ximudesign.com/aside/','', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="fa fa-twitter"></i></button>
+				<button class="social-share-google-plus" onclick="javascript:window.open('https://plus.google.com/share?url=http://ximudesign.com/aside/','', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="fa fa-google-plus"></i></button>
+
+				<button class="social-share-pinterest" onclick="javascript:window.open('http://pinterest.com/pin/create/bookmarklet/?url=http://ximudesign.com/aside/&amp;is_video=false&amp;media=','', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="fa fa-pinterest"></i></button>
+				<button class="social-share-vk" onclick="javascript:window.open('http://vkontakte.ru/share.php?url=http://ximudesign.com/aside/','', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="fa fa-vk"></i></button>
+
+				<button class="social-share-linkedin" onclick="javascript:window.open('http://www.linkedin.com/shareArticle?mini=true&amp;url=http://ximudesign.com/aside/','', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><i class="fa fa-linkedin"></i></button>
+			</div>
 		</div>
-		</a>
+		<!--End float inn wrap-->
+		</div><!--End float inn-->
+		<div id="float-bar-triggler"><i class="float-bar-triggler-inn"></i></div>
 	</div>
 </div>

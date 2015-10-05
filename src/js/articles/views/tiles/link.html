@@ -7,8 +7,8 @@
 			<div class="item_des post-bgcolor-default">
 				<h2 class="item_title"><a ng-href="#!/articles/{{article._id}}" title="LINK POST EXAMPLE">{{article.title}}</a></h2>
 				<div class="item-link-wrap">
-					<p class="item-link" ng-repeat="link in links">
-						<a title="{{link.title}}" ng-href="{{link.href}}" target="_blank">{{link.title}}</a>
+					<p class="item-link" ng-repeat="link in article.linkAdress">
+						<a title="{{link.value}}" ng-href="{{link.adress}}" target="_blank">{{link.value}}</a>
 					</p>
 				</div>
 				<div class="like clear"></div>
