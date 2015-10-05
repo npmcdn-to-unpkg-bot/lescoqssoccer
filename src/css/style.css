@@ -1155,7 +1155,6 @@ content:"\f104";
 body.search #title-bar .search-form{ width: 100%; min-width: 200px; margin-top: 20px; margin-right: auto; margin-left: auto; }
 body.search #title-bar .search-form input[type="text"]{ width: 100%; height: 40px;}
 body.search #title-bar .submitsearch{ display: none; }
-.pagenums { margin-bottom:80px; }
 .archive-more, .more-link { font-style: italic;}
 .archive-meta-unit {
   font-size: 12px;

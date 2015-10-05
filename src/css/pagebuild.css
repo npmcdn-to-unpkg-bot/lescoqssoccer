@@ -813,7 +813,7 @@ div.container3d:hover .card .face.front{
 /* Pagenation */
 
 .pagenums {
-	margin:80px auto 0; text-align:center;
+	margin: 0 auto; text-align:center;
 }
 .pagenums a,.pagenums span,
 .page-numbers{
