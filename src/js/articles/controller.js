@@ -36,6 +36,10 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 		$scope.closeModal = function() {
 			$scope.modalInstance.close();
 		};
+
+		$scope.openCreateView = function(template){
+			window.location = "#!/articles/create/" + template;
+		};
 	}
 ]);
 
@@ -121,12 +125,7 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 
 		$scope.global = Global;
 		$scope.ArticlesCollection = ArticlesCollection;
-		$scope.article = Article || {
-			title: "",
-			categories: [],
-			content: "",
-			image: ""
-		};
+		$scope.article = Article;
 
 		switch($scope.article.type){
 			case "link":
@@ -139,7 +138,6 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 				$scope.title = "Nouveau son";
 				break;
 		}
-
 
 		/***
 		CATEGORIES

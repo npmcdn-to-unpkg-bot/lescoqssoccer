@@ -650,13 +650,16 @@ color:#ccc; color:rgba(255,255,255,0.4); background-color:#666; background-color
 #float-bar:hover #float-bar-triggler {
 
 }
-.float-bar-triggler-inn {
+.float-bar-triggler-inn, .float-bar-add {
   display: block; position: relative; top: 20px; height: 20px; width: 2px; margin: auto;
 }
 .float-bar-triggler-inn:before,
-.float-bar-triggler-inn:after {
+.float-bar-triggler-inn:after,
+.float-bar-add:before,
+.float-bar-add:after {
   content: ''; position: absolute; right: 0;top:9px; width: 10px; height: 2px;
 }
+.float-bar-add:after,
 .float-bar-triggler-inn:after {
   left: 0; right: auto;
 }
@@ -1845,7 +1848,7 @@ h3#reply-title small, #comments .nav-tabs li.active h3#reply-title .logged,#comm
 }
 
 /* Content Bg Color */
-#main,.separator h4,.float-bar-triggler-inn:before, .float-bar-triggler-inn:after, .float-bar-triggler-inn,
+#main,.separator h4,.float-bar-triggler-inn:before, .float-bar-triggler-inn:after, .float-bar-triggler-inn, .float-bar-add:before, .float-bar-add:after, .float-bar-add,
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus,.tab-content,.filters.filter-floating li a:before,
 .chosen-container .chosen-drop,.modal-dialog .modal-content
 {
@@ -1955,6 +1958,9 @@ input[type="text"].textboxsearch,.submit-wrap i,.icons-sidebar-unit,#woocomerce-
 }
 .social-share-twitter:hover{
   background-color: #00aced;
+}
+.social-share-custom:hover{
+  background-color: #FF5533;
 }
 .social-share-google-plus:hover{
   background-color: #dd4b39;
