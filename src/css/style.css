@@ -1765,7 +1765,7 @@ a:hover,.entry p a,.archive-tit a:hover,.text_block a,.post_meta > li a:hover, #
   color:#FF5533;
 }
 
-.pagenums a:hover,.pagenums .current,.page-numbers.current,.sidebar_widget .tagcloud a:hover,.related-post-wrap h3:before,.header-slider-item-more:hover,
+.pagenums a:hover,.pagenums .current,.page-numbers.current, .tagcloud a:hover,.related-post-wrap h3:before,.header-slider-item-more:hover,
 .process-bar,.nav-tabs > li > a:hover,.testimenials:hover,.testimenials:hover .arrow-bg,
 .sidebar_widget .widget_uxconatactform input#idi_send:hover,input.idi_send:hover,.page-numbers:hover,#bbp-user-navigation li a:hover
 {
@@ -1998,10 +1998,10 @@ input.wpcf7-form-control.wpcf7-submit:hover,
 .sidebar_widget textarea{ height:75px; }
 .sidebar_widget .widget_search input[type="text"],
 .sidebar_widget .widget_display_search input[type="text"]{ margin-bottom:0; }
-.sidebar_widget .tagcloud a{ background:rgba(0,0,0,0.03); }
+.tagcloud a{ background:#333333; }
 .sidebar_widget .widget_uxconatactform input#idi_send{ border:none; color:#fff; }
 .sidebar_widget .widget_uxconatactform input#idi_send:hover,
-#sidebar .sidebar_widget .tagcloud a:hover,
+.tagcloud a:hover,
 .text_block .ux-btn:hover,
 .ux-btn:hover,
 .entry p .ux-btn:hover,
@@ -2795,3 +2795,8 @@ Deckgrid configurations
   padding-left: 0;
   border-radius: 0;
 }
+
+::-webkit-input-placeholder { color:white; }
+::-moz-placeholder { color:white; } /* firefox 19+ */
+:-ms-input-placeholder { color:white; } /* ie */
+input:-moz-placeholder { color:white; }

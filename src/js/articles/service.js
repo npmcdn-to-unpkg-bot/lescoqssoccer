@@ -40,15 +40,20 @@ angular.module('mean.articles').service('ArticlesCollection', ['Articles', 'Arti
 
 		var ArticlesCollection = {
 
+			itemsPerPage : 12,
+
 			load: function(page) {
-				return Articles.query({page:page-1, perPage: 10}, function(articles) {
+				return Articles.query({page:page-1, perPage: ArticlesCollection.itemsPerPage}, function(articles) {
 					return articles;
 				}).$promise;
 			},
 
 			getItemsCount: function() {
 				return ArticlesCount.get({}, function(result) {
-					return result.count;
+					return {
+						itemCount: result.count,
+						itemsPerPage: ArticlesCollection.itemsPerPage
+					};
 				}).$promise;
 			},
 

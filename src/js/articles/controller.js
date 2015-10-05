@@ -7,7 +7,8 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 		$scope.articles = Articles;
 
 		$scope.page = parseInt(Page);
-		$scope.totalItems = ItemsCount.count;
+		$scope.totalItems = ItemsCount.itemCount;
+		$scope.itemsPerPage = ItemsCount.itemsPerPage;
 
 		//Format html content from article content edit by wysiwyg
 		$scope.getFormattedContent = function(html) {

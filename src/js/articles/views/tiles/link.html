@@ -2,13 +2,19 @@
 	<div class="inside" style="margin:40px 0 0 40px;">
 		<div>
 			<div class="item_topbar post-bgcolor-default">
-				<a ng-href="#!/articles/{{article._id}}" title="{{article.title}}" class="item_link"></a>
+				<a ng-href="#!/articles/view/link/{{article._id}}" title="{{article.title}}" class="item_link"></a>
 			</div>
 			<div class="item_des post-bgcolor-default">
-				<h2 class="item_title"><a ng-href="#!/articles/{{article._id}}" title="LINK POST EXAMPLE">{{article.title}}</a></h2>
+				<h2 class="item_title">
+					<a ng-href="#!/articles/view/link/{{article._id}}" title="{{article.title}}">
+						{{article.title}}
+					</a>
+				</h2>
 				<div class="item-link-wrap">
 					<p class="item-link" ng-repeat="link in article.linkAdress">
-						<a title="{{link.value}}" ng-href="{{link.adress}}" target="_blank">{{link.value}}</a>
+						<a title="{{link.value}}" ng-href="{{link.adress}}" target="_blank">
+							{{link.value}}
+						</a>
 					</p>
 				</div>
 				<div class="like clear"></div>

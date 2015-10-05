@@ -4,7 +4,9 @@
 		<li><a href="#!" data-ng-click="update($event);">Editer</a></li>
 		<li><a href="#!" data-ng-click="deleteAlbum($event);">Supprimer</a></li>
 	</ul>
-	<div class="filter-floating-triggle hidden-phone" style="top:30px; right: 40px;"><i class="fa fa-cogs"></i></div>
+	<div class="filter-floating-triggle hidden-phone" style="top:30px; right: 40px;" ng-show="global.user._id === album.user._id">
+		<i class="fa fa-cogs"></i>
+	</div>
 </div>
 
 <div class="post type-post status-publish format-link has-post-thumbnail hentry category-blog category-uncategorized">
