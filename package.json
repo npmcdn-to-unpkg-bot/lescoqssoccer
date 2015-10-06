@@ -59,7 +59,9 @@
 		"karma": "~0.10.9",
 		"underscore": "latest",
 		"archiver": "latest",
-		"cron": "latest"
+		"cron": "latest",
+		"imagemin": "3.2.0",
+		"gulp-rename": "latest"
 	},
 	"devDependencies": {
 		"supertest": "0.8.2",

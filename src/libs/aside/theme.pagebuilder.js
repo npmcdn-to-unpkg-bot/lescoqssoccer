@@ -739,18 +739,6 @@ function ThemePageBuilder() {
 					}, 1000);
 				});
 			});
-			//jQuery('.lightbox').lightbox();
-
-			player_wrap.jPlayer({
-				ready: function() {
-					jQuery(this).jPlayer("setMedia", {
-						mp3: "http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3"
-					});
-				},
-				swfPath: JS_PATH,
-				supplied: "mp3",
-				wmode: "window"
-			});
 
 			function _audio_play_click() {
 				_this_isotope_item.find('.pause').click(function() {
