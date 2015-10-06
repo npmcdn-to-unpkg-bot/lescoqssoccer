@@ -54,7 +54,7 @@
                                         <div class="container-isotope clear"
                                             data-post="20140326-131115-261">
                                             <a name="20140326-131115-261" class="20140326-131115-261"></a>
-                                            <div id="isotope-load" style="display: none;">
+                                            <div id="isotope-load">
                                                 <div class="ux-loading"></div>
                                                 <div class="ux-loading-transform">
                                                     <div class="loading-dot1">&nbsp;</div>
@@ -62,7 +62,7 @@
                                                 </div>
                                             </div>
                                             <div class="isotope masonry isotope-liquid-list less-space isotope_fade" data-space="0px" data-size="medium" data-width="width4" data-words=""
-                                                data-social="false" data-ratio="imagebox-thumb">
+                                                data-social="false" data-ratio="imagebox-thumb" style="display: none;">
                                                 <div class="width2 isotope-item hover-effect" ng-repeat="album in albums">
                                                     <div class="inside liquid_inside brick-inside">
                                                         <div class="brick-content brick-hover bg-theme-color-10">
@@ -95,13 +95,6 @@
                                             <a data-post="20140326-131115-261" data-postid="56"
                                                 data-paged="2" data-count="2" data-module="liquid-list" data-aurl="nextpage/more.html" href="#" class="not_pagination">Afficher plus</a>
                                         </div>
-                                        <script type="text/javascript">
-                                            jQuery(document).ready(function() {
-                                                var ux_pb = new ThemePageBuilder();
-                                                ux_pb.init();
-                                            });
-                                            JS_PATH = './js';
-                                        </script>
                                     </div>
                                 </div>
                             </div>
@@ -124,3 +117,4 @@
         </a>
     </div>
 </div>
+<cm-page-builder></cm-page-builder>

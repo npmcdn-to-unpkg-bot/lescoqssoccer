@@ -47,7 +47,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="isotope masonry isotope_fade" data-space="2px" data-size="brick" style="visibility:hidden;">
+							<div class="isotope masonry isotope_fade" data-space="2px" data-size="brick" style="display:none;">
 								<div class="width-and-medium isotope-item brick-with-img" ng-repeat="photo in album.photoList">
 									<div class="inside brick-inside post-bgcolor-default" style="padding: 2px; background: white; overflow: hidden;">
 										<a ng-href="#!/albums/sliderView/{{album._id}}/{{$index}}" class="brick-link brick-link-gray">
@@ -70,9 +70,4 @@
 	</div>
 </div>
 
-<script type="text/javascript">
-jQuery(document).ready(function() {
-var ux_pb = new ThemePageBuilder();
-ux_pb.init();
-});
-</script>
+<cm-page-builder></cm-page-builder>

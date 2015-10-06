@@ -2770,8 +2770,13 @@ Deckgrid configurations
     background-color: transparent !important;
 }
 
-.pagination ul > li > a:hover, .pagination ul > li > a:focus, .pagination ul > .active > a, .pagination ul > .active > span {
+.pagination ul > li:not(.disabled) > a:hover, .pagination ul > li > a:focus, .pagination ul > .active > a, .pagination ul > .active > span {
     background-color: #FF5533 !important;
+    cursor: pointer;
+}
+
+.pagination ul > li.disabled > a:hover{
+    cursor: not-allowed;
 }
 
 .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {

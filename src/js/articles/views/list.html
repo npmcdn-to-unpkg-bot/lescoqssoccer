@@ -3,7 +3,7 @@
 		<div id="content_wrap" class="">
 			<div class="content-wrap-inn ">
 				<div class="container">
-					<div class="title-bar-wrap title-centered" id="title-bar" style="padding: 50px 0;">
+					<div class="title-bar-wrap title-centered" id="title-bar" style="padding: 60px 0;">
 						<div id="title-wrap">
 							<div class="title-wrap-inn">
 								<div id="main-title">
@@ -23,7 +23,7 @@
 								<div class="row-fluid">
 									<div class="container-isotope clear" data-post="20140408-131759-171">
 										<a name="20140408-131759-171" class="20140408-131759-171"></a>
-										<div id="isotope-load" style="display: none;">
+										<div id="isotope-load">
 											<div class="ux-loading"></div>
 											<div class="ux-loading-transform">
 												<div class="loading-dot1">
@@ -34,7 +34,7 @@
 												</div>
 											</div>
 										</div>
-										<div class="isotope masonry isotope_fade" data-size="large" style="margin: -40px 0px 0px -40px;">
+										<div class="isotope masonry isotope_fade" data-size="large" style="margin: -40px 0px 0px -40px; display: none;">
 											<cm-blog-post ng-repeat="article in articles" type="{{article.type || 'standard'}}">
 											</cm-blog-post>
 										</div>
@@ -90,10 +90,4 @@
 		</div>
 	</div>
 </div>
-
-<script type="text/javascript">
-setTimeout(function(){
-	var ux_pb = new ThemePageBuilder();
-	ux_pb.init();
-}, 500);
-</script>
+<cm-page-builder></cm-page-builder>
