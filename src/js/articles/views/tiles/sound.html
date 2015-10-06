@@ -11,7 +11,13 @@
 					</a>
 				</h2>
 				<div class="soundcloudWrapper">
-					<iframe width="100%" height="166" scrolling="no" frameborder="no" ng-src="{{article.audioLink}}"></iframe>
+					<iframe
+					width="100%"
+					height="166"
+					scrolling="no"
+					frameborder="no"
+					ng-src="{{trustSrc(article.audioLink)}}">
+					</iframe>
 				</div>
 				<div class="like clear"></div>
 				<!--End like-->

@@ -30,12 +30,10 @@ var ArticleSchema = new Schema({
 	},
 	linkAdress: [new Schema({
 		value: {
-			type: String,
-			default: ''
+			type: String
 		},
 		adress: {
-			type: String,
-			default: ''
+			type: String
 		}
 	})],
 	audioLink: {

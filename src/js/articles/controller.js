@@ -1,19 +1,24 @@
 'use strict';
 
-angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Global', '$location', '$sce', '$modal', 'Articles', 'Page', 'ItemsCount',
-	function($scope, Global, $location, $sce, $modal, Articles, Page, ItemsCount) {
+angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Global', '$location', '$sce', '$modal', 'ArticlesCollection', 'Articles', 'Page', 'ItemsCount',
+	function($scope, Global, $location, $sce, $modal, ArticlesCollection, Articles, Page, ItemsCount) {
 
 		$scope.global = Global;
 		$scope.articles = Articles;
 
 		$scope.page = parseInt(Page);
-		$scope.totalItems = ItemsCount.itemCount;
-		$scope.itemsPerPage = ItemsCount.itemsPerPage;
+		$scope.totalItems = ItemsCount.count;
+		$scope.itemsPerPage = ArticlesCollection.itemsPerPage;
 
 		//Format html content from article content edit by wysiwyg
 		$scope.getFormattedContent = function(html) {
 			return $sce.trustAsHtml(html);
 		};
+
+		//Format video and audio url
+		$scope.trustSrc = function(src) {
+	    	return $sce.trustAsResourceUrl(src);
+	  	};
 
 		$scope.pageChanged = function(newPage) {
 			if (newPage === 1) {
@@ -38,8 +43,8 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 			$scope.modalInstance.close();
 		};
 
-		$scope.openCreateView = function(template){
-			window.location = "#!/articles/create/" + template;
+		$scope.openCreateView = function(articleType) {
+			window.location = "#!/articles/create/" + articleType;
 		};
 	}
 ]);
@@ -128,7 +133,7 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 		$scope.ArticlesCollection = ArticlesCollection;
 		$scope.article = Article;
 
-		switch($scope.article.type){
+		switch ($scope.article.type) {
 			case "link":
 				$scope.title = "Nouveau lien";
 				break;
@@ -138,7 +143,7 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 			case "audio":
 				$scope.title = "Nouveau son";
 				break;
-		}
+		};
 
 		/***
 		CATEGORIES
@@ -195,44 +200,38 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 			$scope.article.image = response.path;
 		};
 
-		/***
-		WYSIWYG CONFIG
-		***/
-		$scope.customMenu = [
-			['bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript'],
-			['font'],
-			['font-size'],
-			['font-color', 'hilite-color'],
-			['remove-format'],
-			['ordered-list', 'unordered-list', 'outdent', 'indent'],
-			['left-justify', 'center-justify', 'right-justify'],
-			['code', 'quote', 'paragragh'],
-			['link', 'image']
-		];
-
 		$scope.create = function() {
 
-			var editors = textboxio.get('#mytextarea');
-			var editor = editors[0];
-
-			$scope.article.content = editor.content.get();
-
-			if($scope.article.type==="link"){
-				$scope.article.linkAdress = [];
-				$scope.article.linkAdress.push({
-					value:"Nouveau lien",
-					adress: $scope.linkAdress
-				})
+			switch ($scope.article.type) {
+				case "link":
+					$scope.article.linkAdress = [{
+						value: "Nouveau lien",
+						adress: $scope.linkAdress
+					}];
+					break;
+				case "video":
+					$scope.article.videoLink = $scope.linkAdress;
+					break;
+				case "audio":
+					$scope.article.audioLink = $scope.linkAdress;
+					break;
+				case "standard":
+					$scope.article.content = textboxio.get('#mytextarea')[0].content.get();
+					break;
 			}
 
 			if (!$scope.article._id) {
-				$scope.ArticlesCollection.add($scope.article).then(function() {
+
+				$scope.ArticlesCollection.add($scope.article).then(function(response) {
 					$location.path("/articles");
 				});
+
 			} else {
+
 				$scope.ArticlesCollection.update($scope.article).then(function() {
 					$location.path("/articles");
 				});
+
 			}
 		};
 

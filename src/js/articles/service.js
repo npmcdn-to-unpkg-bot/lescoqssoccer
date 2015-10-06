@@ -50,10 +50,7 @@ angular.module('mean.articles').service('ArticlesCollection', ['Articles', 'Arti
 
 			getItemsCount: function() {
 				return ArticlesCount.get({}, function(result) {
-					return {
-						itemCount: result.count,
-						itemsPerPage: ArticlesCollection.itemsPerPage
-					};
+					return result;
 				}).$promise;
 			},
 
