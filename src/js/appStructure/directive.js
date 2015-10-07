@@ -587,7 +587,7 @@ angular.module('mean.system').directive('cmPageBuilder',
 							});
 
 							//** Module
-							jQuery('.moudle .iterlock-caption a, .moudle .tab-content a, .moudle .accordion-inner a, .moudle .blog-item a, .moudle .isotope a, .moudle .ux-btn, .moudle .post-carousel-item a, .moudle .caroufredsel_wrapper a').click(function(){
+							jQuery('.moudle .iterlock-caption a, .moudle .tab-content a, .moudle .accordion-inner a, .moudle .blog-item a, .moudle .isotope a, .moudle .ux-btn, .moudle .post-carousel-item a, .moudle .caroufredsel_wrapper a').click(function() {
 								ux_page_loading_event(jQuery(this));
 							});
 
@@ -663,6 +663,21 @@ angular.module('mean.system').directive('cmPageBuilder',
 
 								}
 
+								if (jQuery('.Collage').length) {
+
+									collage();
+
+									var resizeTimer = null;
+									$(window).bind('resize', function() {
+										// hide all the images until we resize them
+										// set the element you are scaling i.e. the first child nodes of ```.Collage``` to opacity 0
+										$('.Collage .Image_Wrapper').css("opacity", 0);
+										// set a timer to re-apply the plugin
+										if (resizeTimer) clearTimeout(resizeTimer);
+										resizeTimer = setTimeout(collage, 200);
+									});
+								}
+
 							});
 
 							jQuery("html, body").css({
@@ -731,6 +746,21 @@ angular.module('mean.system').directive('cmPageBuilder',
 
 							}
 
+							if (jQuery('.Collage').length) {
+
+								collage();
+
+								var resizeTimer = null;
+								$(window).bind('resize', function() {
+									// hide all the images until we resize them
+									// set the element you are scaling i.e. the first child nodes of ```.Collage``` to opacity 0
+									$('.Collage .Image_Wrapper').css("opacity", 0);
+									// set a timer to re-apply the plugin
+									if (resizeTimer) clearTimeout(resizeTimer);
+									resizeTimer = setTimeout(collage, 200);
+								});
+							}
+
 						});
 
 					}
@@ -739,6 +769,13 @@ angular.module('mean.system').directive('cmPageBuilder',
 		}
 	}
 );
+
+function collage() {
+	$('.Collage').collagePlus({
+		// change this to adjust the height of the rows
+		'targetHeight': 200
+	});
+}
 
 angular.module('mean.system').directive('cmHeader',
 	function() {
@@ -760,70 +797,6 @@ angular.module('mean.system').directive('cmMobileMenu',
 		}
 	}
 );
-
-// angular.module('mean.system').directive('cmGalleria',
-// 	function() {
-// 		return {
-// 			restrict: 'E',
-// 			transclude: true,
-// 			link: function($scope, element, attrs) {
-// 				setTimeout(function() {
-// 					if (jQuery('.galleria').length) {
-
-// 						var _win = jQuery(window);
-
-// 						// Page fullwidth slider template. Fix height issue in ios7 ipad landscape mode.
-// 						if (jQuery('.page-portfolio-template').length) {
-// 							if (navigator.userAgent.match(/iPad;.*CPU.*OS 7_\d/i)) {
-// 								jQuery('html').addClass('ipad ios7');
-// 							}
-// 						}
-
-// 						jQuery('.galleria').each(function() {
-
-// 							var slider_h = window.innerHeight,
-// 								crop = jQuery(this).data('crop'),
-// 								transition = jQuery(this).data('transition'),
-// 								interval = jQuery(this).data('interval');
-
-// 							var galleria = jQuery(this).galleria({
-// 								idleMode: true,
-// 								transition: transition, //fade, slide
-// 								responsive: true,
-// 								thumbnails: true,
-// 								showImagenav: true,
-// 								imageCrop: crop, // fit: false, fill: true
-// 								height: slider_h,
-// 								clicknext: true,
-// 								show: $scope.current || 0,
-// 								preload: 'all'
-// 							});
-
-// 							Galleria.ready(function(options) {
-// 								this.lazyLoadChunks(5);
-// 							});
-
-// 						});
-
-// 						var screen_size = _win.width();
-
-// 						_win.resize(function() {
-// 							var before_resize = screen_size;
-// 							var screen_size = _win.width();
-// 							var width_change = Math.abs(before_resize - screen_size);
-
-// 							if (width_change > 150) {
-// 								window.setTimeout('location.reload()', 10);
-// 							}
-
-// 						});
-
-// 					}
-// 				}, 500);
-// 			}
-// 		}
-// 	}
-// );
 
 angular.module('mean.system').directive('cmWysiwyg',
 	function() {

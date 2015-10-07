@@ -35,6 +35,10 @@ angular.module('mean.albums').controller('AlbumDetailController', ['$location', 
 			}
 		};
 
+		$scope.back = function(){
+			window.location = "#!/albums";
+		}
+
 		$scope.uploadFiles = function() {
 
 			var modalInstance = $modal.open({

@@ -46,6 +46,10 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 		$scope.openCreateView = function(articleType) {
 			window.location = "#!/articles/create/" + articleType;
 		};
+
+		$scope.back = function(){
+			window.location = "#!/articles";
+		}
 	}
 ]);
 

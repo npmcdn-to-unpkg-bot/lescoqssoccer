@@ -2570,12 +2570,34 @@ body{padding-top:0;}
 .f_col[class*="span"] { margin-left:0;}
 .fullwidth-wrap>.row-fluid .isotope.less-space { }
 
-.Collage img{
+.Collage:not(.creation) img{
 	opacity: 0.4;
 }
 
 .Collage img:hover{
 	opacity: 1;
+}
+
+.Collage{
+    /*
+     * Change this to set the spacing of the images in the grid
+     */
+    padding:10px;
+    margin: -10px;
+}
+
+/* from transitions.css */
+/*
+
+A library of transitions for revealing the loaded images
+(Heavily) Inspired by http://tympanus.net/codrops/2013/07/02/loading-effects-for-grid-items-with-css-animations/
+
+*/
+
+.effect-parent {
+    -webkit-perspective: 1300px;
+    -moz-perspective: 1300px;
+    perspective: 1300px;
 }
 
 /***

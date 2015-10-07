@@ -5,6 +5,7 @@
 	        <a ng-href="#!/albums/view/{{selectedAlbum._id}}" title="{{selectedAlbum.name}}" style="text-transform:uppercase;">
 	        	{{selectedAlbum.name}}
 	        </a>
+            ({{selectedAlbum.photoList.length}} photos)
 	        <i class="icon-m-close-thin liquid-item-close"></i>
 	    </h1>
 	    <div class="liquid-body">
@@ -12,9 +13,9 @@
 	            <p>Dis parturient tortor placerat! Sed. Placerat risus amet amet purus turpis elit penatibus mauris diam, sed pid. Duis. Non platea lorem ut mus mauris. Rhoncus etiam.</p>
 	        </div>
 	        <ul class="liquid-body-thumbs clearfix">
-	            <li ng-repeat="photo in selectedAlbum.photoList | limitTo:5" style="width: inherit;">
-	            	<a ng-href="{{photo.filepath}}" title="IMG_4783" class="imgwrap" data-lightbox="image1">
-	            		<img style="width: 100px; height:100px !important;" ng-src="{{photo.filepath}}">
+	            <li ng-repeat="photo in selectedAlbum.photoList | limitTo:5">
+	            	<a ng-href="{{photo.filepath}}" title="{{photo.name}}" class="imgwrap" data-lightbox="image1">
+	            		<img ng-src="{{photo.filepath}}?dim=100x100">
 	            	</a>
 	            </li>
 	        </ul>
@@ -27,7 +28,7 @@
 	    </div>
 	</section>
 
-	<div class="row-fluid " style="min-height: 799px;">
+	<div class="row-fluid " style="min-height: 100vh;">
 		<div id="content_wrap" class="">
 			<div class="content-wrap-inn ">
 				<div class="container">
@@ -71,9 +72,9 @@
                                                                 <div class="brick-hover-mask">
                                                                     <h3 class="brick-title" style="text-transform: uppercase;">{{album.name}}</h3>
                                                                 </div> <img
-                                                                ng-src="{{album.coverPicPath}}"
+                                                                ng-src="{{album.coverPicPath}}?dim=300x300"
                                                                 class="attachment-imagebox-thumb wp-post-image"
-                                                                alt="IMG_4783">
+                                                                alt="{{album.name}}">
                                                             </a>
                                                         </div>
                                                         <!--End brick-content-->
@@ -91,7 +92,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="clearfix pagenums tw_style page_twitter">
+                                        <div class="clearfix pagenums tw_style page_twitter" style="margin: 40px auto;">
                                             <a data-post="20140326-131115-261" data-postid="56"
                                                 data-paged="2" data-count="2" data-module="liquid-list" data-aurl="nextpage/more.html" href="#" class="not_pagination">Afficher plus</a>
                                         </div>
