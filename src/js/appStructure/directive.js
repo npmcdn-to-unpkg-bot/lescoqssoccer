@@ -633,7 +633,7 @@ angular.module('mean.system').directive('cmPageBuilder',
 											idleMode: true,
 											transition: transition, //fade, slide
 											responsive: true,
-											thumbnails: true,
+											thumbnails: 'lazy',
 											showImagenav: true,
 											imageCrop: crop, // fit: false, fill: true
 											height: slider_h,

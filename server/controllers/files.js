@@ -1,8 +1,6 @@
 var fs = require('fs');
 var path = require("path");
 var config = require('../../config/config');
-var Imagemin = require('imagemin');
-var rename = require('gulp-rename');
 
 exports.uploadPhoto = function(req, res) {
 	console.info('inside uploadPhoto'); // <-- never reached using IE9
@@ -57,32 +55,23 @@ function handlePhotoUpload(params, callbacks) {
 			callbacks.uploadFailure(err);
 		}
 
-
 		var newPath = path.resolve(config.root + "/server/" + config.uploadDirectory + newName);
 
 		fs.writeFile(newPath, data, function(err) {
 
 			fs.unlink(params.file.path, function(err) {
-				if (err) response.errors.push("Erorr : " + err);
+
+				if (err) {
+					response.errors.push("Erorr : " + err);
+				}
+
 				console.log('successfully deleted : ' + params.file.path);
 
-				new Imagemin()
-					.src('images/*.{gif,jpg,png,svg}')
-					.dest(path.resolve(config.root + "/server/" + config.uploadDirectory))
-					.use(Imagemin.jpegtran({
-						progressive: true
-					})
-					.use(Imagemin.optipng({optimizationLevel: 3}));
-					.run(function(err, files) {
-						console.log(files[0]);
-						// => {path: 'build/images/foo.jpg', contents: <Buffer 89 50 4e ...>}
-
-						if (err) {
-							callbacks.uploadFailure(err);
-						} else {
-							callbacks.uploadSuccess(newName, oldName);
-						}
-					});
+				if (err) {
+					callbacks.uploadFailure(err);
+				} else {
+					callbacks.uploadSuccess(newName, oldName);
+				}
 			});
 		});
 	});

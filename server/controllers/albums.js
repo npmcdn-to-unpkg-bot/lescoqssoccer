@@ -18,8 +18,7 @@ exports.findAlbumById = function(req, res) {
 	Album.findOne({
 		_id: req.params.id
 	}).populate('user').exec(function(err, album) {
-		if (err) console.log("error finding album: " + err)
-		console.warn(album);
+		if (err) console.log("error finding album: " + err);
 		res.send(album);
 	})
 };

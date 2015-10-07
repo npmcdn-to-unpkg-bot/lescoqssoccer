@@ -7,7 +7,8 @@ var express = require( 'express' ),
 	mongoStore = require( 'connect-mongo' )( express ),
 	flash = require( 'connect-flash' ),
 	helpers = require( 'view-helpers' ),
-	config = require( './config' );
+	config = require( './config' ),
+	qt = require('quickthumb');
 
 module.exports = function ( app, passport, db ) {
 	app.set( 'showStackError', true );
@@ -49,7 +50,7 @@ module.exports = function ( app, passport, db ) {
 		app.use( express.multipart( {
 			uploadDir: config.root + "/server/" + config.uploadDirectory
 		} ) );
-		app.use( '/public', express.static( config.root + '/server/public' ) );
+		app.use( '/public', qt.static( config.root + '/server/public' ) );
 
 		// Express/Mongo session storage
 		app.use( express.session( {

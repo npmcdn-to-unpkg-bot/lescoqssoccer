@@ -1,22 +1,20 @@
 <div id="post-151" class="post-151 post type-post status-publish format-gallery has-post-thumbnail hentry category-blog category-illustration category-portfolio category-uncategorized tag-digital-art tag-illustration-2">
 	<div id="content_wrap" class="">
-		<div class="row-fluid gallery-wrap gallery-wrap-fullwidth ">
+		<div class="row-fluid gallery-wrap gallery-wrap-fullwidth">
 			<div class="gallery-images-wrap ">
 				<div class="row-fluid ">
 					<div class="clear gallery-post-wrap">
 						<div class="gallery-wrap-slider ">
 							<div class="galleria" data-crop="false" data-transition="fade" data-interval="5000">
-								<img ng-repeat="photo in album.photoList" ng-src="{{photo.filepath}}">
+								<a ng-href="{{photo.filepath}}" ng-repeat="photo in album.photoList">
+									<img ng-src="{{photo.filepath}}?dim=100x100">
+								</a>
 							</div>
 						</div>
 					</div>
 				</div>
-				<!--end row-fluid-->
 			</div>
-			<!--end gallery-images-wrap -->
 		</div>
-		<!--end row-fluid gallery-wrap-->
 	</div>
-	<!--end content_wrap-->
 </div>
 <cm-page-builder></cm-page-builder>
