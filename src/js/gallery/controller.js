@@ -147,6 +147,10 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 		$scope.update = function(){
 			$location.path('/albums/edit/' + $scope.album._id);
 		}
+
+		$scope.back = function(){
+			window.location = "#!/albums";
+		}
 	}
 ]);
 
@@ -169,6 +173,7 @@ angular.module('mean.albums').controller('modalInstanceCtrl', ['$scope', '$modal
 		};
 
 		$scope.cancel = function() {
+			$(window).trigger('resize');
 			$modalInstance.dismiss('cancel');
 		};
 	}

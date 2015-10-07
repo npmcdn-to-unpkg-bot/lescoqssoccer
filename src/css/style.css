@@ -2838,3 +2838,8 @@ Deckgrid configurations
 ::-moz-placeholder { color:white; } /* firefox 19+ */
 :-ms-input-placeholder { color:white; } /* ie */
 input:-moz-placeholder { color:white; }
+
+.modal{
+  position: absolute !important;
+  background-color: transparent !important;
+}

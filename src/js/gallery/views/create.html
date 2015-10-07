@@ -7,16 +7,17 @@
 	</div>
 </div>
 
-
 <div id="post-1039" class="post type-post status-publish format-standard hentry category-blog">
 	<div class="row-fluid two-cols-layout" style="min-height: 100vh;">
 		<div id="content_wrap" class="span10" style="margin-left: 9%;">
 
-			<div class="title-bar-wrap " id="title-bar" style="padding: 50px 0;">
+			<div class="title-bar-wrap" id="title-bar" style="padding: 50px 0; width: calc(100% - 180px);">
 				<div id="title-wrap">
 					<div class="title-wrap-inn">
 						<div id="main-title">
-							<h1 class="main-title ellipsis" style="text-transform: uppercase;">{{album.name || 'Nouvel album'}}</h1>
+							<h1 class="main-title ellipsis" style="text-transform: uppercase;">
+								{{album.name || 'Nouvel album'}}
+							</h1>
 						</div>
 					</div>
 				</div>
@@ -47,7 +48,7 @@
 								</select>
 							</div>
 
-							<div class="span6" style="margin-bottom: 40px;">
+							<div class="span6">
 								<textarea
 								name="description"
 								type="text"
@@ -66,7 +67,7 @@
 							<button
 							class="button"
 							ng-click="uploadFiles();"
-							style="margin-bottom: 30px;">
+							style="margin-bottom: 40px;">
 							Ajouter des photos
 							</button>
 
