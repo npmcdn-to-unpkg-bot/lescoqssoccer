@@ -629,7 +629,7 @@ angular.module('mean.system').directive('cmPageBuilder',
 											transition = jQuery(this).data('transition'),
 											interval = jQuery(this).data('interval');
 
-										var galleria = jQuery(this).galleria({
+										Galleria.run('.galleria', {
 											idleMode: true,
 											transition: transition, //fade, slide
 											responsive: true,
@@ -639,7 +639,8 @@ angular.module('mean.system').directive('cmPageBuilder',
 											height: slider_h,
 											clicknext: true,
 											show: $scope.current || 0,
-											preload: 'all'
+											preload: 'all',
+											trueFullscreen: false
 										});
 
 										Galleria.ready(function(options) {

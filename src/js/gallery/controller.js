@@ -35,7 +35,7 @@ angular.module('mean.albums').controller('AlbumDetailController', ['$location', 
 			}
 		};
 
-		$scope.back = function(){
+		$scope.back = function() {
 			window.location = "#!/albums";
 		}
 
@@ -104,6 +104,26 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 		$scope.global = Global;
 		$scope.album = album;
 
+		$scope.showSlider = function(evt, currentIndex) {
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			var modalInstance = $modal.open({
+				templateUrl: 'js/gallery/views/photosSlider.html',
+				controller: 'PhotosSliderController',
+				windowClass: "full-screen",
+				resolve: {
+					album: function() {
+						return $scope.album;
+					},
+					currentIndex: function() {
+						return currentIndex;
+					}
+				}
+			});
+		};
+
 		$scope.deleteAlbum = function(evt) {
 
 			evt.preventDefault();
@@ -144,23 +164,34 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 			});
 		};
 
-		$scope.update = function(){
+		$scope.update = function() {
 			$location.path('/albums/edit/' + $scope.album._id);
 		}
 
-		$scope.back = function(){
+		$scope.back = function() {
 			window.location = "#!/albums";
 		}
 	}
 ]);
 
-angular.module('mean.albums').controller('PhotosSliderController', ['$scope', 'Global', 'album', 'currentIndex',
+angular.module('mean.albums').controller('PhotosSliderController', ['$scope', 'Global', '$modalInstance', 'album', 'currentIndex',
 
-	function($scope, Global, album, currentIndex) {
+	function($scope, Global, $modalInstance, album, currentIndex) {
 
 		$scope.global = Global;
 		$scope.album = album;
 		$scope.current = currentIndex;
+
+		$scope.cancel = function() {
+			$modalInstance.dismiss('cancel');
+		};
+
+		$modalInstance.result.then(function(){}, function() {
+
+			setTimeout(function(){
+				Galleria.get(0).destroy();
+			}, 500);
+		});
 	}
 ]);
 

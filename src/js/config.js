@@ -108,11 +108,6 @@ angular.module('mean').config(['$routeProvider',
 			controller: 'PhotosController',
 			resolve: AlbumData
 		}).
-		when('/albums/sliderView/:albumId/:currentIndex', {
-			templateUrl: 'js/gallery/views/photosSlider.html',
-			controller: 'PhotosSliderController',
-			resolve: AlbumSliderData
-		}).
 		when('/albums/create', {
 			templateUrl:'js/gallery/views/create.html',
 			controller: 'AlbumDetailController',
