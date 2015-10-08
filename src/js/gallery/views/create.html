@@ -76,8 +76,8 @@
 							<!-- ALBUM IMAGES -->
 							<div class="Collage effect-parent creation">
 								<a ng-repeat="photo in album.photoList">
-									<img ng-src="{{photo.filepath}}" alt="{{photo.name}}">
-									<i class="fa fa-trash" style="font-size: 30px; margin-top: 10px;"></i>
+									<i class="fa fa-times" style="cursor: pointer;z-index: 8040;background:white; color: black;position: absolute; font-size: 30px;" ng-click="deletePhoto(photo);"></i>
+									<img ng-src="{{photo.filepath}}" alt="{{photo.name}}" style="border: 4px solid white;">
 								</a>
 							</div>
 
