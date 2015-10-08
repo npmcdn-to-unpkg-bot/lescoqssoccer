@@ -77,7 +77,9 @@ angular.module('mean').config(['$routeProvider',
 			resolve: ArticleDetailData
 		}).
 		when('/articles/edit/:view/:id', {
-			templateUrl: 'js/articles/views/create.html',
+			templateUrl: function(params){
+				return (params.view === "standard") ? 'js/articles/views/creation/standard.html' : 'js/articles/views/creation/others.html';
+			},
 			controller: 'CreateArticleController',
 			resolve: ArticleDetailData
 		}).

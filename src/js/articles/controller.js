@@ -83,7 +83,7 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 			evt.preventDefault();
 			evt.stopPropagation();
 
-			$location.path("/articles/edit/" + $scope.article._id);
+			$location.path("/articles/edit/" + $scope.article.type + "/" + $scope.article._id);
 		};
 
 		$scope.remove = function(evt) {
@@ -237,6 +237,10 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 				});
 
 			}
+		};
+
+		$scope.back = function(){
+			window.location = "#!/articles";
 		};
 
 	}
