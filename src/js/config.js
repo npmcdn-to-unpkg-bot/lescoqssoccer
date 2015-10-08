@@ -118,6 +118,11 @@ angular.module('mean').config(['$routeProvider',
 			controller: 'AlbumDetailController',
 			resolve: AlbumData
 		}).
+		when('/albums:page', {
+			templateUrl: 'js/gallery/views/albums.html',
+			controller: 'AlbumsController',
+			resolve: AlbumsData
+		}).
 
 		/** SUGGESTIONS ****/
 		when('/suggestions', {

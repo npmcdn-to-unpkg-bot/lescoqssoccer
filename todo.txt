@@ -4,7 +4,7 @@ Reste à faire:
 - Section vote (dans les suggestions)
 - Recherche
 
-- Pagination : suggestions, photos
+- Pagination : suggestions
 - Articles: tags
 - Metadatas du site
 

@@ -21,6 +21,13 @@ angular.module('mean.albums').factory('AlbumsCollection', ['$resource',
 	}
 ]);
 
+//Articles service used for get articles items count
+angular.module('mean.articles').factory('AlbumsCount', ['$resource',
+	function($resource) {
+		return $resource('albumsCount');
+	}
+]);
+
 angular.module('mean.albums').factory('Photos', ['$resource',
 	function($resource) {
 
@@ -39,10 +46,12 @@ angular.module('mean.albums').factory('Photos', ['$resource',
 	}
 ]);
 
-angular.module('mean.albums').service('AlbumService', ['AlbumsCollection', 'Photos',
-	function(AlbumsCollection, Photos) {
+angular.module('mean.albums').service('AlbumService', ['AlbumsCollection', 'Photos', 'AlbumsCount',
+	function(AlbumsCollection, Photos, AlbumsCount) {
 
 		var AlbumService = {
+
+			itemsPerPage : 12,
 
 			getAlbum: function(id) {
 				return AlbumsCollection.get({
@@ -55,6 +64,12 @@ angular.module('mean.albums').service('AlbumService', ['AlbumsCollection', 'Phot
 			getAllAlbums: function() {
 				return AlbumsCollection.query({}, function(data) {
 					return data;
+				}).$promise;
+			},
+
+			getItemsCount: function() {
+				return AlbumsCount.get({}, function(result) {
+					return result;
 				}).$promise;
 			},
 

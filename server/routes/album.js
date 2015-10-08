@@ -22,6 +22,9 @@ module.exports = function ( app ) {
 	app.post( '/albums/:id', albums.updateAlbum );
 	app.delete( '/albums/:id', albums.deleteAlbum );
 
+	//get articles count
+    app.get('/albumsCount', albums.getItemsCount);
+
 	/**Download**/
 	app.post('/download/:id', albums.download);
 	app.get('/file/:id', albums.getZipFile);

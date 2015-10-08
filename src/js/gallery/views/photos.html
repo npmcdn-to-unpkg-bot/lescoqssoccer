@@ -1,3 +1,4 @@
+<!--Static action bar-->
 <div class="clearfix filters filter-floating" style="z-index: 1000;">
 	<ul style="top:25px; right: 78px;">
 		<li><a href="#!" data-ng-click="download($event);">Télécharger</a></li>
@@ -8,47 +9,48 @@
 		<i class="fa fa-cogs"></i>
 	</div>
 </div>
-
 <div class="filter-floating-triggle back hidden-phone" style="top:45px; right: 125px;" ng-click="back();">
 	<i class="fa fa-arrow-left" style="color: #2b2b2b;"></i>
 </div>
 
+<!--Page content-->
 <div class="post type-post status-publish format-link has-post-thumbnail hentry category-blog category-uncategorized">
 	<div class="row-fluid two-cols-layout" style="min-height: 100vh;">
 		<div id="content_wrap" style="padding: 50px 0 60px 0;">
+
+			<!--Page header: title and subtitles-->
 			<div class="title-bar-wrap" style="padding: 0 0 40px 0; width: calc(100% - 200px);">
 				<div id="title-wrap">
 					<div class="title-wrap-inn">
 						<div id="main-title" style="padding-left: 60px;">
-							<h1 class="main-title ellipsis" style="text-transform: uppercase;">{{album.name}}</h1>
+							<h1 class="main-title ellipsis" style="text-transform: uppercase;">
+								{{album.name}}
+							</h1>
 							<div class="post-meta">
 								<span class="post-meta-unit date">
-								Créé le: {{album.created | date:"dd MMM yyyy"}}
+									Créé le: {{album.created | date:"dd MMM yyyy"}}
 								</span>
 								<br>
 								<span class="post-meta-unit date">
-								Auteur: {{album.user.name || album.user.username}}
+									Auteur: {{album.user.name || album.user.username}}
 								</span>
 							</div>
 						</div>
 					</div>
 				</div>
-				<!--End #title-wrap-->
 			</div>
-			<div class="row-fluid">
+
+			<!--Photos content-->
+			<div class="row-fluid" ng-show="!showModal">
 				<div class="span12 moudle bottom-space-no" style="padding: 0 60px 60px;">
-					<!--Portfolio isotope-->
 					<div class="row-fluid">
 						<div class="container-isotope " style=" " data-post="20140406-081941-855">
+							<!--Loading-->
 							<div id="isotope-load" style="display: none;">
 								<div class="ux-loading"></div>
 								<div class="ux-loading-transform">
-									<div class="loading-dot1">
-										&nbsp;
-									</div>
-									<div class="loading-dot2">
-										&nbsp;
-									</div>
+									<div class="loading-dot1">&nbsp;</div>
+									<div class="loading-dot2">&nbsp;</div>
 								</div>
 							</div>
 							<div class="Collage effect-parent">
@@ -60,6 +62,7 @@
 					</div>
 				</div>
 			</div>
+
 		</div>
 	</div>
 </div>

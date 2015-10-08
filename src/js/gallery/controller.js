@@ -79,12 +79,24 @@ angular.module('mean.albums').controller('AlbumDetailController', ['$location', 
 	}
 ]);
 
-angular.module('mean.albums').controller('AlbumsController', ['$scope', 'Global', 'albums',
+angular.module('mean.albums').controller('AlbumsController', ['$scope', 'Global', 'AlbumService', 'albums', 'Page', 'ItemsCount',
 
-	function($scope, Global, albums) {
+	function($scope, Global, AlbumService, albums, Page, ItemsCount) {
 
 		$scope.global = Global;
 		$scope.albums = albums;
+
+		$scope.page = parseInt(Page);
+		$scope.totalItems = ItemsCount.count;
+		$scope.itemsPerPage = AlbumService.itemsPerPage;
+
+		$scope.pageChanged = function(newPage) {
+			if (newPage === 1) {
+				$location.path("/albums");
+			} else {
+				$location.path("/albums/" + newPage);
+			}
+		};
 
 		$scope.selectAlbum = function(albumId) {
 
@@ -109,6 +121,8 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 			evt.preventDefault();
 			evt.stopPropagation();
 
+			$scope.showModal = true;
+
 			var modalInstance = $modal.open({
 				templateUrl: 'js/gallery/views/photosSlider.html',
 				controller: 'PhotosSliderController',
@@ -121,6 +135,17 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 						return currentIndex;
 					}
 				}
+			});
+
+			modalInstance.result.then(function() {
+
+				$scope.showModal = false;
+				$(window).trigger('resize');
+
+				setTimeout(function(){
+					Galleria.get(0).destroy();
+				}, 500);
+
 			});
 		};
 
@@ -183,15 +208,8 @@ angular.module('mean.albums').controller('PhotosSliderController', ['$scope', 'G
 		$scope.current = currentIndex;
 
 		$scope.cancel = function() {
-			$modalInstance.dismiss('cancel');
+			$modalInstance.close('cancel');
 		};
-
-		$modalInstance.result.then(function(){}, function() {
-
-			setTimeout(function(){
-				Galleria.get(0).destroy();
-			}, 500);
-		});
 	}
 ]);
 
@@ -248,10 +266,12 @@ var AlbumSliderData = {
 
 var AlbumsData = {
 	albums: function(AlbumService, $route, $location) { //return all albums only if URL /albums/* but not /albums/add
-		if (RegExp('\/albums').test($location.path()) && $route.current.params.view !== 'add') {
-			return AlbumService.getAllAlbums();
-		} else {
-			return [];
-		}
+		return (RegExp('\/albums').test($location.path()) && $route.current.params.view !== 'add') ? AlbumService.getAllAlbums() : [];
+	},
+	Page: function($route) {
+		return ($route.current.params.page) ? $route.current.params.page : 1;
+	},
+	ItemsCount: function(AlbumService){
+		return AlbumService.getItemsCount();
 	}
 };

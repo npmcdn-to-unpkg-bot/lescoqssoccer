@@ -2769,7 +2769,7 @@ Deckgrid configurations
     cursor: pointer;
 }
 
-.label-upload-profile-picture:hover, .pointer:hover{
+.label-upload-profile-picture:hover, .pointer:hover, .pointer *:hover, input[type="file"]{
   cursor: pointer;
 }
 
@@ -2854,4 +2854,12 @@ input:-moz-placeholder { color:white; }
 
 .box-close:hover{
   cursor: pointer;
+}
+
+.no-scroll{
+  overflow: hidden;
+}
+
+.no-scroll::-webkit-scrollbar {
+    display: none;
 }
