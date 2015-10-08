@@ -565,7 +565,6 @@ angular.module('mean.system').directive('cmPageBuilder',
 								});
 							}
 
-
 							//** post navi
 							jQuery('#post-navi a').click(function() {
 								ux_page_loading_event(jQuery(this));
@@ -597,7 +596,6 @@ angular.module('mean.system').directive('cmPageBuilder',
 							});
 
 						}
-
 
 						jQuery("html, body").css({
 							height: _win_height

@@ -12,6 +12,7 @@ function ThemePageBuilder() {
 
 	//pb init
 	this.init = function() {
+
 		//Pagebuild: Reload page for some special moduel when window resize e.g. Testimenials, Fullwidth wrap
 		var screen_size = ux_pb.getSizeName();
 
@@ -184,7 +185,8 @@ function ThemePageBuilder() {
 			})
 		}
 
-		$(".isotope.masonry.isotope_fade").css('display', 'block');
+		$(".isotope.isotope_fade").css('display', 'block');
+		$(".pagenums").css('display', 'block');
 
 		//Pagebuild: Pagenums Click
 		var _moudle_pagenums = jQuery('.moudle .pagenums .select_pagination');
@@ -218,7 +220,6 @@ function ThemePageBuilder() {
 			});
 		}
 
-		//if(!Modernizr.touch){
 		//pagebuild: animation scroll
 		var _moudle_hasanimation = jQuery('.moudle_has_animation');
 		if (_moudle_hasanimation.length) {
@@ -226,7 +227,6 @@ function ThemePageBuilder() {
 				ux_pb.animationscroll();
 			});
 		}
-		//}
 
 		//Modernizr.touch
 		if (Modernizr.touch) {
@@ -236,108 +236,6 @@ function ThemePageBuilder() {
 					jQuery(this).css('background-attachment', 'scroll');
 				})
 			}
-
-			// Pagebuild: portfolio caption hover -  For Touch Devices
-
-			/*function classReg( className ) {
-				return new RegExp("(^|\\s+)" + className + "(\\s+|$)");
-			}
-
-			var hasClass, addClass, removeClass;
-
-			if ( 'classList' in document.documentElement ) {
-				hasClass = function( elem, c ) {
-					return elem.classList.contains( c );
-				};
-				addClass = function( elem, c ) {
-					elem.classList.add( c );
-				};
-				removeClass = function( elem, c ) {
-					elem.classList.remove( c );
-				};
-			}else {
-				hasClass = function( elem, c ) {
-					return classReg( c ).test( elem.className );
-				};
-				addClass = function( elem, c ) {
-					if ( !hasClass( elem, c ) ) {
-							elem.className = elem.className + ' ' + c;
-					}
-				};
-				removeClass = function( elem, c ) {
-					elem.className = elem.className.replace( classReg( c ), ' ' );
-				};
-			}
-
-			function toggleClass( elem, c ) {
-				var fn = hasClass( elem, c ) ? removeClass : addClass;
-				fn( elem, c );
-			}
-
-			var classie = {
-				// full names
-				hasClass: hasClass,
-				addClass: addClass,
-				removeClass: removeClass,
-				toggleClass: toggleClass,
-				// short names
-				has: hasClass,
-				add: addClass,
-				remove: removeClass,
-				toggle: toggleClass
-			};
-
-			// transport
-			if ( typeof define === 'function' && define.amd ) {
-				// AMD
-				define( classie );
-			} else {
-				// browser global
-				window.classie = classie;
-			}
-
-			//Pagebuild: Portfolio Module Hover - Folding
-			[].slice.call( document.querySelectorAll( '.inside > figure' ) ).forEach( function( el, i ) {
-				el.querySelector( 'figcaption a' ).addEventListener( 'touchstart', function(e) {
-					e.stopPropagation();
-				}, false );
-				el.querySelector( '.btn_wrap a.lightbox' ).addEventListener( 'touchstart', function(e) {
-					e.stopPropagation();
-				}, false );
-				el.querySelector( '.btn_wrap a.more' ).addEventListener( 'touchstart', function(e) {
-					e.stopPropagation();
-				}, false );
-				el.addEventListener( 'touchstart', function(e) {
-					classie.toggle( this, 'cs-hover' );
-				}, false );
-			} );
-
-			//Pagebuild: Portfolio Module Hover - Flip
-
-			[].slice.call( document.querySelectorAll( 'div.container3d' ) ).forEach( function( el, i ) {
-				el.querySelector( '.back a' ).addEventListener( 'touchstart', function(e) {
-					e.stopPropagation();
-				}, false );
-				[].slice.call( el.querySelectorAll( '.hover_thumb_unit' ) ).forEach( function( t, i ) {
-					t.querySelector( 'a' ).addEventListener( 'touchstart', function(e) {
-						e.stopPropagation();
-					}, false );
-				} );
-				el.addEventListener( 'touchstart', function(e) {
-					classie.toggle( this, 'hover3d' );
-				}, false );
-			} );
-
-			//Pagebuild: Team Module Hover
-			[].slice.call( document.querySelectorAll( '.team-item' ) ).forEach( function( el, i ) {
-				el.querySelector( '.team-item-con-back a' ).addEventListener( 'touchstart', function(e) {
-					e.stopPropagation();
-				}, false );
-				el.addEventListener( 'touchstart', function(e) {
-					classie.toggle( this, 'team-hover3d' );
-				}, false );
-			} );*/
-
 
 		} // End if Modernizr.touch
 	}
@@ -1095,28 +993,9 @@ function ThemePageBuilder() {
 
 	//Pagebuild: Fullwrap Size
 	this.fullwrapsize = function() {
-			/*var ux_pb_fullwrap_moudle = jQuery('.fullwrap_moudle');
-			var ux_pb_fullwrap_wrap = jQuery('.custom_fullwidth_wrap')
-			if(ux_pb_fullwrap_moudle.length){
-				ux_pb_fullwrap_moudle.each(function(){
-					var _this = jQuery(this);
-					var _this_marginleft = (theme_wrap_width - theme_content_width) / 2;
+	};
 
-					_this.css({
-						'margin-left': - _this_marginleft
-					});
-					_this.width(theme_wrap_width);
-				});
-			}
-
-			if(ux_pb_fullwrap_wrap.length){
-				ux_pb_fullwrap_wrap.each(function(){
-					jQuery(this).animate({'opacity':1},500);
-				})
-			}
-			*/
-		}
-		//Pagebuild: Fullwrap Tab
+	//Pagebuild: Fullwrap Tab
 	this.fullwraptabs = function() {
 		var ux_pb_fullwrap_withtab = jQuery('.fullwrap-with-tab-nav');
 		if (ux_pb_fullwrap_withtab.length) {
