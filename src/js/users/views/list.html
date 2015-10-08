@@ -48,14 +48,14 @@
                                             </div>
                                         </div>
 
-                                        <div class="isotope grid_list team-isotope isotope_fade" data-space="40px" data-size="medium" style="display:none; margin-left: -40px; margin-top: -40px;">
+                                        <div class="isotope grid_list team-isotope isotope_fade" data-space="40px" data-size="small" style="display:none; margin-left: -40px; margin-top: -40px;">
 
                                             <div ng-repeat="user in team" class="width2 isotope-item animation-default-ux animation-scroll-ux fadeined">
                                                 <div class="inside card" style="padding: 40px 0 0 40px;">
                                                     <div class="team-item">
                                                         <div class="img-wrap">
                                                             <img
-                                                            ng-src="{{user.avatar || 'img/photos/team2.jpg'}}?dim=300x300"
+                                                            ng-src="{{user.avatar && user.avatar + '?dim=300x300' || 'img/Professor.png'}}"
                                                             class="team-img wp-post-image" alt="13">
                                                         </div>
                                                         <div class="team-item-con-back">

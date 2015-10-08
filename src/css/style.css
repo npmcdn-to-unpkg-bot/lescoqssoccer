@@ -2775,3 +2775,54 @@ input:-moz-placeholder { color:white; }
 .no-scroll::-webkit-scrollbar {
     display: none;
 }
+
+/* ================= COMMENTS ================== */
+.comments {
+    margin-top:30px;
+    margin-bottom:0px;
+}
+.comments p {
+    margin-bottom:60px !important;
+    padding-right:60px;
+}
+.comments .meta {
+    margin-bottom:10px !important;
+    text-transform:uppercase;
+}
+.comments_content {
+    padding-right:20px;
+    padding-top:10px;
+    position:relative;
+    border-top: 1px solid #333333;
+}
+.reply {
+    padding-left:60px;
+    background-color: #333333;
+}
+.reply_icon {
+    width:31px;
+    height:33px;
+    background-image:url(../img/reply.png);
+    position:absolute;
+    display:none;
+    top:-52px;
+    left:-45px;
+    background-repeat:no-repeat;
+}
+.comments.reply .reply_icon {
+    display:block !important;
+}
+.comments a.reply {
+    font-size:12px;
+    position:absolute;
+    top:-1px;
+    right:0;
+    padding:7px 9px 7px 9px;
+    -webkit-transition:all 0.2s ease-in-out;
+    -moz-transition:all 0.2s ease-in-out;
+    -o-transition:all 0.2s ease-in-out;
+    transition:all 0.2s ease-in-out;
+}
+.comments a.reply:hover {
+    text-decoration:none;
+}

@@ -13,13 +13,7 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 		}, {
 			name: "ARTICLES",
 			id: 'articles',
-			children: [{
-				name: "Le fourre-tout",
-				link: "#!/articles",
-			}, {
-				name: "Le blog",
-				link: "#!",
-			}]
+			link: "#!/articles"
 		}, {
 			name: "AGENDA",
 			link: "#!/agenda",
