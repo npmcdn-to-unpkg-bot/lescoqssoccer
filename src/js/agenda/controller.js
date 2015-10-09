@@ -210,20 +210,19 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 	}
 ]);
 
-var EventDetailData = {
-
-	event: function(AgendaCollection, $route) {
-		return ($route.current.params.eventId) ? ArticlesCollection.findOne($route.current.params.eventId) : null;
-	}
-
-};
-
 angular.module('mean.agenda').controller('ListController', ['$scope', '$routeParams', '$filter', '$location', '$route', 'Global', 'AgendaCollection', 'Agenda', '$modal',
 	function($scope, $routeParams, $filter, $location, $route, Global, AgendaCollection, Agenda, $modal) {
 
 		$scope.agendaCollection = AgendaCollection;
 		$scope.eventTypes = eventTypes;
 		$scope.agenda = Agenda;
+
+		$scope.agenda = Agenda;
+
+		//Calendar config
+		$scope.calendarView = 'month';
+		$scope.calendarDay = new Date();
+		$scope.calendarTitle = '';
 
 		$scope.setSelectedEvent = function(evt, userEvent) {
 
@@ -369,28 +368,13 @@ angular.module('mean.agenda').controller('unknowLocationCtrl', ['$scope', '$moda
 	}
 ]);
 
-angular.module('mean.agenda').controller('calendarCtrl', ['$scope', '$modalInstance', 'Agenda', 'EventClick',
+var EventDetailData = {
 
-	function($scope, $modalInstance, Agenda, EventClick) {
-
-		$scope.agenda = Agenda;
-
-		//Calendar config
-		$scope.calendarView = 'month';
-		$scope.calendarDay = new Date();
-		$scope.calendarTitle = '';
-
-		$scope.eventClick = function(evt, userEvent) {
-
-			EventClick(evt, userEvent);
-			$scope.cancel();
-		};
-
-		$scope.cancel = function() {
-			$modalInstance.dismiss('cancel');
-		};
+	event: function(AgendaCollection, $route) {
+		return ($route.current.params.eventId) ? ArticlesCollection.findOne($route.current.params.eventId) : null;
 	}
-]);
+
+};
 
 var eventTypes = [{
 	identifier: 'restaurant',

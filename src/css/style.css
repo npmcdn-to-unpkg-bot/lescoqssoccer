@@ -1802,16 +1802,16 @@ textarea:focus,input[type="text"]:focus,input[type="password"]:focus,input[type=
 }
 .border-style2,.border-style3,.nav-tabs > li > a,.tab-content,.nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus,.tabs-v,.single-feild
 {
-  border-color: #333333;
+  border-color: white;
 }
 .nav.nav-tabs, .tabs-v .nav-tabs > li:last-child.active>a{
-  border-bottom-color: #333333;
+  border-bottom-color: white;
 }
 .tab-content.tab-content-v {
-  border-left-color: #333333;
+  border-left-color: white;
 }
 .tabs-v .nav-tabs > .active > a {
-  border-top-color: #333333;
+  border-top-color: white;
 }
 
 
@@ -2825,4 +2825,25 @@ input:-moz-placeholder { color:white; }
 }
 .comments a.reply:hover {
     text-decoration:none;
+}
+
+.cal-day-weekend span[data-cal-date] {
+    color: #FF5533 !important;
+}
+
+.cal-day-today span[data-cal-date] {
+    color: #43bc46 !important;
+}
+
+.cal-day-today {
+    background-color: rgba(1,1,1,0.6) !important;
+}
+
+.cal-row-fluid:hover, .cal-year-box .row:hover {
+    background-color: inherit !important;
+}
+
+[class*=cal-cell]:hover {
+    background-color: #ededed;
+    color: black;
 }
