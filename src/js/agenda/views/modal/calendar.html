@@ -1,5 +1,7 @@
-<div class="message-box">
-	<span class="info-box-close" data-ng-click="cancel()"></span>
+<div class="message-box" style="text-align: center;">
+	<p class="box-close" ng-click="cancel()" style="position: absolute;top:20px;right:20px;z-index: 1000;">
+        <i class="icon-m-close-circle" style="font-size: 30px;"></i>
+    </p>
 	<div class="btn-group pull-left monthGroupBtn">
 		<input
 		type="button"
@@ -23,7 +25,7 @@
 		increment="calendarView"
 		value="Suivant"/>
 	</div>
-	<div class="btn-group">
+	<div class="btn-group" style="margin-bottom: 20px;">
 		<h2 class="uppercase">{{ calendarTitle }}</h2>
 	</div>
 	<div class="btn-group pull-right">
@@ -47,3 +49,4 @@
 	auto-open="true">
 	</mwl-calendar>
 </div>
+<cm-page-builder></cm-page-builder>

@@ -279,6 +279,7 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 				templateUrl: 'js/agenda/views/modal/calendar.html',
 				controller: 'calendarCtrl',
 				windowClass: 'calendarPopup',
+				size: "lg",
 				resolve: {
 					Agenda: function() {
 						return AgendaCollection.load();

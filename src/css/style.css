@@ -2913,3 +2913,11 @@ input[type="text"].localisation {
     background-color: #FF5533 !important;
     color: white !important;
 }
+
+.calendarPopup {
+    width: 80%;
+    height: auto;
+    margin: 10%;
+    top: 0 !important;
+    left: 0;
+}
