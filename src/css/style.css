@@ -1807,6 +1807,10 @@ textarea:focus,input[type="text"]:focus,input[type="password"]:focus,input[type=
 .nav.nav-tabs, .tabs-v .nav-tabs > li:last-child.active>a{
   border-bottom-color: white;
 }
+.nav.nav-tabs, .tabs-v .nav-tabs > li:nth-child(2)>a{
+    border-top: none !important;
+    border-left: none !important;
+}
 .tab-content.tab-content-v {
   border-left-color: white;
 }
@@ -2831,6 +2835,14 @@ input:-moz-placeholder { color:white; }
     color: #FF5533 !important;
 }
 
+.label-important, .badge-important {
+    background-color: #FF5533 !important;
+}
+
+.cal-row-fluid:hover .cal-cell1 {
+    color: #FF5533 !important;
+}
+
 .cal-day-today span[data-cal-date] {
     color: #43bc46 !important;
 }
@@ -2890,8 +2902,14 @@ input[type="text"].localisation {
     top:0;
     margin:0px;
     height: 100%;
+    padding: 0!important;
 }
 
 .localisationButton:not(:hover) {
     background-color: #313131 !important;
+}
+
+.localisationButton{
+    background-color: #FF5533 !important;
+    color: white !important;
 }

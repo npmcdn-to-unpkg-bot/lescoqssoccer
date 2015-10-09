@@ -121,7 +121,7 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 							longitude: marker.getPosition().lng()
 						};
 
-						$scope.geocodePosition(marker.getPosition());
+						$scope.geocodePosition(marker.getPosition(), false);
 					}
 				},
 				options: {
@@ -131,7 +131,7 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 			doUgly: true
 		};
 
-		$scope.geocodePosition = function(pos) {
+		$scope.geocodePosition = function(pos, showModal) {
 
 			if (!this.geocoder) this.geocoder = new google.maps.Geocoder();
 
@@ -148,10 +148,13 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 
 				} else {
 
-					$modal.open({
-						templateUrl: 'js/agenda/views/modal/unknownLocation.html',
-						controller: 'unknowLocationCtrl'
-					});
+					if (showModal) {
+						$modal.open({
+							templateUrl: 'js/agenda/views/modal/unknownLocation.html',
+							controller: 'unknowLocationCtrl'
+						});
+					}
+
 				}
 			});
 		};
@@ -186,9 +189,11 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 		};
 
 		$scope.gotoCurrentLocation = function() {
+			console.warn("geolocation" in navigator);
 			if ("geolocation" in navigator) {
 				navigator.geolocation.getCurrentPosition(function(position) {
 					$scope.gotoLocation(position.coords.latitude, position.coords.longitude);
+					$scope.geocodePosition(position, false);
 				});
 				return true;
 			}
@@ -208,7 +213,7 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 			}
 		};
 
-		$scope.back = function(){
+		$scope.back = function() {
 			window.location = "#!/agenda";
 		};
 	}
@@ -220,13 +225,6 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 		$scope.agendaCollection = AgendaCollection;
 		$scope.eventTypes = eventTypes;
 		$scope.agenda = Agenda;
-
-		$scope.agenda = Agenda;
-
-		//Calendar config
-		$scope.calendarView = 'month';
-		$scope.calendarDay = new Date();
-		$scope.calendarTitle = '';
 
 		$scope.setSelectedEvent = function(evt, userEvent) {
 
@@ -341,20 +339,38 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 				});
 			}
 		});
+	}
+]);
 
-		$scope.resizeMap = function() {
-			$("#google-map").css('height', 'calc(100vh - ' + ($("#agendaCarousel").height() + 164) + "px)");
-			$("google-map .angular-google-map-container").css('height', 'calc(100vh - ' + ($("#agendaCarousel").height() + 164) + "px)");
+angular.module('mean.agenda').controller('AgendaDetailController', ['$scope', 'Global', 'event',
+
+	function($scope, Global, Event) {
+
+		$scope.userEvent = Event;
+		$scope.eventTypes = eventTypes;
+	}
+]);
+
+angular.module('mean.agenda').controller('calendarCtrl', ['$scope', '$modalInstance', 'Agenda', 'EventClick',
+
+	function($scope, $modalInstance, Agenda, EventClick) {
+
+		$scope.agenda = Agenda;
+
+		//Calendar config
+		$scope.calendarView = 'month';
+		$scope.calendarDay = new Date();
+		$scope.calendarTitle = '';
+
+		$scope.eventClick = function(evt, userEvent) {
+
+			EventClick(evt, userEvent);
+			$scope.cancel();
 		};
 
-		$scope.$watch(
-			function() {
-				return $("#agendaCarousel").height();
-			},
-			function(newValue, oldValue) {
-				$scope.resizeMap();
-			}
-		);
+		$scope.cancel = function() {
+			$modalInstance.dismiss('cancel');
+		};
 	}
 ]);
 
@@ -375,7 +391,7 @@ angular.module('mean.agenda').controller('unknowLocationCtrl', ['$scope', '$moda
 var EventDetailData = {
 
 	event: function(AgendaCollection, $route) {
-		return ($route.current.params.eventId) ? ArticlesCollection.findOne($route.current.params.eventId) : null;
+		return ($route.current.params.eventId) ? AgendaCollection.findOne($route.current.params.eventId) : null;
 	}
 
 };

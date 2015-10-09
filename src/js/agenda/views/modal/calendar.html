@@ -1,4 +1,4 @@
-<div class="info-box" style="text-align:center;">
+<div class="message-box">
 	<span class="info-box-close" data-ng-click="cancel()"></span>
 	<div class="btn-group pull-left monthGroupBtn">
 		<input
@@ -8,7 +8,6 @@
 		date="calendarDay"
 		decrement="calendarView"
 		value="Précédent"/>
-
 		<input
 		type="button"
 		class="btn todayBtn"
@@ -39,7 +38,7 @@
 	current-day="calendarDay"
 	events="agenda"
 	view-title="calendarTitle"
-	on-event-click="setSelectedEvent($event, calendarEvent)"
+	on-event-click="eventClick($event, calendarEvent)"
 	on-event-drop="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
 	edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
 	delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"

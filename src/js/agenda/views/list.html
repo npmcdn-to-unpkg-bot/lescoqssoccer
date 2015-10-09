@@ -1,8 +1,13 @@
-<div id="post-362" class="post-362 page type-page status-publish hentry">
-    <div class="row-fluid" style="min-height: 100vh;">
-        <div id="content_wrap" class="">
+<div class="clearfix filters filter-floating">
+	<div class="filter-floating-triggle" style="top:20px; right: 0;" ng-click="openCalendar($event);">
+		<i class="fa fa-calendar"></i>
+	</div>
+</div>
+<div id="post-1039" class="post type-post status-publish format-standard hentry category-blog">
+    <div class="row-fluid two-cols-layout" style="min-height: 100vh;">
+        <div id="content_wrap" class="span8">
             <div class="content-wrap-inn bottom-space ">
-                <div class="container">
+                <div class="container" style="padding:0;">
                     <div class="title-bar-wrap" id="title-bar" style="padding: 50px 0;">
                         <div id="title-wrap">
                             <div class="title-wrap-inn">
@@ -11,111 +16,98 @@
                                 </div>
                             </div>
                         </div>
-                        <!--End #title-wrap-->
                     </div>
-                    <!--End #title-bar-wrap"-->
                 </div>
                 <div class="pagebuilder-wrap">
-                	<div class="container">
+                	<div class="container" style="padding:0;">
                         <div class="row-fluid">
-                            <div class="span6 moudle">
+                            <div class="moudle">
                             	<div class="btn-group" style="margin-bottom: 30px;">
-									<h2 class="uppercase">A venir</h2>
+									<h3 class="uppercase">A venir</h3>
 								</div>
                                 <div class="tabs-v">
                                     <ul class="nav nav-tabs nav-tabs-v" style="width: 25%;">
-                                        <li ng-repeat="event in filteredAgenda = (agenda | filter: isComingEvent)" ng-class="{'active': $index === 0}">
-                                        	<a href="#{{event._id}}">
-                                        		{{event.title}}
-                                        	</a>
-                                        </li>
                                         <li class="active" ng-show="filteredAgenda.length === 0">
                                         	<a href="#noevent">
                                         		Aujourd'hui
                                         	</a>
                                         </li>
+                                        <li ng-repeat="event in filteredAgenda = (agenda | filter: isComingEvent)" ng-class="{'active': $index === 0}">
+                                        	<a href="#{{event._id}}">
+                                        		{{event.title}}
+                                        	</a>
+                                        </li>
                                     </ul>
-                                    <div class="tab-content tab-content-v" style="width: 75%;">
-                                        <div id="{{event._id}}" ng-repeat="event in filteredAgenda = (agenda | filter: isComingEvent)" class="tab-pane" ng-class="{'active': $index === 0}">
-                                            <h3>{{event.title}}</h3>
-											<p class="postdate txt-label">
-											{{event.startsAt | date:"dd MMM yyyy"}}{{(event.endsAt !==  event.startsAt) ? " - " + getFormattedDate(event.endsAt) : ""}}
-											</p>
-											<p class="txt-label">
-												<span class="label">
-													<strong>{{ eventTypes | getNameByIdentifier:event.eventType}}</strong>
-												</span>
-											</p>
-											<p class="txt-label">
-												<span class="label">
-													<strong>Contenu </strong>{{event.content}}
-												</span>
-											</p>
-                                        </div>
+                                    <div class="tab-content tab-content-v" style="width: 75%; overflow: hidden;">
                                         <div id="noevent" ng-show="filteredAgenda.length === 0" class="tab-pane active">
 											<p>
 												Aucun évènement à venir
 											</p>
                                         </div>
+                                        <div id="{{event._id}}" ng-repeat="event in filteredAgenda = (agenda | filter: isComingEvent)" class="tab-pane" ng-class="{'active': $index === 0}">
+                                            <h3 class="three-line-ellipsis">{{event.title}}</h3>
+											<p class="postdate txt-label">
+											{{event.startsAt | date:"dd MMM yyyy"}}{{(event.endsAt !==  event.startsAt) ? " - " + getFormattedDate(event.endsAt) : ""}}
+											</p>
+											<p class="txt-label" style="margin: 10px 0;">
+												<span class="label">
+													<strong>{{ eventTypes | getNameByIdentifier:event.eventType}}</strong>
+												</span>
+											</p>
+											<p>
+												{{event.content}}
+											</p>
+											<div id="google-map" class="google-map" style="border: 10px solid white !important; margin-top: 10px;">
+												<google-map
+												center="map.center"
+												zoom="map.zoom"
+												draggable="true"
+												dragging="map.dragging"
+												bounds="map.bounds"
+												events="map.events"
+												options="map.options"
+												control="map.control">
+												<marker
+													ng-repeat="m in map.markers"
+													icon="'img/icons/pin.png'"
+													coords="m"
+													animation="google.maps.Animation.DROP"
+													click="onMarkerClicked(m);">
+													<window isIconVisibleOnClick="true" show="m.showWindow">
+													<div>
+														<div style="display: inline-block;">
+															<p style="text-align: center">{{m.title}}</p>
+															<p style="display: inline-block; vertical-align: top;">{{m.content}}</p>
+														</div>
+													</div>
+													</window>
+												</marker>
+												</google-map>
+											</div>
+                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
-                            </div>
-                            <div class="span6 moudle">
-								<!-- <div class="btn-group pull-left monthGroupBtn">
-									<input
-									type="button"
-									class="btn previousMonth"
-									mwl-date-modifier
-									date="calendarDay"
-									decrement="calendarView"
-									value="Précédent"/>
-
-									<input
-									type="button"
-									class="btn todayBtn"
-									mwl-date-modifier
-									date="calendarDay"
-									set-to-today
-									value="Aujourd'hui"/>
-									<input
-									type="button"
-									class="btn nextMonth"
-									mwl-date-modifier
-									date="calendarDay"
-									increment="calendarView"
-									value="Suivant"/>
-								</div> -->
-								<div class="btn-group">
-									<h2 class="uppercase" style="text-transform: uppercase;">{{ calendarTitle }}</h2>
-								</div>
-								<!-- <div class="btn-group pull-right">
-									<label class="btn" ng-model="calendarView" btn-radio="'year'">Année</label>
-									<label class="btn" ng-model="calendarView" btn-radio="'month'">Mois</label>
-									<label class="btn" ng-model="calendarView" btn-radio="'week'">Semaine</label>
-									<label class="btn" ng-model="calendarView" btn-radio="'day'">Jour</label>
-								</div> -->
-
-								<mwl-calendar
-								view="calendarView"
-								current-day="calendarDay"
-								events="agenda"
-								view-title="calendarTitle"
-								on-event-click="eventClick($event, calendarEvent)"
-								on-event-drop="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
-								edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
-								delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
-								on-edit-event-click="eventEdited(calendarEvent)"
-								on-delete-event-click="eventDeleted(calendarEvent)"
-								auto-open="true">
-								</mwl-calendar>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <aside id="sidebar-widget" class="span4">
+            <ul class="sidebar_widget" style="padding-top: 130px;">
+                <li id="tag_cloud-2" class="widget-container widget_tag_cloud">
+                    <h3 class="widget-title" style="text-transform: uppercase;">évènements passés</h3>
+                    <div ng-repeat="event in filteredAgenda = (agenda | filter: isPastEvent) | limitToCustom:10:0" style="margin-bottom: 10px;">
+                        <a ng-href="#!/agenda/view/{{event._id}}" title="{{event.title}}">
+                        {{event.title}}
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </aside>
   	</div>
+
   	<div class="hidden-phone addButton">
         <div class="float-bar-inn-wrap">
         </div>
