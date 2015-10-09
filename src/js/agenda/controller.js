@@ -207,6 +207,10 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 				}
 			}
 		};
+
+		$scope.back = function(){
+			window.location = "#!/agenda";
+		};
 	}
 ]);
 

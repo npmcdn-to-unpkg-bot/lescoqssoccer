@@ -1,100 +1,135 @@
-<section class="rightcontainer">
-
-	<div class="subtitle">
-		<a href="#!/agenda" class="back-icon">
-		</a>
-		<h1 class="ellipsis">{{userEvent.title || 'Nouvel évènement'}}</h1>
-		<a href="#!" class="ok-icon" data-ng-click="create()">
-		</a>
+<div class="clearfix filters filter-floating">
+	<div class="filter-floating-triggle hidden-phone" style="top:20px; right: 125px;" ng-click="back();">
+		<i class="fa fa-arrow-left"></i>
 	</div>
-	<div class="pagecontent">
-		<form role="form">
-			<div class="contactcontainer">
+	<div class="filter-floating-triggle" style="top:20px; right: 60px;" ng-click="create();">
+		<i class="fa fa-save"></i>
+	</div>
+</div>
 
-				<!-- CONTACT LEFT -->
-				<div class="contact-left">
-					<label for="title">Nom</label>
-					<input type="text" name="title" data-ng-model="userEvent.title" required/>
+<div id="post-1039" class="post type-post status-publish format-standard hentry category-blog">
+	<div class="row-fluid two-cols-layout" style="min-height: 100vh;">
+		<div id="content_wrap" class="span10" style="margin-left: 9%;">
 
-					<label for="selectedType">Type</label>
-					<select
-						name="selectedType"
-						data-ng-model="userEvent.eventType"
-						ng-options="eventType.identifier as eventType.name for eventType in eventTypes">
-					</select>
-					<label for="content">Contenu</label>
-					<textarea
-					type="text"
-					name="content"
-					data-ng-model="userEvent.content"
-					required>
-					</textarea>
-
-				</div>
-				<!-- CONTACT RIGHT -->
-				<div class="contact-right">
-
-					<label for="startsAt">Début</label>
-					<div>
-						<input
-						type="text"
-						name="startsAt"
-						datepicker-popup="{{format}}"
-						data-ng-model="userEvent.startsAt"
-						is-open="$parent.openedStartDate"
-						datepicker-options="dateOptions"
-						show-weeks="false"
-						show-button-bar="false"
-						required/>
+			<div class="title-bar-wrap " id="title-bar" style="padding: 50px 0;">
+				<div id="title-wrap">
+					<div class="title-wrap-inn">
+						<div id="main-title">
+							<h1 class="main-title" text-transform="uppercase">Nouvel évènement</h1>
+						</div>
 					</div>
-					<label for="endsAt">Fin</label>
-					<div>
-						<input
-						type="text"
-						name="endsAt"
-						datepicker-popup="{{format}}"
-						data-ng-model="userEvent.endsAt"
-						is-open="$parent.openedEndDate"
-						datepicker-options="dateOptions"
-						show-weeks="false"
-						show-button-bar="false"
-						required/>
-					</div>
-
-					<label for="repeat">Répéter</label>
-					<select
-						name="repeat"
-						data-ng-model="userEvent.recursOn"
-						ng-options="recurseOn.identifier as recurseOn.value for recurseOn in eventRepeater">
-					</select>
 				</div>
 			</div>
-			<div class="clear"></div>
 
-			<label for="localisation">Lieux</label>
-			<input class="localisation" name="localisation" type="text" data-ng-model="search"/>
-			<input
-			class="button localisationButton"
-			type="button"
-			ng-click="geoCode()"
-			ng-disabled="search.length === 0"
-			title="search"
-			value="GO"/>
-			<google-map
-			center="map.center"
-			zoom="map.zoom"
-			draggable="true"
-			events="map.events"
-			options="map.options"
-			control="map.control">
-			<marker
-				ng-repeat="m in map.markers"
-				coords="m"
-				events="m.events"
-				options ="m.options"
-				icon="'img/icons/pin.png'">
-			</marker>
-			</google-map>
-		</form>
+			<div id="comments">
+				<div id="respondwrap">
+					<div id="respond" class="comment-respond">
+						<form role="form">
+
+							<p class="span6" style="margin-bottom: 20px;">
+								<label for="startsAt">Nom de l'évènement</label>
+								<input
+								name="title"
+								type="text"
+								data-ng-model="userEvent.title"
+								class="requiredFieldcomm"
+								size="30"
+								aria-required="true"
+								tabindex="1"
+								placeholder="TITRE">
+							</p>
+
+							<div class="span6" style="margin-bottom: 20px;">
+								<label for="startsAt">Début</label>
+								<input
+								type="text"
+								name="startsAt"
+								datepicker-popup="{{format}}"
+								data-ng-model="userEvent.startsAt"
+								is-open="$parent.openedStartDate"
+								datepicker-options="dateOptions"
+								show-weeks="false"
+								show-button-bar="false"
+								required/>
+							</div>
+
+							<p class="span6" style="margin-bottom: 20px; margin-left: 0;">
+								<label for="selectedType">Type</label>
+								<select
+									name="selectedType"
+									data-ng-model="userEvent.eventType"
+									ng-options="eventType.identifier as eventType.name for eventType in eventTypes"
+									style="margin-top: 10px;">
+								</select>
+							</p>
+
+							<p class="span6" style="margin-bottom: 20px;">
+								<label for="endsAt">Fin</label>
+								<input
+								type="text"
+								name="endsAt"
+								datepicker-popup="{{format}}"
+								data-ng-model="userEvent.endsAt"
+								is-open="$parent.openedEndDate"
+								datepicker-options="dateOptions"
+								show-weeks="false"
+								show-button-bar="false"
+								required/>
+							</p>
+
+							<p class="span6" style="margin-bottom: 20px; margin-left: 0;">
+								<label for="repeat">Répéter</label>
+								<select
+									name="repeat"
+									data-ng-model="userEvent.recursOn"
+									ng-options="recurseOn.identifier as recurseOn.value for recurseOn in eventRepeater"
+									style="margin-top: 10px;">
+								</select>
+
+								<label for="content" style="margin-top: 40px;">Contenu</label>
+								<textarea
+								type="text"
+								name="content"
+								data-ng-model="userEvent.content"
+								required
+								style="height: 175px;">
+								</textarea>
+							</p>
+
+							<p class="span6" style="margin-bottom: 20px;">
+								<label for="localisation">Lieux</label>
+								<input class="localisation" name="localisation" type="text" data-ng-model="search"/>
+								<input
+								class="button localisationButton"
+								type="button"
+								ng-click="geoCode()"
+								ng-disabled="search.length === 0"
+								title="search"
+								value="GO"/>
+								<google-map
+								center="map.center"
+								zoom="map.zoom"
+								draggable="true"
+								events="map.events"
+								options="map.options"
+								control="map.control">
+									<marker
+										ng-repeat="m in map.markers"
+										coords="m"
+										events="m.events"
+										options ="m.options"
+										icon="'img/icons/pin.png'">
+									</marker>
+								</google-map>
+							</p>
+
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</div>
 	</div>
-</section>
+</div>
+
+<cm-page-builder></cm-page-builder>

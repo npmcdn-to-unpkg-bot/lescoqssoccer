@@ -23,50 +23,39 @@
 									<h2 class="uppercase">A venir</h2>
 								</div>
                                 <div class="tabs-v">
-                                    <ul id="myTab-20140404-042436-333"
-                                        class="nav nav-tabs nav-tabs-v" style="width: 25%;">
-                                        <li class="active">
-                                        	<a href="#tabs_20140404-042436-3330">
-                                        		Egestas adipiscing
+                                    <ul class="nav nav-tabs nav-tabs-v" style="width: 25%;">
+                                        <li ng-repeat="event in filteredAgenda = (agenda | filter: isComingEvent)" ng-class="{'active': $index === 0}">
+                                        	<a href="#{{event._id}}">
+                                        		{{event.title}}
                                         	</a>
                                         </li>
-                                        <li class="">
-                                        	<a href="#tabs_20140404-042436-3331">
-                                        		Magnis
-                                        	</a>
-                                        </li>
-                                        <li class="">
-                                        	<a href="#tabs_20140404-042436-3332">
-                                        		Scelerisqueet
+                                        <li class="active" ng-show="filteredAgenda.length === 0">
+                                        	<a href="#noevent">
+                                        		Aujourd'hui
                                         	</a>
                                         </li>
                                     </ul>
                                     <div class="tab-content tab-content-v" style="width: 75%;">
-                                        <div id="tabs_20140404-042436-3330" class="tab-pane active">
-                                            <p>Egestas adipiscing purus elementum risus turpis
-                                                tincidunt, nascetur a, ultricies lacus nisi platea risus
-                                                sed tincidunt adipiscing ultrices tempor. Ac in ridiculus
-                                                mid nec vel proin lundium, lacus. Pid phasellus nunc,
-                                                integer et dictumst mus, integer vel, elit ultricies et
-                                                proin integer pid, penatibus sagittis et egestas! Hac odio
-                                                parturient phasellus porta lacus, elementum quis, in
-                                                porttitor urna nisi pid mus! Lorem velit. Magnis.
-                                                Scelerisque et pulvinar eros tempor, mattis arcu auctor,
-                                                hac porttitor facilisis integer sed tristique scelerisque.</p>
+                                        <div id="{{event._id}}" ng-repeat="event in filteredAgenda = (agenda | filter: isComingEvent)" class="tab-pane" ng-class="{'active': $index === 0}">
+                                            <h3>{{event.title}}</h3>
+											<p class="postdate txt-label">
+											{{event.startsAt | date:"dd MMM yyyy"}}{{(event.endsAt !==  event.startsAt) ? " - " + getFormattedDate(event.endsAt) : ""}}
+											</p>
+											<p class="txt-label">
+												<span class="label">
+													<strong>{{ eventTypes | getNameByIdentifier:event.eventType}}</strong>
+												</span>
+											</p>
+											<p class="txt-label">
+												<span class="label">
+													<strong>Contenu </strong>{{event.content}}
+												</span>
+											</p>
                                         </div>
-                                        <div id="tabs_20140404-042436-3331" class="tab-pane">
-                                            <p>Egestas adipiscing purus elementum risus turpis
-                                                tincidunt, nascetur a, ultricies lacus nisi platea risus
-                                                sed tincidunt adipiscing ultrices tempor. Ac in ridiculus
-                                                mid nec vel proin lundium, lacus. Pid phasellus nunc,
-                                                integer et dictumst mus, integer vel, elit ultricies et
-                                                proin integer pid, penatibus sagittis et egestas!&nbsp;</p>
-                                        </div>
-                                        <div id="tabs_20140404-042436-3332" class="tab-pane">
-                                            <p>Hac odio parturient phasellus porta lacus, elementum
-                                                quis, in porttitor urna nisi pid mus! Lorem velit. Magnis.
-                                                Scelerisque et pulvinar eros tempor, mattis arcu auctor,
-                                                hac porttitor facilisis integer sed tristique scelerisque.</p>
+                                        <div id="noevent" ng-show="filteredAgenda.length === 0" class="tab-pane active">
+											<p>
+												Aucun évènement à venir
+											</p>
                                         </div>
                                     </div>
                                     <div class="clearfix"></div>
@@ -137,4 +126,5 @@
         </a>
     </div>
 </div>
+
 <cm-page-builder></cm-page-builder>

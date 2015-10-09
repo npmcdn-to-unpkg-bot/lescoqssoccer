@@ -84,7 +84,7 @@ ul{ margin-left:0;}
 li{ list-style:none}
 body,input[type="text"],textarea,div.bbp-template-notice p,legend{ font-size:12px; font-size:1.2rem; font-family: 'Roboto', 'sans-serif'; font-style: normal;  }
 h1,h2,h3,h4,h5,h6 { line-height:20px; font-family: 'Roboto', 'sans-serif'; font-weight: 300; font-style: normal; }
-input,button,select,textarea{ font-family: 'Roboto', 'sans-serif'; }
+input,button,select,textarea{ font-family: 'Roboto', 'sans-serif'; color: black;}
 h1 { line-height:60px;}
 h2,h3,h4 { line-height:40px;}
 h1{font-size:42px;}
@@ -2846,4 +2846,52 @@ input:-moz-placeholder { color:white; }
 [class*=cal-cell]:hover {
     background-color: #ededed;
     color: black;
+}
+
+#google-map>.angular-google-map>div{
+    display: block !important;
+}
+
+.angular-google-map{
+    height: 100%;
+    width: 100%;
+}
+
+google-map .angular-google-map-container {
+    height: 220px;
+    width: 100%;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.uppercase{
+    text-transform: uppercase;
+}
+
+.cal-row-fluid:hover span, .cal-row-fluid:hover .cal-cell1{
+    color: #8b0000;
+}
+
+input[type="text"].localisation {
+    width: 90% !important;
+    max-width: inherit;
+    height: 100%;
+    float:left;
+    margin: 0px;
+    border-right: none !important;
+}
+.localisationButton {
+    line-height: 2;
+    width:10% !important;
+    border: 0 !important;
+    float:right;
+    top:0;
+    margin:0px;
+    height: 100%;
+}
+
+.localisationButton:not(:hover) {
+    background-color: #313131 !important;
 }

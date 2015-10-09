@@ -49,7 +49,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 
 		$scope.back = function(){
 			window.location = "#!/articles";
-		}
+		};
 	}
 ]);
 
