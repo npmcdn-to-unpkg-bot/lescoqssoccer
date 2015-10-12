@@ -189,7 +189,6 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 		};
 
 		$scope.gotoCurrentLocation = function() {
-			console.warn("geolocation" in navigator);
 			if ("geolocation" in navigator) {
 				navigator.geolocation.getCurrentPosition(function(position) {
 					$scope.gotoLocation(position.coords.latitude, position.coords.longitude);
@@ -211,10 +210,6 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 					$scope.$apply();
 				}
 			}
-		};
-
-		$scope.back = function() {
-			window.location = "#!/agenda";
 		};
 	}
 ]);

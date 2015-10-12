@@ -405,7 +405,7 @@ input[type="text"].textboxsearch,
 
 /* Search , copyright */
 .sidebar-bottom-wrap {
-  position: absolute; bottom: 60px; left: 40px; max-width: 200px;
+  position: absolute; bottom: 20px; left: 40px; max-width: 200px;
 }
 input[type="text"].textboxsearch {
   background:none; border:none; width:60px; padding:5px 0; height: 30px;
@@ -1392,7 +1392,7 @@ h3#reply-title{
 }
 .contactform input[type="submit"],
 #respond input#submit,
-input.wpcf7-form-control.wpcf7-submit {
+input.wpcf7-form-control.wpcf7-submit{
   float: none; width:auto; cursor:pointer; height:40px; line-height:40px; padding:0 14px; margin-bottom:0; border-width: 1px; border-style: solid;
 }
 .contactform input[type="submit"]:hover,
@@ -1415,7 +1415,7 @@ input.wpcf7-form-control.wpcf7-submit:hover{
   content: ''; position: absolute; left: 0; bottom: -11px; width: 30px; height: 2px;
 }
 #respondwrap textarea,
-#respondwrap input,
+#respondwrap input[type="text"], #respondwrap input[type="number"], #respondwrap input[type="email"],
 .contactform input[type="text"],
 .contactform textarea{
   border-style: none none solid none; border-bottom-width: 2px; background: none;
@@ -2029,7 +2029,7 @@ button#bbp_reply_submit:hover,
 
 /* Button */
 
-button, input[type="submit"]{
+button, input[type="submit"], input[type="button"]{
   background-color:#333; color:#ccc; border:none; border-radius: 0; height:30px; line-height:30px; padding:0 15px;
 }
 
@@ -2920,4 +2920,8 @@ input[type="text"].localisation {
     margin: 10%;
     top: 0 !important;
     left: 0;
+}
+
+.sidebarAvatar{
+    border-radius: 20px !important;
 }

@@ -81,14 +81,9 @@ angular.module('mean.users').controller('ProfileController', ['$scope', 'Global'
 
 			var currentSkill = angular.extend({}, $scope.skill);
 			$scope.user.skills.push(currentSkill);
-
-			setTimeout(function() {
-				$("[name='" + currentSkill.name + "']").animate({
-					width: currentSkill.value + "%"
-				}, 1000);
-			});
-
 			$scope.initSkill();
+
+			$scope.triggerResize();
 		};
 
 		$scope.removeSkill = function(skill) {
@@ -109,6 +104,10 @@ angular.module('mean.users').controller('ProfileController', ['$scope', 'Global'
 			$scope.user.$update(function(response) {
 				Global.user = response;
 			});
+		};
+
+		$scope.triggerResize = function(){
+			$(window).trigger('resize');
 		};
 
 		$scope.initSkill();

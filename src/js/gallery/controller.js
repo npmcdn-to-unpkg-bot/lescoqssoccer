@@ -35,10 +35,6 @@ angular.module('mean.albums').controller('AlbumDetailController', ['$location', 
 			}
 		};
 
-		$scope.back = function() {
-			window.location = "#!/albums";
-		}
-
 		$scope.uploadFiles = function() {
 
 			var modalInstance = $modal.open({
@@ -193,9 +189,6 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 			$location.path('/albums/edit/' + $scope.album._id);
 		}
 
-		$scope.back = function() {
-			window.location = "#!/albums";
-		}
 	}
 ]);
 
