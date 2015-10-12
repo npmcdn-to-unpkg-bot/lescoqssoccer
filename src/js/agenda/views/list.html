@@ -45,19 +45,42 @@
 											</p>
                                         </div>
                                         <div id="{{event._id}}" ng-repeat="event in filteredAgenda = (agenda | filter: isComingEvent)" class="tab-pane" ng-class="{'active': $index === 0}">
-                                            <h3 class="three-line-ellipsis">{{event.title}}</h3>
-											<p class="postdate txt-label">
-											{{event.startsAt | date:"dd MMM yyyy"}}{{(event.endsAt !==  event.startsAt) ? " - " + getFormattedDate(event.endsAt) : ""}}
-											</p>
-											<p class="txt-label" style="margin: 10px 0;">
-												<span class="label">
-													<strong>{{ eventTypes | getNameByIdentifier:event.eventType}}</strong>
-												</span>
-											</p>
-											<p>
+                                            <div>
+                                                <div class="pull-left" style="margin-right: 20px;">
+                                                    <div class="date-block">
+                                                        <p class="date-block-m">
+                                                            {{event.startsAt | date:"MMM"}}
+                                                        </p>
+                                                        <p class="date-block-big">
+                                                            {{event.startsAt | date:"dd"}}
+                                                        </p>
+                                                        <p class="date-block-y">
+                                                            {{event.startsAt | date:"yyyy"}}
+                                                        </p>
+
+                                                        <div class="date-block-bg post-bgcolor-default">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <p class="txt-label" style="margin: 10px 0;">
+                                                    <span class="label" style="font-size: 14px;">
+                                                        <strong>{{ eventTypes | getNameByIdentifier:event.eventType}}</strong>
+                                                    </span>
+                                                </p>
+
+
+                                                <h3 class="ellipsis">{{event.title}}</h3>
+    											<p class="postdate txt-label">
+    											{{event.startsAt | date:"dd MMM yyyy"}}{{(event.endsAt !==  event.startsAt) ? " - " + getFormattedDate(event.endsAt) : ""}}
+    											</p>
+
+                                            </div>
+
+											<p class="three-line-ellipsis" style="margin-top: 10px;">
 												{{event.content}}
 											</p>
-											<div id="google-map" class="google-map" style="border: 10px solid white !important; margin-top: 10px;">
+
+											<div id="google-map" class="google-map" style="border: 10px solid white !important; margin-top: 30px;">
 												<google-map
 												center="map.center"
 												zoom="map.zoom"
@@ -73,14 +96,6 @@
 													coords="m"
 													animation="google.maps.Animation.DROP"
 													click="onMarkerClicked(m);">
-													<window isIconVisibleOnClick="true" show="m.showWindow">
-													<div>
-														<div style="display: inline-block;">
-															<p style="text-align: center">{{m.title}}</p>
-															<p style="display: inline-block; vertical-align: top;">{{m.content}}</p>
-														</div>
-													</div>
-													</window>
 												</marker>
 												</google-map>
 											</div>
