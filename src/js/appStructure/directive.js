@@ -813,6 +813,7 @@ angular.module('mean.system').directive('cmWysiwyg',
 					};
 
 					var editor = textboxio.replace('#mytextarea', config);
+					editor.content.set($scope.article.content);
 				});
 			}
 		}

@@ -1776,7 +1776,7 @@ a:hover,.entry p a,.archive-tit a:hover,.text_block a,.post_meta > li a:hover, #
   color:#FF5533;
 }
 
-.pagenums a:hover,.pagenums .current,.page-numbers.current, .tagcloud a:hover,.related-post-wrap h3:before,.header-slider-item-more:hover,
+.pagenums a:hover,.pagenums .current,.page-numbers.current, .tagcloud a:hover,.tagcloud a.active,.related-post-wrap h3:before,.header-slider-item-more:hover,
 .process-bar,.nav-tabs > li > a:hover,.testimenials:hover,.testimenials:hover .arrow-bg,
 .sidebar_widget .widget_uxconatactform input#idi_send:hover,input.idi_send:hover,.page-numbers:hover,#bbp-user-navigation li a:hover
 {

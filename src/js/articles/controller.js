@@ -109,23 +109,6 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 	}
 ]);
 
-angular.module('mean.articles').controller('deleteArticleModalCtrl', ['$scope', '$modalInstance', 'article',
-
-	function($scope, $modalInstance, article) {
-
-		$scope.article = article;
-
-		$scope.ok = function(result) {
-			$modalInstance.close(result);
-		};
-
-		$scope.cancel = function() {
-			$modalInstance.dismiss('cancel');
-		};
-	}
-
-]);
-
 angular.module('mean.articles').controller('CreateArticleController', ['$scope', '$location', 'Global', 'ArticlesCollection', 'FileUploader', 'Article',
 	function($scope, $location, Global, ArticlesCollection, FileUploader, Article) {
 
@@ -184,6 +167,13 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 
 		};
 
+		$scope.isActive = function(category){
+			var categoryId = category.id;
+			return _.filter($scope.article.categories, function(_category){
+				return _category.id === categoryId;
+			}).length > 0;
+		};
+
 		/***
 		FILE UPLOAD CONFIG
 		***/
@@ -235,6 +225,23 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 			}
 		};
 	}
+]);
+
+angular.module('mean.articles').controller('deleteArticleModalCtrl', ['$scope', '$modalInstance', 'article',
+
+	function($scope, $modalInstance, article) {
+
+		$scope.article = article;
+
+		$scope.ok = function(result) {
+			$modalInstance.close(result);
+		};
+
+		$scope.cancel = function() {
+			$modalInstance.dismiss('cancel');
+		};
+	}
+
 ]);
 
 var ArticleDetailData = {

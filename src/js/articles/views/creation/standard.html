@@ -25,19 +25,27 @@
 					<div id="respond" class="comment-respond">
 						<form role="form">
 							<p class="span6" style="margin-bottom: 20px;">
-								<input name="title" type="text" data-ng-model="article.title"
-								class="requiredFieldcomm" size="30"
-								aria-required="true" tabindex="1"
+								<input
+								name="title"
+								type="text"
+								data-ng-model="article.title"
+								class="requiredFieldcomm"
+								size="30"
+								aria-required="true"
+								tabindex="1"
 								placeholder="TITRE">
 							</p>
 							<div class="span12 tagcloud" style="margin-left: 0;">
-								<h4 class="widget-title" style="margin-top: 10px;">Tags</h4>
+								<h4 class="widget-title" style="margin-top: 10px;">
+									Tags
+								</h4>
 								<a
 								href="#!"
 								ng-repeat="category in categories"
 								title="{{category.value}}"
 								style="font-size: 11px;"
-								ng-click="toggleCategory(category,$event)">
+								ng-click="toggleCategory(category,$event)"
+								ng-class="{'active' : isActive(category)}">
 									{{category.value}}
 								</a>
 							</div>
@@ -51,5 +59,6 @@
 		</div>
 	</div>
 </div>
+
 <cm-wysiwyg></cm-wysiwyg>
 <cm-page-builder></cm-page-builder>
