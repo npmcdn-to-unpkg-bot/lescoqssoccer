@@ -34,7 +34,7 @@
 
 								<div class="span3" style="margin-bottom: 20px; text-align:center;">
 									<div class="testimonial-thum" style="text-align:center;">
-					                    <img ng-src="{{global.user.avatar && global.user.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{global.user.username}}" draggable="false" class="sidebarAvatar">
+					                    <img ng-src="{{user.avatar && user.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{user.username}}" draggable="false" class="sidebarAvatar">
 					                </div>
 									<button class="button pointer">
 										<label for="upload-profile-picture" class="label-upload-profile-picture" style="margin: inherit;">
@@ -42,7 +42,6 @@
 											<input
 											nv-file-select
 											type="file"
-											multiple
 											uploader="uploader"
 											class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
 										</label>

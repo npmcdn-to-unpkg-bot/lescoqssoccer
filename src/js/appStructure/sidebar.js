@@ -24,8 +24,8 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 			id: 'albums'
 		}, {
 			name: "L'EQUIPE",
-			link: "#!/team",
-			id: 'team'
+			link: "#!/users",
+			id: 'users'
 		}, {
 			name: "AUTRES",
 			id: 'suggestions',
