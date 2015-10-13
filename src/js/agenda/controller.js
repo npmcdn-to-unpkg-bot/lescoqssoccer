@@ -8,7 +8,7 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 		$scope.startsAt = $scope.endsAt = ($route.current && $route.current.params.startDate) ? new Date($route.current.params.startDate) : new Date();
 
 		$scope.eventRepeater = [{
-			'identifier': 'none',
+			'identifier': undefined,
 			'value': 'Pas répéter'
 		}, {
 			'identifier': 'week',
@@ -35,17 +35,10 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 			location: {}
 		};
 
-		/* add custom event*/
 		$scope.create = function() {
-
-			if ($scope.userEvent.recursOn === "none") {
-				$scope.userEvent.recursOn = undefined;
-			}
-
 			$scope.agendaCollection.add($scope.userEvent).then(function(userEvent) {
 				$location.path("/agenda");
 			});
-
 		};
 
 		/***
@@ -189,6 +182,7 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 		};
 
 		$scope.gotoCurrentLocation = function() {
+			console.warn("init");
 			if ("geolocation" in navigator) {
 				navigator.geolocation.getCurrentPosition(function(position) {
 					$scope.gotoLocation(position.coords.latitude, position.coords.longitude);

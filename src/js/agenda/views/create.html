@@ -26,15 +26,39 @@
 					<div id="respond" class="comment-respond">
 						<form role="form">
 
-							<p class="span6" style="margin-bottom: 20px;">
+							<div class="span6">
 								<label for="startsAt">Nom de l'évènement</label>
 								<input
 								name="title"
 								type="text"
-								data-ng-model="userEvent.title">
-							</p>
+								data-ng-model="userEvent.title" style="margin-bottom: 20px;">
 
-							<div class="span6" style="margin-bottom: 20px;">
+								<label for="selectedType">Type</label>
+								<select
+									name="selectedType"
+									data-ng-model="userEvent.eventType"
+									ng-options="eventType.identifier as eventType.name for eventType in eventTypes"
+									style="margin-top: 10px; width:100%; margin-bottom: 20px;">
+								</select>
+
+								<label for="repeat">Répéter</label>
+								<select
+									name="repeat"
+									data-ng-model="userEvent.recursOn"
+									ng-options="recurseOn.identifier as recurseOn.value for recurseOn in eventRepeater"
+									style="margin-top: 10px; width:100%; margin-bottom: 40px;">
+								</select>
+
+								<label for="content">Contenu</label>
+								<textarea
+								type="text"
+								name="content"
+								data-ng-model="userEvent.content"
+								style="height: 175px; margin-bottom: 20px;">
+								</textarea>
+							</div>
+
+							<div class="span6">
 								<label for="startsAt">Début</label>
 								<input
 								type="text"
@@ -44,20 +68,9 @@
 								is-open="$parent.openedStartDate"
 								datepicker-options="dateOptions"
 								show-weeks="false"
-								show-button-bar="false"/>
-							</div>
+								show-button-bar="false"
+								style="margin-bottom: 20px;"/>
 
-							<p class="span6" style="margin-bottom: 20px; margin-left: 0;">
-								<label for="selectedType">Type</label>
-								<select
-									name="selectedType"
-									data-ng-model="userEvent.eventType"
-									ng-options="eventType.identifier as eventType.name for eventType in eventTypes"
-									style="margin-top: 10px; width:100%;">
-								</select>
-							</p>
-
-							<p class="span6" style="margin-bottom: 20px;">
 								<label for="endsAt">Fin</label>
 								<input
 								type="text"
@@ -67,29 +80,10 @@
 								is-open="$parent.openedEndDate"
 								datepicker-options="dateOptions"
 								show-weeks="false"
-								show-button-bar="false"/>
-							</p>
+								show-button-bar="false"
+								style="margin-bottom: 20px;"/>
 
-							<p class="span6" style="margin-bottom: 20px; margin-left: 0;">
-								<label for="repeat">Répéter</label>
-								<select
-									name="repeat"
-									data-ng-model="userEvent.recursOn"
-									ng-options="recurseOn.identifier as recurseOn.value for recurseOn in eventRepeater"
-									style="margin-top: 10px; width:100%;">
-								</select>
-
-								<label for="content" style="margin-top: 40px;">Contenu</label>
-								<textarea
-								type="text"
-								name="content"
-								data-ng-model="userEvent.content"
-								style="height: 175px;">
-								</textarea>
-							</p>
-
-							<p class="span6" style="margin-bottom: 20px;">
-								<label for="localisation">Lieux</label>
+								<label for="localisation">Lieu</label>
 								<input
 								class="localisation"
 								name="localisation"
@@ -110,7 +104,8 @@
 								draggable="true"
 								events="map.events"
 								options="map.options"
-								control="map.control">
+								control="map.control"
+								style="margin-bottom: 20px;">
 									<marker
 										ng-repeat="m in map.markers"
 										coords="m"
@@ -119,7 +114,7 @@
 										icon="'img/icons/pin.png'">
 									</marker>
 								</google-map>
-							</p>
+							</div>
 						</form>
 					</div>
 				</div>
