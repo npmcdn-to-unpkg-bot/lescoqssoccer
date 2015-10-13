@@ -757,7 +757,7 @@ function ThemePageBuilder() {
 		el.click(function() {
 			var _this = jQuery(this);
 			player_wrap.jPlayer("stop");
-			angular.element('#post-55').scope().selectAlbum(_this.attr("data-postid"));
+			angular.element('#albumContainer').scope().selectAlbum(_this.attr("data-postid"));
 			var _this_liquid_handler = jQuery('.liquid_handler');
 			if (_this_liquid_handler.length == 0) {
 				_this.addClass('liquid_handler');

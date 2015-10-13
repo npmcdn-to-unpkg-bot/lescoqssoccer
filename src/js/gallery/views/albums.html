@@ -1,4 +1,4 @@
-<div id="post-55" class="post-55 page type-page status-publish hentry">
+<div id="albumContainer">
 
     <!--Album summary-->
 	<section class="liquid-expand-wrap albumDetailBrick" style="padding: 0px; display: none">
@@ -11,7 +11,7 @@
 	    </h1>
 	    <div class="liquid-body">
 	        <div class="liquid-body-des">
-	            <p>{{selectedAlbum.description}}</p>
+	            <p>{{selectedAlbum.description || 'Pas de description'}}</p>
 	        </div>
 	        <ul class="liquid-body-thumbs clearfix">
 	            <li ng-repeat="photo in selectedAlbum.photoList | limitTo:5">

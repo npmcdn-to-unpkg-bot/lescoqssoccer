@@ -182,7 +182,6 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 		};
 
 		$scope.gotoCurrentLocation = function() {
-			console.warn("init");
 			if ("geolocation" in navigator) {
 				navigator.geolocation.getCurrentPosition(function(position) {
 					$scope.gotoLocation(position.coords.latitude, position.coords.longitude);
@@ -208,12 +207,11 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 	}
 ]);
 
-angular.module('mean.agenda').controller('ListController', ['$scope', '$routeParams', '$filter', '$location', '$route', 'Global', 'AgendaCollection', 'Agenda', '$modal',
-	function($scope, $routeParams, $filter, $location, $route, Global, AgendaCollection, Agenda, $modal) {
+angular.module('mean.agenda').controller('ListController', ['$scope', '$routeParams', '$filter', '$location', '$route', 'Global', 'Agenda', '$modal',
+	function($scope, $routeParams, $filter, $location, $route, Global, Agenda, $modal) {
 
-		$scope.agendaCollection = AgendaCollection;
-		$scope.eventTypes = eventTypes;
 		$scope.agenda = Agenda;
+		$scope.eventTypes = eventTypes;
 
 		$scope.setSelectedEvent = function(evt, userEvent) {
 
@@ -227,18 +225,6 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 			if ($scope.selectedEvent.location) {
 				$scope.map.center = $scope.selectedEvent.location;
 			}
-		};
-
-		$scope.setPreviousElement = function() {
-			var index = (window._.indexOf($scope.filteredAgenda, $scope.selectedEvent) - 1 > 0) ? window._.indexOf($scope.filteredAgenda, $scope.selectedEvent) - 1 : 0;
-			$scope.setSelectedEvent(null, $scope.filteredAgenda[index]);
-			$scope.$apply();
-		};
-
-		$scope.setNextElement = function() {
-			var index = (window._.indexOf($scope.filteredAgenda, $scope.selectedEvent) + 1 < $scope.filteredAgenda.length) ? window._.indexOf($scope.filteredAgenda, $scope.selectedEvent) + 1 : $scope.filteredAgenda.length;
-			$scope.setSelectedEvent(null, $scope.filteredAgenda[index]);
-			$scope.$apply();
 		};
 
 		$scope.getFormattedDate = function(date) {
@@ -271,7 +257,7 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 				size: "lg",
 				resolve: {
 					Agenda: function() {
-						return AgendaCollection.load();
+						return $scope.agenda;
 					},
 					EventClick: function() {
 						return $scope.setSelectedEvent;
@@ -379,11 +365,15 @@ angular.module('mean.agenda').controller('unknowLocationCtrl', ['$scope', '$moda
 ]);
 
 var EventDetailData = {
-
 	event: function(AgendaCollection, $route) {
 		return ($route.current.params.eventId) ? AgendaCollection.findOne($route.current.params.eventId) : null;
 	}
+};
 
+var EventsData = {
+	Agenda: function(AgendaCollection) {
+		return AgendaCollection.load();
+	}
 };
 
 var eventTypes = [{
