@@ -14,6 +14,9 @@
                                 <div id="main-title">
                                     <h1 class="main-title">AGENDA</h1>
                                 </div>
+                                <div class="post-expert">
+                                    Mattis scelerisque nisi, in, ac risus montes. Proin, integer est magna lundium odio diam mus, cursus placerat, vut magnis pellentesque dictumst.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -22,9 +25,6 @@
                 	<div class="container" style="padding:0;">
                         <div class="row-fluid">
                             <div class="moudle">
-                            	<div class="btn-group" style="margin-bottom: 30px;">
-									<h3 class="uppercase">A venir</h3>
-								</div>
                                 <div class="tabs-v">
                                     <ul class="nav nav-tabs nav-tabs-v" style="width: 25%;">
                                         <li class="active" ng-show="filteredAgenda.length === 0">
@@ -110,12 +110,14 @@
             </div>
         </div>
         <aside id="sidebar-widget" class="span4">
-            <ul class="sidebar_widget" style="padding-top: 130px;">
+            <ul class="sidebar_widget" style="padding-top: 90px;">
                 <li id="tag_cloud-2" class="widget-container widget_tag_cloud">
-                    <h3 class="widget-title" style="text-transform: uppercase;">évènements passés</h3>
+                    <h3 class="widget-title" style="text-transform: uppercase;">
+                        évènements passés
+                    </h3>
                     <div ng-repeat="event in filteredAgenda = (agenda | filter: isPastEvent) | limitToCustom:10:0" style="margin-bottom: 10px;">
                         <a ng-href="#!/agenda/view/{{event._id}}" title="{{event.title}}">
-                        {{event.title}}
+                            {{event.title}}
                         </a>
                     </div>
                 </li>

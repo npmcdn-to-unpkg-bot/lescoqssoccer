@@ -2985,3 +2985,11 @@ Override bootstrap datepicker
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+.label{
+  background-color: #FF5533 !important;
+}
+
+.lb-outerContainer{
+  background-color: inherit !important;
+}
