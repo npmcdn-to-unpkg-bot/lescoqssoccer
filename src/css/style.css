@@ -1781,6 +1781,7 @@ a:hover,.entry p a,.archive-tit a:hover,.text_block a,.post_meta > li a:hover, #
 .sidebar_widget .widget_uxconatactform input#idi_send:hover,input.idi_send:hover,.page-numbers:hover,#bbp-user-navigation li a:hover
 {
   background-color:#FF5533;
+  color: #FFFFFF;
 }
 textarea:focus,input[type="text"]:focus,input[type="password"]:focus,input[type="datetime"]:focus,input[type="datetime-local"]:focus,input[type="date"]:focus,input[type="month"]:focus,input[type="time"]:focus,input[type="week"]:focus,input[type="number"]:focus,input[type="email"]:focus,input[type="url"]:focus,input[type="search"]:focus,input[type="tel"]:focus,input[type="color"]:focus,.uneditable-input:focus,
 .sidebar_widget .widget_uxconatactform textarea:focus,.sidebar_widget .widget_uxconatactform input[type="text"]:focus,#respondwrap textarea:focus,#respondwrap input:focus
@@ -2924,4 +2925,12 @@ input[type="text"].localisation {
 
 .sidebarAvatar{
     border-radius: 20px !important;
+}
+
+label{
+  color: white;
+}
+
+#float-bar-triggler:not(.notClickable):hover, .filter-floating-triggle:not(.notClickable):hover{
+  background-color: #FF5533;
 }

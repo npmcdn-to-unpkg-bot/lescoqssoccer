@@ -3,7 +3,7 @@
 		<li><a href="#!" data-ng-click="edit($event);">Editer</a></li>
 		<li><a href="#!" data-ng-click="remove($event);">Supprimer</a></li>
 	</ul>
-	<div class="filter-floating-triggle hidden-phone" style="top:20px; right: 60px;" ng-show="global.user._id === article.user._id">
+	<div class="filter-floating-triggle notClickable hidden-phone" style="top:20px; right: 60px;" ng-show="global.user._id === article.user._id">
 		<i class="fa fa-cogs"></i>
 	</div>
 </div>
@@ -16,10 +16,14 @@
 				<div id="title-wrap">
 					<div class="title-wrap-inn">
 						<div id="main-title">
-							<h1 class="main-title" style="text-transform: uppercase;">{{article.title}}</h1>
+							<h1 class="main-title" style="text-transform: uppercase;">
+								{{article.title}}
+							</h1>
 							<div class="post-meta">
-								<span class="post-meta-unit date">Date: {{article.created | date:"dd MMM yyyy"}}</span> <span
-								class="post-meta-unit tag"></span>
+								<span class="post-meta-unit date">
+									Date: {{article.created | date:"dd MMM yyyy"}}
+								</span>
+								<span class="post-meta-unit tag"></span>
 							</div>
 						</div>
 					</div>

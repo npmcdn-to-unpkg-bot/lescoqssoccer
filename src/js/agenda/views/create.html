@@ -31,12 +31,7 @@
 								<input
 								name="title"
 								type="text"
-								data-ng-model="userEvent.title"
-								class="requiredFieldcomm"
-								size="30"
-								aria-required="true"
-								tabindex="1"
-								placeholder="TITRE">
+								data-ng-model="userEvent.title">
 							</p>
 
 							<div class="span6" style="margin-bottom: 20px;">
@@ -49,8 +44,7 @@
 								is-open="$parent.openedStartDate"
 								datepicker-options="dateOptions"
 								show-weeks="false"
-								show-button-bar="false"
-								required/>
+								show-button-bar="false"/>
 							</div>
 
 							<p class="span6" style="margin-bottom: 20px; margin-left: 0;">
@@ -59,7 +53,7 @@
 									name="selectedType"
 									data-ng-model="userEvent.eventType"
 									ng-options="eventType.identifier as eventType.name for eventType in eventTypes"
-									style="margin-top: 10px;">
+									style="margin-top: 10px; width:100%;">
 								</select>
 							</p>
 
@@ -73,8 +67,7 @@
 								is-open="$parent.openedEndDate"
 								datepicker-options="dateOptions"
 								show-weeks="false"
-								show-button-bar="false"
-								required/>
+								show-button-bar="false"/>
 							</p>
 
 							<p class="span6" style="margin-bottom: 20px; margin-left: 0;">
@@ -83,7 +76,7 @@
 									name="repeat"
 									data-ng-model="userEvent.recursOn"
 									ng-options="recurseOn.identifier as recurseOn.value for recurseOn in eventRepeater"
-									style="margin-top: 10px;">
+									style="margin-top: 10px; width:100%;">
 								</select>
 
 								<label for="content" style="margin-top: 40px;">Contenu</label>
@@ -91,14 +84,18 @@
 								type="text"
 								name="content"
 								data-ng-model="userEvent.content"
-								required
 								style="height: 175px;">
 								</textarea>
 							</p>
 
 							<p class="span6" style="margin-bottom: 20px;">
 								<label for="localisation">Lieux</label>
-								<input class="localisation" name="localisation" type="text" data-ng-model="search"/>
+								<input
+								class="localisation"
+								name="localisation"
+								type="text"
+								data-ng-model="search"
+								ng-enter="geoCode()"/>
 								<input
 								class="button localisationButton"
 								type="button"
@@ -106,6 +103,7 @@
 								ng-disabled="search.length === 0"
 								title="search"
 								value="GO"/>
+
 								<google-map
 								center="map.center"
 								zoom="map.zoom"
@@ -122,12 +120,10 @@
 									</marker>
 								</google-map>
 							</p>
-
 						</form>
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
 </div>
