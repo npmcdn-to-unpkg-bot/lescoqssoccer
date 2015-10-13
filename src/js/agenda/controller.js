@@ -82,13 +82,19 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 		/***
 		Map management
 		 ***/
+		$scope.defaultLocation = {
+			lat: 45.71226,
+			lng: 5.08080,
+			adress: 'Montcul'
+		};
+
 		$scope.map = {
 			control: {},
 			showTraffic: true,
 			showBicycling: true,
 			center: {
-				latitude: 45.188529000000000000,
-				longitude: 5.724523999999974000
+				latitude: $scope.defaultLocation.lat,
+				longitude: $scope.defaultLocation.lng
 			},
 			options: {
 				streetViewControl: true,
@@ -105,10 +111,11 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 			zoom: 8,
 			markers: [{
 				id: 1,
-				latitude: 45.188529000000000000,
-				longitude: 5.724523999999974000,
+				latitude: $scope.defaultLocation.lat,
+				longitude: $scope.defaultLocation.lng,
 				events: {
 					dragend: function(marker, eventName, model) {
+
 						$scope.userEvent.location = {
 							latitude: marker.getPosition().lat(),
 							longitude: marker.getPosition().lng()
@@ -155,20 +162,23 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 		$scope.geoCode = function() {
 
 			if (this.search && this.search.length > 0) {
+
 				if (!this.geocoder) this.geocoder = new google.maps.Geocoder();
 
 				this.geocoder.geocode({
 					'address': this.search
 				}, function(results, status) {
+
 					if (status == google.maps.GeocoderStatus.OK) {
 
 						var loc = results[0].geometry.location;
+
+						$scope.gotoLocation(loc.lat(), loc.lng());
 						$scope.search = results[0].formatted_address;
 						$scope.userEvent.location = {
 							latitude: loc.A,
 							longitude: loc.F
 						};
-						$scope.gotoLocation(loc.lat(), loc.lng());
 
 					} else {
 
@@ -177,16 +187,33 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 							controller: 'unknowLocationCtrl'
 						});
 					}
+
 				});
 			}
 		};
 
 		$scope.gotoCurrentLocation = function() {
 			if ("geolocation" in navigator) {
-				navigator.geolocation.getCurrentPosition(function(position) {
-					$scope.gotoLocation(position.coords.latitude, position.coords.longitude);
-					$scope.geocodePosition(position, false);
-				});
+
+				navigator.geolocation.getCurrentPosition(
+
+					function(position) {
+
+						$scope.gotoLocation(position.coords.latitude, position.coords.longitude);
+						$scope.geocodePosition({
+							lat: position.coords.latitude,
+							lng: position.coords.longitude
+						}, false);
+
+					},
+					function(err) {
+						console.debug('ERROR(' + err.code + '): ' + err.message);
+
+						$scope.gotoLocation($scope.defaultLocation.lat, $scope.defaultLocation.lng);
+						$scope.search = $scope.defaultLocation.adress;
+					}
+				);
+
 				return true;
 			}
 			return false;
