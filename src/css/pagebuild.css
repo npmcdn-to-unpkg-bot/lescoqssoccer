@@ -1075,7 +1075,7 @@ div.container3d:hover .card .face.front{
 }
 .item-link-wrap{ padding: 0 20px 20px 20px;}
 .item_topbar{ height:60px; line-height:60px; padding-left:20px; font-size:24px; cursor:default; color:#fff; }
-.post-bgcolor-default{ background-color:#333; }
+.post-bgcolor-default{ background-color:white; }
 .item_title a{ display: block; padding: 10px 0; line-height: 20px;}
 
 /*Gallery*/
