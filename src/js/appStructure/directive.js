@@ -170,86 +170,86 @@ angular.module('mean.system').directive('cmSidebar', function() {
 
 				var set_visibility = function() {
 
-					if (_win.width() > switchWidth) {
+						if (_win.width() > switchWidth) {
 
-						body_wrap.removeClass('show_mobile_menu');
-						body_wrap.removeClass('show_mobile_meta');
-						header.removeClass('mobile_active');
-						jQuery('body').css({
-							'height': "auto"
+							body_wrap.removeClass('show_mobile_menu');
+							body_wrap.removeClass('show_mobile_meta');
+							header.removeClass('mobile_active');
+							jQuery('body').css({
+								'height': "auto"
+							});
+
+							//HALF PAGE layout (feature image template)
+							if (jQuery('#page-feaured-image-layout').length) {
+								jQuery('#featured-img-wrap, #page-feaured-image-entry').css('height', _win_height);
+							}
+
+						} else {
+
+							header.addClass('mobile_active');
+							jQuery('body').css({
+								'height': "auto"
+							});
+
+							if (!menu_added) {
+								show_menu.appendTo(header);
+								mobile_advanced.prependTo(body_wrap);
+								menu_added = true;
+							}
+
+							if (!meta_added) {
+								show_meta.appendTo(header);
+								meta_added = true;
+							}
+
+							if (body_wrap.is('.show_mobile_menu')) {
+								set_height();
+							}
+
+							if (body_wrap.is('.show_mobile_meta')) {
+								set_height_meta();
+							}
+
+							//HALF PAGE layout (feature image template)
+							if (jQuery('#page-feaured-image-layout').length) {
+								jQuery('#featured-img-wrap, #page-feaured-image-entry').css('height', 'auto');
+							}
+						}
+					},
+
+					set_height = function() {
+						var height = mobile_advanced.css({
+								position: 'relative'
+							}).outerHeight(true),
+							win_h = _win_height;
+
+						if (height < win_h) height = win_h;
+						mobile_advanced.css({
+							position: 'absolute'
 						});
-
-						//HALF PAGE layout (feature image template)
-						if (jQuery('#page-feaured-image-layout').length) {
-							jQuery('#featured-img-wrap, #page-feaured-image-entry').css('height', _win_height);
-						}
-
-					} else {
-
-						header.addClass('mobile_active');
-						jQuery('body').css({
-							'height': "auto"
+						body_wrap.css({
+							'height': height,
+							'overflow-y': 'hidden',
+							'top': '0'
 						});
+					},
 
-						if (!menu_added) {
-							show_menu.appendTo(header);
-							mobile_advanced.prependTo(body_wrap);
-							menu_added = true;
-						}
+					set_height_meta = function() {
+						var height = mobile_meta_advanced.css({
+								position: 'relative'
+							}).outerHeight(true),
+							win_h = _win_height;
 
-						if (!meta_added) {
-							show_meta.appendTo(header);
-							meta_added = true;
-						}
-
-						if (body_wrap.is('.show_mobile_menu')) {
-							set_height();
-						}
-
-						if (body_wrap.is('.show_mobile_meta')) {
-							set_height_meta();
-						}
-
-						//HALF PAGE layout (feature image template)
-						if (jQuery('#page-feaured-image-layout').length) {
-							jQuery('#featured-img-wrap, #page-feaured-image-entry').css('height', 'auto');
-						}
-					}
-				},
-
-				set_height = function() {
-					var height = mobile_advanced.css({
-							position: 'relative'
-						}).outerHeight(true),
-						win_h = _win_height;
-
-					if (height < win_h) height = win_h;
-					mobile_advanced.css({
-						position: 'absolute'
-					});
-					body_wrap.css({
-						'height': height,
-						'overflow-y': 'hidden',
-						'top': '0'
-					});
-				},
-
-				set_height_meta = function() {
-					var height = mobile_meta_advanced.css({
-							position: 'relative'
-						}).outerHeight(true),
-						win_h = _win_height;
-
-					if (height < win_h) height = win_h;
-					mobile_meta_advanced.css({
-						position: 'absolute'
-					});
-					jQuery('body').css({
-						'height': height,
-						'overflow-y': 'hidden',
-						'top': '0'
-					});
-				}; /**/
+						if (height < win_h) height = win_h;
+						mobile_meta_advanced.css({
+							position: 'absolute'
+						});
+						jQuery('body').css({
+							'height': height,
+							'overflow-y': 'hidden',
+							'top': '0'
+						});
+					}; /**/
 
 				_win.on("debouncedresize", set_visibility);
 				set_visibility();
@@ -329,6 +329,21 @@ angular.module('mean.system').directive('cmPageBuilder', function() {
 		restrict: 'E',
 		transclude: true,
 		link: function($scope, element, attrs) {
+
+			function closeSidebar(exceptId) {
+				// close all open sidebars
+				$(".sidebar:not(#" + exceptId + ")").removeClass(function(index, css) {
+					return (css.match(/\S+\b-open/g) || []).join(' ');
+				});
+
+			}
+
+			function collage() {
+				$('.Collage').collagePlus({
+					'targetHeight': 200
+				});
+			}
+
 			setTimeout(function() {
 
 				var _win = jQuery(window),
@@ -610,16 +625,44 @@ angular.module('mean.system').directive('cmPageBuilder', function() {
 					});
 
 				}
+
+				if ($('#chat').length > 0) {
+
+					var chat = $('#chat'),
+						chatMessage = $('#chatMessage'),
+						body = $('body');
+
+					$('#chatMessages').on('click', function() {
+						// Right Sidebar (Toggle Right Button) (Mobile)
+						if ($(".sidebar-right-open").length > 0 && $('.sidebar-right-open').attr('id') != 'chat') {
+							// other right sidebar is open keep overlay
+							$('body').addClass('sidebar-push-toleft');
+						} else {
+							body.toggleClass('sidebar-push-toleft');
+						}
+
+						closeSidebar('sidebar-right');
+						chat.toggleClass('sidebar-right-open');
+					});
+
+					// open message sidebar
+					$('#chat ul li').on('click', function() {
+						chatMessage.toggleClass('sidebar-right-open');
+						$('.nicescroll').css('position', 'relative');
+					});
+
+					$('#chatMessage [data-toggle="close"]').on('click', function() {
+						// remove all push-to classes from body
+						chatMessage.toggleClass('sidebar-right-open');
+						$('.nicescroll').css('position', 'initial');
+					});
+
+					$('.nicescroll').css('position', 'initial');
+				}
 			});
 		}
 	}
 });
-
-function collage() {
-	$('.Collage').collagePlus({
-		'targetHeight': 200
-	});
-}
 
 angular.module('mean.system').directive('cmHeader', function() {
 	return {
