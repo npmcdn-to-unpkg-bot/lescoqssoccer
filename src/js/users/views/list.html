@@ -1,418 +1,327 @@
 <div class="row-fluid" style="min-height: 100vh;">
-    <div id="content_wrap">
-        <div class="content-wrap-inn bottom-space" style="margin-top: 50px;">
-            <div class="pagebuilder-wrap timeline">
-                <div class="container">
-                    <div class="row-fluid">
-                        <div class="span12 moudle">
-                            <div data-post="20140425-001758-102" class="text_block ux-mod-nobg">
-                                <h1>
-                                    LA FINE
-                                    <span class="word-fadein-fadeout-ux">
-                                        <span style="display: inline; opacity: 0.9396581550952778;">
-                                            EQUIPE
-                                        </span>
-                                        <span style="display: none;">
-                                            CREATIVE
-                                        </span>
-                                        <span style="display: none;">
-                                            EFFCIENT
-                                        </span>
-                                    </span>
-                                </h1>
-                                <br>
-                                <br> Tignissim adipiscing tristique ac, diam turpis vel
-                                arcu magnis, nunc in, tincidunt etiam a rhoncus, tristique
-                                mattis, nascetur massa diam hac cum amet. Integer est.
-                                Adipiscing aliquam a odio phasellus auctor penatibus, ac
-                                facilisis! Hac est tortor vel mid! Montes vel pellentesque ut.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="row-fluid">
-                        <div class="span12 moudle moudle_has_animation animation-default-ux animation-scroll-ux bottom-space-40 animation_hidden fadeined" style="opacity: 1;">
+	<div id="content_wrap">
+		<div class="content-wrap-inn bottom-space" style="margin-top: 50px;">
+			<div class="pagebuilder-wrap timeline">
+				<div class="container">
+					<div class="row-fluid">
+						<div class="span12 moudle">
+							<div data-post="20140425-001758-102" class="text_block ux-mod-nobg">
+								<h1>
+								LA FINE
+								<span class="word-fadein-fadeout-ux">
+								<span style="display: inline; opacity: 0.9396581550952778;">
+								EQUIPE
+								</span>
+								<span style="display: none;">
+								CREATIVE
+								</span>
+								<span style="display: none;">
+								EFFCIENT
+								</span>
+								</span>
+								</h1>
+								<br>
+								<br> Tignissim adipiscing tristique ac, diam turpis vel
+								arcu magnis, nunc in, tincidunt etiam a rhoncus, tristique
+								mattis, nascetur massa diam hac cum amet. Integer est.
+								Adipiscing aliquam a odio phasellus auctor penatibus, ac
+								facilisis! Hac est tortor vel mid! Montes vel pellentesque ut.
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="container">
+					<div class="row-fluid">
+						<div class="span12 moudle moudle_has_animation animation-default-ux animation-scroll-ux bottom-space-40 animation_hidden fadeined" style="opacity: 1;">
 
-                            <!--gallery isotope-->
-                            <div class="row-fluid">
-                                <a name="20140425-001909-709" class="20140425-001909-709"></a>
-                                <div class="container-isotope" data-post="20140425-001909-709">
+							<!--gallery isotope-->
+							<div class="row-fluid">
+								<a name="20140425-001909-709" class="20140425-001909-709"></a>
+								<div class="container-isotope" data-post="20140425-001909-709">
 
-                                    <!--Loading during page initialization-->
-                                    <div id="isotope-load" style="margin-top: 40px;">
-                                        <div class="ux-loading"></div>
-                                        <div class="ux-loading-transform">
-                                            <div class="loading-dot1">&nbsp;</div>
-                                            <div class="loading-dot2">&nbsp;</div>
-                                        </div>
-                                    </div>
+									<!--Loading during page initialization-->
+									<div id="isotope-load" style="margin-top: 40px;">
+										<div class="ux-loading"></div>
+										<div class="ux-loading-transform">
+											<div class="loading-dot1">&nbsp;</div>
+											<div class="loading-dot2">&nbsp;</div>
+										</div>
+									</div>
 
-                                    <div class="isotope grid_list team-isotope isotope_fade" data-space="40px" data-size="medium" style="display:none; margin-left: -40px; margin-top: -40px;">
+									<div class="isotope grid_list team-isotope isotope_fade" data-space="40px" data-size="medium" style="display:none; margin-left: -40px; margin-top: -40px;">
+										<div ng-repeat="user in team" class="width2 isotope-item animation-default-ux animation-scroll-ux fadeined">
+											<div class="inside card" style="padding: 40px 0 0 40px;">
+												<div class="team-item">
+													<div class="img-wrap">
+														<img
+														ng-src="{{user.avatar && user.avatar + '?dim=300x300' || 'img/Professor.png'}}" class="team-img wp-post-image" alt="13" style="background: white;">
+													</div>
+													<div class="team-item-con-back" style="height: 100%;">
+														<div class="team-item-con-back-inn" style="height: 100%;display: table;">
+															<a ng-href="#!/users/detail/{{user._id}}" class="team-item-title" title="{{user.name || user.username}}" style="vertical-align: middle;display: table-cell;">
+															{{user.name || user.username}}
+															<p class="team-icons">
+															<i class="fa fa-search-plus"></i>
+															</p>
+															</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-                                        <div ng-repeat="user in team" class="width2 isotope-item animation-default-ux animation-scroll-ux fadeined">
-                                            <div class="inside card" style="padding: 40px 0 0 40px;">
-                                                <div class="team-item">
-                                                    <div class="img-wrap">
-                                                        <img
-                                                        ng-src="{{user.avatar && user.avatar + '?dim=300x300' || 'img/Professor.png'}}"
-                                                        class="team-img wp-post-image" alt="13">
-                                                    </div>
-                                                    <div class="team-item-con-back" style="height: 100%;">
-                                                        <div class="team-item-con-back-inn" style="height: 100%;display: table;">
-                                                            <a ng-href="#!/users/detail/{{user._id}}" class="team-item-title" title="{{user.name || user.username}}" style="vertical-align: middle;display: table-cell;">
-                                                                {{user.name || user.username}}
-                                                                <p class="team-icons">
-                                                                    <i class="fa fa-search-plus"></i>
-                                                                </p>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Sidebar Chat -->
-            <div class="sidebar right-side" id="chat">
-                <!-- Wrapper Reqired by Nicescroll -->
-                <div class="visible-xs padding-15 text-center">
-                    <button class="btn btn-white btn-outline btn-rounded" data-toggle="close">
-                    <i class="fa fa-times"></i>
-                    </button>
-                </div>
-                <div class="nicescroll">
-                    <div class="wrapper">
-                        <ul class="list-group list-group-list">
+			<!-- Sidebar Chat -->
+			<div class="sidebar right-side" id="chat">
+				<div class="nicescroll">
+					<div class="wrapper">
+						<ul class="list-group list-group-list">
+							<!-- offline class for grayscale -->
+							<li class="list-group-item" ng-repeat="user in team">
+								<div class="media">
+									<div class="media-left media-middle">
+										<a href="#">
+										<img ng-src="{{user.avatar && user.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{user.name || user.username}}" class="img-circle border-white" width="40">
+										</a>
+									</div>
+									<div class="media-body media-middle">
+										<a href="#">{{user.name || user.username}}</a>
+									</div>
+									<div class="media-right media-middle">
+										<i class="fa fa-comment text-muted"></i>
+									</div>
+									<div class="media-right media-middle">
+										<i class="fa fa-circle text-success text-xs"></i>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
 
-                            <li class="list-group-item">
-                                <div class="media">
-                                    <div class="media-left media-middle">
-                                        <a href="#">
-                                        <img src="img/people/50/woman-4.jpg" alt="person" class="img-circle border-white" width="40">
-                                        </a>
-                                    </div>
-                                    <div class="media-body media-middle">
-                                        <a href="#">Michelle D.</a>
-                                    </div>
-                                    <div class="media-right media-middle">
-                                        <i class="fa fa-comment text-muted"></i>
+			<!-- Chat discussions -->
+			<div class="sidebar right-side" id="chatMessage">
 
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="media">
-                                    <div class="media-left media-middle">
-                                        <a href="#">
-                                        <img src="img/people/50/guy-5.jpg" alt="person" class="img-circle border-white" width="40">
-                                        </a>
-                                    </div>
-                                    <div class="media-body media-middle">
-                                        <a href="#">Jonny B.</a>
-                                    </div>
-                                    <div class="media-right media-middle">
+				<!-- Chatting with -->
+				<div class="friend">
+					<button class="btn btn-white btn-outline btn-rounded pull-right" data-toggle="close" style="margin-right: -5px;">
+					<i class="fa fa-times"></i>
+					</button>
+					<a href="#" class="bold"><i class="fa fa-person"></i> Michelle D.</a>
+				</div>
+				<!-- Wrapper Reqired by Nicescroll -->
+				<div class="nicescroll">
+					<!--
+					Margin bottom the top and bottom fixed elements total height
+					eg. top close and name has 64+25 px, the bottom textarea has 70px add total to the margin-bottom
+					-->
+					<div class="wrapper" style="margin-bottom: 159px">
+						<!-- Message -->
+						<div class="media">
+							<div class="media-body">
+								Free for a Quick Chat?
+								<div>
+									<small class="text-muted">4 hrs ago</small>
+								</div>
+							</div>
+						</div>
 
-                                        <i class="fa fa-circle text-success text-xs"></i>
-                                    </div>
-                                </div>
-                            </li>
+						<!-- Message -->
+						<div class="media">
+							<div class="media-left media-middle">
+								<a href="#">
+								<img src="img/people/50/woman-5.jpg" class="img-circle" width="35">
+								</a>
+							</div>
+							<div class="media-body media-middle">
+								Yes. Sure.
+								<div>
+									<small class="text-muted">2 hrs ago</small>
+								</div>
+							</div>
+						</div>
+						<!-- Message -->
+						<div class="media">
+							<div class="media-body">
+								What time do you finish work?
+								<div>
+									<small class="text-muted">1 hr ago</small>
+								</div>
+							</div>
+						</div>
+						<!-- Message -->
+						<div class="media">
+							<div class="media-left media-middle">
+								<a href="#">
+								<img src="img/people/50/woman-5.jpg" class="img-circle" width="35">
+								</a>
+							</div>
+							<div class="media-body media-middle">
+								About 5pm. Why?
+								<div>
+									<small class="text-muted">1 hr ago</small>
+								</div>
+							</div>
+						</div>
+						<!-- Message -->
+						<div class="media">
+							<div class="media-body">
+								Thinkig of going to that party :D
+								<div>
+									<small class="text-muted">6 min ago</small>
+								</div>
+							</div>
+						</div>
 
-                            <li class="list-group-item">
-                                <div class="media">
-                                    <div class="media-left media-middle">
-                                        <a href="#">
-                                        <img src="img/people/50/guy-6.jpg" alt="person" class="img-circle border-white" width="40">
-                                        </a>
-                                    </div>
-                                    <div class="media-body media-middle">
-                                        <a href="#">Adrian D.</a>
-                                    </div>
-                                    <div class="media-right media-middle">
-                                        <i class="fa fa-circle text-success text-xs"></i>
+						<!--=======-->
+						<!-- Message -->
+						<div class="media">
+							<div class="media-body">
+								Free for a Quick Chat?
+								<div>
+									<small class="text-muted">4 hrs ago</small>
+								</div>
+							</div>
+						</div>
+						<!-- Message -->
+						<div class="media">
+							<div class="media-left media-middle">
+								<a href="#">
+								<img src="img/people/50/woman-5.jpg" class="img-circle" width="35">
+								</a>
+							</div>
+							<div class="media-body media-middle">
+								Yes. Sure.
+								<div>
+									<small class="text-muted">2 hrs ago</small>
+								</div>
+							</div>
+						</div>
+						<!-- Message -->
+						<div class="media">
+							<div class="media-body">
+								What time do you finish work?
+								<div>
+									<small class="text-muted">1 hr ago</small>
+								</div>
+							</div>
+						</div>
 
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="media">
-                                    <div class="media-left media-middle">
-                                        <a href="#">
-                                        <img src="img/people/50/guy-7.jpg" alt="person" class="img-circle border-white" width="40">
-                                        </a>
-                                    </div>
-                                    <div class="media-body media-middle">
-                                        <a href="#">Nick C.</a>
-                                    </div>
-                                    <div class="media-right media-middle">
+						<!-- Message -->
+						<div class="media">
+							<div class="media-left media-middle">
+								<a href="#">
+								<img src="img/people/50/woman-5.jpg" class="img-circle" width="35">
+								</a>
+							</div>
+							<div class="media-body media-middle">
+								About 5pm. Why?
+								<div>
+									<small class="text-muted">1 hr ago</small>
+								</div>
+							</div>
+						</div>
+						<!-- Message -->
+						<div class="media">
+							<div class="media-body">
+								Thinkig of going to that party :D
+								<div>
+									<small class="text-muted">6 min ago</small>
+								</div>
+							</div>
+						</div>
+						<!-- Message -->
+						<div class="media">
+							<div class="media-body">
+								Free for a Quick Chat?
+								<div>
+									<small class="text-muted">4 hrs ago</small>
+								</div>
+							</div>
+						</div>
+						<!-- Message -->
+						<div class="media">
+							<div class="media-left media-middle">
+								<a href="#">
+								<img src="img/people/50/woman-5.jpg" class="img-circle" width="35">
+								</a>
+							</div>
+							<div class="media-body media-middle">
+								Yes. Sure.
+								<div>
+									<small class="text-muted">2 hrs ago</small>
+								</div>
+							</div>
+						</div>
 
-                                        <i class="fa fa-circle text-success text-xs"></i>
-                                    </div>
-                                </div>
-                            </li>
+						<!-- Message -->
+						<div class="media">
+							<div class="media-body">
+								What time do you finish work?
+								<div>
+									<small class="text-muted">1 hr ago</small>
+								</div>
+							</div>
+						</div>
+						<!-- Message -->
+						<div class="media">
+							<div class="media-left media-middle">
+								<a href="#">
+								<img src="img/people/50/woman-5.jpg" class="img-circle" width="35">
+								</a>
+							</div>
+							<div class="media-body media-middle">
+								About 5pm. Why?
+								<div>
+									<small class="text-muted">1 hr ago</small>
+								</div>
+							</div>
+						</div>
+						<!-- Message -->
+						<div class="media">
+							<div class="media-body">
+								Thinkig of going to that party :D
+								<div>
+									<small class="text-muted">6 min ago</small>
+								</div>
+							</div>
+						</div>
+						<!-- Message -->
+						<div class="media">
+							<div class="media-left media-middle">
+								<a href="#">
+								<img src="img/people/50/woman-5.jpg" class="img-circle" width="35">
+								</a>
+							</div>
+							<div class="media-body media-middle">
+								Yay...
+								<div><small class="text-muted">5 min ago</small></div>
+							</div>
+						</div>
 
-                            <li class="list-group-item offline">
-                                <div class="media">
-                                    <div class="media-left media-middle">
-                                        <a href="#">
-                                        <img src="img/people/50/guy-8.jpg" alt="person" class="img-circle border-white" width="40">
-                                        </a>
-                                    </div>
-                                    <div class="media-body media-middle">
-                                        <a href="#">Amy D.</a>
-                                    </div>
-                                    <div class="media-right media-middle">
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="list-group-item offline">
-                                <div class="media">
-                                    <div class="media-left media-middle">
-                                        <a href="#">
-                                        <img src="img/people/50/guy-9.jpg" alt="person" class="img-circle border-white" width="40">
-                                        </a>
-                                    </div>
-                                    <div class="media-body media-middle">
-                                        <a href="#">Luke S.</a>
-                                    </div>
-                                    <div class="media-right media-middle">
-                                    </div>
-                                </div>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Chat discussions -->
-            <div class="sidebar right-side" id="chatMessage">
-
-                <!-- Chatting with -->
-                <div class="friend">
-                    <button class="btn btn-white btn-outline btn-rounded pull-right" data-toggle="close" style="margin-right: -5px;">
-                        <i class="fa fa-times"></i>
-                    </button>
-                    <a href="#" class="bold"><i class="fa fa-person"></i> Michelle D.</a>
-                </div>
-
-                <!-- Wrapper Reqired by Nicescroll -->
-                <div class="nicescroll">
-                    <!--
-                    Margin bottom the top and bottom fixed elements total height
-                    eg. top close and name has 64+25 px, the bottom textarea has 70px add total to the margin-bottom
-                    -->
-                    <div class="wrapper" style="margin-bottom: 159px">
-                        <!-- Message -->
-                        <div class="media">
-                            <div class="media-body">
-                                Free for a Quick Chat?
-                                <div>
-                                    <small class="text-muted">4 hrs ago</small>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Message -->
-                        <div class="media">
-                            <div class="media-left media-middle">
-                                <a href="#">
-                                <img src="img/people/50/woman-5.jpg" class="img-circle" width="35">
-                                </a>
-                            </div>
-                            <div class="media-body media-middle">
-                                Yes. Sure.
-                                <div>
-                                    <small class="text-muted">2 hrs ago</small>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Message -->
-                        <div class="media">
-                            <div class="media-body">
-                                What time do you finish work?
-                                <div>
-                                    <small class="text-muted">1 hr ago</small>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Message -->
-                        <div class="media">
-                            <div class="media-left media-middle">
-                                <a href="#">
-                                <img src="img/people/50/woman-5.jpg" class="img-circle" width="35">
-                                </a>
-                            </div>
-                            <div class="media-body media-middle">
-                                About 5pm. Why?
-                                <div>
-                                    <small class="text-muted">1 hr ago</small>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Message -->
-                        <div class="media">
-                            <div class="media-body">
-                                Thinkig of going to that party :D
-                                <div>
-                                    <small class="text-muted">6 min ago</small>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--=======-->
-                        <!-- Message -->
-                        <div class="media">
-                            <div class="media-body">
-                                Free for a Quick Chat?
-                                <div>
-                                    <small class="text-muted">4 hrs ago</small>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Message -->
-                        <div class="media">
-                            <div class="media-left media-middle">
-                                <a href="#">
-                                <img src="img/people/50/woman-5.jpg" class="img-circle" width="35">
-                                </a>
-                            </div>
-                            <div class="media-body media-middle">
-                                Yes. Sure.
-                                <div>
-                                    <small class="text-muted">2 hrs ago</small>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Message -->
-                        <div class="media">
-                            <div class="media-body">
-                                What time do you finish work?
-                                <div>
-                                    <small class="text-muted">1 hr ago</small>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Message -->
-                        <div class="media">
-                            <div class="media-left media-middle">
-                                <a href="#">
-                                <img src="img/people/50/woman-5.jpg" class="img-circle" width="35">
-                                </a>
-                            </div>
-                            <div class="media-body media-middle">
-                                About 5pm. Why?
-                                <div>
-                                    <small class="text-muted">1 hr ago</small>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Message -->
-                        <div class="media">
-                            <div class="media-body">
-                                Thinkig of going to that party :D
-                                <div>
-                                    <small class="text-muted">6 min ago</small>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Message -->
-                        <div class="media">
-                            <div class="media-body">
-                                Free for a Quick Chat?
-                                <div>
-                                    <small class="text-muted">4 hrs ago</small>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Message -->
-                        <div class="media">
-                            <div class="media-left media-middle">
-                                <a href="#">
-                                <img src="img/people/50/woman-5.jpg" class="img-circle" width="35">
-                                </a>
-                            </div>
-                            <div class="media-body media-middle">
-                                Yes. Sure.
-                                <div>
-                                    <small class="text-muted">2 hrs ago</small>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Message -->
-                        <div class="media">
-                            <div class="media-body">
-                                What time do you finish work?
-                                <div>
-                                    <small class="text-muted">1 hr ago</small>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Message -->
-                        <div class="media">
-                            <div class="media-left media-middle">
-                                <a href="#">
-                                <img src="img/people/50/woman-5.jpg" class="img-circle" width="35">
-                                </a>
-                            </div>
-                            <div class="media-body media-middle">
-                                About 5pm. Why?
-                                <div>
-                                    <small class="text-muted">1 hr ago</small>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Message -->
-                        <div class="media">
-                            <div class="media-body">
-                                Thinkig of going to that party :D
-                                <div>
-                                    <small class="text-muted">6 min ago</small>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Message -->
-                        <div class="media">
-                            <div class="media-left media-middle">
-                                <a href="#">
-                                <img src="img/people/50/woman-5.jpg" class="img-circle" width="35">
-                                </a>
-                            </div>
-                            <div class="media-body media-middle">
-                                Yay...
-                                <div><small class="text-muted">5 min ago</small></div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="message-comment">
-                    <div class="media">
-                        <div class="media-body media-middle">
-                            <textarea type="text" class="form-control" placeholder="Write Message"/></textarea>
-                        </div>
-                        <div class="media-right media-middle">
-                            <button class="btn btn-white btn-outline btn-rounded" data-toggle="dropdown">
-                            <i class="fa fa-comment"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+					</div>
+				</div>
+				<div class="message-comment">
+					<div class="media">
+						<div class="media-body media-middle">
+							<textarea type="text" class="form-control" placeholder="Write Message"/></textarea>
+						</div>
+						<div class="media-right media-middle">
+							<button class="btn btn-white btn-outline btn-rounded" data-toggle="dropdown">
+							<i class="fa fa-comment"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-
 <cm-page-builder></cm-page-builder>
