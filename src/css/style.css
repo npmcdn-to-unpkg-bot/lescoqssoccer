@@ -1809,8 +1809,7 @@ textarea:focus,input[type="text"]:focus,input[type="password"]:focus,input[type=
   border-bottom-color: #333;
 }
 .nav.nav-tabs, .tabs-v .nav-tabs > li:nth-child(2)>a{
-    border-top: none !important;
-    border-left: none !important;
+  border: none;
 }
 .tab-content.tab-content-v {
   border-left-color: #333;
@@ -4393,4 +4392,8 @@ img.img80_80 {
 
 #agenda, #articles{
   height: 34px !important;
+}
+
+.articlesContainer img{
+  height: auto !important;
 }
