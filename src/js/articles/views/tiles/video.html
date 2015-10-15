@@ -4,15 +4,15 @@
 			<div class="item_topbar post-bgcolor-default">
 				<a href="#!/articles/view/video/{{article._id}}" title="{{article.title}}" class="item_link"></a>
 			</div>
-			<div class="videoWrapper vimeo">
+			<div ng-if="article.videoLink" class="videoWrapper vimeo">
 				<iframe
-				ng-src="{{trustSrc(article.videoLink)}}"
+				ng-src="{{trustSrc(article.videoLink + '?showinfo=0')}}"
 				width="100%"
 				height="auto"
 				frameborder="0"
-				webkitallowfullscreen=""
-				mozallowfullscreen=""
-				allowfullscreen="">
+				webkitallowfullscreen="true"
+				mozallowfullscreen="true"
+				allowfullscreen="true">
 				</iframe>
 			</div>
 			<div class="item_des post-bgcolor-default">

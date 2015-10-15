@@ -1642,9 +1642,6 @@ i.medium{ font-size:24px; }
   content:''; position: absolute; bottom: 27px; left: 20px; width: 30px; height: 3px;
 }
 
-.item_des {
-  padding-bottom: 20px;
-}
 .item-des-p,
 .isotope-item.quote .item_des p,
 .item-link-wrap{
@@ -4395,3 +4392,12 @@ img.img80_80 {
 .text-success {
     color: #43bc46 !important;
 }
+.embed-container {
+    position: relative;
+}
+    .embed-container iframe,
+    .embed-container object,
+    .embed-container embed {
+        width: 100%;
+        height: 100%;
+    }

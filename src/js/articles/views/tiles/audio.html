@@ -10,12 +10,10 @@
 					{{article.title}}
 					</a>
 				</h2>
-				<div class="soundcloudWrapper">
+				<div class="soundcloudWrapper embed-container">
 					<iframe
-					width="100%"
-					height="166"
-					scrolling="no"
-					frameborder="no"
+					frameborder="0"
+					allowtransparency='true'
 					ng-src="{{trustSrc(article.audioLink)}}">
 					</iframe>
 				</div>

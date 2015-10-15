@@ -17,7 +17,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 
 		//Format video and audio url
 		$scope.trustSrc = function(src) {
-	    	return $sce.trustAsResourceUrl(src);
+	    		return $sce.trustAsResourceUrl(src);
 	  	};
 
 		$scope.pageChanged = function(newPage) {
