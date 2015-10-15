@@ -42,7 +42,7 @@
 						</h3>
 						<div class="comments" ng-class="{'reply': comment.isReply}" ng-repeat="comment in article.comments | orderBy:'-created'" style="margin-bottom: 20px;">
 							<p class="meta">
-							<a href="#!" style="color: white;">{{comment.user.name || global.user.name}}</a> - {{comment.created | date:dateFormat}}
+							<a href="#!" style="color: #333;">{{comment.user.name || global.user.name}}</a> - {{comment.created | date:dateFormat}}
 							</p>
 							<div class="comments_content">
 								<p>{{comment.content}}</p>
