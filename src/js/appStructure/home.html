@@ -10,7 +10,9 @@
 
                             <div class="fullwidth-wrap top-space-80-in bottom-space-40-in fullwidth-text-white bottom-space-40 ">
 
-                                <div class="parallax" data-ratio="0.3"><img class="parallax-img" src="http://ximudesign.com/bee/wp-content/uploads/sites/13/2014/03/fullwidth-wrap-bg.jpg"></div>
+                                <div class="parallax" data-ratio="0.3">
+                                    <img class="parallax-img" src="img/background-testimonial.jpg" style="-webkit-filter: grayscale(100%); opacity: 0.8;">
+                                </div>
 
                                 <div class="container">
                                     <div class="row-fluid">
@@ -19,38 +21,16 @@
                                             <div class="flex-slider-wrap testimonial-wrap ux-mod-nobg" data-direction="false" data-control="true" data-speed="5" data-animation="fade">
                                                 <div class="flexslider">
                                                     <ul class="slides clearfix">
-                                                        <li class="testimonial-item flex-active-slide" style="">
+                                                        <li ng-repeat="user in team" class="testimonial-item flex-active-slide">
                                                             <div class="testimonial-thum">
-                                                                <img src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/04/13-150x150.jpg" class="attachment-thumbnail wp-post-image" alt="13" draggable="false">
+                                                                <img ng-src="{{user.avatar && user.avatar + '?dim=300x300' || 'img/Professor.png'}}" class="attachment-thumbnail wp-post-image" alt="13" draggable="false">
                                                             </div>
                                                             <blockquote>
-                                                                <p>Dapibus augue mus! Ut. Tortor. Rhoncus scelerisque lectus magna tristique amet!</p>
+                                                                <p style="color: #FF5533;">Dapibus augue mus! Ut. Tortor. Rhoncus scelerisque lectus magna tristique amet!</p>
                                                                 <cite>
-                                                                    ---- Frank Jack Chief designer<a href="http://ximudesign.com/aside/">UIUEUX</a>
-                                                                </cite>
-                                                            </blockquote>
-                                                        </li>
-                                                        <!--loop Li wrap-->
-                                                        <li class="testimonial-item">
-                                                            <div class="testimonial-thum">
-                                                                <img src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/04/6-150x150.jpg" class="attachment-thumbnail wp-post-image" alt="6" draggable="false">
-                                                            </div>
-                                                            <blockquote>
-                                                                <p>Powerful and wonderful support!</p>
-                                                                <cite>
-                                                                    ---- Jane Anini CFO <a href="http://themeforest.net/user/bwsm/portfolio">Apple</a>
-                                                                </cite>
-                                                            </blockquote>
-                                                        </li>
-                                                        <!--loop Li wrap-->
-                                                        <li class="testimonial-item">
-                                                            <div class="testimonial-thum">
-                                                                <img src="http://ximudesign.com/aside/wp-content/uploads/sites/17/2014/04/17-150x150.jpg" class="attachment-thumbnail wp-post-image" alt="17" draggable="false">
-                                                            </div>
-                                                            <blockquote>
-                                                                <p>The Aside WordPress theme&nbsp;&nbsp;is so beautiful and powerful!</p>
-                                                                <cite>
-                                                                     ---- Jack Power CEO  <a href="http://themeforest.net/user/bwsm/portfolio">Google</a>
+                                                                    <a href="http://ximudesign.com/aside/" style="color: #FF5533;">
+                                                                        ---- {{user.name || user.username}}
+                                                                    </a>
                                                                 </cite>
                                                             </blockquote>
                                                         </li>
@@ -197,17 +177,6 @@
                     </div>
                     <div class="container">
                         <div class="row-fluid">
-                            <div class="span12 moudle" style="margin-bottom: 0px;">
-                                <div class="separator without-title  blank-divider height-20" style="opacity: 1;">
-                                    <a name="20140417-063449-110" class="20140417-063449-110"></a>
-                                    <div class="separator_inn" style="top: 8px; z-index: 0;">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row-fluid">
                             <div class="span12 moudle moudle_has_animation bouncdein-up-translate animation-default-ux animation-scroll-ux  bottom-space-40  animation_hidden bouncdein-up-ed" style="opacity: 1;">
                                 <div data-post="20140417-063009-451" class="text_block ux-mod-nobg ">
                                     <a name="20140417-063009-451" class="20140417-063009-451"></a>
@@ -259,17 +228,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="container">
-                        <div class="row-fluid">
-                            <div class="span12 moudle bottom-space-80" style="margin-bottom: 0px;">
-                                <div class="separator without-title  blank-divider height-20" style="opacity: 1;">
-                                    <div class="separator_inn bg-" style="top: 8px; z-index: 0;">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>

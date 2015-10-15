@@ -3542,7 +3542,7 @@ Override bootstrap datepicker
 .sidebar.sidebar-right-open {
   right: 0px;
 }
-@media (min-width: 992px) {
+@media (min-width: 750px) {
   .sidebar.left-side {
     left: 0px;
   }
@@ -3555,7 +3555,7 @@ Override bootstrap datepicker
   position: fixed;
   top: 0;
   bottom: 0;
-  width: 200px;
+  width: 280px;
   z-index: 991;
   background: #fff;
 }
@@ -3568,7 +3568,7 @@ Override bootstrap datepicker
 }
 #chat.right-side,
 #map-filter.right-side {
-  right: -200px;
+  right: -280px;
 }
 #chat.sidebar-right-open,
 #map-filter.sidebar-right-open {
@@ -3585,7 +3585,7 @@ Override bootstrap datepicker
   position: fixed;
   top: 0;
   bottom: 0;
-  width: 200px;
+  width: 280px;
   z-index: 992;
 }
 @media (max-width: 480px) {
@@ -3595,7 +3595,7 @@ Override bootstrap datepicker
   }
 }
 #chatMessage.right-side {
-  right: -200px;
+  right: -280px;
 }
 #chatMessage.sidebar-right-open {
   right: 0px;
@@ -3605,15 +3605,15 @@ Override bootstrap datepicker
     width: 100%;
   }
 }
-@media (min-width: 992px) {
+@media (min-width: 750px) {
   .timeline{
-  	width: calc(100% - 200px);
+  	width: calc(100% - 280px);
   }
   .chat-open #main,
   .map-full #main,
   .chat-open .footer,
   .map-full .footer {
-    margin-right: 200px;
+    margin-right: 280px;
   }
   #chat,
   #map-filter {
@@ -3625,13 +3625,13 @@ Override bootstrap datepicker
     border-left: 1px solid #e8e8e8;
   }
 }
-@media (min-width: 1200px) {
+@media (min-width: 1100px) {
   .chat-active {
-    margin-right: 200px;
+    margin-right: 280px;
   }
   .chat-active .navbar,
   .chat-active #sidebar-right {
-    margin-right: 200px;
+    margin-right: 280px;
   }
   .chat-active .container {
     width: 100%;
@@ -3649,7 +3649,7 @@ Override bootstrap datepicker
 }
 @media (max-width: 1200px) {
   .chat-active #chat.right-side {
-    right: -200px;
+    right: -280px;
   }
   .chat-active #chat.right-side.sidebar-right-open {
     right: 0;
@@ -3780,8 +3780,8 @@ Override bootstrap datepicker
   display: block;
   padding: 0 5px;
   background: #333;
-  height: 25px;
-  line-height: 23px;
+  height: 30px;
+  line-height: 30px;
 }
 #chatMessage .friend a {
   font-size: 13px;

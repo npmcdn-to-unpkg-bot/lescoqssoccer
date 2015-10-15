@@ -9,7 +9,8 @@ angular.module('mean').config(['$routeProvider',
 		/** HOME ****/
 		when('/home', {
 			templateUrl: 'js/appStructure/home.html',
-			controller: 'HomeController'
+			controller: 'HomeController',
+			resolve: TeamData
 		}).
 
 		/** AGENDA ****/
