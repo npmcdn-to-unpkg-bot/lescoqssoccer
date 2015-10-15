@@ -26,15 +26,11 @@ angular.module('mean.users').controller('TeamController', ['$scope', 'Global', '
 	}
 ]);
 
-angular.module('mean.agenda').controller('userDetailController', ['$scope', '$modalInstance', 'User',
+angular.module('mean.agenda').controller('UserDetailController', ['$scope', 'User',
 
-	function($scope, $modalInstance, User) {
+	function($scope, User) {
 
 		$scope.user = User;
-
-		$scope.cancel = function() {
-			$modalInstance.dismiss('cancel');
-		};
 	}
 ]);
 
@@ -119,6 +115,18 @@ var TeamData = {
 	Team: function(Users) {
 		return Users.query({}, function(users) {
 			return users;
+		}).$promise;;
+	}
+
+};
+
+var UserDetailData = {
+
+	User: function(Users, $route) {
+		return Users.get({
+			userId: $route.current.params.id
+		}, function(user) {
+			return user;
 		}).$promise;;
 	}
 

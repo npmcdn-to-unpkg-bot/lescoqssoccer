@@ -48,7 +48,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="isotope grid_list team-isotope isotope_fade" data-space="40px" data-size="small" style="display:none; margin-left: -40px; margin-top: -40px;">
+                                    <div class="isotope grid_list team-isotope isotope_fade" data-space="40px" data-size="medium" style="display:none; margin-left: -40px; margin-top: -40px;">
 
                                         <div ng-repeat="user in team" class="width2 isotope-item animation-default-ux animation-scroll-ux fadeined">
                                             <div class="inside card" style="padding: 40px 0 0 40px;">
@@ -58,20 +58,14 @@
                                                         ng-src="{{user.avatar && user.avatar + '?dim=300x300' || 'img/Professor.png'}}"
                                                         class="team-img wp-post-image" alt="13">
                                                     </div>
-                                                    <div class="team-item-con-back">
-                                                        <div class="team-item-con-back-inn">
-                                                            <a href="#!" class="team-item-title" title="{{user.name || user.username}}">
+                                                    <div class="team-item-con-back" style="height: 100%;">
+                                                        <div class="team-item-con-back-inn" style="height: 100%;display: table;">
+                                                            <a ng-href="#!/users/detail/{{user._id}}" class="team-item-title" title="{{user.name || user.username}}" style="vertical-align: middle;display: table-cell;">
                                                                 {{user.name || user.username}}
+                                                                <p class="team-icons">
+                                                                    <i class="fa fa-search-plus"></i>
+                                                                </p>
                                                             </a>
-                                                            <div class="team-item-con-h">
-                                                                <p class="team-position">CTO</p>
-                                                                <p class="team-email">Ricky@gmail.com</p>
-                                                            </div>
-                                                            <p class="team-icons">
-                                                                <a href="">
-                                                                    <i class="fa fa-github-square"></i>
-                                                                </a>
-                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>

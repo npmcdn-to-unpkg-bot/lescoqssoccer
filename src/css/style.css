@@ -4390,3 +4390,7 @@ img.img80_80 {
 .latest-posts-tit-wrap{
   background: #FFFFFF;
 }
+
+#agenda, #articles{
+  height: 34px !important;
+}

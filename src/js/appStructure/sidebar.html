@@ -10,8 +10,8 @@
 				</li>
 				<li ng-repeat="item in menu" ng-class="{'active' : isCurrentPath(item)}">
 					<a md-ink-ripple="#bbb" ng-href="{{item.link}}">
-						<md-icon class="ng-isolate-scope md-default-theme" aria-hidden="true" style>
-							<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fit="" preserveAspectRatio="xMidYMid meet" style="pointer-events: none; display: block;">
+						<md-icon id="{{item.id}}" class="ng-isolate-scope md-default-theme" aria-hidden="true" style>
+							<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 30 30" fit="" preserveAspectRatio="xMidYMid meet" style="pointer-events: none; display: block;">
 								<path d="{{item.svg}}"></path>
 							</svg>
 						</md-icon>

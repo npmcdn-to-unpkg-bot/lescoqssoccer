@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('mean.system').directive('cmSidebar', function() {
 	return {
 		restrict: 'E',

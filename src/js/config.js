@@ -8,7 +8,7 @@ angular.module('mean').config(['$routeProvider',
 
 		/** HOME ****/
 		when('/home', {
-			templateUrl: 'js/appStructure/home.html',
+			templateUrl: 'js/home/home.html',
 			controller: 'HomeController',
 			resolve: TeamData
 		}).
@@ -141,13 +141,17 @@ angular.module('mean').config(['$routeProvider',
 			templateUrl: 'js/other/issues.html'
 		}).
 
+		/** USERS ****/
 		when('/users', {
 			templateUrl: 'js/users/views/list.html',
 			controller: 'TeamController',
 			resolve: TeamData
 		}).
-
-		/** PROFILE ****/
+		when('/users/detail/:id', {
+			templateUrl: 'js/users/views/detail.html',
+			controller: 'UserDetailController',
+			resolve: UserDetailData
+		}).
 		when('/users/profile', {
 			templateUrl: 'js/users/views/profile.html',
 			controller: 'ProfileController',
