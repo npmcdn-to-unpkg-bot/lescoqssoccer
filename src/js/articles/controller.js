@@ -248,7 +248,9 @@ var ArticleDetailData = {
 
 	Article: function(ArticlesCollection, $route, $location) {
 		return ($route.current.params.id) ? ArticlesCollection.findOne($route.current.params.id) : {
-			type: $location.path().split("/").pop()
+			type: $location.path().split("/").pop(),
+			categories: [],
+			content: ""
 		};
 	}
 
