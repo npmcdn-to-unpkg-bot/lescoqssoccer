@@ -394,13 +394,6 @@ angular.module('mean.system').directive('cmPageBuilder', function() {
 
 					if (!Modernizr.touch) {
 
-						//** sidebar menu
-						jQuery('#sidebar').find('#navi ul.menu a').click(function() {
-							if (!jQuery(this).parent().hasClass('current-menu-anchor')) {
-								ux_page_loading_event(jQuery(this));
-							}
-						});
-
 						//** all search form
 						jQuery('.submitsearch').parents('form').submit(function() {
 							jQuery('#sidebar').addClass('sidebar-out');
@@ -412,18 +405,6 @@ angular.module('mean.system').directive('cmPageBuilder', function() {
 								_page_loading.addClass('visible');
 							});
 						});
-
-						//** Logo
-						jQuery('#logo a').click(function() {
-							ux_page_loading_event(jQuery(this));
-						});
-
-						//** WPML
-						if (jQuery('.wpml-language-flags').length) {
-							jQuery('.wpml-language-flags a').click(function() {
-								ux_page_loading_event(jQuery(this));
-							});
-						}
 
 						//** post navi
 						jQuery('#post-navi a').click(function() {
@@ -459,6 +440,24 @@ angular.module('mean.system').directive('cmPageBuilder', function() {
 
 					jQuery("html, body").css({
 						height: _win_height
+					});
+
+					$("#nav-container").mCustomScrollbar({
+						scrollInertia: 400,
+						autoHideScrollbar: true,
+						theme: "dark",
+						advanced: {
+							updateOnContentResize: true
+						}
+					});
+
+					$("#main-wrap").mCustomScrollbar({
+						scrollInertia: 400,
+						autoHideScrollbar: true,
+						theme: "light",
+						advanced: {
+							updateOnContentResize: true
+						}
 					});
 
 					jQuery('#wrap').imagesLoaded(function() {

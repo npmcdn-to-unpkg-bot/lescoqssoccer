@@ -129,15 +129,15 @@ angular.module('mean').config(['$routeProvider',
 		}).
 
 		/** SUGGESTIONS ****/
-		when('/suggestions', {
+		when('/others/suggestions', {
 			templateUrl: 'js/suggestions/views/suggestions.html',
 			controller: 'SuggestionController',
 		}).
-		when('/suggestions/create', {
+		when('/others/suggestions/create', {
 			templateUrl: 'js/suggestions/views/create.html',
 			controller: 'SuggestionController',
 		}).
-		when('/issues', {
+		when('/others/issues', {
 			templateUrl: 'js/other/issues.html'
 		}).
 

@@ -752,7 +752,7 @@ color:#ccc; color:rgba(255,255,255,0.4); background-color:#666; background-color
   transform-origin: 50% 50%;
 }
 #main-wrap{
-  position:relative; z-index:3; width: 100%; margin:0 auto; overflow:hidden; left:0; top:0; padding-left:150px;
+  position:relative; z-index:3; width: 100%; margin:0 auto; left:0; top:0; padding-left:150px;
 }
 #sidebar:hover ~ #main-wrap #main {
 -webkit-transform: scale(0.89);
@@ -4163,7 +4163,8 @@ a.list-group-item-danger.active:focus {
 #nav ul li>a{
   position:relative;
   display:block;
-  padding:13px 0 13px 25px;
+  padding:13px 0;
+  color: white;
   -webkit-transition:all .2s ease-in-out;
   -moz-transition:all .2s ease-in-out;
   -o-transition:all .2s ease-in-out;
@@ -4275,24 +4276,15 @@ a.list-group-item-danger.active:focus {
 }
 
 #nav-container {
-    z-index: 11;
-    position: absolute;
-    top: 80px;
-    bottom: 0;
-    left: -270px;
-    width: 270px;
-    padding: 0;
-    background: #333;
-    -webkit-overflow-scrolling: touch;
-    -webkit-transform:translate3d(0,0,0);
-}
-
-#nav-container {
+    z-index: 12;
     width: 150px;
+    height: 100%;
     top: 0;
     left: 0;
-    height: 100vh;
     position: fixed;
+    background: #333;
+    overflow: auto;
+    -webkit-transform:translate3d(0,0,0);
 }
 
 #nav-container .navigation-profile-picture {
@@ -4302,7 +4294,6 @@ a.list-group-item-danger.active:focus {
 }
 
 #nav>li {
-    position: relative;
     margin: 0;
     font-weight: 400;
     -webkit-transition: all .2s ease-in-out;
@@ -4325,7 +4316,7 @@ a.list-group-item-danger.active:focus {
     transition: all .2s ease-in-out;
 }
 
- #nav>li:hover>a>md-icon,#nav>li.active>a>md-icon {
+#nav>li:hover>a>md-icon,#nav>li.active>a>md-icon {
     color: #FFFFFF;
 }
 
@@ -4334,7 +4325,7 @@ md-icon {
     background-repeat: no-repeat no-repeat;
     display: inline-block;
     vertical-align: middle;
-    fill: currentColor;
+    fill: rgba(0,0,0,0.54);
     height: 24px;
     width: 24px;
 }
@@ -4395,9 +4386,30 @@ img.img80_80 {
 .embed-container {
     position: relative;
 }
-    .embed-container iframe,
-    .embed-container object,
-    .embed-container embed {
-        width: 100%;
-        height: 100%;
-    }
+.embed-container iframe,
+.embed-container object,
+.embed-container embed {
+    width: 100%;
+    height: 100%;
+}
+
+.md-ripple-container {
+    pointer-events: none;
+    position: absolute;
+    overflow: hidden;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transition: all .55s cubic-bezier(.25,.8,.25,1);
+}
+
+md-icon {
+    margin: auto;
+    background-repeat: no-repeat no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    fill: currentColor;
+    height: 24px;
+    width: 24px;
+}

@@ -83,7 +83,7 @@
 					<div class="wrapper">
 						<ul class="list-group list-group-list">
 							<!-- offline class for grayscale -->
-							<li class="list-group-item" ng-repeat="user in team">
+							<li class="list-group-item" ng-repeat="user in team" ng-if="global.user._id !== user._id">
 								<div class="media">
 									<div class="media-left media-middle">
 										<a href="#">
@@ -116,6 +116,7 @@
 					</button>
 					<a href="#" class="bold"><i class="fa fa-person"></i> Michelle D.</a>
 				</div>
+
 				<!-- Wrapper Reqired by Nicescroll -->
 				<div class="nicescroll">
 					<!--
