@@ -11,6 +11,34 @@ angular.module('mean.system').directive('cmSidebar', function() {
 				_sidebar_bar = jQuery('#sidebar'),
 				_win_height = _win.height();
 
+			setTimeout(function() {
+
+				//** Site Loading
+				var _site_loading = jQuery('.site-loading');
+
+				if (_site_loading.length) {
+
+					jQuery("html, body").css({
+						height: _win_height
+					});
+
+					jQuery('#wrap').imagesLoaded(setTimeout(function() {
+
+						_site_loading.addClass('visible');
+
+						jQuery('.sidebar-main,#sidebar-widget,#content_wrap').animate({
+							opacity: 1
+						}, 100);
+
+						jQuery("html, body").css({
+							height: "auto"
+						});
+
+					}, 1500));
+
+				}
+			});
+
 			//** call Lightbox
 			if (jQuery('.lightbox').length) {
 				jQuery('.lightbox').attr("data-lightbox", "image-1");
@@ -347,31 +375,6 @@ angular.module('mean.system').directive('cmPageBuilder', function() {
 				var _win = jQuery(window),
 					_sidebar_bar = jQuery('#sidebar'),
 					_win_height = _win.height();
-
-				//** Site Loading
-				var _site_loading = jQuery('.site-loading');
-
-				if (_site_loading.length) {
-
-					jQuery("html, body").css({
-						height: _win_height
-					});
-
-					jQuery('#wrap').imagesLoaded(setTimeout(function() {
-
-						_site_loading.addClass('visible');
-
-						jQuery('.sidebar-main,#sidebar-widget,#content_wrap').animate({
-							opacity: 1
-						}, 100);
-
-						jQuery("html, body").css({
-							height: "auto"
-						});
-
-					}, 1500));
-
-				}
 
 				//** Page Loading
 				var _page_loading = jQuery('.page-loading');
