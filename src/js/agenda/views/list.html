@@ -3,10 +3,12 @@
 		<i class="fa fa-calendar"></i>
 	</div>
 </div>
+
 <div id="post-1039" class="post type-post status-publish format-standard hentry category-blog">
     <div class="row-fluid two-cols-layout" style="min-height: 100vh;">
         <div id="content_wrap" class="span8">
             <div class="content-wrap-inn bottom-space">
+
                 <div class="container" style="padding:0;">
                     <div class="title-bar-wrap" id="title-bar" style="padding: 50px 0;">
                         <div id="title-wrap">
@@ -21,65 +23,85 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="pagebuilder-wrap">
                 	<div class="container" style="padding:0;">
                         <div class="row-fluid">
                             <div class="moudle">
-                                <div class="tabs-v">
+
+                                <div ng-show="comingAgenda.length === 0" class="tab-pane active">
+                                    <h2>
+                                        Aucun évènement à venir
+                                    </h2>
+                                </div>
+
+                                <div class="tabs-v" ng-show="comingAgenda.length > 0">
                                     <ul class="nav nav-tabs nav-tabs-v" style="width: 25%;">
-                                        <li class="active" ng-show="filteredAgenda.length === 0">
-                                        	<a href="#noevent">
-                                        		Aujourd'hui
-                                        	</a>
-                                        </li>
-                                        <li ng-repeat="event in filteredAgenda = (agenda | filter: isComingEvent)" ng-class="{'active': $index === 0}">
-                                        	<a href="#{{event._id}}">
+                                        <li ng-repeat="event in comingAgenda" ng-class="{'active': $index === 0}">
+                                        	<a href="#tabcontent" ng-click="setSelectedEvent($event, event)">
                                         		{{event.title}}
                                         	</a>
                                         </li>
                                     </ul>
                                     <div class="tab-content tab-content-v" style="width: 75%; overflow: hidden;">
-                                        <div id="noevent" ng-show="filteredAgenda.length === 0" class="tab-pane active">
-											<p>
-												Aucun évènement à venir
-											</p>
-                                        </div>
-                                        <div id="{{event._id}}" ng-repeat="event in filteredAgenda = (agenda | filter: isComingEvent)" class="tab-pane" ng-class="{'active': $index === 0}">
+                                        <div id="tabcontent" class="tab-pane active">
+
                                             <div>
                                                 <div class="pull-left" style="margin-right: 20px;">
                                                     <div class="date-block">
                                                         <p class="date-block-m">
-                                                            {{event.startsAt | date:"MMM"}}
+                                                            {{selectedEvent.startsAt | date:"MMM"}}
                                                         </p>
                                                         <p class="date-block-big">
-                                                            {{event.startsAt | date:"dd"}}
+                                                            {{selectedEvent.startsAt | date:"dd"}}
                                                         </p>
                                                         <p class="date-block-y">
-                                                            {{event.startsAt | date:"yyyy"}}
+                                                            {{selectedEvent.startsAt | date:"yyyy"}}
                                                         </p>
 
                                                         <div class="date-block-bg" style="background: #333;">
                                                         </div>
                                                     </div>
                                                 </div>
+
                                                 <p class="txt-label" style="margin: 10px 0;">
                                                     <span class="label" style="font-size: 14px;">
-                                                        <strong>{{ eventTypes | getNameByIdentifier:event.eventType}}</strong>
+                                                        <strong>
+                                                            {{ eventTypes | getNameByIdentifier:selectedEvent.eventType}}
+                                                        </strong>
                                                     </span>
                                                 </p>
 
-                                                <h3 class="ellipsis">{{event.title}}</h3>
-    											<p class="postdate txt-label">
-    											{{event.startsAt | date:"dd MMM yyyy"}}{{(event.endsAt !==  event.startsAt) ? " - " + getFormattedDate(event.endsAt) : ""}}
-    											</p>
+                                                <h3 class="ellipsis">
+                                                    {{selectedEvent.title}}
+                                                </h3>
 
+    											<p class="postdate txt-label">
+    											     {{selectedEvent.startsAt | date:"dd MMM yyyy"}}{{(selectedEvent.endsAt !==  selectedEvent.startsAt) ? " - " + getFormattedDate(selectedEvent.endsAt) : ""}}
+    											</p>
                                             </div>
 
 											<p class="three-line-ellipsis" style="margin-top: 10px;">
-												{{event.content}}
+												{{selectedEvent.content}}
 											</p>
 
-											<div id="google-map" class="google-map" style="border: 10px solid white !important; margin-top: 30px;">
+                                            <div class="tw_style" style="margin-top: 20px;">
+
+                                                <a ng-href="#!/users/detail/{{selectedEvent.user._id}}">
+                                                    <img ng-src="{{selectedEvent.user.avatar && selectedEvent.user.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{selectedEvent.user.username}}" draggable="false" class="img80_80 img-circle">
+                                                </a>
+
+                                                <a ng-repeat="guest in selectedEvent.guest" ng-href="#!/users/detail/{{guest._id}}">
+                                                    <img ng-src="{{guest.avatar && guest.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{guest.username}}" draggable="false" class="img80_80 img-circle">
+                                                </a>
+
+                                                <a href="#!" ng-if="selectedEvent.user._id !== global.user._id" ng-click="addMeToEvent($event, selectedEvent);" class="not_pagination">
+                                                    J'en suis!
+                                                </a>
+
+                                            </div>
+
+											<div id="google-map" class="google-map" style="border: 10px solid white !important; margin-top: 30px;" ng-if="selectedEvent.location">
 												<google-map
 												center="map.center"
 												zoom="map.zoom"
@@ -89,18 +111,21 @@
 												events="map.events"
 												options="map.options"
 												control="map.control">
-												<marker
-													ng-repeat="m in map.markers"
-													icon="'img/icons/pin.png'"
-													coords="m"
-													animation="google.maps.Animation.DROP"
-													click="onMarkerClicked(m);">
-												</marker>
+
+    												<marker
+    													icon="'img/icons/pin.png'"
+    													coords="marker"
+    													animation="google.maps.Animation.DROP">
+    												</marker>
+
 												</google-map>
 											</div>
+
                                         </div>
                                     </div>
+
                                     <div class="clearfix"></div>
+
                                 </div>
                             </div>
                         </div>
@@ -108,20 +133,31 @@
                 </div>
             </div>
         </div>
+
         <aside id="sidebar-widget" class="span4">
             <ul class="sidebar_widget" style="padding-top: 90px;">
                 <li id="tag_cloud-2" class="widget-container widget_tag_cloud">
+
                     <h3 class="widget-title" style="text-transform: uppercase;">
                         évènements passés
                     </h3>
-                    <div ng-repeat="event in filteredAgenda = (agenda | filter: isPastEvent) | limitToCustom:10:0" style="margin-bottom: 10px;">
+
+                    <div ng-if="pastAgenda.length > 0" ng-repeat="event in pastAgenda | limitToCustom:10:0" style="margin-bottom: 10px;">
                         <a ng-href="#!/agenda/view/{{event._id}}" title="{{event.title}}">
                             {{event.title}}
                         </a>
                     </div>
+
+                    <div ng-if="pastAgenda.length === 0" style="margin-bottom: 10px;">
+                        <a title="Rien du tout encore...">
+                            Rien du tout encore...
+                        </a>
+                    </div>
+
                 </li>
             </ul>
         </aside>
+
   	</div>
 
   	<div class="addButton">

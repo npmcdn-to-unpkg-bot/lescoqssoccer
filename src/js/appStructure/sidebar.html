@@ -13,7 +13,9 @@
 							<path ng-attr-d="{{item.svg}}"></path>
 						</svg>
 					</md-icon>
-					<span>{{item.name}}</span>
+					<span>
+						{{item.name}}
+					</span>
 				</a>
 				<a ng-if="!item.link" href="#!" ng-click="showChildren($event, item.id);">
 					<md-icon id="{{item.id}}" class="ng-isolate-scope md-default-theme" aria-hidden="true" style>
@@ -21,12 +23,16 @@
 							<path ng-attr-d="{{item.svg}}"></path>
 						</svg>
 					</md-icon>
-					<span>{{item.name}}</span>
+					<span>
+						{{item.name}}
+					</span>
 				</a>
 				<ul id="{{item.id}}-childContainer" style="display: none;">
 					<li ng-repeat="child in item.children">
 						<a md-ink-ripple="#bbb" ng-href="{{child.link}}">
-							<span>{{child.name}}</span>
+							<span>
+								{{child.name}}
+							</span>
 							<div class="md-ripple-container"></div>
 						</a>
 					</li>

@@ -21,64 +21,6 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 			'value': 'Tous les ans'
 		}];
 
-		$scope.userEvent = event || {
-			title: '',
-			type: 'inverse',
-			eventType: $scope.eventTypes[2].identifier,
-			content: '',
-			startsAt: $scope.startsAt,
-			endsAt: $scope.endsAt,
-			editable: false,
-			deletable: false,
-			incrementsBadgeTotal: true,
-			recursOn: $scope.eventRepeater[0].identifier,
-			location: {}
-		};
-
-		$scope.create = function() {
-			$scope.agendaCollection.add($scope.userEvent).then(function(userEvent) {
-				$location.path("/agenda");
-			});
-		};
-
-		/***
-		Date picker management
-		 ***/
-		$scope.open = function($event, datepicker) { //Manage opening of two datepickers
-
-			$event.preventDefault();
-			$event.stopPropagation();
-
-			if (datepicker === 'startsAt') {
-				$scope.openedStartDate = !$scope.openedStartDate;
-				$scope.openedEndDate = false;
-			} else {
-				$scope.openedEndDate = !$scope.openedEndDate;
-				$scope.openedStartDate = false;
-			}
-		};
-
-		//Update min value for end date of userEvent if startDate increase
-		$scope.$watch('userEvent.startsAt', function(newValue, oldValue) {
-			if (newValue > $scope.userEvent.endsAt) {
-				$scope.userEvent.endsAt = $scope.userEvent.startsAt;
-			}
-		});
-
-		$scope.$watch('userEvent.endsAt', function(newValue, oldValue) {
-			if (newValue < $scope.userEvent.startsAt) {
-				$scope.userEvent.startsAt = $scope.userEvent.endsAt;
-			}
-		});
-
-		//Config
-		$scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-		$scope.format = $scope.formats[2];
-		$scope.dateOptions = {
-			'year-format': "'yy'",
-			'starting-day': 1
-		};
-
 		/***
 		Map management
 		 ***/
@@ -131,6 +73,70 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 			doUgly: true
 		};
 
+		$scope.userEvent = event || {
+			title: '',
+			type: 'inverse',
+			eventType: $scope.eventTypes[2].identifier,
+			content: '',
+			startsAt: $scope.startsAt,
+			endsAt: $scope.endsAt,
+			editable: false,
+			deletable: false,
+			incrementsBadgeTotal: true,
+			recursOn: $scope.eventRepeater[0].identifier,
+			location: {
+				latitude: $scope.defaultLocation.lat,
+				longitude: $scope.defaultLocation.lng
+			},
+			guest: []
+		};
+
+		$scope.create = function() {
+			$scope.agendaCollection.add($scope.userEvent).then(function(userEvent) {
+				$location.path("/agenda");
+			});
+		};
+
+		/***
+		Date picker management
+		 ***/
+
+		//Config
+		$scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+		$scope.format = $scope.formats[2];
+		$scope.dateOptions = {
+			'year-format': "'yy'",
+			'starting-day': 1
+		};
+
+		//Close ones if other is already open
+		$scope.open = function($event, datepicker) { //Manage opening of two datepickers
+
+			$event.preventDefault();
+			$event.stopPropagation();
+
+			if (datepicker === 'startsAt') {
+				$scope.openedStartDate = !$scope.openedStartDate;
+				$scope.openedEndDate = false;
+			} else {
+				$scope.openedEndDate = !$scope.openedEndDate;
+				$scope.openedStartDate = false;
+			}
+		};
+
+		//Update min value for end date of userEvent if startDate increase
+		$scope.$watch('userEvent.startsAt', function(newValue, oldValue) {
+			if (newValue > $scope.userEvent.endsAt) {
+				$scope.userEvent.endsAt = $scope.userEvent.startsAt;
+			}
+		});
+
+		$scope.$watch('userEvent.endsAt', function(newValue, oldValue) {
+			if (newValue < $scope.userEvent.startsAt) {
+				$scope.userEvent.startsAt = $scope.userEvent.endsAt;
+			}
+		});
+
 		$scope.geocodePosition = function(pos, showModal) {
 
 			if (!this.geocoder) this.geocoder = new google.maps.Geocoder();
@@ -176,8 +182,8 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 						$scope.gotoLocation(loc.lat(), loc.lng());
 						$scope.search = results[0].formatted_address;
 						$scope.userEvent.location = {
-							latitude: loc.A,
-							longitude: loc.F
+							latitude: loc.lat(),
+							longitude: loc.lng()
 						};
 
 					} else {
@@ -237,61 +243,17 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 angular.module('mean.agenda').controller('ListController', ['$scope', '$routeParams', '$filter', '$location', '$route', 'Global', 'Agenda', '$modal',
 	function($scope, $routeParams, $filter, $location, $route, Global, Agenda, $modal) {
 
+		$scope.global = Global;
 		$scope.agenda = Agenda;
 		$scope.eventTypes = eventTypes;
 
-		$scope.setSelectedEvent = function(evt, userEvent) {
-
-			if (evt) {
-				evt.preventDefault();
-				evt.stopPropagation();
-			}
-
-			$scope.selectedEvent = userEvent;
-
-			if ($scope.selectedEvent.location) {
-				$scope.map.center = $scope.selectedEvent.location;
-			}
-		};
-
-		$scope.getFormattedDate = function(date) {
-			return $filter('date')(date, "dd MMM yyyy");
-		};
-
-		$scope.update = function(userEvent) {
-			$scope.agendaCollection.update(userEvent).then(function(newUserEvent) {
-				$location.path("/agenda");
-			});
-		};
-
-		$scope.isPastEvent = function(userEvent) {
-			return moment(userEvent.startsAt).endOf('day').isBefore(new Date()) ? userEvent.startsAt : null;
-		};
-
-		$scope.isComingEvent = function(userEvent) {
+		$scope.comingAgenda = _.filter($scope.agenda, function(userEvent){
 			return moment(userEvent.startsAt).endOf('day').isAfter(new Date()) ? userEvent.startsAt : null;
-		};
+		});
 
-		$scope.openCalendar = function(evt) {
-
-			evt.preventDefault();
-			evt.stopPropagation();
-
-			$modal.open({
-				templateUrl: 'js/agenda/views/modal/calendar.html',
-				controller: 'calendarCtrl',
-				windowClass: 'calendarPopup',
-				size: "lg",
-				resolve: {
-					Agenda: function() {
-						return $scope.agenda;
-					},
-					EventClick: function() {
-						return $scope.setSelectedEvent;
-					}
-				}
-			});
-		};
+		$scope.pastAgenda = _.filter($scope.agenda, function(userEvent){
+			return moment(userEvent.startsAt).endOf('day').isBefore(new Date()) ? userEvent.startsAt : null;
+		});
 
 		$scope.map = {
 			control: {
@@ -329,19 +291,72 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 			doUgly: true
 		};
 
-		angular.forEach($scope.agenda, function(userEvent, $index) {
+		$scope.setSelectedEvent = function(evt, userEvent) {
 
-			if (userEvent.location && userEvent.location !== "") {
-				$scope.map.markers.push({
+			if (evt) {
+				evt.preventDefault();
+				evt.stopPropagation();
+			}
+
+			$scope.selectedEvent = userEvent;
+
+			//center map on new event
+			if ($scope.selectedEvent.location) {
+
+				$scope.map.center = $scope.selectedEvent.location;
+				$scope.marker = {
 					id: userEvent._id,
 					latitude: userEvent.location.latitude,
 					longitude: userEvent.location.longitude,
-					showWindow: $index === 0,
+					showWindow: false,
 					title: userEvent.title,
 					content: userEvent.content
-				});
+				};
+
 			}
-		});
+		};
+
+		$scope.addMeToEvent = function(evt, userEvent){
+
+			if (evt) {
+				evt.preventDefault();
+				evt.stopPropagation();
+			}
+
+			userEvent.guest.push($scope.global.user._id);
+			$scope.agendaCollection.update(userEvent).then(function(newUserEvent) {
+				$location.path("/agenda");
+			});
+		};
+
+		$scope.openCalendar = function(evt) {
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			$modal.open({
+				templateUrl: 'js/agenda/views/modal/calendar.html',
+				controller: 'calendarCtrl',
+				windowClass: 'calendarPopup',
+				size: "lg",
+				resolve: {
+					Agenda: function() {
+						return $scope.agenda;
+					},
+					EventClick: function() {
+						return $scope.setSelectedEvent;
+					}
+				}
+			});
+		};
+
+		$scope.getFormattedDate = function(date) {
+			return $filter('date')(date, "dd MMM yyyy");
+		};
+
+		if($scope.comingAgenda.length > 0){
+			$scope.setSelectedEvent(null, $scope.comingAgenda[0]);
+		}
 	}
 ]);
 

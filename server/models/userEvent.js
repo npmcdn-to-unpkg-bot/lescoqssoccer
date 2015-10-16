@@ -63,6 +63,9 @@ var UserEventSchema = new Schema( {
 			type: String
 		}
 	},
+	guest: [{
+		type : mongoose.Schema.ObjectId, ref : 'User'
+	}]
 } );
 
 /**

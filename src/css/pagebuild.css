@@ -825,12 +825,8 @@ div.container3d:hover .card .face.front{
 #infscr-loading{
 	background-repeat:no-repeat; background-position:90% 50%; min-width:40px; width:90px; height:40px; line-height:40px; padding-left:10px; margin:0 auto;
 }
-.tw_style{
- text-align:center; position: relative;
-
-}
 .tw_style a{
-	display:inline-block; min-width:100px; height:100px; line-height:100px; margin:0 auto 0; border-radius: 50px;
+	display:inline-block; min-width:80px; height:80px; line-height:80px; margin:0 auto 0; border-radius: 50px;
 }
 .page-buttom-space{
 	height:80px;
@@ -1243,7 +1239,7 @@ transform: translateX(-40px);
 .nav-tabs > li{ margin-left:-1px; }
 .nav-tabs > li:first-child{ margin-left:0;}
 .nav-tabs > li > a{
-	border-radius:0; margin-right:0; padding:10px 20px; font-size:14px; border-color: #e8e8e8;
+	border-radius:0; margin-right:0; font-size:14px; border-color: #e8e8e8;
 }
 .nav-tabs > li > a:hover { color:#fff;}
 .tab-content {
