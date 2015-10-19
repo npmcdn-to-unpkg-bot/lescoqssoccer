@@ -454,7 +454,7 @@ angular.module('mean.system').directive('cmPageBuilder', function() {
 						}
 					});
 
-					$("#main-wrap").mCustomScrollbar({
+					$("#sidebar").mCustomScrollbar({
 						scrollInertia: 400,
 						autoHideScrollbar: true,
 						theme: "light",
@@ -721,7 +721,8 @@ angular.module('mean.system').directive('cmBlogPost', function() {
 		restrict: 'E',
 		replace: true,
 		link: function(scope, element, attrs) {
-			scope.contentUrl = 'js/articles/views/tiles/' + attrs.type + '.html';
+			var format = attrs.format;
+			scope.contentUrl = 'js/articles/views/' + format + '/' + attrs.type + '.html';
 			attrs.$observe("type", function(postType) {
 				scope.contentUrl = 'js/articles/views/tiles/' + postType + '.html';
 			});

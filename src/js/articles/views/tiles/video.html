@@ -17,14 +17,16 @@
 			</div>
 			<div class="item_des post-bgcolor-default">
 				<h2 class="item_title">
-					<a href="#!/articles/view/cideo/{{article._id}}" title="{{article.title}}">
+					<a href="#!/articles/view/video/{{article._id}}" title="{{article.title}}">
 					{{article.title}}
 					</a>
 				</h2>
 				<div class="like clear"></div>
-				<!--End like-->
+				<div style="padding: 10px 20px;">
+					<i class="fa fa-user"></i> {{article.user.username}}
+					<i class="fa fa-comment"></i> {{article.comments.length}}
+				</div>
 			</div>
 		</div>
 	</div>
-	<!--End inside-->
 </div>

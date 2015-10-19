@@ -61,7 +61,8 @@
 															<a ng-href="#!/users/detail/{{user._id}}" class="team-item-title" title="{{user.name || user.username}}" style="vertical-align: middle;display: table-cell;">
 															{{user.name || user.username}}
 															<p class="team-icons">
-															<i class="fa fa-search-plus"></i>
+																<i class="fa fa-search-plus"></i>
+																<i class="fa fa-comment"></i>
 															</p>
 															</a>
 														</div>
@@ -82,7 +83,23 @@
 				<div class="nicescroll">
 					<div class="wrapper">
 						<ul class="list-group list-group-list">
+
 							<!-- offline class for grayscale -->
+							<li class="list-group-item">
+								<div class="media">
+									<div class="media-left media-middle">
+										<a href="#">
+										</a>
+									</div>
+									<div class="media-body media-middle">
+										<a href="#" style="line-height: 40px;">Tous</a>
+									</div>
+									<div class="media-right media-middle">
+										<i class="fa fa-comment text-muted"></i>
+									</div>
+								</div>
+							</li>
+
 							<li class="list-group-item" ng-repeat="user in team" ng-if="global.user._id !== user._id">
 								<div class="media">
 									<div class="media-left media-middle">
@@ -111,7 +128,7 @@
 
 				<!-- Chatting with -->
 				<div class="friend">
-					<button class="btn btn-white btn-outline btn-rounded pull-right" data-toggle="close" style="margin-right: -5px;">
+					<button class="pull-right" data-toggle="close" style="margin-right: -5px;">
 					<i class="fa fa-times"></i>
 					</button>
 					<a href="#" class="bold"><i class="fa fa-person"></i> Michelle D.</a>
@@ -312,7 +329,7 @@
 				<div class="message-comment">
 					<div class="media">
 						<div class="media-body media-middle">
-							<textarea type="text" class="form-control" placeholder="Write Message"/></textarea>
+							<textarea type="text" class="form-control" placeholder="Ecrire un message"/></textarea>
 						</div>
 						<div class="media-right media-middle">
 							<button class="btn btn-white btn-outline btn-rounded" data-toggle="dropdown">

@@ -14,7 +14,10 @@
 					<div ng-bind-html="getFormattedContent(article.content)" class="articleContent"></div>
 				</div>
 				<div class="like clear"></div>
-				<!--End like-->
+				<div style="padding: 10px 20px;">
+					<i class="fa fa-user"></i> {{article.user.username}}
+					<i class="fa fa-comment"></i> {{article.comments.length}}
+				</div>
 			</div>
 		</div>
 	</div>

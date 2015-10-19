@@ -752,7 +752,7 @@ color:#ccc; color:rgba(255,255,255,0.4); background-color:#666; background-color
   transform-origin: 50% 50%;
 }
 #main-wrap{
-  position:relative; z-index:3; width: 100%; margin:0 auto; left:0; top:0; padding-left:150px;
+  z-index:3; width: 100%; margin:0 auto; left:0; top:0; padding-left:150px;
 }
 #sidebar:hover ~ #main-wrap #main {
 -webkit-transform: scale(0.89);
@@ -4512,3 +4512,30 @@ li:not(.active)>.ripplelink:hover{
     margin: 0px;
     vertical-align: bottom;
 }
+
+/*.pop {
+    position: absolute;
+    left: 150px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    min-height: 100vh;
+    width: calc(100vw - 150px);
+    background-color: #f0f0f0;
+}
+.pop.ng-enter,
+.pop.ng-leave {
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+}
+.pop.ng-enter {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+.pop.ng-enter-active,
+.pop.ng-leave,
+.pop.ng-leave-active {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+.pop.ng-leave-active {}*/

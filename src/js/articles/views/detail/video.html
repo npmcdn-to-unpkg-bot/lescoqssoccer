@@ -1,0 +1,99 @@
+<div class="clearfix filters filter-floating">
+	<ul style="top:20px; right: 100px;">
+		<li><a href="#!" data-ng-click="edit($event);">Editer</a></li>
+		<li><a href="#!" data-ng-click="remove($event);">Supprimer</a></li>
+	</ul>
+	<div class="filter-floating-triggle notClickable hidden-phone" style="top:20px; right: 60px;" ng-show="global.user._id === article.user._id">
+		<i class="fa fa-cogs"></i>
+	</div>
+</div>
+
+<div id="post-1039" class="post type-post status-publish format-standard hentry category-blog">
+	<div class="row-fluid two-cols-layout" style="min-height: 100vh;">
+		<div id="content_wrap" class="span8">
+
+			<div class="title-bar-wrap " id="title-bar" style="padding: 50px 0; max-height: 280px;">
+				<div id="title-wrap">
+					<div class="title-wrap-inn">
+						<div id="main-title">
+							<h1 class="main-title" style="text-transform: uppercase;">
+								{{article.title}}
+							</h1>
+							<div class="post-meta">
+								<span class="post-meta-unit date">
+									Date: {{article.created | date:"dd MMM yyyy"}}
+								</span>
+								<span class="post-meta-unit tag"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="entry">
+				<div class="videoWrapper video-wrap video-post-wrap viemo " style="padding-bottom: 56.25%">
+                    <iframe
+                        src="http://player.vimeo.com/video/4240369?title=0&amp;byline=0&amp;portrait=0"
+                        width="100%" height="auto" frameborder="0" webkitallowfullscreen=""
+                        mozallowfullscreen="" allowfullscreen="">
+                    </iframe>
+                </div>
+			</div>
+
+			<div id="comments">
+				<div id="respondwrap">
+					<div id="respond" class="comment-respond" style="margin-top: 60px;">
+						<h3 id="reply-title" class="comment-reply-title" style="margin-bottom:30px;">
+							COMMENTAIRES
+						</h3>
+						<div class="comments" ng-class="{'reply': comment.isReply}" ng-repeat="comment in article.comments | orderBy:'-created'" style="margin-bottom: 20px;">
+							<p class="meta">
+							<a href="#!" style="color: #333;">{{comment.user.name || global.user.name}}</a> - {{comment.created | date:dateFormat}}
+							</p>
+							<div class="comments_content">
+								<p>{{comment.content}}</p>
+								<a href="#!" class="reply">Répondre</a>
+								<div class="clr"></div>
+								<div class="reply_icon"></div>
+							</div>
+						</div>
+						<h3 id="reply-title" class="comment-reply-title" style="margin-bottom:30px;">
+						<span class="comm-reply-title">LAISSER UN COMMENTAIRE</span>
+						</h3>
+						<form class="comment-form">
+							<!-- ajouter les commentaires anonymes -->
+							<p>
+							<textarea
+							name="comment"
+							ng-model="comment"
+							class="requiredFieldcomm"
+							cols="100%"
+							tabindex="4"
+							aria-required="true"
+							placeholder="COMMENTAIRE">
+							</textarea>
+							</p>
+							<p class="form-submit" style="text-align: right;">
+							<input name="submit" type="button" id="submit" value="AJOUTER" ng-click="addComment();">
+							</p>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<aside id="sidebar-widget" class="span4">
+			<ul class="sidebar_widget" style="padding-top: 130px;">
+				<li id="tag_cloud-2" class="widget-container widget_tag_cloud">
+					<h3 class="widget-title">Tags</h3>
+					<div class="tagcloud">
+						<a ng-repeat="category in article.categories" title="{{category.value}}" style="font-size: 11px;">
+						{{category.value}}
+						</a>
+					</div>
+				</li>
+			</ul>
+		</aside>
+	</div>
+</div>
+<cm-page-builder></cm-page-builder>
