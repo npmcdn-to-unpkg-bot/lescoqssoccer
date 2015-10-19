@@ -2823,6 +2823,10 @@ input:-moz-placeholder { color:white; }
     padding-left:60px;
     background-color: #333333;
 }
+.comments.reply {
+    padding-left:60px;
+    background-color: #f0f0f0;
+}
 .reply_icon {
     width:31px;
     height:33px;

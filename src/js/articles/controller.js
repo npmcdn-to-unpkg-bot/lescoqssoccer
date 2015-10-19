@@ -37,6 +37,7 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 		$scope.global = Global;
 		$scope.ArticlesCollection = ArticlesCollection;
 		$scope.article = Article;
+		$scope.replies = [];
 
 		//Format html content from article content edit by wysiwyg
 		$scope.getFormattedContent = function(html) {
@@ -44,10 +45,14 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 		};
 
 		$scope.getAnswers = function(comment) {
-			return _.filter($scope.article.comments, function(_comment){
-				return _comment.isReply && _comment.parent === comment._id;
+			return _.filter($scope.article.comments, function(_comment) {
+				return _comment.isReply &&_comment.parent === comment._id;
 			});
 		};
+
+		_.each($scope.article.comments, function(reply) {
+			$scope.replies.push($scope.getAnswers(reply));
+		});
 
 		$scope.showAnswerForm = function(evt, id) {
 
@@ -56,8 +61,26 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 
 			$scope.parent = id;
 
-			$('#' + id).toggle();
+			$(".reply-cancel").hide();
+			$(".reply:not(.reply-cancel)").show();
+
+			$("#" + id + '-reply').hide();
+			var elt = $("#" + id + "-reply-cancel");
+
+			elt.show();
+			$('#formAnswer').show().insertAfter(elt);
 		};
+
+		$scope.hideAnswerForm = function(evt, id) {
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			$(".reply-cancel").hide();
+			$('#formAnswer').hide();
+			$(".reply:not(.reply-cancel)").show();
+		};
+
 
 		$scope.addComment = function(answer) {
 
@@ -76,6 +99,7 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 				$scope.ArticlesCollection.update($scope.article).then(function() {
 					$scope.comment = "";
 					$scope.parent = "";
+					$('#formAnswer').hide();
 				});
 			}
 

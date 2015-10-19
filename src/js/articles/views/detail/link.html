@@ -1,0 +1,133 @@
+<div id="post-1039" class="post type-post status-publish format-standard hentry category-blog">
+
+	<div class="clearfix filters filter-floating" style="margin-top: 20px;">
+		<ul>
+			<li><a href="#!" data-ng-click="edit($event);">Editer</a></li>
+			<li><a href="#!" data-ng-click="remove($event);">Supprimer</a></li>
+		</ul>
+		<div class="filter-floating-triggle notClickable" ng-show="global.user._id === article.user._id">
+			<i class="fa fa-cogs"></i>
+		</div>
+	</div>
+	<div class="row-fluid two-cols-layout" style="min-height: 100vh;">
+		<div id="content_wrap" class="span8">
+
+			<div class="title-bar-wrap " id="title-bar" style="padding: 50px 0; max-height: 280px;">
+				<div id="title-wrap">
+					<div class="title-wrap-inn">
+						<div id="main-title">
+							<h1 class="main-title" style="text-transform: uppercase;">
+							{{article.title}}
+							</h1>
+							<div class="post-meta">
+								<span class="post-meta-unit date">
+								Date: {{article.created | date:"dd MMM yyyy"}}
+								</span>
+								<span class="post-meta-unit tag"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<ul class="link-wrap">
+				<li ng-repeat="link in article.linkAdress">
+					<a title="{{link.value}}" ng-href="{{link.adress}}">
+						<i class="m-link"></i>{{link.value}}
+					</a>
+				</li>
+			</ul>
+
+			<div id="comments">
+				<div id="respondwrap">
+					<div id="respond" class="comment-respond">
+						<h3 id="reply-title" class="comment-reply-title">
+						COMMENTAIRES
+						</h3>
+
+						<div
+							class="comments"
+							ng-repeat="comment in article.comments | orderBy:'-created'"
+							ng-if="!comment.isReply"
+							ng-class="{'reply': comment.isReply}">
+							<p class="meta">
+							<a ng-href="#!/users/detail/{{comment.user._id || global.user._id}}">
+							{{comment.user.name || global.user.name}}
+							</a> - {{comment.created | date:dateFormat}}
+							</p>
+
+							<!-- ajouter les commentaires anonymes -->
+							<div class="comments_content">
+								<p>
+								{{comment.content}}
+								</p>
+								<a href="#!" ng-click="showAnswerForm($event, comment._id)" class="reply">
+								Répondre
+								</a>
+								<form class="comment-form answer" id="{{comment._id}}" style="display: none;">
+
+									<p style="margin-bottom: 0px !important;padding-right: 0;margin-right: -20px;">
+									<textarea
+									name="answer"
+									ng-model="answer"
+									class="requiredFieldcomm"
+									cols="100%"
+									tabindex="4"
+									aria-required="true"
+									placeholder="COMMENTAIRE">
+									</textarea>
+									</p>
+									<p class="form-submit" style="text-align: right; margin-bottom: 0px !important;padding-right: 0;margin-right: -20px;">
+									<input name="submit" type="button" id="submit" value="Répondre" ng-click="addComment(true);">
+									</p>
+								</form>
+								<div class="clr"></div>
+								<div class="reply_icon"></div>
+							</div>
+						</div>
+
+						<h3 id="reply-title" class="comment-reply-title">
+						<span class="comm-reply-title">
+						LAISSER UN COMMENTAIRE
+						</span>
+						</h3>
+						<form class="comment-form">
+							<p>
+							<textarea
+							name="comment"
+							ng-model="comment"
+							class="requiredFieldcomm"
+							cols="100%"
+							tabindex="4"
+							aria-required="true"
+							placeholder="COMMENTAIRE">
+							</textarea>
+							</p>
+							<p class="form-submit" style="text-align: right;">
+							<input name="submit" type="button" id="submit" value="AJOUTER" ng-click="addComment();">
+							</p>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<aside id="sidebar-widget" class="span4">
+			<ul class="sidebar_widget" style="padding-top: 130px;">
+				<li id="tag_cloud-2" class="widget-container widget_tag_cloud">
+					<h3 class="widget-title">Tags</h3>
+					<div class="tagcloud">
+						<a ng-repeat="category in article.categories" title="{{category.value}}" style="font-size: 11px;">
+						{{category.value}}
+						</a>
+						<h4 ng-if="article.categories.length === 0">
+						Pas de tags associés
+						</h4>
+					</div>
+				</li>
+			</ul>
+		</aside>
+
+	</div>
+</div>
+<cm-page-builder></cm-page-builder>

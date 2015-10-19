@@ -46,8 +46,7 @@
 						<div
 						class="comments"
 						ng-repeat="comment in article.comments | orderBy:'-created'"
-						ng-if="!comment.isReply"
-						ng-class="{'reply': comment.isReply}">
+						ng-if="!comment.isReply">
 
 							<p class="meta">
 								<a ng-href="#!/users/detail/{{comment.user._id || global.user._id}}">
@@ -60,30 +59,34 @@
 								<p>
 									{{comment.content}}
 								</p>
-								<a href="#!" ng-click="showAnswerForm($event, comment._id)" class="reply">
+								<a ng-attr-id="{{comment._id}}-reply" href="#!" ng-click="showAnswerForm($event, comment._id)" class="reply">
 									Répondre
 								</a>
+								<a ng-attr-id="{{comment._id}}-reply-cancel" href="#!" ng-click="hideAnswerForm($event, comment._id)" class="reply reply-cancel" style="display: none;">
+									Annuler
+								</a>
+							</div>
 
-								<form class="comment-form answer" id="{{comment._id}}" style="display: none;">
+							<div
+							class="comments reply"
+							ng-repeat="reply in replies | filter:getAnswers"
+							ng-if="!reply.isReply">
 
-									<p style="margin-bottom: 0px !important;padding-right: 0;margin-right: -20px;">
-										<textarea
-										name="answer"
-										ng-model="answer"
-										class="requiredFieldcomm"
-										cols="100%"
-										tabindex="4"
-										aria-required="true"
-										placeholder="COMMENTAIRE">
-										</textarea>
+								<p class="meta">
+									<a ng-href="#!/users/detail/{{reply.user._id || global.user._id}}">
+										{{reply.user.name || global.user.name}}
+									</a> - {{reply.created | date:dateFormat}}
+								</p>
+
+								<!-- ajouter les commentaires anonymes -->
+								<div class="comments_content">
+									<p>
+										{{reply.content}}
 									</p>
-									<p class="form-submit" style="text-align: right; margin-bottom: 0px !important;padding-right: 0;margin-right: -20px;">
-										<input name="submit" type="button" id="submit" value="Répondre" ng-click="addComment(true);">
-									</p>
-								</form>
 
-								<div class="clr"></div>
-								<div class="reply_icon"></div>
+									<div class="clr"></div>
+									<div class="reply_icon"></div>
+								</div>
 							</div>
 						</div>
 
@@ -107,6 +110,23 @@
 							</p>
 							<p class="form-submit" style="text-align: right;">
 							<input name="submit" type="button" id="submit" value="AJOUTER" ng-click="addComment();">
+							</p>
+						</form>
+
+						<form class="comment-form answer" id="formAnswer" style="display: none;">
+							<p style="margin-bottom: 0px !important;padding-right: 0;margin-right: -20px;">
+								<textarea
+								name="answer"
+								ng-model="answer"
+								class="requiredFieldcomm"
+								cols="100%"
+								tabindex="4"
+								aria-required="true"
+								placeholder="COMMENTAIRE">
+								</textarea>
+							</p>
+							<p class="form-submit" style="text-align: right; margin-bottom: 0px !important;padding-right: 0;margin-right: -20px;">
+								<input name="submit" type="button" id="submit" value="Répondre" ng-click="addComment(true);">
 							</p>
 						</form>
 
