@@ -4419,3 +4419,96 @@ md-icon {
     height: 24px;
     width: 24px;
 }
+
+li:not(.active)>.ripplelink:hover{
+  z-index:1000;
+  box-shadow:rgba(0, 0, 0, 0.3) 0 16px 16px 0;
+  -webkit-box-shadow:rgba(0, 0, 0, 0.3) 0 16px 16px 0;
+  -moz-box-shadow:rgba(0, 0, 0, 0.3) 0 16px 16px 0;
+}
+
+.login-box{
+    background-color: #333;
+    padding: 30px;
+    margin: 50px auto;
+    width: auto;
+    display: table;
+    color: white;
+}
+
+.login-box label{
+    color: white;
+    margin-top: 20px;
+}
+
+.login-box input{
+    border-style: none none solid none;
+    border-bottom-width: 2px;
+    background: none;
+    border-color: white !important;
+}
+
+.login-box .info-box{
+    margin-bottom: 40px;
+}
+
+.signin{
+    width: 350px;
+}
+
+.signup{
+    width: 800px;
+}
+
+.signup label{
+    float: left;
+}
+
+.login-box input{
+    width: 350px;
+}
+
+.login-box img{
+    margin-bottom: 20px;
+}
+
+.isite-avatar, .login-box .footer{
+    text-align: center;
+    margin-top: 30px;
+}
+
+ .login-box .footer button{
+    border: 1px solid;
+}
+
+.signup .half-left, .signup .half-right{
+    margin-bottom: 30px;
+}
+
+.secondLine{
+    margin-top: 60px;
+}
+
+/* ================= HALFBOX ================== */
+.half-box {
+    position: relative;
+    width: 100%;
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
+    vertical-align: bottom;
+}
+.half-left {
+    float: left;
+    width: 50%;
+    padding-right: 60px;
+    margin: 0px;
+    vertical-align: bottom;
+}
+.half-right {
+    float: left;
+    width: 50%;
+    padding-left: 60px;
+    margin: 0px;
+    vertical-align: bottom;
+}
