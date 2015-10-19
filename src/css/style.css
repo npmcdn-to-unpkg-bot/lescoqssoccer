@@ -1312,6 +1312,9 @@ a.rsswidget img{ margin-bottom:-1px; margin-right:10px; }
 #comments_box{
   margin-bottom: 60px; padding-top: 60px;
 }
+.comment-respond{
+  margin-top: 60px;
+}
 .item_respondbtn{
   display:none
 }
@@ -2800,7 +2803,7 @@ input:-moz-placeholder { color:white; }
 /* ================= COMMENTS ================== */
 .comments {
     margin-top:30px;
-    margin-bottom:0px;
+    margin-bottom: 20px;
 }
 .comments p {
     margin-bottom:60px !important;
@@ -2832,6 +2835,12 @@ input:-moz-placeholder { color:white; }
 }
 .comments.reply .reply_icon {
     display:block !important;
+}
+.comments>a{
+    color: #333;
+}
+.comment-reply-title{
+  margin-bottom:30px;
 }
 .comments a.reply {
     font-size:12px;

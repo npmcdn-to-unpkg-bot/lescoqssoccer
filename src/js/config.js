@@ -39,17 +39,7 @@ angular.module('mean').config(['$routeProvider',
 		when('/articles', {
 			templateUrl: 'js/articles/views/list.html',
 			controller: 'ArticlesController',
-			resolve: {
-				Articles: function(ArticlesCollection) {
-					return ArticlesCollection.load(1);
-				},
-				Page: function() {
-					return 1;
-				},
-				ItemsCount: function(ArticlesCollection){
-					return ArticlesCollection.getItemsCount();
-				}
-			}
+			resolve: ArticlesData
 		}).
 		when('/articles/create/:view', {
 			templateUrl: function(params){
@@ -61,17 +51,7 @@ angular.module('mean').config(['$routeProvider',
 		when('/articles/:page', {
 			templateUrl: 'js/articles/views/list.html',
 			controller: 'ArticlesController',
-			resolve: {
-				Articles: function(ArticlesCollection, $route) {
-					return ArticlesCollection.load($route.current.params.page);
-				},
-				Page: function($route) {
-					return $route.current.params.page;
-				},
-				ItemsCount: function(ArticlesCollection){
-					return ArticlesCollection.getItemsCount();
-				}
-			}
+			resolve: ArticlesData
 		}).
 		when('/articles/view/:view/:id', {
 			templateUrl: function(params){
@@ -86,21 +66,6 @@ angular.module('mean').config(['$routeProvider',
 			},
 			controller: 'CreateArticleController',
 			resolve: ArticleDetailData
-		}).
-
-		/** LINKS ****/
-		when('/links', {
-			templateUrl: 'js/links/views/links.html',
-			controller: 'LinkController',
-			resolve: {
-				Links: function(LinksCollection, $route) {
-					return LinksCollection.load();
-				}
-			}
-		}).
-		when('/links/create', {
-			templateUrl: 'js/links/views/create.html',
-			controller: 'CreateLinkController'
 		}).
 
 		/** ALBUMS ****/

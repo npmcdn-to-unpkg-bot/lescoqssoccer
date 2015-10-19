@@ -75,9 +75,12 @@ var ArticleSchema = new Schema({
 			type: String,
 			default: ''
 		},
-		isAnswer: {
+		isReply: {
 			type: Boolean,
 			default: false
+		},
+		parent: {
+			type: String
 		}
 	})]
 });
