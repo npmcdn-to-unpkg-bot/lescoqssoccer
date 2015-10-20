@@ -26,14 +26,13 @@ angular.module('mean.users').controller('TeamController', ['$scope', 'Global', '
 	}
 ]);
 
-angular.module('mean.agenda').controller('UserDetailController', ['$scope', 'User',
+angular.module('mean.users').controller('UserDetailController', ['$scope', 'User',
 
 	function($scope, User) {
 
 		$scope.user = User;
 	}
 ]);
-
 
 angular.module('mean.users').controller('ProfileController', ['$scope', 'Global', 'User', '$translate', 'FileUploader',
 
@@ -107,6 +106,19 @@ angular.module('mean.users').controller('ProfileController', ['$scope', 'Global'
 		};
 
 		$scope.initSkill();
+	}
+]);
+
+angular.module('mean.users').controller('ChatController', ['$scope', 'Team',
+
+	function($scope, Team) {
+
+		$scope.team = Team;
+		$scope.message = "";
+
+		$scope.sendMessage = function(){
+			console.warn($scope.message);
+		};
 	}
 ]);
 

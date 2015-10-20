@@ -625,40 +625,6 @@ angular.module('mean.system').directive('cmPageBuilder', function() {
 					});
 
 				}
-
-				if ($('#chat').length > 0) {
-
-					var chat = $('#chat'),
-						chatMessage = $('#chatMessage'),
-						body = $('body');
-
-					$('#chatMessages').on('click', function() {
-						// Right Sidebar (Toggle Right Button) (Mobile)
-						if ($(".sidebar-right-open").length > 0 && $('.sidebar-right-open').attr('id') != 'chat') {
-							// other right sidebar is open keep overlay
-							$('body').addClass('sidebar-push-toleft');
-						} else {
-							body.toggleClass('sidebar-push-toleft');
-						}
-
-						closeSidebar('sidebar-right');
-						chat.toggleClass('sidebar-right-open');
-					});
-
-					// open message sidebar
-					$('#chat ul li').on('click', function() {
-						chatMessage.toggleClass('sidebar-right-open');
-						$('.nicescroll').css('position', 'relative');
-					});
-
-					$('#chatMessage [data-toggle="close"]').on('click', function() {
-						// remove all push-to classes from body
-						chatMessage.toggleClass('sidebar-right-open');
-						$('.nicescroll').css('position', 'initial');
-					});
-
-					$('.nicescroll').css('position', 'initial');
-				}
 			});
 		}
 	}

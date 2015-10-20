@@ -1,0 +1,74 @@
+<div id="respondwrap" class="chat-wrapper timeline">
+    <ul>
+        <li>hello,are we meeting today?</li>
+        <li>yes,what time suits you?</li>
+        <li>i was thinking after lunch,i have a meeting in the morning</li>
+        <li>maybe another day?</li>
+        <li>that's all right,what's about you? what are you going to do?</li>
+        <li>i have no idea,go out for a walk or watching tv in home</li>
+        <li>hello,are we meeting today?</li>
+        <li>yes,what time suits you?</li>
+        <li>i was thinking after lunch,i have a meeting in the morning</li>
+        <li>maybe another day?</li>
+        <li>that's all right,what's about you? what are you going to do?</li>
+        <li>i have no idea,go out for a walk or watching tv in home</li>
+    </ul>
+    <div class="message-comment" style="padding-right: 20px;padding-top: 10px;">
+        <textarea
+        placeholder="Ecrire un message"
+        ng-model="message"
+        ng-enter="sendMessage()"
+        style="height: 110px; width: 100%; margin-bottom: 10px;"/>
+        </textarea>
+        <button class="pull-right" ng-click="sendMessage();">
+            <i class="fa fa-comment"></i> Envoyer
+        </button>
+    </div>
+</div>
+
+<!-- Sidebar Chat -->
+<div class="sidebar right-side" id="chat">
+    <div class="nicescroll">
+        <div class="wrapper">
+            <ul class="list-group list-group-list">
+
+                <!-- offline class for grayscale -->
+                <li class="list-group-item">
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <a href="#">
+                            </a>
+                        </div>
+                        <div class="media-body media-middle">
+                            <a href="#" style="line-height: 40px;">Tous</a>
+                        </div>
+                        <div class="media-right media-middle">
+                            <i class="fa fa-comment text-muted"></i>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="list-group-item" ng-repeat="user in team" ng-if="global.user._id !== user._id">
+                    <div class="media">
+                        <div class="media-left media-middle">
+                            <a href="#">
+                            <img ng-src="{{user.avatar && user.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{user.name || user.username}}" class="img-circle border-white" width="40">
+                            </a>
+                        </div>
+                        <div class="media-body media-middle">
+                            <a href="#">{{user.name || user.username}}</a>
+                        </div>
+                        <div class="media-right media-middle">
+                            <i class="fa fa-comment text-muted"></i>
+                        </div>
+                        <div class="media-right media-middle">
+                            <i class="fa fa-circle text-success text-xs"></i>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<cm-page-builder></cm-page-builder>
