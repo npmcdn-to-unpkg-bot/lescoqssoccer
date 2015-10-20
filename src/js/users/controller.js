@@ -109,15 +109,17 @@ angular.module('mean.users').controller('ProfileController', ['$scope', 'Global'
 	}
 ]);
 
-angular.module('mean.users').controller('ChatController', ['$scope', 'Team',
+angular.module('mean.users').controller('ChatController', ['$scope', 'Team', 'ConversationService',
 
-	function($scope, Team) {
+	function($scope, Team, ConversationService) {
 
 		$scope.team = Team;
 		$scope.message = "";
 
 		$scope.sendMessage = function(){
-			console.warn($scope.message);
+			if($scope.message !== ""){
+				console.warn($scope.message);
+			}
 		};
 	}
 ]);
