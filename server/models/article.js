@@ -75,13 +75,20 @@ var ArticleSchema = new Schema({
 			type: String,
 			default: ''
 		},
-		isReply: {
-			type: Boolean,
-			default: false
-		},
-		parent: {
-			type: String
-		}
+		replies: [new Schema({
+			created: {
+				type: Date,
+				default: Date.now
+			},
+			user: {
+				type: Schema.Types.ObjectId,
+				ref: 'User'
+			},
+			content: {
+				type: String,
+				default: ''
+			}
+		})]
 	})]
 });
 /**

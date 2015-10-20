@@ -531,6 +531,9 @@ Isotope
 .filter-floating {
 	position: absolute; z-index: 999; right: 20px; top: 20px; width: auto; min-width: 60px; height: 60px;
 }
+.filter-custom {
+	z-index: 999; left: 30px; top: 20px; width: auto; min-width: 60px; height: 60px;
+}
 .filter-floating.filter-floating-fixed {
 	position: fixed;
 }
@@ -551,7 +554,13 @@ Isotope
 .filter-floating-triggle{
 	width: 60px; height: 60px; font-size: 24px; text-align: center; line-height: 60px; cursor: pointer; border-radius: 0px; position: absolute; z-index: 999;
 }
+.filter-floating-custom{
+	background-color: #333;width: 60px; height: 60px; font-size: 24px; text-align: center; line-height: 60px; cursor: pointer; border-radius: 0px; float: right; z-index: 999;
+}
 
+.filter-floating-custom:hover{
+	color:white;
+}
 
 /*Mouseover Fade*/
 

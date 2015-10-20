@@ -1366,7 +1366,7 @@ ol.commentlist {
 #respond textarea{ font-size:12px; width:100%; max-width:none; height:128px; overflow:auto; resize:none; padding:7px 10px 7px 10px; margin-bottom:25px; }
 .sending{ float:left; display:block;width:80px; height:27px;line-height:27px;}
 h3#reply-title{
-  position: relative; line-height: 20px; margin-bottom: 80px;
+  position: relative; line-height: 20px; margin-bottom: 40px;
 }
 #comments_inlist,
 .comm-reply-title{
@@ -2026,7 +2026,7 @@ input.wpcf7-form-control.wpcf7-submit:hover,
 .sidebar_widget textarea{ height:75px; }
 .sidebar_widget .widget_search input[type="text"],
 .sidebar_widget .widget_display_search input[type="text"]{ margin-bottom:0; }
-.tagcloud a{ background:#333333; }
+.tagcloud a{ background:#333333; color: white;}
 .sidebar_widget .widget_uxconatactform input#idi_send{ border:none; color:#fff; }
 .sidebar_widget .widget_uxconatactform input#idi_send:hover,
 .tagcloud a:hover,
@@ -2806,7 +2806,7 @@ input:-moz-placeholder { color:white; }
     margin-bottom: 20px;
 }
 .comments p {
-    margin-bottom:60px !important;
+    margin-bottom:45px !important;
     padding-right:60px;
 }
 .comments .meta {
@@ -2828,12 +2828,12 @@ input:-moz-placeholder { color:white; }
     background-color: #f0f0f0;
 }
 .reply_icon {
-    width:31px;
-    height:33px;
+    width:40px;
+    height:40px;
     background-image:url(../img/reply.png);
     position:absolute;
     display:none;
-    top:-52px;
+    top:-45px;
     left:-45px;
     background-repeat:no-repeat;
 }
@@ -2847,6 +2847,7 @@ input:-moz-placeholder { color:white; }
   margin-bottom:30px;
 }
 .comments a.reply {
+    color: #FFFFFF;
     font-size:12px;
     position:absolute;
     top:-1px;

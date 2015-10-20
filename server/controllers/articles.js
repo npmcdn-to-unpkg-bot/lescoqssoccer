@@ -97,7 +97,8 @@ exports.all = function(req, res) {
 		.limit(perPage)
 		.skip(perPage * page)
 		.populate('user', 'name username avatar')
-		.populate('comments.user').exec(function(err, articles) {
+		.populate('comments.user')
+		.populate('comments.replies.user').exec(function(err, articles) {
 
 			if (err) {
 
