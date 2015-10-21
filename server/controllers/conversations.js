@@ -8,10 +8,10 @@ var mongoose = require('mongoose'),
 	_ = require('lodash');
 
 /**
- * Find link by id
+ * Find conversation by id
  */
 exports.conversation = function(req, res, next, id) {
-	conversation.load(id, function(err, conversation) {
+	Conversation.load(id, function(err, conversation) {
 		if (err) return next(err);
 		if (!conversation) return next(new Error('Failed to load conversation ' + id));
 		req.conversation = conversation;
@@ -26,8 +26,9 @@ exports.create = function(req, res) {
 
 	var conversation = new Conversation(req.body);
 	conversation.save(function(err) {
-		console.log("Error when create conversation: " + err);
+
 		if (err) {
+			console.log("Error when create conversation: " + err);
 			return res.send('users/signup', {
 				errors: err.errors,
 				conversation: conversation
@@ -45,7 +46,9 @@ exports.update = function(req, res) {
 
 	var conversation = req.conversation;
 	conversation = _.extend(conversation, req.body);
+
 	conversation.save(function(err) {
+		console.warn(err);
 		if (err) {
 			return res.send('users/signup', {
 				errors: err.errors,
@@ -86,21 +89,22 @@ exports.show = function(req, res) {
  * List of conversations
  */
 exports.all = function(req, res) {
-		Conversation.find({
-				users: {
-					$in: [req.user.id, 'all']
-				})
-			.sort('-created')
-			.populate('users')
-			.populate('messages.user').exec(function(err, conversations) {
+	Conversation.find({
+			users: {
+				$in: [req.user.id]
+			}
+		})
+		.sort('-created')
+		.populate('users')
+		.populate('messages.user').exec(function(err, conversations) {
 
-				if (err) {
-					res.render('error', {
-						status: 500
-					});
-				} else {
-					res.jsonp(conversations);
-				}
+			if (err) {
+				res.send('error', {
+					status: 500
+				});
+			} else {
+				res.jsonp(conversations);
+			}
 
-			});
-		};
+		});
+};

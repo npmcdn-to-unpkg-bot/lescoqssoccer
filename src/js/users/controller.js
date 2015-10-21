@@ -111,13 +111,15 @@ angular.module('mean.users').controller('ProfileController', ['$scope', 'Global'
 
 angular.module('mean.users').controller('ChatController', ['$scope', 'Global', 'Team', 'ConversationService',
 
-	function($scope, Global, Team, ConversationService) {
+	function($scope, Global, Team, ConversationService, Conversation) {
 
 		$scope.global = Global;
 		$scope.team = Team;
 		$scope.conversationService = ConversationService;
-		$scope.conversation;
-		$scope.message = "";
+		$scope.conversation = Conversation;
+		$scope.message = {
+			content: ""
+		};
 
 		$scope.selectUser = function(evt, user) {
 
@@ -130,20 +132,21 @@ angular.module('mean.users').controller('ChatController', ['$scope', 'Global', '
 		};
 
 		$scope.sendMessage = function() {
-			if ($scope.message !== "") {
+
+			if ($scope.message.content !== "") {
 
 				$scope.conversation.messages.push({
 					user: $scope.global.user._id,
-					content: $scope.message
+					content: $scope.message.content
 				});
 
-				if($scope.conversation._id){
+				if(!$scope.conversation._id){
 					$scope.conversationService.add($scope.conversation).then(function(conversation){
-						console.warn('Conversation added');
+						$scope.message.content = "";
 					});
 				} else {
 					$scope.conversationService.update($scope.conversation).then(function(conversation){
-						console.warn('Conversation update');
+						$scope.message.content = "";
 					});
 				}
 			}
@@ -157,6 +160,24 @@ var TeamData = {
 		return Users.query({}, function(users) {
 			return users;
 		}).$promise;;
+	}
+
+};
+
+var ChatData = {
+
+	Team: function(Users) {
+		return Users.query({}, function(users) {
+			return users;
+		}).$promise;;
+	},
+
+	Conversations: function(ConversationService){
+		return ConversationService.load();
+	},
+
+	Conversation: function(ConversationService, $route){
+		return ConversationService.getConversationById($route.current.params.id);
 	}
 
 };

@@ -1,13 +1,13 @@
-<div id="respondwrap" class="chat-wrapper timeline">
+<div id="respondwrap" class="chat-wrapper timeline" ng-if="conversation">
     <ul>
-        <li ng-repeat="item in conversation.messages | orderBy:'-created'">
+        <li ng-repeat="item in conversation.messages | orderBy:'created'">
             {{item.content}}
         </li>
     </ul>
     <div class="message-comment" style="padding-right: 20px;padding-top: 10px;">
         <textarea
         placeholder="Ecrire un message"
-        ng-model="message"
+        ng-model="message.content"
         ng-enter="sendMessage()"
         style="height: 110px; width: 100%; margin-bottom: 10px;"/>
         </textarea>
@@ -39,15 +39,15 @@
                     </div>
                 </li>
 
-                <li class="list-group-item" ng-repeat="user in team" ng-if="global.user._id !== user._id">
+                <li class="list-group-item" ng-repeat="user in team" ng-if="global.user._id !== user._id" ng-click="selectUser($event, user)">
                     <div class="media">
                         <div class="media-left media-middle">
-                            <a href="#!" ng-click="selectUser($event, user)">
+                            <a href="#!">
                                 <img ng-src="{{user.avatar && user.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{user.name || user.username}}" class="img-circle border-white" width="40">
                             </a>
                         </div>
                         <div class="media-body media-middle">
-                            <a href="#!" ng-click="selectUser($event, user)">
+                            <a href="#!">
                                 {{user.name || user.username}}
                             </a>
                         </div>

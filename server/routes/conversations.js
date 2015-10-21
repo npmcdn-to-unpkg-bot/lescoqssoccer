@@ -7,7 +7,7 @@ var authorization = require('./middlewares/authorization');
 module.exports = function(app) {
 
     app.get('/conversation', conversations.all);
-    app.post('/conversation', authorization.requiresLogin, conversations.create);
+    app.post('/conversation', conversations.create);
     app.get('/conversation/:conversationId', conversations.show);
     app.put('/conversation/:conversationId', conversations.update);
 

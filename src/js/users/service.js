@@ -23,6 +23,9 @@ angular.module('mean.users').factory('Conversations', ['$resource',
 		return $resource('conversation/:conversationId', {
 			conversationId: '@_id'
 		}, {
+			'save': {
+				method: 'POST'
+			},
 			update: {
 				method: 'PUT'
 			},
@@ -43,6 +46,7 @@ angular.module('mean.users').service('ConversationService', ['Conversations',
 			all: [],
 
 			load: function() {
+				console.warn("load");
 				return Conversations.query({}, function(conversations) {
 					ConversationService.all = conversations;
 					return conversations;
@@ -52,7 +56,8 @@ angular.module('mean.users').service('ConversationService', ['Conversations',
 			getConversation: function(user1, user2) {
 
 				var conversation = _.filter(ConversationService.all, function(conversation) {
-					return _.contains(conversation.users, user1) && _.contains(conversation.users, user2);
+					var usersIds = _.pluck(conversation.users, "_id");
+					return _.contains(usersIds, user1) && _.contains(usersIds, user2);
 				});
 
 				if (conversation.length === 1) {
@@ -63,6 +68,15 @@ angular.module('mean.users').service('ConversationService', ['Conversations',
 						messages: []
 					};
 				}
+			},
+
+			getConversationById: function(id) {
+
+				var conversation = _.filter(ConversationService.all, function(conversation) {
+					return conversation._id === id;
+				});
+
+				return (conversation.length === 1) ? conversation[0] : null;
 			},
 
 			findOne: function(conversationId) {
