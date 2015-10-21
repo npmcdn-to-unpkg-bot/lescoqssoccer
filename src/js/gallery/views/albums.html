@@ -16,7 +16,7 @@
 			<ul class="liquid-body-thumbs clearfix">
 				<li ng-repeat="photo in selectedAlbum.photoList | limitTo:5">
 					<a ng-href="{{photo.filepath}}" title="{{photo.name}}" class="imgwrap" data-lightbox="image1">
-					<img ng-src="{{photo.filepath}}?dim=100x100">
+						<img ng-src="{{photo.filepath}}?dim=100x100">
 					</a>
 				</li>
 			</ul>
@@ -41,9 +41,6 @@
 							<div class="title-wrap-inn">
 								<div id="main-title">
 									<h1 class="main-title">ALBUMS PHOTOS</h1>
-								</div>
-								<div class="post-expert">
-									Mattis scelerisque nisi, in, ac risus montes. Proin, integer est magna lundium odio diam mus, cursus placerat, vut magnis pellentesque dictumst.
 								</div>
 							</div>
 						</div>
@@ -88,17 +85,12 @@
 														</div>
 														<div class="latest-posts-tit-wrap">
 		                                                    <h2 class="latest-posts-tit text-center">
-		                                                        <a class="content-portfolio-images-on-right.html">
-		                                                        	<span class="latest-posts-tit-a-inn ellipsis">
-		                                                        		{{album.name}}
+		                                                        <a ng-href="#!/albums/view/{{album._id}}" class="content-portfolio-images-on-right.html">
+		                                                        	<span class="latest-posts-tit-a-inn ellipsis" style="display: block;">
+		                                                        		<i class="fa fa-folder"></i>
+		                                                        		&nbsp;&nbsp;{{album.name}}
 		                                                        	</span>
 		                                                        </a>
-		                                                        <div class="latest-posts-tags">
-		                                                            <a href="#" rel="tag">Cute</a>
-		                                                            <a href="#" rel="tag">Illustration</a>
-		                                                            <a href="#" rel="tag">Shape</a>
-		                                                            <a href="#" rel="tag">Smiley</a>
-		                                                        </div>
 		                                                    </h2>
 		                                                </div>
 													</div>
@@ -115,15 +107,10 @@
 		                                                    <h2 class="latest-posts-tit text-center">
 		                                                        <a class="content-portfolio-images-on-right.html">
 		                                                        	<span class="latest-posts-tit-a-inn ellipsis">
-		                                                        		{{album.name}}
+		                                                        		<i class="fa fa-folder"></i>
+		                                                        		&nbsp;&nbsp;{{album.name}}
 		                                                        	</span>
 		                                                        </a>
-		                                                        <div class="latest-posts-tags">
-		                                                            <a href="#" rel="tag">Cute</a>
-		                                                            <a href="#" rel="tag">Illustration</a>
-		                                                            <a href="#" rel="tag">Shape</a>
-		                                                            <a href="#" rel="tag">Smiley</a>
-		                                                        </div>
 		                                                    </h2>
 		                                                </div>
 													</div>
