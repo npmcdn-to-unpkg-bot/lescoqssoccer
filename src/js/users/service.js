@@ -49,6 +49,22 @@ angular.module('mean.users').service('ConversationService', ['Conversations',
 				}).$promise;
 			},
 
+			getConversation: function(user1, user2) {
+
+				var conversation = _.filter(ConversationService.all, function(conversation) {
+					return _.contains(conversation.users, user1) && _.contains(conversation.users, user2);
+				});
+
+				if (conversation.length === 1) {
+					return conversation[0];
+				} else {
+					return {
+						users: [user1, user2],
+						messages: []
+					};
+				}
+			},
+
 			findOne: function(conversationId) {
 				return Conversations.get({
 					conversationId: conversationId
@@ -59,6 +75,14 @@ angular.module('mean.users').service('ConversationService', ['Conversations',
 
 			add: function(conversation) {
 				return Conversations.save({}, conversation, function(data) {
+					return data;
+				}).$promise;
+			},
+
+			update: function(conversation) {
+				return Conversations.update({
+					conversationId: conversation._id
+				}, conversation, function(data) {
 					return data;
 				}).$promise;
 			}

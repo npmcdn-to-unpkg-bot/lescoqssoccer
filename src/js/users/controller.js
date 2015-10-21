@@ -101,7 +101,7 @@ angular.module('mean.users').controller('ProfileController', ['$scope', 'Global'
 			});
 		};
 
-		$scope.triggerResize = function(){
+		$scope.triggerResize = function() {
 			$(window).trigger('resize');
 		};
 
@@ -109,16 +109,43 @@ angular.module('mean.users').controller('ProfileController', ['$scope', 'Global'
 	}
 ]);
 
-angular.module('mean.users').controller('ChatController', ['$scope', 'Team', 'ConversationService',
+angular.module('mean.users').controller('ChatController', ['$scope', 'Global', 'Team', 'ConversationService',
 
-	function($scope, Team, ConversationService) {
+	function($scope, Global, Team, ConversationService) {
 
+		$scope.global = Global;
 		$scope.team = Team;
+		$scope.conversationService = ConversationService;
+		$scope.conversation;
 		$scope.message = "";
 
-		$scope.sendMessage = function(){
-			if($scope.message !== ""){
-				console.warn($scope.message);
+		$scope.selectUser = function(evt, user) {
+
+			if(evt){
+				evt.preventDefault();
+				evt.stopPropagation();
+			}
+
+			$scope.conversation = $scope.conversationService.getConversation($scope.global.user._id, user._id);
+		};
+
+		$scope.sendMessage = function() {
+			if ($scope.message !== "") {
+
+				$scope.conversation.messages.push({
+					user: $scope.global.user._id,
+					content: $scope.message
+				});
+
+				if($scope.conversation._id){
+					$scope.conversationService.add($scope.conversation).then(function(conversation){
+						console.warn('Conversation added');
+					});
+				} else {
+					$scope.conversationService.update($scope.conversation).then(function(conversation){
+						console.warn('Conversation update');
+					});
+				}
 			}
 		};
 	}
