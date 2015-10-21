@@ -4651,3 +4651,40 @@ li>.ripplelink:hover, li.active>.ripplelink{
   border-radius: 3px;
   background-color: rgba(255, 255, 255, 0.1);
 }
+
+@keyframes focus {
+  from {
+    transform: translateY(-1px);
+  }
+  to {
+    transform: translateY(1px);
+  }
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#hackathon {
+  display: block;
+  margin: 0 auto;
+  width: 200px;
+  height: 200px;
+}
+
+#person-left .head {
+  animation: focus 1s infinite alternate linear;
+}
+
+#clock #hourhand {
+  animation: rotate 5s infinite linear;
+  transform-origin: 50% 87%;
+}
+#clock #minutehand {
+  animation: rotate 2s infinite linear;
+  transform-origin: 15% 87%;
+}
