@@ -4672,8 +4672,8 @@ li>.ripplelink:hover, li.active>.ripplelink{
 #hackathon {
   display: block;
   margin: 0 auto;
-  width: 200px;
-  height: 200px;
+  width: 70%;
+  height: auto;
 }
 
 #person-left .head {
