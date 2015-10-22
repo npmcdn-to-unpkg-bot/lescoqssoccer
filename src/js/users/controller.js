@@ -123,7 +123,7 @@ angular.module('mean.users').controller('ChatController', ['$scope', 'Global', '
 
 		$scope.selectUser = function(evt, user) {
 
-			if(evt){
+			if (evt) {
 				evt.preventDefault();
 				evt.stopPropagation();
 			}
@@ -140,12 +140,12 @@ angular.module('mean.users').controller('ChatController', ['$scope', 'Global', '
 					content: $scope.message.content
 				});
 
-				if(!$scope.conversation._id){
-					$scope.conversationService.add($scope.conversation).then(function(conversation){
+				if (!$scope.conversation._id) {
+					$scope.conversationService.add($scope.conversation).then(function(conversation) {
 						$scope.message.content = "";
 					});
 				} else {
-					$scope.conversationService.update($scope.conversation).then(function(conversation){
+					$scope.conversationService.update($scope.conversation).then(function(conversation) {
 						$scope.message.content = "";
 					});
 				}
@@ -172,11 +172,11 @@ var ChatData = {
 		}).$promise;;
 	},
 
-	Conversations: function(ConversationService){
+	Conversations: function(ConversationService) {
 		return ConversationService.load();
 	},
 
-	Conversation: function(ConversationService, $route){
+	Conversation: function(ConversationService, $route) {
 		return ConversationService.getConversationById($route.current.params.id);
 	}
 

@@ -25,7 +25,7 @@
 .theme-color-7{ color:#34bc99;}
 .theme-color-8{ color:#e8b900;}
 .theme-color-9{ color:#ce671e;}
-.theme-color-10{ color:#333333;}
+.theme-color-10{ color:#000000;}
 
 .bg-theme-color-1{ background-color:#ee7164;}
 .bg-theme-color-2{ background-color:#be9ecd;}
@@ -36,7 +36,7 @@
 .bg-theme-color-7{ background-color:#34bc99;}
 .bg-theme-color-8{ background-color:#e8b900;}
 .bg-theme-color-9{ background-color:#ce671e;}
-.bg-theme-color-10{ background-color:#333333;}
+.bg-theme-color-10{ background-color:#000000;}
 
 .moudle .ux-btn.bg-theme-color-1:hover{ background-color:#ee7164!important; border-color:#ee7164!important; }
 .moudle .ux-btn.bg-theme-color-2:hover{ background-color:#be9ecd!important; border-color:#be9ecd!important; }
@@ -47,7 +47,7 @@
 .moudle .ux-btn.bg-theme-color-7:hover{ background-color:#34bc99!important; border-color:#34bc99!important; }
 .moudle .ux-btn.bg-theme-color-8:hover{ background-color:#e8b900!important; border-color:#e8b900!important; }
 .moudle .ux-btn.bg-theme-color-9:hover{ background-color:#ce671e!important; border-color:#ce671e!important; }
-.moudle .ux-btn.bg-theme-color-10:hover{ background-color:#333333!important; border-color:#333333!important; }
+.moudle .ux-btn.bg-theme-color-10:hover{ background-color:#000000!important; border-color:#000000!important; }
 
 /* Transition */
 .flex-slider-wrap .flex-direction-nav a,
@@ -464,7 +464,7 @@ Isotope
 .isotope{ opacity:0; }
 .isotope_fade{ opacity:1; }
 .isotope-item { z-index: 2; }
-#albumContainer .isotope-item { z-index: 2; border: 1px solid #333;}
+#albumContainer .isotope-item { z-index: 2; border: 1px solid #000000;}
 .isotope,
 .isotope .isotope-item {
   /* change duration value to whatever you like */
@@ -556,7 +556,7 @@ Isotope
 	width: 60px; height: 60px; font-size: 24px; text-align: center; line-height: 60px; cursor: pointer; border-radius: 0px; position: absolute; z-index: 999;
 }
 .filter-floating-custom{
-	background-color: #333;width: 60px; height: 60px; font-size: 24px; text-align: center; line-height: 60px; cursor: pointer; border-radius: 0px; float: right; z-index: 999;
+	background-color: #000000;width: 60px; height: 60px; font-size: 24px; text-align: center; line-height: 60px; cursor: pointer; border-radius: 0px; float: right; z-index: 999;
 }
 
 .filter-floating-custom:hover{
@@ -599,7 +599,7 @@ Isotope
 
 /* Mouseover Fold effect*/
 
-.captionhover figure{ margin: 0;position: relative; background-color:#333; }
+.captionhover figure{ margin: 0;position: relative; background-color:#000000; }
 .captionhover figure img{ width:100%;display:block;position:relative; }
 .captionhover figcaption{ position:absolute;top:0;left:0;z-index:9999; padding:20px 10px 15px 10px; text-align:center; color:#fff; }
 .captionhover figcaption h2{ font-size:16px; padding-bottom:10px; line-height:20px; opacity:0.8; }
@@ -984,7 +984,7 @@ div.container3d:hover .card .face.front{
 	z-index: 0;
 }
 .brick-conteng-bg{
-	position:absulate; width:100%; height:100%; left:0; top:0; background-color:#333;
+	position:absulate; width:100%; height:100%; left:0; top:0; background-color:#000000;
 }
 .grayscale {
   /* Firefox 10+, Firefox on Android */
@@ -1547,7 +1547,7 @@ a.team-item-title{
 	color:#fff; color:rgba(255,255,255,0.4);
 }
 .team-item-con-back{
-	background-color: #333;
+	background-color: #000000;
 }
 .team-img {
 	width: 100%
@@ -2314,7 +2314,7 @@ position: absolute; top:50%; margin-bottom:auto; margin-top:auto;
 }
 .loading-dot1, .loading-dot2 {
   width: 65%; height: 65%;  display: inline-block; position: absolute; top: 0; border-radius: 100%;
-  background-color:#333;
+  background-color:#000000;
   -webkit-animation: bounce 1.0s infinite ease-in-out;
   animation: bounce 1.0s infinite ease-in-out;
 }
@@ -2895,11 +2895,11 @@ opacity:1}
 	position: relative; display: inline-block; overflow: hidden;
 }
 .iconbox-content-hide .icon_wrap {
-	width: 100%; height: 100%; margin-bottom: 0; padding: 15px 40px; border-width: 1px; border-style: solid; border-color: #333;
+	width: 100%; height: 100%; margin-bottom: 0; padding: 15px 40px; border-width: 1px; border-style: solid; border-color: #000000;
 }
 .iconbox-content-hide .icon_text {
 	position: absolute; width: 100%; height: 100%; bottom: -100%; left: 0; padding-left: 20px; padding-right: 20px;
-	background-color: #333; color:#fff;
+	background-color: #000000; color:#fff;
 }
 .iconbox-content-hide:hover .icon_text {
 	-webkit-transform: translateY(-100%);
