@@ -1,7 +1,11 @@
 <div id="respondwrap" class="chat-wrapper timeline" ng-if="conversation">
     <ul>
-        <li ng-repeat="item in conversation.messages | orderBy:'created'">
-            {{item.content}}
+        <li ng-if="conversation.messages.length === 0">
+            Aucun message
+        </li>
+        <li ng-repeat="item in conversation.messages | orderBy:'created'" ng-class="{'current': item.user === global.user._id || item.user._id === global.user._id}">
+            <img ng-src="{{item.user.avatar && item.user.avatar + '?dim=300x300' || global.user.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{item.user.name || item.user.username}}">
+            <p>{{item.content}}</p>
         </li>
     </ul>
     <div class="message-comment" style="padding-right: 20px;padding-top: 10px;">
@@ -18,6 +22,9 @@
 </div>
 
 <div id="world" ng-if="!conversation"/>
+<div>
+    Pour parler aux gens ===>
+</div>
 
 <!-- Sidebar Chat -->
 <div class="sidebar right-side" id="chat">
@@ -55,10 +62,10 @@
                         </div>
                         <div class="media-right media-middle">
                             <i class="fa fa-comment text-muted"></i>
-                        </div>
+                        </div><!--
                         <div class="media-right media-middle">
                             <i class="fa fa-circle text-success text-xs"></i>
-                        </div>
+                        </div> -->
                     </div>
                 </li>
             </ul>

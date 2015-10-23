@@ -44,19 +44,22 @@ exports.create = function(req, res) {
  */
 exports.update = function(req, res) {
 
-	var conversation = req.conversation;
-	conversation = _.extend(conversation, req.body);
+	Conversation.load(req.body._id, function(err, conversation) {
+		if (err) return next(err);
 
-	conversation.save(function(err) {
-		console.warn(err);
-		if (err) {
-			return res.send('users/signup', {
-				errors: err.errors,
-				conversation: conversation
-			});
-		} else {
-			res.jsonp(conversation);
-		}
+		conversation.messages.push(req.body.messages[req.body.messages.length - 1]);
+		conversation.save(function(err) {
+			console.warn(err);
+			if (err) {
+				return res.send('users/signup', {
+					errors: err.errors,
+					conversation: conversation
+				});
+			} else {
+				res.jsonp(conversation);
+			}
+		});
+
 	});
 };
 

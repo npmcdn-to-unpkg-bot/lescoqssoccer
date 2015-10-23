@@ -142,10 +142,12 @@ angular.module('mean.users').controller('ChatController', ['$scope', 'Global', '
 
 				if (!$scope.conversation._id) {
 					$scope.conversationService.add($scope.conversation).then(function(conversation) {
+						$scope.conversation = conversation;
 						$scope.message.content = "";
 					});
 				} else {
 					$scope.conversationService.update($scope.conversation).then(function(conversation) {
+						$scope.conversation = conversation;
 						$scope.message.content = "";
 					});
 				}
