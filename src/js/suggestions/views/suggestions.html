@@ -1,34 +1,63 @@
-<section class="rightcontainer">
+<div id="post-217" class="post-217 page type-page status-publish hentry">
+    <div class="row-fluid " style="min-height: 100vh; padding: 60px;">
+        <div id="content_wrap" class="">
+            <div class="content-wrap-inn">
+                <div class="pagebuilder-wrap">
+                    <div class="fullwrap_moudle">
+                        <div class="row-fluid">
+                            <div id="" class="fullwidth-wrap" style="background-position: 50% 0px;" data-speed="19">
+                                <div class="row-fluid">
+                                    <div
+                                        class="span12 moudle moudle_has_animation animation-default-ux animation-scroll-ux  bottom-space-no  animation_hidden fadeined"
+                                        style="opacity: 1;">
 
-	<!-- TITLE -->
-	<div class="subtitle">
-		<h1>Suggestions</h1>
-		<a href="#!/suggestions/create" class="add-icon">
-		</a>
-	</div>
-	<div style="padding: 30px; margin-bottom: 30px;">
-		<div ng-repeat="suggestion in SuggestionsCollection.all">
-			<!-- POSTS -->
-			<article class="blogcontainer" style="width:calc(98% - 169px); margin-bottom: 30px; float: left;">
-				<!-- POST IMAGE -->
-				<div class="blogimage suggestion" data-image="{{suggestion.user.avatar  || 'img/photos/2-s.jpg'}}">
-					<a href="#!/suggestions/view/{{suggestion._id}}"></a>
-				</div>
-				<blockquote style="margin: 0px 0px; min-height: 242px;width: 60%;font-size: 12.5px;">
-					{{suggestion.content}}
-				</blockquote>
-			</article>
-			<article class="postcontent" style="width: 169px; margin-left: 2%; padding: 30px; text-align: center;">
-				<button class="button" style="margin: auto;text-align: center; width: 100px; padding: 17px 10px;border: 3px solid rgba(255, 255, 255, 0.5); opacity: 0.6;color: #000;">
-				<img style=" max-width: 80px;" src="img/a138.png">
-				</button>
-				<button class="button" style="margin: 10px auto 0;text-align: center; width: 100px; padding: 10px;border: 3px solid rgba(255, 255, 255, 0.5); opacity: 0.6;color: #000;">
-				<img style="max-height: 60px;" src="img/level-down.png">
-				</button>
-			</article>
-		</div>
-	</div>
-	<cm-Backstretch></cm-Backstretch>
-</section>
+                                        <!--Portfolio interlock list-->
+                                        <div class="interlock-list" data-post="20140403-072852-376">
+                                            <a name="20140403-072852-376" class="20140403-072852-376"></a>
+                                            <section ng-repeat="suggestion in SuggestionsCollection.all" class="interlock-item animation-default-ux animation-scroll-ux fadeined" style="margin-bottom: 30px; border: 1px solid;">
+                                                <div class="iterlock-item-img">
+                                                    <a class="ux-hover-wrap" data-lightbox="post641"
+                                                        href="{{suggestion.user.avatar  || 'img/photos/2-s.jpg'}}"
+                                                        style="background-image: url({{suggestion.user.avatar  || 'img/photos/2-s.jpg'}})">
+                                                    </a>
+                                                </div>
+                                                <div class="iterlock-caption">
+                                                    <div style="margin-bottom: 30px;">
+	                                                    <button class="btn" style="height: 80px; padding: 0;">
+															<img style="max-width: 80px;" src="img/great.jpg">
+														</button>
+														<button class="btn" style="height: 80px; background-color: #FF5533;">
+															<img style="max-height: 60px;" src="img/level-down.png">
+														</button>
+													</div>
+                                                    <div class="iterblock-expt hidden-phone">
+                                                        <p>{{suggestion.content}}</p>
+                                                    </div>
+                                                    <ul class="blog_meta">
+                                                        <li class="blog_meta_date"><i class="fa fa-calendar"></i>{{suggestion.created | date:"dd MMM yyyy" }}</li>
+                                                        <li class="blog_meta_cate"><i class="fa fa-tag"></i><a
+                                                            href="http://ximudesign.com/aside/tag/branding-2/"
+                                                            rel="tag">Branding</a> / <a
+                                                            href="http://ximudesign.com/aside/tag/graphic-design/"
+                                                            rel="tag">Graphic Design</a>
+                                                        </li>
+                                                        <li class="blog_meta_auhtor">
+                                                        	<i class="fa fa-user"></i>
+                                                        	{{suggestion.user.name || suggestion.user.username}}
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <cm-page-builder></cm-page-builder>
