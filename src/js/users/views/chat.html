@@ -1,8 +1,8 @@
 <div id="respondwrap" class="chat-wrapper timeline" ng-if="conversation">
-    <ul>
-        <li ng-if="conversation.messages.length === 0">
-            Aucun message
-        </li>
+    <h3 ng-if="conversation.messages.length === 0" style="margin-top: 50px; height: calc(100vh - 250px); text-align: center;">
+        Aucun message
+    </h3>
+    <ul ng-if="conversation.messages.length > 0" >
         <li ng-repeat="item in conversation.messages | orderBy:'created'" ng-class="{'current': item.user === global.user._id || item.user._id === global.user._id}">
             <img ng-src="{{item.user.avatar && item.user.avatar + '?dim=300x300' || global.user.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{item.user.name || item.user.username}}">
             <p>{{item.content}}</p>
@@ -22,9 +22,6 @@
 </div>
 
 <div id="world" ng-if="!conversation"/>
-<div>
-    Pour parler aux gens ===>
-</div>
 
 <!-- Sidebar Chat -->
 <div class="sidebar right-side" id="chat">
@@ -33,7 +30,7 @@
             <ul class="list-group list-group-list">
 
                 <!-- offline class for grayscale -->
-                <li class="list-group-item">
+                <!-- <li class="list-group-item">
                     <div class="media">
                         <div class="media-left media-middle">
                             <a href="#">
@@ -46,9 +43,9 @@
                             <i class="fa fa-comment text-muted"></i>
                         </div>
                     </div>
-                </li>
+                </li> -->
 
-                <li class="list-group-item" ng-repeat="user in team" ng-if="global.user._id !== user._id" ng-click="selectUser($event, user)">
+                <li class="list-group-item" ng-repeat="user in team" ng-if="global.user._id !== user._id" ng-click="selectUser($event, user)" ng-class="{'active': currentUserId === user._id}">
                     <div class="media">
                         <div class="media-left media-middle">
                             <a href="#!">

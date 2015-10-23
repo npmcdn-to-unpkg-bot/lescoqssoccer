@@ -92,6 +92,9 @@ exports.show = function(req, res) {
  * List of conversations
  */
 exports.all = function(req, res) {
+
+	var messageLimitCount = 50;
+
 	Conversation.find({
 			users: {
 				$in: [req.user.id]
@@ -106,6 +109,11 @@ exports.all = function(req, res) {
 					status: 500
 				});
 			} else {
+
+				_.each(conversations, function(conversation){
+					conversation.messages = conversation.messages.slice(Math.max(conversation.messages.length - messageLimitCount, 1));
+				});
+
 				res.jsonp(conversations);
 			}
 

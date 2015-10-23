@@ -129,7 +129,7 @@ angular.module('mean').config(['$routeProvider',
 			controller: 'ChatController',
 			resolve: ChatData
 		}).
-		when('/chat/:id', {
+		when('/conversations/:id', {
 			templateUrl: 'js/users/views/chat.html',
 			controller: 'ChatController',
 			resolve: ChatData

@@ -1,3 +1,6 @@
+
+var catInit = false;
+
 angular.module('mean.system').directive('cmSidebar', function() {
 	return {
 		restrict: 'E',
@@ -626,7 +629,9 @@ angular.module('mean.system').directive('cmPageBuilder', function() {
 
 				}
 
-				if($('#world')){
+				console.warn($('#world'));
+				if($('#world') && !catInit){
+					catInit = true;
 					animateCat();
 				}
 			});
@@ -1068,16 +1073,12 @@ function animateCat(){
 			renderer.render(scene, camera);
 		}
 
-		window.addEventListener('load', init, false);
-
-		function init(event) {
-			initScreenAnd3D();
-			createLights();
-			createFloor()
-			createHero();
-			createBall();
-			loop();
-		}
+		initScreenAnd3D();
+		createLights();
+		createFloor()
+		createHero();
+		createBall();
+		loop();
 }
 
 angular.module('mean.system').directive('cmHeader', function() {

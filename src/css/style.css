@@ -3745,14 +3745,14 @@ Override bootstrap datepicker
 #chat ul li.list-group-item i.md-comment {
   vertical-align: middle;
 }
-#chat ul li.list-group-item:hover {
-  background: #424242;
+#chat ul li.list-group-item:hover, #chat ul li.list-group-item.active {
+  background: black;
   cursor: pointer;
 }
 #chat ul li.list-group-item:hover img {
   border-color: #5c5c5c;
 }
-#chat ul li.list-group-item:hover a {
+#chat ul li.list-group-item:hover a, #chat ul li.list-group-item.active a{
   color: #fff;
 }
 #chat ul li.list-group-item.offline img {
@@ -4294,15 +4294,14 @@ a.list-group-item-danger.active:focus {
 }
 
 #nav-container {
-    width: 300px;
     height: 100%;
     top: 0;
     left: 0;
     position: fixed;
-    overflow: hidden;
     display: table;
     vertical-align: middle;
     -webkit-transform:translate3d(0,0,0);
+    z-index: 12;
 }
 
 #nav-container ul{
@@ -4572,7 +4571,8 @@ li>.ripplelink:hover, li.active>.ripplelink{
 
 .chat-wrapper {
   margin-top: 20px;
-  padding-left: 30px;
+  padding-left: 60px;
+  padding-right: 30px;
 }
 
 .chat-wrapper ul {
@@ -4817,4 +4817,8 @@ ul {
 #world canvas{
     width: 100% !important;
     height: auto !important;
+}
+
+#albumContainer{
+  padding: 0 60px;
 }

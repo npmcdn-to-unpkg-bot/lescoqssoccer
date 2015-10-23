@@ -109,17 +109,21 @@ angular.module('mean.users').controller('ProfileController', ['$scope', 'Global'
 	}
 ]);
 
-angular.module('mean.users').controller('ChatController', ['$scope', 'Global', 'Team', 'ConversationService',
+angular.module('mean.users').controller('ChatController', ['$scope', 'Global', 'Team', 'ConversationService', 'Conversation', 'UserId',
 
-	function($scope, Global, Team, ConversationService, Conversation) {
+	function($scope, Global, Team, ConversationService, Conversation, UserId) {
 
 		$scope.global = Global;
 		$scope.team = Team;
 		$scope.conversationService = ConversationService;
 		$scope.conversation = Conversation;
+		$scope.currentUserId = UserId;
+
 		$scope.message = {
 			content: ""
 		};
+
+		console.warn($scope.conversation);
 
 		$scope.selectUser = function(evt, user) {
 
@@ -128,6 +132,7 @@ angular.module('mean.users').controller('ChatController', ['$scope', 'Global', '
 				evt.stopPropagation();
 			}
 
+			$scope.currentUserId = user._id;
 			$scope.conversation = $scope.conversationService.getConversation($scope.global.user._id, user._id);
 		};
 
@@ -174,12 +179,12 @@ var ChatData = {
 		}).$promise;;
 	},
 
-	Conversations: function(ConversationService) {
-		return ConversationService.load();
+	Conversation: function(Global, ConversationService, $route) {
+		return ($route.current.params.id) ? ConversationService.getConversation(Global.user._id, $route.current.params.id) : null;
 	},
 
-	Conversation: function(ConversationService, $route) {
-		return ConversationService.getConversationById($route.current.params.id);
+	UserId: function($route){
+		return $route.current.params.id;
 	}
 
 };

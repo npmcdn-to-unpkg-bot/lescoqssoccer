@@ -45,11 +45,10 @@ angular.module('mean.users').service('ConversationService', ['Conversations',
 
 			all: [],
 
-			load: function() {
-				return Conversations.query({}, function(conversations) {
+			load: function(callback) {
+				Conversations.query({}, function(conversations) {
 					ConversationService.all = conversations;
-					return conversations;
-				}).$promise;
+				});
 			},
 
 			getConversation: function(user1, user2) {
@@ -67,15 +66,6 @@ angular.module('mean.users').service('ConversationService', ['Conversations',
 						messages: []
 					};
 				}
-			},
-
-			getConversationById: function(id) {
-
-				var conversation = _.filter(ConversationService.all, function(conversation) {
-					return conversation._id === id;
-				});
-
-				return (conversation.length === 1) ? conversation[0] : null;
 			},
 
 			findOne: function(conversationId) {
@@ -99,7 +89,10 @@ angular.module('mean.users').service('ConversationService', ['Conversations',
 					return data;
 				}).$promise;
 			}
-		}
+		};
+
+		//Initialization
+		ConversationService.load();
 
 		return ConversationService;
 	}
