@@ -1,14 +1,12 @@
 Reste à faire:
 
-- Section team + Cote de popularité / tache cron d'envoie de point en début de semaine / trouver systeme
-- Section vote (dans les suggestions)
-- Recherche
-
-- Pagination : suggestions
-- Articles: tags
-- Metadatas du site
+- Articles => clarifié un peu tout ça (+ gestion des tags)
+- Agenda => revoir css
+- Photos => tester le nom + remplacer imagemagick par graphicmagick
+- Users => Cote de popularité en fonction des actions effectués + fiche user
+- Chat => fixer bug import chat + init de la conversation
+- Suggestion => faire la mécanique (+ paggination)
 
 Performance - Améliorations:
 - Uploader fichiers dans un espace temporaire
-
-Bug:
+- Metadatas du site

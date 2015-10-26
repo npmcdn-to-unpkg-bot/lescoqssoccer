@@ -1024,7 +1024,7 @@ div.container3d:hover .card .face.front{
 	float: right;
 }
 .interlock-item{
-	width: 100%; max-height: 320px; clear: both; overflow: hidden;
+	width: 100%; clear: both; overflow: hidden;
 }
 .iterlock-item-img{
 	width: 33%; float: left;
@@ -1033,16 +1033,16 @@ div.container3d:hover .card .face.front{
 	min-width: 100%;
 }
 .iterlock-caption{
-	width: 67%; float: left; padding: 40px;
+	width: 67%; float: left;
 }
 .iterlock-caption h2{
 	font-size: 30px; line-height: 40px; margin-bottom: 20px;
 }
 .iterlock-caption .blog_meta{
-	margin-top: 20px; font-size: 12px;
+	margin-top: 10px; font-size: 20px;
 }
 .iterlock-caption .blog_meta li{
-	margin-left: 0; margin-right: 10px;
+	margin-left: 0; margin-right: 10px;color: white;
 }
 .iterlock-caption p{
 	font-size: 13px;
@@ -1546,9 +1546,6 @@ a.team-item-title{
 .moudle .team-email,.moudle .team-phone{
 	color:#fff; color:rgba(255,255,255,0.4);
 }
-.team-item-con-back{
-	background-color: #000000;
-}
 .team-img {
 	width: 100%
 }
@@ -1679,7 +1676,7 @@ h2.process-bar-title{ font-size:14px; line-height:20px; margin-bottom:10px;}
 	font-size:8px; line-height:20px; top:-15px;
 }
 .blog_meta i{
-	margin-right:5px; font-size: 12px;
+	margin-right:5px; font-size: 20px;
 }
 .blog_meta i.icon-m-history{
 

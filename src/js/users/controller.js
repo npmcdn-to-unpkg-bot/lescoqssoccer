@@ -123,8 +123,6 @@ angular.module('mean.users').controller('ChatController', ['$scope', 'Global', '
 			content: ""
 		};
 
-		console.warn($scope.conversation);
-
 		$scope.selectUser = function(evt, user) {
 
 			if (evt) {

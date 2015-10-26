@@ -7,45 +7,106 @@
                         <div class="row-fluid">
                             <div id="" class="fullwidth-wrap" style="background-position: 50% 0px;" data-speed="19">
                                 <div class="row-fluid">
-                                    <div
-                                        class="span12 moudle moudle_has_animation animation-default-ux animation-scroll-ux  bottom-space-no  animation_hidden fadeined"
-                                        style="opacity: 1;">
+                                    <div class="span12 moudle moudle_has_animation animation-default-ux animation-scroll-ux  bottom-space-no animation_hidden fadeined" style="opacity: 1;">
 
                                         <!--Portfolio interlock list-->
                                         <div class="interlock-list" data-post="20140403-072852-376">
                                             <a name="20140403-072852-376" class="20140403-072852-376"></a>
-                                            <section ng-repeat="suggestion in SuggestionsCollection.all" class="interlock-item animation-default-ux animation-scroll-ux fadeined" style="margin-bottom: 30px; border: 1px solid;">
+                                            <section ng-repeat="suggestion in SuggestionsCollection.all" class="interlock-item animation-default-ux animation-scroll-ux fadeined bg-theme-color-7" style="margin-bottom: 30px; border: 1px solid;">
                                                 <div class="iterlock-item-img">
-                                                    <a class="ux-hover-wrap" data-lightbox="post641"
-                                                        href="{{suggestion.user.avatar  || 'img/photos/2-s.jpg'}}"
-                                                        style="background-image: url({{suggestion.user.avatar  || 'img/photos/2-s.jpg'}})">
-                                                    </a>
+                                                    <div class="ux-hover-wrap">
+                                                        <figure class="circle">
+                                                          <div style="background:rgba(27,45,65,0) !important; position:absolute;" class="mask-a">
+                                                            <div class="hand" ng-click="vote(1);"></div>
+                                                            <div class="hand-1" ng-click="vote(2);"></div>
+                                                            <div class="hand-2" ng-click="vote(3);"></div>
+                                                          </div>
+                                                          <!-- key animation mirror to avoid overflow and mask.-->
+                                                          <div class="mask-b">
+                                                            <div class="hand"></div>
+                                                            <div class="hand-1"></div>
+                                                          </div>
+                                                        </figure>
+                                                    </div>
                                                 </div>
                                                 <div class="iterlock-caption">
-                                                    <div style="margin-bottom: 30px;">
-	                                                    <button class="btn" style="height: 80px; padding: 0;">
-															<img style="max-width: 80px;" src="img/great.jpg">
-														</button>
-														<button class="btn" style="height: 80px; background-color: #FF5533;">
-															<img style="max-height: 60px;" src="img/level-down.png">
-														</button>
-													</div>
-                                                    <div class="iterblock-expt hidden-phone">
-                                                        <p>{{suggestion.content}}</p>
+                                                    <div class="iterblock-expt">
+                                                        <div class="item_des" style="padding: 30px;color: white;">
+                                                            <i class="icon-m-quote-left center-ux" style="margin-bottom: 20px;font-size: 48px; height: 60px;"></i>
+                                                            <p>{{suggestion.content}}
+                                                            </p>
+                                                            <br>
+                                                            <ul class="blog_meta">
+                                                                <li class="blog_meta_date"><i class="fa fa-calendar"></i> Fin le {{suggestion.created | date:"dd MMM yyyy" }}</li>
+                                                                <li class="blog_meta_auhtor">
+                                                                    <i class="fa fa-user"></i>
+                                                                    {{suggestion.user.name || suggestion.user.username}}
+                                                                </li>
+                                                            </ul>
+                                                            <div class="suggestionsResult">
+                                                                <div class="row-fluid">
+                                                                    <div class="moudle">
+                                                                        <section class="infrographic bar ux-mod-nobg">
+                                                                            <h1 style="text-transform: uppercase;">POUR</h1>
+                                                                            <div class="bar-percent">
+                                                                                <div class="bignumber-item" data-digit="65">
+                                                                                    65
+                                                                                </div>%
+                                                                            </div>
+                                                                            <div class="progress-outer">
+                                                                                <div class="progress-wrap progress bg-theme-color-1"
+                                                                                    data-progress-percent="65">
+                                                                                    <div class="progress-bar progress">
+                                                                                        <div class="pr-head" ng-class="bg-theme-color-{{$index}}"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </section>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row-fluid">
+                                                                    <div class="moudle">
+                                                                        <section class="infrographic bar ux-mod-nobg">
+                                                                            <h1 style="text-transform: uppercase;">Contre</h1>
+                                                                            <div class="bar-percent">
+                                                                                <div class="bignumber-item" data-digit="25">
+                                                                                    25
+                                                                                </div>%
+                                                                            </div>
+                                                                            <div class="progress-outer">
+                                                                                <div class="progress-wrap progress bg-theme-color-1"
+                                                                                    data-progress-percent="25">
+                                                                                    <div class="progress-bar progress">
+                                                                                        <div class="pr-head" ng-class="bg-theme-color-{{$index}}"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </section>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row-fluid">
+                                                                    <div class="moudle">
+                                                                        <section class="infrographic bar ux-mod-nobg">
+                                                                            <h1 style="text-transform: uppercase;">NSP</h1>
+                                                                            <div class="bar-percent">
+                                                                                <div class="bignumber-item" data-digit="10">
+                                                                                    10
+                                                                                </div>%
+                                                                            </div>
+                                                                            <div class="progress-outer">
+                                                                                <div class="progress-wrap progress bg-theme-color-1"
+                                                                                    data-progress-percent="10">
+                                                                                    <div class="progress-bar progress">
+                                                                                        <div class="pr-head" ng-class="bg-theme-color-{{$index}}"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </section>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <ul class="blog_meta">
-                                                        <li class="blog_meta_date"><i class="fa fa-calendar"></i>{{suggestion.created | date:"dd MMM yyyy" }}</li>
-                                                        <li class="blog_meta_cate"><i class="fa fa-tag"></i><a
-                                                            href="http://ximudesign.com/aside/tag/branding-2/"
-                                                            rel="tag">Branding</a> / <a
-                                                            href="http://ximudesign.com/aside/tag/graphic-design/"
-                                                            rel="tag">Graphic Design</a>
-                                                        </li>
-                                                        <li class="blog_meta_auhtor">
-                                                        	<i class="fa fa-user"></i>
-                                                        	{{suggestion.user.name || suggestion.user.username}}
-                                                        </li>
-                                                    </ul>
                                                 </div>
                                             </section>
                                         </div>
@@ -57,6 +118,15 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="addButton">
+        <div class="float-bar-inn-wrap">
+        </div>
+        <a href="#!/others/suggestions/create">
+        <div id="float-bar-triggler">
+            <i class="float-bar-triggler-inn"></i>
+        </div>
+        </a>
     </div>
 </div>
 

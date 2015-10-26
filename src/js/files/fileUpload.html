@@ -33,10 +33,10 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th width="50%">Name</th>
-					<th ng-show="uploader.isHTML5">Size</th>
-					<th ng-show="uploader.isHTML5">Progress</th>
-					<th>Status</th>
+					<th width="50%">Nom</th>
+					<th ng-show="uploader.isHTML5">Taille</th>
+					<th ng-show="uploader.isHTML5">Progression</th>
+					<th>Compression</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -54,6 +54,9 @@
 						</div>
 					</td>
 					<td class="text-center">
+						<span ng-show="item.progress && !item.isSuccess && !item.isCancel && !item.isError">
+							<i class="fa fa-spinner"></i>
+						</span>
 						<span ng-show="item.isSuccess">
 							<i class="fa fa-check-circle"></i>
 						</span>

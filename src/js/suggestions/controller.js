@@ -18,14 +18,22 @@ angular.module('mean.suggestions').controller('SuggestionController', ['$scope',
 			if(this.content !== ""){
 
 				var suggestion = {
-					content: this.content
-				}
+					content: this.content,
+					limitDate: new Date(),
+					yes: [],
+					no: [],
+					blank: []
+				};
 
 				$scope.SuggestionsCollection.add(suggestion, function () {
 					$scope.content = "";
-					$location.path( "/suggestions" );
+					$location.path( "/others/suggestions" );
 				});
 			}
-		}
+		};
+
+		$scope.vote = function(value){
+			console.warn(value);
+		};
 	}
 ]);

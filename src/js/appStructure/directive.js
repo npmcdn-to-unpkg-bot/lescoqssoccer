@@ -624,13 +624,10 @@ angular.module('mean.system').directive('cmPageBuilder', function() {
 								resizeTimer = setTimeout(collage, 200);
 							});
 						}
-
 					});
-
 				}
 
-				console.warn($('#world'));
-				if($('#world') && !catInit){
+				if($('#world').length && !catInit){
 					catInit = true;
 					animateCat();
 				}
