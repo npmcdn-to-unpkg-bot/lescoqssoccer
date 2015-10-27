@@ -143,17 +143,11 @@ angular.module('mean.users').controller('ChatController', ['$scope', 'Global', '
 					content: $scope.message.content
 				});
 
-				if (!$scope.conversation._id) {
-					$scope.conversationService.add($scope.conversation).then(function(conversation) {
-						$scope.conversation = conversation;
-						$scope.message.content = "";
-					});
-				} else {
-					$scope.conversationService.update($scope.conversation).then(function(conversation) {
-						$scope.conversation = conversation;
-						$scope.message.content = "";
-					});
-				}
+				$scope.conversationService.addOrUpdate($scope.conversation).then(function(conversation) {
+					$scope.conversation = conversation;
+					$scope.message.content = "";
+				});
+
 			}
 		};
 	}
@@ -164,7 +158,7 @@ var TeamData = {
 	Team: function(Users) {
 		return Users.query({}, function(users) {
 			return users;
-		}).$promise;;
+		}).$promise;
 	}
 
 };
@@ -178,10 +172,11 @@ var ChatData = {
 	},
 
 	Conversation: function(Global, ConversationService, $route) {
+		console.warn($route.current.params.id);
 		return ($route.current.params.id) ? ConversationService.getConversation(Global.user._id, $route.current.params.id) : null;
 	},
 
-	UserId: function($route){
+	UserId: function($route) {
 		return $route.current.params.id;
 	}
 
@@ -194,7 +189,7 @@ var UserDetailData = {
 			userId: $route.current.params.id
 		}, function(user) {
 			return user;
-		}).$promise;;
+		}).$promise;
 	}
 
 };
@@ -206,7 +201,7 @@ var ProfileData = {
 			userId: Global.user._id
 		}, function(user) {
 			return user;
-		}).$promise;;
+		}).$promise;
 	}
 
 };

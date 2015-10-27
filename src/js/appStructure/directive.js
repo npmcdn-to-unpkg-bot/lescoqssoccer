@@ -353,7 +353,7 @@ angular.module('mean.system').directive('cmSidebar', function() {
 	}
 });
 
-angular.module('mean.system').directive('cmPageBuilder', function() {
+angular.module('mean.system').directive('cmPageBuilder', ['ConversationService', function(ConversationService) {
 	return {
 		restrict: 'E',
 		transclude: true,
@@ -633,9 +633,10 @@ angular.module('mean.system').directive('cmPageBuilder', function() {
 				}
 			});
 
+			ConversationService.load();
 		}
 	}
-});
+}]);
 
 function animateCat(){
 

@@ -4,7 +4,7 @@ Reste à faire:
 - Agenda => revoir css
 - Photos => tester le nom + remplacer imagemagick par graphicmagick
 - Users => Cote de popularité en fonction des actions effectués + fiche user
-- Chat => fixer bug import chat + init de la conversation
+- Chat => fixer bug import chat
 - Suggestion => faire la mécanique (+ paggination)
 
 Performance - Améliorations:

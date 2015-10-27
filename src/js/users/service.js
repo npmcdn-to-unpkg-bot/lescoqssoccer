@@ -76,23 +76,25 @@ angular.module('mean.users').service('ConversationService', ['Conversations',
 				}).$promise;
 			},
 
-			add: function(conversation) {
-				return Conversations.save({}, conversation, function(data) {
-					return data;
-				}).$promise;
-			},
+			addOrUpdate: function(conversation) {
 
-			update: function(conversation) {
-				return Conversations.update({
-					conversationId: conversation._id
-				}, conversation, function(data) {
-					return data;
-				}).$promise;
+				if (!conversation._id) {
+
+					return Conversations.save({}, conversation, function(data) {
+						return data;
+					}).$promise;
+
+				} else {
+
+					return Conversations.update({
+						conversationId: conversation._id
+					}, conversation, function(data) {
+						return data;
+					}).$promise;
+
+				}
 			}
 		};
-
-		//Initialization
-		ConversationService.load();
 
 		return ConversationService;
 	}
