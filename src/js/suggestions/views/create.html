@@ -1,17 +1,45 @@
-<section class="rightcontainer">
-
-	<div class="subtitle">
-		<h1 class="ellipsis">Nouvelle suggestion</h1>
-		<a href="#!" class="ok-icon" data-ng-click="add($event)">
-		</a>
+<div class="clearfix filters filter-floating">
+	<div class="filter-floating-triggle hidden-phone" style="top:20px; right: 125px;" ng-click="global.back();">
+		<i class="fa fa-arrow-left"></i>
 	</div>
-
-	<div class="pagecontent">
-		<form role="form">
-			<textarea  name="content" data-ng-model="content" required>
-			</textarea>
-		</form>
+	<div class="filter-floating-triggle" style="top:20px; right: 60px;" ng-click="create($event);">
+		<i class="fa fa-save"></i>
 	</div>
-</section>
+</div>
 
+<div id="post-1039" class="post type-post status-publish format-standard hentry category-blog">
+	<div class="row-fluid two-cols-layout" style="min-height: 799px;">
+		<div id="content_wrap" class="span10" style="margin-left: 9%;">
+			<div class="title-bar-wrap " id="title-bar" style="padding: 50px 0;">
+				<div id="title-wrap">
+					<div class="title-wrap-inn">
+						<div id="main-title">
+							<h1 class="main-title">NOUVEL SUGGESTION</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="comments">
+				<div id="respondwrap">
+					<div id="respond" class="comment-respond">
+						<form role="form">
+							<p class="span12" style="margin-left: 0;">
+								<textarea
+								name="content"
+								data-ng-model="content"
+								placeholder="Suggestion">
+								</textarea>
+							</p>
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<cm-wysiwyg></cm-wysiwyg>
+<cm-page-builder></cm-page-builder>
 <cm-page-builder></cm-page-builder>

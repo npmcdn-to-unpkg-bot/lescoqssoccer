@@ -10,7 +10,7 @@ angular.module('mean.suggestions').controller('SuggestionController', ['$scope',
 		$scope.content;
 		$scope.SuggestionsCollection.load();
 
-		$scope.add = function (evt) {
+		$scope.create = function (evt) {
 
 			evt.preventDefault();
 			evt.stopPropagation();

@@ -240,11 +240,12 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 	}
 ]);
 
-angular.module('mean.agenda').controller('ListController', ['$scope', '$routeParams', '$filter', '$location', '$route', 'Global', 'Agenda', '$modal',
-	function($scope, $routeParams, $filter, $location, $route, Global, Agenda, $modal) {
+angular.module('mean.agenda').controller('ListController', ['$scope', '$routeParams', '$filter', '$location', '$route', 'Global', 'Agenda', 'AgendaCollection', '$modal',
+	function($scope, $routeParams, $filter, $location, $route, Global, Agenda, AgendaCollection, $modal) {
 
 		$scope.global = Global;
 		$scope.agenda = Agenda;
+		$scope.agendaCollection = AgendaCollection;
 		$scope.eventTypes = eventTypes;
 
 		$scope.comingAgenda = _.filter($scope.agenda, function(userEvent){
@@ -299,6 +300,7 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 			}
 
 			$scope.selectedEvent = userEvent;
+			$scope.showAddMe = $scope.selectedEvent.user._id !== $scope.global.user._id && !_.contains(_.pluck($scope.selectedEvent.guest, '_id'), $scope.global.user._id);
 
 			//center map on new event
 			if ($scope.selectedEvent.location) {

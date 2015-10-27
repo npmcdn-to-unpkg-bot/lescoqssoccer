@@ -37,7 +37,7 @@
                                                             </p>
                                                             <br>
                                                             <ul class="blog_meta">
-                                                                <li class="blog_meta_date"><i class="fa fa-calendar"></i> Fin le {{suggestion.created | date:"dd MMM yyyy" }}</li>
+                                                                <li class="blog_meta_date"><i class="fa fa-calendar"></i> {{suggestion.created | date:"dd MMM yyyy" }}</li>
                                                                 <li class="blog_meta_auhtor">
                                                                     <i class="fa fa-user"></i>
                                                                     {{suggestion.user.name || suggestion.user.username}}
@@ -122,7 +122,7 @@
     <div class="addButton">
         <div class="float-bar-inn-wrap">
         </div>
-        <a href="#!/others/suggestions/create">
+        <a href="#!/suggestions/create">
         <div id="float-bar-triggler">
             <i class="float-bar-triggler-inn"></i>
         </div>
