@@ -248,11 +248,11 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 		$scope.agendaCollection = AgendaCollection;
 		$scope.eventTypes = eventTypes;
 
-		$scope.comingAgenda = _.filter($scope.agenda, function(userEvent){
+		$scope.comingAgenda = _.filter($scope.agenda, function(userEvent) {
 			return moment(userEvent.startsAt).endOf('day').isAfter(new Date()) ? userEvent.startsAt : null;
 		});
 
-		$scope.pastAgenda = _.filter($scope.agenda, function(userEvent){
+		$scope.pastAgenda = _.filter($scope.agenda, function(userEvent) {
 			return moment(userEvent.startsAt).endOf('day').isBefore(new Date()) ? userEvent.startsAt : null;
 		});
 
@@ -318,7 +318,17 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 			}
 		};
 
-		$scope.addMeToEvent = function(evt, userEvent){
+		$scope.setPreviousElement = function() {
+			var index = (window._.indexOf($scope.agenda, $scope.selectedEvent) - 1 > 0) ? window._.indexOf($scope.agenda, $scope.selectedEvent) - 1 : 0;
+			$scope.setSelectedEvent(null, $scope.agenda[index]);
+		};
+
+		$scope.setNextElement = function() {
+			var index = (window._.indexOf($scope.agenda, $scope.selectedEvent) + 1 < $scope.agenda.length) ? window._.indexOf($scope.agenda, $scope.selectedEvent) + 1 : $scope.agenda.length - 1;
+			$scope.setSelectedEvent(null, $scope.agenda[index]);
+		};
+
+		$scope.addMeToEvent = function(evt, userEvent) {
 
 			if (evt) {
 				evt.preventDefault();
@@ -356,7 +366,7 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 			return $filter('date')(date, "dd MMM yyyy");
 		};
 
-		if($scope.comingAgenda.length > 0){
+		if ($scope.comingAgenda.length > 0) {
 			$scope.setSelectedEvent(null, $scope.comingAgenda[0]);
 		}
 	}

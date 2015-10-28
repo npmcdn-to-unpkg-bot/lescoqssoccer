@@ -5,173 +5,158 @@
 </div>
 
 <div id="post-1039" class="post type-post status-publish format-standard hentry category-blog">
-    <div class="row-fluid two-cols-layout" style="min-height: 100vh;">
-        <div id="content_wrap" class="span10" style="margin-left: 30px;">
-            <div class="content-wrap-inn bottom-space">
+	<div class="row-fluid two-cols-layout" style="min-height: 100vh;">
+		<div id="content_wrap" class="span10" style="margin-left: 30px;">
+			<div class="content-wrap-inn bottom-space">
 
-                <div class="container" styzle="padding:0;">
-                    <div class="title-bar-wrap" id="title-bar" style="padding: 50px 0;">
-                        <div id="title-wrap">
-                            <div class="title-wrap-inn">
-                                <div id="main-title">
-                                    <h1 class="main-title">Rencards</h1>
-                                </div>
-                                <div class="post-expert" ng-show="comingAgenda.length === 0">
-                                    Un café, une bière avec les copaings?! C'est ici!
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+				<div class="container" styzle="padding:0;">
+					<div class="title-bar-wrap" id="title-bar" style="padding: 50px 0;">
+						<div id="title-wrap">
+							<div class="title-wrap-inn">
+								<div id="main-title">
+										<h1 class="main-title">Rencards</h1>
+								</div>
+								<div class="post-expert" ng-show="comingAgenda.length === 0">
+										Un café, une bière avec les copaings?! C'est ici!
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
-                <div class="pagebuilder-wrap">
-                	<div class="container" style="padding: 0 0 0 60px;">
-                        <div class="row-fluid">
-                            <div class="moudle">
+				<div class="pagebuilder-wrap">
+					<div class="container" style="padding: 0 0 0 60px;">
+						<div class="row-fluid">
+							<div class="moudle">
+								<div ng-if="!selectedEvent._id">
+									<section>
+										<div id="action">
+											<div id="keg">
+												<div id="pipe-handle"></div>
+												<div id="pipe"></div>
+												<div id="pipe-front"></div>
+											</div>
 
-                                <div ng-show="comingAgenda.length === 0">
-                                    <section>
-                                        <div id="action">
-                                            <div id="keg">
-                                                <div id="pipe-handle"></div>
-                                                <div id="pipe"></div>
-                                                <div id="pipe-front"></div>
-                                            </div>
+											<div class="glass">
+												<div class="beer"></div>
+												<div class="handle">
+													<div class="top-right"></div>
+													<div class="bottom-right"></div>
+												</div>
+												<div class="front-glass"></div>
+											</div>
+										</div>
+									</section>
 
-                                            <div class="glass">
-                                                <div class="beer"></div>
-                                                <div class="handle">
-                                                    <div class="top-right"></div>
-                                                    <div class="bottom-right"></div>
-                                                </div>
-                                                <div class="front-glass"></div>
-                                            </div>
-                                        </div>
-                                    </section>
+									<section style="position: absolute;left: 300px;margin-bottom: 20px;top: 230px;">
+										<div class="centered pot">
+											<div class="fill"></div>
+											<div class="pot-lines">
+												<div class="tick"></div>
+												<div class="tick"></div>
+												<div class="tick"></div>
+												<div class="tick"></div>
+												<div class="tick"></div>
+												<div class="tick"></div>
+												<div class="tick"></div>
+												<div class="tick"></div>
+											</div>
+										</div>
+										<div class="centered pot-lip"></div>
+										<div class="centered pot-bar"></div>
+										<div class="centered pot-handle"></div>
+										<div class="centered plate"></div>
+										<div class="centered plate" id="inner"></div>
+										<div class="centered cup-handle"></div>
+										<div class="centered cup"></div>
+										<div class="centered cup-bottom"></div>
+										<div class="centered coffee">
+											<div class="ripple"></div>
+										</div>
+										<div class="centered pour">
+											<div class="stripes"></div>
+											<div class="stripes"></div>
+											<div class="stripes"></div>
+										</div>
+										<div>
+											<div class="centered splash"></div>
+											<div class="centered splash"></div>
+											<div class="centered splash"></div>
+										</div>
+									</section>
+								</div>
 
-                                    <section style="position: absolute;left: 300px;margin-bottom: 20px;top: 230px;">
-                                        <div class="centered pot">
-                                          <div class="fill"></div>
-                                          <div class="pot-lines">
-                                            <div class="tick"></div>
-                                            <div class="tick"></div>
-                                            <div class="tick"></div>
-                                            <div class="tick"></div>
-                                            <div class="tick"></div>
-                                            <div class="tick"></div>
-                                            <div class="tick"></div>
-                                            <div class="tick"></div>
-                                          </div>
-                                        </div>
-                                        <div class="centered pot-lip"></div>
-                                        <div class="centered pot-bar"></div>
-                                        <div class="centered pot-handle"></div>
+								<div class="navigation" ng-if="selectedEvent._id">
+									<div class="controls">
+										<i class="before fa fa-play" ng-click="setPreviousElement();"></i>
+										<div class="date">
+											<span class="month">{{selectedEvent.startsAt | date:"MMM"}}</span>
+											<span class="day">{{selectedEvent.startsAt | date:"dd"}}</span>
+										</div>
+										<i class="fa fa-play" ng-click="setNextElement();"></i>
+									</div>
 
+									<a class="igo" ng-click="addMeToEvent($event, selectedEvent);">J'y serai!</a>
+								</div>
 
-                                        <div class="centered plate"></div>
-                                        <div class="centered plate" id="inner"></div>
-                                        <div class="centered cup-handle"></div>
-                                        <div class="centered cup"></div>
-                                        <div class="centered cup-bottom"></div>
+								<div id="calContainer" ng-if="selectedEvent._id">
+									<article>
+										<div id="google-map" class="google-map google-map-agenda" ng-if="selectedEvent.location">
+											<google-map
+											center="map.center"
+											zoom="map.zoom"
+											draggable="true"
+											dragging="map.dragging"
+											bounds="map.bounds"
+											events="map.events"
+											options="map.options"
+											control="map.control">
 
-                                        <div class="centered coffee">
-                                          <div class="ripple"></div>
-                                        </div>
+												<marker
+														icon="'img/icons/pin.png'"
+														coords="marker"
+														animation="google.maps.Animation.DROP">
+												</marker>
 
-                                        <div class="centered pour">
-                                          <div class="stripes"></div>
-                                          <div class="stripes"></div>
-                                          <div class="stripes"></div>
-                                        </div>
-                                        <div>
-                                          <div class="centered splash"></div>
-                                          <div class="centered splash"></div>
-                                          <div class="centered splash"></div>
-                                        </div>
+											</google-map>
+										</div>
 
-                                        </div>
-                                    </section>
-                                </div>
+										<section>
+											<header>
+												<h1>
+												{{selectedEvent.user.name || selectedEvent.user.username}}
+												</h1>
+												<div class="record">
+													{{selectedEvent.title}}
+												</div>
+												<div style="margin-top: 20px;">
+													{{selectedEvent.content}}
+												</div>
+												<div style="margin-top: 20px;">
+													<a ng-repeat="guest in selectedEvent.guest" ng-href="#!/users/detail/{{guest._id}}">
+														<img ng-src="{{guest.avatar && guest.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{guest.username}}" draggable="false" class="img80_80 img-circle">
+													</a>
+												 </div>
+											</header>
+										</section>
+									</article>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-                                <div class="navigation">
-                                      <div class="controls">
-                                          <i class="before fa fa-play"></i>
-                                      <div class="date">
-                                         <span class="month">{{selectedEvent.startsAt | date:"MMM"}}</span>
-                                        <span class="day">{{selectedEvent.startsAt | date:"dd"}}</span>
-                                      </div>
-                                      <i class="fa fa-play"></i>
-                                      </div>
-                                        <a class="igo" ng-click="addMeToEvent($event, selectedEvent);">J'y serai!</a>
-                                    </div>
-                                    <div id="calContainer">
-                                      <article>
-                                          <div id="google-map" class="google-map google-map-agenda" ng-if="selectedEvent.location">
-                                            <google-map
-                                            center="map.center"
-                                            zoom="map.zoom"
-                                            draggable="true"
-                                            dragging="map.dragging"
-                                            bounds="map.bounds"
-                                            events="map.events"
-                                            options="map.options"
-                                            control="map.control">
-
-                                                <marker
-                                                    icon="'img/icons/pin.png'"
-                                                    coords="marker"
-                                                    animation="google.maps.Animation.DROP">
-                                                </marker>
-
-                                            </google-map>
-                                        </div>
-                                        <section>
-                                          <header>
-                                            <h1>{{selectedEvent.user.name || selectedEvent.user.username}}</h1>
-                                             <div class="record">
-                                               {{selectedEvent.title}}
-                                             </div>
-                                             <div style="margin-top: 20px;">
-                                              {{selectedEvent.content}}
-                                             </div>
-                                             <div style="margin-top: 20px;">
-                                               <a ng-repeat="guest in selectedEvent.guest" ng-href="#!/users/detail/{{guest._id}}">
-                                                    <img ng-src="{{guest.avatar && guest.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{guest.username}}" draggable="false" class="img80_80 img-circle">
-                                                </a>
-                                             </div>
-
-                                          </header>
-
-
-                                        </section>
-                                        </article>
-
-
-                                      </div>
-                                      <div class="sameDate">
-                                        <ul>
-                                          <li><img src="https://farm5.staticflickr.com/4031/4572632224_ef4baaf910_m.jpg" alt="" /></li>
-                                          <li></li>
-                                          <li></li>
-                                          <li></li>
-                                        </ul>
-                                      </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-  	</div>
-
-  	<div class="addButton">
-        <div class="float-bar-inn-wrap"></div>
-        <a href="#!/agenda/create">
-            <div id="float-bar-triggler">
-                <i class="float-bar-triggler-inn"></i>
-            </div>
-        </a>
-    </div>
+	<div class="addButton">
+		<div class="float-bar-inn-wrap"></div>
+		<a href="#!/agenda/create">
+			<div id="float-bar-triggler">
+					<i class="float-bar-triggler-inn"></i>
+			</div>
+		</a>
+	</div>
 </div>
 
 <cm-page-builder></cm-page-builder>

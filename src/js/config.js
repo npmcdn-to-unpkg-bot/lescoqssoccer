@@ -137,7 +137,7 @@ angular.module('mean').config(['$routeProvider',
 
 		/** DEFAULT ****/
 		when('/', {
-			redirectTo: 'home'
+			redirectTo: 'articles'
 		}).
 		otherwise({
 			redirectTo: 'home'
