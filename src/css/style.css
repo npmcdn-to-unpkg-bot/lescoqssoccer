@@ -758,7 +758,7 @@ color:#ccc; color:rgba(255,255,255,0.4); background-color:#666; background-color
   transform-origin: 50% 50%;
 }
 #main-wrap{
-  z-index:3; width: 100%; margin:0 auto; left:0; top:0; padding-left:80px;
+  z-index:3; width: 100%; margin:0 auto; left:0; top:0; padding-left: 6em;
 }
 #sidebar:hover ~ #main-wrap #main {
 -webkit-transform: scale(0.89);
@@ -1693,7 +1693,7 @@ i.medium{ font-size:24px; }
   background-color: #000000;
 }
 .liquid-title i{
-  font-size: 16px; right: 10px; top:10px;
+  font-size: 16px; right: 10px; top:30px;
 }
 .liquid-more-icon i{
   display: none;
@@ -1779,20 +1779,20 @@ a:hover,.entry p a,.archive-tit a:hover,.text_block a,.post_meta > li a:hover, #
 .blog_meta a:hover,.breadcrumbs a:hover,.link-wrap a:hover,.item_title a:hover,.item_des a:hover,.archive-wrap h3 a:hover,.post-color-default,.latest-posts-tags a:hover,
 .carousel-wrap a:hover,.iocnbox:hover i,.blog-item-main h2 a:hover,div.bbp-template-notice,h1.main_title .bbp-breadcrumb a:hover,.related-post-wrap h3:hover a,.latest-posts-tit-a:hover
 {
-  color:#FF5533;
+  color:#de3926;
 }
 
 .pagenums a:hover,.pagenums .current,.page-numbers.current, .tagcloud a:hover,.tagcloud a.active,.related-post-wrap h3:before,.header-slider-item-more:hover,
 .process-bar,.nav-tabs > li > a:hover,.testimenials:hover,.testimenials:hover .arrow-bg,
 .sidebar_widget .widget_uxconatactform input#idi_send:hover,input.idi_send:hover,.page-numbers:hover,#bbp-user-navigation li a:hover
 {
-  background-color:#FF5533;
+  background-color:#de3926;
   color: #FFFFFF;
 }
 textarea:focus,input[type="text"]:focus,input[type="password"]:focus,input[type="datetime"]:focus,input[type="datetime-local"]:focus,input[type="date"]:focus,input[type="month"]:focus,input[type="time"]:focus,input[type="week"]:focus,input[type="number"]:focus,input[type="email"]:focus,input[type="url"]:focus,input[type="search"]:focus,input[type="tel"]:focus,input[type="color"]:focus,.uneditable-input:focus,
 .sidebar_widget .widget_uxconatactform textarea:focus,.sidebar_widget .widget_uxconatactform input[type="text"]:focus,#respondwrap textarea:focus,#respondwrap input:focus
 {
-  border-color:#FF5533; outline:0;
+  border-color:#de3926; outline:0;
 }
 
 
@@ -1994,7 +1994,7 @@ input[type="text"].textboxsearch,.submit-wrap i,.icons-sidebar-unit,#woocomerce-
   background-color: #00aced;
 }
 .social-share-custom:hover{
-  background-color: #FF5533;
+  background-color: #de3926;
 }
 .social-share-google-plus:hover{
   background-color: #dd4b39;
@@ -2746,7 +2746,7 @@ A library of transitions for revealing the loaded images
 }
 
 .pagination ul > li:not(.disabled) > a:hover, .pagination ul > li > a:focus, .pagination ul > .active > a, .pagination ul > .active > span {
-    background-color: #FF5533 !important;
+    background-color: #de3926 !important;
     cursor: pointer;
 }
 
@@ -2758,7 +2758,7 @@ A library of transitions for revealing the loaded images
   z-index: 2;
   color: white !important;
   cursor: default;
-  background-color: #FF5533 !important;
+  background-color: #de3926 !important;
   border-color: #fff;
   margin: 0 20px;
   border: 0;
@@ -2869,15 +2869,15 @@ input:-moz-placeholder { color:white; }
 }
 
 .cal-day-weekend span[data-cal-date] {
-    color: #FF5533 !important;
+    color: #de3926 !important;
 }
 
 .label-important, .badge-important {
-    background-color: #FF5533 !important;
+    background-color: #de3926 !important;
 }
 
 .cal-row-fluid:hover .cal-cell1 {
-    color: #FF5533 !important;
+    color: #de3926 !important;
 }
 
 .cal-day-today span[data-cal-date] {
@@ -2947,7 +2947,7 @@ input[type="text"].localisation {
 }
 
 .localisationButton{
-    background-color: #FF5533 !important;
+    background-color: #de3926 !important;
     color: white !important;
 }
 
@@ -2968,7 +2968,7 @@ label{
 }
 
 #float-bar-triggler:not(.notClickable):hover, .filter-floating-triggle:not(.notClickable):hover{
-  background-color: #FF5533;
+  background-color: #de3926;
 }
 
 /****
@@ -2988,7 +2988,7 @@ Override bootstrap datepicker
 }
 
 .btn:hover, .btn-info{
-    background-color: #FF5533 !important;
+    background-color: #de3926 !important;
     color: black !important;
 }
 
@@ -3023,7 +3023,7 @@ Override bootstrap datepicker
 }
 
 .label{
-  background-color: #FF5533 !important;
+  background-color: #de3926 !important;
 }
 
 .lb-outerContainer{
@@ -4120,7 +4120,7 @@ a.list-group-item-danger.active:focus {
 #nav>li.active>a{
   background:rgba(0,0,0,.1);
   color:#fff;
-  border-left:3px solid #FF5533;
+  border-left:3px solid #de3926;
   -webkit-transition:all .2s ease-in-out;
   -moz-transition:all .2s ease-in-out;
   -ms-transition:all .2s ease-in-out;
@@ -4286,8 +4286,6 @@ a.list-group-item-danger.active:focus {
 }
 
 #nav-container ul {
-    display: table-cell;
-    vertical-align: middle;
     padding-left: 0;
     list-style: none;
     z-index: 2;
@@ -4404,7 +4402,7 @@ img.img40_40 {
 }
 
 .latest-posts-tit-wrap{
-  background: #FFFFFF;
+  background: #f3f3f3;
 }
 
 #agenda, #articles{
@@ -4738,10 +4736,10 @@ ul {
   background: #000000;
   color: #575757;
   text-align: center;
-  height: 4.5em;
-  width: 5em;
+  height: 6em;
+  width: 6em;
   vertical-align: middle;
-  line-height: 4.5em;
+  line-height: 6em;
   border-bottom: 1px solid #060606;
   position: relative;
   display: block;
@@ -4752,8 +4750,8 @@ ul {
   transition: all 0.25s linear;
 }
 .list-item:hover, .list-item.active{
-  background: #FF5533;
-  border-color: #FF5533;
+  background: #de3926;
+  border-color: #de3926;
   color: #fffcfb;
   -moz-transition: all 0.25s linear;
   -o-transition: all 0.25s linear;
@@ -4775,9 +4773,9 @@ ul {
     display: none;
     position: absolute;
     left: 0;
-    margin-top: -4.45em;
-    background-color: #FF5533;
-    height: 4.47em;
+    margin-top: -6em;
+    background-color: #de3926;
+    height: 6em;
     color: white;
     vertical-align: middle;
     padding: 0 20px;
@@ -4787,7 +4785,7 @@ ul {
   position: fixed;
   top: 0;
   left: 0;
-  width: 5em;
+  width: 6em;
   height: 100%;
   background: #000000;
 }
@@ -5581,13 +5579,11 @@ figure {
   position:relative;
   overflow:hidden;
   height:70px;
-  background:linear-gradient(#eee, #ccc);
   clear:both;
   float:none;
   display:block;
   margin:0 auto 0 auto;
-  border-top-left-radius:3px;
-  border-top-right-radius:3px;
+  background: black;
 }
 
 span.month{
@@ -5608,8 +5604,7 @@ span.day{
 a.igo{
   width:100px;
   height:40px;
-  background:linear-gradient( #35bf65,#1fa54c);
-  border-radius:3px;
+  background: #43bc46;
   display:block;
   position:absolute;
   right:22px;
@@ -5618,39 +5613,42 @@ a.igo{
   text-align:center;
   line-height:39px;
   cursor:pointer;
-  box-shadow:inset 0 2px 0 rgba(255,255,255,.4);
 }
 
 
 .before{
   transform:rotate(-180deg);
-  background:linear-gradient(#ccc,#eee) ! important;
-  box-shadow:0 -1px rgba(0,0,0,.2) ! important;
-  padding-left:12px ! important;
 }
 
 .fa-play{
   text-align:center;
-  background:linear-gradient(#eee,#ccc);
-  color:#151515;
+  color:white;
   padding:8px;
   padding-left:12px;
-  border-radius:4px;
-  border:1px solid #ccc;
   vertical-align:bottom;
-  box-shadow:0 1px rgba(0,0,0,.2);
-  margin:0 12px;
 }
 
 .controls{
   position:absolute;
   top:8px;
   left:12px;
-  background:linear-gradient(#eee, #ccc);
   padding:6px 8px 12px 6px;
   border-radius:8px;
+  color: white;
 }
 
 ::-webkit-input-placeholder{
   color:#fff;
+}
+
+.spotify iframe {
+    margin-bottom: -70px !important;
+}
+
+.spotify .soundcloudWrapperParent{
+    background-color: #2ebd59 !important;
+}
+
+.soundcloudWrapperParent{
+	background-color: #f5f5f5;
 }

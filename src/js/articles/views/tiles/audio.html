@@ -1,10 +1,10 @@
 <div class="filter_audio filter_blog width2 isotope-item audio">
 	<div class="inside" style="margin:40px 0 0 40px;">
-		<div>
+		<div ng-class="{'spotify': isSpotify(article.audioLink)}">
 			<div class="item_topbar post-bgcolor-default">
 				<a ng-href="#!/articles/view/audio/{{article._id}}" title="{{article.title}}" class="item_link"></a>
 			</div>
-			<div class="item_des post-bgcolor-default">
+			<div class="item_des soundcloudWrapperParent">
 				<h2 class="item_title">
 					<a href="#!/articles/view/audio/{{article._id}}" title="{{article.title}}">
 					{{article.title}}
@@ -18,7 +18,7 @@
 					</iframe>
 				</div>
 				<div class="like clear"></div>
-				<div style="padding: 10px 20px;">
+				<div style="padding: 10px 20px; color: black;">
 					<i class="fa fa-user"></i> {{article.user.username}}
 					<i class="fa fa-comment"></i> {{article.comments.length}}
 				</div>

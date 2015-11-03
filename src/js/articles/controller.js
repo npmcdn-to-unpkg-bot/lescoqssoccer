@@ -32,6 +32,11 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 		$scope.closeModal = function() {
 			$scope.modalInstance.close();
 		};
+
+		$scope.isSpotify = function(link){
+			console.warn(link);
+			return link.indexOf('spotify') !== -1;
+		};
 	}
 ]);
 
