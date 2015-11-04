@@ -10,22 +10,25 @@
 <div id="post-1039" class="post type-post status-publish format-standard hentry category-blog">
 	<div class="row-fluid two-cols-layout" style="min-height: 100vh;">
 		<div id="content_wrap" class="span10" style="margin-left: 9%;">
-
 			<div class="title-bar-wrap" id="title-bar" style="padding: 50px 0; width: calc(100% - 180px);">
 				<div id="title-wrap">
 					<div class="title-wrap-inn">
 						<div id="main-title">
 							<h1 class="main-title ellipsis" style="text-transform: uppercase;">
-								{{album.name || 'Nouvel album'}}
+							{{album.name || 'Nouvel album'}}
 							</h1>
 						</div>
 					</div>
 				</div>
 			</div>
-
 			<div id="comments">
 				<div id="respondwrap">
 					<div id="respond" class="comment-respond">
+
+						<div class="message-box" ng-show="showInfo" style="margin-bottom: 30px; background: #f3f3f3;">
+							<h4>Mets un titre et au moins une photo!</h4>
+						</div>
+
 						<form role="form">
 
 							<div class="span6" style="margin-bottom: 20px;">
@@ -38,7 +41,6 @@
 								tabindex="1"
 								placeholder="{{'gallery_name' | translate}}"
 								style="margin-bottom: 30px;">
-
 								<label>Photo de cover</label>
 								<select
 									name="cover"
@@ -47,7 +49,6 @@
 									style="margin-bottom: 20px; color: black; width: 100%;">
 								</select>
 							</div>
-
 							<div class="span6">
 								<textarea
 								name="description"
@@ -61,7 +62,6 @@
 								style="height: 125px;">
 								</textarea>
 							</div>
-
 							<div class="clearfix"></div>
 
 							<button
@@ -70,17 +70,14 @@
 							style="margin-bottom: 40px;">
 							Ajouter des photos
 							</button>
-
 							<br/>
-
 							<!-- ALBUM IMAGES -->
 							<div class="Collage effect-parent creation">
 								<a ng-repeat="photo in album.photoList">
-									<i class="fa fa-times" style="cursor: pointer;z-index: 8040;background:white; color: black;position: absolute; font-size: 30px;" ng-click="deletePhoto(photo);"></i>
-									<img ng-src="{{photo.filepath}}" alt="{{photo.name}}" style="border: 4px solid white;">
+								<i class="fa fa-times" style="cursor: pointer;z-index: 8040;background:white; color: black;position: absolute; font-size: 30px;" ng-click="deletePhoto(photo);"></i>
+								<img ng-src="{{photo.filepath}}" alt="{{photo.name}}" style="border: 4px solid white;">
 								</a>
 							</div>
-
 						</form>
 					</div>
 				</div>

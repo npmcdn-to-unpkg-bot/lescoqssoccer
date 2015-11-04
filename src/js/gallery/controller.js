@@ -12,7 +12,7 @@ angular.module('mean.albums').controller('AlbumDetailController', ['$location', 
 			evt.preventDefault();
 			evt.stopPropagation();
 
-			if ($scope.album.name !== "" && $scope.album.photoList.length > 0) {
+			if ($scope.album.name && $scope.album.name !== "" && $scope.album.photoList.length > 0) {
 
 				if (!$scope.album.coverPicPath) {
 					$scope.album.coverPicPath = $scope.album.photoList[0].filepath;
@@ -62,6 +62,13 @@ angular.module('mean.albums').controller('AlbumDetailController', ['$location', 
 					name: response.name
 				});
 
+			};
+
+			$scope.uploader.onCompleteAll = function(event, items) {
+				console.info('Complete all', items);
+
+				$(window).trigger('resize');
+				modalInstance.dismiss('cancel');
 			};
 		};
 
@@ -138,7 +145,7 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 				$scope.showModal = false;
 				$(window).trigger('resize');
 
-				setTimeout(function(){
+				setTimeout(function() {
 					Galleria.get(0).destroy();
 				}, 500);
 
@@ -264,7 +271,7 @@ var AlbumsData = {
 	Page: function($route) {
 		return ($route.current.params.page) ? $route.current.params.page : 1;
 	},
-	ItemsCount: function(AlbumService){
+	ItemsCount: function(AlbumService) {
 		return AlbumService.getItemsCount();
 	}
 };

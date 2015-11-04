@@ -2,6 +2,9 @@ var fs = require('fs');
 var path = require("path");
 var config = require('../../config/config');
 var qt = require('quickthumb');
+var gm = require('gm').subClass({
+	imageMagick: true
+});
 
 exports.uploadPhoto = function(req, res) {
 	console.info('inside uploadPhoto'); // <-- never reached using IE9
@@ -68,24 +71,25 @@ function handlePhotoUpload(params, callbacks) {
 
 			} else {
 
-				//Generate thumbnail
-				qt.convert({
-					src: newPath,
-					dst: path.resolve(config.root + "/server/" + config.cacheDirectoryX300 + newName),
-					width: 300,
-					height: 300
-				}, function(err, thumbImgPath) {
+				var image = gm(newPath);
+				image.resize(300, 300, '^');
+				image.gravity('Center');
+				image.crop(300, 300);
+				image.quality(70);
+				image.autoOrient();
+				image.write(path.resolve(config.root + "/server/" + config.cacheDirectoryX300 + newName), function(err) {
 
 					if (err) {
 						console.log("Error when trying to resize img in 300x300 format" + err);
 					}
 
-					qt.convert({
-						src: newPath,
-						dst: path.resolve(config.root + "/server/" + config.cacheDirectoryX100 + newName),
-						width: 100,
-						height: 100
-					}, function(err, thumbImgPath) {
+					var image = gm(path.resolve(config.root + "/server/" + config.cacheDirectoryX300 + newName));
+					image.resize(100, 100, '^');
+					image.gravity('Center');
+					image.crop(100, 100);
+					image.quality(70);
+					image.autoOrient()
+					image.write(path.resolve(config.root + "/server/" + config.cacheDirectoryX100 + newName), function(err) {
 
 						if (err) {
 							console.log("Error when trying to resize img in 100x100 format" + err);
@@ -105,6 +109,7 @@ function handlePhotoUpload(params, callbacks) {
 						});
 
 					});
+
 				});
 			}
 		});

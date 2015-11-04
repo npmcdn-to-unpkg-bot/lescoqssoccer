@@ -2,7 +2,6 @@ Reste à faire:
 
 - Articles => clarifié un peu tout ça (+ gestion des tags)
 - Agenda => revoir css
-- Photos => tester le nom + remplacer imagemagick par graphicmagick
 - Users => Cote de popularité en fonction des actions effectués + fiche user
 - Chat => fixer bug import chat
 - Suggestion => faire la mécanique (+ paggination)

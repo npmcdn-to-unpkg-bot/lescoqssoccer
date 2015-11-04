@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 var _ = require('underscore');
 var fs = require('fs');
+var path = require("path");
+var config = require('../../config/config');
 var archiver = require('archiver');
 var Album = mongoose.model('Album');
 
@@ -55,12 +57,17 @@ exports.deleteAlbum = function(req, res) {
 
 			var files = _.extend({}, doc.photoList);
 			doc.remove(function() {
+
 				res.send(req.body);
 
 				//remove files on filesystem
 				_.each(files, function(file){
 					if(file.filepath){
-						fs.unlink(file.filepath);
+
+						var filename =  file.filepath.split(config.uploadDirectory).pop();
+						fs.unlink(path.resolve(config.root + "/server/" + config.uploadDirectory + filename));
+						fs.unlink(path.resolve(config.root + "/server/" + config.cacheDirectoryX300 + filename));
+						fs.unlink(path.resolve(config.root + "/server/" + config.cacheDirectoryX100 + filename));
 					}
 				});
 			});

@@ -1,25 +1,54 @@
 <aside id="nav-container" class="sidebar_hide">
+
+
+	<div id="menu-bar">
+		<div class="menu-icons">
+			<div class="menu-bar-icon">
+				<span>Menu</span>
+			</div>
+			<div class="close-icon">
+				<span>Fermer</span>
+			</div>
+		</div>
+	</div>
+
 	<ul>
-		<li>
-			<a href="/signout">
-				<i class="fa fa-arrow-left"></i>
-			</a>
-			<a href="#!/users/profile">
-				<img ng-src="{{global.user.avatar && global.user.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{global.user.username}}" draggable="false" class="img80_80" style="margin-left: 10px; background-color: black;">
-			</a>
-		</li>
 		<li ng-repeat="item in menu">
-		    <a class='list-item' ng-href='{{item.link}}' ng-class="{'active' : isCurrentPath(item)}">
-		      	<md-icon id="{{item.id}}" class="ng-isolate-scope md-default-theme" aria-hidden="true" style>
-					<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 30 30" fit="" preserveAspectRatio="xMidYMid meet" style="pointer-events: none; display: block;">
-						<path ng-attr-d="{{item.svg}}"></path>
-					</svg>
-				</md-icon>
-		    	<div class="sidebar-label">
-					{{item.name}}
-			    </div>
-		    </a>
+			<a class='list-item' ng-href='{{item.link}}' ng-class="{'active' : isCurrentPath(item)}">
+			<md-icon id="{{item.id}}" class="ng-isolate-scope md-default-theme" aria-hidden="true" style>
+			<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 30 30" fit="" preserveAspectRatio="xMidYMid meet" style="pointer-events: none; display: block;">
+			<path ng-attr-d="{{item.svg}}"></path>
+			</svg>
+			</md-icon>
+			<div class="sidebar-label">
+				{{item.name}}
+			</div>
+			</a>
 		</li>
 	</ul>
+
 	<div class="navBackground"></div>
+
+	<!-- SIDEBAR -->
+	<div class="leftcontainer">
+		<div class="leftcontainer-inner">
+
+			<!-- SEARCH -->
+			<h3 style="margin-bottom: 20px;">Recherche</h3>
+				<form id="searchform" class="searchbox">
+					<input type="text" id="search" class="searchtext" placeholder="Bientot..." style="height: 32px;" />
+					<input type="submit" class="button" name="submit" value="Go" />
+				</form>
+			<hr/>
+
+			<!-- RECENT POSTS -->
+			<h3 style="margin-bottom: 20px;">Profile</h3>
+			<a href="#!/profile" ng-click="closeSidebar($event);">
+				<img class="contact-img" ng-src="{{global.user.avatar}}">
+			</a>
+			<a href="/signout">
+				<input type="button" class="button" value="Se déconnecter" style="width: 100%;margin-top: 30px;" />
+			</a>
+		</div>
+	</div>
 </aside>

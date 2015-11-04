@@ -1,8 +1,8 @@
 <div class="message-box">
 
-    <p class="box-close" ng-click="cancel()">
-        <i class="icon-m-close-circle"></i>
-    </p>
+	<p class="box-close" ng-click="cancel()">
+	<i class="icon-m-close-circle"></i>
+	</p>
 
 	<h4>Sélectionne les photos à ajouter</h4>
 	<div class="col-md-3" style="text-align: center; margin-top: 20px;">
@@ -15,17 +15,16 @@
 				Déposer des images
 			</div>
 		</div>
-
 		<button class="button pointer">
-			<label for="upload-profile-picture" class="label-upload-profile-picture" style="margin: inherit;">
-				Parcourir
-				<input
-				nv-file-select
-				type="file"
-				multiple
-				uploader="uploader"
-				class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
-			</label>
+		<label for="upload-profile-picture" class="label-upload-profile-picture" style="margin: inherit;">
+			Parcourir
+			<input
+			nv-file-select
+			type="file"
+			multiple
+			uploader="uploader"
+			class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
+		</label>
 		</button>
 	</div>
 
@@ -46,31 +45,30 @@
 					<td ng-show="uploader.isHTML5">
 						<div class="progress" style="margin-bottom: 0;">
 							<div
-							class="progress-bar"
-							role="progressbar"
-							ng-style="{ 'width': item.progress + '%' }"
-							style="background-color: lightgray; height: 20px;">
+								class="progress-bar"
+								role="progressbar"
+								ng-style="{ 'width': item.progress + '%' }"
+								style="background-color: lightgray; height: 20px;">
 							</div>
 						</div>
 					</td>
 					<td class="text-center">
 						<span ng-show="item.progress && !item.isSuccess && !item.isCancel && !item.isError">
-							<i class="fa fa-spinner"></i>
+						<i class="fa fa-spinner"></i>
 						</span>
 						<span ng-show="item.isSuccess">
-							<i class="fa fa-check-circle"></i>
+						<i class="fa fa-check-circle"></i>
 						</span>
 						<span ng-show="item.isCancel">
-							<i class="fa fa-ban"></i>
+						<i class="fa fa-ban"></i>
 						</span>
 						<span ng-show="item.isError">
-							<i class="fa fa-remove"></i>
+						<i class="fa fa-remove"></i>
 						</span>
 					</td>
 				</tr>
 			</tbody>
 		</table>
-
 		<div>
 			<div class="progress" style="">
 				<div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>

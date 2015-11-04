@@ -349,6 +349,68 @@ angular.module('mean.system').directive('cmSidebar', function() {
 				main_transform_origin();
 			}
 
+			/* SIDEBAR ANIMATIONS */
+				jQuery('#menu-bar').find('.menu-bar-icon').click(function() {
+					jQuery('body').find('#menu-bar').addClass('menucolor');
+					jQuery('body').find('#menu-bg').fadeIn();
+					jQuery('body').find('.leftcontainer').show();
+					if (jQuery(window).width() > 480) {
+						jQuery('body').find('.leftcontainer').removeClass('animated fadeOutLeft');
+						jQuery('body').find('.leftcontainer').addClass('animated fadeInLeft');
+					} else {
+						jQuery('body').find('.leftcontainer').removeClass('animated');
+					}
+					jQuery(this).fadeOut();
+					setTimeout(function() {
+						jQuery('#menu-bar').find('.close-icon').fadeIn();
+					}, 400);
+				});
+
+				jQuery('#menu-bg').click(function() {
+					jQuery('body').find('#menu-bar').removeClass('menucolor');
+					jQuery('body').find('#menu-bg').fadeOut();
+					if (jQuery(window).width() > 480) {
+						jQuery('body').find('.leftcontainer').fadeOut();
+						jQuery('body').find('.leftcontainer').removeClass('animated fadeInLeft');
+						jQuery('body').find('.leftcontainer').addClass('animated fadeOutLeft');
+					} else {
+						jQuery('body').find('.leftcontainer').hide();
+						jQuery('body').find('.leftcontainer').removeClass('animated');
+					}
+					jQuery('#menu-bar').find('.close-icon').fadeOut();
+					setTimeout(function() {
+						jQuery('#menu-bar').find('.menu-bar-icon').fadeIn();
+					}, 400);
+				});
+
+				jQuery('#menu-bar').find('.close-icon').click(function() {
+					jQuery('body').find('#menu-bar').removeClass('menucolor');
+					jQuery('body').find('#menu-bg').fadeOut();
+					if (jQuery(window).width() > 480) {
+						jQuery('body').find('.leftcontainer').fadeOut();
+						jQuery('body').find('.leftcontainer').removeClass('animated fadeInLeft');
+						jQuery('body').find('.leftcontainer').addClass('animated fadeOutLeft');
+					} else {
+						jQuery('body').find('.leftcontainer').hide();
+						jQuery('body').find('.leftcontainer').removeClass('animated');
+					}
+					jQuery(this).fadeOut();
+					setTimeout(function() {
+						jQuery('#menu-bar').find('.menu-bar-icon').fadeIn();
+					}, 400);
+				});
+
+				setTimeout(function() {
+					$(".leftcontainer").mCustomScrollbar({
+						scrollInertia: 400,
+						autoHideScrollbar: true,
+						theme: "light",
+						advanced: {
+							updateOnContentResize: true
+						}
+					});
+				}, 500);
+
 		}
 	}
 });
@@ -1084,15 +1146,6 @@ angular.module('mean.system').directive('cmHeader', function() {
 		restrict: 'E',
 		transclude: true,
 		templateUrl: "js/appStructure/header.html"
-	}
-});
-
-angular.module('mean.system').directive('cmMobileMenu', function() {
-	return {
-		restrict: 'E',
-		transclude: true,
-		replace: true,
-		templateUrl: "js/appStructure/mobileMenu.html"
 	}
 });
 
