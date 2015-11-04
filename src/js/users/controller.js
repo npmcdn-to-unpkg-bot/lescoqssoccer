@@ -26,11 +26,28 @@ angular.module('mean.users').controller('TeamController', ['$scope', 'Global', '
 	}
 ]);
 
-angular.module('mean.users').controller('UserDetailController', ['$scope', 'User',
+angular.module('mean.users').controller('UserDetailController', ['$scope','$sce', 'User', 'Albums', 'UserArticles',
 
-	function($scope, User) {
+	function($scope, $sce, User, Albums, UserArticles) {
 
 		$scope.user = User;
+		$scope.albums = Albums;
+		$scope.articles = UserArticles;
+
+		//Format html content from article content edit by wysiwyg
+		$scope.getFormattedContent = function(html) {
+			return $sce.trustAsHtml(html);
+		};
+
+		//Format video and audio url
+		$scope.trustSrc = function(src) {
+			return $sce.trustAsResourceUrl(src);
+		};
+
+		$scope.isSpotify = function(link){
+			console.warn(link);
+			return link.indexOf('spotify') !== -1;
+		};
 	}
 ]);
 
@@ -172,7 +189,6 @@ var ChatData = {
 	},
 
 	Conversation: function(Global, ConversationService, $route) {
-		console.warn($route.current.params.id);
 		return ($route.current.params.id) ? ConversationService.getConversation(Global.user._id, $route.current.params.id) : null;
 	},
 
@@ -190,7 +206,19 @@ var UserDetailData = {
 		}, function(user) {
 			return user;
 		}).$promise;
-	}
+	},
+
+	Albums: function(AlbumService, $route) {
+		return AlbumService.getAlbumsByUser($route.current.params.id).then(function(albums) {
+			return albums;
+		});
+	},
+
+	UserArticles: function(ArticlesCollection, $route) {
+		return ArticlesCollection.getArticlesByUser($route.current.params.id).then(function(articles) {
+			return articles;
+		});
+	},
 
 };
 

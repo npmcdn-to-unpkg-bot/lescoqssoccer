@@ -55,15 +55,26 @@ angular.module('mean.albums').service('AlbumService', ['AlbumsCollection', 'Phot
 
 			getAlbum: function(id) {
 				return AlbumsCollection.get({
-					id: id
+					id: id,
 				}, function(data) {
 					return data;
 				}).$promise;
 			},
 
-			getAllAlbums: function() {
-				return AlbumsCollection.query({}, function(data) {
+			getAllAlbums: function(page) {
+				return AlbumsCollection.query({
+					page: page - 1,
+					perPage: AlbumService.itemsPerPage
+				}, function(data) {
 					return data;
+				}).$promise;
+			},
+
+			getAlbumsByUser: function(userId) {
+				return AlbumsCollection.query({
+					userId: userId
+				}, function(albums) {
+					return albums;
 				}).$promise;
 			},
 

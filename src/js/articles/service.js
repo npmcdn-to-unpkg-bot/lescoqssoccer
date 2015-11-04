@@ -63,6 +63,16 @@ angular.module('mean.articles').service('ArticlesCollection', ['Articles', 'Arti
 				}).$promise;
 			},
 
+			getArticlesByUser: function(userId) {
+				return Articles.query({
+					userId: userId,
+					page: 0,
+					perPage: ArticlesCollection.itemsPerPage
+				}, function(articles) {
+					return articles;
+				}).$promise;
+			},
+
 			getPrevious: function(article) {
 
 				var index = 0;

@@ -4409,7 +4409,7 @@ img.img40_40 {
   height: 34px !important;
 }
 
-.articlesContainer img{
+.articlesContainer img, .userDetailBlog img{
   height: auto !important;
 }
 
@@ -5952,4 +5952,8 @@ a.igo{
 	aside{
     display: none;
 }
+}
+
+.well{
+	border-radius: 0 !important;
 }

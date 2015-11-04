@@ -7,13 +7,20 @@ var archiver = require('archiver');
 var Album = mongoose.model('Album');
 
 exports.findAllAlbums = function(req, res) {
-	Album.find({}, null, {
-		sort: {
-			name: 1
-		}
-	}).populate('user').exec(function(err, albums) {
-		res.send(albums);
-	})
+
+	var perPage = req.query.perPage;
+	var page = req.query.page;
+	var query = (req.query.userId) ? {
+		user: req.query.userId
+	} : {};
+
+	Album.find(query)
+		.sort('-created')
+		.limit(perPage)
+		.skip(perPage * page)
+		.populate('user').exec(function(err, albums) {
+			res.send(albums);
+		});
 };
 
 exports.findAlbumById = function(req, res) {
@@ -61,10 +68,10 @@ exports.deleteAlbum = function(req, res) {
 				res.send(req.body);
 
 				//remove files on filesystem
-				_.each(files, function(file){
-					if(file.filepath){
+				_.each(files, function(file) {
+					if (file.filepath) {
 
-						var filename =  file.filepath.split(config.uploadDirectory).pop();
+						var filename = file.filepath.split(config.uploadDirectory).pop();
 						fs.unlink(path.resolve(config.root + "/server/" + config.uploadDirectory + filename));
 						fs.unlink(path.resolve(config.root + "/server/" + config.cacheDirectoryX300 + filename));
 						fs.unlink(path.resolve(config.root + "/server/" + config.cacheDirectoryX100 + filename));

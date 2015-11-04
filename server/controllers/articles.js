@@ -91,8 +91,11 @@ exports.all = function(req, res) {
 
 	var perPage = req.query.perPage;
 	var page = req.query.page;
+	var query = (req.query.userId) ? {
+		user: req.query.userId
+	} : {};
 
-	Article.find({})
+	Article.find(query)
 		.sort('-created')
 		.limit(perPage)
 		.skip(perPage * page)

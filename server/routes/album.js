@@ -23,7 +23,7 @@ module.exports = function ( app ) {
 	app.delete( '/albums/:id', albums.deleteAlbum );
 
 	//get articles count
-    app.get('/albumsCount', albums.getItemsCount);
+    	app.get('/albumsCount', albums.getItemsCount);
 
 	/**Download**/
 	app.post('/download/:id', albums.download);
