@@ -27,13 +27,14 @@
 								{{album.name}}
 							</h1>
 							<div class="post-meta">
-								<span class="post-meta-unit date">
-									Créé le: {{album.created | date:"dd MMM yyyy"}}
+								<span class="post-meta-unit date" style="width:40px;">
+									<img class="img-circle" ng-src="{{album.user.avatar}}?dim=300x300" alt="{{album.user.username}}"/>
 								</span>
+								<span>Créé le: {{album.created | date:"dd MMM yyyy"}}</span>
 								<br>
-								<span class="post-meta-unit date">
-									Auteur: {{album.user.name || album.user.username}}
-								</span>
+								<p>
+									{{album.description}}
+								</p>
 							</div>
 						</div>
 					</div>
@@ -44,16 +45,16 @@
 			<div class="row-fluid" ng-show="!showModal">
 				<div class="span12 moudle bottom-space-no" style="padding: 0 60px 60px;">
 					<div class="row-fluid">
-						<div class="container-isotope " style=" " data-post="20140406-081941-855">
+						<div class="container-isotope" data-post="20140406-081941-855">
 							<!--Loading-->
-							<div id="isotope-load" style="display: none;">
-								<div class="ux-loading"></div>
+							<div id="isotope-load">
+								<div class="ux-loading" style="display: none;"></div>
 								<div class="ux-loading-transform">
 									<div class="loading-dot1">&nbsp;</div>
 									<div class="loading-dot2">&nbsp;</div>
 								</div>
 							</div>
-							<div class="Collage effect-parent">
+							<div class="Collage effect-parent" style="visibility: hidden;">
 								<a ng-click="showSlider($event, $index)" ng-repeat="photo in album.photoList">
 									<img ng-src="{{photo.filepath}}" alt="{{photo.name}}" style="cursor:zoom-in;">
 								</a>

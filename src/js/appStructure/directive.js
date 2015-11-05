@@ -433,6 +433,10 @@ angular.module('mean.system').directive('cmPageBuilder', ['ConversationService',
 				$('.Collage').collagePlus({
 					'targetHeight': 200
 				});
+
+				$('.Collage').css('visibility', 'visible');
+				$('#isotope-load').fadeOut();
+
 			}
 
 			setTimeout(function() {

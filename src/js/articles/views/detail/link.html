@@ -3,6 +3,16 @@
 	<div class="row-fluid two-cols-layout" style="min-height: 100vh;">
 		<div id="content_wrap" class="span8">
 
+			<div class="clearfix filters filter-floating" style="position: relative;float: right;margin-top: 20px;right: 0;">
+				<ul>
+					<li><a href="#!" data-ng-click="edit($event);">Editer</a></li>
+					<li><a href="#!" data-ng-click="remove($event);">Supprimer</a></li>
+				</ul>
+				<div class="filter-floating-triggle notClickable hidden-phone" ng-show="global.user._id === article.user._id">
+					<i class="fa fa-cogs"></i>
+				</div>
+			</div>
+
 			<div class="title-bar-wrap " id="title-bar" style="padding: 50px 0; max-height: 280px;">
 				<div id="title-wrap">
 					<div class="title-wrap-inn">

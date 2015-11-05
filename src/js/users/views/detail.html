@@ -35,10 +35,19 @@
 						</div>
 					</div>
 					<div class="container">
-						<div class="row-fluid">
+
+						<div class="container userDetailBlog">
+							<h2 style="margin-bottom: 20px;">Ses derniers articles</h2>
+							<div class="isotope masonry isotope_fade" data-size="brick" style="margin: -40px 0px 0px -40px; display: none;">
+								<cm-blog-post ng-repeat="article in articles" ng-if="$index < 6" type="{{article.type || 'standard'}}" format="tiles">
+								</cm-blog-post>
+							</div>
+						</div>
+
+						<div class="row-fluid" style="margin-top: 40px;">
 							<div class="span12 moudle">
 								<div class="container-isotope clear" data-post="20140417-063206-425">
-									<h2 style="margin-left: 60px;">Ses photos</h2>
+									<h2 style="margin-left: 60px;">Ses dernières photos</h2>
 									<div class="isotope masonry isotope-liquid-list isotope_fade" data-space="0px" data-width="width4" data-size="medium" style="display: none; margin: 0px 40px 0px 40px;">
 										<div class="width2 isotope-item hover-effect" ng-repeat="album in albums" ng-if="$index < 8" style="border: none; padding: 20px;">
 											<div class="inside liquid_inside brick-inside">
@@ -88,7 +97,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="container">
+						<!-- <div class="container">
 							<div class="row-fluid">
 								<div class="span12 moudle">
 									<div data-post="20140518-124034-337" class="text_block ux-mod-nobg ">
@@ -97,22 +106,14 @@
 									</div>
 								</div>
 							</div>
-						</div>
-
-						<div class="container userDetailBlog">
-							<h2 style="margin-bottom: 20px;">Ses articles</h2>
-							<div class="isotope masonry isotope_fade" data-size="brick" style="margin: -40px 0px 0px -40px; display: none;">
-								<cm-blog-post ng-repeat="article in articles" ng-if="$index < 6" type="{{article.type || 'standard'}}" format="tiles">
-								</cm-blog-post>
-							</div>
-						</div>
-						<div class="container" style="margin-top: 40px;">
+						</div> -->
+						<div class="container"q>
 							<div class="row-fluid">
 								<div class="span12 moudle moudle_has_animation bouncdein-up-translate animation-default-ux animation-scroll-ux  bottom-space-40  animation_hidden bouncdein-up-ed" style="opacity: 1;">
 									<div data-post="20140417-063009-451" class="text_block ux-mod-nobg ">
 										<a name="20140417-063009-451" class="20140417-063009-451"></a>
 										<h1 style="text-align: center;"><span style="line-height: 1.5em;">
-										GET IN TOUCH WITH US</span></h1>
+										CONTACT</span></h1>
 									</div>
 								</div>
 							</div>

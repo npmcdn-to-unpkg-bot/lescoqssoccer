@@ -5,13 +5,16 @@
 				<a ng-href="#!/articles/view/standard/{{article._id}}" title="{{article.title}}" class="item_link"></a>
 			</div>
 			<div class="item_des post-bgcolor-default">
+				<a href="#!/articles/view/standard/{{article._id}}" title="{{article.title}}" ng-if="getImage(article.content) !== ''">
+					<img alt="{{article.title}}" ng-src="{{getImage(article.content)}}" class="isotope-list-thumb">
+				</a>
 				<h2 class="item_title">
 					<a ng-href="#!/articles/view/standard/{{article._id}}" title="Standard format post">
 						{{article.title}}
 					</a>
 				</h2>
 				<div class="item-des-p">
-					<div ng-bind-html="getFormattedContent(article.content)" class="articleContent"></div>
+					<div class="articleContent three-line-ellipsis">{{getFormattedContent(article.content)}}</div>
 				</div>
 				<div class="like clear"></div>
 				<div class="pull-right" style="margin: 10px 20px;">
