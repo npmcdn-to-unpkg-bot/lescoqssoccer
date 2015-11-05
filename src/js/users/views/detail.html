@@ -1,0 +1,168 @@
+<div id="post-662" class="page type-page status-publish hentry" >
+	<div class="row-fluid">
+		<div id="content_wrap" class="">
+
+			<div class="content-wrap-inn bottom-space">
+				<div class="pagebuilder-wrap">
+					<div class="fullwrap_moudle">
+						<div class="row-fluid">
+							<div class="fullwidth-wrap top-space-80-in bottom-space-40-in fullwidth-text-white bottom-space-40 ">
+								<div class="parallax" data-ratio="0.3">
+									<img class="parallax-img" src="img/background-testimonial.jpg" style="-webkit-filter: grayscale(100%); opacity: 0.6;">
+								</div>
+								<div class="container">
+									<div class="row-fluid">
+										<div class="span12 moudle">
+											<div class="flex-slider-wrap testimonial-wrap ux-mod-nobg" data-direction="false" data-control="true" data-speed="5" data-animation="fade">
+												<div class="flexslider">
+													<div class="testimonial-thum">
+														<img ng-src="{{user.avatar && user.avatar + '?dim=300x300' || 'img/Professor.png'}}" class="attachment-thumbnail wp-post-image" alt="13" draggable="false">
+													</div>
+													<blockquote>
+														<p style="color: #de3926;">{{user.presentation}}</p>
+														<cite>
+														<a href="http://ximudesign.com/aside/" style="color: #de3926;">
+														---- {{user.name || user.username}}
+														</a>
+														</cite>
+													</blockquote>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="container">
+
+						<div class="container userDetailBlog">
+							<h2 style="margin-bottom: 20px;">Ses derniers articles</h2>
+							<div class="isotope masonry isotope_fade" data-size="brick" style="margin: -40px 0px 0px -40px; display: none;">
+								<cm-blog-post ng-repeat="article in articles" ng-if="$index < 6" type="{{article.type || 'standard'}}" format="tiles">
+								</cm-blog-post>
+							</div>
+						</div>
+
+						<div class="row-fluid" style="margin-top: 40px;">
+							<div class="span12 moudle">
+								<div class="container-isotope clear" data-post="20140417-063206-425">
+									<h2 style="margin-left: 60px;">Ses dernières photos</h2>
+									<div class="isotope masonry isotope-liquid-list isotope_fade" data-space="0px" data-width="width4" data-size="medium" style="display: none; margin: 0px 40px 0px 40px;">
+										<div class="width2 isotope-item hover-effect" ng-repeat="album in albums" ng-if="$index < 8" style="border: none; padding: 20px;">
+											<div class="inside liquid_inside brick-inside">
+												<div class="brick-content brick-hover">
+													<a class="liquid_list_image" data-postid="{{album._id}}" ng-href="#!/albums/view/{{album._id}}" data-color="bg-theme-color-10" data-type="image" style="display: block;">
+													<div class="brick-hover-mask" style="display: flex;height: 100%;margin: auto;">
+														<i class="fa fa-play-circle" style="font-size: -webkit-xxx-large; color: #de3926; margin: auto;"></i>
+													</div>
+													<img
+													ng-src="{{album.coverPicPath}}?dim=300x300"
+													class="attachment-imagebox-thumb wp-post-image"
+													alt="{{album.name}}">
+													</a>
+												</div>
+												<div class="latest-posts-tit-wrap">
+													<h2 class="latest-posts-tit text-center">
+													<a ng-href="#!/albums/view/{{album._id}}" class="content-portfolio-images-on-right.html">
+													<span class="latest-posts-tit-a-inn ellipsis" style="display: block;">
+													<i class="fa fa-folder"></i>
+													&nbsp;&nbsp;{{album.name}}
+													</span>
+													</a>
+													</h2>
+												</div>
+											</div>
+											<!--Loading for album summary-->
+											<div style="display: none;" class="inside liquid-loading-wrap bg-theme-color-10">
+												<div class="ux-loading"></div>
+												<div class="ux-loading-transform">
+													<div class="loading-dot1" style="background-color:#FFFFFF;">&nbsp;</div>
+													<div class="loading-dot2" style="background-color:#FFFFFF;">&nbsp;</div>
+												</div>
+												<img ng-src="{{album.coverPicPath}}?dim=300x300" class="liquid-hide wp-post-image">
+												<div class="latest-posts-tit-wrap">
+													<h2 class="latest-posts-tit text-center">
+													<a class="content-portfolio-images-on-right.html">
+													<span class="latest-posts-tit-a-inn ellipsis">
+													<i class="fa fa-folder"></i>
+													&nbsp;&nbsp;{{album.name}}
+													</span>
+													</a>
+													</h2>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- <div class="container">
+							<div class="row-fluid">
+								<div class="span12 moudle">
+									<div data-post="20140518-124034-337" class="text_block ux-mod-nobg ">
+										<a name="20140518-124034-337" class="20140518-124034-337"></a>
+										<p><span class="dropcap">M</span>agnis integer sed tristique scelerisque. Scelerisque et pulvinar eros tempor, mattis arcu auctor, hac porttitor&nbsp;facilisis integer sed tristique scelerisque.&nbsp;Aliquet dignissim lorem magna tortor eu scelerisque, massa, rhoncus magnis phasellus augue habitasse a.</p>
+									</div>
+								</div>
+							</div>
+						</div> -->
+						<div class="container"q>
+							<div class="row-fluid">
+								<div class="span12 moudle moudle_has_animation bouncdein-up-translate animation-default-ux animation-scroll-ux  bottom-space-40  animation_hidden bouncdein-up-ed" style="opacity: 1;">
+									<div data-post="20140417-063009-451" class="text_block ux-mod-nobg ">
+										<a name="20140417-063009-451" class="20140417-063009-451"></a>
+										<h1 style="text-align: center;"><span style="line-height: 1.5em;">
+										CONTACT</span></h1>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="container">
+							<div class="row-fluid">
+								<div class="span12 general_moudle">
+									<div class="row-fluid">
+										<div class="span4 moudle moudle_has_animation bouncdein-left-translate animation-default-ux animation-scroll-ux  bottom-space-40  animation_hidden bouncdein-left-ed" style="opacity: 1;">
+											<div data-animation="rorate" class="iocnbox icon_left  ux-mod-nobg">
+												<div class="icon_wrap">
+													<i class="fa fa-phone"></i>
+												</div>
+												<div class="icon_text">
+													<h3>Phone</h3>
+													<p>+000 123 456 7</p>
+												</div>
+											</div>
+										</div>
+										<div class="span4 moudle moudle_has_animation bouncdein-up-translate animation-default-ux animation-scroll-ux  bottom-space-40  animation_hidden bouncdein-up-ed" style="opacity: 1;">
+											<div data-animation="rorate" class="iocnbox icon_left  ux-mod-nobg">
+												<div class="icon_wrap">
+													<i class="fa fa-map-marker"></i>
+												</div>
+												<div class="icon_text">
+													<h3>London</h3>
+													<p>Name of the street 123,&nbsp;Name of the City,&nbsp;Name of the Country</p>
+												</div>
+												<!--End icon_text-->
+											</div>
+										</div>
+										<div class="span4 moudle moudle_has_animation bouncdein-right-translate animation-default-ux animation-scroll-ux  bottom-space-40  animation_hidden bouncdein-right-ed" style="opacity: 1;">
+											<div data-animation="rorate" class="iocnbox icon_left  ux-mod-nobg">
+												<div class="icon_wrap">
+													<i class="fa fa-rocket"></i>
+												</div>
+												<div class="icon_text">
+													<h3>See Also</h3>
+													<p>You can also review our works on <a data-mce-href="http://#" href="http://#">Twitter</a> <a data-mce-href="http://#" href="http://#">Google Plus</a> <a data-mce-href="http://#" href="http://#">Pinterest</a> and <a data-mce-href="http://#" href="http://#">Behance</a>.</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<cm-page-builder></cm-page-builder>

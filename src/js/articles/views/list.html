@@ -1,45 +1,94 @@
-<section class="rightcontainer">
+<div id="post-116" class="post-116 page type-page status-publish hentry articlesContainer">
+	<div class="row-fluid" style="min-height: 100vh">
+		<div id="content_wrap">
+			<div class="content-wrap-inn">
 
-    <!-- TITLE -->
-    <div class="subtitle">
-        <h1>Blog</h1>
-        <a href="#!/articles/create" class="add-icon">
-        </a>
-    </div>
+				<div class="container">
+					<div class="title-bar-wrap title-centered" id="title-bar" style="padding: 20px 0;">
+						<!-- <div id="title-wrap">
+							<div class="title-wrap-inn">
+								<div id="main-title">
+									<h1 class="main-title">La foire aux articles</h1>
+								</div>
+								<div class="post-expert">
+									Cette section est un petit peu la foire à la saucisse, vous pouvez partager toute sorte de contenus: liens, vidéos, articles personnalisés... Tout ça en cliquant sur le petit bouton en bas à droite.
+								</div>
+							</div>
+						</div> -->
+					</div>
+				</div>
 
-    <!-- POSTS -->
-    <article class="blogcontainer" ng-repeat="article in articles | filter: nameFilter">
+				<div class="pagebuilder-wrap">
+					<div class="container">
+						<div class="row-fluid">
+							<div class="span12 moudle">
+								<div class="row-fluid">
+									<div class="container-isotope clear">
 
-        <!-- POST IMAGE -->
-        <div class="blogimage" data-image="{{article.image || 'img/photos/2-s.jpg'}}">
-            <a href="#!/articles/view/{{article._id}}"></a>
-        </div>
+										<div id="isotope-load">
+											<div class="ux-loading"></div>
+											<div class="ux-loading-transform">
+												<div class="loading-dot1">&nbsp;</div>
+												<div class="loading-dot2">&nbsp;</div>
+											</div>
+										</div>
 
-        <!-- POST CONTENT -->
-        <div class="postcontent">
-            <h3><a href="#!/articles/view/{{article._id}}">{{article.title}}</a></h3>
-            <p class="postdate">{{article.created | date:"dd MMM yyyy, H'h'mm"}} </p>
-            <div ng-bind-html="getFormattedContent(article.content)" class="articleSummary"></div>
-            <p></p>
-            <a class="tags" href="#" ng-repeat="category in article.categories">
-                {{category.value}}
-            </a>
-        </div>
+										<div class="isotope masonry isotope_fade" data-size="brick" style="margin: -40px 0px 0px -40px; display: none;">
+											<cm-blog-post ng-repeat="article in articles" type="{{article.type || 'standard'}}" format="tiles">
+											</cm-blog-post>
+										</div>
 
-    </article>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 
-    <!-- FOOTER: PREVIOUS AND NEXT BUTTONS -->
-    <div class="blogpager">
+					<div class="clearfix pagenums" style="display: none;">
+						<div class="pagination">
+							<pagination
+							previous-text="&#8249; Précédents"
+							next-text="Suivants &#8250;"
+							total-items="totalItems"
+							page="page"
+							on-select-page="pageChanged(page)"
+							items-per-page="itemsPerPage">
+							</pagination>
+						</div>
+					</div>
 
-        <pagination
-        previous-text="&#8249; Précédents"
-        next-text="Suivants &#8250;"
-        total-items="totalItems"
-        page="page"
-        on-select-page="pageChanged(page)">
-        </pagination>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
-    </div>
+<div id="float-bar" class="hidden-phone">
+	<div class="float-bar-inn-wrap">
+		<div class="float-bar-inn">
+			<div class="float-bar-social-share">
+				<button class="social-share-custom" ng-click="openCreateView('standard')">
+					<i class="fa fa-pencil"></i>
+				</button>
 
-    <cm-Backstretch></cm-Backstretch>
-</section>
+				<button class="social-share-custom" ng-click="openCreateView('link')">
+					<i class="fa fa-link"></i>
+				</button>
+
+				<button class="social-share-custom" ng-click="openCreateView('video')">
+					<i class="fa fa-video-camera"></i>
+				</button>
+
+				<button class="social-share-custom" ng-click="openCreateView('audio')">
+					<i class="fa fa-volume-up"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="float-bar-triggler" class="notClickable">
+		<i class="float-bar-add"></i>
+	</div>
+</div>
+
+<cm-page-builder></cm-page-builder>

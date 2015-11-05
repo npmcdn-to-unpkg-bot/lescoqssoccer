@@ -40,16 +40,57 @@ angular.module('mean.articles').service('ArticlesCollection', ['Articles', 'Arti
 
 		var ArticlesCollection = {
 
+			all: [],
+			itemsPerPage: 12,
+			currentPage: 0,
+
 			load: function(page) {
-				return Articles.query({page:page-1, perPage: 10}, function(articles) {
+
+				ArticlesCollection.currentPage = page;
+
+				return Articles.query({
+					page: page - 1,
+					perPage: ArticlesCollection.itemsPerPage
+				}, function(articles) {
+					ArticlesCollection.all = articles;
 					return articles;
 				}).$promise;
 			},
 
 			getItemsCount: function() {
 				return ArticlesCount.get({}, function(result) {
-					return result.count;
+					return result;
 				}).$promise;
+			},
+
+			getArticlesByUser: function(userId) {
+				return Articles.query({
+					userId: userId,
+					page: 0,
+					perPage: ArticlesCollection.itemsPerPage
+				}, function(articles) {
+					return articles;
+				}).$promise;
+			},
+
+			getPrevious: function(article) {
+
+				var index = 0;
+				for(var i=0; i < ArticlesCollection.all.length; i++){
+					if(article._id === ArticlesCollection.all[i]._id) index = i;
+				};
+
+				return (index - 1 > 0) ? ArticlesCollection.all[index - 1] : ArticlesCollection.all[0];
+			},
+
+			getNext: function(article) {
+
+				var index = 0;
+				for(var i=0; i < ArticlesCollection.all.length; i++){
+					if(article._id === ArticlesCollection.all[i]._id) index = i;
+				};
+
+				return (index + 1 > ArticlesCollection.all.length - 1) ? ArticlesCollection.all[ArticlesCollection.all.length - 1] : ArticlesCollection.all[index + 1];
 			},
 
 			findOne: function(articleId) {

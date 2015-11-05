@@ -1,5 +1,7 @@
-<div class="info-box" style="text-align:center;">
-	<span class="info-box-close" data-ng-click="cancel()"></span>
+<div class="message-box" style="text-align: center;">
+	<p class="box-close" ng-click="cancel()" style="position: absolute;top:20px;right:20px;z-index: 1000;">
+        <i class="icon-m-close-circle" style="font-size: 30px;"></i>
+    </p>
 	<div class="btn-group pull-left monthGroupBtn">
 		<input
 		type="button"
@@ -7,8 +9,7 @@
 		mwl-date-modifier
 		date="calendarDay"
 		decrement="calendarView"
-		value="Précédent"/>
-
+		value="&#8249;"/>
 		<input
 		type="button"
 		class="btn todayBtn"
@@ -22,16 +23,16 @@
 		mwl-date-modifier
 		date="calendarDay"
 		increment="calendarView"
-		value="Suivant"/>
+		value="&#8250;"/>
 	</div>
-	<div class="btn-group">
+	<div class="btn-group" style="margin-bottom: 20px;">
 		<h2 class="uppercase">{{ calendarTitle }}</h2>
 	</div>
 	<div class="btn-group pull-right">
-		<label class="btn" ng-model="calendarView" btn-radio="'year'">Année</label>
-		<label class="btn" ng-model="calendarView" btn-radio="'month'">Mois</label>
-		<label class="btn" ng-model="calendarView" btn-radio="'week'">Semaine</label>
-		<label class="btn" ng-model="calendarView" btn-radio="'day'">Jour</label>
+		<label class="btn" ng-model="calendarView" btn-radio="'year'" style="background-color: #000000;text-shadow: none;color: white;">Année</label>
+		<label class="btn" ng-model="calendarView" btn-radio="'month'" style="background-color: #000000;text-shadow: none;color: white;">Mois</label>
+		<label class="btn" ng-model="calendarView" btn-radio="'week'" style="background-color: #000000;text-shadow: none;color: white;">Semaine</label>
+		<label class="btn" ng-model="calendarView" btn-radio="'day'" style="background-color: #000000;text-shadow: none;color: white;">Jour</label>
 	</div>
 
 	<mwl-calendar
@@ -48,3 +49,4 @@
 	auto-open="true">
 	</mwl-calendar>
 </div>
+<cm-page-builder></cm-page-builder>

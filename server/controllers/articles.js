@@ -91,13 +91,17 @@ exports.all = function(req, res) {
 
 	var perPage = req.query.perPage;
 	var page = req.query.page;
+	var query = (req.query.userId) ? {
+		user: req.query.userId
+	} : {};
 
-	Article.find({})
+	Article.find(query)
 		.sort('-created')
 		.limit(perPage)
 		.skip(perPage * page)
 		.populate('user', 'name username avatar')
-		.populate('comments.user').exec(function(err, articles) {
+		.populate('comments.user')
+		.populate('comments.replies.user').exec(function(err, articles) {
 
 			if (err) {
 

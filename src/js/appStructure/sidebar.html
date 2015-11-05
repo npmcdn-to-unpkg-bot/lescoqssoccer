@@ -1,61 +1,54 @@
-<div id="menu-bar">
+<aside id="nav-container" class="sidebar_hide">
 
-	<div class="menu-icons">
-		<div class="menu-bar-icon">
-			<span>Menu</span>
-		</div>
-		<div class="close-icon">
-			<span>Fermer</span>
+
+	<div id="menu-bar">
+		<div class="menu-icons">
+			<div class="menu-bar-icon">
+				<span>Menu</span>
+			</div>
+			<div class="close-icon">
+				<span>Fermer</span>
+			</div>
 		</div>
 	</div>
-	<!-- <img class="logo" src="img/logo2.png" alt="" /> -->
 
-	<!-- BACK TO TOP BUTTON -->
-	<a href="#" class="back-to-top"></a>
-</div>
+	<ul>
+		<li ng-repeat="item in menu">
+			<a class='list-item' ng-href='{{item.link}}' ng-class="{'active' : isCurrentPath(item)}">
+			<md-icon id="{{item.id}}" class="ng-isolate-scope md-default-theme" aria-hidden="true" style>
+			<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 30 30" fit="" preserveAspectRatio="xMidYMid meet" style="pointer-events: none; display: block;">
+			<path ng-attr-d="{{item.svg}}"></path>
+			</svg>
+			</md-icon>
+			<div class="sidebar-label">
+				{{item.name}}
+			</div>
+			</a>
+		</li>
+	</ul>
 
-<!-- OVERLAY WHEN OPEN MENU -->
-<div id="menu-bg"></div>
+	<div class="navBackground"></div>
 
-<!-- SIDEBAR -->
-<aside class="leftcontainer">
-	<div class="leftcontainer-inner">
+	<!-- SIDEBAR -->
+	<div class="leftcontainer">
+		<div class="leftcontainer-inner">
 
-		<!-- SEARCH -->
-		<h5>Recherche</h5>
-		<form id="searchform" class="searchbox">
-			<input type="text" id="search" class="searchtext" placeholder="Rechercher..." />
-			<input type="submit" class="button" name="submit" value="Go" />
-		</form>
-		<hr/>
+			<!-- SEARCH -->
+			<h3 style="margin-bottom: 20px;">Recherche</h3>
+				<form id="searchform" class="searchbox">
+					<input type="text" id="search" class="searchtext" placeholder="Bientot..." style="height: 32px;" />
+					<input type="submit" class="button" name="submit" value="Go" />
+				</form>
+			<hr/>
 
-		<!-- MENU -->
-		<nav id="mainmenu">
-			<ul>
-				<li ng-repeat="item in menu">
-					<a
-					id="{{item.id}}"
-					href="{{item.link}}"
-					ng-click="closeSidebar($event, item);"
-					ng-class="{'has-sub': item.children, 'selected' : isCurrentPath(item)}">{{item.name}}</a>
-					<ul ng-if="item.children">
-						<li ng-repeat="subItem in item.children">
-							<a href="{{subItem.link}}" ng-click="closeSidebar($event, subItem);">{{subItem.name}}</a>
-						</li>
-					</ul>
-				</li>
-			</ul>
-		</nav>
-		<hr/>
-
-		<!-- RECENT POSTS -->
-		<h5>Profile</h5>
-		<a href="#!/profile" ng-click="closeSidebar($event);">
-			<img class="contact-img" ng-src="{{global.user.avatar}}">
-		</a>
-		<a href="/signout">
-			<input type="button" class="button" value="Se déconnecter"/>
-		</a>
-
+			<!-- RECENT POSTS -->
+			<h3 style="margin-bottom: 20px;">Profile</h3>
+			<a href="#!/users/profile" ng-click="closeSidebar($event);">
+				<img class="contact-img" ng-src="{{global.user.avatar}}">
+			</a>
+			<a href="/signout">
+				<input type="button" class="button" value="Se déconnecter" style="width: 100%;margin-top: 30px;" />
+			</a>
+		</div>
 	</div>
 </aside>

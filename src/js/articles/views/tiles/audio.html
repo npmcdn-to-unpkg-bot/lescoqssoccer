@@ -1,0 +1,30 @@
+<div class="filter_audio filter_blog width2 isotope-item audio">
+	<div class="inside" style="margin:40px 0 0 40px;">
+		<div ng-class="{'spotify': isSpotify(article.audioLink)}">
+			<div class="item_topbar post-bgcolor-default">
+				<a ng-href="#!/articles/view/audio/{{article._id}}" title="{{article.title}}" class="item_link"></a>
+			</div>
+			<div class="item_des soundcloudWrapperParent">
+				<h2 class="item_title">
+					<a href="#!/articles/view/audio/{{article._id}}" title="{{article.title}}">
+					{{article.title}}
+					</a>
+				</h2>
+				<div class="soundcloudWrapper embed-container">
+					<iframe
+					frameborder="0"
+					allowtransparency='true'
+					ng-src="{{trustSrc(article.audioLink)}}">
+					</iframe>
+				</div>
+				<div class="like clear"></div>
+				<div class="pull-right" style="margin: 30px 20px;">
+					<span class="pull-right"><i class="fa fa-comment"></i> {{article.comments.length}}</span>
+				</div>
+				<div style="width:40px;margin: 20px; padding-bottom: 20px;">
+					<img class="img-circle" ng-src="{{article.user.avatar}}?dim=300x300" alt="{{article.user.username}}"/>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

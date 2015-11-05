@@ -21,6 +21,13 @@ angular.module('mean.albums').factory('AlbumsCollection', ['$resource',
 	}
 ]);
 
+//Articles service used for get articles items count
+angular.module('mean.articles').factory('AlbumsCount', ['$resource',
+	function($resource) {
+		return $resource('albumsCount');
+	}
+]);
+
 angular.module('mean.albums').factory('Photos', ['$resource',
 	function($resource) {
 
@@ -39,27 +46,45 @@ angular.module('mean.albums').factory('Photos', ['$resource',
 	}
 ]);
 
-angular.module('mean.albums').service('AlbumService', ['AlbumsCollection', 'Photos',
-	function(AlbumsCollection, Photos) {
+angular.module('mean.albums').service('AlbumService', ['AlbumsCollection', 'Photos', 'AlbumsCount',
+	function(AlbumsCollection, Photos, AlbumsCount) {
 
 		var AlbumService = {
 
+			itemsPerPage : 12,
+
 			getAlbum: function(id) {
 				return AlbumsCollection.get({
-					id: id
+					id: id,
 				}, function(data) {
 					return data;
 				}).$promise;
 			},
 
-			getAllAlbums: function() {
-				return AlbumsCollection.query({}, function(data) {
+			getAllAlbums: function(page) {
+				return AlbumsCollection.query({
+					page: page - 1,
+					perPage: AlbumService.itemsPerPage
+				}, function(data) {
 					return data;
 				}).$promise;
 			},
 
+			getAlbumsByUser: function(userId) {
+				return AlbumsCollection.query({
+					userId: userId
+				}, function(albums) {
+					return albums;
+				}).$promise;
+			},
+
+			getItemsCount: function() {
+				return AlbumsCount.get({}, function(result) {
+					return result;
+				}).$promise;
+			},
+
 			saveAlbum: function(album) {
-				console.warn(album);
 				return AlbumsCollection.save({}, album, function(data) {
 					return data;
 				}).$promise;

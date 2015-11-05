@@ -1,25 +1,33 @@
 var mongoose = require('mongoose');
 var _ = require('underscore');
 var fs = require('fs');
+var path = require("path");
+var config = require('../../config/config');
 var archiver = require('archiver');
 var Album = mongoose.model('Album');
 
 exports.findAllAlbums = function(req, res) {
-	Album.find({}, null, {
-		sort: {
-			name: 1
-		}
-	}).populate('user').exec(function(err, albums) {
-		res.send(albums);
-	})
+
+	var perPage = req.query.perPage;
+	var page = req.query.page;
+	var query = (req.query.userId) ? {
+		user: req.query.userId
+	} : {};
+
+	Album.find(query)
+		.sort('-created')
+		.limit(perPage)
+		.skip(perPage * page)
+		.populate('user').exec(function(err, albums) {
+			res.send(albums);
+		});
 };
 
 exports.findAlbumById = function(req, res) {
 	Album.findOne({
 		_id: req.params.id
 	}).populate('user').exec(function(err, album) {
-		if (err) console.log("error finding album: " + err)
-		console.warn(album);
+		if (err) console.log("error finding album: " + err);
 		res.send(album);
 	})
 };
@@ -39,6 +47,7 @@ exports.addAlbum = function(req, res) {
 exports.updateAlbum = function(req, res) {
 	Album.findById(req.params.id, function(err, album) {
 		delete req.body._id;
+		delete req.body.user;
 		if (err) console.log("error: " + err)
 		_.extend(album, req.body);
 		album.save(function(err, album, numAffected) {
@@ -55,12 +64,17 @@ exports.deleteAlbum = function(req, res) {
 
 			var files = _.extend({}, doc.photoList);
 			doc.remove(function() {
+
 				res.send(req.body);
 
 				//remove files on filesystem
-				_.each(files, function(file){
-					if(file.filepath){
-						fs.unlink(file.filepath);
+				_.each(files, function(file) {
+					if (file.filepath) {
+
+						var filename = file.filepath.split(config.uploadDirectory).pop();
+						fs.unlink(path.resolve(config.root + "/server/" + config.uploadDirectory + filename));
+						fs.unlink(path.resolve(config.root + "/server/" + config.cacheDirectoryX300 + filename));
+						fs.unlink(path.resolve(config.root + "/server/" + config.cacheDirectoryX100 + filename));
 					}
 				});
 			});
@@ -130,4 +144,27 @@ exports.getZipFile = function(req, res) {
 				fs.unlink(filePath); // Delete the archive
 			}
 		});
+};
+
+/**
+ * Count of albums
+ */
+exports.getItemsCount = function(req, res) {
+
+	Album.count({}).exec(function(err, count) {
+
+		if (err) {
+
+			res.render('error', {
+				status: 500
+			});
+
+		} else {
+
+			res.jsonp({
+				count: count
+			});
+
+		}
+	});
 };

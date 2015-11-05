@@ -26,18 +26,30 @@ angular.module('mean.users').controller('TeamController', ['$scope', 'Global', '
 	}
 ]);
 
-angular.module('mean.agenda').controller('userDetailController', ['$scope', '$modalInstance', 'User',
+angular.module('mean.users').controller('UserDetailController', ['$scope','$sce', 'User', 'Albums', 'UserArticles',
 
-	function($scope, $modalInstance, User) {
+	function($scope, $sce, User, Albums, UserArticles) {
 
 		$scope.user = User;
+		$scope.albums = Albums;
+		$scope.articles = UserArticles;
 
-		$scope.cancel = function() {
-			$modalInstance.dismiss('cancel');
+		//Format html content from article content edit by wysiwyg
+		$scope.getFormattedContent = function(html) {
+			return $sce.trustAsHtml(html);
+		};
+
+		//Format video and audio url
+		$scope.trustSrc = function(src) {
+			return $sce.trustAsResourceUrl(src);
+		};
+
+		$scope.isSpotify = function(link){
+			console.warn(link);
+			return link.indexOf('spotify') !== -1;
 		};
 	}
 ]);
-
 
 angular.module('mean.users').controller('ProfileController', ['$scope', 'Global', 'User', '$translate', 'FileUploader',
 
@@ -81,14 +93,9 @@ angular.module('mean.users').controller('ProfileController', ['$scope', 'Global'
 
 			var currentSkill = angular.extend({}, $scope.skill);
 			$scope.user.skills.push(currentSkill);
-
-			setTimeout(function() {
-				$("[name='" + currentSkill.name + "']").animate({
-					width: currentSkill.value + "%"
-				}, 1000);
-			});
-
 			$scope.initSkill();
+
+			$scope.triggerResize();
 		};
 
 		$scope.removeSkill = function(skill) {
@@ -111,7 +118,55 @@ angular.module('mean.users').controller('ProfileController', ['$scope', 'Global'
 			});
 		};
 
+		$scope.triggerResize = function() {
+			$(window).trigger('resize');
+		};
+
 		$scope.initSkill();
+	}
+]);
+
+angular.module('mean.users').controller('ChatController', ['$scope', 'Global', 'Team', 'ConversationService', 'Conversation', 'UserId',
+
+	function($scope, Global, Team, ConversationService, Conversation, UserId) {
+
+		$scope.global = Global;
+		$scope.team = Team;
+		$scope.conversationService = ConversationService;
+		$scope.conversation = Conversation;
+		$scope.currentUserId = UserId;
+
+		$scope.message = {
+			content: ""
+		};
+
+		$scope.selectUser = function(evt, user) {
+
+			if (evt) {
+				evt.preventDefault();
+				evt.stopPropagation();
+			}
+
+			$scope.currentUserId = user._id;
+			$scope.conversation = $scope.conversationService.getConversation($scope.global.user._id, user._id);
+		};
+
+		$scope.sendMessage = function() {
+
+			if ($scope.message.content !== "") {
+
+				$scope.conversation.messages.push({
+					user: $scope.global.user._id,
+					content: $scope.message.content
+				});
+
+				$scope.conversationService.addOrUpdate($scope.conversation).then(function(conversation) {
+					$scope.conversation = conversation;
+					$scope.message.content = "";
+				});
+
+			}
+		};
 	}
 ]);
 
@@ -120,8 +175,50 @@ var TeamData = {
 	Team: function(Users) {
 		return Users.query({}, function(users) {
 			return users;
-		}).$promise;;
+		}).$promise;
 	}
+
+};
+
+var ChatData = {
+
+	Team: function(Users) {
+		return Users.query({}, function(users) {
+			return users;
+		}).$promise;;
+	},
+
+	Conversation: function(Global, ConversationService, $route) {
+		return ($route.current.params.id) ? ConversationService.getConversation(Global.user._id, $route.current.params.id) : null;
+	},
+
+	UserId: function($route) {
+		return $route.current.params.id;
+	}
+
+};
+
+var UserDetailData = {
+
+	User: function(Users, $route) {
+		return Users.get({
+			userId: $route.current.params.id
+		}, function(user) {
+			return user;
+		}).$promise;
+	},
+
+	Albums: function(AlbumService, $route) {
+		return AlbumService.getAlbumsByUser($route.current.params.id).then(function(albums) {
+			return albums;
+		});
+	},
+
+	UserArticles: function(ArticlesCollection, $route) {
+		return ArticlesCollection.getArticlesByUser($route.current.params.id).then(function(articles) {
+			return articles;
+		});
+	},
 
 };
 
@@ -132,7 +229,7 @@ var ProfileData = {
 			userId: Global.user._id
 		}, function(user) {
 			return user;
-		}).$promise;;
+		}).$promise;
 	}
 
 };

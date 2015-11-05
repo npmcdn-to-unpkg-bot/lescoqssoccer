@@ -1,7 +1,11 @@
-<div class="info-box" style="display: inline-block;">
-	<span class="info-box-close" data-ng-click="cancel()"></span>
-	<h4>Sélectionner les photos à ajouter</h4>
-	<div class="col-md-3">
+<div class="message-box">
+
+	<p class="box-close" ng-click="cancel()">
+	<i class="icon-m-close-thin liquid-item-close"></i>
+	</p>
+
+	<h4>Sélectionne les photos à ajouter</h4>
+	<div class="col-md-3" style="text-align: center; margin-top: 20px;">
 
 		<div ng-show="uploader.isHTML5">
 			<div class="well my-drop-zone"
@@ -14,19 +18,24 @@
 		<button class="button pointer">
 		<label for="upload-profile-picture" class="label-upload-profile-picture" style="margin: inherit;">
 			Parcourir
-			<input nv-file-select type="file" multiple uploader="uploader" class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
+			<input
+			nv-file-select
+			type="file"
+			multiple
+			uploader="uploader"
+			class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
 		</label>
 		</button>
 	</div>
 
-	<div class="col-md-9" style="margin-bottom: 40px">
+	<div class="col-md-9" style="margin-bottom: 40px" ng-show="uploader.queue.length > 0">
 		<table class="table">
 			<thead>
 				<tr>
-					<th width="50%">Name</th>
-					<th ng-show="uploader.isHTML5">Size</th>
-					<th ng-show="uploader.isHTML5">Progress</th>
-					<th>Status</th>
+					<th width="50%">Nom</th>
+					<th ng-show="uploader.isHTML5">Taille</th>
+					<th ng-show="uploader.isHTML5">Progression</th>
+					<th>Compression</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -35,18 +44,31 @@
 					<td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
 					<td ng-show="uploader.isHTML5">
 						<div class="progress" style="margin-bottom: 0;">
-							<div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+							<div
+								class="progress-bar"
+								role="progressbar"
+								ng-style="{ 'width': item.progress + '%' }"
+								style="background-color: lightgray; height: 20px;">
+							</div>
 						</div>
 					</td>
 					<td class="text-center">
-						<span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
-						<span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
-						<span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+						<span ng-show="item.progress && !item.isSuccess && !item.isCancel && !item.isError">
+						<i class="fa fa-spinner"></i>
+						</span>
+						<span ng-show="item.isSuccess">
+						<i class="fa fa-check-circle"></i>
+						</span>
+						<span ng-show="item.isCancel">
+						<i class="fa fa-ban"></i>
+						</span>
+						<span ng-show="item.isError">
+						<i class="fa fa-remove"></i>
+						</span>
 					</td>
 				</tr>
 			</tbody>
 		</table>
-
 		<div>
 			<div class="progress" style="">
 				<div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>

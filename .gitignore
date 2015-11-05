@@ -1,5 +1,6 @@
 node_modules/
 server/public/img/users/
+server/public/.cache
 #src/libs/*/
 
 #libs to synchronize

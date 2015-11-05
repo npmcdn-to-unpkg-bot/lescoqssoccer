@@ -3,9 +3,9 @@
 /**
  * Agenda resource
  **/
-angular.module( 'mean.agenda' ).factory( 'UserEvent', [ '$resource',
-	function ( $resource ) {
-		return $resource( 'userEvent/:userEventId', {
+angular.module('mean.agenda').factory('UserEvent', ['$resource',
+	function($resource) {
+		return $resource('userEvent/:userEventId', {
 			userEventId: '@_id'
 		}, {
 			update: {
@@ -15,46 +15,54 @@ angular.module( 'mean.agenda' ).factory( 'UserEvent', [ '$resource',
 				method: 'GET',
 				isArray: true
 			},
-		} );
+		});
 	}
-] );
+]);
 
 /**
  * Agenda service
  **/
-angular.module( 'mean.agenda' ).service( 'AgendaCollection', [ 'Global', 'UserEvent',
-	function ( Global, UserEvent ) {
+angular.module('mean.agenda').service('AgendaCollection', ['Global', 'UserEvent',
+	function(Global, UserEvent) {
 
 		var AgendaCollection = {
 
 			all: [],
 
-			load: function () {
-				return UserEvent.query( {}, function ( userEvents ) {
+			load: function() {
+				return UserEvent.query({}, function(userEvents) {
 					return userEvents;
-				} ).$promise;
+				}).$promise;
 			},
 
-			add: function ( userEvent ) {
-				return UserEvent.save( {}, userEvent, function ( userEvent ) {
+			findOne: function(userEventId) {
+				return UserEvent.get({
+					userEventId: userEventId
+				}, function(userEvent) {
+					return userEvent;
+				}).$promise;
+			},
+
+			add: function(userEvent) {
+				return UserEvent.save({}, userEvent, function(userEvent) {
 					AgendaCollection.all.push(userEvent);
 					return userEvent;
-				} ).$promise;
+				}).$promise;
 			},
 
-			update: function ( userEvent ) {
-				return UserEvent.update( {}, userEvent, function ( userEvent ) {
+			update: function(userEvent) {
+				return UserEvent.update({}, userEvent, function(userEvent) {
 					return userEvent;
-				} ).$promise;
+				}).$promise;
 			},
 
-			remove: function ( userEvent, callback ) {
-				return UserEvent.delete( {}, userEvent, function ( userEvent ) {
+			remove: function(userEvent, callback) {
+				return UserEvent.delete({}, userEvent, function(userEvent) {
 					return userEvent;
-				} ).$promise;
+				}).$promise;
 			}
 		}
 
 		return AgendaCollection;
 	}
-] );
+]);

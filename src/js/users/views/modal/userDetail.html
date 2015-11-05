@@ -1,5 +1,8 @@
-<div class="info-box pagecontent" style="text-align:center;">
-	<span class="info-box-close" data-ng-click="cancel()"></span>
+<div class="message-box pagecontent" style="text-align:center;">
+
+	<p class="box-close" ng-click="cancel()" style="position: absolute;top:10px;right:30px;z-index: 1000;">
+        <i class="icon-m-close-circle" style="font-size: 30px;"></i>
+    </p>
 
 	<section class="userDetail">
 		<input type="radio" id="profile" value="1" name="tractor" checked='checked' />
@@ -8,9 +11,9 @@
 		<input type="radio" id="books" value="4" name="tractor" />
 
 		<nav>
-		  	<label for="profile" class='fontawesome-user'></label>
-		  	<label for="posts" class='fontawesome-cogs'></label>
-		  	<label for="books" class='fontawesome-comments'></label>
+		  	<label for="profile" class='fa fa-user'></label>
+		  	<label for="posts" class='fa fa-cogs'></label>
+		  	<label for="books" class='fa fa-comments'></label>
 		</nav>
 
 	  	<article class='uno'>
@@ -21,15 +24,15 @@
 	    	</h2>
 	   		<footer>
 	    		<ul>
-	      			<a href="#"><li class='fontawesome-hand-right'></li></a>
-	      			<a href="#"><li class='fontawesome-beer'></li></a>
-	     			<a href="#"><li class='fontawesome-coffee'></li></a>
-	      			<a href="#"><li class='fontawesome-hand-left'></li></a>
+	      			<a href="#"><li class='fa fa-hand-right'></li></a>
+	      			<a href="#"><li class='fa fa-beer'></li></a>
+	     			<a href="#"><li class='fa fa-coffee'></li></a>
+	      			<a href="#"><li class='fa fa-hand-left'></li></a>
 	    		</ul>
 	   		</footer>
 	  	</article>
 
-	  	<article class='dos fontawesome-wrench'>
+	  	<article class='dos fa fa-wrench'>
 	    	<p>Si hay algún fenómeno en la web que sea lo más parecido a las setas eso son los blogs, cursos y enseñanzas web. Todo lo relativo a la divulgación, de cualquier materia o parcela del conocimiento humano, angelical o mefistofélico, tiene su oferta, sus "maestros" y sus cocinillas visionarios.</p>
 	  	</article>
 
@@ -54,6 +57,3 @@
 
 	</section>
 </div>
-
-<cm-progressbar>
-</cm-progressbar>
