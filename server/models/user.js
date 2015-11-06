@@ -35,7 +35,8 @@ var UserSchema = new Schema( {
 	},
 	skills:[],
 	coins: Number,
-	presentation: String
+	presentation: String,
+	popularity: Number
 } );
 
 /**

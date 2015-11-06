@@ -34,9 +34,13 @@ angular.module('mean.users').controller('UserDetailController', ['$scope','$sce'
 		$scope.albums = Albums;
 		$scope.articles = UserArticles;
 
-		//Format html content from article content edit by wysiwyg
 		$scope.getFormattedContent = function(html) {
-			return $sce.trustAsHtml(html);
+			return angular.element(html).text();
+		};
+
+		$scope.getImage = function(html){
+			var img = angular.element(html).find('img').first();
+			return (img.length) ? img.attr('src') : '';
 		};
 
 		//Format video and audio url
@@ -45,7 +49,6 @@ angular.module('mean.users').controller('UserDetailController', ['$scope','$sce'
 		};
 
 		$scope.isSpotify = function(link){
-			console.warn(link);
 			return link.indexOf('spotify') !== -1;
 		};
 	}

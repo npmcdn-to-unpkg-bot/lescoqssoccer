@@ -1,7 +1,6 @@
 <div id="post-662" class="page type-page status-publish hentry" >
 	<div class="row-fluid">
-		<div id="content_wrap" class="">
-
+		<div id="content_wrap">
 			<div class="content-wrap-inn bottom-space">
 				<div class="pagebuilder-wrap">
 					<div class="fullwrap_moudle">
@@ -35,20 +34,81 @@
 						</div>
 					</div>
 					<div class="container">
+						<div class="container"q>
+							<div class="row-fluid">
+								<div class="span12 moudle moudle_has_animation bouncdein-up-translate animation-default-ux animation-scroll-ux  bottom-space-40  animation_hidden bouncdein-up-ed" style="opacity: 1;">
+									<div data-post="20140417-063009-451" class="text_block ux-mod-nobg ">
+										<a name="20140417-063009-451" class="20140417-063009-451"></a>
+										<h1 style="text-align: center;"><span style="line-height: 1.5em;">
+										CONTACT</span></h1>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="container">
+							<div class="row-fluid">
+								<div class="span12 general_moudle">
+									<div class="row-fluid">
+
+										<div class="span4 moudle moudle_has_animation bouncdein-up-translate animation-default-ux animation-scroll-ux  bottom-space-40  animation_hidden bouncdein-up-ed" style="opacity: 1;">
+											<div data-animation="rorate" class="iocnbox icon_left  ux-mod-nobg">
+												<div class="icon_wrap">
+													<i class="fa fa-cogs"></i>
+												</div>
+												<div class="icon_text">
+													<h3 style="text-transform: uppercase;">
+														{{user.name}}
+													</h3>
+													<p>
+													 	{{user.email}}
+													</p>
+												</div>
+											</div>
+										</div>
+
+										<div class="span4 moudle iocnbox" style="opacity: 1;">
+						                                                            <h3 style="text-transform: uppercase;">Côte de popularité</h3>
+											<section class="infrographic pie ux-mod-nobg">
+						                                                            <section class="pie-item">
+						                                                                <div style="display: inline; width: 120px; height: 120px;">
+						                                                                    <input class="knob" data-width="120" data-height="120"
+						                                                                        data-thickness=".03" data-bgcolor="#FAFAFA" value="30" data-val="30" data-readonly="true" data-fgcolor="#00CF75" readonly="readonly" style="width: 64px; height: 40px; position: absolute; vertical-align: middle; margin-top: 40px; margin-left: -92px; border: 0px; font-weight: 300; font-style: normal; font-variant: normal; font-size: 26px; line-height: normal; font-family: Arial; text-align: center; color: rgb(0, 207, 117); padding: 0px; -webkit-appearance: none; background: none;">
+						                                                                </div>
+						                                                            </section>
+						                                                        </section>
+										</div>
+
+										<div class="span4 moudle moudle_has_animation bouncdein-right-translate animation-default-ux animation-scroll-ux  bottom-space-40  animation_hidden bouncdein-right-ed" style="opacity: 1;">
+											<div data-animation="rorate" class="iocnbox icon_left  ux-mod-nobg">
+												<div class="icon_wrap">
+													<i class="fa fa-comments"></i>
+												</div>
+												<div class="icon_text">
+													<a ng-href="#!/conversations/{{user._id}}">
+													<h3>TAPER LA DISCUTE</h3>
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 
 						<div class="container userDetailBlog">
-							<h2 style="margin-bottom: 20px;">Ses derniers articles</h2>
+							<h2 style="margin: 0 60px 40px 0;">Ses derniers articles</h2>
 							<div class="isotope masonry isotope_fade" data-size="brick" style="margin: -40px 0px 0px -40px; display: none;">
 								<cm-blog-post ng-repeat="article in articles" ng-if="$index < 6" type="{{article.type || 'standard'}}" format="tiles">
 								</cm-blog-post>
 							</div>
+							<p ng-if="articles.length === 0" style="margin-top: 20px;">Que neni</p>
 						</div>
-
 						<div class="row-fluid" style="margin-top: 40px;">
 							<div class="span12 moudle">
 								<div class="container-isotope clear" data-post="20140417-063206-425">
-									<h2 style="margin-left: 60px;">Ses dernières photos</h2>
-									<div class="isotope masonry isotope-liquid-list isotope_fade" data-space="0px" data-width="width4" data-size="medium" style="display: none; margin: 0px 40px 0px 40px;">
+									<h2 style="margin: 40px 60px 20px;">Ses derniers albums photos</h2>
+									<p ng-if="albums.length === 0" style="margin-left: 60px;">Que neni</p>
+									<div class="isotope masonry isotope-liquid-list isotope_fade" data-space="0px" data-width="width2" data-size="small" style="display: none; margin: 0px 40px 0px 40px;">
 										<div class="width2 isotope-item hover-effect" ng-repeat="album in albums" ng-if="$index < 8" style="border: none; padding: 20px;">
 											<div class="inside liquid_inside brick-inside">
 												<div class="brick-content brick-hover">
@@ -97,72 +157,10 @@
 								</div>
 							</div>
 						</div>
-						<!-- <div class="container">
-							<div class="row-fluid">
-								<div class="span12 moudle">
-									<div data-post="20140518-124034-337" class="text_block ux-mod-nobg ">
-										<a name="20140518-124034-337" class="20140518-124034-337"></a>
-										<p><span class="dropcap">M</span>agnis integer sed tristique scelerisque. Scelerisque et pulvinar eros tempor, mattis arcu auctor, hac porttitor&nbsp;facilisis integer sed tristique scelerisque.&nbsp;Aliquet dignissim lorem magna tortor eu scelerisque, massa, rhoncus magnis phasellus augue habitasse a.</p>
-									</div>
-								</div>
-							</div>
-						</div> -->
-						<div class="container"q>
-							<div class="row-fluid">
-								<div class="span12 moudle moudle_has_animation bouncdein-up-translate animation-default-ux animation-scroll-ux  bottom-space-40  animation_hidden bouncdein-up-ed" style="opacity: 1;">
-									<div data-post="20140417-063009-451" class="text_block ux-mod-nobg ">
-										<a name="20140417-063009-451" class="20140417-063009-451"></a>
-										<h1 style="text-align: center;"><span style="line-height: 1.5em;">
-										CONTACT</span></h1>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="container">
-							<div class="row-fluid">
-								<div class="span12 general_moudle">
-									<div class="row-fluid">
-										<div class="span4 moudle moudle_has_animation bouncdein-left-translate animation-default-ux animation-scroll-ux  bottom-space-40  animation_hidden bouncdein-left-ed" style="opacity: 1;">
-											<div data-animation="rorate" class="iocnbox icon_left  ux-mod-nobg">
-												<div class="icon_wrap">
-													<i class="fa fa-phone"></i>
-												</div>
-												<div class="icon_text">
-													<h3>Phone</h3>
-													<p>+000 123 456 7</p>
-												</div>
-											</div>
-										</div>
-										<div class="span4 moudle moudle_has_animation bouncdein-up-translate animation-default-ux animation-scroll-ux  bottom-space-40  animation_hidden bouncdein-up-ed" style="opacity: 1;">
-											<div data-animation="rorate" class="iocnbox icon_left  ux-mod-nobg">
-												<div class="icon_wrap">
-													<i class="fa fa-map-marker"></i>
-												</div>
-												<div class="icon_text">
-													<h3>London</h3>
-													<p>Name of the street 123,&nbsp;Name of the City,&nbsp;Name of the Country</p>
-												</div>
-												<!--End icon_text-->
-											</div>
-										</div>
-										<div class="span4 moudle moudle_has_animation bouncdein-right-translate animation-default-ux animation-scroll-ux  bottom-space-40  animation_hidden bouncdein-right-ed" style="opacity: 1;">
-											<div data-animation="rorate" class="iocnbox icon_left  ux-mod-nobg">
-												<div class="icon_wrap">
-													<i class="fa fa-rocket"></i>
-												</div>
-												<div class="icon_text">
-													<h3>See Also</h3>
-													<p>You can also review our works on <a data-mce-href="http://#" href="http://#">Twitter</a> <a data-mce-href="http://#" href="http://#">Google Plus</a> <a data-mce-href="http://#" href="http://#">Pinterest</a> and <a data-mce-href="http://#" href="http://#">Behance</a>.</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<cm-page-builder></cm-page-builder>
+</div>
+<cm-page-builder></cm-page-builder>

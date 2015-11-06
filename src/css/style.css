@@ -4391,6 +4391,10 @@ img.img40_40 {
     border-radius: 50%;
 }
 
+.articlesContainer img.img-circle, .userDetailBlog img.img-circle {
+    height: 40px !important;
+}
+
 #nav>li.navigation-profile-picture.active>a {
     background: 0 0;
     border: none;
@@ -5956,4 +5960,8 @@ a.igo{
 
 .well{
 	border-radius: 0 !important;
+}
+
+.inside:not(.card){
+	box-shadow: 0 3px 5px rgba(0,0,0,0.3);
 }

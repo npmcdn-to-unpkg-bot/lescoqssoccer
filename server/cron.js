@@ -9,6 +9,7 @@ exports.startCron = function() {
 
 			// Runs every sunday at 00h30
 			users.incrementUsersPoints();
+			users.calculatePopularity();
 
 		}, function() {
 

@@ -11,7 +11,7 @@ module.exports = function ( app, passport ) {
 
 	app.get( '/users', users.team );
 	app.get( '/users/me', users.me );
-	app.get( '/users/:userId', users.me );
+	app.get( '/users/:userId', users.findOne );
 
 	// Setting up the users api
 	app.post( '/users', users.create );
