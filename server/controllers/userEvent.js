@@ -47,7 +47,9 @@ exports.update = function(req, res) {
 	UserEvent.load(req.body._id, function(err, userEvent) {
 		if (err) return next(err);
 
-		userEvent.guest.push(req.body.guest[req.body.guest.length - 1]);
+		userEvent.guest = _.pluck(req.body.guest, '_id');
+		userEvent.guestUnavailable = _.pluck(req.body.guestUnavailable, '_id');
+
 		userEvent.save(function(err) {
 			if (err) {
 				console.warn(err);
@@ -92,13 +94,19 @@ exports.show = function(req, res) {
  * List of userEvent
  */
 exports.all = function(req, res) {
-	UserEvent.find().sort('start').populate('user', 'name username avatar').populate('guest', 'name username avatar').exec(function(err, userEvent) {
-		if (err) {
-			res.render('error', {
-				status: 500
-			});
-		} else {
-			res.jsonp(userEvent);
-		}
-	});
+	UserEvent.find()
+		.sort('startsAt')
+		.limit(40)
+		.populate('user', 'name username avatar')
+		.populate('guest', 'name username avatar')
+		.populate('guestUnavailable', 'name username avatar')
+		.exec(function(err, userEvent) {
+			if (err) {
+				res.render('error', {
+					status: 500
+				});
+			} else {
+				res.jsonp(userEvent);
+			}
+		});
 };

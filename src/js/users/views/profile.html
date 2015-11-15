@@ -7,121 +7,93 @@
 	</div>
 </div>
 
-<div id="post-1039" class="post type-post status-publish format-standard hentry category-blog">
-	<div class="row-fluid two-cols-layout" style="min-height: 100vh;">
-		<div id="content_wrap" class="span10" style="margin-left: 9%;">
+<div id="post-662" class="page type-page status-publish hentry" >
+	<div class="row-fluid">
+		<div id="content_wrap">
+			<div class="content-wrap-inn bottom-space">
+				<div class="pagebuilder-wrap">
+					<div class="fullwrap_moudle">
+						<div class="row-fluid">
+							<div class="fullwidth-wrap top-space-80-in bottom-space-40-in fullwidth-text-white">
+								<div class="parallax" data-ratio="0.3">
+									<img class="parallax-img" src="img/background-testimonial.jpg" style="-webkit-filter: grayscale(100%); opacity: 0.6;">
+								</div>
+								<div class="container">
+									<div class="row-fluid">
+										<div class="span12 moudle">
+											<h1 style="margin-top: -40px;">PROFILE</h1>
+											<div class="flex-slider-wrap testimonial-wrap ux-mod-nobg" data-direction="false" data-control="true" data-speed="5" data-animation="fade" style="padding-bottom: 0;">
+												<div class="flexslider" style="text-align: center;">
+													<div class="testimonial-thum">
+														<img ng-src="{{user.avatar && user.avatar + '?dim=300x300' || 'img/Professor.png'}}" class="attachment-thumbnail wp-post-image" alt="13" draggable="false">
+													</div>
+													<button class="button pointer">
+													<label for="upload-profile-picture" class="label-upload-profile-picture" style="margin: inherit;">
+														Changer la photo
+														<input
+														nv-file-select
+														type="file"
+														uploader="uploader"
+														class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
+													</label>
+													</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="container">
+						<div id="comments">
+							<div id="respondwrap">
+								<div id="respond" class="comment-respond">
+									<form role="form">
 
-			<div class="title-bar-wrap " id="title-bar" style="padding: 50px 0;">
-				<div id="title-wrap">
-					<div class="title-wrap-inn">
-						<div id="main-title">
-							<h1 class="main-title" text-transform="uppercase">Profil</h1>
-							<br><br> Tignissim adipiscing tristique ac, diam turpis vel
-                                    arcu magnis, nunc in, tincidunt etiam a rhoncus, tristique
-                                    mattis, nascetur massa diam hac cum amet. Integer est.
-                                    Adipiscing aliquam a odio phasellus auctor penatibus, ac
-                                    facilisis! Hac est tortor vel mid! Montes vel pellentesque ut.
+										<div class="span6" style="margin-bottom: 20px;">
+											<h3 style="padding-bottom: 30px;">Infos du compte</h3>
+
+											<label>{{'profile_username' | translate}}</label>
+											<input type="text" data-ng-model="user.username" style="margin-bottom: 20px;"/>
+
+											<label>{{'profile_email' | translate}}</label>
+											<input type="text" data-ng-model="user.email" style="margin-bottom: 20px;"/>
+
+											<label>Le petit mot aux copaings</label>
+											<textarea data-ng-model="user.presentation">
+											</textarea>
+
+											<div ng-repeat="skill in user.skills">
+												<label>{{skill.name}}</label>
+												<input type="text" data-ng-model="skill.value" style="margin-bottom: 20px;"/>
+											</div>
+										</div>
+
+										<div class="span6">
+											<h3 style="padding-bottom: 30px;">Ajouter un nouveau champ</h3>
+											<div>
+												<label>Nom du nouveau champ</label>
+												<input type="text" placeholder="Ex: Couleur des cheveux" data-ng-model="skill.name"/>
+
+												<label>Valeur du nouveau champ</label>
+												<input type="text" placeholder="Ex: Roux" data-ng-model="skill.value"/>
+												<input
+												class="pull-right"
+												type="button"
+												ng-click="addSkill();"
+												ng-disabled="skillName === 0"
+												value="Ajouter"
+												style="color: white; width: 200px;"/>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
-			<div id="respondwrap" class="pagebuilder-wrap">
-            	<div class="container" style="padding:0;">
-                    <div class="row-fluid">
-                        <div class="moudle">
-							<form role="form">
-
-								<div class="span3" style="margin-bottom: 20px; text-align:center;">
-									<div class="testimonial-thum" style="text-align:center;">
-					                    <img ng-src="{{user.avatar && user.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{user.username}}" draggable="false" class="sidebarAvatar">
-					                </div>
-									<button class="button pointer">
-										<label for="upload-profile-picture" class="label-upload-profile-picture" style="margin: inherit;">
-											Changer la photo
-											<input
-											nv-file-select
-											type="file"
-											uploader="uploader"
-											class="manual-file-chooser js-manual-file-chooser js-avatar-field"/>
-										</label>
-									</button>
-								</div>
-
-								<div class="span9" style="margin-bottom: 20px;">
-									<div class="tabs-h">
-	                                    <ul id="myTab-20140404-042250-406" class="nav nav-tabs">
-	                                        <li class="active">
-	                                        	<a href="#{{global.user._id}}1">Infos du compte</a>
-	                                        </li>
-	                                        <li class="">
-	                                        	<a href="#{{global.user._id}}2" ng-click="triggerResize();">Skills</a>
-	                                        </li>
-	                                    </ul>
-	                                    <div class="tab-content">
-	                                        <div id="{{global.user._id}}1" class="tab-pane active">
-	                                            <label>{{'profile_firstname' | translate}}</label>
-												<input type="text" data-ng-model="user.name" style="margin-bottom: 20px;" />
-
-												<label>{{'profile_lastname' | translate}}</label>
-												<input type="text" data-ng-model="user.lastname" style="margin-bottom: 20px;"/>
-
-												<label>{{'profile_email' | translate}}</label>
-												<input type="text" data-ng-model="user.email" style="margin-bottom: 20px;"/>
-
-												<label>{{'profile_username' | translate}}</label>
-												<input type="text" data-ng-model="user.username" style="margin-bottom: 20px;"/>
-
-												<label>Présentation</label>
-												<textarea data-ng-model="user.presentation">
-												</textarea>
-	                                        </div>
-	                                        <div id="{{global.user._id}}2" class="tab-pane infrographic bar ux-mod-nobg" style="padding-bottom: 20px; height: 100%;">
-	                                            <div class="skills" ng-show="user.skills.length > 0">
-                                            		<div class="row-fluid" ng-repeat="skill in user.skills">
-                                                        <div class="moudle">
-                                                            <section class="infrographic bar ux-mod-nobg">
-				                                            	<h1 style="text-transform: uppercase;">{{skill.name}}</h1>
-			                                                    <div class="bar-percent">
-			                                                        <div class="bignumber-item" data-digit="{{skill.value}}">
-			                                                        	{{skill.value}}
-			                                                        </div>%
-			                                                    </div>
-			                                                    <div class="progress-outer">
-			                                                        <div class="progress-wrap progress bg-theme-color-1"
-			                                                            data-progress-percent="{{skill.value}}">
-			                                                            <div class="progress-bar progress">
-			                                                                <div class="pr-head" ng-class="bg-theme-color-{{$index}}"></div>
-			                                                            </div>
-			                                                        </div>
-			                                                    </div>
-			                                                </section>
-			                                            </div>
-	                                                </div>
-												</div>
-												<br ng-show="user.skills.length > 0"/>
-												<div>
-													<input type="text" placeholder="Nouvelle compétence" data-ng-model="skill.name"/>
-													<input type="number" data-ng-model="skill.value" min="0" max="100"/>
-													<span class="skillpercent">%</span>
-													<input
-													class="pull-right"
-													type="button"
-													ng-click="addSkill();"
-													ng-disabled="skillName === 0"
-													value="Ajouter"
-													style="color: white;"/>
-												</div>
-	                                        </div>
-	                                    </div>
-	                                </div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-
 		</div>
 	</div>
 </div>

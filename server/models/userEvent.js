@@ -65,6 +65,9 @@ var UserEventSchema = new Schema( {
 	},
 	guest: [{
 		type : mongoose.Schema.ObjectId, ref : 'User'
+	}],
+	guestUnavailable: [{
+		type : mongoose.Schema.ObjectId, ref : 'User'
 	}]
 } );
 

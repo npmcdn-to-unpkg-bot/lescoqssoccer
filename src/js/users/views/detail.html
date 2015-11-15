@@ -34,7 +34,7 @@
 						</div>
 					</div>
 					<div class="container">
-						<div class="container"q>
+						<div class="container">
 							<div class="row-fluid">
 								<div class="span12 moudle moudle_has_animation bouncdein-up-translate animation-default-ux animation-scroll-ux  bottom-space-40  animation_hidden bouncdein-up-ed" style="opacity: 1;">
 									<div data-post="20140417-063009-451" class="text_block ux-mod-nobg ">
@@ -59,9 +59,18 @@
 													<h3 style="text-transform: uppercase;">
 														{{user.name}}
 													</h3>
+
+													<label>Email</label>
 													<p>
 													 	{{user.email}}
 													</p>
+
+													<div ng-repeat="skill in user.skills" style="margin-top: 20px;">
+														<label>{{skill.name}}</label>
+														<p>
+														 	{{skill.value}}
+														</p>
+													</div>
 												</div>
 											</div>
 										</div>

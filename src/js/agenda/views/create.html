@@ -33,55 +33,13 @@
 								type="text"
 								data-ng-model="userEvent.title" style="margin-bottom: 20px;">
 
-								<label for="selectedType">Type</label>
-								<select
-									name="selectedType"
-									data-ng-model="userEvent.eventType"
-									ng-options="eventType.identifier as eventType.name for eventType in eventTypes"
-									style="margin-top: 10px; width:100%; margin-bottom: 20px;">
-								</select>
-
-								<label for="repeat">Répéter</label>
-								<select
-									name="repeat"
-									data-ng-model="userEvent.recursOn"
-									ng-options="recurseOn.identifier as recurseOn.value for recurseOn in eventRepeater"
-									style="margin-top: 10px; width:100%; margin-bottom: 40px;">
-								</select>
-
 								<label for="content">Contenu</label>
 								<textarea
 								type="text"
 								name="content"
 								data-ng-model="userEvent.content"
-								style="height: 175px; margin-bottom: 20px;">
+								style="margin-bottom: 20px;">
 								</textarea>
-							</div>
-
-							<div class="span6">
-								<label for="startsAt">Début</label>
-								<input
-								type="text"
-								name="startsAt"
-								datepicker-popup="{{format}}"
-								data-ng-model="userEvent.startsAt"
-								is-open="$parent.openedStartDate"
-								datepicker-options="dateOptions"
-								show-weeks="false"
-								show-button-bar="false"
-								style="margin-bottom: 20px;"/>
-
-								<label for="endsAt">Fin</label>
-								<input
-								type="text"
-								name="endsAt"
-								datepicker-popup="{{format}}"
-								data-ng-model="userEvent.endsAt"
-								is-open="$parent.openedEndDate"
-								datepicker-options="dateOptions"
-								show-weeks="false"
-								show-button-bar="false"
-								style="margin-bottom: 20px;"/>
 
 								<label for="localisation">Lieu</label>
 								<input
@@ -116,6 +74,41 @@
 									</marker>
 
 								</google-map>
+							</div>
+
+							<div class="span6">
+								<label for="startsAt">Début</label>
+								<input
+								type="text"
+								name="startsAt"
+								datepicker-popup="{{format}}"
+								data-ng-model="userEvent.startsAt"
+								is-open="$parent.openedStartDate"
+								datepicker-options="dateOptions"
+								show-weeks="false"
+								show-button-bar="false"
+								style="margin-bottom: 20px;"/>
+
+								<label for="endsAt">Fin</label>
+								<input
+								type="text"
+								name="endsAt"
+								datepicker-popup="{{format}}"
+								data-ng-model="userEvent.endsAt"
+								is-open="$parent.openedEndDate"
+								datepicker-options="dateOptions"
+								show-weeks="false"
+								show-button-bar="false"
+								style="margin-bottom: 20px;"/>
+
+								<label for="repeat">Répéter</label>
+								<select
+									name="repeat"
+									data-ng-model="userEvent.recursOn"
+									ng-options="recurseOn.identifier as recurseOn.value for recurseOn in eventRepeater"
+									style="margin-top: 10px; width:100%; margin-bottom: 40px;">
+								</select>
+
 							</div>
 						</form>
 					</div>

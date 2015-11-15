@@ -21,11 +21,6 @@
 								</span>
 								</h1>
 								<br>
-								<br> Tignissim adipiscing tristique ac, diam turpis vel
-								arcu magnis, nunc in, tincidunt etiam a rhoncus, tristique
-								mattis, nascetur massa diam hac cum amet. Integer est.
-								Adipiscing aliquam a odio phasellus auctor penatibus, ac
-								facilisis! Hac est tortor vel mid! Montes vel pellentesque ut.
 							</div>
 						</div>
 					</div>
@@ -64,7 +59,7 @@
 																	<a ng-href="#!/users/detail/{{user._id}}">
 																		<i class="fa fa-search-plus"></i>
 																	</a>
-																	<a ng-href="#!/conversations/{{user._id}}">
+																	<a ng-href="#!/conversations/{{user._id}}" ng-if="user._id !== global.user._id">
 																		<i class="fa fa-comment"></i>
 																	</a>
 																</p>

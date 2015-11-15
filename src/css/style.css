@@ -4393,6 +4393,7 @@ img.img40_40 {
 
 .articlesContainer img.img-circle, .userDetailBlog img.img-circle {
     height: 40px !important;
+    width: 40px !important;
 }
 
 #nav>li.navigation-profile-picture.active>a {
@@ -5002,11 +5003,7 @@ figure {
 }
 
 #action {
-    margin: 0 auto;
-    width: 100px;
-    position: relative;
-    height: 300px;
-
+    margin: 30px;
 }
 
 #keg {
@@ -5016,7 +5013,8 @@ figure {
     background-color: #656D78;
     border-right: solid 20px #434A54;
     bottom: 0;
-    left: 310px;
+    left: 60px;
+    top:40px;
 }
 #pipe {
     position: absolute;
@@ -5133,9 +5131,10 @@ figure {
     height: 100px;
     width: 70px;
     bottom: 0;
+    top: 130px;
+    margin-left: -260px;
     background-color: rgba(255, 255, 255, 0.0);
     border-radius: 5px;
-
     animation: glassslide 5s ease forwards infinite;
 }
 
@@ -5189,7 +5188,7 @@ figure {
 
 .handle {
     position: absolute;
-    right: -20px;
+    right: -10px;
     top: 20px;
 }
 .handle .top-right {
@@ -5619,6 +5618,19 @@ a.igo{
   cursor:pointer;
 }
 
+a.igoNot{
+  width:100px;
+  height:40px;
+  background: #de3926;
+  display:block;
+  position:absolute;
+  right:152px;
+  top:14px;
+  color:#fff;
+  text-align:center;
+  line-height:39px;
+  cursor:pointer;
+}
 
 .before{
   transform:rotate(-180deg);

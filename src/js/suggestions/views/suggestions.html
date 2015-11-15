@@ -12,14 +12,14 @@
                                         <!--Portfolio interlock list-->
                                         <div class="interlock-list" data-post="20140403-072852-376">
                                             <a name="20140403-072852-376" class="20140403-072852-376"></a>
-                                            <section ng-repeat="suggestion in SuggestionsCollection.all" class="interlock-item animation-default-ux animation-scroll-ux fadeined bg-theme-color-7" style="margin-bottom: 30px; border: 1px solid;">
+                                            <section ng-repeat="suggestion in suggestions" class="interlock-item animation-default-ux animation-scroll-ux fadeined bg-theme-color-7" style="margin-bottom: 30px; border: 1px solid;">
                                                 <div class="iterlock-item-img">
                                                     <div class="ux-hover-wrap">
                                                         <figure class="circle">
                                                           <div style="background:rgba(27,45,65,0) !important; position:absolute;" class="mask-a">
-                                                            <div class="hand" ng-click="vote(1);"></div>
-                                                            <div class="hand-1" ng-click="vote(2);"></div>
-                                                            <div class="hand-2" ng-click="vote(3);"></div>
+                                                            <div class="hand" ng-click="vote(suggestion, 1);"></div>
+                                                            <div class="hand-1" ng-click="vote(suggestion, 2);"></div>
+                                                            <div class="hand-2" ng-click="vote(suggestion, 3);"></div>
                                                           </div>
                                                           <!-- key animation mirror to avoid overflow and mask.-->
                                                           <div class="mask-b">
@@ -32,30 +32,29 @@
                                                 <div class="iterlock-caption">
                                                     <div class="iterblock-expt">
                                                         <div class="item_des" style="padding: 30px;color: white;">
-                                                            <i class="icon-m-quote-left center-ux" style="margin-bottom: 20px;font-size: 48px; height: 60px;"></i>
-                                                            <p>{{suggestion.content}}
-                                                            </p>
-                                                            <br>
+                                                            <i class="icon-m-quote-left center-ux" style="font-size: 48px; height: 60px;"></i>
                                                             <ul class="blog_meta">
-                                                                <li class="blog_meta_date"><i class="fa fa-calendar"></i> {{suggestion.created | date:"dd MMM yyyy" }}</li>
                                                                 <li class="blog_meta_auhtor">
-                                                                    <i class="fa fa-user"></i>
+                                                                    <img class="img-circle" ng-src="{{suggestion.user.avatar}}?dim100x100" alt="{{suggestion.user.username}}" style="width: 40px; height:40px; margin-right: 20px;" />
                                                                     {{suggestion.user.name || suggestion.user.username}}
                                                                 </li>
                                                             </ul>
-                                                            <div class="suggestionsResult">
+                                                            <br>
+                                                            <p>{{suggestion.content}}
+                                                            </p>
+                                                            <div class="suggestionsResult" ng-if="hasAnswers(suggestion)">
                                                                 <div class="row-fluid">
                                                                     <div class="moudle">
                                                                         <section class="infrographic bar ux-mod-nobg">
-                                                                            <h1 style="text-transform: uppercase;">POUR</h1>
+                                                                            <h1 style="text-transform: uppercase;">ça donne</h1>
                                                                             <div class="bar-percent">
-                                                                                <div class="bignumber-item" data-digit="65">
-                                                                                    65
+                                                                                <div class="bignumber-item" data-digit="{{getSuggestionAnswerLength(suggestion, 'yes')}}">
+                                                                                   {{getSuggestionAnswerLength(suggestion, 'yes')}}
                                                                                 </div>%
                                                                             </div>
                                                                             <div class="progress-outer">
                                                                                 <div class="progress-wrap progress bg-theme-color-1"
-                                                                                    data-progress-percent="65">
+                                                                                    data-progress-percent="{{getSuggestionAnswerLength(suggestion, 'yes')}}">
                                                                                     <div class="progress-bar progress">
                                                                                         <div class="pr-head" ng-class="bg-theme-color-{{$index}}"></div>
                                                                                     </div>
@@ -67,15 +66,15 @@
                                                                 <div class="row-fluid">
                                                                     <div class="moudle">
                                                                         <section class="infrographic bar ux-mod-nobg">
-                                                                            <h1 style="text-transform: uppercase;">Contre</h1>
+                                                                            <h1 style="text-transform: uppercase;">C'est mort!</h1>
                                                                             <div class="bar-percent">
-                                                                                <div class="bignumber-item" data-digit="25">
-                                                                                    25
+                                                                                <div class="bignumber-item" data-digit="{{getSuggestionAnswerLength(suggestion, 'no')}}">
+                                                                                    {{getSuggestionAnswerLength(suggestion, 'no')}}
                                                                                 </div>%
                                                                             </div>
                                                                             <div class="progress-outer">
                                                                                 <div class="progress-wrap progress bg-theme-color-1"
-                                                                                    data-progress-percent="25">
+                                                                                    data-progress-percent="{{getSuggestionAnswerLength(suggestion, 'no')}}">
                                                                                     <div class="progress-bar progress">
                                                                                         <div class="pr-head" ng-class="bg-theme-color-{{$index}}"></div>
                                                                                     </div>
@@ -87,15 +86,15 @@
                                                                 <div class="row-fluid">
                                                                     <div class="moudle">
                                                                         <section class="infrographic bar ux-mod-nobg">
-                                                                            <h1 style="text-transform: uppercase;">NSP</h1>
+                                                                            <h1 style="text-transform: uppercase;">Ne sais pas</h1>
                                                                             <div class="bar-percent">
-                                                                                <div class="bignumber-item" data-digit="10">
-                                                                                    10
+                                                                                <div class="bignumber-item" data-digit="{{getSuggestionAnswerLength(suggestion, 'blank')}}">
+                                                                                    {{getSuggestionAnswerLength(suggestion, 'blank')}}
                                                                                 </div>%
                                                                             </div>
                                                                             <div class="progress-outer">
                                                                                 <div class="progress-wrap progress bg-theme-color-1"
-                                                                                    data-progress-percent="10">
+                                                                                    data-progress-percent="{{getSuggestionAnswerLength(suggestion, 'blank')}}">
                                                                                     <div class="progress-bar progress">
                                                                                         <div class="pr-head" ng-class="bg-theme-color-{{$index}}"></div>
                                                                                     </div>

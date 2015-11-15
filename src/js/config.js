@@ -99,6 +99,7 @@ angular.module('mean').config(['$routeProvider',
 		when('/suggestions', {
 			templateUrl: 'js/suggestions/views/suggestions.html',
 			controller: 'SuggestionController',
+			resolve: SuggestionsData
 		}).
 		when('/suggestions/create', {
 			templateUrl: 'js/suggestions/views/create.html',
