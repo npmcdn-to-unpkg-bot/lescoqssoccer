@@ -15,7 +15,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 			return angular.element(html).text();
 		};
 
-		$scope.getImage = function(html){
+		$scope.getImage = function(html) {
 			var img = angular.element(html).find('img').first();
 			return (img.length) ? img.attr('src') : '';
 		};
@@ -38,7 +38,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 			$scope.modalInstance.close();
 		};
 
-		$scope.isSpotify = function(link){
+		$scope.isSpotify = function(link) {
 			return link.indexOf('spotify') !== -1;
 		};
 	}
@@ -82,7 +82,7 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 
 		$scope.hideAnswerForm = function(evt) {
 
-			if(evt){
+			if (evt) {
 				evt.preventDefault();
 				evt.stopPropagation();
 			}
@@ -176,8 +176,8 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 	}
 ]);
 
-angular.module('mean.articles').controller('CreateArticleController', ['$scope', '$location', 'Global', 'ArticlesCollection', 'FileUploader', 'Article',
-	function($scope, $location, Global, ArticlesCollection, FileUploader, Article) {
+angular.module('mean.articles').controller('CreateArticleController', ['$scope', '$location', 'Global', 'ArticlesCollection', 'FileUploader', 'Article', '$modal',
+	function($scope, $location, Global, ArticlesCollection, FileUploader, Article, $modal) {
 
 		$scope.global = Global;
 		$scope.ArticlesCollection = ArticlesCollection;
@@ -200,25 +200,22 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 		***/
 		$scope.categories = [{
 			id: "1",
-			value: "Voluptate"
+			value: "Info"
 		}, {
 			id: "2",
-			value: "Deserani"
+			value: "Connerie"
 		}, {
 			id: "3",
-			value: "Quo eram"
+			value: "Sport"
 		}, {
 			id: "4",
-			value: "Mentitum amet sit"
+			value: "Art"
 		}, {
 			id: "5",
-			value: "Cillum"
+			value: "Trompette"
 		}, {
 			id: "6",
-			value: "Incurreret"
-		}, {
-			id: "7",
-			value: "Eram amet aliqua"
+			value: "Poney"
 		}];
 
 		$scope.toggleCategory = function(category, evt) {
@@ -267,34 +264,65 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 					}];
 					break;
 				case "video":
-					$scope.article.videoLink = $scope.linkAdress;
+					var src = angular.element($scope.linkAdress);
+					$scope.article.audioLink = (src.length) ? src.attr('src') : $scope.linkAdress;
 					break;
 				case "audio":
-					$scope.article.audioLink = $scope.linkAdress;
+					var src = angular.element($scope.linkAdress);
+					$scope.article.audioLink = (src.length) ? src.attr('src') : $scope.linkAdress;
 					break;
 				case "standard":
 					$scope.article.content = textboxio.get('#mytextarea')[0].content.get();
 					break;
 			}
 
-			if (!$scope.article._id) {
+			if ($scope.article.title) {
+				if (!$scope.article._id) {
 
-				$scope.ArticlesCollection.add($scope.article).then(function(response) {
-					$location.path("/articles");
-				});
+					$scope.ArticlesCollection.add($scope.article).then(function(response) {
+						$location.path("/articles");
+					});
 
+				} else {
+
+					$scope.ArticlesCollection.update($scope.article).then(function() {
+						$location.path("/articles");
+					});
+
+				}
 			} else {
-
-				$scope.ArticlesCollection.update($scope.article).then(function() {
-					$location.path("/articles");
+				var modalInstance = $modal.open({
+					templateUrl: 'js/articles/views/modal/noTitleArticleModalCtrl.html',
+					controller: 'noTitleArticleModalCtrl',
+					resolve: {
+						article: function() {
+							return $scope.article;
+						}
+					}
 				});
-
 			}
 		};
 	}
 ]);
 
 angular.module('mean.articles').controller('deleteArticleModalCtrl', ['$scope', '$modalInstance', 'article',
+
+	function($scope, $modalInstance, article) {
+
+		$scope.article = article;
+
+		$scope.ok = function(result) {
+			$modalInstance.close(result);
+		};
+
+		$scope.cancel = function() {
+			$modalInstance.dismiss('cancel');
+		};
+	}
+
+]);
+
+angular.module('mean.articles').controller('noTitleArticleModalCtrl', ['$scope', '$modalInstance', 'article',
 
 	function($scope, $modalInstance, article) {
 
