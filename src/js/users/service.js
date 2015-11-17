@@ -46,9 +46,9 @@ angular.module('mean.users').service('ConversationService', ['Conversations',
 			all: [],
 
 			load: function(callback) {
-				Conversations.query({}, function(conversations) {
+				return Conversations.query({}, function(conversations) {
 					ConversationService.all = conversations;
-				});
+				}).$promise;
 			},
 
 			getConversation: function(user1, user2) {

@@ -123,14 +123,15 @@ angular.module('mean.users').controller('ProfileController', ['$scope', 'Global'
 	}
 ]);
 
-angular.module('mean.users').controller('ChatController', ['$scope', 'Global', 'Team', 'ConversationService', 'Conversation', 'UserId',
+angular.module('mean.users').controller('ChatController', ['$scope', 'Global', 'Team', 'ConversationService', 'Conversations', 'UserId',
 
-	function($scope, Global, Team, ConversationService, Conversation, UserId) {
+	function($scope, Global, Team, ConversationService, Conversations, UserId) {
 
 		$scope.global = Global;
 		$scope.team = Team;
 		$scope.conversationService = ConversationService;
-		$scope.conversation = Conversation;
+		$scope.conversations = Conversations;
+		$scope.conversation = (UserId) ? ConversationService.getConversation(Global.user._id, UserId) : null
 		$scope.currentUserId = UserId;
 
 		$scope.message = {
@@ -182,11 +183,11 @@ var ChatData = {
 	Team: function(Users) {
 		return Users.query({}, function(users) {
 			return users;
-		}).$promise;;
+		}).$promise;
 	},
 
-	Conversation: function(Global, ConversationService, $route) {
-		return ($route.current.params.id) ? ConversationService.getConversation(Global.user._id, $route.current.params.id) : null;
+	Conversations: function(Global, ConversationService, $route) {
+		return ConversationService.load();
 	},
 
 	UserId: function($route) {
