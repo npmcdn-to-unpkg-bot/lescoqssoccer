@@ -720,8 +720,6 @@ angular.module('mean.system').directive('cmPageBuilder', ['ConversationService',
 					moveProgressBar(me);
 				});
 			});
-
-			ConversationService.load();
 		}
 	}
 }]);
