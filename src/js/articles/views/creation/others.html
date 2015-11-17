@@ -1,5 +1,5 @@
 <div class="clearfix filters filter-floating">
-	<div class="filter-floating-triggle hidden-phone" style="top:20px; right: 125px;" ng-click="create();">
+	<div class="filter-floating-triggle hidden-phone" style="top:20px; right: 125px;" ng-click="global.back();">
 		<i class="fa fa-arrow-left"></i>
 	</div>
 	<div class="filter-floating-triggle" style="top:20px; right: 60px;" ng-click="create();">
@@ -24,16 +24,16 @@
 				<div id="respondwrap">
 					<div id="respond" class="comment-respond">
 						<form role="form">
-							<div class="span12 moudle bottom-space-50" style="margin-left: 0;" ng-show="article.type === 'video'">
+							<div class="span12 moudle bottom-space-50" style="margin-left: 0;">
 								<div class="message-box box-bgcolor2 box-type2">
 									</p>
-									Si c'est une vidéo Youtube, penser à mettre "embed" après http://youtube.com, sinon ça ne marchera pas. <br/> Ex: <b>http://www.youtube.com/embed/eh-0knDpn5g</b>
+									Ici c'est pour partager des vidéos ou des sons, testé et approuvé pour youtube, viméo, spotify, soundclound et deezer. Par contre mettez bien le "code embed" du lien et par l'adresse directement copier-collé. Sur tous ces sites vous pouvez faire clic droit sur la vidéo et "copier le code embed".
 								</div>
 							</div>
 							<p class="span9" style="margin-left: 0; margin-bottom: 20px;">
 							<input
 							name="linkAdress"
-							type="url"
+							type="string"
 							data-ng-model="linkAdress"
 							placeholder="ADRESSE (ex: http://)"
 							class="requiredFieldcomm"

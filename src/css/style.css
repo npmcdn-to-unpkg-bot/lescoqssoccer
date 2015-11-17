@@ -4416,6 +4416,7 @@ img.img40_40 {
 
 .articlesContainer img, .userDetailBlog img{
   height: auto !important;
+  width: 100% !important;
 }
 
 .text-success {

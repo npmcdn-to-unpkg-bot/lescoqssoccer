@@ -25,7 +25,10 @@ var UserSchema = new Schema( {
 	hashed_password: String,
 	provider: String,
 	salt: String,
-	avatar: String,
+	avatar: {
+		type: String,
+		default: '/img/Professor.png'
+	},
 	community: [],
 	preferences: {
 		notifyCommunity: {
