@@ -1,0 +1,74 @@
+<div class="clearfix filters filter-floating">
+	<div class="filter-floating-triggle hidden-phone" style="top:20px; right: 125px;" ng-click="create();">
+		<i class="fa fa-arrow-left"></i>
+	</div>
+	<div class="filter-floating-triggle" style="top:20px; right: 60px;" ng-click="create();">
+		<i class="fa fa-save"></i>
+	</div>
+</div>
+
+<div id="post-1039" class="post type-post status-publish format-standard hentry category-blog">
+	<div class="row-fluid two-cols-layout" style="min-height: 100vh;">
+		<div id="content_wrap" class="span10" style="margin-left: 9%;">
+			<div class="title-bar-wrap " id="title-bar" style="padding: 50px 0;">
+				<div id="title-wrap">
+					<div class="title-wrap-inn">
+						<div id="main-title">
+							<h1 class="main-title">{{title}}</h1>
+						</div>
+					</div>
+				</div>
+				<!--End #title-wrap-->
+			</div>
+			<div id="comments">
+				<div id="respondwrap">
+					<div id="respond" class="comment-respond">
+						<form role="form">
+							<div class="span12 moudle bottom-space-50" style="margin-left: 0;" ng-show="article.type === 'video'">
+								<div class="message-box box-bgcolor2 box-type2">
+									</p>
+									Si c'est une vidéo Youtube, penser à mettre "embed" après http://youtube.com, sinon ça ne marchera pas. <br/> Ex: <b>http://www.youtube.com/embed/eh-0knDpn5g</b>
+								</div>
+							</div>
+							<p class="span9" style="margin-left: 0; margin-bottom: 20px;">
+							<input
+							name="linkAdress"
+							type="url"
+							data-ng-model="linkAdress"
+							placeholder="ADRESSE (ex: http://)"
+							class="requiredFieldcomm"
+							size="30"
+							aria-required="true"
+							tabindex="1">
+							</p>
+							<p class="span9" style="margin-left: 0; margin-bottom: 20px;">
+							<input
+							name="title"
+							type="text"
+							data-ng-model="article.title"
+							placeholder="TITRE"
+							class="requiredFieldcomm"
+							size="30"
+							aria-required="true"
+							tabindex="1">
+							</p>
+							<p class="span9" style="margin-left: 0;">
+							<textarea
+							name="description"
+							type="text"
+							data-ng-model="article.description"
+							placeholder="DESCRIPTION"
+							class="requiredFieldcomm"
+							size="30"
+							aria-required="true"
+							tabindex="1">
+							</textarea>
+							</p>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<cm-page-builder></cm-page-builder>

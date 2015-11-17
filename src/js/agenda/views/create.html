@@ -1,172 +1,121 @@
-<h1 style="margin-left:15px; padding-left:0; color: white; ">
-	<i class="fa fa-dot-circle-o"  style="color: white; "></i>
-	Agenda
-	<a href="#!/agenda" class="pull-right" style="color: white; margin-right: 10px;">
-	 	<i class="fa fa-calendar-o"></i>
-	</a>
-	<a href="#!/agenda/map" class="pull-right" style="color: white; margin-right: 10px;">
-	 	<i class="fa fa-globe"></i>
-	</a>
-</h1>
-<hr style="margin-left:15px; padding-left:0;">
+<div class="clearfix filters filter-floating">
+	<div class="filter-floating-triggle hidden-phone" style="top:20px; right: 125px;" ng-click="global.back();">
+		<i class="fa fa-arrow-left"></i>
+	</div>
+	<div class="filter-floating-triggle" style="top:20px; right: 60px;" ng-click="create();">
+		<i class="fa fa-save"></i>
+	</div>
+</div>
 
-<section data-ng-controller="createController" data-ng-init="init()">
-	<div class="container col-md-12">
-		<!-- <div data-ng-include="'/js/agenda/views/subnav.html'"></div> -->
+<div ng-init="gotoCurrentLocation();">
+	<div class="row-fluid two-cols-layout" style="min-height: 100vh;">
+		<div id="content_wrap" class="span10" style="margin-left: 9%;">
 
-		<div class="well" style="border: 1px solid lightgray; margin-bottom: 20px;">
-			<form class="form-horizontal" role="form" data-ng-submit="create();">
-
-				<tabset justified="true">
-					<tab heading="Infos">
-						<div class="col-sm-12" style="margin-top: 20px; ">
-
-							<div class="form-group">
-								<label for="selectedType" class="col-md-2 control-label">{{'type' | translate}}</label>
-								<div class="col-md-10">
-									<select class="form-control"
-										name="selectedType"
-										data-ng-model="userEvent.selectedType"
-										ng-options="eventType.name for eventType in eventTypes">
-									</select>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<div>
-									<label for="title" class="col-md-2 control-label">{{'dates' | translate}}</label>
-									<div class="col-md-5 datepicker">
-										<p class="input-group">
-											<input
-											type="text"
-											class="form-control well well-small"
-											datepicker-popup="{{format}}"
-											data-ng-model="userEvent.start"
-											is-open="$parent.openedStartDate"
-											datepicker-options="dateOptions"
-											show-weeks="false"
-											show-button-bar="false"/>
-											<span class="input-group-btn">
-												<button class="btn btn-default" ng-click="open($event, 'start')">
-													<i class="glyphicon glyphicon-calendar"></i>
-												</button>
-											</span>
-										</p>
-									</div>
-								</div>
-								<div>
-									<div class="col-md-5 datepicker">
-										<p class="input-group">
-											<input
-											type="text"
-											class="form-control well well-small"
-											datepicker-popup="{{format}}"
-											data-ng-model="userEvent.end"
-											is-open="$parent.openedEndDate"
-											min="userEvent.start"
-											datepicker-options="dateOptions"
-											show-weeks="false"
-											show-button-bar="false"/>
-											<span class="input-group-btn">
-												<button class="btn btn-default" ng-click="open($event, 'end')">
-													<i class="glyphicon glyphicon-calendar"></i>
-												</button>
-											</span>
-										</p>
-									</div>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label for="title" class="col-md-2 control-label">{{'title' | translate}}</label>
-								<div class="col-md-10">
-									<input
-									type="text"
-									class="form-control"
-									name="title"
-									data-ng-model="userEvent.title"
-									placeholder="Titre de l'évènement"
-									required/>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label for="content" class="col-md-2 control-label">{{'content' | translate}}</label>
-								<div class="col-md-10">
-									<textarea
-									class="form-control"
-									name="content"
-									data-ng-model="userEvent.content"
-									placeholder="Contenu de l'évènement"
-									required/>
-									</textarea>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<div lass="col-md-10">
-									<label for="search" class="col-md-2 control-label">{{'location' | translate}}</label>
-
-									<!-- search/go to current location -->
-									<div class="col-md-10" style="margin-bottom: 15px;">
-										<p class="input-group">
-											<input
-											type="text"
-											class="form-control"
-											data-ng-model="search"
-											ng-enter="geoCode()"/>
-											<span class="input-group-btn">
-												<button
-													class="btn"
-													type="button"
-													ng-click="geoCode()"
-													ng-disabled="search.length === 0"
-													title="search" >
-													&nbsp;<i class="glyphicon glyphicon-search"></i>
-												</button>
-												<button
-													class="btn"
-													type="button"
-													ng-click="gotoCurrentLocation()"
-													title="current location">
-													&nbsp;<i class="glyphicon glyphicon-home"></i>
-												</button>
-											</span>
-										</p>
-									</div>
-
-									<div class="col-md-2"></div>
-									<div class="col-md-10">
-										<google-map
-										ng-if="view === 'create'"
-										center="map.center"
-										zoom="map.zoom"
-										draggable="true"
-										events="map.events"
-										options="map.options"
-										control="map.control">
-
-										<marker ng-repeat="m in map.markers" coords="m" events="m.events" options ="m.options">
-											</marker>
-										</google-map>
-									</div>
-								</div>
-							</div>
+			<div class="title-bar-wrap " id="title-bar" style="padding: 50px 0;">
+				<div id="title-wrap">
+					<div class="title-wrap-inn">
+						<div id="main-title">
+							<h1 class="main-title" text-transform="uppercase">Nouvel évènement</h1>
 						</div>
+					</div>
+				</div>
+			</div>
 
+			<div id="comments">
+				<div id="respondwrap">
+					<div id="respond" class="comment-respond">
+						<form role="form">
 
-						<div class="actions" style="text-align:right; padding: 20px 15px 20px 0;">
-							<button class="btn btn-primary" type="submit">{{'common_ok' | translate}}</button>
-						</div>
-					</tab>
+							<div class="span6">
+								<label for="startsAt">Nom de l'évènement</label>
+								<input
+								name="title"
+								type="text"
+								data-ng-model="userEvent.title" style="margin-bottom: 20px;">
 
-					<tab heading="Photos">
-						<div class="form-group" style="margin: 20px;">
-    							<div data-ng-include="'/js/files/fileUpload.html'"></div>
-						</div>
-					</tab>
-				</tabset>
-			</form>
+								<label for="content">Contenu</label>
+								<textarea
+								type="text"
+								name="content"
+								data-ng-model="userEvent.content"
+								style="margin-bottom: 20px;">
+								</textarea>
+
+								<label for="localisation">Lieu</label>
+								<input
+								class="localisation"
+								name="localisation"
+								type="text"
+								data-ng-model="search"
+								ng-enter="geoCode()"/>
+								<input
+								class="button localisationButton"
+								type="button"
+								ng-click="geoCode()"
+								ng-disabled="search.length === 0"
+								title="search"
+								value="GO"/>
+
+								<google-map
+								center="map.center"
+								zoom="map.zoom"
+								draggable="true"
+								events="map.events"
+								options="map.options"
+								control="map.control"
+								style="margin-bottom: 20px;">
+
+									<marker
+										ng-repeat="m in map.markers"
+										coords="m"
+										events="m.events"
+										options ="m.options"
+										icon="'img/icons/pin.png'">
+									</marker>
+
+								</google-map>
+							</div>
+
+							<div class="span6">
+								<label for="startsAt">Début</label>
+								<input
+								type="text"
+								name="startsAt"
+								datepicker-popup="{{format}}"
+								data-ng-model="userEvent.startsAt"
+								is-open="$parent.openedStartDate"
+								datepicker-options="dateOptions"
+								show-weeks="false"
+								show-button-bar="false"
+								style="margin-bottom: 20px;"/>
+
+								<label for="endsAt">Fin</label>
+								<input
+								type="text"
+								name="endsAt"
+								datepicker-popup="{{format}}"
+								data-ng-model="userEvent.endsAt"
+								is-open="$parent.openedEndDate"
+								datepicker-options="dateOptions"
+								show-weeks="false"
+								show-button-bar="false"
+								style="margin-bottom: 20px;"/>
+
+								<label for="repeat">Répéter</label>
+								<select
+									name="repeat"
+									data-ng-model="userEvent.recursOn"
+									ng-options="recurseOn.identifier as recurseOn.value for recurseOn in eventRepeater"
+									style="margin-top: 10px; width:100%; margin-bottom: 40px;">
+								</select>
+
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-</section>
+</div>
+
+<cm-page-builder></cm-page-builder>

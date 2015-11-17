@@ -1,21 +1,54 @@
-<div id="cms-sidebar-nav" class="well well-sm cms-sidebar-nav bs-sidebar hidden-print">
+<aside id="nav-container" class="sidebar_hide">
 
-	<nav id="cms-sidebar-nav-list" class="nav nav-list">
-<!-- 		<li class="nav-header">
-			<span class="title">Menu</span>
-		</li> -->
 
-		<li ng-repeat="item in menu" ng-class="{ active: isCurrentPath('#!/{{item.link}}')}">
-			<a href="#!/{{item.link}}" class="ajax-link sidebarItem ellipsis">
-				<span class="hidden-xs">{{item.title | translate}}</span>
+	<div id="menu-bar">
+		<div class="menu-icons">
+			<div class="menu-bar-icon">
+				<span>Menu</span>
+			</div>
+			<div class="close-icon">
+				<span>Fermer</span>
+			</div>
+		</div>
+	</div>
+
+	<ul>
+		<li ng-repeat="item in menu">
+			<a class='list-item' ng-href='{{item.link}}' ng-class="{'active' : isCurrentPath(item)}">
+			<md-icon id="{{item.id}}" class="ng-isolate-scope md-default-theme" aria-hidden="true" style>
+			<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 30 30" fit="" preserveAspectRatio="xMidYMid meet" style="pointer-events: none; display: block;">
+			<path ng-attr-d="{{item.svg}}"></path>
+			</svg>
+			</md-icon>
+			<div class="sidebar-label">
+				{{item.name}}
+			</div>
 			</a>
 		</li>
+	</ul>
 
-		<!-- <li class="nav-header">
-			<span class="title">Admin</span>
-		</li>
+	<div class="navBackground"></div>
 
-		<li  ng-class="{active:item.selected}" data-match-route="#{{item.href}}" ng-repeat="item in App.menu.admin" ng-include src="'sidebar-item.html'"></li>
-		<li class="nav-divider"></li> -->
-	</nav>
-</div>
+	<!-- SIDEBAR -->
+	<div class="leftcontainer">
+		<div class="leftcontainer-inner">
+
+			<!-- SEARCH -->
+			<h3 style="margin-bottom: 20px;">Recherche</h3>
+				<form id="searchform" class="searchbox">
+					<input type="text" id="search" class="searchtext" placeholder="Bientot..." style="height: 32px;" />
+					<input type="submit" class="button" name="submit" value="Go" />
+				</form>
+			<hr/>
+
+			<!-- RECENT POSTS -->
+			<h3 style="margin-bottom: 20px;">Profile</h3>
+			<a href="#!/users/profile" ng-click="closeSidebar($event);">
+				<img class="contact-img" ng-src="{{global.user.avatar}}">
+			</a>
+			<a href="/signout">
+				<input type="button" class="button" value="Se déconnecter" style="width: 100%;margin-top: 30px;" />
+			</a>
+		</div>
+	</div>
+</aside>

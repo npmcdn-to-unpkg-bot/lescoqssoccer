@@ -1,11 +1,8 @@
-<div class="modal-header">
-    <button type="button" class="close" data-ng-click="cancel()" aria-hidden="true">&times;</button>
-    <h4 class="modal-title">Confirmation pour supprimer - {{album.name}}</h4>
-</div>
-<div class="modal-body">
-    <p>T'es sur de vouloir supprimer l'album "{{album.name}}"<span data-ng-hide="album.photos.length < 1">, qui contient {{album.photoList.length}} photos</span>?</p>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-default" data-ng-click="cancel()">Annuler</button>
-    <button type="button" class="btn btn-danger" data-ng-click="ok()"><span class="glyphicon glyphicon-trash"></span>&nbsp;Supprimer</button>
+<div class="message-box">
+	<h4>Confirmation de suppression</h4>
+	<p>T'es sur de vouloir supprimer "{{album.name}}"?</p>
+	<div style="text-align: right; margin-top: 30px;">
+		<input type="submit" value="Annuler" data-ng-click="cancel()"/>
+		<input type="submit" value="Supprimer" data-ng-click="ok()" style="background-color: lightgray;color: black;"/>
+	</div>
 </div>

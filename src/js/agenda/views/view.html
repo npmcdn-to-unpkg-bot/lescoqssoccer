@@ -1,0 +1,68 @@
+<div class="clearfix filters filter-floating">
+	<ul style="top:20px; right: 100px;">
+		<li><a href="#!" data-ng-click="edit($event);">Editer</a></li>
+		<li><a href="#!" data-ng-click="remove($event);">Supprimer</a></li>
+	</ul>
+	<div class="filter-floating-triggle hidden-phone" style="top:20px; right: 60px;" ng-show="global.user._id === userEvent.user._id">
+		<i class="fa fa-cogs"></i>
+	</div>
+</div>
+
+<div id="post-1039" class="post type-post status-publish format-standard hentry category-blog">
+	<div class="row-fluid two-cols-layout" style="min-height: 100vh;">
+		<div id="content_wrap" class="span8">
+			<div class="title-bar-wrap " id="title-bar" style="padding: 50px 0; max-height: 280px;">
+					<div id="title-wrap">
+						<div class="title-wrap-inn">
+							<div id="main-title">
+								<h1 class="main-title" style="text-transform: uppercase;">{{userEvent.title}}</h1>
+								<div class="post-meta">
+									<p class="postdate txt-label">
+									{{userEvent.startsAt | date:"dd MMM yyyy"}}{{(userEvent.endsAt !==  userEvent.startsAt) ? " - " + getFormattedDate(userEvent.endsAt) : ""}}
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<p class="txt-label" style="margin: 10px 0;">
+					<span class="label">
+						<strong>{{ eventTypes | getNameByIdentifier:userEvent.eventType}}</strong>
+					</span>
+				</p>
+				<p>
+					{{userEvent.content}}
+				</p>
+				<div id="google-map" class="google-map" style="border: 10px solid white !important; margin-top: 10px;">
+					<google-map
+					center="map.center"
+					zoom="map.zoom"
+					draggable="true"
+					dragging="map.dragging"
+					bounds="map.bounds"
+					events="map.events"
+					options="map.options"
+					control="map.control">
+					<marker
+						ng-repeat="m in map.markers"
+						icon="'img/icons/pin.png'"
+						coords="m"
+						animation="google.maps.Animation.DROP"
+						click="onMarkerClicked(m);">
+						<window isIconVisibleOnClick="true" show="m.showWindow">
+						<div>
+							<div style="display: inline-block;">
+								<p style="text-align: center">{{m.title}}</p>
+								<p style="display: inline-block; vertical-align: top;">{{m.content}}</p>
+							</div>
+						</div>
+						</window>
+					</marker>
+					</google-map>
+				</div>
+            </div>
+		</div>
+	</div>
+</div>
+<cm-page-builder></cm-page-builder>

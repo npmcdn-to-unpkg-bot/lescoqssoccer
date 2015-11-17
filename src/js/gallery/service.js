@@ -1,15 +1,39 @@
 'use strict';
 
-angular.module('mean.albums').factory('PhotosCollection', ['$resource',
-	function ($resource) {
+angular.module('mean.albums').factory('AlbumsCollection', ['$resource',
+	function($resource) {
 
-		return $resource('photos/:id/', {
+		return $resource('albums/:id/', {
 			id: '@_id'
 		}, {
 			query: {
 				method: 'GET',
 				isArray: true
 			},
+			update: {
+				method: 'PUT',
+				params: {
+					_id: '@_id'
+				}
+			}
+		});
+
+	}
+]);
+
+//Articles service used for get articles items count
+angular.module('mean.articles').factory('AlbumsCount', ['$resource',
+	function($resource) {
+		return $resource('albumsCount');
+	}
+]);
+
+angular.module('mean.albums').factory('Photos', ['$resource',
+	function($resource) {
+
+		return $resource('photos/:id/', {
+			id: '@_id'
+		}, {
 			uploadPhoto: {
 				method: 'POST',
 				url: '/upload/photo',
@@ -22,139 +46,69 @@ angular.module('mean.albums').factory('PhotosCollection', ['$resource',
 	}
 ]);
 
-angular.module('mean.albums').factory('AlbumsCollection', ['$resource',
-	function ($resource) {
+angular.module('mean.albums').service('AlbumService', ['AlbumsCollection', 'Photos', 'AlbumsCount',
+	function(AlbumsCollection, Photos, AlbumsCount) {
 
-		return $resource('albums/:id/', {
-			id: '@_id'
-		}, {
-			query: {
-				method: 'GET',
-				isArray: true
+		var AlbumService = {
+
+			itemsPerPage : 12,
+
+			getAlbum: function(id) {
+				return AlbumsCollection.get({
+					id: id,
+				}, function(data) {
+					return data;
+				}).$promise;
 			},
-			getPhotos: {
-				method: 'GET',
-				isArray: true,
-				url: '/gallery/:id/'
+
+			getAllAlbums: function(page) {
+				return AlbumsCollection.query({
+					page: page - 1,
+					perPage: AlbumService.itemsPerPage
+				}, function(data) {
+					return data;
+				}).$promise;
 			},
-			editAlbumPhotos: {
-				method: 'POST',
-				params: {
-					photoId: '@photoId',
-					action: '@action'
-				},
-				isArray: false,
-				url: '/albums/:id/:action/:photoId/'
+
+			getAlbumsByUser: function(userId) {
+				return AlbumsCollection.query({
+					userId: userId
+				}, function(albums) {
+					return albums;
+				}).$promise;
+			},
+
+			getItemsCount: function() {
+				return AlbumsCount.get({}, function(result) {
+					return result;
+				}).$promise;
+			},
+
+			saveAlbum: function(album) {
+				return AlbumsCollection.save({}, album, function(data) {
+					return data;
+				}).$promise;
+			},
+
+			updateAlbum: function(album) {
+				return AlbumsCollection.update({
+					_id: album._id
+				}, album, function(data) {
+					return data;
+				}).$promise;
+			},
+
+			deleteAlbum: function(album) {
+				return AlbumsCollection.delete({}, album, function(data) {
+					return data;
+				}).$promise;
+			},
+
+			uploadFile: function(formData) {
+				return Photos.uploadPhoto({}, formData).$promise;
 			}
-		});
+		};
 
+		return AlbumService;
 	}
 ]);
-
-angular.module('mean.albums').service('PhotoMgrService', ['Global', 'AlbumsCollection', 'PhotosCollection',
-	function (Global, AlbumsCollection, Photo) {
-
-		var global = Global;
-		var pmSvc = {};
-
-		pmSvc.editAlbumPhotos = function (action, photo, album) {
-
-			return AlbumsCollection.editAlbumPhotos({
-				action: action,
-				_id: album._id,
-				photoId: photo._id
-			}, function (data) {
-				return data;
-			});
-		}
-
-		pmSvc.getAlbum = function (id) {
-			return AlbumsCollection.get({
-				id: id
-			}, function (data) {
-				return data;
-			}).$promise;
-		}
-
-		pmSvc.getPhoto = function (id) {
-			return Photo.get({
-				id: id
-			}, function (data) {
-				return data;
-			}).$promise;
-		}
-
-		pmSvc.getAllPhotos = function () {
-			return Photo.query({}, function (data) {
-				return data;
-			}).$promise;
-		}
-
-		pmSvc.getAllAlbums = function () {
-			return AlbumsCollection.query({}, function (data) {
-				return data;
-			}).$promise;
-		}
-
-		pmSvc.saveAlbum = function (album) {
-			return AlbumsCollection.save({}, album, function (data) {
-				return data;
-			}).$promise;
-		}
-
-		pmSvc.savePhoto = function (photo) {
-			return Photo.save({}, photo, function (data) {
-				return data;
-			}).$promise;
-		}
-
-		pmSvc.deleteAlbum = function (album) {
-			return AlbumsCollection.delete({}, album, function (data) {
-				return data;
-			}).$promise;
-		}
-
-		pmSvc.deletePhoto = function (photo) {
-			return Photo.delete({}, photo, function (data) {
-				return data;
-			}).$promise;
-		}
-
-		pmSvc.toggleEnabled = function (id) {
-			return AlbumsCollection.get({
-				id: id
-			}, function (album) {
-				album.enabled = (!album.enabled)
-				album.$save();
-			}).$promise;
-		}
-
-		pmSvc.getAlbumPhotos = function (id) {
-			return AlbumsCollection.getPhotos({
-				id: id
-			}, function (data) {
-				return data;
-			}).$promise;
-		}
-
-		pmSvc.newAlbum = function () {
-			return new AlbumsCollection();
-		}
-
-		pmSvc.newPhoto = function (photo) {
-			return new Photo(photo);
-		}
-
-		pmSvc.uploadFile = function (formData) {
-			return Photo.uploadPhoto({}, formData).$promise;
-		}
-
-		return pmSvc;
-	}
-]);
-
-angular.module('mean.albums').filter('slice', function() {
-  return function(arr, start, end) {
-    return (arr || []).slice(start, end);
-  };
-});

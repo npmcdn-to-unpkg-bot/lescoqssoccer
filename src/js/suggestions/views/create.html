@@ -1,27 +1,45 @@
-<h1 style="margin-left:15px; padding-left:0; color: white;">
-	<a href="#!/suggestions" style="color: white;">
-		<i class="fa fa-arrow-circle-left"></i>
-	</a>
-	{{'suggestions_title' | translate}}
-</h1>
-<hr style="margin-left:15px; padding-left:0;">
-<section data-ng-controller="SuggestionController">
-	<div class="col-xs-12">
-		<form class="form-horizontal" role="form" data-ng-submit="add();">
-			<div class="form-group">
-				<textarea
-					class="form-control"
-					placeholder="{{'suggestions_add' | translate}}"
-					data-ng-model="content"
-					style="width:calc(100% - 15px); margin-left: 15px;"/>
-				<button
-					class="btn btn-primary"
-					type="submit"
-					title="{{'suggestions_add' | translate}}"
-					style="float:right;">
-					<i class="glyphicon glyphicon-ok"></i>
-				</button>
-			</div>
-		</form>
+<div class="clearfix filters filter-floating">
+	<div class="filter-floating-triggle hidden-phone" style="top:20px; right: 125px;" ng-click="global.back();">
+		<i class="fa fa-arrow-left"></i>
 	</div>
-</section>
+	<div class="filter-floating-triggle" style="top:20px; right: 60px;" ng-click="create($event);">
+		<i class="fa fa-save"></i>
+	</div>
+</div>
+
+<div id="post-1039" class="post type-post status-publish format-standard hentry category-blog">
+	<div class="row-fluid two-cols-layout" style="min-height: 799px;">
+		<div id="content_wrap" class="span10" style="margin-left: 9%;">
+			<div class="title-bar-wrap " id="title-bar" style="padding: 50px 0;">
+				<div id="title-wrap">
+					<div class="title-wrap-inn">
+						<div id="main-title">
+							<h1 class="main-title">NOUVEAU VOTE</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="comments">
+				<div id="respondwrap">
+					<div id="respond" class="comment-respond">
+						<form role="form">
+							<p class="span12" style="margin-left: 0;">
+								<textarea
+								name="content"
+								data-ng-model="content"
+								placeholder="Contenu du vote">
+								</textarea>
+							</p>
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<cm-wysiwyg></cm-wysiwyg>
+<cm-page-builder></cm-page-builder>
+<cm-page-builder></cm-page-builder>

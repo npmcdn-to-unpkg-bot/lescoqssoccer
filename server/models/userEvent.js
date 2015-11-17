@@ -10,11 +10,11 @@ var mongoose = require( 'mongoose' ),
  * Article Schema
  */
 var UserEventSchema = new Schema( {
-	start: {
+	startsAt: {
 		type: Date,
 		default: Date.now
 	},
-	end: {
+	endsAt: {
 		type: Date,
 		default: Date.now,
 		trim: true
@@ -37,17 +37,38 @@ var UserEventSchema = new Schema( {
 		type: String,
 		trim: true
 	},
-	photos: {
-		type: Array
+	eventType: {
+		type: String,
+		trim: true
+	},
+	recursOn: {
+		type: String,
+		trim: true
+	},
+	editable:{
+		type: Boolean
+	},
+	deletable:{
+		type: Boolean
+	},
+	incrementsBadgeTotal:{
+		type: String,
+		trim: true
 	},
 	location: {
-		k: {
+		latitude: {
 			type: String
 		},
-		B: {
+		longitude: {
 			type: String
 		}
 	},
+	guest: [{
+		type : mongoose.Schema.ObjectId, ref : 'User'
+	}],
+	guestUnavailable: [{
+		type : mongoose.Schema.ObjectId, ref : 'User'
+	}]
 } );
 
 /**

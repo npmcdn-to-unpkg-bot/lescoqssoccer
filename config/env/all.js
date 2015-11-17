@@ -6,7 +6,7 @@ var rootPath = path.normalize( __dirname + '/../..' );
 module.exports = {
 
 	root: rootPath,
-	port: process.env.PORT || 3000,
+	port: process.env.PORT || 8000,
 	db: process.env.MONGOHQ_URL,
 
 	// The secret should be set to a non-guessable string that
@@ -16,5 +16,7 @@ module.exports = {
 	sessionCollection: 'sessions',
 
 	//File upload
-	uploadDirectory: "public/img/users/"
+	uploadDirectory: "public/img/users/",
+	cacheDirectoryX300: "public/.cache/crop/300x300/img/users/",
+	cacheDirectoryX100: "public/.cache/crop/100x100/img/users/"
 }

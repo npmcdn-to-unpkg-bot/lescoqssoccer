@@ -1,0 +1,140 @@
+<div class="clearfix filters filter-floating">
+	<div class="filter-floating-triggle" style="top:20px; right: 0;" ng-click="openCalendar($event);">
+		<i class="fa fa-calendar"></i>
+	</div>
+</div>
+
+<div id="post-1039" class="post type-post status-publish format-standard hentry category-blog">
+	<div class="row-fluid two-cols-layout" style="min-height: 100vh;">
+		<div id="content_wrap" class="span10" style="margin-left: 30px;">
+			<div class="content-wrap-inn bottom-space">
+				<div class="container" styzle="padding:0;">
+					<div class="title-bar-wrap" id="title-bar" style="padding: 50px 0;">
+						<div id="title-wrap">
+							<section>
+								<div id="action">
+									<div id="keg">
+										<div id="pipe-handle"></div>
+										<div id="pipe"></div>
+										<div id="pipe-front"></div>
+									</div>
+
+									<div class="glass">
+										<div class="beer"></div>
+										<div class="handle">
+											<div class="top-right"></div>
+											<div class="bottom-right"></div>
+										</div>
+										<div class="front-glass"></div>
+									</div>
+								</div>
+							</section>
+							<div class="title-wrap-inn" style="margin-left: 120px;">
+								<div id="main-title">
+									<h1 class="main-title">Rencards</h1>
+								</div>
+								<div class="post-expert">
+									Un café, une bière avec les copaings?! C'est ici!
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="pagebuilder-wrap">
+					<div class="container" style="padding: 0 0 0 60px; margin-top: 60px;">
+						<div class="row-fluid">
+							<div class="moudle">
+
+								<div class="navigation">
+									<div class="controls">
+										<i class="before fa fa-play" ng-click="setPreviousElement();"></i>
+										<div class="date">
+											<span class="month">{{selectedEvent.startsAt || dateNow | date:"MMM"}}</span>
+											<span class="day">{{selectedEvent.startsAt || dateNow | date:"dd"}}</span>
+										</div>
+										<i class="fa fa-play" ng-click="setNextElement();"></i>
+									</div>
+									<a class="igoNot" ng-if="selectedEvent" ng-click="notAddMeToEvent($event, selectedEvent);">
+										C'est mort
+									</a>
+									<a class="igo" ng-if="selectedEvent" ng-click="addMeToEvent($event, selectedEvent);">
+										J'y serai!
+									</a>
+								</div>
+
+								<h3 ng-if="!selectedEvent" style="margin-top: 40px;">Rien de prévu</h3>
+
+								<div id="calContainer" ng-if="selectedEvent">
+
+									<article>
+										<div id="google-map" class="google-map google-map-agenda" ng-if="selectedEvent.location">
+											<google-map
+											center="map.center"
+											zoom="map.zoom"
+											draggable="true"
+											dragging="map.dragging"
+											bounds="map.bounds"
+											events="map.events"
+											options="map.options"
+											control="map.control">
+											<marker
+												icon="'img/icons/pin.png'"
+												coords="marker"
+												animation="google.maps.Animation.DROP">
+											</marker>
+
+											</google-map>
+										</div>
+
+										<section>
+											<header>
+												<h1>
+												{{selectedEvent.title}}
+												</h1>
+												<div class="record">
+													<img class="img-circle" ng-src="{{selectedEvent.user.avatar}}?dim100x100" alt="{{selectedEvent.user.username}}" style="width:40px; height:40px; margin-right: 10px;"/>
+													 proposé par {{selectedEvent.user.name || selectedEvent.user.username}}
+												</div>
+												<div style="margin-top: 20px;">
+													{{selectedEvent.content}}
+												</div>
+												<h4>Ils seront là</h4>
+												<div>
+													<a ng-repeat="guest in selectedEvent.guest" ng-href="#!/users/detail/{{guest._id}}">
+													<img ng-src="{{guest.avatar && guest.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{guest.username}}" draggable="false" class="img80_80 img-circle">
+													</a>
+												</div>
+												<p ng-if="selectedEvent.guest.length === 0">
+													Pour l'instant personne
+												</p>
+												<h4>Les échappés</h4>
+												<div>
+													<a ng-repeat="guest in selectedEvent.guestUnavailable" ng-href="#!/users/detail/{{guest._id}}">
+													<img ng-src="{{guest.avatar && guest.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{guest.username}}" draggable="false" class="img80_80 img-circle">
+													</a>
+												</div>
+												<p ng-if="selectedEvent.guestUnavailable.length === 0">
+													Pour l'instant aucun
+												</p>
+											</header>
+										</section>
+									</article>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="addButton">
+		<div class="float-bar-inn-wrap"></div>
+		<a href="#!/agenda/create">
+		<div id="float-bar-triggler">
+			<i class="float-bar-triggler-inn"></i>
+		</div>
+		</a>
+	</div>
+</div>
+<cm-page-builder></cm-page-builder>

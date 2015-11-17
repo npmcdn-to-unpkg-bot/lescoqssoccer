@@ -17,8 +17,8 @@ module.exports = function(app) {
     app.get('/userEvent', userEvent.all);
     app.post('/userEvent', authorization.requiresLogin, userEvent.create);
     app.get('/userEvent/:userEventId', userEvent.show);
-    app.put('/userEvent/:userEventId', authorization.requiresLogin, hasAuthorization, userEvent.update);
-    app.del('/userEvent/:userEventId', authorization.requiresLogin, hasAuthorization, userEvent.destroy);
+    app.put('/userEvent/:userEventId', userEvent.update);
+    app.del('/userEvent/:userEventId', userEvent.destroy);
 
     // Finish with setting up the userEventId param
     app.param('userEventId', userEvent.userEvent);

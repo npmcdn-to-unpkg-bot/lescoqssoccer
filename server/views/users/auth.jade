@@ -1,9 +1,9 @@
 extends ../layouts/authentication
 
 block content
-  .row.login-box
+  .login-box
       if message && message.length
-        .fade.in.alert.alert-error
-          button.close(type="button", data-dismiss="alert") &times;
+        .info-box
+          span.info-box-close(data-dismiss="info-box")
           strong #{message}
       block auth

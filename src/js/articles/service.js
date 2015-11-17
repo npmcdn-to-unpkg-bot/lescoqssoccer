@@ -1,134 +1,127 @@
 'use strict';
 
 //Articles service used for Articles REST endpoint
-angular.module( 'mean.articles' ).factory( 'Articles', [ '$resource',
-	function ( $resource ) {
-		return $resource( 'articles/:articleId', {
+angular.module('mean.articles').factory('Articles', ['$resource',
+	function($resource) {
+		return $resource('articles/:articleId', {
 			articleId: '@_id'
 		}, {
-			update: {
-				method: 'PUT'
+			'save': {
+				method: 'POST'
 			},
-			query: {
+			'update': {
+				method: 'PUT',
+				params: {
+					articleId: '@articleId'
+				}
+			},
+			'query': {
 				method: 'GET',
 				isArray: true
-			},
-		} );
+			}
+		});
 	}
-] );
+]);
+
+//Articles service used for get articles items count
+angular.module('mean.articles').factory('ArticlesCount', ['$resource',
+	function($resource) {
+		return $resource('articlesCount');
+	}
+]);
+
 
 /**
  * ArticleModel service
  **/
-angular.module( 'mean.articles' ).service( 'ArticlesCollection', [ 'Global', 'Articles',
-	function ( Global, Articles ) {
+angular.module('mean.articles').service('ArticlesCollection', ['Articles', 'ArticlesCount',
 
-		var global = Global;
+	function(Articles, ArticlesCount) {
+
 		var ArticlesCollection = {
 
 			all: [],
-			filtered: [],
-			selected: null,
-			selectedIdx: null,
-			readCount: 0,
-			starredCount: 0,
+			itemsPerPage: 12,
+			currentPage: 0,
 
-			load: function () {
-				return Articles.query( {}, function ( articles ) {
+			load: function(page) {
+
+				ArticlesCollection.currentPage = page;
+
+				return Articles.query({
+					page: page - 1,
+					perPage: ArticlesCollection.itemsPerPage
+				}, function(articles) {
+					ArticlesCollection.all = articles;
 					return articles;
-				} ).$promise;
+				}).$promise;
 			},
 
-			findOne: function ( articleId ) {
+			getItemsCount: function() {
+				return ArticlesCount.get({}, function(result) {
+					return result;
+				}).$promise;
+			},
 
-				return Articles.get( {
+			getArticlesByUser: function(userId) {
+				return Articles.query({
+					userId: userId,
+					page: 0,
+					perPage: ArticlesCollection.itemsPerPage
+				}, function(articles) {
+					return articles;
+				}).$promise;
+			},
+
+			getPrevious: function(article) {
+
+				var index = 0;
+				for(var i=0; i < ArticlesCollection.all.length; i++){
+					if(article._id === ArticlesCollection.all[i]._id) index = i;
+				};
+
+				return (index - 1 > 0) ? ArticlesCollection.all[index - 1] : ArticlesCollection.all[0];
+			},
+
+			getNext: function(article) {
+
+				var index = 0;
+				for(var i=0; i < ArticlesCollection.all.length; i++){
+					if(article._id === ArticlesCollection.all[i]._id) index = i;
+				};
+
+				return (index + 1 > ArticlesCollection.all.length - 1) ? ArticlesCollection.all[ArticlesCollection.all.length - 1] : ArticlesCollection.all[index + 1];
+			},
+
+			findOne: function(articleId) {
+				return Articles.get({
 					articleId: articleId
-				}, function ( article ) {
+				}, function(article) {
 					return article;
-				} ).$promise;
+				}).$promise;
 			},
 
-			add: function ( article ) {
-
-				return Articles.save({}, article, function (data) {
+			add: function(article) {
+				return Articles.save({}, article, function(data) {
 					return data;
 				}).$promise;
 			},
 
-			update: function ( index, callback ) {
-
-				if ( index ) {
-					ArticlesCollection.filtered[ index ].$update( function ( response ) {
-						ArticlesCollection.filtered[ index ] = response;
-
-						if ( callback )
-							callback.call();
-					} );
-				} else {
-					if ( callback )
-						callback.call();
-				}
-			},
-
-			remove: function ( article ) {
-
-				return Articles.delete( {}, article, function ( data ) {
+			update: function(article) {
+				return Articles.update({
+					articleId: article._id
+				}, article, function(data) {
 					return data;
-				} ).$promise;
+				}).$promise;
 			},
 
-			prev: function () {
-				if ( ArticlesCollection.hasPrev() ) {
-					ArticlesCollection.selectArticle( ArticlesCollection.selected ? ArticlesCollection.selectedIdx - 1 : 0 );
-				}
-			},
-
-			next: function () {
-				if ( ArticlesCollection.hasNext() ) {
-					ArticlesCollection.selectArticle( ArticlesCollection.selected ? ArticlesCollection.selectedIdx + 1 : 0 );
-				}
-			},
-
-			hasPrev: function () {
-				if ( !ArticlesCollection.selected ) {
-					return true;
-				}
-				return ArticlesCollection.selectedIdx > 0;
-			},
-
-			hasNext: function () {
-				if ( !ArticlesCollection.selected ) {
-					return true;
-				}
-				return ArticlesCollection.selectedIdx < ArticlesCollection.filtered.length - 1;
-			},
-
-			selectArticle: function ( idx ) {
-
-				// Unselect previous selection.
-				if ( ArticlesCollection.selected ) {
-					ArticlesCollection.selected.selected = false;
-				}
-
-				ArticlesCollection.selected = ArticlesCollection.filtered[ idx ];
-				ArticlesCollection.selectedIdx = idx;
-				ArticlesCollection.selected.selected = true;
-				ArticlesCollection.onCreation = ArticlesCollection.onEdition = false;
-			},
-
-			filterBy: function ( key, value ) {
-				ArticlesCollection.filtered = ArticlesCollection.all.filter( function ( article ) {
-					return article[ key ] === value;
-				} );
-				ArticlesCollection.reindexSelectedItem();
-			},
-
-			clearFilter: function () {
-				ArticlesCollection.filtered = ArticlesCollection.all;
-				ArticlesCollection.reindexSelectedItem();
-			},
+			remove: function(article) {
+				return Articles.delete({}, article, function(data) {
+					return data;
+				}).$promise;
+			}
 		}
 
 		return ArticlesCollection;
 	}
-] );
+]);

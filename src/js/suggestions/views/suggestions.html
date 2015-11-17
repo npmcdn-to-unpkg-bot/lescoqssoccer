@@ -1,18 +1,132 @@
-<h1 style="margin-left:15px; padding-left:0; color: white;">
-	<i class="fa fa-puzzle-piece"  style="color: white; "></i>
-	{{'suggestions_title' | translate}}
-	<a href="#!/suggestions/create" class="pull-right" style="color: white;">
-		<i class="fa fa-plus-circle"></i>
-	</a>
-</h1>
-<hr style="margin-left:15px; padding-left:0;">
-<section data-ng-controller="SuggestionController">
-	<ul class="suggestionList">
-		<li class="suggestionItem" data-ng-repeat="suggestion in SuggestionsCollection.all">
-			<a href="#">
-				<h4>{{global.user.name}}, le {{suggestion.created | date:dateFormat}}</h4>
-		        		<p class="three-line-ellipsis">{{suggestion.content}}</p>
-		      	</a>
-		</li>
-	</ul>
-</section>
+<div id="post-217" class="post-217 page type-page status-publish hentry">
+    <div class="row-fluid " style="min-height: 100vh; padding: 60px;">
+        <div id="content_wrap" class="">
+            <div class="content-wrap-inn">
+                <div class="pagebuilder-wrap">
+                    <div class="fullwrap_moudle">
+                        <div class="row-fluid">
+                            <div id="" class="fullwidth-wrap" style="background-position: 50% 0px;" data-speed="19">
+                                <div class="row-fluid">
+                                    <div class="span12 moudle moudle_has_animation animation-default-ux animation-scroll-ux  bottom-space-no animation_hidden fadeined" style="opacity: 1;">
+
+                                        <!--Portfolio interlock list-->
+                                        <div class="interlock-list" data-post="20140403-072852-376">
+                                            <a name="20140403-072852-376" class="20140403-072852-376"></a>
+                                            <section ng-repeat="suggestion in suggestions" class="interlock-item animation-default-ux animation-scroll-ux fadeined bg-theme-color-7" style="margin-bottom: 30px; border: 1px solid;">
+                                                <div class="iterlock-item-img">
+                                                    <div class="ux-hover-wrap">
+                                                        <figure class="circle">
+                                                          <div style="background:rgba(27,45,65,0) !important; position:absolute;" class="mask-a">
+                                                            <div class="hand" ng-click="vote(suggestion, 1);"></div>
+                                                            <div class="hand-1" ng-click="vote(suggestion, 2);"></div>
+                                                            <div class="hand-2" ng-click="vote(suggestion, 3);"></div>
+                                                          </div>
+                                                          <!-- key animation mirror to avoid overflow and mask.-->
+                                                          <div class="mask-b">
+                                                            <div class="hand"></div>
+                                                            <div class="hand-1"></div>
+                                                          </div>
+                                                        </figure>
+                                                    </div>
+                                                </div>
+                                                <div class="iterlock-caption">
+                                                    <div class="iterblock-expt">
+                                                        <div class="item_des" style="padding: 30px;color: white;">
+                                                            <i class="icon-m-quote-left center-ux" style="font-size: 48px; height: 60px;"></i>
+                                                            <ul class="blog_meta">
+                                                                <li class="blog_meta_auhtor">
+                                                                    <img class="img-circle" ng-src="{{suggestion.user.avatar}}?dim100x100" alt="{{suggestion.user.username}}" style="width: 40px; height:40px; margin-right: 20px;" />
+                                                                    {{suggestion.user.name || suggestion.user.username}}
+                                                                </li>
+                                                            </ul>
+                                                            <br>
+                                                            <p>{{suggestion.content}}
+                                                            </p>
+                                                            <div class="suggestionsResult" ng-if="hasAnswers(suggestion)">
+                                                                <div class="row-fluid">
+                                                                    <div class="moudle">
+                                                                        <section class="infrographic bar ux-mod-nobg">
+                                                                            <h1 style="text-transform: uppercase;">ça donne</h1>
+                                                                            <div class="bar-percent">
+                                                                                <div class="bignumber-item" data-digit="{{getSuggestionAnswerLength(suggestion, 'yes')}}">
+                                                                                   {{getSuggestionAnswerLength(suggestion, 'yes')}}
+                                                                                </div>%
+                                                                            </div>
+                                                                            <div class="progress-outer">
+                                                                                <div class="progress-wrap progress bg-theme-color-1"
+                                                                                    data-progress-percent="{{getSuggestionAnswerLength(suggestion, 'yes')}}">
+                                                                                    <div class="progress-bar progress">
+                                                                                        <div class="pr-head" ng-class="bg-theme-color-{{$index}}"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </section>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row-fluid">
+                                                                    <div class="moudle">
+                                                                        <section class="infrographic bar ux-mod-nobg">
+                                                                            <h1 style="text-transform: uppercase;">C'est mort!</h1>
+                                                                            <div class="bar-percent">
+                                                                                <div class="bignumber-item" data-digit="{{getSuggestionAnswerLength(suggestion, 'no')}}">
+                                                                                    {{getSuggestionAnswerLength(suggestion, 'no')}}
+                                                                                </div>%
+                                                                            </div>
+                                                                            <div class="progress-outer">
+                                                                                <div class="progress-wrap progress bg-theme-color-1"
+                                                                                    data-progress-percent="{{getSuggestionAnswerLength(suggestion, 'no')}}">
+                                                                                    <div class="progress-bar progress">
+                                                                                        <div class="pr-head" ng-class="bg-theme-color-{{$index}}"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </section>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row-fluid">
+                                                                    <div class="moudle">
+                                                                        <section class="infrographic bar ux-mod-nobg">
+                                                                            <h1 style="text-transform: uppercase;">Ne sais pas</h1>
+                                                                            <div class="bar-percent">
+                                                                                <div class="bignumber-item" data-digit="{{getSuggestionAnswerLength(suggestion, 'blank')}}">
+                                                                                    {{getSuggestionAnswerLength(suggestion, 'blank')}}
+                                                                                </div>%
+                                                                            </div>
+                                                                            <div class="progress-outer">
+                                                                                <div class="progress-wrap progress bg-theme-color-1"
+                                                                                    data-progress-percent="{{getSuggestionAnswerLength(suggestion, 'blank')}}">
+                                                                                    <div class="progress-bar progress">
+                                                                                        <div class="pr-head" ng-class="bg-theme-color-{{$index}}"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </section>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="addButton">
+        <div class="float-bar-inn-wrap">
+        </div>
+        <a href="#!/suggestions/create">
+        <div id="float-bar-triggler">
+            <i class="float-bar-triggler-inn"></i>
+        </div>
+        </a>
+    </div>
+</div>
+
+<cm-page-builder></cm-page-builder>

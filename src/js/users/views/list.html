@@ -1,0 +1,83 @@
+<div class="row-fluid" style="min-height: 100vh;">
+	<div id="content_wrap">
+		<div class="content-wrap-inn bottom-space" style="margin-top: 50px;">
+			<div class="pagebuilder-wrap">
+				<div class="container">
+					<div class="row-fluid">
+						<div class="span12 moudle">
+							<div data-post="20140425-001758-102" class="text_block ux-mod-nobg">
+								<h1>
+								LA FINE
+								<span class="word-fadein-fadeout-ux">
+								<span style="display: inline; opacity: 0.9396581550952778;">
+								EQUIPE
+								</span>
+								<span style="display: none;">
+								CREATIVE
+								</span>
+								<span style="display: none;">
+								EFFCIENT
+								</span>
+								</span>
+								</h1>
+								<br>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="container">
+					<div class="row-fluid">
+						<div class="span12 moudle moudle_has_animation animation-default-ux animation-scroll-ux bottom-space-40 animation_hidden fadeined" style="opacity: 1;">
+
+							<!--gallery isotope-->
+							<div class="row-fluid">
+								<a name="20140425-001909-709" class="20140425-001909-709"></a>
+								<div class="container-isotope" data-post="20140425-001909-709">
+
+									<!--Loading during page initialization-->
+									<div id="isotope-load" style="margin-top: 40px;">
+										<div class="ux-loading"></div>
+										<div class="ux-loading-transform">
+											<div class="loading-dot1">&nbsp;</div>
+											<div class="loading-dot2">&nbsp;</div>
+										</div>
+									</div>
+
+									<div class="isotope grid_list team-isotope isotope_fade" data-space="40px" data-size="medium" style="display:none; margin-left: -40px; margin-top: -40px;">
+										<div ng-repeat="user in team" class="width2 isotope-item animation-default-ux animation-scroll-ux fadeined">
+											<div class="inside card" style="padding: 40px 0 0 40px;">
+												<div class="team-item">
+													<div class="img-wrap">
+														<img
+														ng-src="{{user.avatar && user.avatar + '?dim=300x300' || 'img/Professor.png'}}" class="team-img wp-post-image" alt="13" style="background: white;">
+													</div>
+													<div class="team-item-con-back" style="height: 100%; background-color: #333;">
+														<div class="team-item-con-back-inn" style="height: 100%; display: table;">
+															<div class="team-item-title" title="{{user.name || user.username}}" style="vertical-align: middle;display: table-cell;">
+															{{user.name || user.username}}
+																<p class="team-icons">
+																	<a ng-href="#!/users/detail/{{user._id}}">
+																		<i class="fa fa-search-plus"></i>
+																	</a>
+																	<a ng-href="#!/conversations/{{user._id}}" ng-if="user._id !== global.user._id">
+																		<i class="fa fa-comment"></i>
+																	</a>
+																</p>
+															</div>
+
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<cm-page-builder></cm-page-builder>

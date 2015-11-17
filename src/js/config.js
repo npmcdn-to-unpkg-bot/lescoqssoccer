@@ -1,129 +1,166 @@
 'use strict';
 
 //Setting up route
-angular.module( 'mean' ).config( [ '$routeProvider',
+angular.module('mean').config(['$routeProvider',
 
-	function ( $routeProvider ) {
+	function($routeProvider) {
 		$routeProvider.
 
 		/** HOME ****/
-		when( '/home', {
-			templateUrl: 'js/appStructure/home.html',
+		when('/home', {
+			templateUrl: 'js/home/home.html',
 			controller: 'HomeController',
-		} ).
+			resolve: TeamData
+		}).
 
 		/** AGENDA ****/
-		when( '/agenda', {
-			templateUrl: 'js/agenda/views/agenda.html'
-		} ).
-		when( '/agenda/:view', {
-			templateUrl: function ( params ) {
-				return ( params.view === 'create' ) ? 'js/agenda/views/create.html' : 'js/agenda/views/map.html'
-			}
-		} ).
-		when( '/agenda/:view/:startDate', {
-			templateUrl: 'js/agenda/views/create.html'
-		} ).
+		when('/agenda', {
+			templateUrl: 'js/agenda/views/list.html',
+			controller: 'ListController',
+			resolve: EventsData
+		}).
+		when('/agenda/view/:eventId', {
+			templateUrl: 'js/agenda/views/view.html',
+			controller: 'AgendaDetailController',
+			resolve: EventDetailData
+		}).
+		when('/agenda/create', {
+			templateUrl: 'js/agenda/views/create.html',
+			controller: 'CreateAgendaController',
+			resolve: EventDetailData
+		}).
+		when('/agenda/edit/:eventId', {
+			templateUrl: 'js/agenda/views/create.html',
+			controller: 'CreateAgendaController',
+			resolve: EventDetailData
+		}).
 
 		/** ARTICLES ****/
-		when( '/articles', {
-			templateUrl: 'js/articles/views/list.html'
-		} ).
-		when( '/articles/create', {
-			templateUrl: 'js/articles/views/create.html',
+		when('/articles', {
+			templateUrl: 'js/articles/views/list.html',
 			controller: 'ArticlesController',
-		} ).
-		when( '/articles/:articleId/edit', {
-			templateUrl: 'js/articles/views/create.html',
+			resolve: ArticlesData
+		}).
+		when('/articles/create/:view', {
+			templateUrl: function(params){
+				return (params.view === "standard") ? 'js/articles/views/creation/standard.html' : 'js/articles/views/creation/others.html';
+			},
+			controller: 'CreateArticleController',
+			resolve: ArticleDetailData
+		}).
+		when('/articles/:page', {
+			templateUrl: 'js/articles/views/list.html',
 			controller: 'ArticlesController',
-		} ).
-		when( '/articles/:articleId', {
-			templateUrl: 'js/articles/views/view.html',
-			controller: 'ArticlesController',
-		} ).
-
-		/** LINKS ****/
-		when( '/links', {
-			templateUrl: 'js/links/views/links.html'
-		} ).
-		when( '/links/create', {
-			templateUrl: 'js/links/views/create.html'
-		} ).
+			resolve: ArticlesData
+		}).
+		when('/articles/view/:view/:id', {
+			templateUrl: function(params){
+				return 'js/articles/views/detail/' + params.view + '.html';
+			},
+			controller: 'ArticleDetailController',
+			resolve: ArticleDetailData
+		}).
+		when('/articles/edit/:view/:id', {
+			templateUrl: function(params){
+				return (params.view === "standard") ? 'js/articles/views/creation/standard.html' : 'js/articles/views/creation/others.html';
+			},
+			controller: 'CreateArticleController',
+			resolve: ArticleDetailData
+		}).
 
 		/** ALBUMS ****/
-		when( '/albums', {
+		when('/albums', {
 			templateUrl: 'js/gallery/views/albums.html',
-			controller: 'AlbumCtrl',
-			resolve: PhotoMgrData
-		} ).
-		when( '/albums/:view', {
-			templateUrl: function ( params ) {
-				return ( params.view === 'add' ) ? 'js/gallery/views/album-detail.html' : 'js/gallery/views/albums.html'
-			},
-			controller: 'AlbumCtrl',
-			resolve: PhotoMgrData
-		} ).
-		when( '/albums/:view/:albumId', {
-			templateUrl: 'js/gallery/views/album-detail.html',
-			controller: 'AlbumCtrl',
-			resolve: PhotoMgrData
-		} ).
-
-		/** GALLERY ****/
-		when( '/gallery', {
-			templateUrl: 'js/gallery/views/gallery.html',
-			controller: 'GalleryCtrl',
-			resolve: GalleryData
-		} ).
-		when( '/gallery/:albumId', {
-			templateUrl: 'js/gallery/views/gallery.html',
-			controller: 'GalleryCtrl',
-			resolve: GalleryData
-		} ).
+			controller: 'AlbumsController',
+			resolve: AlbumsData
+		}).
+		when('/albums/view/:albumId', {
+			templateUrl: 'js/gallery/views/photos.html',
+			controller: 'PhotosController',
+			resolve: AlbumData
+		}).
+		when('/albums/create', {
+			templateUrl:'js/gallery/views/create.html',
+			controller: 'AlbumDetailController',
+			resolve: AlbumData
+		}).
+		when('/albums/edit/:albumId', {
+			templateUrl: 'js/gallery/views/create.html',
+			controller: 'AlbumDetailController',
+			resolve: AlbumData
+		}).
+		when('/albums:page', {
+			templateUrl: 'js/gallery/views/albums.html',
+			controller: 'AlbumsController',
+			resolve: AlbumsData
+		}).
 
 		/** SUGGESTIONS ****/
-		when( '/suggestions', {
-			templateUrl: 'js/suggestions/views/suggestions.html'
-		} ).
-		when( '/suggestions/create', {
-			templateUrl: 'js/suggestions/views/create.html'
-		} ).
+		when('/suggestions', {
+			templateUrl: 'js/suggestions/views/suggestions.html',
+			controller: 'SuggestionController',
+			resolve: SuggestionsData
+		}).
+		when('/suggestions/create', {
+			templateUrl: 'js/suggestions/views/create.html',
+			controller: 'SuggestionController',
+		}).
+		when('/issues', {
+			templateUrl: 'js/other/issues.html'
+		}).
 
-		/** PROFILE ****/
-		when( '/profile', {
-			templateUrl: 'js/profile/profile.html'
-		} ).
-
-		/** NOTIFICATIONS ****/
-		when( '/notifications', {
-			templateUrl: 'js/notifications/notifications.html'
-		} ).
+		/** USERS ****/
+		when('/users', {
+			templateUrl: 'js/users/views/list.html',
+			controller: 'TeamController',
+			resolve: TeamData
+		}).
+		when('/users/detail/:id', {
+			templateUrl: 'js/users/views/detail.html',
+			controller: 'UserDetailController',
+			resolve: UserDetailData
+		}).
+		when('/users/profile', {
+			templateUrl: 'js/users/views/profile.html',
+			controller: 'ProfileController',
+			resolve: ProfileData
+		}).
+		when('/conversations', {
+			templateUrl: 'js/users/views/chat.html',
+			controller: 'ChatController',
+			resolve: ChatData
+		}).
+		when('/conversations/:id', {
+			templateUrl: 'js/users/views/chat.html',
+			controller: 'ChatController',
+			resolve: ChatData
+		}).
 
 		/** DEFAULT ****/
-		when( '/', {
+		when('/', {
+			redirectTo: 'articles'
+		}).
+		otherwise({
 			redirectTo: 'home'
-		} ).
-		otherwise( {
-			redirectTo: 'home'
-		} );
+		});
 	}
-] );
+]);
 
 //Setting HTML5 Location Mode
-angular.module( 'mean' ).config( [ '$locationProvider',
-	function ( $locationProvider ) {
-		$locationProvider.hashPrefix( '!' );
+angular.module('mean').config(['$locationProvider',
+	function($locationProvider) {
+		$locationProvider.hashPrefix('!');
 	}
-] );
+]);
 
-angular.module( 'mean' ).config( [ '$translateProvider',
-	function ( $translateProvider ) {
+angular.module('mean').config(['$translateProvider',
+	function($translateProvider) {
 
-		$translateProvider.useStaticFilesLoader( {
+		$translateProvider.useStaticFilesLoader({
 			prefix: 'translations/translation_',
 			suffix: '.json'
-		} );
+		});
 
-		$translateProvider.preferredLanguage( 'fr' );
+		$translateProvider.preferredLanguage('fr');
 	}
-] );
+]);

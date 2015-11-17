@@ -1,0 +1,52 @@
+<div class="message-box" style="text-align: center;">
+	<p class="box-close" ng-click="cancel()" style="position: absolute;top:20px;right:20px;z-index: 1000;">
+		<i class="icon-m-close-thin liquid-item-close" style="font-size: 30px;"></i>
+	</p>
+	<div class="btn-group pull-left monthGroupBtn">
+		<input
+		type="button"
+		class="btn previousMonth"
+		mwl-date-modifier
+		date="calendarDay"
+		decrement="calendarView"
+		value="&#8249;"/>
+		<input
+		type="button"
+		class="btn todayBtn"
+		mwl-date-modifier
+		date="calendarDay"
+		set-to-today
+		value="Aujourd'hui"/>
+		<input
+		type="button"
+		class="btn nextMonth"
+		mwl-date-modifier
+		date="calendarDay"
+		increment="calendarView"
+		value="&#8250;"/>
+	</div>
+	<div class="btn-group" style="margin-bottom: 20px;">
+		<h2 class="uppercase">{{ calendarTitle }}</h2>
+	</div>
+	<div class="btn-group pull-right">
+		<label class="btn" ng-model="calendarView" btn-radio="'year'" style="background-color: #000000;text-shadow: none;color: white;">Année</label>
+		<label class="btn" ng-model="calendarView" btn-radio="'month'" style="background-color: #000000;text-shadow: none;color: white;">Mois</label>
+		<label class="btn" ng-model="calendarView" btn-radio="'week'" style="background-color: #000000;text-shadow: none;color: white;">Semaine</label>
+		<label class="btn" ng-model="calendarView" btn-radio="'day'" style="background-color: #000000;text-shadow: none;color: white;">Jour</label>
+	</div>
+
+	<mwl-calendar
+	view="calendarView"
+	current-day="calendarDay"
+	events="agenda"
+	view-title="calendarTitle"
+	on-event-click="eventClick($event, calendarEvent)"
+	on-event-drop="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+	edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
+	delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
+	on-edit-event-click="eventEdited(calendarEvent)"
+	on-delete-event-click="eventDeleted(calendarEvent)"
+	auto-open="true">
+	</mwl-calendar>
+</div>
+<cm-page-builder></cm-page-builder>

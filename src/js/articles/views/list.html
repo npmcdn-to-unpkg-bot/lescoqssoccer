@@ -1,34 +1,94 @@
-<h1 style="margin-left:15px; padding-left:0; color: white; ">
-	<i class="fa fa-dot-circle-o" style="color: white; "></i>
-	Articles
-	<a href="#!/articles/create" class="pull-right" style="color: white;">
-		<i class="fa fa-plus-circle"></i>
-	</a>
-</h1>
-<hr style="margin-left:15px; padding-left:0;">
-<section data-ng-controller="ArticlesController" data-ng-init="load();">
-	<div id="gallery" class="gallery col-md-12" style="margin-bottom: 20px;">
-		<div class="image" data-ng-repeat="article in articles" style="display: inline-block;">
-			<div class="image-inner">
-				<a href="#!/articles/{{article._id}}" data-lightbox="gallery-group-1">
-					<img ng-src="{{article.image && article.image || 'img/8962691008_7f489395c9_m.jpg'}}" alt="">
-				</a>
-				<p class="image-caption">
-					#{{'common_date_prefix' | translate}} - {{article.created | date:dateFormat}}
-				</p>
-			</div>
-			<div class="image-info">
-				<h5 class="title">{{article.title}}</h5>
-				<div>
-					<small>{{'common_by' | translate}}</small> <a href="#!">{{article.user.name}}</a>
+<div id="post-116" class="post-116 page type-page status-publish hentry articlesContainer">
+	<div class="row-fluid" style="min-height: 100vh">
+		<div id="content_wrap">
+			<div class="content-wrap-inn">
+
+				<div class="container">
+					<div class="title-bar-wrap title-centered" id="title-bar" style="padding: 20px 0;">
+						<!-- <div id="title-wrap">
+							<div class="title-wrap-inn">
+								<div id="main-title">
+									<h1 class="main-title">La foire aux articles</h1>
+								</div>
+								<div class="post-expert">
+									Cette section est un petit peu la foire à la saucisse, vous pouvez partager toute sorte de contenus: liens, vidéos, articles personnalisés... Tout ça en cliquant sur le petit bouton en bas à droite.
+								</div>
+							</div>
+						</div> -->
+					</div>
 				</div>
-				<div class="desc">
-					{{article.content}}
+
+				<div class="pagebuilder-wrap">
+					<div class="container">
+						<div class="row-fluid">
+							<div class="span12 moudle">
+								<div class="row-fluid">
+									<div class="container-isotope clear">
+
+										<div id="isotope-load">
+											<div class="ux-loading"></div>
+											<div class="ux-loading-transform">
+												<div class="loading-dot1">&nbsp;</div>
+												<div class="loading-dot2">&nbsp;</div>
+											</div>
+										</div>
+
+										<div class="isotope masonry isotope_fade" data-size="brick" style="margin: -40px 0px 0px -40px; display: none;">
+											<cm-blog-post ng-repeat="article in articles" type="{{article.type || 'standard'}}" format="tiles">
+											</cm-blog-post>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="clearfix pagenums" style="display: none;">
+						<div class="pagination">
+							<pagination
+							previous-text="&#8249; Précédents"
+							next-text="Suivants &#8250;"
+							total-items="totalItems"
+							page="page"
+							on-select-page="pageChanged(page)"
+							items-per-page="itemsPerPage">
+							</pagination>
+						</div>
+					</div>
+
 				</div>
 			</div>
-		</div>
-		<div data-ng-show="articles.length === 0" class="well">
-			<h4>{{'articles_empty' | translate}}</h4>
 		</div>
 	</div>
-</section>
+</div>
+
+<div id="float-bar" class="hidden-phone">
+	<div class="float-bar-inn-wrap">
+		<div class="float-bar-inn">
+			<div class="float-bar-social-share">
+				<button class="social-share-custom" ng-click="openCreateView('standard')">
+					<i class="fa fa-pencil"></i>
+				</button>
+
+				<button class="social-share-custom" ng-click="openCreateView('link')">
+					<i class="fa fa-link"></i>
+				</button>
+
+				<button class="social-share-custom" ng-click="openCreateView('video')">
+					<i class="fa fa-video-camera"></i>
+				</button>
+
+				<button class="social-share-custom" ng-click="openCreateView('audio')">
+					<i class="fa fa-volume-up"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="float-bar-triggler" class="notClickable">
+		<i class="float-bar-add"></i>
+	</div>
+</div>
+
+<cm-page-builder></cm-page-builder>
