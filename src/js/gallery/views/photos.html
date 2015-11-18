@@ -2,10 +2,10 @@
 <div class="clearfix filters filter-floating" style="z-index: 1000;">
 	<ul style="top:25px; right: 78px;">
 		<li><a href="#!" data-ng-click="download($event);">Télécharger</a></li>
-		<li><a href="#!" data-ng-click="update($event);">Editer</a></li>
-		<li><a href="#!" data-ng-click="deleteAlbum($event);">Supprimer</a></li>
+		<li ng-show="global.user._id === album.user._id"><a href="#!" data-ng-click="update($event);">Editer</a></li>
+		<li ng-show="global.user._id === album.user._id"><a href="#!" data-ng-click="deleteAlbum($event);">Supprimer</a></li>
 	</ul>
-	<div class="filter-floating-triggle hidden-phone" style="top:25px; right: 40px;" ng-show="global.user._id === album.user._id">
+	<div class="filter-floating-triggle hidden-phone" style="top:25px; right: 40px;">
 		<i class="fa fa-cogs"></i>
 	</div>
 </div>
@@ -56,7 +56,7 @@
 							</div>
 							<div class="Collage effect-parent" style="visibility: hidden;">
 								<a ng-click="showSlider($event, $index)" ng-repeat="photo in album.photoList">
-									<img ng-src="{{photo.filepath}}" alt="{{photo.name}}" style="cursor:zoom-in;">
+									<img ng-src="{{photo.filepath}}?dim=300x300" alt="{{photo.name}}" style="cursor:zoom-in;">
 								</a>
 							</div>
 						</div>
