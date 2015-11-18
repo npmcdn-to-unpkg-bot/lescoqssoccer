@@ -89,7 +89,7 @@ exports.download = function(req, res) {
 
 	var src = [];
 	var id = req.params.id, // ID will be used when creating the archive
-		output = fs.createWriteStream('server/public/temp_files/' + id + '.zip'), // Create a write stream for the archive
+		output = fs.createWriteStream(path.resolve(config.root + "/server/public/temp_files/" + id + ".zip")), // Create a write stream for the archive
 		archive = archiver('zip'); // Set our archive to zip format
 
 	Album.findOne({
@@ -105,7 +105,7 @@ exports.download = function(req, res) {
 		});
 
 		archive.bulk([{
-			cwd: 'server/public/img/users/',
+			cwd: path.resolve(config.root + '/server/public/img/users/'),
 			src: src,
 			dest: album.name,
 			expand: true
@@ -124,7 +124,7 @@ exports.download = function(req, res) {
 exports.getZipFile = function(req, res) {
 
 	var error = false; // Set a flag to check for errors in downloading the file
-	var filePath = 'server/public/temp_files/' + req.params.id + '.zip'; // Store the path to the file
+	var filePath = path.resolve(config.root + '/server/public/temp_files/' + req.params.id + '.zip'); // Store the path to the file
 
 	var stream = fs.createReadStream(filePath, {
 		bufferSize: 64 * 1024
