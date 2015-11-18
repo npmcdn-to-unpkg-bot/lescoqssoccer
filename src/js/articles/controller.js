@@ -185,13 +185,15 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 
 		switch ($scope.article.type) {
 			case "link":
-				$scope.title = "Nouveau lien";
+				$scope.title = $scope.article.title ||"Nouveau lien";
 				break;
 			case "video":
-				$scope.title = "Nouvelle vidéo";
+				$scope.title = $scope.article.title || "Nouvelle vidéo";
+				$scope.linkAdress = $scope.article.videoLink;
 				break;
 			case "audio":
-				$scope.title = "Nouveau son";
+				$scope.title = $scope.article.title || "Nouveau son";
+				$scope.linkAdress = $scope.article.audioLink;
 				break;
 		};
 
