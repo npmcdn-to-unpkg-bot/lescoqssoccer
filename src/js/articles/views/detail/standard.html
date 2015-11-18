@@ -159,13 +159,13 @@
 			</div>
 			<ul class="sidebar_widget" style="padding-top: 0;">
 				<li id="tag_cloud-2" class="widget-container widget_tag_cloud">
-					<h3 class="widget-title">Tags</h3>
+					<h3 class="widget-title">Categories</h3>
 					<div class="tagcloud">
 						<a ng-repeat="category in article.categories" title="{{category.value}}" style="font-size: 11px;" class="active">
 							{{category.value}}
 						</a>
 						<h4 ng-if="article.categories.length === 0">
-							Pas de tags associés
+							Pas de categories associés
 						</h4>
 					</div>
 				</li>
