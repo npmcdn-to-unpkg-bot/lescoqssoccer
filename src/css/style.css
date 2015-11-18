@@ -2700,7 +2700,7 @@ A library of transitions for revealing the loaded images
     overflow: hidden;
 }
 
-.manual-file-chooser {
+/*.manual-file-chooser {
   position: absolute;
   width: 150px;
   margin-left: -140px !important;
@@ -2708,12 +2708,12 @@ A library of transitions for revealing the loaded images
   padding: 5px;
   opacity: .0001;
   cursor: pointer;
-}
-
+}*/
+/*
 .label-upload-profile-picture, .label-upload-profile-picture:hover, .pointer:hover, .pointer *:hover, input[type="file"]{
   cursor: pointer;
   color: white;
-}
+}*/
 
 .pagination>li:first-child>a, .pagination>li:first-child>span {
    margin-left: inherit;

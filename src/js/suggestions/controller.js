@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.suggestions').controller('SuggestionController', ['$scope', '$location', 'Global', 'Suggestions', 'SuggestionsCollection',
-	function($scope, $location, Global, Suggestions, SuggestionsCollection) {
+angular.module('mean.suggestions').controller('SuggestionController', ['$scope', '$location', 'Global', 'Suggestions', 'SuggestionsCollection', '$modal',
+	function($scope, $location, Global, Suggestions, SuggestionsCollection, $modal) {
 
 		$scope.global = Global;
 		$scope.suggestions = Suggestions;
@@ -22,7 +22,7 @@ angular.module('mean.suggestions').controller('SuggestionController', ['$scope',
 
 				SuggestionsCollection.add(suggestion).then(function() {
 					$scope.content = "";
-					$location.path("/others/suggestions");
+					$location.path("/suggestions");
 				});
 			}
 		};
@@ -48,7 +48,10 @@ angular.module('mean.suggestions').controller('SuggestionController', ['$scope',
 				}
 
 				SuggestionsCollection.update(suggestion).then(function(suggestion) {
-					console.warn('update')
+					var modalInstance = $modal.open({
+						templateUrl: 'js/suggestions/views/votedModal.html',
+						controller: 'votedCtrl'
+					});
 				});
 			}
 
@@ -62,6 +65,21 @@ angular.module('mean.suggestions').controller('SuggestionController', ['$scope',
 			return suggestion.yes.length > 0 || suggestion.no.length > 0 || suggestion.blank.length > 0;
 		};
 	}
+]);
+
+angular.module('mean.suggestions').controller('votedCtrl', ['$scope', '$modalInstance',
+
+	function($scope, $modalInstance) {
+
+		$scope.ok = function(result) {
+			$modalInstance.close(result);
+		};
+
+		$scope.cancel = function() {
+			$modalInstance.dismiss('cancel');
+		};
+	}
+
 ]);
 
 var SuggestionsData = {
