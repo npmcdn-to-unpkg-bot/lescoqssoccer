@@ -2703,7 +2703,7 @@ A library of transitions for revealing the loaded images
 .manual-file-chooser {
   position: absolute;
   width: 150px;
-  margin-left: -50px;
+  margin-left: -140px !important;
   margin-top: -25px;
   padding: 5px;
   opacity: .0001;
