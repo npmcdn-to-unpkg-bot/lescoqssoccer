@@ -264,12 +264,20 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 					}];
 					break;
 				case "video":
-					var src = angular.element($scope.linkAdress);
-					$scope.article.audioLink = (src.length) ? src.attr('src') : $scope.linkAdress;
+					if($scope.linkAdress.indexOf('iframe') !== -1){
+						var src = angular.element($scope.linkAdress);
+						$scope.article.videoLink = src.attr('src');
+					} else {
+						$scope.article.videoLink = $scope.linkAdress;
+					}
 					break;
 				case "audio":
-					var src = angular.element($scope.linkAdress);
-					$scope.article.audioLink = (src.length) ? src.attr('src') : $scope.linkAdress;
+					if($scope.linkAdress.indexOf('iframe') !== -1){
+						var src = angular.element($scope.linkAdress);
+						$scope.article.audioLink = src.attr('src');
+					} else {
+						$scope.article.audioLink = $scope.linkAdress;
+					}
 					break;
 				case "standard":
 					$scope.article.content = textboxio.get('#mytextarea')[0].content.get();
