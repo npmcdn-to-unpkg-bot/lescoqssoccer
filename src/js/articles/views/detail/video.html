@@ -55,11 +55,14 @@
 							class="comments"
 							ng-repeat="comment in article.comments | orderBy:'-created'">
 
-							<p class="meta">
-							<a ng-href="#!/users/detail/{{comment.user._id || global.user._id}}" style="color: #000000;">
-							{{comment.user.name || global.user.name}}
-							</a> - {{comment.created | date:dateFormat}}
+							<img class="img-circle" ng-src="{{comment.user.avatar}}?dim100x100" alt="{{article.user.username}}" style="width: 40px; margin-bottom: 10px;"/>
+
+							<p class="meta" style="display: inline-block;">
+								<a ng-href="#!/users/detail/{{comment.user._id || global.user._id}}" style="color: #000000;">
+									{{comment.user.username || global.user.username}}
+								</a>, le {{comment.created | date:dateFormat}}
 							</p>
+							
 							<!-- ajouter les commentaires anonymes -->
 							<div class="comments_content">
 								<p>

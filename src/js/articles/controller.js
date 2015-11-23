@@ -50,6 +50,7 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 		$scope.global = Global;
 		$scope.ArticlesCollection = ArticlesCollection;
 		$scope.article = Article;
+		$scope.comment = "";
 		$scope.dateFormat = "dd MMMM yyyy";
 
 		//Format html content from article content edit by wysiwyg
