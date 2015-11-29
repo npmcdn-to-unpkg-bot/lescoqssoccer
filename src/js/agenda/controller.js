@@ -93,7 +93,7 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 
 		$scope.create = function() {
 			if($scope.userEvent._id){
-				$scope.agendaCollection.update(userEvent).then(function(newUserEvent) {
+				$scope.agendaCollection.update($scope.userEvent).then(function(newUserEvent) {
 					$location.path("/agenda");
 				});
 			} else {
