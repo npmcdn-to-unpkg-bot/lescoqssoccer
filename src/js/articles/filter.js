@@ -10,3 +10,9 @@ angular.module('mean.articles').filter('formattedFullDate', function() {
 		return d ? moment(d).format('MMMM Do YYYY, h:mm a') : '';
 	};
 });
+
+angular.module('mean.articles').filter('reverse', function() {
+  return function(items) {
+    return items.slice().reverse();
+  };
+});
