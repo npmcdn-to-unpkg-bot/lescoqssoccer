@@ -50,7 +50,7 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 		$scope.global = Global;
 		$scope.ArticlesCollection = ArticlesCollection;
 		$scope.article = Article;
-		$scope.comment = "";
+		$scope.newComment = "";
 		$scope.dateFormat = "dd MMMM yyyy";
 
 		//Format html content from article content edit by wysiwyg
@@ -96,16 +96,16 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 
 		$scope.addComment = function() {
 
-			if ($scope.comment !== "") {
+			if ($scope.newComment !== "") {
 
 				$scope.article.comments.push({
 					user: $scope.global.user._id,
-					content: $scope.comment,
+					content: $scope.newComment,
 					created: moment(new Date()).toISOString()
 				});
 
 				$scope.ArticlesCollection.update($scope.article).then(function() {
-					$scope.comment = "";
+					$scope.newComment = "";
 				});
 			}
 
