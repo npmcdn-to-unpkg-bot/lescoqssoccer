@@ -60,7 +60,10 @@
 									<a class="igo" ng-if="selectedEvent" ng-click="addMeToEvent($event, selectedEvent);">
 										J'y serai!
 									</a>
-									<a class="igo" ng-href="#!/agenda/edit/selectedEvent._id" ng-if="selectedEvent && selectedEvent.user._id === global.user._id" style="background-color: lightgray;">
+									<a class="igoNot" ng-if="selectedEvent && selectedEvent.user._id === global.user._id" ng-click="deleteEvent($event, selectedEvent);">
+										Supprimer
+									</a>
+									<a class="igo" ng-href="#!/agenda/edit/{{selectedEvent._id}}" ng-if="selectedEvent && selectedEvent.user._id === global.user._id" style="background-color: lightgray;">
 										Editer
 									</a>
 								</div>

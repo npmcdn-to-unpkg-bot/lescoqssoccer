@@ -92,9 +92,15 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 		};
 
 		$scope.create = function() {
-			$scope.agendaCollection.add($scope.userEvent).then(function(userEvent) {
-				$location.path("/agenda");
-			});
+			if($scope.userEvent._id){
+				$scope.agendaCollection.update(userEvent).then(function(newUserEvent) {
+					$location.path("/agenda");
+				});
+			} else {
+				$scope.agendaCollection.add($scope.userEvent).then(function(userEvent) {
+					$location.path("/agenda");
+				});
+			}
 		};
 
 		/***
@@ -387,6 +393,18 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 				});
 			}
 
+		};
+
+		$scope.deleteEvent = function(evt, userEvent){
+
+			if (evt) {
+				evt.preventDefault();
+				evt.stopPropagation();
+			}
+
+			$scope.agendaCollection.remove(userEvent).then(function(newUserEvent) {
+				$location.path("/agenda");
+			});
 		};
 
 		$scope.openCalendar = function(evt) {
