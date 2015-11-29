@@ -81,9 +81,9 @@ logger.init( app, passport, mongoose );
 var cronjob = require('./cron.js');
 cronjob.startCron();
 
-// Start crons
-var script = require('./script.js');
+// Start scripts
+/*var script = require('./script.js');
 script.startScript();
-
+*/
 // Expose app
 exports = module.exports = app;
