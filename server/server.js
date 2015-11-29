@@ -82,8 +82,8 @@ var cronjob = require('./cron.js');
 cronjob.startCron();
 
 // Start scripts
-var script = require('./script.js');
+/*var script = require('./script.js');
 script.startScript();
-
+*/
 // Expose app
 exports = module.exports = app;
