@@ -402,9 +402,24 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 				evt.stopPropagation();
 			}
 
-			$scope.agendaCollection.remove(userEvent).then(function(newUserEvent) {
-				$location.path("/agenda");
+			var modalInstance = $modal.open({
+				templateUrl: 'js/articles/views/modal/deleteAgendaModal.html',
+				controller: 'deleteAgendaModalCtrl',
+				resolve: {
+					userEvent: function() {
+						return userEvent;
+					}
+				}
 			});
+
+			modalInstance.result.then(function() {
+
+				$scope.agendaCollection.remove(userEvent).then(function(newUserEvent) {
+					$location.path("/agenda");
+				});
+
+			});
+
 		};
 
 		$scope.openCalendar = function(evt) {
@@ -500,6 +515,24 @@ angular.module('mean.agenda').controller('alreadyHereCtrl', ['$scope', '$modalIn
 			$modalInstance.dismiss('cancel');
 		};
 	}
+]);
+
+
+angular.module('mean.articles').controller('deleteAgendaModalCtrl', ['$scope', '$modalInstance', 'userEvent',
+
+	function($scope, $modalInstance, userEvent) {
+
+		$scope.userEvent = userEvent;
+
+		$scope.ok = function(result) {
+			$modalInstance.close(result);
+		};
+
+		$scope.cancel = function() {
+			$modalInstance.dismiss('cancel');
+		};
+	}
+
 ]);
 
 var EventDetailData = {
