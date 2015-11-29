@@ -38,12 +38,12 @@ angular.module('mean.suggestions').controller('SuggestionController', ['$scope',
 						suggestion.yes.push($scope.global.user._id);
 						break;
 					case 2:
-						if (!suggestion.no) suggestion.no = [];
-						suggestion.no.push($scope.global.user._id);
-						break;
-					case 3:
 						if (!suggestion.blank) suggestion.blank = [];
 						suggestion.blank.push($scope.global.user._id);
+						break;
+					case 3:
+						if (!suggestion.no) suggestion.no = [];
+						suggestion.no.push($scope.global.user._id);
 						break;
 				}
 
@@ -53,6 +53,14 @@ angular.module('mean.suggestions').controller('SuggestionController', ['$scope',
 						controller: 'votedCtrl'
 					});
 				});
+
+			} else {
+
+				var modalInstance = $modal.open({
+					templateUrl: 'js/suggestions/views/votedModal.html',
+					controller: 'votedCtrl'
+				});
+				
 			}
 
 		};
