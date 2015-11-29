@@ -403,7 +403,7 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 			}
 
 			var modalInstance = $modal.open({
-				templateUrl: 'js/articles/views/modal/deleteAgendaModal.html',
+				templateUrl: 'js/agenda/views/modal/deleteAgendaModal.html',
 				controller: 'deleteAgendaModalCtrl',
 				resolve: {
 					userEvent: function() {
