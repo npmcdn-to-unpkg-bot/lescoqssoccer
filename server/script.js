@@ -9,14 +9,14 @@ var mongoose = require('mongoose'),
 exports.startScript = function() {
 	Suggestion.find().exec(function(err, suggestions) {
 		var no, blank;
-			_.each(suggestions, function(suggestion){
-				no = suggestion.no;
-				suggestion.no = suggestion.blank;
-				suggestion.blank = no;
+		_.each(suggestions, function(suggestion){
+			no = suggestion.no;
+			suggestion.no = suggestion.blank;
+			suggestion.blank = no;
 
-				suggestion.save(function(err) {
-					console.warn("mis à jour")			
-				});
+			suggestion.save(function(err) {
+				console.warn("mis à jour")			
 			});
 		});
+	});
 };
