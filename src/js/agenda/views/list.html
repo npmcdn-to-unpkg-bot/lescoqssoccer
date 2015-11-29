@@ -60,18 +60,9 @@
 									<a class="igo" ng-if="selectedEvent" ng-click="addMeToEvent($event, selectedEvent);">
 										J'y serai!
 									</a>
-									<a class="igo" ng-href="#!/agenda/edit/selectedEvent._id" ng-if="selectedEvent && selectedEvent.user._id === article.user._id" style="background-color: lightgray;">
+									<a class="igo" ng-href="#!/agenda/edit/selectedEvent._id" ng-if="selectedEvent && selectedEvent.user._id === global.user._id" style="background-color: lightgray;">
 										Editer
 									</a>
-									<div class="clearfix filters filter-floating" ng-if="">
-										<ul style="top:20px; right: 100px;">
-											<li><a href="#!" data-ng-click="edit($event);">Editer</a></li>
-											<li><a href="#!" data-ng-click="remove($event);">Supprimer</a></li>
-										</ul>
-										<div class="filter-floating-triggle hidden-phone" style="top:20px; right: 60px;" ng-show="global.user._id === userEvent.user._id">
-											<i class="fa fa-cogs"></i>
-										</div>
-									</div>
 								</div>
 
 								<h3 ng-if="!selectedEvent" style="margin-top: 40px;">Rien de prévu</h3>
