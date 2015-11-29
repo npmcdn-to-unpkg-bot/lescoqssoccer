@@ -3,20 +3,20 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-	Suggestion = mongoose.model('Suggestion'),
+	Article = mongoose.model('Article'),
 	_ = require('lodash');
 
 exports.startScript = function() {
-	Suggestion.find().exec(function(err, suggestions) {
-		var no, blank;
-		_.each(suggestions, function(suggestion){
-			no = suggestion.no;
-			suggestion.no = suggestion.blank;
-			suggestion.blank = no;
+	Article.find().exec(function(err, articles) {
 
-			suggestion.save(function(err) {
-				console.warn("mis à jour")			
-			});
+		_.each(articles, function(article){
+
+			if(article.videoLink){
+				article.videoLink.replace('embed', 'v');
+				article.save(function(err) {
+					console.warn("mis à jour")			
+				});
+			}
 		});
 	});
 };
