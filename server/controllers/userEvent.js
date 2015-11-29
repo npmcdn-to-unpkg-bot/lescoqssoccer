@@ -47,6 +47,7 @@ exports.update = function(req, res) {
 	UserEvent.load(req.body._id, function(err, userEvent) {
 		if (err) return next(err);
 
+		userEvent = _.extend(userEvent, req.body);
 		userEvent.guest = _.pluck(req.body.guest, '_id');
 		userEvent.guestUnavailable = _.pluck(req.body.guestUnavailable, '_id');
 

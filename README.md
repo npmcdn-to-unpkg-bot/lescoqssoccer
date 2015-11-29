@@ -21,4 +21,3 @@ Build with AngularJs and Node.js
 * UI Bootstrap - Defined as bower module in the [bower.json](bower.json) file.
 
 ## License
-[The MIT License](http://opensource.org/licenses/MIT)
