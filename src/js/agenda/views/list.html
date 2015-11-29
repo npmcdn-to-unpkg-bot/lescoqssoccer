@@ -54,13 +54,13 @@
 										</div>
 										<i class="fa fa-play" ng-click="setNextElement();"></i>
 									</div>
-									<a class="igoNot" ng-if="selectedEvent" ng-click="notAddMeToEvent($event, selectedEvent);">
+									<a class="igoNot" ng-if="selectedEvent && selectedEvent.user._id !== global.user._id" ng-click="notAddMeToEvent($event, selectedEvent);">
 										C'est mort
 									</a>
-									<a class="igo" ng-if="selectedEvent" ng-click="addMeToEvent($event, selectedEvent);">
+									<a class="igo" ng-if="selectedEvent && selectedEvent.user._id !== global.user._id" ng-click="addMeToEvent($event, selectedEvent);">
 										J'y serai!
 									</a>
-									<a class="igo" ng-href="#!/agenda/edit/selectedEvent._id" ng-if="selectedEvent && selectedEvent.user._id === global.user._id" style="background-color: lightgray;">
+									<a class="igo" ng-href="#!/agenda/edit/{{selectedEvent._id}}" ng-if="selectedEvent && selectedEvent.user._id === global.user._id" style="background-color: lightgray;">
 										Editer
 									</a>
 								</div>
