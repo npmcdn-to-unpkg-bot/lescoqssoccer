@@ -66,7 +66,7 @@ angular.module('mean.suggestions').controller('SuggestionController', ['$scope',
 		};
 
 		$scope.getSuggestionAnswerLength = function(suggestion, option) {
-			return suggestion[option].length / (suggestion.yes.length + suggestion.no.length + suggestion.blank.length) * 100;
+			return Math.round(suggestion[option].length / (suggestion.yes.length + suggestion.no.length + suggestion.blank.length) * 100);
 		};
 
 		$scope.hasAnswers = function(suggestion) {
