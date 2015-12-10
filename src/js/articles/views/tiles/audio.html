@@ -26,13 +26,10 @@
 					<img class="img-circle" ng-src="{{article.user.avatar}}?dim=300x300" alt="{{article.user.username}}"/>
 				</div>
 				<div class="clear"></div>
-				<div class="tagcloud">
+				<div class="tagcloud" style="padding: 0 20px;">
 					<a ng-repeat="category in article.categories" title="{{category.value}}" style="font-size: 11px;" class="active">
 						{{category.value}}
 					</a>
-					<h4 ng-if="article.categories.length === 0">
-						Pas de categories associés
-					</h4>
 				</div>
 			</div>
 		</div>

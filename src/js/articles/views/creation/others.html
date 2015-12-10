@@ -52,6 +52,20 @@
 							aria-required="true"
 							tabindex="1">
 							</p>
+							<div class="span12 tagcloud" style="margin-left: 0;">
+								<h4 class="widget-title" style="margin-top: 10px;">
+									Categories
+								</h4>
+								<a
+								href="#!"
+								ng-repeat="category in categories"
+								title="{{category.value}}"
+								style="font-size: 11px;"
+								ng-click="toggleCategory(category,$event)"
+								ng-class="{'active' : isActive(category)}">
+									{{category.value}}
+								</a>
+							</div>
 							<p class="span9" style="margin-left: 0;">
 							<textarea
 							name="description"
