@@ -1,35 +1,52 @@
 <div class="filter_blog width2 isotope-item standard">
 	<div class="inside" style="margin:40px 0 0 40px;">
 		<div>
-			<div class="item_topbar post-bgcolor-default">
-				<a ng-href="#!/articles/view/standard/{{article._id}}" title="{{article.title}}" class="item_link"></a>
-			</div>
 			<div class="item_des post-bgcolor-default">
-				<a href="#!/articles/view/standard/{{article._id}}" title="{{article.title}}" ng-if="getImage(article.content) !== ''">
-					<img alt="{{article.title}}" ng-src="{{getImage(article.content)}}" class="isotope-list-thumb">
-				</a>
-				<h2 class="item_title">
-					<a ng-href="#!/articles/view/standard/{{article._id}}" title="Standard format post">
-						{{article.title}}
+				<div ng-if="getImage(article.content) !== ''" class="articleTileStandard">
+					<a href="#!/articles/view/standard/{{ article._id }}" title="{{ article.title }}">
+						<img alt="{{ article.title }}" ng-src="{{ getImage(article.content) }}" class="isotope-list-thumb"/>
+					</a>
+				</div>
+				<h2 class="item_title two-line-ellipsis">
+					<a ng-href="#!/articles/view/standard/{{ article._id }}" title="Standard format post">
+						{{ article.title }}
 					</a>
 				</h2>
 				<div class="item-des-p">
-					<div class="articleContent three-line-ellipsis">{{getFormattedContent(article.content)}}</div>
+					<div class="articleContent three-line-ellipsis">
+						{{ getFormattedContent(article.content) }}
+					</div>
 				</div>
-				<div class="like clear"></div>
-				<div class="pull-right" style="margin: 10px 20px;">
-					<span class="pull-right"><i class="fa fa-comment"></i> {{article.comments.length}}</span>
+				<div class="like clear">
 				</div>
-				<div style="width:40px; margin: 0 20px; padding-bottom: 20px;">
-					<p style="margin: 10px 50px;position: absolute;">{{article.user.username}}</p>
-					<img class="img-circle" ng-src="{{article.user.avatar}}?dim100x100" alt="{{article.user.username}}"/>
-				</div>
-				<div class="clear"></div>
-				<div class="tagcloud" style="padding: 0 20px;">
-					<a ng-repeat="category in article.categories" title="{{category.value}}" style="font-size: 11px;" class="active">
-						{{category.value}}
+				<div class="tagcloud" style="padding: 0 20px 10px;">
+					<a ng-repeat="category in article.categories" title="{{ category.value }}" style="font-size: 11px;" class="active">
+						{{ category.value }}
+					</a>
+					<a ng-if="article.categories.length === 0" style="font-size: 11px;" class="active">
+						Aucune catégorie associée
 					</a>
 				</div>
+				<div class="clear">
+				</div>
+				<div class="pull-right" style="margin: -40px 20px; font-size: initial;">
+					<span class="pull-right">
+						{{ article.comments.length }}
+						<i class="fa fa-comment">
+						</i>
+					</span>
+				</div>
+				<hr/>
+				<div style="width:40px; margin: 0 20px; padding: 0 0 20px; cursor: pointer;" ng-click="showUserDetail($event, article.user);">
+					<p style="margin: 10px 0 10px 50px;position: absolute;">
+						<b style="text-transform: uppercase; font-size: medium;">
+							{{ article.user.username }}
+						</b>
+						, {{ getDateFrom(article) }}
+					</p>
+					<img class="img-circle" ng-src="{{ article.user.avatar }}?dim100x100" alt="{{ article.user.username }}"/>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

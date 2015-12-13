@@ -1,0 +1,21 @@
+<div>
+	<p>
+		{{ getDateFrom(item) }}
+	</p>
+	<div class="timeline-item">
+		<div class="timeline-icon" ng-click="showUserDetail($event, item.user);">
+			<img ng-src="{{ item.user.avatar && item.user.avatar + '?dim=50x50' || 'img/Professor.png' }}" alt="{{ item.user.username }}" title="{{ item.user.username }}" style="background: white;"/>
+		</div>
+		<a href="#!/articles/view/audio/{{ item._id }}">
+			<div class="timeline-content">
+				<h2>
+					{{ user.username }} a ajouté un son : {{ item.title }}
+				</h2>
+				<div class="soundcloudWrapper embed-container">
+					<iframe frameborder="0" allowtransparency='true' ng-src="{{ trustSrc(item.audioLink) }}">
+					</iframe>
+				</div>
+			</div>
+		</a>
+	</div>
+</div>

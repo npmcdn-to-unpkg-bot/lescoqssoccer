@@ -16,20 +16,23 @@ exports.findAllAlbums = function(req, res) {
 
 	Album.find(query)
 		.sort('-created')
+		.populate('user', '_id name username avatar')
 		.limit(perPage)
-		.skip(perPage * page)
-		.populate('user').exec(function(err, albums) {
+		.skip(perPage * page).exec(function(err, albums) {
 			res.send(albums);
 		});
 };
 
 exports.findAlbumById = function(req, res) {
 	Album.findOne({
-		_id: req.params.id
-	}).populate('user').exec(function(err, album) {
-		if (err) console.log("error finding album: " + err);
-		res.send(album);
-	})
+			_id: req.params.id
+		})
+		.populate('comments.user', '_id name username avatar')
+		.populate('comments.replies.user', '_id name username avatar')
+		.populate('user').exec(function(err, album) {
+			if (err) console.log("error finding album: " + err);
+			res.send(album);
+		})
 };
 
 exports.addAlbum = function(req, res) {
@@ -53,7 +56,7 @@ exports.updateAlbum = function(req, res) {
 		album.save(function(err, album, numAffected) {
 			if (err) console.log("Error saving album: " + err)
 			console.log(numAffected + " documents updated.")
-			res.send(album)
+			res.send(album);
 		});
 	});
 };

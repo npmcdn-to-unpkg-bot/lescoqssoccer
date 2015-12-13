@@ -25,6 +25,9 @@ module.exports = function ( app, passport ) {
 	app.post( '/users/session', passport.authenticate( 'local', {
 		failureRedirect: '/signin',
 		failureFlash: true
-	} ), users.session );
+	}), users.session );
+
+	// To know if user is authenticate
+	app.post( '/users/isFutureSessionValid', users.isFutureSessionValid);
 
 };

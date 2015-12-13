@@ -8,10 +8,16 @@ angular.module('mean.agenda').factory('UserEvent', ['$resource',
 		return $resource('userEvent/:userEventId', {
 			userEventId: '@_id'
 		}, {
-			update: {
-				method: 'PUT'
+			'save': {
+				method: 'POST'
 			},
-			query: {
+			'update': {
+				method: 'PUT',
+				params: {
+					userEventId: '@userEventId'
+				}
+			},
+			'query': {
 				method: 'GET',
 				isArray: true
 			},
@@ -31,6 +37,7 @@ angular.module('mean.agenda').service('AgendaCollection', ['Global', 'UserEvent'
 
 			load: function() {
 				return UserEvent.query({}, function(userEvents) {
+					AgendaCollection.all = userEvents;
 					return userEvents;
 				}).$promise;
 			},
@@ -51,7 +58,9 @@ angular.module('mean.agenda').service('AgendaCollection', ['Global', 'UserEvent'
 			},
 
 			update: function(userEvent) {
-				return UserEvent.update({}, userEvent, function(userEvent) {
+				return UserEvent.update({
+					userEventId: userEvent._id
+				}, userEvent, function(userEvent) {
 					return userEvent;
 				}).$promise;
 			},
@@ -60,6 +69,30 @@ angular.module('mean.agenda').service('AgendaCollection', ['Global', 'UserEvent'
 				return UserEvent.delete({}, userEvent, function(userEvent) {
 					return userEvent;
 				}).$promise;
+			},
+
+			addMeToEvent: function(evt, userEvent) {
+
+				if (evt) {
+					evt.preventDefault();
+					evt.stopPropagation();
+				}
+
+				if (!_.contains(_.pluck(userEvent.guest, "_id"), Global.user._id) && Global.user._id !== userEvent.user._id) {
+
+					userEvent.guest.push({
+						_id: Global.user._id
+					});
+
+					var ids = _.pluck(userEvent.guestUnavailable, "_id");
+					var indexOfUser = _.indexOf(ids, Global.user._id);
+
+					if (indexOfUser !== -1) {
+						userEvent.guestUnavailable.splice(indexOfUser, 1);
+					}
+
+					AgendaCollection.update(userEvent).then(function(newUserEvent) {});
+				}
 			}
 		}
 

@@ -15,8 +15,9 @@ var ConversationSchema = new Schema({
 		default: Date.now
 	},
 	users: [{
-		type: mongoose.Schema.ObjectId,
-		ref: 'User'
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User',
+		require: false
 	}],
 	messages: [new Schema({
 		created: {
@@ -24,7 +25,7 @@ var ConversationSchema = new Schema({
 			default: Date.now
 		},
 		user: {
-			type: Schema.Types.ObjectId,
+			type: mongoose.Schema.Types.ObjectId,
 			ref: 'User'
 		},
 		content: {

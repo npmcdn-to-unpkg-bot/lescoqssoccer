@@ -1,165 +1,56 @@
-<div id="post-1039" class="post type-post status-publish format-standard hentry category-blog">
+<div class="post type-post status-publish format-standard hentry category-blog pageContent">
 	<div class="row-fluid two-cols-layout" style="min-height: 100vh;">
-		<div id="content_wrap" class="span8">
+		<div id="content_wrap">
+			<div class="content-wrap-inn">
 
-			<div class="clearfix filters filter-floating" style="position: relative;float: right;margin-top: 20px;right: 0;">
-				<ul>
-					<li><a href="#!" data-ng-click="edit($event);">Editer</a></li>
-					<li><a href="#!" data-ng-click="remove($event);">Supprimer</a></li>
-				</ul>
-				<div class="filter-floating-triggle notClickable hidden-phone" ng-show="global.user._id === article.user._id">
-					<i class="fa fa-cogs"></i>
-				</div>
-			</div>
-			<div class="title-bar-wrap " id="title-bar" style="padding: 50px 0; max-height: 280px;">
-				<div id="title-wrap">
-					<div class="title-wrap-inn">
-						<div id="main-title">
-							<h1 class="main-title" style="text-transform: uppercase;">
-							{{article.title}}
-							</h1>
-							<div class="post-meta">
-								<p>par {{article.user.username}}</p>
-								<span class="post-meta-unit date">
-								Date: {{article.created | date:"dd MMM yyyy"}}
-								</span>
-								<span class="post-meta-unit tag"></span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			    <div class="pagebuilder-wrap">
+					<div class="container" style="width: calc(100% - 120px);background: white; margin: 40px 60px; box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12); color: #7b7b7b; border-radius: 2px;">
 
-			<div class="entry">
-				<div class="audiopost-soundcloud-wrap">
-					<iframe
-					width="100%" height="166" scrolling="no" frameborder="no"
-					ng-src="{{trustSrc(article.audioLink)}}">
-					</iframe>
-				</div>
-				<p style="margin-top: 20px;">{{article.description}}</p>
-			</div>
-			<div id="comments">
-				<div id="respondwrap">
-					<div id="respond" class="comment-respond">
-
-						<h3 id="reply-title" class="comment-reply-title">
-						COMMENTAIRES
-						</h3>
-						<div
-							class="comments"
-							ng-repeat="comment in article.comments | orderBy:'-created'">
-
-							<img class="img-circle" ng-src="{{comment.user.avatar}}?dim100x100" alt="{{article.user.username}}" style="width: 40px; margin-bottom: 10px;"/>
-
-							<p class="meta" style="display: inline-block;">
-								<a ng-href="#!/users/detail/{{comment.user._id || global.user._id}}" style="color: #000000;">
-									{{comment.user.username || global.user.username}}
-								</a>, le {{comment.created | date:dateFormat}}
-							</p>
-							
-							<!-- ajouter les commentaires anonymes -->
-							<div class="comments_content">
-								<p>
-								{{comment.content}}
-								</p>
-								<a ng-attr-id="{{comment._id}}-reply" href="#!" ng-click="showAnswerForm($event, comment)" class="reply">
-								Répondre
-								</a>
-								<a ng-attr-id="{{comment._id}}-reply-cancel" href="#!" ng-click="hideAnswerForm($event, comment._id)" class="reply reply-cancel" style="display: none;">
-								Annuler
-								</a>
-							</div>
-
-							<div
-								class="comments reply"
-								ng-repeat="reply in comment.replies | orderBy:'-created'">
-								<p class="meta">
-								<a ng-href="#!/users/detail/{{reply.user._id || global.user._id}}" style="color: #000000;">
-								{{reply.user.name || global.user.name}}
-								</a> - {{reply.created | date:dateFormat}}
-								</p>
-
-								<!-- ajouter les commentaires anonymes -->
-								<div class="comments_content">
-									<p>
-									{{reply.content}}
-									</p>
-									<div class="clr"></div>
-									<div class="reply_icon"></div>
+						<div class="title-bar-wrap " id="title-bar" style="padding: 50px 0 0; max-height: 280px;">
+							<div id="title-wrap">
+								<div class="title-wrap-inn">
+									<div id="main-title" style="text-align: center;">
+										<div class="tagcloud" style="margin: -20px 0 10px;">
+											<a ng-repeat="category in article.categories" title="{{category.value}}" style="font-size: 11px;" class="active">
+												{{category.value}}
+											</a>
+										</div>
+										<h1 class="main-title" style="text-transform: uppercase;">
+											{{article.title}}
+										</h1>
+										<div class="post-meta" style="font-size: initial;cursor: pointer;" ng-click="showUserDetail($event, article.user);">
+											<img class="img-circle" ng-src="{{article.user.avatar}}?dim100x100" alt="{{article.user.username}}" style="width: 80px; height: 80px; margin: -20px 0 20px 0;" />
+											<p>par
+												<b style="text-transform: uppercase;">
+													{{article.user.username}},
+												</b>
+											<span>
+												le {{article.created | date:"dd MMM yyyy"}}
+											</span>
+											</p>
+											<span class="post-meta-unit tag"></span>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 
-						<h3 id="reply-title" class="comment-reply-title">
-						<span class="comm-reply-title">
-						LAISSER UN COMMENTAIRE
-						</span>
-						</h3>
-						<form class="comment-form">
-							<p>
-							<textarea
-							name="comment"
-							ng-model="comment"
-							class="requiredFieldcomm"
-							cols="100%"
-							tabindex="4"
-							aria-required="true"
-							placeholder="COMMENTAIRE">
-							</textarea>
-							</p>
-							<p class="form-submit" style="text-align: right;">
-							<input name="submit" type="button" id="submit" value="AJOUTER" ng-click="addComment();">
-							</p>
-						</form>
+						<div class="entry" style="margin: 20px 0 0 0;">
+							<div class="audiopost-soundcloud-wrap" style="margin-bottom: 0;">
+								<iframe
+								width="100%" height="166" scrolling="no" frameborder="no"
+								ng-src="{{trustSrc(article.audioLink)}}">
+								</iframe>
+							</div>
+							<p style="margin-top: 20px;">{{article.description}}</p>
+						</div>
 
-						<form class="comment-form answer" id="formAnswer" style="display: none;">
-							<p style="margin-bottom: 0px !important;padding-right: 0;margin-right: -20px;">
-							<textarea
-							name="answer"
-							ng-model="replyText"
-							class="requiredFieldcomm"
-							cols="100%"
-							tabindex="4"
-							aria-required="true"
-							placeholder="COMMENTAIRE">
-							</textarea>
-							</p>
-							<p class="form-submit" style="text-align: right; margin-bottom: 0px !important;padding-right: 0;margin-right: -20px;">
-							<input name="submit" type="button" id="submit" value="Répondre" ng-click="addReply();">
-							</p>
-						</form>
+						<cm-comments update-method="updateMethod();" object="article">
+						</cm-comments>
+
 					</div>
 				</div>
 			</div>
 		</div>
-
-		<aside id="sidebar-widget" class="span4">
-			<div class="clearfix filters filter-custom" style="margin-top: 20px;">
-				<div class="filter-floating-custom" ng-click="showNext();">
-					<i class="icon-m-right-dir"></i>
-				</div>
-				<div class="filter-floating-custom" ng-click="backToList();">
-					<i class="icon-m-grid"></i>
-				</div>
-				<div class="filter-floating-custom" ng-click="showPrevious();">
-					<i class="icon-m-left-dir"></i>
-				</div>
-			</div>
-			<ul class="sidebar_widget" style="padding-top: 0;">
-				<li id="tag_cloud-2" class="widget-container widget_tag_cloud">
-					<h3 class="widget-title">Categories</h3>
-					<div class="tagcloud">
-						<a ng-repeat="category in article.categories" title="{{category.value}}" style="font-size: 11px;">
-						{{category.value}}
-						</a>
-						<h4 ng-if="article.categories.length === 0">
-						Pas de categorie associés
-						</h4>
-					</div>
-				</li>
-			</ul>
-		</aside>
 	</div>
 </div>
-<cm-page-builder></cm-page-builder>

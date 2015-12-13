@@ -1,90 +1,42 @@
-<div id="post-116" class="post-116 page type-page status-publish hentry articlesContainer">
-	<div class="row-fluid" style="min-height: 100vh">
+<div class="articlesContainer pageContent">
+	<div class="row-fluid">
 		<div id="content_wrap">
 			<div class="content-wrap-inn">
-
-				<div class="container">
-					<div class="title-bar-wrap title-centered" id="title-bar" style="padding: 20px 0;">
-						<!-- <div id="title-wrap">
-							<div class="title-wrap-inn">
-								<div id="main-title">
-									<h1 class="main-title">La foire aux articles</h1>
-								</div>
-								<div class="post-expert">
-									Cette section est un petit peu la foire à la saucisse, vous pouvez partager toute sorte de contenus: liens, vidéos, articles personnalisés... Tout ça en cliquant sur le petit bouton en bas à droite.
-								</div>
-							</div>
-						</div> -->
-					</div>
-				</div>
-
-				<div class="pagebuilder-wrap">
+				<div class="pagebuilder-wrap" style="margin-top: 40px;">
 					<div class="container">
 						<div class="row-fluid">
 							<div class="span12 moudle">
 								<div class="row-fluid">
 									<div class="container-isotope clear">
-
 										<div id="isotope-load">
-											<div class="ux-loading"></div>
+											<div class="ux-loading">
+											</div>
 											<div class="ux-loading-transform">
-												<div class="loading-dot1">&nbsp;</div>
-												<div class="loading-dot2">&nbsp;</div>
+												<div class="loading-dot1">
+													&nbsp;
+												</div>
+												<div class="loading-dot2">
+													&nbsp;
+												</div>
 											</div>
 										</div>
-
-										<div class="isotope masonry isotope_fade" data-size="brick" style="margin: -40px 0px 0px -40px; display: none;">
-											<cm-blog-post ng-repeat="article in articles" type="{{article.type || 'standard'}}" format="tiles">
+										<div class="isotope masonry" data-size="brick" style="margin: -40px 0px 0px -40px; display: none;">
+											<cm-blog-post ng-repeat="article in articles" type="{{ article.type || 'standard' }}" format="tiles">
 											</cm-blog-post>
 										</div>
-
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-
 					<div class="clearfix pagenums" style="display: none;">
 						<div class="pagination">
-							<pagination
-							previous-text="&#8249; Précédents"
-							next-text="Suivants &#8250;"
-							total-items="totalItems"
-							page="page"
-							on-select-page="pageChanged(page)"
-							items-per-page="itemsPerPage">
+							<pagination previous-text=" <<" next-text=">> " total-items="totalItems" page="page" on-select-page="pageChanged(page)" items-per-page="itemsPerPage">
 							</pagination>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
-<div id="float-bar" class="hidden-phone">
-	<div class="float-bar-inn-wrap">
-		<div class="float-bar-inn">
-			<div class="float-bar-social-share">
-				<button class="social-share-custom" ng-click="openCreateView('standard')">
-					<i class="fa fa-pencil"></i>
-				</button>
-
-				<button class="social-share-custom" ng-click="openCreateView('video')">
-					<i class="fa fa-video-camera"></i>
-				</button>
-
-				<button class="social-share-custom" ng-click="openCreateView('audio')">
-					<i class="fa fa-volume-up"></i>
-				</button>
-			</div>
-		</div>
-	</div>
-
-	<div id="float-bar-triggler" class="notClickable">
-		<i class="float-bar-add"></i>
-	</div>
-</div>
-
-<cm-page-builder></cm-page-builder>

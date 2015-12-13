@@ -1,88 +1,80 @@
-<div class="clearfix filters filter-floating">
-	<div class="filter-floating-triggle hidden-phone" style="top:20px; right: 125px;" ng-click="global.back();">
-		<i class="fa fa-arrow-left"></i>
-	</div>
-	<div class="filter-floating-triggle" style="top:20px; right: 60px;" ng-click="create();">
-		<i class="fa fa-save"></i>
-	</div>
-</div>
+<div class="post type-post status-publish format-standard hentry category-blog pageContent">
+	<div class="row-fluid two-cols-layout">
+		<div id="content_wrap">
+			<div class="content-wrap-inn">
 
-<div id="post-1039" class="post type-post status-publish format-standard hentry category-blog">
-	<div class="row-fluid two-cols-layout" style="min-height: 100vh;">
-		<div id="content_wrap" class="span10" style="margin-left: 9%;">
-			<div class="title-bar-wrap " id="title-bar" style="padding: 50px 0;">
-				<div id="title-wrap">
-					<div class="title-wrap-inn">
-						<div id="main-title">
-							<h1 class="main-title">{{title}}</h1>
-						</div>
-					</div>
-				</div>
-				<!--End #title-wrap-->
-			</div>
-			<div id="comments">
-				<div id="respondwrap">
-					<div id="respond" class="comment-respond">
-						<form role="form">
-							<div class="span12 moudle bottom-space-50" style="margin-left: 0;">
-								<div class="message-box box-bgcolor2 box-type2">
-								<p>Ici c'est pour partager des vidéos ou des sons, testé et approuvé pour youtube, viméo, spotify, soundclound et deezer. Par contre mettez bien le "code embed" du lien et pas l'adresse directement copier-collé. Sur tous ces sites vous pouvez faire clic droit sur la vidéo et "copier le code embed. Ex: < iframe src='https://player.vimeo.com/video/93059735' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>.
-								</p>
+			    	<!-- Content -->
+				<div class="pagebuilder-wrap">
+					<div class="container" style="width: calc(100% - 120px);background: white; margin: 40px 60px; box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12); color: #7b7b7b; border-radius: 2px;">
+						<div id="comments">
+							<div id="respondwrap">
+								<div id="respond" class="comment-respond">
+									<form role="form">
+										<div class="span12 moudle bottom-space-50" style="margin-left: 0;">
+											<div class="message-box box-bgcolor2 box-type2" style="padding: 20px 20px 0;">
+											<p style="margin-left: 45px;">Ici c'est pour partager des vidéos ou des sons, testé entre autre avec youtube, viméo, spotify, soundclound et deezer. Par contre mettez bien le "code embed" du lien et pas directement l'adresse copier-collé. Sur tous ces sites vous pouvez faire clic droit sur la vidéo et "copier le code embed".</p>
+											<br>
+											<b style="margin-left: 45px;">Exemple: <br><pre style="margin-left: 45px;">< iframe src='https://player.vimeo.com/video/93059735' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></pre></b>.
+											</p>
+											</div>
+										</div>
+										<p class="span9" style="margin-left: 0; margin-bottom: 20px;">
+										<input
+										name="linkAdress"
+										type="string"
+										data-ng-model="linkAdress"
+										placeholder="ADRESSE (ex: <iframe src='https://player.vimeo.com/video/93059735' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>"
+										class="requiredFieldcomm"
+										size="30"
+										aria-required="true"
+										tabindex="1">
+										</p>
+										<p class="span9" style="margin-left: 0; margin-bottom: 20px;">
+										<input
+										name="title"
+										type="text"
+										data-ng-model="article.title"
+										placeholder="TITRE"
+										class="requiredFieldcomm"
+										size="30"
+										aria-required="true"
+										tabindex="1">
+										</p>
+										<div class="span12 tagcloud" style="margin-left: 0;">
+											<h4 class="widget-title" style="margin-top: 10px;">
+												Categories
+											</h4>
+											<a
+											href="#!"
+											ng-repeat="category in categories"
+											ng-if-"category.active"
+											title="{{category.value}}"
+											style="font-size: 11px;"
+											ng-click="toggleCategory(category,$event)"
+											ng-class="{'active' : isActive(category)}">
+												{{category.value}}
+											</a>
+										</div>
+										<p class="span9" style="margin-left: 0;">
+										<textarea
+										name="description"
+										type="text"
+										data-ng-model="article.description"
+										placeholder="DESCRIPTION"
+										class="requiredFieldcomm"
+										size="30"
+										aria-required="true"
+										tabindex="1">
+										</textarea>
+										</p>
+									</form>
 								</div>
 							</div>
-							<p class="span9" style="margin-left: 0; margin-bottom: 20px;">
-							<input
-							name="linkAdress"
-							type="string"
-							data-ng-model="linkAdress"
-							placeholder="ADRESSE (ex: <iframe src='https://player.vimeo.com/video/93059735' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>"
-							class="requiredFieldcomm"
-							size="30"
-							aria-required="true"
-							tabindex="1">
-							</p>
-							<p class="span9" style="margin-left: 0; margin-bottom: 20px;">
-							<input
-							name="title"
-							type="text"
-							data-ng-model="article.title"
-							placeholder="TITRE"
-							class="requiredFieldcomm"
-							size="30"
-							aria-required="true"
-							tabindex="1">
-							</p>
-							<div class="span12 tagcloud" style="margin-left: 0;">
-								<h4 class="widget-title" style="margin-top: 10px;">
-									Categories
-								</h4>
-								<a
-								href="#!"
-								ng-repeat="category in categories"
-								title="{{category.value}}"
-								style="font-size: 11px;"
-								ng-click="toggleCategory(category,$event)"
-								ng-class="{'active' : isActive(category)}">
-									{{category.value}}
-								</a>
-							</div>
-							<p class="span9" style="margin-left: 0;">
-							<textarea
-							name="description"
-							type="text"
-							data-ng-model="article.description"
-							placeholder="DESCRIPTION"
-							class="requiredFieldcomm"
-							size="30"
-							aria-required="true"
-							tabindex="1">
-							</textarea>
-							</p>
-						</form>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<cm-page-builder></cm-page-builder>
+

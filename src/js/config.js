@@ -8,9 +8,26 @@ angular.module('mean').config(['$routeProvider',
 
 		/** HOME ****/
 		when('/home', {
-			templateUrl: 'js/home/home.html',
+			templateUrl: 'js/home/views/home.html',
 			controller: 'HomeController',
-			resolve: TeamData
+			resolve: HomeData
+		}).
+
+		/** SPECIAL: EURO ****/
+		when('/euro', {
+			templateUrl: 'js/euro/views/teams.html',
+			controller: 'EuroController',
+			resolve: EuroData
+		}).
+		when('/euro/admin', {
+			templateUrl: 'js/euro/views/admin.html',
+			controller: 'AdminMatchController',
+			resolve: AdminEuroData
+		}).
+		when('/euro/:matchId', {
+			templateUrl: 'js/euro/views/match.html',
+			controller: 'MatchController',
+			resolve: MatchData
 		}).
 
 		/** AGENDA ****/
@@ -33,6 +50,11 @@ angular.module('mean').config(['$routeProvider',
 			templateUrl: 'js/agenda/views/create.html',
 			controller: 'CreateAgendaController',
 			resolve: EventDetailData
+		}).
+		when('/agenda/:eventId', {
+			templateUrl: 'js/agenda/views/list.html',
+			controller: 'ListController',
+			resolve: EventsData
 		}).
 
 		/** ARTICLES ****/
@@ -89,7 +111,7 @@ angular.module('mean').config(['$routeProvider',
 			controller: 'AlbumDetailController',
 			resolve: AlbumData
 		}).
-		when('/albums:page', {
+		when('/albums/:page', {
 			templateUrl: 'js/gallery/views/albums.html',
 			controller: 'AlbumsController',
 			resolve: AlbumsData
@@ -103,10 +125,25 @@ angular.module('mean').config(['$routeProvider',
 		}).
 		when('/suggestions/create', {
 			templateUrl: 'js/suggestions/views/create.html',
-			controller: 'SuggestionController',
+			controller: 'CreateSuggestionController',
 		}).
+		when('/suggestions/:page', {
+			templateUrl: 'js/suggestions/views/suggestions.html',
+			controller: 'SuggestionController',
+			resolve: SuggestionsData
+		}).
+
+		/** ISSUES ****/
 		when('/issues', {
-			templateUrl: 'js/other/issues.html'
+			templateUrl: 'js/issues/issues.html',
+			controller: "issuesCtrl"
+		}).
+
+		/** PARAMETERS ****/
+		when('/parameters', {
+			templateUrl: 'js/parameters/views/parameters.html',
+			controller: 'ParametersController',
+			resolve: ParametersData
 		}).
 
 		/** USERS ****/
@@ -125,20 +162,10 @@ angular.module('mean').config(['$routeProvider',
 			controller: 'ProfileController',
 			resolve: ProfileData
 		}).
-		when('/conversations', {
-			templateUrl: 'js/users/views/chat.html',
-			controller: 'ChatController',
-			resolve: ChatData
-		}).
-		when('/conversations/:id', {
-			templateUrl: 'js/users/views/chat.html',
-			controller: 'ChatController',
-			resolve: ChatData
-		}).
 
 		/** DEFAULT ****/
 		when('/', {
-			redirectTo: 'articles'
+			redirectTo: 'home'
 		}).
 		otherwise({
 			redirectTo: 'home'
@@ -162,5 +189,64 @@ angular.module('mean').config(['$translateProvider',
 		});
 
 		$translateProvider.preferredLanguage('fr');
+		moment.locale('fr', {
+		    months : "janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre".split("_"),
+		    monthsShort : "janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.".split("_"),
+		    weekdays : "dimanche_lundi_mardi_mercredi_jeudi_vendredi_samedi".split("_"),
+		    weekdaysShort : "dim._lun._mar._mer._jeu._ven._sam.".split("_"),
+		    weekdaysMin : "Di_Lu_Ma_Me_Je_Ve_Sa".split("_"),
+		    longDateFormat : {
+		        LT : "HH:mm",
+		        LTS : "HH:mm:ss",
+		        L : "DD/MM/YYYY",
+		        LL : "D MMMM YYYY",
+		        LLL : "D MMMM YYYY LT",
+		        LLLL : "dddd D MMMM YYYY LT"
+		    },
+		    calendar : {
+		        sameDay: "[Aujourd'hui à] LT",
+		        nextDay: '[Demain à] LT',
+		        nextWeek: 'dddd [à] LT',
+		        lastDay: '[Hier à] LT',
+		        lastWeek: 'dddd [dernier à] LT',
+		        sameElse: 'L'
+		    },
+		    relativeTime : {
+		        future : "dans %s",
+		        past : "il y a %s",
+		        s : "quelques secondes",
+		        m : "une minute",
+		        mm : "%d minutes",
+		        h : "une heure",
+		        hh : "%d heures",
+		        d : "un jour",
+		        dd : "%d jours",
+		        M : "un mois",
+		        MM : "%d mois",
+		        y : "une année",
+		        yy : "%d années"
+		    },
+		    ordinalParse : /\d{1,2}(er|ème)/,
+		    ordinal : function (number) {
+		        return number + (number === 1 ? 'er' : 'ème');
+		    },
+		    meridiemParse: /PD|MD/,
+		    isPM: function (input) {
+		        return input.charAt(0) === 'M';
+		    },
+		    // in case the meridiem units are not separated around 12, then implement
+		    // this function (look at locale/id.js for an example)
+		    // meridiemHour : function (hour, meridiem) {
+		    //     return /* 0-23 hour, given meridiem token and hour 1-12 */
+		    // },
+		    meridiem : function (hours, minutes, isLower) {
+		        return hours < 12 ? 'PD' : 'MD';
+		    },
+		    week : {
+		        dow : 1, // Monday is the first day of the week.
+		        doy : 4  // The week that contains Jan 4th is the first week of the year.
+		    }
+		});
+
 	}
 ]);

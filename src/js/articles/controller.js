@@ -12,11 +12,11 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 
 		//Format html content from article content edit by wysiwyg
 		$scope.getFormattedContent = function(html) {
-			return angular.element(html).text();
+			return angular.element("<div>" + html + "</div>").text();
 		};
 
 		$scope.getImage = function(html) {
-			var img = angular.element(html).find('img').first();
+			var img = angular.element("<div>" + html + "</div>").find('img').first();
 			return (img.length) ? img.attr('src') : '';
 		};
 
@@ -25,13 +25,13 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 			return $sce.trustAsResourceUrl(src);
 		};
 
+		$scope.getDateFrom = function(article){
+			return moment(article.created).fromNow();
+		};
+
 		//Manage pagination
 		$scope.pageChanged = function(newPage) {
 			$location.path((newPage === 1) ? "/articles" : "/articles/" + newPage);
-		};
-
-		$scope.openCreateView = function(articleType) {
-			window.location = "#!/articles/create/" + articleType;
 		};
 
 		$scope.closeModal = function() {
@@ -41,17 +41,77 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 		$scope.isSpotify = function(link) {
 			return link.indexOf('spotify') !== -1;
 		};
+
+		$scope.getSuggestionAnswerLength = function(suggestion, option) {
+			if(suggestion.yes.length + suggestion.no.length + suggestion.blank.length === 0){
+				return 0;
+			} else {
+				return Math.round(suggestion[option].length / (suggestion.yes.length + suggestion.no.length + suggestion.blank.length) * 100);
+			}
+		};
+
+		$scope.showUserDetail = function(evt, user) {
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			$modal.open({
+				templateUrl: 'js/users/views/modal/userDetail.html',
+				controller: 'UserDetailController',
+				windowClass: 'userDetailPopup',
+				resolve: {
+
+					User: function(UserService) {
+						return UserService.findOne(user._id);
+					},
+
+					Albums: function(AlbumService) {
+						return AlbumService.getAlbumsByUser(user._id).then(function(albums) {
+							return albums;
+						});
+					},
+
+					UserArticles: function(ArticlesCollection) {
+						return ArticlesCollection.getArticlesByUser(user._id).then(function(articles) {
+							return articles;
+						});
+					},
+
+				}
+			});
+		};
+
+		$scope.$parent.menu = {
+			title: "Articles",
+			items: [{
+				link: '#!/articles/create/standard',
+				info: 'Nouvel article',
+				icon: 'fa-list-alt'
+			},
+			{
+				link: '#!/articles/create/vidéo',
+				info: 'Nouvelle vidéo',
+				icon: 'fa-video-camera'
+			},
+			{
+				link: '#!/articles/create/audio',
+				info: 'Nouveau son',
+				icon: 'fa-volume-up'
+			}]
+		};
 	}
 ]);
 
-angular.module('mean.articles').controller('ArticleDetailController', ['$scope', '$location', '$sce', '$modal', 'Global', 'ArticlesCollection', 'Article',
-	function($scope, $location, $sce, $modal, Global, ArticlesCollection, Article) {
+angular.module('mean.articles').controller('ArticleDetailController', ['$scope', '$location', '$sce', '$modal', 'Global', 'ArticlesCollection', 'Article', 'UserService',
+	function($scope, $location, $sce, $modal, Global, ArticlesCollection, Article, UserService) {
 
 		$scope.global = Global;
 		$scope.ArticlesCollection = ArticlesCollection;
 		$scope.article = Article;
-		$scope.newComment = "";
 		$scope.dateFormat = "dd MMMM yyyy";
+
+		//set article like read
+		UserService.addReadArticle($scope.article._id);
 
 		//Format html content from article content edit by wysiwyg
 		$scope.getFormattedContent = function(html) {
@@ -63,69 +123,16 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 			return $sce.trustAsResourceUrl(src);
 		};
 
-		$scope.showAnswerForm = function(evt, comment) {
-
-			evt.preventDefault();
-			evt.stopPropagation();
-
-			var id = comment._id;
-			$scope.reply = comment;
-
-			$(".reply-cancel").hide();
-			$(".reply:not(.reply-cancel)").show();
-
-			$("#" + id + '-reply').hide();
-			var elt = $("#" + id + "-reply-cancel");
-
-			elt.show();
-			$('#formAnswer').show().insertAfter(elt);
+		$scope.getSuggestionAnswerLength = function(suggestion, option) {
+			if(suggestion.yes.length + suggestion.no.length + suggestion.blank.length === 0){
+				return 0;
+			} else {
+				return Math.round(suggestion[option].length / (suggestion.yes.length + suggestion.no.length + suggestion.blank.length) * 100);
+			}
 		};
 
-		$scope.hideAnswerForm = function(evt) {
-
-			if (evt) {
-				evt.preventDefault();
-				evt.stopPropagation();
-			}
-
-			$scope.reply = "";
-			$(".reply-cancel").hide();
-			$('#formAnswer').hide();
-			$(".reply:not(.reply-cancel)").show();
-		};
-
-		$scope.addComment = function() {
-
-			if ($scope.newComment !== "") {
-
-				$scope.article.comments.push({
-					user: $scope.global.user._id,
-					content: $scope.newComment,
-					created: moment(new Date()).toISOString()
-				});
-
-				$scope.ArticlesCollection.update($scope.article).then(function() {
-					$scope.newComment = "";
-				});
-			}
-
-		};
-
-		$scope.addReply = function() {
-
-			if ($scope.replyText !== "") {
-
-				$scope.reply.replies.push({
-					user: $scope.global.user._id,
-					content: $scope.replyText,
-					created: moment(new Date()).toISOString()
-				});
-
-				$scope.ArticlesCollection.update($scope.article).then(function() {
-					$scope.hideAnswerForm();
-				});
-			}
-
+		$scope.updateMethod = function(){
+			return $scope.ArticlesCollection.update($scope.article);
 		};
 
 		$scope.edit = function(evt) {
@@ -161,28 +168,106 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 			});
 		};
 
-		$scope.backToList = function() {
+		$scope.showUserDetail = function(evt, user) {
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			$modal.open({
+				templateUrl: 'js/users/views/modal/userDetail.html',
+				controller: 'UserDetailController',
+				windowClass: 'userDetailPopup',
+				resolve: {
+
+					User: function(UserService) {
+						return UserService.findOne(user._id);
+					},
+
+					Albums: function(AlbumService) {
+						return AlbumService.getAlbumsByUser(user._id).then(function(albums) {
+							return albums;
+						});
+					},
+
+					UserArticles: function(ArticlesCollection) {
+						return ArticlesCollection.getArticlesByUser(user._id).then(function(articles) {
+							return articles;
+						});
+					},
+
+				}
+			});
+		};
+
+		$scope.backToList = function(evt) {
+			evt.preventDefault();
+			evt.stopPropagation();
+
 			$location.path("/articles").replace();
 		};
 
-		$scope.showPrevious = function() {
+		$scope.showPrevious = function(evt) {
+			evt.preventDefault();
+			evt.stopPropagation();
+
 			var previous = $scope.ArticlesCollection.getPrevious($scope.article);
 			$location.path("/articles/view/" + previous.type + "/" + previous._id).replace();
 		};
 
-		$scope.showNext = function() {
+		$scope.showNext = function(evt) {
+			evt.preventDefault();
+			evt.stopPropagation();
+
 			var next = $scope.ArticlesCollection.getNext($scope.article);
 			$location.path("/articles/view/" + next.type + "/" + next._id).replace();
+		};
+
+		$scope.$parent.menu = {
+			title: "Articles > " + $scope.article.title,
+			items: [{
+				link: '#!',
+				info: 'Précédent',
+				icon: 'fa-arrow-left',
+				callback: $scope.showPrevious
+			},
+			{
+				link: '#!',
+				info: 'Retour à la liste',
+				icon: 'fa-list',
+				callback: $scope.backToList
+			},
+			{
+				link: '#!',
+				info: 'Suivant',
+				icon: 'fa-arrow-right',
+				callback: $scope.showNext
+			}]
+		};
+
+		if($scope.article.type !== "quote"){
+			$scope.$parent.menu.items.unshift({
+				link: '#!',
+				info: 'Supprimer',
+				icon: 'fa-times',
+				callback: $scope.remove
+			});
+			$scope.$parent.menu.items.unshift({
+				link: '#!',
+				info: 'Editer',
+				icon: 'fa-edit',
+				callback: $scope.edit
+			});
 		};
 	}
 ]);
 
-angular.module('mean.articles').controller('CreateArticleController', ['$scope', '$location', 'Global', 'ArticlesCollection', 'FileUploader', 'Article', '$modal',
-	function($scope, $location, Global, ArticlesCollection, FileUploader, Article, $modal) {
+angular.module('mean.articles').controller('CreateArticleController', ['$scope', '$location', 'Global', 'ArticlesCollection', 'FileUploader', 'Article', '$modal', 'Parameters',
+	function($scope, $location, Global, ArticlesCollection, FileUploader, Article, $modal, Parameters) {
 
 		$scope.global = Global;
 		$scope.ArticlesCollection = ArticlesCollection;
 		$scope.article = Article;
+		$scope.categories = Parameters[0].articleCategories;
 
 		switch ($scope.article.type) {
 			case "link":
@@ -197,29 +282,6 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 				$scope.linkAdress = $scope.article.audioLink;
 				break;
 		};
-
-		/***
-		CATEGORIES
-		***/
-		$scope.categories = [{
-			id: "1",
-			value: "Info"
-		}, {
-			id: "2",
-			value: "Connerie"
-		}, {
-			id: "3",
-			value: "Sport"
-		}, {
-			id: "4",
-			value: "Art"
-		}, {
-			id: "5",
-			value: "Trompette"
-		}, {
-			id: "6",
-			value: "Poney"
-		}];
 
 		$scope.toggleCategory = function(category, evt) {
 
@@ -258,7 +320,6 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 		};
 
 		$scope.create = function() {
-
 			switch ($scope.article.type) {
 				case "link":
 					$scope.article.linkAdress = [{
@@ -284,7 +345,7 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 					}
 					break;
 				case "standard":
-					$scope.article.content = textboxio.get('#mytextarea')[0].content.get();
+					$scope.article.content = $.parseHTML(textboxio.get('#mytextarea')[0].content.get());
 					break;
 			}
 
@@ -313,6 +374,22 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 					}
 				});
 			}
+		};
+
+		$scope.$parent.menu = {
+			title: "Nouvel article",
+			items: [{
+				link: '#!',
+				info: 'Retour',
+				icon: 'fa-arrow-left',
+				callback: $scope.global.back
+			},
+			{
+				link: '#!',
+				info: 'Sauvegarder',
+				icon: 'fa-save',
+				callback: $scope.create
+			}]
 		};
 	}
 ]);
@@ -352,7 +429,6 @@ angular.module('mean.articles').controller('noTitleArticleModalCtrl', ['$scope',
 ]);
 
 var ArticlesData = {
-
 	Articles: function(ArticlesCollection, $route) {
 		var page = $route.current.params.page || 1;
 		return ArticlesCollection.load(page);
@@ -363,11 +439,9 @@ var ArticlesData = {
 	ItemsCount: function(ArticlesCollection) {
 		return ArticlesCollection.getItemsCount();
 	}
-
 };
 
 var ArticleDetailData = {
-
 	Article: function(ArticlesCollection, $route, $location) {
 		return ($route.current.params.id) ? ArticlesCollection.findOne($route.current.params.id) : {
 			type: $location.path().split("/").pop(),
@@ -375,10 +449,7 @@ var ArticleDetailData = {
 			content: ""
 		};
 	},
-
-	Articles: function(ArticlesCollection, $route) {
-		var page = $route.current.params.page || 1;
-		return ArticlesCollection.load(page);
-	},
-
+	Parameters: function(ParametersService) {
+		return ParametersService.load();
+	}
 };

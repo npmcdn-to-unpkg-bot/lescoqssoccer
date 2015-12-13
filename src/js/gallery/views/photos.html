@@ -1,71 +1,52 @@
-<!--Static action bar-->
-<div class="clearfix filters filter-floating" style="z-index: 1000;">
-	<ul style="top:25px; right: 78px;">
-		<li><a href="#!" data-ng-click="download($event);">Télécharger</a></li>
-		<li ng-show="global.user._id === album.user._id"><a href="#!" data-ng-click="update($event);">Editer</a></li>
-		<li ng-show="global.user._id === album.user._id"><a href="#!" data-ng-click="deleteAlbum($event);">Supprimer</a></li>
-	</ul>
-	<div class="filter-floating-triggle hidden-phone" style="top:25px; right: 40px;">
-		<i class="fa fa-cogs"></i>
-	</div>
-</div>
-<div class="filter-floating-triggle back hidden-phone" style="top:45px; right: 125px;" ng-click="global.back();">
-	<i class="fa fa-arrow-left" style="color: #FFFFFF;"></i>
-</div>
-
-<!--Page content-->
-<div class="post type-post status-publish format-link has-post-thumbnail hentry category-blog category-uncategorized">
+<div class="post type-post status-publish format-link has-post-thumbnail hentry category-blog category-uncategorized pageContent">
 	<div class="row-fluid two-cols-layout" style="min-height: 100vh;">
-		<div id="content_wrap" style="padding: 50px 0 60px 0;">
+		<div id="content_wrap">
+			<div class="content-wrap-inn">
 
-			<!--Page header: title and subtitles-->
-			<div class="title-bar-wrap" style="padding: 0 0 40px 0; width: calc(100% - 200px);">
-				<div id="title-wrap">
-					<div class="title-wrap-inn">
-						<div id="main-title" style="padding-left: 60px;">
-							<h1 class="main-title ellipsis" style="text-transform: uppercase;">
-								{{album.name}}
-							</h1>
-							<div class="post-meta">
-								<span class="post-meta-unit date" style="width:40px;">
-									<img class="img-circle" ng-src="{{album.user.avatar}}?dim=300x300" alt="{{album.user.username}}"/>
-								</span>
-								<span>Créé le: {{album.created | date:"dd MMM yyyy"}}</span>
-								<br>
-								<p style="margin-top: 20px;">
-									{{album.description}}
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+				<!--Photos content-->
+				<div class="pagebuilder-wrap">
+					<div class="container photoContainer">
+						<div class="row-fluid" ng-show="!showModal">
+							<div class="moudle bottom-space-no" style="padding: 0; margin: 20px 0;">
+								<div class="row-fluid">
+									<div class="container-isotope">
 
-			<!--Photos content-->
-			<div class="row-fluid" ng-show="!showModal">
-				<div class="span12 moudle bottom-space-no" style="padding: 0 60px 60px;">
-					<div class="row-fluid">
-						<div class="container-isotope" data-post="20140406-081941-855">
-							<!--Loading-->
-							<div id="isotope-load">
-								<div class="ux-loading" style="display: none;"></div>
-								<div class="ux-loading-transform">
-									<div class="loading-dot1">&nbsp;</div>
-									<div class="loading-dot2">&nbsp;</div>
+										<!--Loading-->
+										<div id="isotope-load">
+											<div class="ux-loading" style="display: none;"></div>
+											<div class="ux-loading-transform">
+												<div class="loading-dot1">&nbsp;</div>
+												<div class="loading-dot2">&nbsp;</div>
+											</div>
+										</div>
+
+										<div class="Collage effect-parent" style="visibility: hidden;">
+											<a ng-repeat="photo in album.photoList" ng-href="{{photo.filepath}}" title="{{photo.name}}" class="imgwrap" data-lightbox="image1">
+												<img ng-src="{{photo.filepath}}?dim=300" style="cursor:zoom-in;">
+											</a>
+										</div>
+									</div>
 								</div>
 							</div>
-							<div class="Collage effect-parent" style="visibility: hidden;">
-								<a ng-click="showSlider($event, $index)" ng-repeat="photo in album.photoList">
-									<img ng-src="{{photo.filepath}}?dim=300x300" alt="{{photo.name}}" style="cursor:zoom-in;">
-								</a>
-							</div>
 						</div>
+						<div class="post-meta" style="font-size: initial;cursor: pointer; margin-top: 0;" ng-click="showUserDetail($event, album.user);">
+							<img class="img-circle" ng-src="{{album.user.avatar}}?dim100x100" alt="{{album.user.username}}" style="width: 50px; height: 50px; margin: 0; border-radius: 2px;" />
+							<p style="display: inline-block;"> créé par
+								<b style="text-transform: uppercase;">
+									{{album.user.username}},
+								</b>
+								<span>
+								le {{album.created | date:"dd MMM yyyy"}}
+								</span>
+							</p>
+							<span class="post-meta-unit tag"></span>
+						</div>
+						<cm-comments update-method="updateMethod();" object="album">
+						</cm-comments>
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
 </div>
 
-<cm-page-builder></cm-page-builder>

@@ -26,7 +26,7 @@ var SuggestionSchema = new Schema({
 	},
 	yes: [],
 	no: [],
-	blank: [],
+	blank: []
 });
 
 /**
@@ -35,7 +35,7 @@ var SuggestionSchema = new Schema({
 SuggestionSchema.statics.load = function(id, cb) {
 	this.findOne({
 		_id: id
-	}).populate('user', 'name username').exec(cb);
+	}).populate('user', 'name username avatar').exec(cb);
 };
 
 mongoose.model('Suggestion', SuggestionSchema);

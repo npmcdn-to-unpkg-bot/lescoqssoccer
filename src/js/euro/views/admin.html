@@ -1,0 +1,59 @@
+<div class="pageContent">
+	<div class="row-fluid two-cols-layout">
+		<div id="content_wrap">
+			<div class="content-wrap-inn">
+				<div class="pagebuilder-wrap">
+					<div class="container parameterContainer">
+						<div class="span12 bottom-space-60" style="margin-left: 0;">
+							<h4 class="widget-title" style="margin: 10px 0 30px 0;" ng-if="matchs.length > 0">
+								Les match terminés
+							</h4>
+							<div class="isotope masonry" data-size="large" data-width="width2" style="margin: -20px 0px 0px -20px;">
+								<div class="width2 isotope-item hover-effect" ng-repeat="match in matchs">
+									<div class="inside item_des" style="margin:20px; padding: 20px;" ng-class="{'hadBetContainer': !getBet(match).empty}">
+										<div style="font-size: large; font-weight: 600;">
+											{{ match.startsAt | date:"dd MMM yyyy, à HH:mm" }}
+										</div>
+										<div style="font-size: large; font-weight: 400;">
+											Group {{ match.type }}
+										</div>
+										<div class="matchRow" style="text-align:center; margin-top: 20px;">
+											<div>
+												<span style="width: 49%;    display: inline-block;">
+													<img ng-src="img/euro/{{ match.home }}.png"/>
+												</span>
+												<span style="width: 49%;    display: inline-block;">
+													<img ng-src="img/euro/{{ match.away }}.png"/>
+												</span>
+											</div>
+											<div style="margin-top: 10px;">
+												<span style="width: 49.5%;    display: inline-block;">
+													{{ getTeamName(match.home) }}
+												</span>
+												<span style="width: 49.5%;    display: inline-block;">
+													{{ getTeamName(match.away) }}
+												</span>
+											</div>
+										</div>
+										<div style="text-align:center; margin-top: 20px;">
+											<input id="{{ match._id }}_home" type="number" min="0" placeholder="Score 1" style="width: 49.5%; text-align: center;" ng-disabled="match.scoreHome !== undefined" ng-value="match.scoreHome || 0"/>
+											<input id="{{ match._id }}_away" type="number" min="0" placeholder="Score 2" style="width: 49.5%; text-align: center;" ng-disabled="match.scoreAway !== undefined" ng-value="match.scoreAway || 0"/>
+											<input ng-click="updateScore($event, match);" type="button" value="Enregistrer le score" style="margin-top: 20px;" ng-if="match.scoreHome === undefined"/>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div ng-if="matchs.length === 0">
+								<h2 style="text-align: center; margin-top: 50px;">
+									Aucun match terminé
+								</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<cm-isotope>
+</cm-isotope>

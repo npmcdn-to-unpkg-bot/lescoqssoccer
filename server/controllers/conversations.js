@@ -49,7 +49,6 @@ exports.update = function(req, res) {
 
 		conversation.messages.push(req.body.messages[req.body.messages.length - 1]);
 		conversation.save(function(err) {
-			console.warn(err);
 			if (err) {
 				return res.send('users/signup', {
 					errors: err.errors,
@@ -93,13 +92,18 @@ exports.show = function(req, res) {
  */
 exports.all = function(req, res) {
 
-	var messageLimitCount = 50;
+	var messageLimitCount = 30;
 
-	Conversation.find({
-			users: {
-				$in: [req.user.id]
+	Conversation.find({ $or: [
+			{
+				users: {
+					$in: [req.user.id]
+				}
+			},
+			{
+				users: []
 			}
-		})
+		]})
 		.sort('-created')
 		.populate('users')
 		.populate('messages.user').exec(function(err, conversations) {
@@ -111,7 +115,7 @@ exports.all = function(req, res) {
 			} else {
 
 				_.each(conversations, function(conversation){
-					conversation.messages = conversation.messages.slice(Math.max(conversation.messages.length - messageLimitCount, 1));
+					conversation.messages = conversation.messages.slice(Math.max(conversation.messages.length - messageLimitCount, 0));
 				});
 
 				res.jsonp(conversations);

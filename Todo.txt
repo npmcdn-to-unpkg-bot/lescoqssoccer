@@ -1,0 +1,13 @@
+------ BUGS ------
+- Fix previous and next when initialize view on detail page
+- Agenda delete
+- Agenda addMeToEvent statut
+- Agenda addMeToEvent save
+
+------ IMPROVEMENTS ------
+--
+
+------ STORIES ------
+- Euro functionality :
+ - [Server] Cron of user points
+ - [Client] Template for match
