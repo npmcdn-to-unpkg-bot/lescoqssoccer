@@ -107,7 +107,7 @@
 												<h4>Ils seront là</h4>
 												<div>
 													<a ng-repeat="guest in selectedEvent.guest" ng-href="#!/users/detail/{{guest._id}}">
-													<img ng-src="{{guest.avatar && guest.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{guest.username}}" draggable="false" class="img80_80 img-circle">
+													<img ng-src="{{guest.avatar && guest.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{guest.username}}" draggable="false" class="img80_80 img-circle" title="{{guest.username}}">
 													</a>
 												</div>
 												<p ng-if="selectedEvent.guest.length === 0">
@@ -116,7 +116,7 @@
 												<h4>Les échappés</h4>
 												<div>
 													<a ng-repeat="guest in selectedEvent.guestUnavailable" ng-href="#!/users/detail/{{guest._id}}">
-													<img ng-src="{{guest.avatar && guest.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{guest.username}}" draggable="false" class="img80_80 img-circle">
+													<img ng-src="{{guest.avatar && guest.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{guest.username}}" draggable="false" class="img80_80 img-circle" title="{{guest.username}}">
 													</a>
 												</div>
 												<p ng-if="selectedEvent.guestUnavailable.length === 0" style="padding-bottom: 20px;">
