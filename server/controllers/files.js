@@ -75,7 +75,7 @@ function handlePhotoUpload(params, callbacks) {
 				image.resize(300, 300, '^');
 				image.gravity('Center');
 				image.crop(300, 300);
-				image.quality(70);
+				image.quality(0.7);
 				image.autoOrient();
 				image.write(path.resolve(config.root + "/server/" + config.cacheDirectoryX300 + newName), function(err) {
 
@@ -87,8 +87,8 @@ function handlePhotoUpload(params, callbacks) {
 					image.resize(100, 100, '^');
 					image.gravity('Center');
 					image.crop(100, 100);
-					image.quality(70);
-					image.autoOrient()
+					image.quality(0.7);
+					image.autoOrient();
 					image.write(path.resolve(config.root + "/server/" + config.cacheDirectoryX100 + newName), function(err) {
 
 						if (err) {
