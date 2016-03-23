@@ -4,18 +4,86 @@
 			<div class="item_topbar bg-theme-color-7">
 				<a ng-href="#!/articles/view/quote/{{article._id}}" title="{{article.title}}" class="item_link"></a>
 			</div>
-			<div class="item_des bg-theme-color-7">
-				<i class="icon-m-quote-left center-ux"></i>
-				<p>
-				{{article.quote}}
-				</p>
-				<div class="like clear"></div>
-				<div class="pull-right" style="margin: 10px 20px;">
-					<span class="pull-right"><i class="fa fa-comment"></i> {{article.comments.length}}</span>
-				</div>
-				<div style="width:40px;margin: 0 20px; padding-bottom: 20px;">
-					<p style="margin: 10px 50px;position: absolute;">{{article.user.username}}</p>
+			<div class="item_des bg-theme-color-7" style="padding-top: 20px;">
+				<img class="vote" src="img/vote.jpg"/>
+				<div style="width:40px; margin: 30px 20px 0; padding-bottom: 20px;">
+					<p style="margin: -10px 30px; position: absolute; text-transform: uppercase;">
+						{{article.user.username}}
+					</p>
 					<img class="img-circle" ng-src="{{article.user.avatar}}?dim=300x300" alt="{{article.user.username}}"/>
+				</div>
+				<p style="margin-top: -10px;">
+					{{article.content}}
+				</p>
+                <div class="iterblock-expt">
+					<div class="suggestionsResult" style="margin: 0; padding: 0px 30px 0 20px;">
+						<div class="row-fluid">
+		                    <div class="moudle">
+		                        <section class="infrographic bar ux-mod-nobg">
+		                            <h1 style="text-transform: uppercase;">ça donne</h1>
+		                            <div class="bar-percent">
+		                                <div class="bignumber-item" data-digit="65">
+		                                   65
+		                                </div>% (10 votes)
+		                            </div>
+		                            <div class="progress-outer">
+		                                <div class="progress-wrap progress bg-theme-color-1"
+		                                    data-progress-percent="65">
+		                                    <div class="progress-bar progress">
+		                                        <div class="pr-head" ng-class="bg-theme-color-{{$index}}"></div>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </section>
+		                    </div>
+		                </div>
+		                <div class="row-fluid">
+		                    <div class="moudle">
+		                        <section class="infrographic bar ux-mod-nobg">
+		                            <h1 style="text-transform: uppercase;">C'est mort!</h1>
+		                            <div class="bar-percent">
+		                                <div class="bignumber-item" data-digit="25">
+		                                   25
+		                                </div>% (4 votes)
+		                            </div>
+		                            <div class="progress-outer">
+		                                <div class="progress-wrap progress bg-theme-color-1"
+		                                    data-progress-percent="25">
+		                                    <div class="progress-bar progress">
+		                                        <div class="pr-head" ng-class="bg-theme-color-{{$index}}"></div>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </section>
+		                    </div>
+		                </div>
+		                <div class="row-fluid">
+		                    <div class="moudle">
+		                        <section class="infrographic bar ux-mod-nobg">
+		                            <h1 style="text-transform: uppercase;">Ne sais pas</h1>
+		                            <div class="bar-percent">
+		                                <div class="bignumber-item" data-digit="10">
+		                                   10
+		                                </div>% (2 votes)
+		                            </div>
+		                            <div class="progress-outer">
+		                                <div class="progress-wrap progress bg-theme-color-1"
+		                                    data-progress-percent="10">
+		                                    <div class="progress-bar progress">
+		                                        <div class="pr-head" ng-class="bg-theme-color-{{$index}}"></div>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </section>
+		                    </div>
+		                </div>
+	                </div>
+	            </div>
+				<div style="text-align: center; line-height: 50px; margin-top: -30px;">
+					<a ng-href="#!/articles/view/quote/{{article._id}}" class="liquid-more-icon " title="{{article.name}}">
+					<i class="icon-m-right-arrow-curved"></i>
+					Voir le détail du vote
+					</a>
 				</div>
 			</div>
 		</div>

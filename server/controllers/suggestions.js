@@ -5,6 +5,7 @@
  */
 var mongoose = require('mongoose'),
 	Suggestion = mongoose.model('Suggestion'),
+	Article = mongoose.model('Article'),
 	_ = require('lodash');
 
 
@@ -100,3 +101,51 @@ exports.all = function(req, res) {
 		}
 	});
 };
+
+/**
+* Create article from ended suggestion to see results
+**/
+/*exports.closeVotes = function(req, res) {
+	
+	var article;
+
+	Suggestion.find()
+		.sort('-created')
+		.exec(function(err, suggestions) {
+			
+			if (err) {
+
+				console.err('Error when to fetch suggestions ' + err);
+				
+			} else {
+
+				_.each(suggestions, function(suggestion){
+					article = new Article({
+						user: suggestion.user,
+						content: suggestion.content,
+						type: "quote",
+						yes: suggestion.yes,
+						no: suggestion.no,
+						blank: suggestion.blank,
+						comments: []
+					});
+
+					article.save(function(err) {
+
+						if (err) {
+							console.err("Error when trying to save new article " + JSON.stringify(article));
+						} else {
+
+							suggestion.remove(function(err) {
+								if (err) {
+									console.err('Error when trying to remove suggestion ' + err);
+								} else {
+									console.warn("Suggestion removed with success");
+								}
+							});
+						}
+					});
+				});
+			}
+	});
+};*/

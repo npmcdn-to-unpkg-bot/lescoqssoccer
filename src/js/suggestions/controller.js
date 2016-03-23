@@ -35,15 +35,21 @@ angular.module('mean.suggestions').controller('SuggestionController', ['$scope',
 				switch (value) {
 					case 1:
 						if (!suggestion.yes) suggestion.yes = [];
-						suggestion.yes.push($scope.global.user._id);
+						suggestion.yes.push({
+							user: $scope.global.user._id
+						});
 						break;
 					case 2:
 						if (!suggestion.blank) suggestion.blank = [];
-						suggestion.blank.push($scope.global.user._id);
+						suggestion.blank.push({
+							user: $scope.global.user._id
+						});
 						break;
 					case 3:
 						if (!suggestion.no) suggestion.no = [];
-						suggestion.no.push($scope.global.user._id);
+						suggestion.no.push({
+							user: $scope.global.user._id
+						});
 						break;
 				}
 
@@ -71,6 +77,10 @@ angular.module('mean.suggestions').controller('SuggestionController', ['$scope',
 
 		$scope.hasAnswers = function(suggestion) {
 			return suggestion.yes.length > 0 || suggestion.no.length > 0 || suggestion.blank.length > 0;
+		};
+
+		$scope.getDays = function(suggestion){
+			return moment(suggestion.created).add(1, 'months').fromNow();
 		};
 	}
 ]);

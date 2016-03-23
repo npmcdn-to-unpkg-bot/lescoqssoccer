@@ -2,6 +2,7 @@
 
 var CronJob = require('cron').CronJob;
 var users = require('./controllers/users');
+var suggestions = require('./controllers/suggestions');
 
 exports.startCron = function() {
 
@@ -10,6 +11,8 @@ exports.startCron = function() {
 			// Runs every sunday at 00h30
 			users.incrementUsersPoints();
 			users.calculatePopularity();
+
+			suggestions.closeVotes();
 
 		}, function() {
 
