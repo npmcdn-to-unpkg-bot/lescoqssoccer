@@ -5,6 +5,27 @@ angular.module('mean.users').controller('TeamController', ['$scope', 'Global', '
 
 		$scope.global = Global;
 		$scope.team = Team;
+		$scope.colors = {
+			0: "Red",
+			1: "Pink",
+			2: "Purple",
+			3: "Deep-Purple",
+			4: "Indigo",
+			5: "Blue",
+			6: "Light-Blue",
+			7: "Cyan",
+			8: "Teal",
+			9: "Green",
+			10: "Light-Green",
+			11: "Lime",
+			12: "Yellow",
+			13: "Amber",
+			14: "Orange",
+			15: "Deep-Orange",
+			16: "Brown",
+			17: "Grey",
+			18: "Blue-Grey"
+		};
 
 		$scope.showUserDetail = function(evt, user) {
 
@@ -21,6 +42,10 @@ angular.module('mean.users').controller('TeamController', ['$scope', 'Global', '
 					}
 				}
 			});
+		};
+
+		$scope.getColorClass = function(index){
+			return $scope.colors[index];
 		};
 
 	}
