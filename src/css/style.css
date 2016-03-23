@@ -83,7 +83,7 @@ ol, ul { list-style: none;outline:none; }
 ul{ margin-left:0;}
 li{ list-style:none}
 body,input[type="text"],textarea,div.bbp-template-notice p,legend{ font-size:12px; font-size:1.2rem; font-family: 'Roboto', 'sans-serif'; font-style: normal;  }
-h1,h2,h3,h4,h5,h6 { line-height:20px; font-family: 'Roboto', 'sans-serif'; font-weight: 300; font-style: normal; }
+h1,h2,h3,h4,h5,h6 { line-height:20px; font-family: 'Roboto', 'sans-serif'; font-weight: 500; font-style: normal; }
 input,button,select,textarea{ font-family: 'Roboto', 'sans-serif'; color: black;}
 h1 { line-height:60px;}
 h2,h3,h4 { line-height:40px;}
@@ -1278,10 +1278,16 @@ ul.adimg li:first-child,ul.adimg li:nth-child(2){ margin-top:0}
 
 /*Tag*/
 
-.tagcloud a { display: inline-block;font-size: 10px; margin-bottom: 8px;margin-right: 3px; padding:6px 8px; height:32px;
+.tagcloud a { 
+  display: inline-block;
+  font-size: 10px; 
+  margin-bottom: 8px;
+  margin-right: 3px; 
+  padding:5px 8px;
 -webkit-transition: all 0.5s;
    -moz-transition: all 0.5s;
-        transition: all 0.5s;}
+        transition: all 0.5s;
+}
 
 /* Flickr widget*/
 li.widget-container.widget_fastflickrwidget { margin-left:-20px; }
@@ -1645,10 +1651,18 @@ i.medium{ font-size:24px; }
 /*liquid list*/
 
 .item_title{
-  position: relative; padding-bottom: 30px; padding-top: 30px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
 }
-.item_title:before{
-  content:''; position: absolute; bottom: 27px; left: 20px; width: 30px; height: 3px;
+.item_title:after{
+  content:''; 
+  width: 30px; 
+  height: 3px;
+  display: inline-block;
+  background: black;
+  top: -25px;
+  position: inherit;
 }
 
 .item-des-p,
@@ -1856,6 +1870,7 @@ h3#reply-title small, #comments .nav-tabs li.active h3#reply-title .logged,#comm
 .header-info-mobile,.carousel-wrap a.disabled:hover,.filters li a:hover
 {
   color:#757575;
+  border-radius: 5px;
 }
 .filters li a:before {
     background-color:#ccc;
@@ -2717,21 +2732,13 @@ A library of transitions for revealing the loaded images
 
 .pagination>li:first-child>a, .pagination>li:first-child>span {
    margin-left: inherit;
-   border-top-left-radius: 0 !important;
-   border-bottom-left-radius: 0 !important;
 }
 
 .pagination>li>a, .pagination>li>span {
     color: #fff !important;
-    border: 0 !important;
     height: 40px;
     line-height: 40px !important;
     padding: 0 !important;
-}
-
-.pagination>li:last-child>a, .pagination>li:last-child>span {
-  border-top-right-radius: 0 !important;
-  border-bottom-right-radius: 0 !important;
 }
 
 .pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover {
@@ -2814,6 +2821,7 @@ input:-moz-placeholder { color:white; }
 .comments p {
     margin-bottom:45px !important;
     padding-right:60px;
+    font-size: medium;
 }
 .comments .meta {
     margin-bottom:10px !important;
@@ -4388,7 +4396,7 @@ img.img40_40 {
 }
 
 .img-circle {
-    border-radius: 50%;
+    border-radius: 5px;
 }
 
 .articlesContainer img.img-circle, .userDetailBlog img.img-circle {
@@ -4414,10 +4422,10 @@ img.img40_40 {
   height: 34px !important;
 }
 
-.articlesContainer img, .userDetailBlog img{
+/*.articlesContainer img:not(.vote), .userDetailBlog img{
   height: auto !important;
   width: 100% !important;
-}
+}*/
 
 .text-success {
     color: #43bc46 !important;
@@ -4832,7 +4840,7 @@ ul {
   padding: 0 60px;
 }
 
-.circle {
+.voteCircle {
   cursor: pointer;
   width: 215px;
   height: 215px;
@@ -4858,10 +4866,6 @@ ul {
 
 .mask-a {
   background: #1b2d41;
-  overflow: hidden;
-  -webkit-mask-position: 0 0;
-  -webkit-mask-size: 215px 215px;
-  -webkit-mask-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/953/mask_svg.svg);
   z-index: 10;
 }
 
@@ -4926,9 +4930,7 @@ ul {
 
 .hand,
 .hand-1,
-.hand-1::before,
-.hand-2,
-.hand-2::before {
+.hand-2{
   background: url(../img/bid_1.svg) no-repeat;
   position: absolute;
 }
@@ -4952,43 +4954,11 @@ ul {
           transition: transform 500ms ease;
 }
 
-.circle:hover > [class*="mask-"] > .hand {
+.voteCircle > [class*="mask-"] > .hand:hover, .voteCircle .mask-a > .hand-1:hover, .voteCircle .mask-a > .hand-2:hover {
   -webkit-transform: translate3d(0, -3em, 0);
           transform: translate3d(0, -3em, 0);
   -webkit-transition: -webkit-transform 650ms cubic-bezier(0.68, -0.55, 0.265, 1.65);
           transition: transform 650ms cubic-bezier(0.68, -0.55, 0.265, 1.65);
-}
-
-.circle:hover > [class*="mask-"] > .hand-1 {
-  -webkit-transform: translate3d(-0.8em, -3.5em, 0);
-          transform: translate3d(-0.8em, -3.5em, 0);
-  -webkit-transition: -webkit-transform 700ms cubic-bezier(0.68, -0.55, 0.265, 1.65);
-          transition: transform 700ms cubic-bezier(0.68, -0.55, 0.265, 1.65);
-  -webkit-transition-delay: 250ms;
-          transition-delay: 250ms;
-}
-.circle:hover > [class*="mask-"] > .hand-1::before {
-  clip: rect(0px, 18px, 84px, 0px);
-  -webkit-transition: clip 500ms ease;
-          transition: clip 500ms ease;
-  -webkit-transition-delay: 400ms;
-          transition-delay: 400ms;
-}
-
-.circle:hover .mask-a > .hand-2 {
-  -webkit-transform: translate3d(1.5em, -3em, 0);
-          transform: translate3d(1.5em, -3em, 0);
-  -webkit-transition: -webkit-transform 750ms cubic-bezier(0.68, -0.55, 0.265, 1.65);
-          transition: transform 750ms cubic-bezier(0.68, -0.55, 0.265, 1.65);
-  -webkit-transition-delay: 400ms;
-          transition-delay: 400ms;
-}
-.circle:hover .mask-a > .hand-2::before {
-  clip: rect(0px, 28px, 111px, 0px);
-  -webkit-transition: clip 500ms ease;
-          transition: clip 500ms ease;
-  -webkit-transition-delay: 550ms;
-          transition-delay: 550ms;
 }
 
 figure {
@@ -5975,10 +5945,13 @@ a.igoNot{
 	border-radius: 0 !important;
 }
 
-.inside:not(.card){
-	box-shadow: 0 3px 5px rgba(0,0,0,0.3);
-}
-
 .login-box input{
 	color: white !important;
+}
+
+.vote{
+    width: 80px !important;
+    height: auto !important;
+    margin-right: 30px;
+    float: right;
 }

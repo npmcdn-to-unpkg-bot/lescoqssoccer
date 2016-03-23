@@ -47,7 +47,7 @@
 						class="comments"
 						ng-repeat="comment in article.comments | reverse">
 
-							<img class="img-circle" ng-src="{{comment.user.avatar}}?dim100x100" alt="{{comment.user.username}}" style="width: 40px; margin-bottom: 10px; height: 40px;"/>
+							<img class="img-circle" ng-src="{{comment.user.avatar || global.user.avatar}}?dim100x100" alt="{{comment.user.username}}" style="width: 40px; margin-bottom: 10px; height: 40px;"/>
 
 							<p class="meta" style="display: inline-block;">
 								<a ng-href="#!/users/detail/{{comment.user._id || global.user._id}}" style="color: #000000;">
@@ -72,10 +72,12 @@
 							class="comments reply"
 							ng-repeat="reply in comment.replies | orderBy:'-created'">
 
-								<p class="meta">
+								<img class="img-circle" ng-src="{{reply.user.avatar || global.user.avatar}}?dim100x100" alt="{{reply.user.username || global.user.username}}" style="width: 40px; margin-bottom: 10px; height: 40px;"/>
+
+								<p class="meta" style="display: inline-block;">
 									<a ng-href="#!/users/detail/{{reply.user._id || global.user._id}}" style="color: #000000;">
-										{{reply.user.name || global.user.name}}
-									</a> - {{reply.created | date:dateFormat}}
+										{{reply.user.username || global.user.username}}
+									</a>, le {{reply.created | date:dateFormat}}
 								</p>
 
 								<!-- ajouter les commentaires anonymes -->
