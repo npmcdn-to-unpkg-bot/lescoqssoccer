@@ -184,7 +184,6 @@ angular.module('mean.users').controller('ChatController', ['$scope', 'Global', '
 				});
 
 				$scope.conversationService.addOrUpdate($scope.conversation).then(function(conversation) {
-					$scope.conversation = conversation;
 					$scope.message.content = "";
 				});
 
