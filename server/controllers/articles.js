@@ -11,11 +11,17 @@ var mongoose = require('mongoose'),
  * Find article by id
  */
 exports.article = function(req, res, next, id) {
-	Article.load(id, function(err, article) {
-		if (err) return next(err);
-		if (!article) return next(new Error('Failed to load article ' + id));
-		req.article = article;
-		next();
+	Article.findOne(id)
+		.populate('user', 'name username avatar')
+		.populate('comments.user', 'name username avatar')
+		.populate('comments.replies.user', 'name username avatar')
+		.populate('yes.user', 'name username avatar')
+		.populate('no.user', 'name username avatar')
+		.populate('blank.user', 'name username avatar').exec(function(err, article) {
+			if (err) return next(err);
+			if (!article) return next(new Error('Failed to load article ' + id));
+			req.article = article;
+			next();
 	});
 };
 
@@ -100,8 +106,8 @@ exports.all = function(req, res) {
 		.limit(perPage)
 		.skip(perPage * page)
 		.populate('user', 'name username avatar')
-		.populate('comments.user')
-		.populate('comments.replies.user').exec(function(err, articles) {
+		.populate('comments.user', 'name username avatar')
+		.populate('comments.replies.user', 'name username avatar').exec(function(err, articles) {
 
 			if (err) {
 

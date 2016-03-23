@@ -42,9 +42,36 @@ var ArticleSchema = new Schema({
 	videoLink: {
 		type: String,
 	},
-	quote: {
-		type: String,
-	},
+	yes: [new Schema({
+		created: {
+			type: Date,
+			default: Date.now
+		},
+		user: {
+			type: Schema.Types.ObjectId,
+			ref: 'User'
+		}})
+	],
+	no: [new Schema({
+		created: {
+			type: Date,
+			default: Date.now
+		},
+		user: {
+			type: Schema.Types.ObjectId,
+			ref: 'User'
+		}})
+	],
+	blank: [new Schema({
+		created: {
+			type: Date,
+			default: Date.now
+		},
+		user: {
+			type: Schema.Types.ObjectId,
+			ref: 'User'
+		}})
+	],
 	categories: [new Schema({
 		id: {
 			type: String,
