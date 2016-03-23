@@ -25,6 +25,10 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 			return $sce.trustAsResourceUrl(src);
 		};
 
+		$scope.getDateFrom = function(article){
+			return moment(article.created).fromNow();
+		};
+
 		//Manage pagination
 		$scope.pageChanged = function(newPage) {
 			$location.path((newPage === 1) ? "/articles" : "/articles/" + newPage);
