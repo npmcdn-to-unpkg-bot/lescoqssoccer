@@ -165,16 +165,25 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 			});
 		};
 
-		$scope.backToList = function() {
+		$scope.backToList = function(evt) {
+			evt.preventDefault();
+			evt.stopPropagation();
+
 			$location.path("/articles").replace();
 		};
 
-		$scope.showPrevious = function() {
+		$scope.showPrevious = function(evt) {
+			evt.preventDefault();
+			evt.stopPropagation();
+
 			var previous = $scope.ArticlesCollection.getPrevious($scope.article);
 			$location.path("/articles/view/" + previous.type + "/" + previous._id).replace();
 		};
 
-		$scope.showNext = function() {
+		$scope.showNext = function(evt) {
+			evt.preventDefault();
+			evt.stopPropagation();
+			
 			var next = $scope.ArticlesCollection.getNext($scope.article);
 			$location.path("/articles/view/" + next.type + "/" + next._id).replace();
 		};
@@ -378,11 +387,5 @@ var ArticleDetailData = {
 			categories: [],
 			content: ""
 		};
-	},
-
-	Articles: function(ArticlesCollection, $route) {
-		var page = $route.current.params.page || 1;
-		return ArticlesCollection.load(page);
-	},
-
+	}
 };
