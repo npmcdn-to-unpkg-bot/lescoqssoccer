@@ -56,7 +56,7 @@
 							</div>
 							<div class="Collage effect-parent" style="visibility: hidden;">
 								<a ng-click="showSlider($event, $index)" ng-repeat="photo in album.photoList">
-									<img ng-src="{{photo.filepath}}" alt="{{photo.name}}" style="cursor:zoom-in;">
+									<img ng-src="{{photo.filepath}}?dim=300" alt="{{photo.name}}" style="cursor:zoom-in;">
 								</a>
 							</div>
 						</div>
