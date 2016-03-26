@@ -600,9 +600,9 @@ function ThemePageBuilder() {
 			_this_post_social.addClass('post_social_inzoomed');
 			_this_isotope_item.removeClass('width2').addClass(_this_width);
 
-			_this_liquid_expand.css({
+			/*_this_liquid_expand.css({
 				'padding': _this_space + ' 0 0 ' + _this_space
-			});
+			});*/
 
 			_this_isotope_item.imagesLoaded(function() {
 				if (_target) {

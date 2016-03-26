@@ -70,13 +70,13 @@ function ThemeIsotope(){
 		switch(size){
 			case 'medium':
 				if (container.width() <= 320) {
-					width = Math.floor(container.width() / 2);
+					width = Math.floor(container.width());
 				} else if (container.width() >= 321 && container.width() <= 480) {
 					width = Math.floor(container.width() / 2);
 				} else if (container.width() >= 481 && container.width() <= 768) {
 					width = Math.floor(container.width() / 4);
 				} else if (container.width() >= 769 && container.width() <= 979) {
-					width = Math.floor(container.width() / 4);
+					width = Math.floor(container.width() / 6);
 				} else if (container.width() >= 980 && container.width() <= 1200) {
 					width = Math.floor(container.width() / 8);
 				} else if (container.width() >= 1201 && container.width() <= 1600) {

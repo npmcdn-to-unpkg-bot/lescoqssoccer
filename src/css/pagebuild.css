@@ -464,7 +464,7 @@ Isotope
 .isotope{ opacity:0; }
 .isotope_fade{ opacity:1; }
 .isotope-item { z-index: 2; }
-#albumContainer .isotope-item { z-index: 2; border: 1px solid #000000;}
+#albumContainer .isotope-item { z-index: 2;}
 .isotope,
 .isotope .isotope-item {
   /* change duration value to whatever you like */
@@ -856,7 +856,7 @@ div.container3d:hover .card .face.front{
 	position: relative; width: 100%; height: 100%;
 }
 .brick-content{
-	position: relative; overflow: hidden;
+	position: relative; overflow: hidden; border-radius: 5px;
 }
 .brick-link{
 	height: 100%; width: 100%;
@@ -888,6 +888,7 @@ div.container3d:hover .card .face.front{
    -o-transition: all 0.7s ease-in-out;
    -ms-transition: all 0.7s ease-in-out;
    transition: all 0.7s ease-in-out;
+   border-radius: 5px;
 }
 .brick-with-img .brick-hover-mask,
 .isotope-liquid-list .brick-hover .brick-hover-mask { position: absolute; z-index: 2;
@@ -975,6 +976,7 @@ div.container3d:hover .card .face.front{
    -o-transform: scale(1) translate(0, -50%);
    -ms-transform: scale(1) translate(0, -50%);
    transform: scale(1) translate(0, -50%);
+       margin: -20px 40px 0 0;
 }
 .brick-with-img .brick-hover:hover .brick-hover-mask .brick-excerpt,
 .isotope-liquid-list .hover-effect .brick-hover:hover .brick-hover-mask .brick-excerpt {
@@ -2237,7 +2239,7 @@ position: relative;width: 100%;display: inline-block;
 ---------------------*/
 
 .liquid-title {
-	width:100%; line-height:40px; font-size:26px; padding: 40px 40px 0 40px; position:relative;
+	width:100%; line-height:30px; font-size:20px; padding: 40px 40px 0 40px; position:relative;
 }
 .liquid-title a{
 	width:100%; display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; opacity:0.8; color:#fafafa;
@@ -2269,7 +2271,7 @@ position: relative;width: 100%;display: inline-block;
 	background-color:#dfdfdf;
 }
 .liquid-more-icon {
-	line-height:80px; width:100%; font-size: 24px; color: #999;
+	line-height:20px; width:100%; font-size: 24px; color: #999;
 }
 .liquid-more-icon:hover{
 	color: #fafafa;
