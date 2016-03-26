@@ -387,9 +387,7 @@ angular.module('mean.system').directive('cmPageBuilder', ['ConversationService',
 
 				$('.Collage').css('visibility', 'visible');
 				$('#isotope-load').fadeOut();
-
 			}
-
 
 			function moveProgressBar(o) {
 				var getPercent = (o.data('progress-percent') / 100);
