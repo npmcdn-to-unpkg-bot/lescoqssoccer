@@ -642,16 +642,16 @@ color:#ccc; color:rgba(255,255,255,0.4); background-color:#666; background-color
 */
 
 #float-bar {
-  position: fixed; z-index: 999; right:20px; bottom:20px; height: 60px; min-width: 60px; width: auto;
+  position: fixed; z-index: 999; right:0; bottom:20px; height: 60px; min-width: 60px; width: auto;
 }
 #float-bar-triggler {
-  width: 60px; height: 60px; text-align: center; cursor:pointer;
+  width: 50px; height: 50px; text-align: center; cursor:pointer;
 }
 #float-bar:hover #float-bar-triggler {
 
 }
 .float-bar-triggler-inn, .float-bar-add {
-  display: block; position: relative; top: 20px; height: 20px; width: 2px; margin: auto;
+  display: block; position: relative; top: 15px; height: 20px; width: 2px; margin: auto;
 }
 .float-bar-triggler-inn:before,
 .float-bar-triggler-inn:after,
@@ -1858,7 +1858,8 @@ h1.main-title:before,.team-item-con,.archive-wrap li:before,.ux-btn:hover,.relat
 .promote-button:hover,.filter-floating li, .filter-floating-triggle,.item_title:before,.accordion-style-b .accordion-heading a:before,.accordion-style-b .accordion-heading a:after,
 .separator_inn.bg-,.carousel-indicators li
  {
-  background-color: #000000;
+  background-color: #1c1d22;
+  border-radius: 5px;
 }
 
 /* Content color */
@@ -2684,7 +2685,7 @@ A library of transitions for revealing the loaded images
 .addButton{
     position: fixed;
     z-index: 999;
-    right: 20px;
+    right: 0;
     bottom: 20px;
     height: 60px;
     min-width: 60px;
@@ -6589,10 +6590,14 @@ body #cdawrap a:hover.carbon-poweredby {
 }
 
 .page-header {
-    margin: -80px 85px 30px 0px;
+    margin: -80px 115px 30px 0px;
 }
 
 .page-header h1{
     color: #cecece;
 
+}
+
+.pagination {
+    margin: 20px 0 30px 0;
 }

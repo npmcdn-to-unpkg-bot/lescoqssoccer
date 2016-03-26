@@ -59,35 +59,6 @@ angular.module('mean.system').directive('cmSidebar', function() {
 				jQuery('#content_wrap').parent('#content').css('min-height', _win_height);
 			}
 
-			// Float bar set width
-			if (jQuery("#float-bar-triggler").length) {
-
-				jQuery("#float-bar-triggler").click(function(e) {
-
-					if (Modernizr.touch) {
-
-						if (jQuery(this).parent('#float-bar').hasClass('float-hover')) {
-
-							jQuery(this).parent('#float-bar').removeClass('float-hover');
-							jQuery('html,body').animate({
-								scrollTop: 0
-							}, 500);
-
-						} else {
-							jQuery(this).parent('#float-bar').addClass('float-hover');
-						}
-
-					} else {
-						jQuery('html,body').animate({
-							scrollTop: 0
-						}, 500);
-					}
-
-					return false;
-
-				});
-			}
-
 			// Theme: Responsive Mobile Menu
 			function ux_responsive_menu() {
 
