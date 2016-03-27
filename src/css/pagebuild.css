@@ -1128,8 +1128,8 @@ transform: translateX(-40px);
 }
 
 /*Audio*/
-
-.isotope-item.audio .like,.isotope-item.audio h2{ margin:0;}
+/*
+.isotope-item.audio .like,.isotope-item.audio h2{ margin:0;}*/
 .audio-unit{ height:30px; position:relative; }
 .audio-unit span.audiobutton{ display:inline-block; width:40px; cursor:pointer; }
 .audio-unit span.audiobutton:before{

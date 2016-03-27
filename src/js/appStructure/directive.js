@@ -352,8 +352,11 @@ angular.module('mean.system').directive('cmSidebar', function() {
 			var openMenuCtrl = document.querySelector('.action--open'),
 				closeMenuCtrl = document.querySelector('.action--close');
 
-			openMenuCtrl.addEventListener('click', openMenu);
-			closeMenuCtrl.addEventListener('click', closeMenu);
+			if(openMenuCtrl)
+				openMenuCtrl.addEventListener('click', openMenu);
+
+			if(closeMenuCtrl)
+				closeMenuCtrl.addEventListener('click', closeMenu);
 
 			function openMenu() {
 				$(menuEl).addClass('menu--open');
