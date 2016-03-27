@@ -1,69 +1,65 @@
-<!--Static action bar-->
-<div class="clearfix filters filter-floating" style="z-index: 1000;">
-	<ul style="top:25px; right: 78px;">
-		<li><a href="#!" data-ng-click="download($event);">Télécharger</a></li>
-		<li ng-show="global.user._id === album.user._id"><a href="#!" data-ng-click="update($event);">Editer</a></li>
-		<li ng-show="global.user._id === album.user._id"><a href="#!" data-ng-click="deleteAlbum($event);">Supprimer</a></li>
-	</ul>
-	<div class="filter-floating-triggle hidden-phone" style="top:25px; right: 40px;">
-		<i class="fa fa-cogs"></i>
-	</div>
-</div>
-<div class="filter-floating-triggle back hidden-phone" style="top:45px; right: 125px;" ng-click="global.back();">
-	<i class="fa fa-arrow-left" style="color: #FFFFFF;"></i>
-</div>
-
 <!--Page content-->
 <div class="post type-post status-publish format-link has-post-thumbnail hentry category-blog category-uncategorized">
 	<div class="row-fluid two-cols-layout" style="min-height: 100vh;">
-		<div id="content_wrap" style="padding: 50px 0 60px 0;">
+		<div id="content_wrap">
+			<div class="content-wrap-inn">
 
-			<!--Page header: title and subtitles-->
-			<div class="title-bar-wrap" style="padding: 0 0 40px 0; width: calc(100% - 200px);">
-				<div id="title-wrap">
-					<div class="title-wrap-inn">
-						<div id="main-title" style="padding-left: 60px;">
-							<h1 class="main-title ellipsis" style="text-transform: uppercase;">
-								{{album.name}}
-							</h1>
-							<div class="post-meta">
-								<span class="post-meta-unit date" style="width:40px;">
-									<img class="img-circle" ng-src="{{album.user.avatar}}?dim=300x300" alt="{{album.user.username}}"/>
-								</span>
-								<span>Créé le: {{album.created | date:"dd MMM yyyy"}}</span>
-								<br>
-								<p style="margin-top: 20px;">
-									{{album.description}}
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!--Photos content-->
-			<div class="row-fluid" ng-show="!showModal">
-				<div class="span12 moudle bottom-space-no" style="padding: 0 60px 60px;">
-					<div class="row-fluid">
-						<div class="container-isotope" data-post="20140406-081941-855">
-							<!--Loading-->
-							<div id="isotope-load">
-								<div class="ux-loading" style="display: none;"></div>
-								<div class="ux-loading-transform">
-									<div class="loading-dot1">&nbsp;</div>
-									<div class="loading-dot2">&nbsp;</div>
+				<!-- Header -->
+				<div class="bp-header__main">
+			        <span class="bp-header__present">LESCOQSSOCCER <span class="bp-tooltip bp-icon bp-icon--about" data-content="The Blueprints are a collection of basic and minimal website concepts, components, plugins and layouts with minimal style for easy adaption and usage, or simply for inspiration."></span></span>
+			        <h1 class="bp-header__title">
+			        	{{album.name}}
+			        </h1>
+			        <nav class="bp-nav">
+			            <a class="bp-nav__item bp-icon bp-icon--prev" href="#!" data-info="Album précédent" data-ng-click="showPrevious($event);">
+			            	<span>Précédent</span>
+			            </a>
+			            <a class="bp-nav__item bp-icon bp-icon--list" href="#!" data-info="Retour à la liste" data-ng-click="global.back();">
+			            	<span>Retour à la liste</span>
+			            </a>
+			            <a class="bp-nav__item bp-icon bp-icon--next" href="#!" data-info="Album suivant" data-ng-click="showNext($event);">
+			            	<span>Suivant</span>
+			            </a>			            
+			            <a class="bp-nav__item bp-icon bp-icon--archive" href="#!" data-info="Télécharger" data-ng-click="download($event);" ng-show="global.user._id === album.user._id">
+			            	<span>Télécharger</span>
+			            </a>
+			            <a class="bp-nav__item bp-icon bp-icon--edit" href="#!" data-info="Editer" data-ng-click="update($event);" ng-show="global.user._id === album.user._id">
+			            	<span>Editer</span>
+			            </a>
+			            <a class="bp-nav__item bp-icon bp-icon--trash" href="#!" data-info="Supprimer" data-ng-click="deleteAlbum($event);" ng-show="global.user._id === album.user._id">
+			            	<span>Supprimer</span>
+			            </a>
+			        </nav>
+			    </div>
+				
+				<!--Photos content-->
+				<div class="pagebuilder-wrap">
+					<div class="container" style="width: calc(100% - 120px); background: white; margin: 40px 60px; box-shadow: 0 1px 2px rgba(0,0,0,0.15); color: #7b7b7b; border-radius: 5px; padding: 0 20px;">
+						<div class="row-fluid" ng-show="!showModal">
+							<div class="moudle bottom-space-no" style="padding: 0; margin: 20px 0;">
+								<div class="row-fluid">
+									<div class="container-isotope" data-post="20140406-081941-855">
+										<!--Loading-->
+										<div id="isotope-load">
+											<div class="ux-loading" style="display: none;"></div>
+											<div class="ux-loading-transform">
+												<div class="loading-dot1">&nbsp;</div>
+												<div class="loading-dot2">&nbsp;</div>
+											</div>
+										</div>
+										<div class="Collage effect-parent" style="visibility: hidden;">
+											<a ng-click="showSlider($event, $index)" ng-repeat="photo in album.photoList">
+												<img ng-src="{{photo.filepath}}?dim=300" alt="{{photo.name}}" style="cursor:zoom-in;">
+											</a>
+										</div>
+									</div>
 								</div>
 							</div>
-							<div class="Collage effect-parent" style="visibility: hidden;">
-								<a ng-click="showSlider($event, $index)" ng-repeat="photo in album.photoList">
-									<img ng-src="{{photo.filepath}}?dim=300" alt="{{photo.name}}" style="cursor:zoom-in;">
-								</a>
-							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 
+			</div>
 		</div>
 	</div>
 </div>

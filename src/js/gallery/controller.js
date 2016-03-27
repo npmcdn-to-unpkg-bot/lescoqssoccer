@@ -175,7 +175,6 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 				});
 
 			});
-
 		};
 
 		$scope.download = function(evt) {
@@ -194,7 +193,23 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 
 		$scope.update = function() {
 			$location.path('/albums/edit/' + $scope.album._id);
-		}
+		};
+
+		$scope.showPrevious = function(evt) {
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			var previous = AlbumService.getPrevious($scope.album);
+			$location.path("/albums/view/" + previous._id).replace();
+		};
+
+		$scope.showNext = function(evt) {
+			evt.preventDefault();
+			evt.stopPropagation();
+			
+			var next = AlbumService.getNext($scope.album);
+			$location.path("/albums/view/" + next._id).replace();
+		};
 
 	}
 ]);

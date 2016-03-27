@@ -51,13 +51,14 @@ angular.module('mean.albums').service('AlbumService', ['AlbumsCollection', 'Phot
 
 		var AlbumService = {
 
+			all: [],
 			itemsPerPage : 12,
 
 			getAlbum: function(id) {
 				return AlbumsCollection.get({
 					id: id,
-				}, function(data) {
-					return data;
+				}, function(album) {
+					return album;
 				}).$promise;
 			},
 
@@ -65,8 +66,9 @@ angular.module('mean.albums').service('AlbumService', ['AlbumsCollection', 'Phot
 				return AlbumsCollection.query({
 					page: page - 1,
 					perPage: AlbumService.itemsPerPage
-				}, function(data) {
-					return data;
+				}, function(albums) {
+					AlbumService.all = albums;
+					return albums;
 				}).$promise;
 			},
 
@@ -76,6 +78,26 @@ angular.module('mean.albums').service('AlbumService', ['AlbumsCollection', 'Phot
 				}, function(albums) {
 					return albums;
 				}).$promise;
+			},
+
+			getPrevious: function(album) {
+
+				var index = 0;
+				for(var i=0; i < AlbumService.all.length; i++){
+					if(album._id === AlbumService.all[i]._id) index = i;
+				};
+
+				return (index - 1 > 0) ? AlbumService.all[index - 1] : AlbumService.all[0];
+			},
+
+			getNext: function(album) {
+
+				var index = 0;
+				for(var i=0; i < AlbumService.all.length; i++){
+					if(album._id === AlbumService.all[i]._id) index = i;
+				};
+
+				return (index + 1 > AlbumService.all.length - 1) ? AlbumService.all[AlbumService.all.length - 1] : AlbumService.all[index + 1];
 			},
 
 			getItemsCount: function() {
