@@ -1902,7 +1902,8 @@ h3#reply-title small, #comments .nav-tabs li.active h3#reply-title .logged,#comm
 }
 .modal-dialog .modal-content
 {
-  background-color: #000000;
+  background-color: #1c1d22;
+  border-radius: 5px;
 }
 
 .modal-dialog .modal-content h1, .modal-dialog .modal-content h2, .modal-dialog .modal-content h3, .modal-dialog .modal-content h4
