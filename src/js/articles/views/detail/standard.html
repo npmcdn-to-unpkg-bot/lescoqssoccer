@@ -13,16 +13,16 @@
 			            <a class="bp-nav__item bp-icon bp-icon--prev" href="#!" data-info="Article précédent" data-ng-click="showPrevious($event);">
 			            	<span>Précédent</span>
 			            </a>
-			            <a class="bp-nav__item bp-icon bp-icon--next" href="#!" data-info="Article suivant" data-ng-click="showNext($event);">
-			            	<span>Suivant</span>
-			            </a>
-			            <a class="bp-nav__item bp-icon bp-icon--drop" href="#!" data-info="Retour à la liste" data-ng-click="backToList($event);">
+			            <a class="bp-nav__item bp-icon bp-icon--list" href="#!" data-info="Retour à la liste" data-ng-click="backToList($event);">
 			            	<span>Retour à la liste</span>
 			            </a>
-			            <a class="bp-nav__item bp-icon bp-icon--archive" href="#!" data-info="Editer" data-ng-click="edit($event);" ng-show="global.user._id === article.user._id">
+			            <a class="bp-nav__item bp-icon bp-icon--next" href="#!" data-info="Article suivant" data-ng-click="showNext($event);">
+			            	<span>Suivant</span>
+			            </a>			            
+			            <a class="bp-nav__item bp-icon bp-icon--edit" href="#!" data-info="Editer" data-ng-click="edit($event);" ng-show="global.user._id === article.user._id">
 			            	<span>Editer</span>
 			            </a>
-			            <a class="bp-nav__item bp-icon bp-icon--archive" href="#!" data-info="Supprimer" data-ng-click="remove($event);" ng-show="global.user._id === article.user._id">
+			            <a class="bp-nav__item bp-icon bp-icon--trash" href="#!" data-info="Supprimer" data-ng-click="remove($event);" ng-show="global.user._id === article.user._id">
 			            	<span>Supprimer</span>
 			            </a>
 			        </nav>
