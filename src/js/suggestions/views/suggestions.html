@@ -41,7 +41,7 @@
                                                                 <p style="margin-top: -10px; font-size: initial;">
                                                                     {{suggestion.content}}
                                                                 </p>
-                                                                <div style="height: 230px; padding-bottom: 20px;">
+                                                                <div ng-if="!hasUserAnswered(suggestion);" style="height: 230px; padding-bottom: 20px;">
                                                                     <div class="ux-hover-wrap">
                                                                         <figure class="voteCircle">
                                                                           <div style="background:rgba(27,45,65,0) !important; position:absolute;" class="mask-a">
@@ -56,11 +56,22 @@
                                                                         </figure>
                                                                     </div>
                                                                 </div>
+                                                                <div ng-if="hasUserAnswered(suggestion);" style="background: #1b2d41; border-radius: 0 0 5px 5px;">
+                                                                    <p style="text-align: center;">
+                                                                        A voté!
+                                                                    </p>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+
+                                        <div ng-if="suggestions.length === 0">
+                                            <h2 style="text-align: center; margin-top: 50px;">
+                                            Aucun vote en cours
+                                            </h2>
                                         </div>
 
                                     </div>

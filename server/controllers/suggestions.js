@@ -140,7 +140,7 @@ exports.getItemsCount = function(req, res) {
 **/
 exports.closeVotes = function(req, res) {
 	
-	var article;
+	var article, yes = [], no = [], blank = [];
 	var date = moment().subtract(1, 'days').toISOString();
 
 	Suggestion.find({'created': {"$lt": date}})
@@ -154,18 +154,35 @@ exports.closeVotes = function(req, res) {
 			} else {
 
 				_.each(suggestions, function(suggestion){
+					
 					article = new Article({
 						title: "Vote",
 						user: suggestion.user,
 						content: suggestion.content,
 						type: "quote",
-						yes: suggestion.yes,
-						no: suggestion.no,
-						blank: suggestion.blank,
 						comments: []
 					});
 
-					console.warn(article);
+					_.each(suggestion.yes, function(userId, ohers){
+						yes.push({
+							user: userId
+						});
+					});
+					article.yes = yes;
+
+					_.each(suggestion.blank, function(userId){
+						blank.push({
+							user: userId
+						});
+					});
+					article.blank = blank;
+
+					_.each(suggestion.no, function(userId){
+						no.push({
+							user: userId
+						});
+					});
+					article.no = no;
 
 					article.save(function(err) {
 

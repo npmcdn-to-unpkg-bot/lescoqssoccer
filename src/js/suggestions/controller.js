@@ -17,27 +17,19 @@ angular.module('mean.suggestions').controller('SuggestionController', ['$scope',
 
 		$scope.vote = function(suggestion, value) {
 
-			var voted = _.contains(_.union(suggestion.yes, suggestion.no, suggestion.blank), $scope.global.user._id);
-
-			if (!voted) {
+			if (!$scope.hasUserAnswered(suggestion)) {
 				switch (value) {
 					case 1:
 						if (!suggestion.yes) suggestion.yes = [];
-						suggestion.yes.push({
-							user: $scope.global.user._id
-						});
+						suggestion.yes.push($scope.global.user._id);
 						break;
 					case 2:
 						if (!suggestion.blank) suggestion.blank = [];
-						suggestion.blank.push({
-							user: $scope.global.user._id
-						});
+						suggestion.blank.push($scope.global.user._id);
 						break;
 					case 3:
 						if (!suggestion.no) suggestion.no = [];
-						suggestion.no.push({
-							user: $scope.global.user._id
-						});
+						suggestion.no.push($scope.global.user._id);
 						break;
 				}
 
@@ -59,11 +51,15 @@ angular.module('mean.suggestions').controller('SuggestionController', ['$scope',
 		};
 
 		$scope.getSuggestionAnswerLength = function(suggestion, option) {
-			return Math.round(suggestion[option].length / (suggestion.yes.length + suggestion.no.length + suggestion.blank.length) * 100);
+			if(suggestion.yes.length + suggestion.no.length + suggestion.blank.length === 0){
+				return 0;
+			} else {
+				return Math.round(suggestion[option].length / (suggestion.yes.length + suggestion.no.length + suggestion.blank.length) * 100);
+			}
 		};
 
-		$scope.hasAnswers = function(suggestion) {
-			return suggestion.yes.length > 0 || suggestion.no.length > 0 || suggestion.blank.length > 0;
+		$scope.hasUserAnswered = function(suggestion) {
+			return _.contains(_.union(suggestion.yes, suggestion.no, suggestion.blank), $scope.global.user._id);
 		};
 
 		$scope.getDays = function(suggestion){

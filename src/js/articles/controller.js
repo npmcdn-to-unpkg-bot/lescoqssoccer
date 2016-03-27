@@ -47,7 +47,11 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 		};
 
 		$scope.getSuggestionAnswerLength = function(suggestion, option) {
-			return Math.round(suggestion[option].length / (suggestion.yes.length + suggestion.no.length + suggestion.blank.length) * 100);
+			if(suggestion.yes.length + suggestion.no.length + suggestion.blank.length === 0){
+				return 0;
+			} else {
+				return Math.round(suggestion[option].length / (suggestion.yes.length + suggestion.no.length + suggestion.blank.length) * 100);
+			}
 		};
 	}
 ]);
@@ -72,7 +76,11 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 		};
 
 		$scope.getSuggestionAnswerLength = function(suggestion, option) {
-			return Math.round(suggestion[option].length / (suggestion.yes.length + suggestion.no.length + suggestion.blank.length) * 100);
+			if(suggestion.yes.length + suggestion.no.length + suggestion.blank.length === 0){
+				return 0;
+			} else {
+				return Math.round(suggestion[option].length / (suggestion.yes.length + suggestion.no.length + suggestion.blank.length) * 100);
+			}
 		};
 
 		$scope.showAnswerForm = function(evt, comment) {

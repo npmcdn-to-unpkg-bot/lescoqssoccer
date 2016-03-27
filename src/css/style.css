@@ -4405,11 +4405,10 @@ md-icon {
 }
 
 img.img80_80 {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     z-index: 2;
     margin-bottom: 20px;
-    padding: 10px;
 }
 
 img.img40_40 {
