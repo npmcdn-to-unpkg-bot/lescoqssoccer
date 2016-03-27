@@ -6,6 +6,8 @@ var suggestions = require('./controllers/suggestions');
 
 exports.startCron = function() {
 
+	suggestions.closeVotes();
+
 	new CronJob('00 30 00 * * 7', function() {
 
 			// Runs every sunday at 00h30

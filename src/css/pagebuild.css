@@ -2207,7 +2207,7 @@ position: relative;width: 100%;display: inline-block;
 	display: none;
 }
 .infrographic.bar .bar-percent{
-	float: right; display:inline-block; font-size:16px;
+	float: right; display:inline-block;
 }
 .infrographic.bar .bignumber-item {
 	display:inline-block;line-height:20px;  font-size:16px; }

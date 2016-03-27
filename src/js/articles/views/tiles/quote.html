@@ -1,34 +1,31 @@
 <div class="filter_blog width2 isotope-item quote">
 	<div class="inside" style="margin:40px 0 0 40px;">
 		<div>
-			<div class="item_topbar bg-theme-color-7">
-				<a ng-href="#!/articles/view/quote/{{article._id}}" title="{{article.title}}" class="item_link"></a>
-			</div>
 			<div class="item_des bg-theme-color-7" style="padding-top: 20px;">
-				<img class="vote" src="img/vote.jpg"/>
-				<div style="width:40px; margin: 30px 20px 0; padding-bottom: 20px;">
-					<p style="margin: -10px 30px; position: absolute; text-transform: uppercase;">
-						{{article.user.username}}
+				<img class="vote" src="img/vote.jpg" style="width: 40px !important;"/>
+				<div style="width:40px; margin: 0px 20px 0; padding-bottom: 20px;">
+					<p style="margin: -10px 30px; position: absolute; color: white;">
+						<b style="text-transform: uppercase; font-size: medium;">{{article.user.username}}</b>, {{getDateFrom(article)}}
 					</p>
-					<img class="img-circle" ng-src="{{article.user.avatar}}?dim=300x300" alt="{{article.user.username}}"/>
+					<img class="img-circle" ng-src="{{article.user.avatar}}?dim100x100" alt="{{article.user.username}}"/>
 				</div>
-				<p style="margin-top: -10px;">
+				<p style="color: white; padding: 0 20px 0;" class="three-line-ellipsis">
 					{{article.content}}
 				</p>
                 <div class="iterblock-expt">
-					<div class="suggestionsResult" style="margin: 0; padding: 0px 30px 0 20px;">
+					<div class="suggestionsResult" style="margin: 20px 0 0 0; padding: 0px 30px 0 20px;">
 						<div class="row-fluid">
 		                    <div class="moudle">
 		                        <section class="infrographic bar ux-mod-nobg">
 		                            <h1 style="text-transform: uppercase;">ça donne</h1>
 		                            <div class="bar-percent">
-		                                <div class="bignumber-item" data-digit="65">
-		                                   65
-		                                </div>% (10 votes)
+		                                <div class="bignumber-item" data-digit="{{getSuggestionAnswerLength(article, 'yes')}}">
+		                                   {{getSuggestionAnswerLength(article, 'yes')}}
+		                                </div>% ({{article.yes.length}} votes)
 		                            </div>
 		                            <div class="progress-outer">
 		                                <div class="progress-wrap progress bg-theme-color-1"
-		                                    data-progress-percent="65">
+		                                    data-progress-percent="{{getSuggestionAnswerLength(article, 'yes')}}">
 		                                    <div class="progress-bar progress">
 		                                        <div class="pr-head" ng-class="bg-theme-color-{{$index}}"></div>
 		                                    </div>
@@ -42,13 +39,13 @@
 		                        <section class="infrographic bar ux-mod-nobg">
 		                            <h1 style="text-transform: uppercase;">C'est mort!</h1>
 		                            <div class="bar-percent">
-		                                <div class="bignumber-item" data-digit="25">
-		                                   25
-		                                </div>% (4 votes)
+		                                <div class="bignumber-item" data-digit="{{getSuggestionAnswerLength(article, 'no')}}">
+		                                   {{getSuggestionAnswerLength(article, 'no')}}
+		                                </div>% ({{article.no.length}} votes)
 		                            </div>
 		                            <div class="progress-outer">
 		                                <div class="progress-wrap progress bg-theme-color-1"
-		                                    data-progress-percent="25">
+		                                    data-progress-percent="{{getSuggestionAnswerLength(article, 'no')}}">
 		                                    <div class="progress-bar progress">
 		                                        <div class="pr-head" ng-class="bg-theme-color-{{$index}}"></div>
 		                                    </div>
@@ -62,13 +59,13 @@
 		                        <section class="infrographic bar ux-mod-nobg">
 		                            <h1 style="text-transform: uppercase;">Ne sais pas</h1>
 		                            <div class="bar-percent">
-		                                <div class="bignumber-item" data-digit="10">
-		                                   10
-		                                </div>% (2 votes)
+		                                <div class="bignumber-item" data-digit="{{getSuggestionAnswerLength(article, 'blank')}}">
+		                                   {{getSuggestionAnswerLength(article, 'blank')}}
+		                                </div>% ({{article.blank.length}} votes)
 		                            </div>
 		                            <div class="progress-outer">
 		                                <div class="progress-wrap progress bg-theme-color-1"
-		                                    data-progress-percent="10">
+		                                    data-progress-percent="{{getSuggestionAnswerLength(article, 'blank')}}">
 		                                    <div class="progress-bar progress">
 		                                        <div class="pr-head" ng-class="bg-theme-color-{{$index}}"></div>
 		                                    </div>
@@ -79,8 +76,8 @@
 		                </div>
 	                </div>
 	            </div>
-				<div style="text-align: center; line-height: 50px; margin-top: -30px;">
-					<a ng-href="#!/articles/view/quote/{{article._id}}" class="liquid-more-icon " title="{{article.name}}">
+				<div style="text-align: center; line-height: 50px; margin-top: -10px;">
+					<a ng-href="#!/articles/view/quote/{{article._id}}" class="liquid-more-icon " title="{{article.name}}" style="color: white;">
 					<i class="icon-m-right-arrow-curved"></i>
 					Voir le détail du vote
 					</a>

@@ -1958,7 +1958,7 @@ h3#reply-title small, #comments .nav-tabs li.active h3#reply-title .logged,#comm
 #navi ul li ul.sub-menu li,
 #navi ul li:hover,
 .brick-grey {
-  background-color: #000000;
+  background-color: #1c1d22;
 }
 
 /* Menu Item Text Color */
@@ -1968,7 +1968,7 @@ input[type="text"].textboxsearch,.submit-wrap i,.icons-sidebar-unit,#woocomerce-
 }
 .site-loading .loading-dot1,
 .site-loading .loading-dot2{
-  background-color: #000000;
+  background-color: #1c1d22;
 }
 
 .page-loading .loading-dot1,
@@ -5962,9 +5962,9 @@ a.igoNot{
 }
 
 .vote{
-    width: 80px !important;
+    width: 40px !important;
     height: auto !important;
-    margin-right: 30px;
+    margin-right: 20px;
     float: right;
 }
 

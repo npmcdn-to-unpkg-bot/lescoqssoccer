@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
 	Suggestion = mongoose.model('Suggestion'),
 	Article = mongoose.model('Article'),
+	moment = require('moment'),
 	_ = require('lodash');
 
 
@@ -137,22 +138,24 @@ exports.getItemsCount = function(req, res) {
 /**
 * Create article from ended suggestion to see results
 **/
-/*exports.closeVotes = function(req, res) {
+exports.closeVotes = function(req, res) {
 	
 	var article;
+	var date = moment().subtract(1, 'days').toISOString();
 
-	Suggestion.find()
+	Suggestion.find({'created': {"$lt": date}})
 		.sort('-created')
 		.exec(function(err, suggestions) {
 			
 			if (err) {
 
-				console.err('Error when to fetch suggestions ' + err);
+				console.warn('Error when to fetch suggestions ' + err);
 				
 			} else {
 
 				_.each(suggestions, function(suggestion){
 					article = new Article({
+						title: "Vote",
 						user: suggestion.user,
 						content: suggestion.content,
 						type: "quote",
@@ -162,15 +165,17 @@ exports.getItemsCount = function(req, res) {
 						comments: []
 					});
 
+					console.warn(article);
+
 					article.save(function(err) {
 
 						if (err) {
-							console.err("Error when trying to save new article " + JSON.stringify(article));
+							console.warn("Error when trying to save new article " + err);
 						} else {
 
 							suggestion.remove(function(err) {
 								if (err) {
-									console.err('Error when trying to remove suggestion ' + err);
+									console.warn('Error when trying to remove suggestion ' + err);
 								} else {
 									console.warn("Suggestion removed with success");
 								}
@@ -180,4 +185,4 @@ exports.getItemsCount = function(req, res) {
 				});
 			}
 	});
-};*/
+};
