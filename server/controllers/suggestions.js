@@ -91,13 +91,45 @@ exports.show = function(req, res) {
  * List of suggestions
  */
 exports.all = function(req, res) {
-	Suggestion.find().sort('-created').populate('user', 'name username avatar').exec(function(err, suggestions) {
+
+	var perPage = req.query.perPage;
+	var page = req.query.page;
+
+	Suggestion.find({})
+		.sort('-created')
+		.limit(perPage)
+		.skip(perPage * page)
+		.populate('user', 'name username avatar')
+		.exec(function(err, suggestions) {
+			if (err) {
+				res.render('error', {
+					status: 500
+				});
+			} else {
+				res.jsonp(suggestions);
+			}
+	});
+};
+
+/**
+ * Count of suggestions
+ */
+exports.getItemsCount = function(req, res) {
+
+	Suggestion.count({}).exec(function(err, count) {
+
 		if (err) {
+
 			res.render('error', {
 				status: 500
 			});
+
 		} else {
-			res.jsonp(suggestions);
+
+			res.jsonp({
+				count: count
+			});
+
 		}
 	});
 };
