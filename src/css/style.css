@@ -2079,7 +2079,7 @@ button, input[type="submit"], input[type="button"]{
   background-color:#000000;
   color:#ccc;
   border:none;
-  border-radius: 0;
+  border-radius: 5px;
   height:30px;
   line-height:30px;
   padding:0 15px;
@@ -3866,18 +3866,22 @@ Override bootstrap datepicker
 }
 
 .list-group {
-  margin-bottom: 20px;
   padding-left: 0;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
 }
 .list-group-item {
   position: relative;
   display: block;
-  padding: 10px 15px;
+  padding: 15px;
   margin-bottom: -1px;
   background-color: #ffffff;
 }
 .list-group-item:last-child {
   margin-bottom: 0;
+  border-radius: 0 0 5px 5px;
+}
+.list-group-item:first-child {
+  border-radius: 5px 5px 0 0;
 }
 a.list-group-item {
   color: #555555;
@@ -3909,12 +3913,16 @@ a.list-group-item:focus {
   color: #777777;
 }
 .list-group-item.active,
-.list-group-item.active:hover,
+.list-group-item:hover,
 .list-group-item.active:focus {
   z-index: 2;
-  color: #ffffff;
+  color: white;
   background-color: #448aff;
   border-color: #448aff;
+  cursor: pointer;
+}
+.list-group-item:hover a{
+  color: white !important;
 }
 .list-group-item.active .list-group-item-heading,
 .list-group-item.active:hover .list-group-item-heading,
@@ -4041,7 +4049,10 @@ a.list-group-item-danger.active:focus {
   overflow: hidden;
 }
 .media-body {
-  width: 10000px;
+  width: 10000px; 
+}
+.media-body a{
+  color: #7b7b7b; 
 }
 .media-object {
   display: block;
@@ -4478,8 +4489,8 @@ md-icon {
     display: inline-block;
     vertical-align: middle;
     fill: currentColor;
-    height: 24px;
-    width: 24px;
+    height: 48px;
+    width: 48px;
 }
 
 li>.ripplelink:hover, li.active>.ripplelink{
@@ -4608,17 +4619,18 @@ li>.ripplelink:hover, li.active>.ripplelink{
 }
 
 .chat-wrapper {
-  margin-top: 20px;
-  padding-left: 60px;
-  padding-right: 30px;
+  margin-top: 0;
+  padding-left: 10px;
+  padding-right: 0px;
 }
 
 .chat-wrapper ul {
   margin: 0 auto;
-  height: calc(100vh - 200px);
+  max-height: 500px;
   overflow-x: hidden;
   overflow-y: scroll;
   padding-right: 30px;
+  padding-top: 40px;
 }
 
 .chat-wrapper ul li {
@@ -4630,6 +4642,7 @@ li>.ripplelink:hover, li.active>.ripplelink{
   font: 1em/1.6 "arial";
   clear: both;
   text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.35);
+  box-shadow: -10px 2px 30px 15px rgba(0,0,0,0.15);
 }
 
 .chat-wrapper ul li:not(.current) {
@@ -4665,7 +4678,7 @@ li>.ripplelink:hover, li.active>.ripplelink{
   height: 45px;
   top: 0;
   position: absolute;
-  border-radius: 50%;
+  border-radius: 5px;
   background-position: 50% 50%;
   background-repeat: no-repeat;
 }
@@ -6635,3 +6648,158 @@ body #cdawrap a:hover.carbon-poweredby {
 .pagination {
     margin: 20px 0 30px 0;
 }
+
+/****
+Agenda
+*****/
+
+/* --- event widget --- */
+
+.evwdg {
+    margin-bottom: 25px;
+  width:300px;
+    height: 100px;
+  margin-left:-50px;
+    }
+  
+.evwdg.first {
+  margin-top: 15px;
+    }
+  
+.evwdg.last { 
+    margin-bottom: 15px;
+    }
+
+.evwdg-data {
+    float: left;
+  width:65px;
+  height:110px;
+    text-align:center;
+    background:#eee;
+    padding-bottom:5px;
+    border-radius: 5px;
+    color: #1c1d22;
+}
+
+.evwdg-day {
+  position:relative;
+    float: left;
+    width:65px;
+  clear: both;
+    display: inline;
+    font-size: 36px;
+    }
+
+.evwdg-month {
+    text-transform: uppercase;
+    top: 0px;
+    position: relative;
+  width:65px;
+    clear: both;
+    font-size: 18px;
+  text-align:center;
+    }
+  
+.evwdg-year {
+    text-transform: uppercase;
+    top: 5px;
+  position: relative;
+  width:65px;
+    clear: both;
+  display: inline;
+    font-size: 18px;
+    }
+
+.evwdg-title {
+    top: 0px;
+    left: 15px;
+    position: relative;
+    font-size: 16px;
+    }
+
+.evwdg-title a {
+    font-weight: 600;
+    color: #1c1d22;
+}
+  
+#footer .evwdg-title a {
+    font-weight: 600;
+    }
+
+.evwdg-title a:hover { 
+    text-decoration: none;
+  }
+
+
+.evwdg-tickets a {
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #fff;
+  border-radius: 3px;
+  padding: 5px 8px 6px 8px;
+    }
+  
+.evwdg-out p {
+    background: #bbb;
+    text-transform: uppercase;
+    text-decoration: none;
+    float: left;
+    color: #eee;
+    padding: 4px 8px 4px 8px;
+  border-radius: 3px;
+  cursor:default;
+  margin-top:-5px;
+    } 
+    
+.evwdg-tickets a:hover {
+    background: #000;
+    }
+  
+.evwdg-status {
+  float: left;
+  margin-left:15px;
+    }
+  
+.evwdg-venue {
+  line-height: 16px;
+  margin-top:10px;
+  margin-bottom:15px;
+  float: left;
+  position:relative;
+  width:200px;
+  height:40px;
+  overflow: hidden;
+    } 
+  
+.evwdg-venue-gol {
+  line-height: 16px;
+    padding-left: 20px;
+  margin-top:10px;
+  margin-bottom:15px;
+    float: left;
+  position:relative;
+  width:200px;
+  height:16px;
+  overflow: hidden;
+    } 
+
+.evwdg-test {
+  width:200px;
+  height:50px;
+  }
+  
+#footer .evwdg-venue {
+    background: url("images/event-venue-footer.png") no-repeat;
+  line-height: 16px;
+    padding-left: 20px;
+  margin-top:10px;
+  margin-bottom:15px;
+    float: left;
+  color:#fff;
+    } 
+  
+
+#footer .event-widgets {
+    margin-bottom: 28px;
+    height: 80px;
+    }

@@ -39,7 +39,11 @@ var UserSchema = new Schema( {
 	skills:[],
 	coins: Number,
 	presentation: String,
-	popularity: Number
+	popularity: Number,
+	lastConnectionDate: {
+		type: Date,
+		default: Date.now
+	}
 } );
 
 /**

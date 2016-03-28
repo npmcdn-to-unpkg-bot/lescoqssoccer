@@ -15,9 +15,15 @@
 <header class="bp-header cf">
     <div class="dummy-logo">
         <div class="dummy-icon foodicon foodicon--coconut">
-            <img src="img/coq.png" style="height: 80px;">
+            <a href="#!/users/profile">
+                <img ng-src="{{global.user.avatar && global.user.avatar + '?dim=300x300' || 'img/Professor.png'}}" style="height: 80px;">
+            </a>
         </div>
-        <h2 class="dummy-heading">Les coqs soccer</h2>
+        <a href="/signout">
+            <h2 class="dummy-heading">
+                Se déconnecter
+            </h2>
+        </a>
     </div>   
 </header>
 <button class="action action--open" aria-label="Open Menu"><span class="icon icon--menu"></span></button>

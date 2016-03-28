@@ -10,7 +10,7 @@ angular.module('mean').config(['$routeProvider',
 		when('/home', {
 			templateUrl: 'js/home/home.html',
 			controller: 'HomeController',
-			resolve: TeamData
+			resolve: HomeData
 		}).
 
 		/** AGENDA ****/
@@ -145,7 +145,7 @@ angular.module('mean').config(['$routeProvider',
 
 		/** DEFAULT ****/
 		when('/', {
-			redirectTo: 'articles'
+			redirectTo: 'home'
 		}).
 		otherwise({
 			redirectTo: 'home'

@@ -119,7 +119,6 @@ exports.user = function(req, res, next, id) {
 };
 
 exports.findOne = function(req, res) {
-
 	res.jsonp(req.profile);
 };
 
