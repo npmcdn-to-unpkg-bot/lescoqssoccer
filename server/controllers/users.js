@@ -46,7 +46,13 @@ exports.signout = function(req, res) {
  * Session
  */
 exports.session = function(req, res) {
-	res.redirect('/');
+
+	//Update the last connection date of user when creating session
+	User.update({_id: req.user._id}, 
+		{$set: { lastConnectionDate: new Date()}}, 
+		{upsert: false}, function(err){
+			res.redirect('/');
+	});
 };
 
 /**

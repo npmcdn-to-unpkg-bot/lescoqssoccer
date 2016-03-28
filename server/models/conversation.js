@@ -14,6 +14,10 @@ var ConversationSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
+	updated: {
+		type: Date,
+		default: Date.now
+	},
 	users: [{
 		type: mongoose.Schema.ObjectId,
 		ref: 'User'
@@ -42,5 +46,10 @@ ConversationSchema.statics.load = function(id, cb) {
 		_id: id
 	}).populate('user').exec(cb);
 };
+
+ConversationSchema.pre("save", function(next) {
+    this.updated = new Date();
+    next();
+});
 
 mongoose.model('Conversation', ConversationSchema);

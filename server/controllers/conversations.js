@@ -49,7 +49,6 @@ exports.update = function(req, res) {
 
 		conversation.messages.push(req.body.messages[req.body.messages.length - 1]);
 		conversation.save(function(err) {
-			console.warn(err);
 			if (err) {
 				return res.send('users/signup', {
 					errors: err.errors,
@@ -93,7 +92,7 @@ exports.show = function(req, res) {
  */
 exports.all = function(req, res) {
 
-	var messageLimitCount = 50;
+	var messageLimitCount = 30;
 
 	Conversation.find({
 			users: {
