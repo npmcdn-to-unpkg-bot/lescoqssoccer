@@ -10,6 +10,8 @@ angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'T
 		$scope.conversationService = ConversationService;
 		$scope.conversations = Conversations;
 
+		$scope.counters = {};
+
 		$scope.message = {
 			content: ""
 		};
@@ -28,6 +30,20 @@ angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'T
 
 			$scope.currentUserId = user._id;
 			$scope.conversation = $scope.conversationService.getConversation($scope.global.user._id, user._id);
+		};
+
+		$scope.missingMessageCount = function(user){
+			var missingMessageCounter = 0;
+			if(!$scope.counters[user._id]){
+				var conversation = $scope.conversationService.getConversation($scope.global.user._id, user._id);
+				if(conversation.messages.length > 0 && moment(conversation.updated).isAfter($scope.global.user.lastConnectionDate)){
+					missingMessageCounter = _.filter(conversation.messages, function(message){
+						return message.user._id === user._id && moment(message.created).isAfter($scope.global.user.lastConnectionDate);
+					}).length;
+					$scope.counters[user._id] = missingMessageCounter;
+				}
+			}
+			return  $scope.counters[user._id];
 		};
 
 		$scope.sendMessage = function() {

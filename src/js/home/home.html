@@ -1,8 +1,8 @@
 <div id="post-330" class="post-330 page type-page status-publish hentry">
-    <div class="row-fluid " style="margin-top: 40px;">
+    <div class="row-fluid" style="margin-top: 40px;">
         <div id="content_wrap">
-            <div class="content-wrap-inn bottom-space ">
-                <div class="container">
+            <div class="content-wrap-inn bottom-space">
+                <div class="container responsive-ux">
                     <div class="row-fluid">
                         <div class="span3 moudle bottom-space-20">
                             <div class="text_block withbg bg-theme-color-1" style="text-align: center;">
@@ -38,10 +38,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="container">
+                <div class="container responsive-ux">
                     <div class="row-fluid">
                         <div class="span3 moudle">
-                            <div class="container" style="background: white; box-shadow: 0 1px 2px rgba(0,0,0,0.15); color: #7b7b7b; border-radius: 5px;">
+                            <div class="container" style="background: white; box-shadow: 0 1px 2px rgba(0,0,0,0.15); color: #7b7b7b; border-radius: 5px; padding-left: 10px;">
                                 <div class="evwdg first" ng-repeat="event in agenda">                                                          
                                     <div class="evwdg-data">
                                         <div class="evwdg-day">{{event.startsAt | date:"dd"}}</div>
@@ -80,16 +80,13 @@
                                                 </a>
                                             </div>
                                             <div class="media-body media-middle ellipsis">
-                                                <a href="#!" class="ellipsis" style="text-transform: uppercase; font-weight: 700;">
+                                                <a href="#!" class="ellipsis" style="color: #7b7b7b; text-transform: uppercase; font-weight: 700;">
                                                     {{user.name || user.username}}
                                                 </a>
                                             </div>
-                                            <div class="media-right media-middle">
-                                                <i class="fa fa-comment text-muted"></i>
+                                            <div class="media-right media-middle" ng-if="missingMessageCount(user);">
+                                                <span style="color: red; display: flex;">{{missingMessageCount(user);}} <i class="fa fa-comment text-muted" style="margin: 3px;"></i></span>
                                             </div>
-                                            <!-- <div class="media-right media-middle">
-                                                <i class="fa fa-circle text-success text-xs"></i>
-                                            </div>  -->
                                         </div>
                                     </li>
                                 </ul>
