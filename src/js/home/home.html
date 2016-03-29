@@ -1,4 +1,4 @@
-<div id="post-330" class="post-330 page type-page status-publish hentry">
+<div id="post-330" class="post-330 page type-page status-publish hentry" ng-init="initializeConversations();">
     <div class="row-fluid" style="margin-top: 40px;">
         <div id="content_wrap">
             <div class="content-wrap-inn bottom-space">
@@ -84,8 +84,8 @@
                                                     {{user.name || user.username}}
                                                 </a>
                                             </div>
-                                            <div class="media-right media-middle" ng-if="missingMessageCount(user);">
-                                                <span style="color: red; display: flex;">{{missingMessageCount(user);}} <i class="fa fa-comment text-muted" style="margin: 3px;"></i></span>
+                                            <div class="media-right media-middle" ng-if="counters[user._id]">
+                                                <span style="color: red; display: flex;">{{counters[user._id]}} <i class="fa fa-comment text-muted" style="margin: 3px;"></i></span>
                                             </div>
                                         </div>
                                     </li>

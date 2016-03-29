@@ -49,7 +49,10 @@ exports.session = function(req, res) {
 
 	//Update the last connection date of user when creating session
 	User.update({_id: req.user._id}, 
-		{$set: { lastConnectionDate: new Date()}}, 
+		{$set: { 
+			lastConnectionDate: new Date(),
+			previousConnectionDate: req.user.lastConnectionDate
+		}}, 
 		{upsert: false}, function(err){
 			res.redirect('/');
 	});

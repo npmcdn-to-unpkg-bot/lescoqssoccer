@@ -43,6 +43,10 @@ var UserSchema = new Schema( {
 	lastConnectionDate: {
 		type: Date,
 		default: Date.now
+	},
+	previousConnectionDate: {
+		type: Date,
+		default: Date.now
 	}
 } );
 

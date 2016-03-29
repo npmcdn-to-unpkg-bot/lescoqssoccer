@@ -329,6 +329,17 @@ angular.module('mean.system').directive('cmSidebar', function() {
 			});
 
 			setTimeout(function() {
+				$(".nicescroll").mCustomScrollbar({
+					scrollInertia: 400,
+					autoHideScrollbar: true,
+					theme: "light",
+					advanced: {
+						updateOnContentResize: true
+					}
+				});
+			}, 500);
+
+			setTimeout(function() {
 				$(".leftcontainer").mCustomScrollbar({
 					scrollInertia: 400,
 					autoHideScrollbar: true,
@@ -419,6 +430,17 @@ angular.module('mean.system').directive('cmPageBuilder', ['ConversationService',
 					triggerOnce: true
 				});
 			}
+
+			setTimeout(function() {
+				$(".nicescroll").mCustomScrollbar({
+					scrollInertia: 400,
+					autoHideScrollbar: true,
+					theme: "light",
+					advanced: {
+						updateOnContentResize: true
+					}
+				});
+			}, 500);
 
 			setTimeout(function() {
 
