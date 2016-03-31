@@ -5,6 +5,17 @@
                 
                 <div class="container responsive-ux">
                     <div class="row-fluid">
+                        <div class="span12 moudle bottom-space-20">
+                            <div class='console-container'>
+                                <span id='text'></span>
+                                <div class='console-underscore' id='console'>&#95;</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="container responsive-ux">
+                    <div class="row-fluid">
                         <div class="span3 moudle bottom-space-20">
                             <div class="text_block withbg bg-theme-color-1" style="text-align: center;">
                                 <a href='#!/articles'>
@@ -12,38 +23,21 @@
                                     <br><span>5 Articles non lues</span>
                                 </a>
                             </div>
-                        </div>
-                        <div class="span3 moudle bottom-space-20">
-                            <div class="text_block withbg bg-theme-color-5" style="text-align: center;">
-                                <a href='#!/agenda'>
-                                    <md-icon class="fa fa-comments" aria-hidden="true" style="font-size: 48px;"></md-icon> 
-                                    <br><span>2 Evenements à répondre</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="span3 moudle bottom-space-20">
-                            <div class="text_block withbg bg-theme-color-3" style="text-align: center;">
+                            <div class="text_block withbg bg-theme-color-5" style="text-align: center; margin-top: 20px;">
                                 <a href='#!/albums'>
                                     <md-icon class="fa fa-picture-o" aria-hidden="true" style="font-size: 48px;"></md-icon> 
                                     <br><span>1 Nouvel album photo</span>
                                 </a>
                             </div>
-                        </div>
-                        <div class="span3 moudle bottom-space-20">
-                            <div class="text_block withbg bg-theme-color-7" style="text-align: center;">
+                            <div class="text_block withbg bg-theme-color-7" style="text-align: center; margin-top: 20px;">
                                 <a href='#!/suggestions'>
                                     <md-icon class="fa fa-thumbs-o-up" aria-hidden="true" style="font-size: 48px;"></md-icon> 
                                     <br><span>10 Votes en attente</span>
                                 </a>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                <div class="container responsive-ux">
-                    <div class="row-fluid">
-                        
-                        <div class="span3 moudle">
+                        <div class="span3 moudle bottom-space-20">
                             <div class="container" style="background: white; box-shadow: 0 1px 2px rgba(0,0,0,0.15); color: #7b7b7b; border-radius: 5px; padding-left: 10px;">
                                 <div class="evwdg first" ng-repeat="event in agenda">                                                          
                                     <div class="evwdg-data">
@@ -71,7 +65,7 @@
                             </div>
                         </div>
 
-                        <div class="span6 moudle" style="background: white; box-shadow: 0 1px 2px rgba(0,0,0,0.15);    border-radius: 5px;">
+                        <div class="span6 moudle bottom-space-20" style="background: white; box-shadow: 0 1px 2px rgba(0,0,0,0.15); border-radius: 5px;">
                             <div class="nicescroll">
                                 
                                 <ul ng-if="!conversation" class="list-group list-group-list">
@@ -129,6 +123,22 @@
                                 </div>
                             </div>
                         </div>
+                       <!--  <div class="span3 moudle bottom-space-20">
+                            <div class="text_block withbg bg-theme-color-5" style="text-align: center;">
+                                <a href='#!/albums'>
+                                    <md-icon class="fa fa-picture-o" aria-hidden="true" style="font-size: 48px;"></md-icon> 
+                                    <br><span>1 Nouvel album photo</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="span3 moudle bottom-space-20">
+                            <div class="text_block withbg bg-theme-color-7" style="text-align: center;">
+                                <a href='#!/suggestions'>
+                                    <md-icon class="fa fa-thumbs-o-up" aria-hidden="true" style="font-size: 48px;"></md-icon> 
+                                    <br><span>10 Votes en attente</span>
+                                </a>
+                            </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

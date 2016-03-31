@@ -6963,3 +6963,24 @@ Agenda
 .login_inner__check.loginError{
   border: 1px dashed #F44336;
 }
+
+.console-container {
+  font-family:Khula;
+  font-size:4em;
+  text-align:center;
+  display:block;
+  color:white;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  margin:auto;
+  background: black;
+  border-radius: 5px;
+}
+.console-underscore {
+  display:inline-block;
+  position:relative;
+  top:-0.14em;
+  left:10px;
+}
