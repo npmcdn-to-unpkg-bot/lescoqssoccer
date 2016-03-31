@@ -15,6 +15,14 @@ var UserSchema = new Schema( {
 		type: Date,
 		default: Date.now
 	},
+	lastConnectionDate: {
+		type: Date,
+		default: Date.now
+	},
+	previousConnectionDate: {
+		type: Date,
+		default: Date.now
+	},
 	name: String,
 	lastname: String,
 	email: String,
@@ -40,14 +48,12 @@ var UserSchema = new Schema( {
 	coins: Number,
 	presentation: String,
 	popularity: Number,
-	lastConnectionDate: {
-		type: Date,
-		default: Date.now
-	},
-	previousConnectionDate: {
-		type: Date,
-		default: Date.now
-	}
+	readArticles: [],
+	conversations: [{
+		conversationId: String,
+		lastUpdate: Date 
+	}],
+	readVotes: []
 } );
 
 /**

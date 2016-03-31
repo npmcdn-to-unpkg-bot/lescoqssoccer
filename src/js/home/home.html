@@ -2,6 +2,7 @@
     <div class="row-fluid" style="margin-top: 40px;">
         <div id="content_wrap">
             <div class="content-wrap-inn bottom-space">
+                
                 <div class="container responsive-ux">
                     <div class="row-fluid">
                         <div class="span3 moudle bottom-space-20">
@@ -38,8 +39,10 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="container responsive-ux">
                     <div class="row-fluid">
+                        
                         <div class="span3 moudle">
                             <div class="container" style="background: white; box-shadow: 0 1px 2px rgba(0,0,0,0.15); color: #7b7b7b; border-radius: 5px; padding-left: 10px;">
                                 <div class="evwdg first" ng-repeat="event in agenda">                                                          
@@ -63,37 +66,45 @@
                                         <div class="evwdg-test">
                                             <div class="evwdg-out"><a><p>Je viens</p></a></div>
                                         </div>
-                                    </div><!-- .evwdg-status -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="span6 moudle" style="background: white; box-shadow: 0 1px 2px rgba(0,0,0,0.15);    border-radius: 5px;">
                             <div class="nicescroll">
+                                
                                 <ul ng-if="!conversation" class="list-group list-group-list">
-                                    <li class="list-group-item" ng-repeat="user in team" ng-if="global.user._id !== user._id" ng-click="selectUser($event, user)" ng-class="{'active': currentUserId === user._id}">
+                                    <li class="list-group-item" ng-repeat="(userId, conversation) in conversations" ng-click="selectUser($event, userId)">
                                         <div class="media">
                                             <div class="media-left media-middle">
                                                 <a href="#!">
-                                                    <img ng-src="{{user.avatar && user.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{user.name || user.username}}" class="img-circle border-white" width="40" style="max-width: inherit;
+                                                    <img ng-src="{{conversation.avatar && conversation.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="conversation.username" class="img-circle border-white" width="40" style="max-width: inherit;
                                                     ">
                                                 </a>
                                             </div>
                                             <div class="media-body media-middle ellipsis">
-                                                <a href="#!" class="ellipsis" style="color: #7b7b7b; text-transform: uppercase; font-weight: 700;">
-                                                    {{user.name || user.username}}
+                                                <a href="#!" class="ellipsis" style="color: #1c1d22; text-transform: uppercase; font-weight: 700;">
+                                                    {{conversation.username}}
                                                 </a>
+                                                <p class="ellipsis">
+                                                    {{(conversation.conversation.messages.length > 0) ? (conversation.conversation.messages.slice(-1).pop().user.username || "moi") + ": " + conversation.conversation.messages.slice(-1).pop().content : "Pas encore de message" }}
+                                                </p>
                                             </div>
                                             <div class="media-right media-middle" ng-if="counters[user._id]">
-                                                <span style="color: red; display: flex;">{{counters[user._id]}} <i class="fa fa-comment text-muted" style="margin: 3px;"></i></span>
+                                                <span style="color: red; display: flex;">
+                                                    {{getUnreadMessageCount(userId)}} 
+                                                    <i class="fa fa-comment text-muted" style="margin: 3px;"></i>
+                                                </span>
                                             </div>
                                         </div>
                                     </li>
                                 </ul>
+
                                 <div id="respondwrap" class="chat-wrapper" ng-if="conversation">
                                     <i class="fa fa-times" style="cursor: pointer;z-index: 8040;background:white; color: black;position: absolute; font-size: 30px; right: 10px;" ng-click="closeDialog();"></i>
                         
-                                    <ul>
+                                    <ul id="conversationList">
                                         <li ng-repeat="item in conversation.messages | orderBy:'created'" ng-class="{'current': item.user === global.user._id || item.user._id === global.user._id}">
                                             <img ng-src="{{item.user.avatar && item.user.avatar + '?dim=300x300' || global.user.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{item.user.name || item.user.username}}">
                                             <p><b>{{item.user.username || global.user.username}}</b>: {{item.content}}</p>

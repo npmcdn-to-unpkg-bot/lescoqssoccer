@@ -5,7 +5,8 @@
  */
 var mongoose = require('mongoose'),
 	_ = require('lodash'),
-	User = mongoose.model('User');
+	User = mongoose.model('User'),
+	passport = require('passport');
 
 /**
  * Auth callback
@@ -56,6 +57,39 @@ exports.session = function(req, res) {
 		{upsert: false}, function(err){
 			res.redirect('/');
 	});
+};
+
+/**
+ * Before call session
+ */
+exports.isFutureSessionValid = function(req, res) {
+	
+	passport.authenticate('local', function(err, user, info) {
+	    
+	    if (err) {
+	    	return res.jsonp({
+	    		authenticate: false,
+	    		error: err,
+	    		info: info
+	    	}); 
+	    }
+
+	    if (!user) {
+	    	return res.jsonp({
+		    	authenticate: false,
+		    	error: 101,
+		    	info: info
+		    }); 
+		}
+
+		console.warn("passe");
+	    return res.jsonp({
+	    	authenticate: true,
+	    	error: null
+	    }); 
+
+
+	})(req, res);
 };
 
 /**

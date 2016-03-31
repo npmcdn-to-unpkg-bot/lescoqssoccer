@@ -14,13 +14,10 @@ var ConversationSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
-	updated: {
-		type: Date,
-		default: Date.now
-	},
 	users: [{
-		type: mongoose.Schema.ObjectId,
-		ref: 'User'
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User',
+		require: false
 	}],
 	messages: [new Schema({
 		created: {
@@ -28,7 +25,7 @@ var ConversationSchema = new Schema({
 			default: Date.now
 		},
 		user: {
-			type: Schema.Types.ObjectId,
+			type: mongoose.Schema.Types.ObjectId,
 			ref: 'User'
 		},
 		content: {
@@ -46,10 +43,5 @@ ConversationSchema.statics.load = function(id, cb) {
 		_id: id
 	}).populate('user').exec(cb);
 };
-
-ConversationSchema.pre("save", function(next) {
-    this.updated = new Date();
-    next();
-});
 
 mongoose.model('Conversation', ConversationSchema);

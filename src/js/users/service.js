@@ -53,19 +53,32 @@ angular.module('mean.users').service('ConversationService', ['Conversations',
 
 			getConversation: function(user1, user2) {
 
-				var conversation = _.filter(ConversationService.all, function(conversation) {
-					var usersIds = _.pluck(conversation.users, "_id");
-					return _.contains(usersIds, user1) && _.contains(usersIds, user2);
-				});
+				var usersIds;
+				var conversation, conversations;
 
-				if (conversation.length === 1) {
-					return conversation[0];
+				if(user1 === "all" || user2 === "all"){
+					conversations = _.filter(ConversationService.all, function(conversation){
+						return conversation.users.length === 0;
+					});
+
+					conversation = (conversations.length > 0) ? conversations[0] : {
+						users: [],
+						messages: []
+					};
+
 				} else {
-					return {
+					conversations = _.filter(ConversationService.all, function(conversation) {
+						usersIds = _.pluck(conversation.users, "_id");
+						return _.contains(usersIds, user1) && _.contains(usersIds, user2);
+					});
+
+					conversation = (conversations.length > 0) ? conversations[0] : {
 						users: [user1, user2],
 						messages: []
 					};
 				}
+
+				return conversation;
 			},
 
 			findOne: function(conversationId) {

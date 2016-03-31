@@ -1,56 +1,66 @@
 'use strict';
 
-angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'Team', 'Agenda', 'ConversationService', 'Conversations',
-	function($scope, Global, Team, Agenda, ConversationService, Conversations) {
+angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'Team', 'Agenda', 'ConversationService',
+	function($scope, Global, Team, Agenda, ConversationService) {
 
 		$scope.global = Global;
 		$scope.team = Team;
 		$scope.agenda = Agenda;
 
 		$scope.conversationService = ConversationService;
-		$scope.conversations = Conversations;
-
-		$scope.counters = {};
+		$scope.conversations = {};
+		$scope.conversation = null;
 
 		$scope.message = {
 			content: ""
 		};
 
-		$scope.closeDialog = function(){
-			$scope.currentUserId = null;
-			$scope.conversation = null;
+		$scope.initView = function(){
+			
+			//Initaliaze or clear input value
+			$scope.message.content = "";
+
+			//Scroll down to bottom of conversation
+			setTimeout(function(){	
+				var conversationList = $("#conversationList");
+				if(conversationList.push()){
+					conversationList.scrollTop(conversationList[0].scrollHeight);
+				}
+			});
+			
 		};
 
-		$scope.selectUser = function(evt, user) {
+		//Index all conversations in the object $scope.conversations 
+		$scope.initializeConversations = function(){
+			$scope.conversations["all"] = {
+				conversation: $scope.conversationService.getConversation("all"),
+				username: "Tout le monde",
+				avatar: "img/coq.png"
+			};
+
+			_.each(Team, function(user){
+				if($scope.global.user._id !== user._id){
+					$scope.conversations[user._id] = {
+						conversation: $scope.conversationService.getConversation($scope.global.user._id, user._id),
+						username: user.username,
+						avatar: user.avatar
+					}
+				}
+			});
+		};
+
+		$scope.selectUser = function(evt, userId) {
 
 			if (evt) {
 				evt.preventDefault();
 				evt.stopPropagation();
 			}
 
-			$scope.currentUserId = user._id;
-			$scope.conversation = $scope.conversationService.getConversation($scope.global.user._id, user._id);
-			$scope.counters[user._id] = 0;
-		};
+			$scope.conversation = $scope.conversations[userId].conversation;
+			$scope.initView();
 
-		$scope.initializeConversations = function(){
-			_.each($scope.team, function(user){
-				$scope.missingMessageCount(user);
-			});
-		};
-
-		$scope.missingMessageCount = function(user){
-			var missingMessageCounter = 0;
-			if(!$scope.counters[user._id]){
-				var conversation = $scope.conversationService.getConversation($scope.global.user._id, user._id);
-				if(conversation.messages.length > 0 && moment(conversation.updated).isAfter($scope.global.user.previousConnectionDate)){
-					missingMessageCounter = _.filter(conversation.messages, function(message){
-						return message.user._id === user._id && moment(message.created).isAfter($scope.global.user.previousConnectionDate);
-					}).length;
-					$scope.counters[user._id] = missingMessageCounter;
-				}
-			}
-			return  $scope.counters[user._id];
+			//TODO
+			//Update user conversation
 		};
 
 		$scope.sendMessage = function() {
@@ -63,10 +73,30 @@ angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'T
 				});
 
 				$scope.conversationService.addOrUpdate($scope.conversation).then(function(conversation) {
-					$scope.message.content = "";
+					if(!$scope.conversation._id){
+						$scope.conversation._id = conversation._id;
+					}
+					$scope.initView();
 				});
 
 			}
+		};
+
+		$scope.getUnreadMessageCount = function(userId){
+			var conversation = $scope.conversations[userId].conversation;
+			if(conversation.messages.length > 0 && conversation.messages.slice(-1).pop().user._id !== $scope.global.user._id){
+				var lastUpdatedDate = _.findWhere($scope.global.user.conversations, {conversationId: conversation._id}).lastUpdate; 
+				return _.filter($scope.conversations[userId].conversation.messages, function(message){
+					return message.user._id === userId && moment(message.created).isAfter(lastUpdatedDate);
+				}).length;
+			} else {
+				return 0;
+			}	
+		};
+
+		//Close the view dialog and go back to the view list
+		$scope.closeDialog = function(){
+			$scope.conversation = null;
 		};
 
 	}

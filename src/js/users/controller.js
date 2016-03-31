@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.users').controller('TeamController', ['$scope', 'Global', 'Team', '$modal',
-	function($scope, Global, Team, $modal) {
+angular.module('mean.users').controller('TeamController', ['$scope', 'Global', 'Team', '$modal', 'Users', 'AlbumService', 'ArticlesCollection',
+	function($scope, Global, Team, $modal, Users, AlbumService, ArticlesCollection) {
 
 		$scope.global = Global;
 		$scope.team = Team;
@@ -34,12 +34,30 @@ angular.module('mean.users').controller('TeamController', ['$scope', 'Global', '
 
 			$modal.open({
 				templateUrl: 'js/users/views/modal/userDetail.html',
-				controller: 'userDetailController',
+				controller: 'UserDetailController',
 				windowClass: 'userDetailPopup',
 				resolve: {
-					User: function() {
-						return user;
-					}
+
+					User: function(Users) {
+						return Users.get({
+							userId: user._id
+						}, function(user) {
+							return user;
+						}).$promise;
+					},
+
+					Albums: function(AlbumService) {
+						return AlbumService.getAlbumsByUser(user._id).then(function(albums) {
+							return albums;
+						});
+					},
+
+					UserArticles: function(ArticlesCollection) {
+						return ArticlesCollection.getArticlesByUser(user._id).then(function(articles) {
+							return articles;
+						});
+					},
+
 				}
 			});
 		};
