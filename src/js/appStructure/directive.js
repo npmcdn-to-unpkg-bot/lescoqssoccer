@@ -1210,6 +1210,15 @@ function animateCat() {
 	loop();
 }
 
+angular.module('mean.system').directive('cmLogin', ['$http', '$location', '$window', 'Global', function($http, $location, $window, Global) {
+	return {
+		restrict: 'E',
+		transclude: true,
+		templateUrl: "js/appStructure/login.html",
+		controller: 'LoginController'
+	}
+}]);
+
 angular.module('mean.system').directive('cmHeader', function() {
 	return {
 		restrict: 'E',
