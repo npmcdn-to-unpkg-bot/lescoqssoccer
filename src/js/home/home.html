@@ -1,4 +1,4 @@
-<div id="post-330" class="post-330 page type-page status-publish hentry" ng-init="initializeConversations();">
+<div id="post-330" class="post-330 page type-page status-publish hentry" ng-init="initializeConversations();" style="max-height: calc(100vh - 40px);">
     <div class="row-fluid" style="margin-top: 40px;">
         <div id="content_wrap">
             <div class="content-wrap-inn bottom-space">
@@ -13,11 +13,11 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="container responsive-ux">
                     <div class="row-fluid">
                         <div class="span3 moudle bottom-space-20">
-                            <div class="text_block withbg bg-theme-color-1" style="text-align: center;">
+                            <!-- <div class="text_block withbg bg-theme-color-1" style="text-align: center;">
                                 <a href='#!/articles'>
                                     <md-icon class="fa fa-file-text" aria-hidden="true" style="font-size: 48px;"></md-icon> 
                                     <br><span>5 Articles non lues</span>
@@ -34,7 +34,94 @@
                                     <md-icon class="fa fa-thumbs-o-up" aria-hidden="true" style="font-size: 48px;"></md-icon> 
                                     <br><span>10 Votes en attente</span>
                                 </a>
-                            </div>
+                            </div> -->
+    <div class='app_inner'>
+      <input checked='' id='tab-1' name='buttons' type='radio'>
+      <label for='tab-1'>
+        <div class='app_inner__tab'>
+          <h2>
+            <i class='icon ion-android-alarm-clock'></i>
+            8am - 10am
+          </h2>
+          <div class='tab_left'>
+            2
+            <div class='tab_left__image'>
+              2
+            </div>
+          </div>
+          <div class='tab_right'>
+            <h3>Jamie talks design</h3>
+            <h4>Monday - Thursday</h4>
+            <p>I talk a bunch of rubbish</p>
+            <button>More information</button>
+          </div>
+        </div>
+      </label>
+      <input false='' id='tab-2' name='buttons' type='radio'>
+      <label for='tab-2'>
+        <div class='app_inner__tab'>
+          <h2>
+            <i class='icon ion-android-alarm-clock'></i>
+            10am - 12am
+          </h2>
+          <div class='tab_left'>
+            <i class='big icon ion-music-note'></i>
+            <div class='tab_left__image'>
+              <i class='icon ion-music-note'></i>
+            </div>
+          </div>
+          <div class='tab_right'>
+            <h3>Arctic Monkeys Live</h3>
+            <h4>Monday - Wednesday</h4>
+            <p>Music for your lug holes</p>
+            <button>More information</button>
+          </div>
+        </div>
+      </label>
+      <input false='' id='tab-3' name='buttons' type='radio'>
+      <label for='tab-3'>
+        <div class='app_inner__tab'>
+          <h2>
+            <i class='icon ion-android-alarm-clock'></i>
+            12am - 4pm
+          </h2>
+          <div class='tab_left'>
+            <i class='big icon ion-android-microphone'></i>
+            <div class='tab_left__image'>
+              <i class='icon ion-android-microphone'></i>
+            </div>
+          </div>
+          <div class='tab_right'>
+            <h3>Steven Fry podcast</h3>
+            <h4>Staurday - Sunday</h4>
+            <p>Steven Fry says words</p>
+            <button>More information</button>
+          </div>
+        </div>
+      </label>
+      <input false='' id='tab-4' name='buttons' type='radio'>
+      <label for='tab-4'>
+        <div class='app_inner__tab'>
+          <h2>
+            <i class='icon ion-android-alarm-clock'></i>
+            4pm - 8pm
+          </h2>
+          <div class='tab_left'>
+            <i class='big icon ion-android-bar'></i>
+            <div class='tab_left__image'>
+              <i class='icon ion-android-bar'></i>
+            </div>
+          </div>
+          <div class='tab_right'>
+            <h3>Massive event</h3>
+            <h4>Monday - Friday</h4>
+            <p>Some kind of music festival</p>
+            <button>More information</button>
+          </div>
+        </div>
+      </label>
+    </div>
+
                         </div>
 
                         <div class="span3 moudle bottom-space-20">
@@ -65,10 +152,10 @@
                             </div>
                         </div>
 
-                        <div class="span6 moudle bottom-space-20" style="background: white; box-shadow: 0 1px 2px rgba(0,0,0,0.15); border-radius: 5px;">
+                        <div class="span6 moudle bottom-space-20" style="background: white; box-shadow: 0 1px 2px rgba(0,0,0,0.15); border-radius: 5px; overflow: auto;">
                             <div class="nicescroll">
                                 
-                                <ul ng-if="!conversation" class="list-group list-group-list">
+                                <ul ng-if="!conversation" class="list-group list-group-list" style="max-height: calc(100vh - 150px);">
                                     <li class="list-group-item" ng-repeat="(userId, conversation) in conversations" ng-click="selectUser($event, userId)">
                                         <div class="media">
                                             <div class="media-left media-middle">
@@ -101,7 +188,9 @@
                                     <ul id="conversationList">
                                         <li ng-repeat="item in conversation.messages | orderBy:'created'" ng-class="{'current': item.user === global.user._id || item.user._id === global.user._id}">
                                             <img ng-src="{{item.user.avatar && item.user.avatar + '?dim=300x300' || global.user.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{item.user.name || item.user.username}}">
-                                            <p><b>{{item.user.username || global.user.username}}</b>: {{item.content}}</p>
+                                            <p>
+                                                <b>{{item.user.username || global.user.username}}</b>: {{item.content}}
+                                            </p>
                                         </li>
                                     </ul>
 

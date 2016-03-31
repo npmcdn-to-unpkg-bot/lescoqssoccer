@@ -329,14 +329,14 @@ angular.module('mean.system').directive('cmSidebar', function() {
 			});
 
 			setTimeout(function() {
-				$(".nicescroll").mCustomScrollbar({
+				/*$(".nicescroll").mCustomScrollbar({
 					scrollInertia: 400,
 					autoHideScrollbar: true,
 					theme: "light",
 					advanced: {
 						updateOnContentResize: true
 					}
-				});
+				});*/
 			}, 500);
 
 			setTimeout(function() {
@@ -432,14 +432,14 @@ angular.module('mean.system').directive('cmPageBuilder', ['ConversationService',
 			}
 
 			setTimeout(function() {
-				$(".nicescroll").mCustomScrollbar({
+				/*$(".nicescroll").mCustomScrollbar({
 					scrollInertia: 400,
 					autoHideScrollbar: true,
 					theme: "light",
 					advanced: {
 						updateOnContentResize: true
 					}
-				});
+				});*/
 			}, 500);
 
 			setTimeout(function() {
