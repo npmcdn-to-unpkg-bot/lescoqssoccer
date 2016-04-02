@@ -6814,6 +6814,7 @@ Agenda
   width: 300px;
   height: auto;
   margin: 50px auto;
+  min-height: 300px;
 }
 
 .login_inner {
@@ -6849,9 +6850,6 @@ Agenda
   border-radius: 100%;
   width: 4em;
   height: 4em;
-  position: absolute;
-  margin: -250px 120px;
-  opacity: 0;
   text-align: center;
 }
 .login_inner__check--complete i {
@@ -6959,10 +6957,24 @@ Agenda
 
 .login_inner__check.loginSucess{
   border: 1px dashed #4CAF50;
+  margin: auto;
 }
 
 .login_inner__check.loginError{
   border: 1px dashed #F44336;
+  margin: 50px auto;
+}
+
+.login_inner__check.loginSucess .loginValidationIcon{
+  color: #4CAF50;
+}
+
+.login_inner__check.loginError .loginValidationIcon{
+  color: #F44336;
+}
+
+.loginContainerSucess{
+  padding-top: 120px;
 }
 
 .console-container {
@@ -7047,7 +7059,7 @@ body .right {
   height: 175px;
 }
 .app_inner input[type="radio"]:checked + label .app_inner__tab .tab_right {
-  top: 39px;
+  top: 23px;
   -webkit-transition: all 0.3s 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
   transition: all 0.3s 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
@@ -7146,7 +7158,7 @@ body .right {
 .app_inner__tab h2 {
   position: absolute;
   right: 20px;
-  top: 16px;
+  top: 0;
   color: #1a1c1d;
   font-size: 18px;
 }
@@ -7165,6 +7177,14 @@ body .right {
   text-align: right;
   padding: 20px;
 }
+.tab_right h2, .tab_right h3, .tab_right h4{
+  line-height: inherit;
+}
+
+.tab_right button{
+  padding: 0px 10px !important;
+}
+
 .app_inner__tab .tab_right h3, .app_inner__tab .tab_right h4, .app_inner__tab .tab_right p {
   margin: 0;
 }
@@ -7218,10 +7238,10 @@ body .right {
   top: -100px;
   text-align: center;
   background: white;
-  left: 47px;
+  left: 20px;
   border-radius: 20px;
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
 }
 .app_inner__tab .tab_left__image i {
   color: white;

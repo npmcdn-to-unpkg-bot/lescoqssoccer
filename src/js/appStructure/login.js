@@ -3,19 +3,12 @@
 angular.module('mean.system').controller( 'LoginController', ['$scope', '$http', 'Global',
 	 function($scope, $http, Global){
 
+	 	$scope.isValid;
+	 	$scope.showSignin = true;
+
 		$scope.submit = function($form) {
 
-			$(".login_inner, .login_inner__avatar").animate({
-				'opacity': '0'
-			}, 500);
-
-			setTimeout(function() {
-				$(".login_inner__check").css({
-					'opacity': '1',
-					'animation': 'spinner 2s 0s linear',
-					'transition': 'all ease 3s'
-				});
-			});
+			$scope.showSignin = false;
 
 			setTimeout(function() {
 
@@ -29,22 +22,16 @@ angular.module('mean.system').controller( 'LoginController', ['$scope', '$http',
 				}).then(function successCallback(response) {
 					
 					if(response.data.authenticate){
-						
-						var icon = $(".login_inner__check").addClass('loginSucess').find('i:first');
-						icon.css('display', 'inline').animate({
-							'opacity': '1'
-						}, 500);
 
+						$scope.isValid = true;
+						
 						setTimeout(function(){
 							$('form').submit();
-						}, 600);
+						}, 1000);
 
 					} else{
 
-						var icon = $(".login_inner__check").addClass('loginError').find('i:last');
-						icon.css('display', 'inline').animate({
-							'opacity': '1'
-						}, 500);
+						$scope.isValid = false;
 
 						switch(response.data.info.message){
 							case "Invalid password": 
@@ -58,13 +45,24 @@ angular.module('mean.system').controller( 'LoginController', ['$scope', '$http',
 								break;
 						}
 					}
+
+					setTimeout(function() {
+						$(".login_inner__check").css({
+							'animation': 'spinner 2s 0s linear',
+							'transition': 'all ease 3s'
+						});
+					});
+
+					$(".login_inner__check").find('i').css('display', 'inline').animate({
+						'opacity': '1'
+					}, 500);
 							
 				}, function errorCallback(response) {
 
+					$scope.isValid = false;
 					$scope.errorMessage = "Pas marché...";
 
-					var icon = $(".login_inner__check").addClass('loginError').find('i:last');
-						icon.css('display', 'inline').animate({
+					$(".login_inner__check").find('i').css('display', 'inline').animate({
 						'opacity': '1'
 					}, 500);
 
@@ -74,9 +72,9 @@ angular.module('mean.system').controller( 'LoginController', ['$scope', '$http',
 		};
 
 		$scope.showLogin = function(){
-			$(".login_inner__check").css('opacity', '0');
-			$(".login_inner, .login_inner__avatar").css('opacity','1');
+			$scope.showSignin = true;
 			$scope.errorMessage = null;
+			$scope.isValid = null;
 		};
 	}
 ] );

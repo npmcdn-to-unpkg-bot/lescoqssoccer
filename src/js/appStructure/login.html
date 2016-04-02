@@ -2,10 +2,10 @@
 	LES COQS SOCCER
 </div>
 <div class='login'>
-	<input type="button" ng-click="showLogin();" ng-if="errorMessage" value="Retour au formulaire" style="text-align: center; margin: 20px 80px;">
+	<input type="button" ng-click="showLogin();" ng-if="errorMessage" value="Retour au formulaire" style="text-align: center; margin: 20px 80px; background: #757575;">
 	</input>
 
-	<div class='login_inner'>
+	<div class='login_inner' ng-show="showSignin">
 	  	<form class="formSignin" name="form" action="users/session" method="POST">
 	   		<div class='login_inner__avatar'>
 	   			<img src="img/coq.png">
@@ -16,13 +16,14 @@
 	  	</form>
 	</div>
 	
-	<div class='login_inner__check'>
-		<div class='login_inner__check--complete'>
-		  	<i class='fa fa-check' style="color: #4CAF50;"></i>
-		  	<i class='fa fa-times' style="color: #F44336;"></i>
-		  	<div ng-if="errorMessage !== ''" style="color: #F44336; position: absolute; margin: 20px -70px; width: 200px;">
-		  		{{errorMessage}}
-		  	</div>
+	<div ng-show="!showSignin" ng-class="(isValid) ? 'loginContainerSucess' : 'loginContainerError'">
+		<div class='login_inner__check' ng-class="(isValid) ? 'loginSucess' : 'loginError'">
+			<div class='login_inner__check--complete'>
+			  	<i class='fa loginValidationIcon' ng-class="(isValid) ? 'fa-check' : 'fa-times'"></i>
+			  	<div ng-if="errorMessage !== ''" style="color: #F44336; width: 200px; margin: 20px -70px;">
+			  		{{errorMessage}}
+			  	</div>
+			</div>
 		</div>
 	</div>
 </div>

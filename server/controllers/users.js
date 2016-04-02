@@ -82,7 +82,6 @@ exports.isFutureSessionValid = function(req, res) {
 		    }); 
 		}
 
-		console.warn("passe");
 	    return res.jsonp({
 	    	authenticate: true,
 	    	error: null
