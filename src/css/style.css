@@ -1386,7 +1386,7 @@ ol.commentlist {
 #respond textarea{ font-size:12px; width:100%; max-width:none; height:128px; overflow:auto; resize:none; padding:7px 10px 7px 10px; margin-bottom:25px; }
 .sending{ float:left; display:block;width:80px; height:27px;line-height:27px;}
 h3#reply-title{
-  position: relative; line-height: 20px; margin: 40px 0;
+  position: relative; line-height: 20px; margin: 50px 0 20px 0;
 }
 #comments_inlist,
 .comm-reply-title{
@@ -2846,14 +2846,15 @@ input:-moz-placeholder { color:white; }
     padding-right:20px;
     padding-top:10px;
     position:relative;
-    border-top: 1px solid #7b7b7b;
+    text-align: right;
 }
 .reply .comments_content {
     border-top: 1px solid white;
 }
 .reply {
-    padding-left:60px;
+    padding: 5px 10px;
     background-color: #000000;
+    margin-right: -30px;
 }
 .comments.reply {
     padding-left:60px;
@@ -4624,7 +4625,7 @@ li>.ripplelink:hover, li.active>.ripplelink{
 
 .chat-wrapper ul {
   margin: 0 auto;
-  max-height: 500px;
+  max-height: calc(100vh - 330px);
   overflow-x: hidden;
   overflow-y: auto;
   padding-right: 30px;

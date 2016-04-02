@@ -77,64 +77,44 @@
 						
 						<div id="comments">
 							<div id="respondwrap">
-								<div id="respond" class="comment-respond">
+								<div class="chat-wrapper" style="padding-left: 0;">
 
 									<h3 id="reply-title" class="comment-reply-title" style="color: #7b7b7b;">
-										Commentaires
+										COMMENTAIRES
 									</h3>
 
-									<div
-									class="comments"
-									ng-repeat="comment in article.comments | reverse">
+									<ul id="conversationList" style="padding-top: 20px; padding-right: 10px; max-height: inherit;">
+                                        <li ng-repeat="comment in article.comments | reverse" style="float: inherit;">
+                                            <img ng-src="{{comment.user.avatar || global.user.avatar}}?dim100x100" alt="{{item.user.name || item.user.username}}">                                    
+                                            <i>Le {{comment.created | date:dateFormat}},</i>
+                                            <p>
+                                                <b>{{comment.user.username || global.user.username}}</b>: {{comment.content}}
+                                            </p>
 
-										<img class="img-circle" ng-src="{{comment.user.avatar || global.user.avatar}}?dim100x100" alt="{{comment.user.username}}" style="width: 40px; margin-bottom: 10px; height: 40px;"/>
+                                            <div>
+	                                            <ul style="padding-top: 20px; padding-right: 10px;">
+		                                            <li ng-repeat="reply in comment.replies | orderBy:'-created'" class="current" style="box-shadow: none;">
+			                                            <img ng-src="{{reply.user.avatar || global.user.avatar}}?dim100x100" alt="{{reply.user.username || global.user.username}}" class="img-circle" style="position: absolute;right: -80px;left: inherit;">
+			                                            <i>Le {{reply.created | date:dateFormat}},</i>
+			                                            <p>
+			                                                <b>{{reply.user.username || global.user.username}}</b>: {{reply.content}}
+			                                            </p>
+			                                        </li>
+		                                        </ul>
+		                                    </div>
 
-										<p class="meta" style="display: inline-block;">
-											<a ng-href="#!/users/detail/{{comment.user._id || global.user._id}}" style="color: #1c1d22;">
-												{{comment.user.username || global.user.username}},
-											</a> le {{comment.created | date:dateFormat}}
-										</p>
-
-										<!-- ajouter les commentaires anonymes -->
-										<div class="comments_content">
-											<p>
-												{{comment.content}}
-											</p>
-											<a ng-attr-id="{{comment._id}}-reply" href="#!" ng-click="showAnswerForm($event, comment)" class="reply">
-												Répondre
-											</a>
-											<a ng-attr-id="{{comment._id}}-reply-cancel" href="#!" ng-click="hideAnswerForm($event, comment._id)" class="reply reply-cancel" style="display: none;">
-												Annuler
-											</a>
-										</div>
-
-										<div
-										class="comments reply"
-										ng-repeat="reply in comment.replies | orderBy:'-created'">
-
-											<img class="img-circle" ng-src="{{reply.user.avatar || global.user.avatar}}?dim100x100" alt="{{reply.user.username || global.user.username}}" style="width: 40px; margin-bottom: 10px; height: 40px;"/>
-
-											<p class="meta" style="display: inline-block;">
-												<a ng-href="#!/users/detail/{{reply.user._id || global.user._id}}" style="color: #1c1d22;">
-													{{reply.user.username || global.user.username}},
-												</a> le {{reply.created | date:dateFormat}}
-											</p>
-
-											<!-- ajouter les commentaires anonymes -->
+		                                    <!-- ajouter les commentaires anonymes -->
 											<div class="comments_content">
-												<p>
-													{{reply.content}}
-												</p>
-
-												<div class="clr"></div>
-												<div class="reply_icon"></div>
+												<a ng-attr-id="{{comment._id}}-reply" href="#!" ng-click="showAnswerForm($event, comment)" class="reply" ng-show="!currentReplyId">
+													Répondre
+												</a>
 											</div>
-										</div>
-									</div>
+                                        </li>
+                                    </ul>
 
 									<h3 id="reply-title" class="comment-reply-title">
 										<span class="comm-reply-title">
-											LAISSER UN COMMENTAIRE
+											Laisser un commentaire
 										</span>
 									</h3>
 
@@ -147,15 +127,16 @@
 											cols="100%"
 											tabindex="4"
 											aria-required="true"
-											placeholder="COMMENTAIRE">
+											placeholder="COMMENTAIRE"
+											style="width: 100%; padding: 0; height: 80px;">
 											</textarea>
 										</p>
-										<p class="form-submit" style="text-align: right;">
+										<p class="form-submit" style="text-align: right; margin-top: 20px;">
 											<input name="submit" type="button" id="submit" value="AJOUTER" ng-click="addComment();">
 										</p>
 									</form>
 
-									<form class="comment-form answer" id="formAnswer" style="display: none;">
+									<form id="formAnswer" class="comment-form answer" ng-show="currentReplyId">
 										<p style="margin-bottom: 0px !important;padding-right: 0;margin-right: -20px;">
 											<textarea
 											name="answer"
@@ -164,11 +145,14 @@
 											cols="100%"
 											tabindex="4"
 											aria-required="true"
-											placeholder="REPONSE">
+											placeholder="REPONSE"
+											style="width: 100%; padding: 0; height: 80px;">
 											</textarea>
 										</p>
 										<p class="form-submit" style="text-align: right; margin-bottom: 0px !important;padding-right: 0;margin-right: -20px;">
-											<input name="submit" type="button" id="submit" value="Répondre" ng-click="addReply();">
+											<input type="button" ng-click="hideAnswerForm($event)" class="reply-cancel" value="Annuler" style="color: white; margin: 10px 5px 0; height: inherit; line-height: inherit; padding: 5px 10px;">
+											</input>
+											<input name="submit" type="button" id="submit" value="Répondre" ng-click="addReply();" style="padding: 5px;line-height: inherit;margin-top: 10px;">
 										</p>
 									</form>
 

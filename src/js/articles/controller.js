@@ -65,6 +65,8 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 		$scope.newComment = "";
 		$scope.dateFormat = "dd MMMM yyyy";
 
+		$scope.currentReplyId;
+
 		//Format html content from article content edit by wysiwyg
 		$scope.getFormattedContent = function(html) {
 			return $sce.trustAsHtml(html);
@@ -88,17 +90,10 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 			evt.preventDefault();
 			evt.stopPropagation();
 
-			var id = comment._id;
+			$scope.currentReplyId = comment._id;
 			$scope.reply = comment;
 
-			$(".reply-cancel").hide();
-			$(".reply:not(.reply-cancel)").show();
-
-			$("#" + id + '-reply').hide();
-			var elt = $("#" + id + "-reply-cancel");
-
-			elt.show();
-			$('#formAnswer').show().insertAfter(elt);
+			$('#formAnswer').insertAfter($("#" + $scope.currentReplyId + "-reply"));
 		};
 
 		$scope.hideAnswerForm = function(evt) {
@@ -109,9 +104,8 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 			}
 
 			$scope.reply = "";
-			$(".reply-cancel").hide();
-			$('#formAnswer').hide();
-			$(".reply:not(.reply-cancel)").show();
+			$scope.replyText = "";
+			$scope.currentReplyId = null;
 		};
 
 		$scope.addComment = function() {
