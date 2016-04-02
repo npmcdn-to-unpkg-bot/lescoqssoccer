@@ -106,18 +106,18 @@
 									<ul id="conversationList" style="padding-top: 20px; padding-right: 10px; max-height: inherit;">
                                         <li ng-repeat="comment in article.comments | reverse" style="float: inherit;">
                                             <img ng-src="{{comment.user.avatar || global.user.avatar}}?dim100x100" alt="{{item.user.name || item.user.username}}">                                    
-                                            <i>Le {{comment.created | date:dateFormat}},</i>
+                                            <b style="text-transform: uppercase;">{{comment.user.username || global.user.username}}</b><i>, le {{comment.created | date:dateFormat}}</i>
                                             <p>
-                                                <b>{{comment.user.username || global.user.username}}</b>: {{comment.content}}
+                                                {{comment.content}}
                                             </p>
 
                                             <div>
 	                                            <ul style="padding-top: 20px; padding-right: 10px;">
 		                                            <li ng-repeat="reply in comment.replies | orderBy:'-created'" class="current" style="box-shadow: none;">
 			                                            <img ng-src="{{reply.user.avatar || global.user.avatar}}?dim100x100" alt="{{reply.user.username || global.user.username}}" class="img-circle" style="position: absolute;right: -80px;left: inherit;">
-			                                            <i>Le {{reply.created | date:dateFormat}},</i>
+			                                            <b style="text-transform: uppercase;">{{reply.user.username || global.user.username}}</b><i>, le {{reply.created | date:dateFormat}}</i>
 			                                            <p>
-			                                                <b>{{reply.user.username || global.user.username}}</b>: {{reply.content}}
+			                                                {{reply.content}}
 			                                            </p>
 			                                        </li>
 		                                        </ul>
