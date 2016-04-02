@@ -4688,7 +4688,7 @@ li>.ripplelink:hover, li.active>.ripplelink{
   height: 45px;
   top: 0;
   position: absolute;
-  border-radius: 50%;
+  border-radius: 5px;
   background-position: 50% 50%;
   background-repeat: no-repeat;
 }
