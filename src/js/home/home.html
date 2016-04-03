@@ -76,7 +76,7 @@
                             <div class="nicescroll">
                                 
                                 <ul ng-if="!conversation" class="list-group list-group-list" style="max-height: calc(100vh - 150px);">
-                                    <li class="list-group-item" ng-repeat="(userId, conversation) in conversations" ng-click="selectUser($event, userId)">
+                                    <li class="list-group-item" ng-repeat="conversation in conversations | orderConversations: 'conversation'" ng-click="selectUser($event, conversation.userId)">
                                         <div class="media">
                                             <div class="media-left media-middle">
                                                 <a href="#!">
@@ -88,13 +88,13 @@
                                                 <a href="#!" class="ellipsis" style="color: #1c1d22; text-transform: uppercase; font-weight: 700;">
                                                     {{conversation.username}}
                                                 </a>
-                                                <p class="ellipsis">
+                                                <div class="ellipsis" style="max-height: 15px;line-height: 15px; white-space: initial;">
                                                     {{(conversation.conversation.messages.length > 0) ? (conversation.conversation.messages.slice(-1).pop().user.username || "moi") + ": " + conversation.conversation.messages.slice(-1).pop().content : "Pas encore de message" }}
-                                                </p>
+                                                </div>
                                             </div>
-                                            <div class="media-right media-middle" ng-if="counters[user._id]">
+                                            <div class="media-right media-middle" ng-if="getUnreadMessageCount(conversation.userId)>0">
                                                 <span style="color: red; display: flex;">
-                                                    {{getUnreadMessageCount(userId)}} 
+                                                    {{getUnreadMessageCount(conversation.userId);}} 
                                                     <i class="fa fa-comment text-muted" style="margin: 3px;"></i>
                                                 </span>
                                             </div>

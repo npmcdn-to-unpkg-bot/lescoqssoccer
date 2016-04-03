@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'Team', 'Agenda', 'ConversationService', 'Suggestions', 'ArticleItemsCount', 'AlbumItemsCount',
-	function($scope, Global, Team, Agenda, ConversationService, Suggestions, ArticleItemsCount, AlbumItemsCount) {
+angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'Team', 'Agenda', 'ConversationService', 'Suggestions', 'ArticleItemsCount', 'AlbumItemsCount', 'UserService',
+	function($scope, Global, Team, Agenda, ConversationService, Suggestions, ArticleItemsCount, AlbumItemsCount, UserService) {
 
 		$scope.global = Global;
 		$scope.team = Team;
@@ -25,7 +25,8 @@ angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'T
 			$scope.conversations["all"] = {
 				conversation: $scope.conversationService.getConversation("all"),
 				username: "Tout le monde",
-				avatar: "img/coq.png"
+				avatar: "img/coq.png",
+				userId: 'all'
 			};
 
 			_.each(Team, function(user){
@@ -33,7 +34,8 @@ angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'T
 					$scope.conversations[user._id] = {
 						conversation: $scope.conversationService.getConversation($scope.global.user._id, user._id),
 						username: user.username,
-						avatar: user.avatar
+						avatar: user.avatar,
+						userId: user._id
 					}
 				}
 			});
@@ -64,8 +66,7 @@ angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'T
 			$scope.conversation = $scope.conversations[userId].conversation;
 			$scope.initChatView();
 
-			//TODO
-			//Update user conversation
+			UserService.updateConversation($scope.conversation._id);
 		};
 
 		$scope.sendMessage = function() {
@@ -90,10 +91,14 @@ angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'T
 		$scope.getUnreadMessageCount = function(userId){
 			var conversation = $scope.conversations[userId].conversation;
 			if(conversation.messages.length > 0 && conversation.messages.slice(-1).pop().user._id !== $scope.global.user._id){
-				var lastUpdatedDate = _.findWhere($scope.global.user.conversations, {conversationId: conversation._id}).lastUpdate; 
-				return _.filter($scope.conversations[userId].conversation.messages, function(message){
-					return message.user._id === userId && moment(message.created).isAfter(lastUpdatedDate);
-				}).length;
+				var conversation = _.findWhere($scope.global.user.conversations, {conversationId: conversation._id});
+				if(conversation){
+					return _.filter($scope.conversations[userId].conversation.messages, function(message){
+						return (message.user._id !== $scope.global.user._id) && moment(message.created).isAfter(conversation.lastUpdate);
+					}).length;
+				} else {
+					return 0;
+				}
 			} else {
 				return 0;
 			}	
