@@ -1,5 +1,5 @@
 <div id="post-330" class="post-330 page type-page status-publish hentry" ng-init="initialize();" style="max-height: calc(100vh - 40px);">
-    <div class="row-fluid" style="margin-top: 40px;">
+    <div class="row-fluid" style="margin-top: 30px;">
         <div id="content_wrap">
             <div class="content-wrap-inn bottom-space">
                 
@@ -25,10 +25,10 @@
                             <div class='app_inner'>
                                 <div style="height: 80px; margin: 20px 0 40px;">
                                     <div class='tab_right' style="float: right; display: flex;width: 33%;">
-                                        <div class="text_block withbg bg-theme-color-5" style="text-align: center;         margin: auto !important; display: flex; width: 60px; height: 60px; padding: 0;">
-                                            <a href='#!/articles' style="margin: auto;">
-                                                <span style="font-size: 30px;line-height: 60px;">{{unreadArticleCount}}</span> 
-                                                <br><p style="margin-top: 10px; color: #1c1d22; font-size: medium;"><b>Article</b></p>
+                                        <div class="text_block withbg bg-theme-color-7" style="text-align: center;     margin: auto !important; display: flex; width: 60px; height: 60px;    padding: 0;">
+                                            <a href='#!/suggestions' style="margin: auto;">
+                                                <span style="font-size: 30px;line-height: 60px;">{{unreadVoteCount}}</span> 
+                                                <br><p style="margin-top: 10px; color: #1c1d22; font-size: medium;"><b>Votes</b></p>
                                             </a>
                                         </div>
                                     </div>
@@ -41,10 +41,10 @@
                                         </div>
                                     </div>
                                     <div class='tab_right' style="float: right; display: flex;width: 33%;">
-                                        <div class="text_block withbg bg-theme-color-7" style="text-align: center;     margin: auto !important; display: flex; width: 60px; height: 60px;    padding: 0;">
-                                            <a href='#!/suggestions' style="margin: auto;">
-                                                <span style="font-size: 30px;line-height: 60px;">{{unreadVoteCount}}</span> 
-                                                <br><p style="margin-top: 10px; color: #1c1d22; font-size: medium;"><b>Votes</b></p>
+                                        <div class="text_block withbg bg-theme-color-5" style="text-align: center;         margin: auto !important; display: flex; width: 60px; height: 60px; padding: 0;">
+                                            <a href='#!/articles' style="margin: auto;">
+                                                <span style="font-size: 30px;line-height: 60px;">{{unreadArticleCount}}</span> 
+                                                <br><p style="margin-top: 10px; color: #1c1d22; font-size: medium;"><b>Article</b></p>
                                             </a>
                                         </div>
                                     </div>
@@ -59,11 +59,12 @@
                                             </h2>
                                             <div class='tab_left'>
                                                 <div class='tab_left__image'>
+                                                    <i class='fa fa-calendar'></i>
                                                 </div>
                                             </div>
                                             <div class='tab_right ellispis' style="width: 66%;">
-                                                <h3 class="ellispis">{{event.title}}</h3>
-                                                <p>{{event.user.username}}</p>
+                                                <h3 class="ellispis" style="color: white;">{{event.title}}</h3>
+                                                <p>organisé par <b style="text-transform: uppercase;">{{event.user.username}}</b></p>
                                                 <button style="width: 110px;">Je viens</button>
                                             </div>
                                         </div>

@@ -6983,14 +6983,15 @@ Agenda
   font-size:4em;
   text-align:center;
   display:block;
-  color:white;
+  color:black;
   top:0;
   bottom:0;
   left:0;
   right:0;
   margin:auto;
-  background: black;
+  background: white;
   border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
 }
 .console-underscore {
   display:inline-block;
@@ -7246,8 +7247,8 @@ body .right {
 }
 .app_inner__tab .tab_left__image i {
   color: white;
-  font-size: 40px;
-  top: 18px;
+  font-size: 30px;
+  top: 15px;
   position: relative;
 }
 
