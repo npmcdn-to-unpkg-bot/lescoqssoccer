@@ -6,7 +6,7 @@ angular.module('mean.system').controller( 'LoginController', ['$scope', '$http',
 	 	$scope.isValid;
 	 	$scope.showSignin = true;
 
-		$scope.submit = function($form) {
+		$scope.signin = function($form) {
 
 			$scope.showSignin = false;
 
@@ -71,7 +71,17 @@ angular.module('mean.system').controller( 'LoginController', ['$scope', '$http',
 			}, 1000);
 		};
 
+		$scope.signup = function(){
+
+		};
+
 		$scope.showLogin = function(){
+			$scope.showSignin = true;
+			$scope.errorMessage = null;
+			$scope.isValid = null;
+		};
+
+		$scope.showSignup = function(){
 			$scope.showSignin = true;
 			$scope.errorMessage = null;
 			$scope.isValid = null;

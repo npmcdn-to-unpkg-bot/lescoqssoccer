@@ -56,16 +56,18 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 	}
 ]);
 
-angular.module('mean.articles').controller('ArticleDetailController', ['$scope', '$location', '$sce', '$modal', 'Global', 'ArticlesCollection', 'Article',
-	function($scope, $location, $sce, $modal, Global, ArticlesCollection, Article) {
+angular.module('mean.articles').controller('ArticleDetailController', ['$scope', '$location', '$sce', '$modal', 'Global', 'ArticlesCollection', 'Article', 'UserService',
+	function($scope, $location, $sce, $modal, Global, ArticlesCollection, Article, UserService) {
 
 		$scope.global = Global;
 		$scope.ArticlesCollection = ArticlesCollection;
 		$scope.article = Article;
 		$scope.newComment = "";
 		$scope.dateFormat = "dd MMMM yyyy";
-
 		$scope.currentReplyId;
+
+		//set article like read
+		UserService.addReadArticle($scope.article._id);
 
 		//Format html content from article content edit by wysiwyg
 		$scope.getFormattedContent = function(html) {

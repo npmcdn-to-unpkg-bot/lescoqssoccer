@@ -6020,10 +6020,10 @@ a.igoNot{
 
 .menu {
   position: fixed;
-  top: 120px;
+  top: 150px;
   left: 0;
-  width: 300px;
-  height: calc(100vh - 120px);
+  width: 250px;
+  height: calc(100vh - 150px);
   background: #1c1d22;
 }
 
@@ -6537,9 +6537,9 @@ a:hover {
   position: fixed;
   top: 0;
   left: 0;
-  width: 300px;
-  height: 120px;
-  padding: 1em 0 0 0;
+  width: 250px;
+  height: 150px;
+  padding: 40px 0 0 0;
   text-align: center;
   color: #3b3d4a;
   background: #1c1d22;
@@ -6559,7 +6559,7 @@ a:hover {
 .content {
   position: relative;
   min-height: 300px;
-  margin: 0 0 0 300px;
+  margin: 0 0 0 250px;
 }
 
 .content--loading {
@@ -6656,7 +6656,7 @@ Agenda
 
 .evwdg {
     margin-bottom: 25px;
-  width:300px;
+    width:300px;
     height: 100px;
     }
   
@@ -7056,7 +7056,7 @@ body .right {
   display: none;
 }
 .app_inner input[type="radio"]:checked + label .app_inner__tab {
-  height: 175px;
+  height: 150px;
 }
 .app_inner input[type="radio"]:checked + label .app_inner__tab .tab_right {
   top: 23px;
@@ -7099,49 +7099,49 @@ body .right {
   display: block;
   width: 100%;
 }
-.app_inner label:nth-of-type(1) .app_inner__tab {
-  background: #99b998;
+.app_inner label.tab-1 .app_inner__tab {
+  background: #9E9E9E;
   height: 200px;
 }
-.app_inner label:nth-of-type(1) .app_inner__tab:hover {
+.app_inner label.tab-1 .app_inner__tab:hover {
   -webkit-transition: all .2s;
   transition: all .2s;
-  background: #8db18c;
+  background: rgba(0,0,0,.2);
 }
-.app_inner label:nth-of-type(1) .app_inner__tab .tab_left__image {
-  background: #EA495F;
+.app_inner label.tab-1 .app_inner__tab .tab_left__image {
+  background: rgba(0,0,0,.5);
 }
-.app_inner label:nth-of-type(2) .app_inner__tab {
+.app_inner label.tab-2 .app_inner__tab {
+  background: #795548;
+}
+.app_inner label.tab-2 .app_inner__tab:hover {
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  background: #D7CCC8;
+}
+.app_inner label.tab-2 .app_inner__tab .tab_left__image {
+  background: rgba(0,0,0,0.4);
+}
+.app_inner label.tab-3 .app_inner__tab {
+  background: #607D8B;
+}
+.app_inner label.tab-3 .app_inner__tab:hover {
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  background: #CFD8DC;
+}
+.app_inner label.tab-3 .app_inner__tab .tab_left__image {
   background: #E4B794;
 }
-.app_inner label:nth-of-type(2) .app_inner__tab:hover {
-  -webkit-transition: all .2s;
-  transition: all .2s;
-  background: #e0ac84;
-}
-.app_inner label:nth-of-type(2) .app_inner__tab .tab_left__image {
-  background: #99B998;
-}
-.app_inner label:nth-of-type(3) .app_inner__tab {
-  background: #f4837d;
-}
-.app_inner label:nth-of-type(3) .app_inner__tab:hover {
-  -webkit-transition: all .2s;
-  transition: all .2s;
-  background: #f2716a;
-}
-.app_inner label:nth-of-type(3) .app_inner__tab .tab_left__image {
-  background: #E4B794;
-}
-.app_inner label:nth-of-type(4) .app_inner__tab {
+.app_inner label.tab-4 .app_inner__tab {
   background: #ea495f;
 }
-.app_inner label:nth-of-type(4) .app_inner__tab:hover {
+.app_inner label.tab-4 .app_inner__tab:hover {
   -webkit-transition: all .2s;
   transition: all .2s;
   background: #e8374f;
 }
-.app_inner label:nth-of-type(4) .app_inner__tab .tab_left__image {
+.app_inner label.tab-4 .app_inner__tab .tab_left__image {
   background: #F4837D;
 }
 .app_inner__tab {
@@ -7170,7 +7170,7 @@ body .right {
   transition: all .3s;
 }
 .app_inner__tab .tab_right {
-  width: 60%;
+  width: 33%;
   float: right;
   position: relative;
   top: 200px;
@@ -7239,7 +7239,7 @@ body .right {
   text-align: center;
   background: white;
   left: 20px;
-  border-radius: 20px;
+  border-radius: 5px;
   width: 60px;
   height: 60px;
 }

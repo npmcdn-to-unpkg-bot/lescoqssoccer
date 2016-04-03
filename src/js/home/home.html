@@ -1,4 +1,4 @@
-<div id="post-330" class="post-330 page type-page status-publish hentry" ng-init="initializeConversations();" style="max-height: calc(100vh - 40px);">
+<div id="post-330" class="post-330 page type-page status-publish hentry" ng-init="initialize();" style="max-height: calc(100vh - 40px);">
     <div class="row-fluid" style="margin-top: 40px;">
         <div id="content_wrap">
             <div class="content-wrap-inn bottom-space">
@@ -17,32 +17,41 @@
                 <div class="container responsive-ux">
                     <div class="row-fluid">
                         
-                        <div class="span3 moudle bottom-space-20">
-                            <div class="text_block withbg bg-theme-color-1" style="text-align: center;">
-                                <a href='#!/articles'>
-                                    <md-icon class="fa fa-file-text" aria-hidden="true" style="font-size: 48px;"></md-icon> 
-                                    <br><span>5 Articles non lues</span>
-                                </a>
-                            </div>
-                            <div class="text_block withbg bg-theme-color-5" style="text-align: center; margin-top: 20px;">
-                                <a href='#!/albums'>
-                                    <md-icon class="fa fa-picture-o" aria-hidden="true" style="font-size: 48px;"></md-icon> 
-                                    <br><span>1 Nouvel album photo</span>
-                                </a>
-                            </div>
-                            <div class="text_block withbg bg-theme-color-7" style="text-align: center; margin-top: 20px;">
-                                <a href='#!/suggestions'>
-                                    <md-icon class="fa fa-thumbs-o-up" aria-hidden="true" style="font-size: 48px;"></md-icon> 
-                                    <br><span>10 Votes en attente</span>
-                                </a>
-                            </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20" style="margin-left: -15px;">
+                            
                         </div>
 
-                        <div class="span3 moudle bottom-space-20" style="background: white; padding: 5px; border-radius: 5px; height: calc(100vh - 150px);">
+                        <div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20" style="background: white; padding: 5px; border-radius: 5px; height: calc(100vh - 150px); box-shadow: 0 1px 2px rgba(0,0,0,0.15);">
                             <div class='app_inner'>
+                                <div style="height: 80px; margin: 20px 0 40px;">
+                                    <div class='tab_right' style="float: right; display: flex;width: 33%;">
+                                        <div class="text_block withbg bg-theme-color-5" style="text-align: center;         margin: auto !important; display: flex; width: 60px; height: 60px; padding: 0;">
+                                            <a href='#!/articles' style="margin: auto;">
+                                                <span style="font-size: 30px;line-height: 60px;">{{unreadArticleCount}}</span> 
+                                                <br><p style="margin-top: 10px; color: #1c1d22; font-size: medium;"><b>Article</b></p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class='tab_right' style="float: right; display: flex;width: 33%;">
+                                        <div class="text_block withbg bg-theme-color-8" style="text-align: center;     margin: auto !important; display: flex; width: 60px; height: 60px;padding: 0;">
+                                            <a href='#!/albums' style="margin: auto;">
+                                                <span style="font-size: 30px;line-height: 60px;">{{unreadAlbumCount}}</span> 
+                                                <br><p style="margin-top: 10px; color: #1c1d22; font-size: medium;"><b>Albums</b></p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class='tab_right' style="float: right; display: flex;width: 33%;">
+                                        <div class="text_block withbg bg-theme-color-7" style="text-align: center;     margin: auto !important; display: flex; width: 60px; height: 60px;    padding: 0;">
+                                            <a href='#!/suggestions' style="margin: auto;">
+                                                <span style="font-size: 30px;line-height: 60px;">{{unreadVoteCount}}</span> 
+                                                <br><p style="margin-top: 10px; color: #1c1d22; font-size: medium;"><b>Votes</b></p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div ng-repeat="event in agenda">
-                                    <input checked='' id='tab-{{$index+1}}' name='buttons' type='radio'>
-                                    <label for='tab-{{$index+1}}'>
+                                    <input id='tab-{{$index+1}}' ng-checked="{{$index === 0}}" name='buttons' type='radio'>
+                                    <label class="tab-{{$index+1}}" for='tab-{{$index+1}}'>
                                         <div class='app_inner__tab'>
                                             <h2>
                                                 <i class='icon ion-android-alarm-clock'></i>
@@ -52,10 +61,10 @@
                                                 <div class='tab_left__image'>
                                                 </div>
                                             </div>
-                                            <div class='tab_right ellispis'>
+                                            <div class='tab_right ellispis' style="width: 66%;">
                                                 <h3 class="ellispis">{{event.title}}</h3>
                                                 <p>{{event.user.username}}</p>
-                                                <button>Je viens</button>
+                                                <button style="width: 110px;">Je viens</button>
                                             </div>
                                         </div>
                                     </label>  
@@ -63,35 +72,7 @@
                             </div>
                         </div>
 
-                      <!--   <div class="span3 moudle bottom-space-20">
-                            <div class="container" style="background: white; box-shadow: 0 1px 2px rgba(0,0,0,0.15); color: #7b7b7b; border-radius: 5px; padding-left: 10px;">
-                                <div class="evwdg first" ng-repeat="event in agenda">                                                          
-                                    <div class="evwdg-data">
-                                        <div class="evwdg-day">{{event.startsAt | date:"dd"}}</div>
-                                        <div class="evwdg-month">{{event.startsAt | date:"MMM"}}</div>
-                                        <div class="evwdg-year">{{event.startsAt | date:"yyyy"}}</div>
-                                    </div>
-
-                                    <div class="evwdg-title">
-                                        <a href="http://rtu.fm/event/mama-watt-michel-platine-a-la-maison-m/" rel="bookmark" title="{{event.title}}">
-                                        {{event.title}}
-                                        </a>
-                                    </div>
-
-                                    <div class="evwdg-status">
-                                        <div class="evwdg-venue">
-                                            <img ng-src="{{event.user.avatar && event.user.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{user.name || user.username}}" class="img-circle border-white" width="40" style="max-width: inherit;"/>
-                                            <span>{{event.user.username}}</span>
-                                        </div>
-                                        <div class="evwdg-test">
-                                            <div class="evwdg-out"><a><p>Je viens</p></a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-
-                        <div class="span6 moudle bottom-space-20" style="background: white; box-shadow: 0 1px 2px rgba(0,0,0,0.15); border-radius: 5px; overflow: auto;">
+                        <div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20" style="background: white; box-shadow: 0 1px 2px rgba(0,0,0,0.15); border-radius: 5px; overflow: auto; margin-left: 15px;    padding: 0;">
                             <div class="nicescroll">
                                 
                                 <ul ng-if="!conversation" class="list-group list-group-list" style="max-height: calc(100vh - 150px);">

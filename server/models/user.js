@@ -48,12 +48,22 @@ var UserSchema = new Schema( {
 	coins: Number,
 	presentation: String,
 	popularity: Number,
-	readArticles: [],
+	readArticles: { 
+		type : Array , 
+		"default" : [] 
+	},
 	conversations: [{
 		conversationId: String,
 		lastUpdate: Date 
 	}],
-	readVotes: []
+	readVotes: { 
+		type : Array , 
+		"default" : [] 
+	},
+	readAlbums: { 
+		type : Array , 
+		"default" : [] 
+	}
 } );
 
 /**

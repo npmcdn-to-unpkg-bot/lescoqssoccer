@@ -36,7 +36,10 @@ angular.module('mean.suggestions').controller('SuggestionController', ['$scope',
 				SuggestionsCollection.update(suggestion).then(function(suggestion) {
 					var modalInstance = $modal.open({
 						templateUrl: 'js/suggestions/views/votedModal.html',
-						controller: 'votedCtrl'
+						controller: 'votedCtrl',
+						resolve: {
+							SuggestionId: suggestion._id
+						}
 					});
 				});
 
@@ -44,7 +47,10 @@ angular.module('mean.suggestions').controller('SuggestionController', ['$scope',
 
 				var modalInstance = $modal.open({
 					templateUrl: 'js/suggestions/views/votedModal.html',
-					controller: 'votedCtrl'
+					controller: 'votedCtrl',
+					resolve: {
+						SuggestionId: suggestion._id
+					}
 				});
 				
 			}
@@ -97,15 +103,23 @@ angular.module('mean.suggestions').controller('CreateSuggestionController', ['$s
 	}
 ]);
 
-angular.module('mean.suggestions').controller('votedCtrl', ['$scope', '$modalInstance',
+angular.module('mean.suggestions').controller('votedCtrl', ['$scope', '$modalInstance', 'UserService', 'SuggestionId',
 
-	function($scope, $modalInstance) {
+	function($scope, $modalInstance, UserService, SuggestionId) {
 
 		$scope.ok = function(result) {
+			
+			//set vote like read
+			UserService.addReadVote(SuggestionId);
+
 			$modalInstance.close(result);
 		};
 
 		$scope.cancel = function() {
+
+			//set vote like read
+			UserService.addReadVote(SuggestionId);
+
 			$modalInstance.dismiss('cancel');
 		};
 	}

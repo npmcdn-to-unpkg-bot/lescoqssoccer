@@ -1,11 +1,14 @@
 'use strict';
 
-angular.module('mean.albums').controller('AlbumDetailController', ['$location', '$scope', 'Global', '$modal', 'AlbumService', 'album', 'FileUploader',
+angular.module('mean.albums').controller('AlbumDetailController', ['$location', '$scope', 'Global', '$modal', 'AlbumService', 'album', 'FileUploader', 'UserService',
 
-	function($location, $scope, Global, $modal, AlbumService, album, FileUploader) {
+	function($location, $scope, Global, $modal, AlbumService, album, FileUploader, UserService) {
 
 		$scope.global = Global;
 		$scope.album = album;
+
+		//set album like read
+		UserService.addReadAlbum($scope.album._id);
 
 		$scope.saveAlbum = function(evt) {
 

@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'Team', 'Agenda', 'ConversationService',
-	function($scope, Global, Team, Agenda, ConversationService) {
+angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'Team', 'Agenda', 'ConversationService', 'Suggestions', 'ArticleItemsCount', 'AlbumItemsCount',
+	function($scope, Global, Team, Agenda, ConversationService, Suggestions, ArticleItemsCount, AlbumItemsCount) {
 
 		$scope.global = Global;
 		$scope.team = Team;
@@ -15,19 +15,9 @@ angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'T
 			content: ""
 		};
 
-		$scope.initView = function(){
-			
-			//Initaliaze or clear input value
-			$scope.message.content = "";
-
-			//Scroll down to bottom of conversation
-			setTimeout(function(){	
-				var conversationList = $("#conversationList");
-				if(conversationList.push()){
-					conversationList.scrollTop(conversationList[0].scrollHeight);
-				}
-			});
-			
+		$scope.initialize = function(){
+			$scope.initializeConversations();
+			$scope.updateCounters();
 		};
 
 		//Index all conversations in the object $scope.conversations 
@@ -49,6 +39,21 @@ angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'T
 			});
 		};
 
+		$scope.initChatView = function(){
+			
+			//Initaliaze or clear input value
+			$scope.message.content = "";
+
+			//Scroll down to bottom of conversation
+			setTimeout(function(){	
+				var conversationList = $("#conversationList");
+				if(conversationList.push()){
+					conversationList.scrollTop(conversationList[0].scrollHeight);
+				}
+			});
+			
+		};
+
 		$scope.selectUser = function(evt, userId) {
 
 			if (evt) {
@@ -57,7 +62,7 @@ angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'T
 			}
 
 			$scope.conversation = $scope.conversations[userId].conversation;
-			$scope.initView();
+			$scope.initChatView();
 
 			//TODO
 			//Update user conversation
@@ -76,7 +81,7 @@ angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'T
 					if(!$scope.conversation._id){
 						$scope.conversation._id = conversation._id;
 					}
-					$scope.initView();
+					$scope.initChatView();
 				});
 
 			}
@@ -99,6 +104,24 @@ angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'T
 			$scope.conversation = null;
 		};
 
+		$scope.updateCounters = function(){
+			$scope.getUnreadArticleCount();
+			$scope.getUnreadVoteCount();
+			$scope.getUnreadAlbumCount();
+		};
+
+		$scope.getUnreadArticleCount = function(){
+			$scope.unreadArticleCount = ArticleItemsCount.count - Global.user.readArticles.length;
+		};
+
+		$scope.getUnreadVoteCount = function(){
+			$scope.unreadVoteCount = _.difference(_.pluck(Suggestions.all, '_id'), $scope.global.user.readVotes).length;
+		};
+
+		$scope.getUnreadAlbumCount = function(){
+			$scope.unreadAlbumCount = AlbumItemsCount.count - Global.user.readAlbums.length;
+		};
+
 	}
 ]);
 
@@ -116,6 +139,18 @@ var HomeData = {
 
 	Conversations: function(Global, ConversationService, $route) {
 		return ConversationService.load();
+	},
+
+	Suggestions: function(SuggestionsCollection) {
+		return SuggestionsCollection.load();
+	},
+
+	ArticleItemsCount: function(ArticlesCollection) {
+		return ArticlesCollection.getItemsCount();
+	},
+
+	AlbumItemsCount: function(AlbumService) {
+		return AlbumService.getItemsCount();
 	}
 
 };

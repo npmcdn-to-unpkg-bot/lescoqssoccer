@@ -39,6 +39,35 @@
 				                </div>
 				            </article>
 				        </div>
+				         <div ng-repeat="user in team" class="col-md-4 col-sm-6 col-xs-12">
+				            <article class="material-card" ng-class="getColorClass($index)">
+				                <h2>
+				                    <span style="text-transform: uppercase;">{{user.name || user.username}}</span>
+				                    <strong>
+				                        <i class="fa fa-fw fa-star"></i>
+				                        The Deer Hunter
+				                    </strong>
+				                </h2>
+				                <div class="mc-content">
+				                    <div class="img-container" ng-click="showUserDetail($event, user);">
+				                        <img class="img-responsive" ng-src="{{user.avatar}}" alt="{{user.username}}">
+				                    </div>
+				                    <div class="mc-description three-line-ellipsis">
+				                        He has appeared in more than 100 films and television shows, including The Deer Hunter, Annie Hall, The Prophecy trilogy, The Dogs of War ...
+				                    </div>
+				                </div>
+				                <a class="mc-btn-action">
+				                    <i class="fa fa-bars"></i>
+				                </a>
+				                <div class="mc-footer">
+				                    <h4>
+				                        Plus
+				                    </h4>
+				                    <a ng-href="#!/users/detail/{{user._id}}" class="fa fa-fw fa-search-plus"></a>
+				                    <a ng-href="#!/conversations/{{user._id}}" ng-if="user._id !== global.user._id" class="fa fa-fw fa-comment"></a>
+				                </div>
+				            </article>
+				        </div>
 				    </div>
 				</section>
 			</div>

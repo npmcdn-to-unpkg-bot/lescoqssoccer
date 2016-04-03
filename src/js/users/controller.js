@@ -38,12 +38,8 @@ angular.module('mean.users').controller('TeamController', ['$scope', 'Global', '
 				windowClass: 'userDetailPopup',
 				resolve: {
 
-					User: function(Users) {
-						return Users.get({
-							userId: user._id
-						}, function(user) {
-							return user;
-						}).$promise;
+					User: function(UserService) {
+						return UserService.findOne(user._id);
 					},
 
 					Albums: function(AlbumService) {
@@ -97,9 +93,9 @@ angular.module('mean.users').controller('UserDetailController', ['$scope','$sce'
 	}
 ]);
 
-angular.module('mean.users').controller('ProfileController', ['$scope', 'Global', 'User', '$translate', 'FileUploader',
+angular.module('mean.users').controller('ProfileController', ['$scope', 'Global', 'User', 'UserService', '$translate', 'FileUploader',
 
-	function($scope, Global, User, $translate, FileUploader) {
+	function($scope, Global, User, UserService, $translate, FileUploader) {
 
 		$scope.global = Global;
 		$scope.user = User;
@@ -157,8 +153,8 @@ angular.module('mean.users').controller('ProfileController', ['$scope', 'Global'
 			MODEL
 		***/
 		$scope.update = function() {
-			$scope.user.$update(function(response) {
-				Global.user = response;
+			UserService.update($scope.user).then(function(user){
+				$scope.global.user = user;
 			});
 		};
 
@@ -166,86 +162,18 @@ angular.module('mean.users').controller('ProfileController', ['$scope', 'Global'
 	}
 ]);
 
-angular.module('mean.users').controller('ChatController', ['$scope', 'Global', 'Team', 'ConversationService', 'Conversations', 'UserId',
-
-	function($scope, Global, Team, ConversationService, Conversations, UserId) {
-
-		$scope.global = Global;
-		$scope.team = Team;
-		$scope.conversationService = ConversationService;
-		$scope.conversations = Conversations;
-		$scope.conversation = (UserId) ? ConversationService.getConversation(Global.user._id, UserId) : null
-		$scope.currentUserId = UserId;
-
-		$scope.message = {
-			content: ""
-		};
-
-		$scope.selectUser = function(evt, user) {
-
-			if (evt) {
-				evt.preventDefault();
-				evt.stopPropagation();
-			}
-
-			$scope.currentUserId = user._id;
-			$scope.conversation = $scope.conversationService.getConversation($scope.global.user._id, user._id);
-		};
-
-		$scope.sendMessage = function() {
-
-			if ($scope.message.content !== "") {
-
-				$scope.conversation.messages.push({
-					user: $scope.global.user._id,
-					content: $scope.message.content
-				});
-
-				$scope.conversationService.addOrUpdate($scope.conversation).then(function(conversation) {
-					$scope.message.content = "";
-				});
-
-			}
-		};
-	}
-]);
-
 var TeamData = {
 
-	Team: function(Users) {
-		return Users.query({}, function(users) {
-			return users;
-		}).$promise;
-	}
-
-};
-
-var ChatData = {
-
-	Team: function(Users) {
-		return Users.query({}, function(users) {
-			return users;
-		}).$promise;
-	},
-
-	Conversations: function(Global, ConversationService, $route) {
-		return ConversationService.load();
-	},
-
-	UserId: function($route) {
-		return $route.current.params.id;
+	Team: function(UserService) {
+		return UserService.load();
 	}
 
 };
 
 var UserDetailData = {
 
-	User: function(Users, $route) {
-		return Users.get({
-			userId: $route.current.params.id
-		}, function(user) {
-			return user;
-		}).$promise;
+	User: function(UserService, $route) {
+		return UserService.findOne($route.current.params.id);
 	},
 
 	Albums: function(AlbumService, $route) {
@@ -264,12 +192,8 @@ var UserDetailData = {
 
 var ProfileData = {
 
-	User: function(Users, Global) {
-		return Users.get({
-			userId: Global.user._id
-		}, function(user) {
-			return user;
-		}).$promise;
+	User: function(UserService, Global) {
+		return UserService.findOne(Global.user._id);
 	}
 
 };
