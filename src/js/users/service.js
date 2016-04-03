@@ -60,13 +60,11 @@ angular.module('mean.users').service('UserService', ['Global', 'Users',
 			},
 
 			update: function(user) {
-
 				return Users.update({
 					userId: user._id
 				}, user, function(data) {
 					return data;
 				}).$promise;
-
 			},
 
 			addReadArticle: function(articleId){
@@ -103,7 +101,9 @@ angular.module('mean.users').service('UserService', ['Global', 'Users',
 			addReadVote: function(voteId){
 				if(!_.contains(Global.user.readVotes, voteId)){
 					Global.user.readVotes.push(voteId);
-					UserService.update(Global.user);
+					UserService.update(Global.user).then(function(user){
+						Global.user = user;
+					});
 				}
 			},
 

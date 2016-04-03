@@ -177,15 +177,11 @@ var UserDetailData = {
 	},
 
 	Albums: function(AlbumService, $route) {
-		return AlbumService.getAlbumsByUser($route.current.params.id).then(function(albums) {
-			return albums;
-		});
+		return AlbumService.getAlbumsByUser($route.current.params.id);
 	},
 
 	UserArticles: function(ArticlesCollection, $route) {
-		return ArticlesCollection.getArticlesByUser($route.current.params.id).then(function(articles) {
-			return articles;
-		});
+		return ArticlesCollection.getArticlesByUser($route.current.params.id);
 	},
 
 };

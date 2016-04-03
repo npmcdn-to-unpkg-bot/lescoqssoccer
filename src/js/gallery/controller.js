@@ -1,14 +1,11 @@
 'use strict';
 
-angular.module('mean.albums').controller('AlbumDetailController', ['$location', '$scope', 'Global', '$modal', 'AlbumService', 'album', 'FileUploader', 'UserService',
+angular.module('mean.albums').controller('AlbumDetailController', ['$location', '$scope', 'Global', '$modal', 'AlbumService', 'album', 'FileUploader',
 
-	function($location, $scope, Global, $modal, AlbumService, album, FileUploader, UserService) {
+	function($location, $scope, Global, $modal, AlbumService, album, FileUploader) {
 
 		$scope.global = Global;
 		$scope.album = album;
-
-		//set album like read
-		UserService.addReadAlbum($scope.album._id);
 
 		$scope.saveAlbum = function(evt) {
 
@@ -115,12 +112,15 @@ angular.module('mean.albums').controller('AlbumsController', ['$scope', 'Global'
 	}
 ]);
 
-angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global', '$location', '$http', '$window', '$modal', 'AlbumService', 'album',
+angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global', '$location', '$http', '$window', '$modal', 'AlbumService', 'album', 'UserService',
 
-	function($scope, Global, $location, $http, $window, $modal, AlbumService, album) {
+	function($scope, Global, $location, $http, $window, $modal, AlbumService, album, UserService) {
 
 		$scope.global = Global;
 		$scope.album = album;
+
+		//set album like read
+		UserService.addReadAlbum($scope.album._id);
 
 		$scope.showSlider = function(evt, currentIndex) {
 
