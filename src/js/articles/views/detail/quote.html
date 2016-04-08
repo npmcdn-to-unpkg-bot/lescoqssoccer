@@ -5,24 +5,24 @@
 
 				<!-- Header -->
 				<div class="bp-header__main">
-			        <span class="bp-header__present">LESCOQSSOCCER <span class="bp-tooltip bp-icon bp-icon--about" data-content="The Blueprints are a collection of basic and minimal website concepts, components, plugins and layouts with minimal style for easy adaption and usage, or simply for inspiration."></span></span>
-			        <h1 class="bp-header__title">
-			        	{{article.title}}
-			        </h1>
-			        <nav class="bp-nav">
-			            <a class="bp-nav__item bp-icon bp-icon--prev" href="#!" data-info="Article précédent" data-ng-click="showPrevious($event);">
-			            	<span>Précédent</span>
-			            </a>
-			            <a class="bp-nav__item bp-icon bp-icon--list" href="#!" data-info="Retour à la liste" data-ng-click="backToList($event);">
-			            	<span>Retour à la liste</span>
-			            </a>
-			            <a class="bp-nav__item bp-icon bp-icon--next" href="#!" data-info="Article suivant" data-ng-click="showNext($event);">
-			            	<span>Suivant</span>
-			            </a>			            
-			        </nav>
-			    </div>
+					<span class="bp-header__present">LESCOQSSOCCER <span class="bp-tooltip bp-icon bp-icon--about" data-content="The Blueprints are a collection of basic and minimal website concepts, components, plugins and layouts with minimal style for easy adaption and usage, or simply for inspiration."></span></span>
+					<h1 class="bp-header__title">
+						{{article.title}}
+					</h1>
+					<nav class="bp-nav">
+						<a class="bp-nav__item bp-icon bp-icon--prev" href="#!" data-info="Article précédent" data-ng-click="showPrevious($event);">
+							<span>Précédent</span>
+						</a>
+						<a class="bp-nav__item bp-icon bp-icon--list" href="#!" data-info="Retour à la liste" data-ng-click="backToList($event);">
+							<span>Retour à la liste</span>
+						</a>
+						<a class="bp-nav__item bp-icon bp-icon--next" href="#!" data-info="Article suivant" data-ng-click="showNext($event);">
+							<span>Suivant</span>
+						</a>
+					</nav>
+				</div>
 
-			     <!-- Content -->
+				<!-- Content -->
 				<div class="pagebuilder-wrap">
 					<div class="container" style="width: calc(100% - 120px);background: white; margin: 40px 60px; box-shadow: 0 1px 2px rgba(0,0,0,0.15); color: #7b7b7b; border-radius: 5px;">
 						<div class="title-bar-wrap" style="padding: 40px 0 0;">
@@ -32,7 +32,7 @@
 										<div class="item_des bg-theme-color-7" style="padding: 20px 20px 30px 20px;">
 											<div class="post-meta" style="font-size: initial; color: white;">
 												<img class="img-circle" ng-src="{{article.user.avatar}}?dim100x100" alt="{{article.user.username}}" style="width: 80px; height: 80px; margin: -20px 0 20px 0;" />
-												<p>par 
+												<p>par
 													<b style="text-transform: uppercase;">
 														{{article.user.username}},
 													</b>
@@ -45,139 +45,58 @@
 											<p style="margin: 0 30px 40px 20px; font-size: medium; text-align: justify; color: white;">
 												{{article.content}}
 											</p>
-							                <div class="iterblock-expt">
+											<div class="iterblock-expt">
 												<div class="suggestionsResult" style="margin: 0; padding: 0px 30px 0 20px;">
 													<div class="row-fluid">
-								                        <section class="infrographic bar ux-mod-nobg">
-								                            <h1 style="text-transform: uppercase; margin-bottom: 20px;">Les moutons</h1>
-								                        </section>
-									                </div>
-									                <div class="moudle" style="margin-top: 20px;">
+														<section class="infrographic bar ux-mod-nobg">
+															<h1 style="text-transform: uppercase; margin-bottom: 20px;">Les partisans</h1>
+														</section>
+													</div>
+													<div class="moudle" style="margin-top: 20px;">
 														<a ng-repeat="answer in article.yes" ng-href="#!/users/detail/{{answer.user._id}}">
 															<img ng-src="{{answer.user.avatar && answer.user.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{answer.user.username}}" draggable="false" class="img80_80 img-circle" title="{{answer.user.username}}">
 														</a>
 														<p ng-if="article.yes.length === 0;" style="color: white;">
-														Aucun moutons
+															Aucun partisan
 														</p>
 													</div>
-									                <div class="row-fluid">
-								                        <section class="infrographic bar ux-mod-nobg">
-								                            <h1 style="text-transform: uppercase; margin-bottom: 20px;">Les réfractaires</h1>
-								                        </section>
-									                </div>
-									                <div class="moudle" style="margin-top: 20px;">
+													<div class="row-fluid">
+														<section class="infrographic bar ux-mod-nobg">
+															<h1 style="text-transform: uppercase; margin-bottom: 20px;">Les réfractaires</h1>
+														</section>
+													</div>
+													<div class="moudle" style="margin-top: 20px;">
 														<a ng-repeat="answer in article.no" ng-href="#!/users/detail/{{answer.user._id}}">
 															<img ng-src="{{answer.user.avatar && answer.user.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{answer.user.username}}" draggable="false" class="img80_80 img-circle" title="{{answer.user.username}}">
 														</a>
 														<p ng-if="article.no.length === 0;" style="color: white;">
-														Aucun réfractaires
+															Aucun réfractaire
 														</p>
 													</div>
 													<div class="row-fluid">
-								                        <section class="infrographic bar ux-mod-nobg">
-								                            <h1 style="text-transform: uppercase; margin-bottom: 20px;">
-								                            Les suisses</h1>
-								                        </section>
-									                </div>
-									                <div class="moudle" style="margin-top: 20px;">
-														<a ng-repeat="answer in article.blank" ng-href="#!/users/detail/{{answer.user._id}}">
-															<img ng-src="{{answer.user.avatar && answer.user.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{answer.user.username}}" draggable="false" class="img80_80 img-circle" title="{{answer.user.username}}">
-														</a>
-														<p ng-if="article.blank.length === 0;" style="color: white;">
-														Pas de suisses
-														</p>
+														<section class="infrographic bar ux-mod-nobg">
+															<h1 style="text-transform: uppercase; margin-bottom: 20px;">
+																Les suisses</h1>
+															</section>
+														</div>
+														<div class="moudle" style="margin-top: 20px;">
+															<a ng-repeat="answer in article.blank" ng-href="#!/users/detail/{{answer.user._id}}">
+																<img ng-src="{{answer.user.avatar && answer.user.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{answer.user.username}}" draggable="false" class="img80_80 img-circle" title="{{answer.user.username}}">
+															</a>
+															<p ng-if="article.blank.length === 0;" style="color: white;">
+																Pas de suisse
+															</p>
+														</div>
 													</div>
-								                </div>
-								            </div>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
 
-						<div id="comments">
-							<div id="respondwrap">
-								<div class="chat-wrapper" style="padding-left: 0;">
-
-									<h3 id="reply-title" class="comment-reply-title" style="color: #7b7b7b;">
-										COMMENTAIRES
-									</h3>
-
-									<ul id="conversationList" style="padding-top: 20px; padding-right: 10px; max-height: inherit;">
-                                        <li ng-repeat="comment in article.comments | reverse" style="float: inherit;">
-                                            <img ng-src="{{comment.user.avatar || global.user.avatar}}?dim100x100" alt="{{item.user.name || item.user.username}}">                                    
-                                            <b style="text-transform: uppercase;">{{comment.user.username || global.user.username}}</b><i>, le {{comment.created | date:dateFormat}}</i>
-                                            <p>
-                                                {{comment.content}}
-                                            </p>
-
-                                            <div>
-	                                            <ul style="padding-top: 20px; padding-right: 10px;">
-		                                            <li ng-repeat="reply in comment.replies | orderBy:'-created'" class="current" style="box-shadow: none;">
-			                                            <img ng-src="{{reply.user.avatar || global.user.avatar}}?dim100x100" alt="{{reply.user.username || global.user.username}}" class="img-circle" style="position: absolute;right: -80px;left: inherit;">
-			                                            <b style="text-transform: uppercase;">{{reply.user.username || global.user.username}}</b><i>, le {{reply.created | date:dateFormat}}</i>
-			                                            <p>
-			                                                {{reply.content}}
-			                                            </p>
-			                                        </li>
-		                                        </ul>
-		                                    </div>
-
-		                                    <!-- ajouter les commentaires anonymes -->
-											<div class="comments_content">
-												<a ng-attr-id="{{comment._id}}-reply" href="#!" ng-click="showAnswerForm($event, comment)" class="reply" ng-show="!currentReplyId">
-													Répondre
-												</a>
-											</div>
-                                        </li>
-                                    </ul>
-
-									<h3 id="reply-title" class="comment-reply-title">
-										<span class="comm-reply-title">
-											Laisser un commentaire
-										</span>
-									</h3>
-
-									<form class="comment-form">
-										<p>
-											<textarea
-											name="newComment"
-											ng-model="newComment"
-											class="requiredFieldcomm"
-											cols="100%"
-											tabindex="4"
-											aria-required="true"
-											placeholder="COMMENTAIRE"
-											style="width: 100%; padding: 0; height: 80px;">
-											</textarea>
-										</p>
-										<p class="form-submit" style="text-align: right; margin-top: 20px;">
-											<input name="submit" type="button" id="submit" value="AJOUTER" ng-click="addComment();">
-										</p>
-									</form>
-
-									<form id="formAnswer" class="comment-form answer" ng-show="currentReplyId">
-										<p style="margin-bottom: 0px !important;padding-right: 0;margin-right: -20px;">
-											<textarea
-											name="answer"
-											ng-model="replyText"
-											class="requiredFieldcomm"
-											cols="100%"
-											tabindex="4"
-											aria-required="true"
-											placeholder="REPONSE"
-											style="width: 100%; padding: 0; height: 80px;">
-											</textarea>
-										</p>
-										<p class="form-submit" style="text-align: right; margin-bottom: 0px !important;padding-right: 0;margin-right: -20px;">
-											<input type="button" ng-click="hideAnswerForm($event)" class="reply-cancel" value="Annuler" style="color: white; margin: 10px 5px 0; height: inherit; line-height: inherit; padding: 5px 10px;">
-											</input>
-											<input name="submit" type="button" id="submit" value="Répondre" ng-click="addReply();" style="padding: 5px;line-height: inherit;margin-top: 10px;">
-										</p>
-									</form>
-
-								</div>
-							</div>
+							<cm-comments update-method="updateMethod();" object="article">
+							</cm-comments>
 						</div>
 					</div>
 				</div>

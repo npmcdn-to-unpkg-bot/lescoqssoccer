@@ -53,7 +53,7 @@ exports.updateAlbum = function(req, res) {
 		album.save(function(err, album, numAffected) {
 			if (err) console.log("Error saving album: " + err)
 			console.log(numAffected + " documents updated.")
-			res.send(album)
+			res.send(album);
 		});
 	});
 };

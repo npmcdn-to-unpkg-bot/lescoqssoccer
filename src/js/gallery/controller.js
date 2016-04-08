@@ -209,9 +209,13 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 		$scope.showNext = function(evt) {
 			evt.preventDefault();
 			evt.stopPropagation();
-			
+
 			var next = AlbumService.getNext($scope.album);
 			$location.path("/albums/view/" + next._id).replace();
+		};
+
+		$scope.updateMethod = function(){
+			return AlbumService.updateAlbum($scope.album);
 		};
 
 	}

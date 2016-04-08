@@ -62,9 +62,7 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 		$scope.global = Global;
 		$scope.ArticlesCollection = ArticlesCollection;
 		$scope.article = Article;
-		$scope.newComment = "";
 		$scope.dateFormat = "dd MMMM yyyy";
-		$scope.currentReplyId;
 
 		//set article like read
 		UserService.addReadArticle($scope.article._id);
@@ -87,61 +85,8 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 			}
 		};
 
-		$scope.showAnswerForm = function(evt, comment) {
-
-			evt.preventDefault();
-			evt.stopPropagation();
-
-			$scope.currentReplyId = comment._id;
-			$scope.reply = comment;
-
-			$('#formAnswer').insertAfter($("#" + $scope.currentReplyId + "-reply"));
-		};
-
-		$scope.hideAnswerForm = function(evt) {
-
-			if (evt) {
-				evt.preventDefault();
-				evt.stopPropagation();
-			}
-
-			$scope.reply = "";
-			$scope.replyText = "";
-			$scope.currentReplyId = null;
-		};
-
-		$scope.addComment = function() {
-
-			if ($scope.newComment !== "") {
-
-				$scope.article.comments.push({
-					user: $scope.global.user._id,
-					content: $scope.newComment,
-					created: moment(new Date()).toISOString()
-				});
-
-				$scope.ArticlesCollection.update($scope.article).then(function() {
-					$scope.newComment = "";
-				});
-			}
-
-		};
-
-		$scope.addReply = function() {
-
-			if ($scope.replyText !== "") {
-
-				$scope.reply.replies.push({
-					user: $scope.global.user._id,
-					content: $scope.replyText,
-					created: moment(new Date()).toISOString()
-				});
-
-				$scope.ArticlesCollection.update($scope.article).then(function() {
-					$scope.hideAnswerForm();
-				});
-			}
-
+		$scope.updateMethod = function(){
+			return $scope.ArticlesCollection.update($scope.article);
 		};
 
 		$scope.edit = function(evt) {
@@ -195,7 +140,7 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 		$scope.showNext = function(evt) {
 			evt.preventDefault();
 			evt.stopPropagation();
-			
+
 			var next = $scope.ArticlesCollection.getNext($scope.article);
 			$location.path("/articles/view/" + next.type + "/" + next._id).replace();
 		};

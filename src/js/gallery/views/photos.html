@@ -25,13 +25,13 @@
 			            </a>
 			            <a class="bp-nav__item bp-icon bp-icon--next" href="#!" data-info="Album suivant" data-ng-click="showNext($event);">
 			            	<span>Suivant</span>
-			            </a>			            
+			            </a>
 			            <a class="bp-nav__item bp-icon bp-icon--archive" href="#!" data-info="Télécharger" data-ng-click="download($event);">
 			            	<span>Télécharger</span>
 			            </a>
 			        </nav>
 			    </div>
-				
+
 				<!--Photos content-->
 				<div class="pagebuilder-wrap">
 					<div class="container" style="width: calc(100% - 120px); background: white; margin: 40px 60px; box-shadow: 0 1px 2px rgba(0,0,0,0.15); color: #7b7b7b; border-radius: 5px; padding: 0 20px;">
@@ -39,7 +39,7 @@
 							<div class="moudle bottom-space-no" style="padding: 0; margin: 20px 0;">
 								<div class="row-fluid">
 									<div class="container-isotope" data-post="20140406-081941-855">
-										
+
 										<!--Loading-->
 										<div id="isotope-load">
 											<div class="ux-loading" style="display: none;"></div>
@@ -48,7 +48,7 @@
 												<div class="loading-dot2">&nbsp;</div>
 											</div>
 										</div>
-										
+
 										<div class="Collage effect-parent" style="visibility: hidden;">
 											<a ng-click="showSlider($event, $index)" ng-repeat="photo in album.photoList">
 												<img ng-src="{{photo.filepath}}?dim=300" alt="{{photo.name}}" style="cursor:zoom-in;">
@@ -58,6 +58,9 @@
 								</div>
 							</div>
 						</div>
+
+						<cm-comments update-method="updateMethod();" object="album">
+						</cm-comments>
 					</div>
 				</div>
 
