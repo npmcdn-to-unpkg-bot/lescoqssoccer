@@ -2,7 +2,7 @@
     <div class="row-fluid" style="margin-top: 30px;">
         <div id="content_wrap">
             <div class="content-wrap-inn bottom-space">
-                
+
                 <div class="container responsive-ux">
                     <div class="row-fluid">
                         <div class="span12 moudle bottom-space-20">
@@ -16,9 +16,9 @@
 
                 <div class="container responsive-ux">
                     <div class="row-fluid">
-                        
+
                         <div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20" style="margin-left: -15px;">
-                            
+
                         </div>
 
                         <div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20" style="background: white; padding: 5px; border-radius: 5px; height: calc(100vh - 150px); box-shadow: 0 1px 2px rgba(0,0,0,0.15);">
@@ -27,7 +27,7 @@
                                     <div class='tab_right' style="float: right; display: flex;width: 33%;">
                                         <div class="text_block withbg bg-theme-color-7" style="text-align: center;     margin: auto !important; display: flex; width: 60px; height: 60px;    padding: 0;">
                                             <a href='#!/suggestions' style="margin: auto;">
-                                                <span style="font-size: 30px;line-height: 60px;">{{unreadVoteCount}}</span> 
+                                                <span style="font-size: 30px;line-height: 60px;">{{unreadVoteCount}}</span>
                                                 <br><p style="margin-top: 10px; color: #1c1d22; font-size: medium;"><b>Votes</b></p>
                                             </a>
                                         </div>
@@ -35,7 +35,7 @@
                                     <div class='tab_right' style="float: right; display: flex;width: 33%;">
                                         <div class="text_block withbg bg-theme-color-8" style="text-align: center;     margin: auto !important; display: flex; width: 60px; height: 60px;padding: 0;">
                                             <a href='#!/albums' style="margin: auto;">
-                                                <span style="font-size: 30px;line-height: 60px;">{{unreadAlbumCount}}</span> 
+                                                <span style="font-size: 30px;line-height: 60px;">{{unreadAlbumCount}}</span>
                                                 <br><p style="margin-top: 10px; color: #1c1d22; font-size: medium;"><b>Albums</b></p>
                                             </a>
                                         </div>
@@ -43,7 +43,7 @@
                                     <div class='tab_right' style="float: right; display: flex;width: 33%;">
                                         <div class="text_block withbg bg-theme-color-5" style="text-align: center;         margin: auto !important; display: flex; width: 60px; height: 60px; padding: 0;">
                                             <a href='#!/articles' style="margin: auto;">
-                                                <span style="font-size: 30px;line-height: 60px;">{{unreadArticleCount}}</span> 
+                                                <span style="font-size: 30px;line-height: 60px;">{{unreadArticleCount}}</span>
                                                 <br><p style="margin-top: 10px; color: #1c1d22; font-size: medium;"><b>Article</b></p>
                                             </a>
                                         </div>
@@ -65,17 +65,17 @@
                                             <div class='tab_right ellispis' style="width: 66%;">
                                                 <h3 class="ellispis" style="color: white;">{{event.title}}</h3>
                                                 <p>organisé par <b style="text-transform: uppercase;">{{event.user.username}}</b></p>
-                                                <button style="width: 110px;">Je viens</button>
+                                                <button style="width: 110px;" ng-click="AgendaCollection.addMeToEvent($event, event);">Je viens</button>
                                             </div>
                                         </div>
-                                    </label>  
-                                </div>                                             
+                                    </label>
+                                </div>
                             </div>
                         </div>
 
                         <div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20" style="background: white; box-shadow: 0 1px 2px rgba(0,0,0,0.15); border-radius: 5px; overflow: auto; margin-left: 15px;    padding: 0;">
                             <div class="nicescroll">
-                                
+
                                 <ul ng-if="!conversation" class="list-group list-group-list" style="max-height: calc(100vh - 150px);">
                                     <li class="list-group-item" ng-repeat="conversation in conversations | orderConversations: 'conversation'" ng-click="selectUser($event, conversation.userId)">
                                         <div class="media">
@@ -95,7 +95,7 @@
                                             </div>
                                             <div class="media-right media-middle" ng-if="getUnreadMessageCount(conversation.userId)>0">
                                                 <span style="color: red; display: flex;">
-                                                    {{getUnreadMessageCount(conversation.userId);}} 
+                                                    {{getUnreadMessageCount(conversation.userId);}}
                                                     <i class="fa fa-comment text-muted" style="margin: 3px;"></i>
                                                 </span>
                                             </div>
@@ -105,7 +105,7 @@
 
                                 <div id="respondwrap" class="chat-wrapper" ng-if="conversation">
                                     <i class="fa fa-times" style="cursor: pointer;z-index: 8040;background:white; color: black;position: absolute; font-size: 30px; right: 10px;" ng-click="closeDialog();"></i>
-                        
+
                                     <ul id="conversationList">
                                         <li ng-repeat="item in conversation.messages | orderBy:'created'" ng-class="{'current': item.user === global.user._id || item.user._id === global.user._id}">
                                             <img ng-src="{{item.user.avatar && item.user.avatar + '?dim=300x300' || global.user.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{item.user.name || item.user.username}}">

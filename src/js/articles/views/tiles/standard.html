@@ -4,14 +4,16 @@
 			<div class="item_topbar post-bgcolor-default">
 			</div>
 			<div class="item_des post-bgcolor-default">
-				<a href="#!/articles/view/standard/{{article._id}}" title="{{article.title}}" ng-if="getImage(article.content) !== ''">
-					<img alt="{{article.title}}" ng-src="{{getImage(article.content)}}" class="isotope-list-thumb">
-				</a>
 				<div style="width:40px; margin: 0 20px; padding: 20px 0 0;">
 					<p style="margin: 10px 50px;position: absolute;">
 						<b style="text-transform: uppercase; font-size: medium;">{{article.user.username}}</b>, {{getDateFrom(article)}}
 					</p>
 					<img class="img-circle" ng-src="{{article.user.avatar}}?dim100x100" alt="{{article.user.username}}"/>
+				</div>
+				<div ng-if="getImage(article.content) !== ''" class="articleTileStandard">
+					<a href="#!/articles/view/standard/{{article._id}}" title="{{article.title}}">
+						<img alt="{{article.title}}" ng-src="{{getImage(article.content)}}" class="isotope-list-thumb">
+					</a>
 				</div>
 				<h2 class="item_title two-line-ellipsis">
 					<a ng-href="#!/articles/view/standard/{{article._id}}" title="Standard format post">
@@ -31,6 +33,7 @@
 				<div class="pull-right" style="margin: -40px 20px; font-size: initial;">
 					<span class="pull-right"><i class="fa fa-comment"></i> {{article.comments.length}}</span>
 				</div>
+			</div>
 		</div>
 	</div>
 </div>

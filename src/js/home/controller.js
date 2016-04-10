@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'Team', 'Agenda', 'ConversationService', 'Suggestions', 'ArticleItemsCount', 'AlbumItemsCount', 'UserService',
-	function($scope, Global, Team, Agenda, ConversationService, Suggestions, ArticleItemsCount, AlbumItemsCount, UserService) {
+angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'Team', 'Agenda', 'AgendaCollection', 'ConversationService', 'Suggestions', 'ArticleItemsCount', 'AlbumItemsCount', 'UserService',
+	function($scope, Global, Team, Agenda, AgendaCollection, ConversationService, Suggestions, ArticleItemsCount, AlbumItemsCount, UserService) {
 
 		$scope.global = Global;
 		$scope.team = Team;
@@ -20,7 +20,7 @@ angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'T
 			$scope.updateCounters();
 		};
 
-		//Index all conversations in the object $scope.conversations 
+		//Index all conversations in the object $scope.conversations
 		$scope.initializeConversations = function(){
 			$scope.conversations["all"] = {
 				conversation: $scope.conversationService.getConversation("all"),
@@ -42,18 +42,18 @@ angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'T
 		};
 
 		$scope.initChatView = function(){
-			
+
 			//Initaliaze or clear input value
 			$scope.message.content = "";
 
 			//Scroll down to bottom of conversation
-			setTimeout(function(){	
+			setTimeout(function(){
 				var conversationList = $("#conversationList");
 				if(conversationList.push()){
 					conversationList.scrollTop(conversationList[0].scrollHeight);
 				}
 			});
-			
+
 		};
 
 		$scope.selectUser = function(evt, userId) {
@@ -96,12 +96,10 @@ angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'T
 					return _.filter($scope.conversations[userId].conversation.messages, function(message){
 						return (message.user._id !== $scope.global.user._id) && moment(message.created).isAfter(conversation.lastUpdate);
 					}).length;
-				} else {
-					return 0;
 				}
-			} else {
-				return 0;
-			}	
+			}
+
+			return 0;
 		};
 
 		//Close the view dialog and go back to the view list
@@ -126,7 +124,6 @@ angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'T
 		$scope.getUnreadAlbumCount = function(){
 			$scope.unreadAlbumCount = AlbumItemsCount.count - Global.user.readAlbums.length;
 		};
-
 	}
 ]);
 

@@ -60,6 +60,31 @@ angular.module('mean.agenda').service('AgendaCollection', ['Global', 'UserEvent'
 				return UserEvent.delete({}, userEvent, function(userEvent) {
 					return userEvent;
 				}).$promise;
+			},
+
+			addMeToEvent : function(evt, userEvent) {
+
+				if (evt) {
+					evt.preventDefault();
+					evt.stopPropagation();
+				}
+
+				if (!_.contains(_.pluck(userEvent.guest, "_id"), Global.user._id) && Global.user._id !== userEvent.user._id) {
+
+					userEvent.guest.push({
+						_id: Global.user._id
+					});
+
+					var ids = _.pluck(userEvent.guestUnavailable, "_id");
+					var indexOfUser = _.indexOf(ids, Global.user._id);
+
+					if (indexOfUser !== -1) {
+						userEvent.guestUnavailable.splice(indexOfUser, 1);
+					}
+
+					AgendaCollection.update(userEvent).then(function(newUserEvent) {
+					});
+				}
 			}
 		}
 

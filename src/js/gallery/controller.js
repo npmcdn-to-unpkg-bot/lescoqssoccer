@@ -218,6 +218,13 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 			return AlbumService.updateAlbum($scope.album);
 		};
 
+		$scope.$watch('album.comments', function(newValue, oldValue) {
+			setTimeout(function(){
+				$('.Collage').collagePlus({
+					'targetHeight': 200
+				});
+			});
+		});
 	}
 ]);
 

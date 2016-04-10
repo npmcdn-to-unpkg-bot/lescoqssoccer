@@ -819,8 +819,8 @@ h1.main-title{
   line-height: 40px; position: relative; font-size: 3.25em; color: #7b7b7b; font-weight: 800;
 }
 /*h1.main-title:after{
-  content:''; 
-  width: 30px; 
+  content:'';
+  width: 30px;
   height: 3px;
   display: inline-block;
   background: black;
@@ -1286,11 +1286,11 @@ ul.adimg li:first-child,ul.adimg li:nth-child(2){ margin-top:0}
 
 /*Tag*/
 
-.tagcloud a { 
+.tagcloud a {
   display: inline-block;
-  font-size: 10px; 
+  font-size: 10px;
   margin-bottom: 8px;
-  margin-right: 3px; 
+  margin-right: 3px;
   padding:5px 8px;
 -webkit-transition: all 0.5s;
    -moz-transition: all 0.5s;
@@ -1664,8 +1664,8 @@ i.medium{ font-size:24px; }
   text-transform: uppercase;
 }
 .item_title:after{
-  content:''; 
-  width: 30px; 
+  content:'';
+  width: 30px;
   height: 3px;
   display: inline-block;
   background: black;
@@ -4051,10 +4051,10 @@ a.list-group-item-danger.active:focus {
   overflow: hidden;
 }
 .media-body {
-  width: 10000px; 
+  width: 10000px;
 }
 .media-body a{
-  color: #7b7b7b; 
+  color: #7b7b7b;
 }
 .media-object {
   display: block;
@@ -6330,7 +6330,7 @@ a.igoNot{
   font-style: normal;
   src: url('../fonts/bpicons/bpicons.eot');
   src: url('../fonts/bpicons/bpicons.eot?#iefix') format('embedded-opentype'), url('../fonts/bpicons/bpicons.woff') format('woff'), url('../fonts/bpicons/bpicons.ttf') format('truetype'), url('../fonts/bpicons/bpicons.svg#bpicons') format('svg');
-}*//* Made with http://icomoon.io/ 
+}*//* Made with http://icomoon.io/
 
 
 /* Resets */
@@ -6660,12 +6660,12 @@ Agenda
     width:300px;
     height: 100px;
     }
-  
+
 .evwdg.first {
   margin-top: 15px;
     }
-  
-.evwdg.last { 
+
+.evwdg.last {
     margin-bottom: 15px;
     }
 
@@ -6698,7 +6698,7 @@ Agenda
     font-size: 18px;
   text-align:center;
     }
-  
+
 .evwdg-year {
     text-transform: uppercase;
     top: 5px;
@@ -6720,12 +6720,12 @@ Agenda
     font-weight: 600;
     color: #1c1d22;
 }
-  
+
 #footer .evwdg-title a {
     font-weight: 600;
     }
 
-.evwdg-title a:hover { 
+.evwdg-title a:hover {
     text-decoration: none;
   }
 
@@ -6737,7 +6737,7 @@ Agenda
   border-radius: 3px;
   padding: 5px 8px 6px 8px;
     }
-  
+
 .evwdg-out p {
     background: #bbb;
     text-transform: uppercase;
@@ -6748,17 +6748,17 @@ Agenda
   border-radius: 3px;
   cursor:default;
   margin-top:-5px;
-    } 
-    
+    }
+
 .evwdg-tickets a:hover {
     background: #000;
     }
-  
+
 .evwdg-status {
   float: left;
   margin-left:15px;
     }
-  
+
 .evwdg-venue {
   line-height: 16px;
   margin-top:10px;
@@ -6768,8 +6768,8 @@ Agenda
   width:200px;
   height:40px;
   overflow: hidden;
-    } 
-  
+    }
+
 .evwdg-venue-gol {
   line-height: 16px;
     padding-left: 20px;
@@ -6780,13 +6780,13 @@ Agenda
   width:200px;
   height:16px;
   overflow: hidden;
-    } 
+    }
 
 .evwdg-test {
   width:200px;
   height:50px;
   }
-  
+
 #footer .evwdg-venue {
     background: url("images/event-venue-footer.png") no-repeat;
   line-height: 16px;
@@ -6795,8 +6795,8 @@ Agenda
   margin-bottom:15px;
     float: left;
   color:#fff;
-    } 
-  
+    }
+
 
 #footer .event-widgets {
     margin-bottom: 28px;
@@ -7113,7 +7113,7 @@ body .right {
 .app_inner label.tab-1 .app_inner__tab .tab_left__image {
   background: rgba(0,0,0,.5);
 }
-.app_inner label.tab-2 .app_inner__tab {
+/*.app_inner label.tab-2 .app_inner__tab {
   background: #795548;
 }
 .app_inner label.tab-2 .app_inner__tab:hover {
@@ -7145,11 +7145,11 @@ body .right {
 }
 .app_inner label.tab-4 .app_inner__tab .tab_left__image {
   background: #F4837D;
-}
+}*/
 .app_inner__tab {
   width: 100%;
   height: 80px;
-  background: red;
+  background: #9E9E9E;
   cursor: pointer;
   overflow: hidden;
   position: relative;
@@ -7239,7 +7239,7 @@ body .right {
   position: relative;
   top: -100px;
   text-align: center;
-  background: white;
+  background: rgba(0,0,0,.5);
   left: 20px;
   border-radius: 5px;
   width: 60px;
@@ -7368,4 +7368,9 @@ a.follow {
 a.follow:hover {
   color: #41EFB6;
   border-color: #41EFB6;
+}
+
+.articleTileStandard img{
+	height: auto !important;
+	margin-top: 20px;
 }
