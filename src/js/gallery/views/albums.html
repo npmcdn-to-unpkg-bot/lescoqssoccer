@@ -2,8 +2,8 @@
 
 	<!--Album summary-->
 	<section class="liquid-expand-wrap albumDetailBrick" style="display: none; padding: 20px;">
-		<div style="box-shadow: 0 1px 2px rgba(0,0,0,0.15);">
-			<h1 class="liquid-title" style="background: white; color: #333; border-radius: 5px 5px 0 0;">
+		<div style="box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);">
+			<h1 class="liquid-title" style="background: white; color: #333; border-radius: 2px 2px 0 0;">
 				<a ng-href="#!/albums/view/{{selectedAlbum._id}}" title="{{selectedAlbum.name}}" style="text-transform:uppercase; color: #333;">
 				{{selectedAlbum.name}}
 				</a>
@@ -22,7 +22,7 @@
 					</li>
 				</ul>
 			</div>
-			<div class="liquid-more" style="background: white; margin: 0 0 20px 0; padding: 20px 0 20px 40px; border-radius: 0 0 5px 5px;">
+			<div class="liquid-more" style="background: white; margin: 0 0 20px 0; padding: 20px 0 20px 40px; border-radius: 0 0 2px 2px;">
 				<a ng-href="#!/albums/view/{{selectedAlbum._id}}" class="liquid-more-icon " title="{{selectedAlbum.name}}" style="color:#757578;">
 					<i class="icon-m-right-arrow-curved"></i>
 					Montre voir toutes les photos gamin >
@@ -53,7 +53,7 @@
 													<div class="loading-dot2">&nbsp;</div>
 												</div>
 											</div>
-											
+
 											<!--Content-->
 											<div class="isotope masonry isotope-liquid-list less-space isotope_fade" data-space="0" data-size="medium" data-width="width4" data-ratio="imagebox-thumb">
                                                 <div class="width2 isotope-item hover-effect" ng-repeat="album in albums">
@@ -69,10 +69,10 @@
 																		<br>
 																		({{album.photoList.length}} photos)
 																	</h3>
-                                                                </div> <img 
+                                                                </div> <img
                                                                 ng-src="{{album.coverPicPath}}?dim=300x300"
                                                                 class="attachment-imagebox-thumb wp-post-image"
-                                                                alt="IMG_4783">
+                                                                alt="IMG_4783" style="box-shadow: 0 1px 2px rgba(0,0,0,1.15);">
                                                             </a>
                                                         </div>
                                                     </div>

@@ -7,6 +7,10 @@ angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'T
 		$scope.team = Team;
 		$scope.agenda = Agenda;
 
+		$scope.calendarView = 'week';
+		$scope.calendarDay = new Date();
+		$scope.calendarTitle = '';
+
 		$scope.conversationService = ConversationService;
 		$scope.conversations = {};
 		$scope.conversation = null;

@@ -240,26 +240,24 @@ function ThemeIsotope(){
 				ux_ts.setWidths(image_size, _this);
 			}
 
-			_this.imagesLoaded(function(){
-				if(_this.is('.masonry')){
-					_this.isotope({
-						animationEngine : 'css',
-						//resizable: false,
-						masonry: {
-							columnWidth: ux_ts.getUnitWidth(image_size, _this)
-						}
-					});
-				}else if(_this.is('.grid_list')){
-					_this.isotope({
-						layoutMode : 'fitRows',
-						animationEngine : 'css',
-						//resizable: false,
-						masonry: {
-							columnWidth: ux_ts.getUnitWidth(image_size, _this)
-						}
-					});
-				}
-			});
+			if(_this.is('.masonry')){
+				_this.isotope({
+					animationEngine : 'css',
+					//resizable: false,
+					masonry: {
+						columnWidth: ux_ts.getUnitWidth(image_size, _this)
+					}
+				});
+			}else if(_this.is('.grid_list')){
+				_this.isotope({
+					layoutMode : 'fitRows',
+					animationEngine : 'css',
+					//resizable: false,
+					masonry: {
+						columnWidth: ux_ts.getUnitWidth(image_size, _this)
+					}
+				});
+			}
 
 			_this.addClass('isotope_fade');
 			_this.siblings('#isotope-load').fadeOut(300);

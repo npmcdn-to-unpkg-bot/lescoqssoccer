@@ -10,12 +10,12 @@
 	   		<div class='login_inner__avatar'>
 	   			<img src="img/coq.png">
 	   		</div>
-			<input ng-model='email' name="email" placeholder='Email' type='email' style="border-radius: 5px 5px 0 0;">
+			<input ng-model='email' name="email" placeholder='Email' type='email' style="border-radius: 2px 5px 0 0;">
 			<input ng-model='password' name="password" placeholder='Mot de passe' type='password' style="border-radius: 0 0 5px 5px;">
 			<input type='button' ng-click="signin(formLogin);" value='Connexion'>
 	  	</form>
 	</div>
-	
+
 	<div ng-show="!showSignin" ng-class="(isValid) ? 'loginContainerSucess' : 'loginContainerError'">
 		<div class='login_inner__check' ng-class="(isValid) ? 'loginSucess' : 'loginError'">
 			<div class='login_inner__check--complete'>

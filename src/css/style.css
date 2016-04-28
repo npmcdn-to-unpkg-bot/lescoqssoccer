@@ -1867,7 +1867,7 @@ h1.main-title:before,.team-item-con,.archive-wrap li:before,.ux-btn:hover,.relat
 .separator_inn.bg-,.carousel-indicators li
  {
   background-color: #1c1d22;
-  border-radius: 5px;
+  border-radius: 2px;
 }
 
 /* Content color */
@@ -1876,11 +1876,11 @@ h3#reply-title small, #comments .nav-tabs li.active h3#reply-title .logged,#comm
 .header-info-mobile,.carousel-wrap a.disabled:hover,.filters li a:hover
 {
   color:#757575;
-  border-radius: 5px;
+  border-radius: 2px;
 }
 
 .item_des{
-  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
 }
 
 .filters li a:before {
@@ -1904,7 +1904,7 @@ h3#reply-title small, #comments .nav-tabs li.active h3#reply-title .logged,#comm
 .modal-dialog .modal-content
 {
   background-color: #1c1d22;
-  border-radius: 5px;
+  border-radius: 2px;
 }
 
 .modal-dialog .modal-content h1, .modal-dialog .modal-content h2, .modal-dialog .modal-content h3, .modal-dialog .modal-content h4
@@ -2022,7 +2022,7 @@ input[type="text"].textboxsearch,.submit-wrap i,.icons-sidebar-unit,#woocomerce-
 }
 .social-share-custom:hover{
   background-color: #de3926;
-  border-radius: 5px;
+  border-radius: 2px;
 }
 .social-share-google-plus:hover{
   background-color: #dd4b39;
@@ -2079,7 +2079,7 @@ button, input[type="submit"], input[type="button"]{
   background-color:#000000;
   color:#ccc;
   border:none;
-  border-radius: 5px;
+  border-radius: 2px;
   height:30px;
   line-height:30px;
   padding:0 15px;
@@ -2115,7 +2115,7 @@ div #bbpress-forums li.bbp-header
 .bypostauthor {}
 
 /* Page BG */
-body,#wrap{ background-color:#e0e2e4; background-image:none; }
+body,#wrap{ background-color:rgb(250,250,250); background-image:none; }
 
 
 /*------------------------------- ----------------
@@ -2833,7 +2833,7 @@ input:-moz-placeholder { color:white; }
     margin-bottom: 20px;
     box-shadow: 0 2px 10px 2px rgba(0,0,0,0.15);
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 2px;
 }
 .comments p {
     padding-right:60px;
@@ -2861,7 +2861,7 @@ input:-moz-placeholder { color:white; }
     padding-left:60px;
     background-color: #7b7b7b;
     color: white;
-    border-radius: 5px;
+    border-radius: 2px;
 }
 .reply_icon {
     width:40px;
@@ -3129,7 +3129,7 @@ Override bootstrap datepicker
 }
 .post-comments li.comment-form {
   background: #fff;
-  border-radius: 5px;
+  border-radius: 2px;
 }
 .post-comments li.comment-form .media {
   margin: 0;
@@ -3163,7 +3163,7 @@ Override bootstrap datepicker
   margin-bottom: 22px;
   background-color: #ffffff;
   border: 1px solid transparent;
-  border-radius: 5px;
+  border-radius: 2px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
@@ -3373,7 +3373,7 @@ Override bootstrap datepicker
 }
 .panel-group .panel {
   margin-bottom: 0;
-  border-radius: 5px;
+  border-radius: 2px;
 }
 .panel-group .panel + .panel {
   margin-top: 5px;
@@ -3869,7 +3869,7 @@ Override bootstrap datepicker
 
 .list-group {
   padding-left: 0;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
 }
 .list-group-item {
   position: relative;
@@ -3880,10 +3880,10 @@ Override bootstrap datepicker
 }
 .list-group-item:last-child {
   margin-bottom: 0;
-  border-radius: 0 0 5px 5px;
+  border-radius: 0 0 0 2px;
 }
 .list-group-item:first-child {
-  border-radius: 5px 5px 0 0;
+  border-radius: 0 2px 0 0;
 }
 a.list-group-item {
   color: #555555;
@@ -4430,7 +4430,7 @@ img.img40_40 {
 }
 
 .img-circle {
-    border-radius: 5px;
+    border-radius: 2px;
 }
 
 .articlesContainer img.img-circle, .userDetailBlog img.img-circle {
@@ -4678,7 +4678,7 @@ li>.ripplelink:hover, li.active>.ripplelink{
   height: 45px;
   top: 0;
   position: absolute;
-  border-radius: 5px;
+  border-radius: 2px;
   background-position: 50% 50%;
   background-repeat: no-repeat;
 }
@@ -4689,7 +4689,7 @@ li>.ripplelink:hover, li.active>.ripplelink{
   height: 45px;
   top: 0;
   position: absolute;
-  border-radius: 5px;
+  border-radius: 2px;
   background-position: 50% 50%;
   background-repeat: no-repeat;
 }
@@ -5107,7 +5107,7 @@ figure {
     width: 20px;
     height: 10px;
     background-color: #CCD1D9;
-    border-radius: 5px 5px 0 0;
+    border-radius: 2px 5px 0 0;
 }
 #pipe-handle:after {
     position: absolute;
@@ -5139,7 +5139,7 @@ figure {
     top: 130px;
     margin-left: -260px;
     background-color: rgba(255, 255, 255, 0.0);
-    border-radius: 5px;
+    border-radius: 2px;
     animation: glassslide 5s ease forwards infinite;
 }
 
@@ -5163,7 +5163,7 @@ figure {
     height: 100%;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 5px;
+    border-radius: 2px;
 }
 
 .beer {
@@ -5186,7 +5186,7 @@ figure {
     width: 100%;
     background-color: white;
     /*top: -20px;*/
-    border-radius: 5px 5px 0 0;
+    border-radius: 2px 5px 0 0;
 
     animation: fillupfoam 5s linear infinite, wave 0.5s alternate infinite;
 }
@@ -6092,7 +6092,7 @@ a.igoNot{
   top: 50%;
   left: 0.5em;
   height: 4px;
-  color: #5c5edc;
+  color: #1c1d22;
 }
 
 [class^='animate-'],
@@ -6218,7 +6218,7 @@ a.igoNot{
   vertical-align: middle;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #5c5edc;
+  color: #1c1d22;
 }
 
 .menu__breadcrumbs a:last-child {
@@ -6407,7 +6407,7 @@ a:hover {
   text-indent: 3px;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: #5c5edc;
+  color: #1c1d22;
 }
 
 .bp-tooltip:after {
@@ -6434,7 +6434,7 @@ a:hover {
   letter-spacing: 0;
   text-transform: none;
   color: #fff;
-  background: #5c5edc;
+  background: #1c1d22;
 }
 
 .bp-nav {
@@ -6470,7 +6470,7 @@ a:hover {
 }
 
 .bp-nav__item:hover {
-  background: #5c5edc;
+  background: #1c1d22;
 }
 
 .bp-icon:after {
@@ -6480,7 +6480,7 @@ a:hover {
   font-variant: normal;
   text-align: center;
   text-transform: none;
-  color: #5c5edc;
+  color: #1c1d22;
   -webkit-font-smoothing: antialiased;
   speak: none;
 }
@@ -6578,7 +6578,7 @@ a:hover {
   width: 200px;
   height: 200px;
   margin: 10px;
-  border-radius: 5px;
+  border-radius: 2px;
   background: #1c1d22;
 }
 
@@ -6676,7 +6676,7 @@ Agenda
     text-align:center;
     background:#eee;
     padding-bottom:5px;
-    border-radius: 5px;
+    border-radius: 2px;
     color: #1c1d22;
 }
 
@@ -6990,8 +6990,8 @@ Agenda
   right:0;
   margin:auto;
   background: white;
-  border-radius: 5px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  border-radius: 2px;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
 }
 .console-underscore {
   display:inline-block;
@@ -7155,7 +7155,7 @@ body .right {
   position: relative;
   -webkit-transition: all 0.65s cubic-bezier(1, 0, 0.41, 1.01);
   transition: all 0.65s cubic-bezier(1, 0, 0.41, 1.01);
-  border-radius: 5px;
+  border-radius: 2px;
 }
 .app_inner__tab h2 {
   position: absolute;
@@ -7207,7 +7207,7 @@ body .right {
   margin-top: 10px;
   border: 2px solid white;
   background: none;
-  border-radius: 5px;
+  border-radius: 2px;
   padding: 6px 20px;
   cursor: pointer;
   font-family: 'Roboto Condensed', sans-serif;
@@ -7241,7 +7241,7 @@ body .right {
   text-align: center;
   background: rgba(0,0,0,.5);
   left: 20px;
-  border-radius: 5px;
+  border-radius: 2px;
   width: 60px;
   height: 60px;
 }
@@ -7373,4 +7373,5 @@ a.follow:hover {
 .articleTileStandard img{
 	height: auto !important;
 	margin-top: 20px;
+	width: 100% !important;
 }
