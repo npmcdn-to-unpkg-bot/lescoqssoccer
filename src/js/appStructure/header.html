@@ -1,29 +1,23 @@
 <!-- Page Loading -->
 <div class="page-loading visible">
-    <div class="page-loading-inn">
-        <div class="page-loading-transform">
-            <img src="img/coq.png" style="height: 80px; margin-top: -80px;">
-            <div class="site-loading-logo centered-ux">LES COQS SOCCER</div>
-            <div class="ux-loading"></div>
-            <div class="ux-loading-transform">
-                <div class="loading-dot1">&nbsp;</div>
-                <div class="loading-dot2">&nbsp;</div>
-            </div>
-        </div>
-    </div>
+    	<div class="page-loading-inn">
+       		<div class="page-loading-transform">
+            		<img src="img/coq.png" style="height: 80px; margin-top: -80px;">
+            		<div class="site-loading-logo centered-ux">LES COQS SOCCER</div>
+            		<div class="ux-loading"></div>
+			<div class="ux-loading-transform">
+    				<div class="loading-dot1">&nbsp;</div>
+    				<div class="loading-dot2">&nbsp;</div>
+			</div>
+		</div>
+    	</div>
 </div>
-<header class="bp-header cf">
-    <div class="dummy-logo">
-        <div class="dummy-icon foodicon foodicon--coconut">
-            <a href="#!/users/profile">
-                <img ng-src="{{global.user.avatar && global.user.avatar + '?dim=300x300' || 'img/Professor.png'}}" style="height: 80px; border-radius: 2px;">
-            </a>
-        </div>
-        <a href="/signout">
-            <h2 class="dummy-heading">
-                Se déconnecter
-            </h2>
-        </a>
-    </div>
+
+<header id="header">
+    	<div class="wrap">
+        		<div class='console-container'>
+            		<span id='text'></span>
+            		<div class='console-underscore' id='console'>&#95;</div>
+        		</div>
+    	</div>
 </header>
-<button class="action action--open" aria-label="Open Menu"><span class="icon icon--menu"></span></button>

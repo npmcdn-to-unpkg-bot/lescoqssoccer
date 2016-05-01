@@ -146,7 +146,7 @@ function progressbar(){
 
 	function consoleText(words, id, colors) {
 
-	     	if (colors === undefined) colors = ['#fff'];
+	     	if (colors === undefined) colors = ['#2196F3'];
 	     	var visible = true;
 	     	var con = document.getElementById('console');
 	     	var letterCount = 1;
@@ -313,8 +313,6 @@ function progressbar(){
 					progressbar();
 
 					setUserDisplay();
-
-			        		consoleText(['Hello World.', 'Console Text', 'Made with Love.'], 'text',['tomato','rebeccapurple','lightblue']);
 
 				}, 500);
 			});

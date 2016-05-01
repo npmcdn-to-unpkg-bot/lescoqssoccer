@@ -1,146 +1,115 @@
-<div class="clearfix filters filter-floating">
-	<div class="filter-floating-triggle" style="top:20px; right: 0;" ng-click="openCalendar($event);">
-		<i class="fa fa-calendar"></i>
-	</div>
-</div>
+<div id="post-116" class="post-116 page type-page status-publish hentry articlesContainer">
+	<div class="row-fluid" style="min-height: 100vh">
+		<div id="content_wrap">
+			<div class="content-wrap-inn">
 
-<div id="post-1039" class="post type-post status-publish format-standard hentry category-blog">
-	<div class="row-fluid two-cols-layout" style="min-height: 100vh;">
-		<div id="content_wrap" class="span10" style="margin-left: 30px;">
-			<div class="content-wrap-inn bottom-space">
-				<div class="container" styzle="padding:0;">
-					<div class="title-bar-wrap" id="title-bar" style="padding: 50px 0;">
-						<div id="title-wrap">
-							<section>
-								<div id="action">
-									<div id="keg">
-										<div id="pipe-handle"></div>
-										<div id="pipe"></div>
-										<div id="pipe-front"></div>
-									</div>
-
-									<div class="glass">
-										<div class="beer"></div>
-										<div class="handle">
-											<div class="top-right"></div>
-											<div class="bottom-right"></div>
-										</div>
-										<div class="front-glass"></div>
-									</div>
-								</div>
-							</section>
-							<div class="title-wrap-inn" style="margin-left: 120px;">
-								<div id="main-title">
-									<h1 class="main-title">Rencards</h1>
-								</div>
-								<div class="post-expert">
-									 Une bière ?! Un café ?! Une partouze ?! Créer un évènement ici pour voir qui peut être intéressé.
-								</div>
-							</div>
-						</div>
+				<div class="container">
+					<div class="title-bar-wrap title-centered" id="title-bar" style="padding: 20px 0;">
 					</div>
 				</div>
+
 				<div class="pagebuilder-wrap">
-					<div class="container" style="padding: 0 0 0 60px; margin-top: 60px;">
+					<div class="container">
 						<div class="row-fluid">
-							<div class="moudle">
+							<div class="span6 moudle">
+								<div class="row-fluid">
+									<div class="container-isotope clear">
 
-								<div class="navigation">
-									<div class="controls">
-										<i class="before fa fa-play" ng-click="setPreviousElement();"></i>
-										<div class="date">
-											<span class="month">{{selectedEvent.startsAt || dateNow | date:"MMM"}}</span>
-											<span class="day">{{selectedEvent.startsAt || dateNow | date:"dd"}}</span>
+										<div id="isotope-load">
+											<div class="ux-loading"></div>
+											<div class="ux-loading-transform">
+												<div class="loading-dot1">&nbsp;</div>
+												<div class="loading-dot2">&nbsp;</div>
+											</div>
 										</div>
-										<i class="fa fa-play" ng-click="setNextElement();"></i>
+
+										<div class="isotope masonry isotope_fade" style="margin: 0px 0px 0px -40px; display: none;">
+											<div class="ev2page-col width6" ng-repeat="userEvent in agenda" style="background: white; border-radius: 2px; box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);">
+
+												<img class="img-circle" ng-src="{{userEvent.user.avatar}}?dim100x100" alt="{{userEvent.user.username}}"style="position: absolute; top: 10px; right: 10px;"/>
+
+											            <div class="ev2page-data">
+											                  	<div class="ev2page-day">{{userEvent.startsAt | date:"dd"}}</div>
+											                  	<div class="ev2page-month">{{userEvent.startsAt | date:"MMM"}}</div>
+											                  	<div class="ev2page-year">{{userEvent.startsAt | date:"yyyy"}}</div>
+											            </div>
+
+											            <div>
+											               	<h2 class="ev2page-title">
+											               		<a href="#!/agenda/view/{{userEvent._id}}">
+											               			{{userEvent.title}}
+											               		</a>
+											               	</h2>
+											            </div>
+
+											            <p class="three-line-ellipsis" style="font-size: 20px;"> {{userEvent.content}}</p>
+
+											            <div class="ev2page-tickets">
+											               	<a class="igo" href="#!" ng-click="addMeToEvent($event, userEvent);">
+											               		Je viens
+											               	</a>
+											               	<a class="igoNot" href="#!" ng-click="notAddMeToEvent($event, userEvent);">
+											               		Peux pas
+											               	</a>
+											            </div>
+											            <div class="ev2page-week">
+											            	{{userEvent.startsAt | date:"EEEE"}}
+											            </div>
+											</div>
+										</div>
 									</div>
-									<a class="igoNot" ng-if="selectedEvent && selectedEvent.user._id !== global.user._id" ng-click="notAddMeToEvent($event, selectedEvent);">
-										C'est mort
-									</a>
-									<a class="igo" ng-if="selectedEvent && selectedEvent.user._id !== global.user._id" ng-click="addMeToEvent($event, selectedEvent);">
-										J'y serai!
-									</a>
-									<a class="igoNot" ng-if="selectedEvent && selectedEvent.user._id === global.user._id" ng-click="deleteEvent($event, selectedEvent);">
-										Supprimer
-									</a>
-									<a class="igo" ng-href="#!/agenda/edit/{{selectedEvent._id}}" ng-if="selectedEvent && selectedEvent.user._id === global.user._id" style="background-color: lightgray;">
-										Editer
-									</a>
 								</div>
-
-								<h3 ng-if="!selectedEvent" style="margin-top: 40px;">Rien de prévu</h3>
-
-								<div id="calContainer" ng-if="selectedEvent">
-
-									<article>
-										<div id="google-map" class="google-map google-map-agenda" ng-if="selectedEvent.location">
-											<google-map
-											center="map.center"
-											zoom="map.zoom"
-											draggable="true"
-											dragging="map.dragging"
-											bounds="map.bounds"
-											events="map.events"
-											options="map.options"
-											control="map.control">
-											<marker
-												icon="'img/icons/pin.png'"
-												coords="marker"
-												animation="google.maps.Animation.DROP">
-											</marker>
-
-											</google-map>
-										</div>
-
-										<section>
-											<header>
-												<h1>
-												{{selectedEvent.title}}
-												</h1>
-												<div class="record">
-													<img class="img-circle" ng-src="{{selectedEvent.user.avatar}}?dim100x100" alt="{{selectedEvent.user.username}}" style="width:40px; height:40px; margin-right: 10px;"/>
-													 proposé par {{selectedEvent.user.name || selectedEvent.user.username}}
-												</div>
-												<div style="margin-top: 20px;">
-													{{selectedEvent.content}}
-												</div>
-												<h4>Ils seront là</h4>
-												<div>
-													<a ng-repeat="guest in selectedEvent.guest" ng-href="#!/users/detail/{{guest._id}}">
-													<img ng-src="{{guest.avatar && guest.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{guest.username}}" draggable="false" class="img80_80 img-circle" title="{{guest.username}}">
-													</a>
-												</div>
-												<p ng-if="selectedEvent.guest.length === 0">
-													Pour l'instant personne
-												</p>
-												<h4>Les échappés</h4>
-												<div>
-													<a ng-repeat="guest in selectedEvent.guestUnavailable" ng-href="#!/users/detail/{{guest._id}}">
-													<img ng-src="{{guest.avatar && guest.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{guest.username}}" draggable="false" class="img80_80 img-circle" title="{{guest.username}}">
-													</a>
-												</div>
-												<p ng-if="selectedEvent.guestUnavailable.length === 0" style="padding-bottom: 20px;">
-													Pour l'instant aucun
-												</p>
-											</header>
-										</section>
-									</article>
+							</div>
+							<div class="span4 moudle">
+								<div id="google-map" class="google-map google-map-agenda" ng-if="selectedEvent.location">
+									<google-map
+									center="map.center"
+									zoom="map.zoom"
+									draggable="true"
+									dragging="map.dragging"
+									bounds="map.bounds"
+									events="map.events"
+									options="map.options"
+									control="map.control">
+										<marker
+											icon="'img/icons/pin.png'"
+											coords="marker"
+											animation="google.maps.Animation.DROP">
+										</marker>
+									</google-map>
 								</div>
 							</div>
 						</div>
 					</div>
+
+					<!--Pagination-->
+					<div class="clearfix pagenums" style="display: none;">
+						<div class="pagination">
+							<pagination
+							previous-text="<<"
+							next-text=">>"
+							total-items="totalItems"
+							page="page"
+							on-select-page="pageChanged(page)"
+							items-per-page="itemsPerPage">
+							</pagination>
+						</div>
+					</div>
+
 				</div>
 			</div>
 		</div>
 	</div>
-
-	<div class="addButton">
-		<div class="float-bar-inn-wrap"></div>
-		<a href="#!/agenda/create">
-		<div id="float-bar-triggler">
-			<i class="float-bar-triggler-inn"></i>
-		</div>
-		</a>
-	</div>
 </div>
+
+<div class="addButton">
+	<div class="float-bar-inn-wrap"></div>
+	<a href="#!/agenda/create">
+	<div id="float-bar-triggler">
+		<i class="float-bar-triggler-inn"></i>
+	</div>
+	</a>
+</div>
+
 <cm-page-builder></cm-page-builder>
+

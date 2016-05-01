@@ -1,94 +1,113 @@
-<div id="post-330" class="post-330 page type-page status-publish hentry" ng-init="initialize();" style="max-height: calc(100vh - 40px);">
+<div id="post-330" class="post-330 page type-page status-publish hentry" ng-init="initialize();" style="height: calc(100vh - 30px);">
     <div class="row-fluid" style="margin-top: 30px;">
         <div id="content_wrap" >
             <div class="content-wrap-inn bottom-space">
 
-                <div class="container responsive-ux">
+                <div class="container responsive-ux" style="padding: 0 30px; max-width: inherit;">
                     <div class="row-fluid">
-                        <div class="span12 moudle bottom-space-20">
-                            <div class='console-container'>
-                                <span id='text'></span>
-                                <div class='console-underscore' id='console'>&#95;</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="container responsive-ux">
-                    <div class="row-fluid" style="background: white; box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12); border-radius: 2px;">
+		<div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20" style="margin-left: -15px;">
+               			<div class='app_inner'>
 
-                        <div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20" style="margin-left: -15px;">
-                       		<div class='app_inner'>
-                       		<mwl-calendar
-			view="calendarView"
-			current-day="calendarDay"
-			events="agenda"
-			view-title="calendarTitle"
-			auto-open="true">
-			</mwl-calendar>
-	                        	<div ng-repeat="event in agenda">
-		                                    <input id='tab-{{$index+1}}' ng-checked="{{$index === 0}}" name='buttons' type='radio'>
-		                                    <label class="tab-{{$index+1}}" for='tab-{{$index+1}}'>
-		                                        <div class='app_inner__tab'>
-		                                            <h2>
-		                                                <i class='icon ion-android-alarm-clock'></i>
-		                                                {{event.startsAt | date:"dd MMM yyyy"}}
-		                                            </h2>
-		                                            <div class='tab_left'>
-		                                                <div class='tab_left__image'>
-		                                                    <i class='fa fa-calendar'></i>
-		                                                </div>
-		                                            </div>
-		                                            <div class='tab_right ellispis' style="width: 66%;">
-		                                                <h3 class="ellispis" style="color: white;">{{event.title}}</h3>
-		                                                <p>organisé par <b style="text-transform: uppercase;">{{event.user.username}}</b></p>
-		                                                <button style="width: 110px;" ng-click="AgendaCollection.addMeToEvent($event, event);">Je viens</button>
-		                                            </div>
-		                                        </div>
-		                                    </label>
-		                        </div>
-	                        </div>
-                        </div>
+               			<div class="profile-card user-card card">
+				  <div class="banner">
+				    <img src="http://s10.postimg.org/k9pfyr4yh/Y213_Ec8.jpg">
+				  </div>
+				  <div class="user-image">
+				    <img ng-src="{{global.user.avatar && global.user.avatar + '?dim=100x100' || 'img/Professor.png'}}">
+				  </div>
+				  <header>
+				    <h1>{{global.user.username}}</h1>
+				    <p>Le fanfaron</p>
+				    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt eaque quae tenetur, suscipit quasi accusantium blanditiis doloribus expedita sapiente enim facilis at ipsa similique, nobis consectetur iusto.</p>
+				   </header>
+				  <div class="card-footer">
+				    	<ul class="stats">
 
-                        <div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20" style="padding: 5px; height: calc(100vh - 180px); ">
-                            <div class='app_inner'>
-                                <div style="height: 80px; margin: 20px 0 40px;">
-                                	<div style="text-align: center; margin-bottom: 20px;">
-                                		<a href="#!/users/profile">
-		                		<img ng-src="{{global.user.avatar && global.user.avatar + '?dim=300x300' || 'img/Professor.png'}}" style="height: 200px; border-radius: 50%;">
-	            		</a>
-	            		<h3>{{global.user.username}}</h3>
-	            		<h4 style="font-style: italic;">Le fanfaron</h4>
-                                	</div>
-                                    <div class='tab_right' style="float: right; display: flex;width: 33%;">
-                                        <div class="text_block withbg bg-theme-color-7" style="text-align: center;     margin: auto !important; display: flex; width: 60px; height: 60px;    padding: 0;     border-radius: 50%;">
-                                            <a href='#!/suggestions' style="margin: auto;">
-                                                <span style="font-size: 30px;line-height: 60px;">{{unreadVoteCount}}</span>
-                                                <br><p style="margin-top: 10px; color: #1c1d22; font-size: medium;"><b>Votes</b></p>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class='tab_right' style="float: right; display: flex;width: 33%;">
-                                        <div class="text_block withbg bg-theme-color-8" style="text-align: center;     margin: auto !important; display: flex; width: 60px; height: 60px;padding: 0;     border-radius: 50%;">
-                                            <a href='#!/albums' style="margin: auto;">
-                                                <span style="font-size: 30px;line-height: 60px;">{{unreadAlbumCount}}</span>
-                                                <br><p style="margin-top: 10px; color: #1c1d22; font-size: medium;"><b>Albums</b></p>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class='tab_right' style="float: right; display: flex;width: 33%;">
-                                        <div class="text_block withbg bg-theme-color-5" style="text-align: center;         margin: auto !important; display: flex; width: 60px; height: 60px; padding: 0;    border-radius: 50%;">
-                                            <a href='#!/articles' style="margin: auto;">
-                                                <span style="font-size: 30px;line-height: 60px;">{{unreadArticleCount}}</span>
-                                                <br><p style="margin-top: 10px; color: #1c1d22; font-size: medium;"><b>Article</b></p>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+					            <li>
+					            	<a>
+					            		<section class="infrographic pie ux-mod-nobg">
 
-                        <div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20" style="overflow: auto; margin-left: 15px;padding: 0;box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);">
+				                                                            <section class="pie-item">
+				                                                                <div style="display: inline; width: 50px; height: 50px;">
+				                                                                    <input class="knob" data-width="50" data-height="50" data-thickness=".03" value="75" data-val="75" data-readonly="true" data-fgcolor="#2196F3" readonly="readonly" style=" vertical-align: middle; margin-left: -92px; border: 0px; font-weight: 300; font-style: normal; font-variant: normal; font-size: 15px; line-height: normal; font-family: Arial; text-align: center; color: rgb(0, 207, 117); padding: 0px;">
+				                                                                </div>
+				                                                            </section>
+		                                                        		</section>
+		                                                        	</a>
+		                                                </li>
+					            <li>
+					            	<a href='#!/articles'>
+					            		<strong>{{unreadArticleCount}}</strong>
+					            		<span>Articles</span>
+					            	</a>
+					            </li>
+				          </ul>
+				  </div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20">
+               		<div class='app_inner'>
+               		<div class="tabs-h sidebarCard card">
+                                                            <ul id="myTab-20140404-042250-406" class="nav nav-tabs unstyled table fullwidth links">
+                                                                <li class="active"><a href="#tabs_20140404-042250-4060">Articles</a></li>
+                                                                <li class=""><a href="#tabs_20140404-042250-4061">Agenda</a>
+                                                            </ul>
+                                                            <div class="tab-content ">
+                                                                <div id="tabs_20140404-042250-4060" class="tab-pane active">
+                                                                    <ul class="unstyled content">
+					            <li>
+					              <figure><img src="//i.imgbox.com/acmzfWnu">
+					                <div class="description">
+					                  <p>Urna quam quisque suspendisse eros, mauris augue.</p>
+					                  	<span class="fa fa-comments"></span> 3 Commentaires
+					                </div>
+					              </figure>
+					            </li>
+					            <li>
+					              <figure><img src="//i.imgbox.com/abhgFP2L">
+					                <div class="description">
+					                  <p>Urna quam quisque suspendisse eros, mauris augue.</p>
+					                  <span class="fa fa-comments"></span> 3 Commentaires
+					                </div>
+					              </figure>
+					            </li>
+					            <li>
+					              <figure><img src="//i.imgbox.com/adw49q0r">
+					                <div class="description">
+					                  <p>Urna quam quisque suspendisse eros, mauris augue.</p>
+					                  <span class="fa fa-comments"></span> 3 Commentaires
+					                </div>
+					              </figure>
+					            </li>
+					          </ul>
+                                                                </div>
+                                                                <div id="tabs_20140404-042250-4061" class="tab-pane ">
+                                                                    <ul class="unstyled content">
+					            <li>
+					              <figure><img src="//i.imgbox.com/acmzfWnu">
+					                <div class="description">
+					                  <p>Urna quam quisque suspendisse eros, mauris augue.</p><a><span class="icon-heart"></span>3K Likes</a>
+					                </div>
+					              </figure>
+					            </li>
+					            <li>
+					              <figure><img src="//i.imgbox.com/abhgFP2L">
+					                <div class="description">
+					                  <p>Urna quam quisque suspendisse eros, mauris augue.</p><a><span class="icon-heart"></span>25 Likes</a>
+					                </div>
+					              </figure>
+					            </li>
+					          </ul>
+                                                            </div>
+                                                            </div>
+                                    	</div>
+			</div>
+		</div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20" style="overflow: auto; padding: 0;box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12); margin-left: 15px;">
                             <div class="nicescroll">
 
                                 <ul ng-if="!conversation" class="list-group list-group-list" style="max-height: calc(100vh - 150px);">

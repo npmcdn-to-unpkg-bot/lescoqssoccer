@@ -1,12 +1,36 @@
-<nav id="ml-menu" class="menu">
-	<button class="action action--close" aria-label="Close Menu"><span class="icon icon--cross"></span></button>
-	<div class="menu__wrap">
-		<ul data-menu="main" class="menu__level">
-			<li ng-repeat="item in menu" class="menu__item">
-				<a class='menu__link' ng-href='{{item.link}}' ng-class="{'active' : isCurrentPath(item)}" data-submenu="submenu-1">
+<aside>
+	<nav id="nav-container" class="sidebar_hide">
+
+		<a ng-href="#!/users/profile" class="docs-logo" href="/">
+		        	<img ng-src="{{global.user.avatar || 'img/Professor.png'}}" alt="">
+		        	<h1 class="docs-logotype">{{global.user.username}}</h1>
+		</a>
+
+		<div class="menu-container">
+			<h2 class='list-item-title'>
+				Titre
+			</h2>
+			<a ng-repeat="item in menu1" ng-href='{{item.link}}' ng-class="{'active' : isCurrentPath(item)}">
+				<h2 class='list-item'>
 					{{item.name}}
-				</a>
-			</li>
-		</ul>
-	</div>
-</nav>
+				</h2>
+			</a>
+			<h2 class='list-item-title'>
+				Titre
+			</h2>
+			<a ng-repeat="item in menu2" ng-href='{{item.link}}' ng-class="{'active' : isCurrentPath(item)}">
+				<h2 class='list-item'>
+					{{item.name}}
+				</h2>
+			</a>
+		</div>
+
+		<a href="/signout">
+			<h2 class='list-item-disonnect'>
+				Déconnexion
+			</h2>
+		</a>
+
+		<!-- <div class="navBackground"></div> -->
+	</nav>
+</aside>

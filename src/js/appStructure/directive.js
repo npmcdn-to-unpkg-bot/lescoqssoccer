@@ -9,34 +9,70 @@ angular.module('mean.system').directive('cmSidebar', function() {
 		replace: true,
 		link: function($scope, element, attrs) {
 
-			var menuEl = document.getElementById('ml-menu'),
-			mlmenu = new MLMenu(menuEl, {
-				// breadcrumbsCtrl : true, // show breadcrumbs
-				initialBreadcrumb : '', // initial breadcrumb text
-				backCtrl : false, // show back button
-				// itemsDelayInterval : 60, // delay between each menu item sliding animation
-				//onItemClick: loadDummyData // callback: item that doesn´t have a submenu gets clicked - onItemClick([event], [inner HTML of the clicked item])
+			/* SIDEBAR ANIMATIONS */
+			jQuery('#menu-bar').find('.menu-bar-icon').click(function() {
+				jQuery('body').find('#menu-bar').addClass('menucolor');
+				jQuery('body').find('#menu-bg').fadeIn();
+				jQuery('body').find('.leftcontainer').show();
+				if (jQuery(window).width() > 480) {
+					jQuery('body').find('.leftcontainer').removeClass('animated fadeOutLeft');
+					jQuery('body').find('.leftcontainer').addClass('animated fadeInLeft');
+				} else {
+					jQuery('body').find('.leftcontainer').removeClass('animated');
+				}
+				jQuery(this).fadeOut();
+				setTimeout(function() {
+					jQuery('#menu-bar').find('.close-icon').fadeIn();
+				}, 400);
 			});
 
-			// mobile menu toggle
-			var openMenuCtrl = document.querySelector('.action--open');
-			var closeMenuCtrl = document.querySelector('.action--close');
+			jQuery('#menu-bg').click(function() {
+				jQuery('body').find('#menu-bar').removeClass('menucolor');
+				jQuery('body').find('#menu-bg').fadeOut();
+				if (jQuery(window).width() > 480) {
+					jQuery('body').find('.leftcontainer').fadeOut();
+					jQuery('body').find('.leftcontainer').removeClass('animated fadeInLeft');
+					jQuery('body').find('.leftcontainer').addClass('animated fadeOutLeft');
+				} else {
+					jQuery('body').find('.leftcontainer').hide();
+					jQuery('body').find('.leftcontainer').removeClass('animated');
+				}
+				jQuery('#menu-bar').find('.close-icon').fadeOut();
+				setTimeout(function() {
+					jQuery('#menu-bar').find('.menu-bar-icon').fadeIn();
+				}, 400);
+			});
 
-			if(openMenuCtrl){
-				openMenuCtrl.addEventListener('click', openMenu);
-			}
+			jQuery('#menu-bar').find('.close-icon').click(function() {
+				jQuery('body').find('#menu-bar').removeClass('menucolor');
+				jQuery('body').find('#menu-bg').fadeOut();
+				if (jQuery(window).width() > 480) {
+					jQuery('body').find('.leftcontainer').fadeOut();
+					jQuery('body').find('.leftcontainer').removeClass('animated fadeInLeft');
+					jQuery('body').find('.leftcontainer').addClass('animated fadeOutLeft');
+				} else {
+					jQuery('body').find('.leftcontainer').hide();
+					jQuery('body').find('.leftcontainer').removeClass('animated');
+				}
+				jQuery(this).fadeOut();
+				setTimeout(function() {
+					jQuery('#menu-bar').find('.menu-bar-icon').fadeIn();
+				}, 400);
+			});
 
-			if(closeMenuCtrl){
-				closeMenuCtrl.addEventListener('click', closeMenu);
-			}
+			setTimeout(function() {
+				$(".leftcontainer").mCustomScrollbar({
+					scrollInertia: 400,
+					autoHideScrollbar: true,
+					theme: "light",
+					advanced: {
+						updateOnContentResize: true
+					}
+				});
 
-			function openMenu() {
-				$(menuEl).addClass('menu--open');
-			}
 
-			function closeMenu() {
-				$(menuEl).removeClass('menu--open');
-			}
+			        	consoleText(['Hello World.', 'Console Text', 'Made with Love.'], 'text');
+			}, 500);
 		}
 	}
 });

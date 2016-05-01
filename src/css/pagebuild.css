@@ -1252,21 +1252,16 @@ transform: translateX(-40px);
 -------------------------------------------
 */
 .nav.nav-tabs{
-	margin-bottom:0; border-bottom-color:#e8e8e8;  vertical-align:top;
+	border-bottom-color:white;
 }
 .nav-tabs > li{ margin-left:-1px; }
 .nav-tabs > li:first-child{ margin-left:0;}
 .nav-tabs > li > a{
-	border-radius:0; margin-right:0; font-size:14px; border-color: #e8e8e8;
-}
-.nav-tabs > li > a:hover { color:#fff;}
-.tab-content {
-	border-width: 1px; border-style: solid; border-color: #e8e8e8; border-top: none;
+	border-radius:0; margin-right:0; font-size:14px;
 }
 .nav-tabs > .active > a,
 .nav-tabs > .active > a:hover,
 .nav-tabs > .active > a:focus{ border-color:#e8e8e8; }
-.tab-pane{ margin: 20px; }
 .tabs-v{ vertical-align:top; border-width: 1px; border-style: solid; border-color: #e8e8e8; }
 .nav-tabs-v{ float:left; width:25%; position:relative; z-index:2;}
 .tab-content.tab-content-v{
