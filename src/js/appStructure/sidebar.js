@@ -6,12 +6,14 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 
 		$scope.global = Global;
 
-		$scope.menu1 = [{
+		$scope.menu = [{
 			name: "Accueil",
 			id: "home",
 			link: "#!/home",
 			icon: "home.jpg"
-		},{
+		}];
+
+		$scope.menu1 = [{
 			name: "Articles",
 			id: "articles",
 			link: "#!/articles",
@@ -26,9 +28,7 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 			link: "#!/albums",
 			id: "albums",
 			icon: "articles.jpg"
-		}];
-
-		$scope.menu2 = [{
+		},{
 			name: "Copaings",
 			link: "#!/users",
 			id: "users",
@@ -38,8 +38,9 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 			id: "suggestions",
 			link: "#!/suggestions",
 			icon: "suggestions.jpg"
-		},
-		{
+		}];
+
+		$scope.menu2 = [{
 			name: "Bugs",
 			id: "issues",
 			link: "#!/issues",

@@ -7,8 +7,13 @@
 		</a>
 
 		<div class="menu-container">
+			<a ng-repeat="item in menu" ng-href='{{item.link}}' ng-class="{'active' : isCurrentPath(item)}">
+				<h2 class='list-item' style="margin-top: -10px;">
+					{{item.name}}
+				</h2>
+			</a>
 			<h2 class='list-item-title'>
-				Titre
+				Contenus
 			</h2>
 			<a ng-repeat="item in menu1" ng-href='{{item.link}}' ng-class="{'active' : isCurrentPath(item)}">
 				<h2 class='list-item'>
@@ -16,7 +21,7 @@
 				</h2>
 			</a>
 			<h2 class='list-item-title'>
-				Titre
+				Paramètres
 			</h2>
 			<a ng-repeat="item in menu2" ng-href='{{item.link}}' ng-class="{'active' : isCurrentPath(item)}">
 				<h2 class='list-item'>

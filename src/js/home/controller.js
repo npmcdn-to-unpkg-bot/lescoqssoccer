@@ -1,11 +1,13 @@
 'use strict';
 
-angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'Team', 'Agenda', 'AgendaCollection', 'ConversationService', 'Suggestions', 'ArticleItemsCount', 'AlbumItemsCount', 'UserService',
-	function($scope, Global, Team, Agenda, AgendaCollection, ConversationService, Suggestions, ArticleItemsCount, AlbumItemsCount, UserService) {
+angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'Team', 'UserDatas', 'AgendaCollection', 'ConversationService', 'Suggestions', 'ArticleItemsCount', 'AlbumItemsCount', 'UserService',
+	function($scope, Global, Team, UserDatas, AgendaCollection, ConversationService, Suggestions, ArticleItemsCount, AlbumItemsCount, UserService) {
 
 		$scope.global = Global;
 		$scope.team = Team;
-		$scope.agenda = Agenda;
+		$scope.userDatas = UserDatas;
+
+		console.warn($scope.userDatas);
 
 		$scope.calendarView = 'week';
 		$scope.calendarDay = new Date();
@@ -128,6 +130,30 @@ angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'T
 		$scope.getUnreadAlbumCount = function(){
 			$scope.unreadAlbumCount = AlbumItemsCount.count - Global.user.readAlbums.length;
 		};
+
+		$scope.getLogo = function(article){
+			switch (article.type){
+				case "standard":
+					return "standardItem";
+					break;
+				case "audio":
+					return "audioItem";
+					break;
+				case "quote":
+					return "quoteItem";
+					break;
+				case "video":
+					return "videoItem";
+					break;
+				default:
+					break;
+			}
+		};
+
+		$scope.getDateFrom = function(item){
+			var string = moment(item.created).fromNow();
+			return string.charAt(0).toUpperCase() + string.slice(1);
+		};
 	}
 ]);
 
@@ -139,8 +165,8 @@ var HomeData = {
 		}).$promise;
 	},
 
-	Agenda: function(AgendaCollection) {
-		return AgendaCollection.load();
+	UserDatas: function(HomeCollection) {
+		return HomeCollection.getUserDatas();
 	},
 
 	Conversations: function(Global, ConversationService, $route) {

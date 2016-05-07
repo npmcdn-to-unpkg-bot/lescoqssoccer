@@ -1,43 +1,46 @@
-<div class="clearfix filters filter-floating">
-	<div class="filter-floating-triggle hidden-phone" style="top:20px; right: 125px;" ng-click="global.back();">
-		<i class="fa fa-arrow-left"></i>
-	</div>
-	<div class="filter-floating-triggle" style="top:20px; right: 60px;" ng-click="update();">
-		<i class="fa fa-save"></i>
-	</div>
-</div>
+<header id="header">
+    	<div class="wrap">
+        		<div class="bp-header__main">
+        			<nav class="bp-nav">
+			            <a class="bp-nav__item bp-icon bp-icon--list" href="#!" data-info="Retour" data-ng-click="global.back();">
+			            	<span>Retour</span>
+			            </a>
+			            <a class="bp-nav__item bp-icon bp-icon--next" href="#!" data-info="Sauvegarder" data-ng-click="update();">
+			            	<span>Sauvegarder</span>
+			            </a>
+		        	</nav>
+		</div>
+        		<h2 class="ellipsis">Profile</h2>
+    	</div>
+</header>
 
 <div id="post-662" class="page type-page status-publish hentry" >
 	<div class="row-fluid">
 		<div id="content_wrap">
 			<div class="content-wrap-inn bottom-space">
 				<div class="pagebuilder-wrap">
-					<div class="fullwrap_moudle">
-						<div class="row-fluid">
-							<div class="fullwidth-wrap top-space-80-in bottom-space-40-in fullwidth-text-white">
-								<div class="parallax" data-ratio="0.3">
-									<img class="parallax-img" src="img/background-testimonial.jpg" style="-webkit-filter: grayscale(100%); opacity: 0.6;">
-								</div>
-								<div class="container">
-									<div class="row-fluid">
-										<div class="span12 moudle">
-											<h1 style="margin-top: -40px;">PROFILE</h1>
-											<div class="flex-slider-wrap testimonial-wrap ux-mod-nobg" data-direction="false" data-control="true" data-speed="5" data-animation="fade" style="padding-bottom: 0;">
-												<div class="flexslider" style="text-align: center;">
-													<div class="testimonial-thum">
-														<img ng-src="{{user.avatar && user.avatar + '?dim=300x300' || 'img/Professor.png'}}" class="attachment-thumbnail wp-post-image" alt="13" draggable="false">
+					<div style="width: calc(100% - 120px);background: white; margin: 40px 60px; box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12); color: #7b7b7b; border-radius: 2px;">
+						<div class="fullwrap_moudle">
+							<div class="row-fluid">
+								<div class="fullwidth-wrap top-space-80-in bottom-space-40-in fullwidth-text-white">
+									<div class="parallax" data-ratio="0.3">
+										<img class="parallax-img" src="img/background-testimonial.jpg" style="-webkit-filter: grayscale(100%); opacity: 0.6;">
+									</div>
+									<div class="container">
+										<div class="row-fluid">
+											<div class="span12 moudle">
+												<div class="flex-slider-wrap testimonial-wrap ux-mod-nobg" data-direction="false" data-control="true" data-speed="5" data-animation="fade" style="padding-bottom: 0;">
+													<div class="flexslider" style="text-align: center;">
+														<div class="testimonial-thum">
+															<img ng-src="{{user.avatar && user.avatar + '?dim=300x300' || 'img/Professor.png'}}" class="attachment-thumbnail wp-post-image" alt="13" draggable="false">
+														</div><label>Changer la photo													</label>
+															<input
+															nv-file-select
+															type="file"
+															uploader="uploader"
+															class="manual-file-chooser js-manual-file-chooser js-avatar-field"
+															value="Changer la photo"/>
 													</div>
-													<!-- <button class="button pointer">
-													<label for="upload-profile-picture" class="label-upload-profile-picture" style="margin: inherit;">
- -->													<label>Changer la photo</label>
-														<input
-														nv-file-select
-														type="file"
-														uploader="uploader"
-														class="manual-file-chooser js-manual-file-chooser js-avatar-field"
-														value="Changer la photo"/>
-													<!-- </label>
-													</button> -->
 												</div>
 											</div>
 										</div>
@@ -45,50 +48,50 @@
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="container">
-						<div id="comments">
-							<div id="respondwrap">
-								<div id="respond" class="comment-respond">
-									<form role="form">
+						<div class="container">
+							<div id="comments">
+								<div id="respondwrap">
+									<div id="respond" class="comment-respond">
+										<form role="form">
 
-										<div class="span6" style="margin-bottom: 20px;">
-											<h3 style="padding-bottom: 30px;">Infos du compte</h3>
+											<div class="span6" style="margin-bottom: 20px;">
+												<h3 style="padding-bottom: 30px;">Infos du compte</h3>
 
-											<label>{{'profile_username' | translate}}</label>
-											<input type="text" data-ng-model="user.username" style="margin-bottom: 20px;"/>
+												<label>{{'profile_username' | translate}}</label>
+												<input type="text" data-ng-model="user.username" style="margin-bottom: 20px;"/>
 
-											<label>{{'profile_email' | translate}}</label>
-											<input type="text" data-ng-model="user.email" style="margin-bottom: 20px;"/>
+												<label>{{'profile_email' | translate}}</label>
+												<input type="text" data-ng-model="user.email" style="margin-bottom: 20px;"/>
 
-											<label>Le petit mot aux copaings</label>
-											<textarea data-ng-model="user.presentation">
-											</textarea>
+												<label>Le petit mot aux copaings</label>
+												<textarea data-ng-model="user.presentation">
+												</textarea>
 
-											<div ng-repeat="skill in user.skills">
-												<label>{{skill.name}}</label>
-												<input type="text" data-ng-model="skill.value" style="margin-bottom: 20px;"/>
+												<div ng-repeat="skill in user.skills">
+													<label>{{skill.name}}</label>
+													<input type="text" data-ng-model="skill.value" style="margin-bottom: 20px;"/>
+												</div>
 											</div>
-										</div>
 
-										<div class="span6">
-											<h3 style="padding-bottom: 30px;">Infos complémentaires</h3>
-											<div>
-												<label>Nom du nouveau champ</label>
-												<input type="text" placeholder="Ex: Numéro de téléphone" data-ng-model="skill.name"/>
+											<div class="span6">
+												<h3 style="padding-bottom: 30px;">Infos complémentaires</h3>
+												<div>
+													<label>Nom du nouveau champ</label>
+													<input type="text" placeholder="Ex: Numéro de téléphone" data-ng-model="skill.name"/>
 
-												<label>Valeur du nouveau champ</label>
-												<input type="text" placeholder="Ex: 06 666 6666 66" data-ng-model="skill.value"/>
-												<input
-												class="pull-right"
-												type="button"
-												ng-click="addSkill();"
-												ng-disabled="skillName === 0"
-												value="Ajouter"
-												style="color: white; width: 200px;"/>
+													<label>Valeur du nouveau champ</label>
+													<input type="text" placeholder="Ex: 06 666 6666 66" data-ng-model="skill.value"/>
+													<input
+													class="pull-right"
+													type="button"
+													ng-click="addSkill();"
+													ng-disabled="skillName === 0"
+													value="Ajouter"
+													style="color: white; width: 200px;"/>
+												</div>
 											</div>
-										</div>
-									</form>
+										</form>
+									</div>
 								</div>
 							</div>
 						</div>

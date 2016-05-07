@@ -1,25 +1,25 @@
+<header id="header">
+    	<div class="wrap">
+        		<div class="bp-header__main">
+        			<nav class="bp-nav">
+			           <a class="bp-nav__item bp-icon bp-icon--prev" href="#!" data-info="Article précédent" data-ng-click="showPrevious($event);">
+			            	<span>Précédent</span>
+			            </a>
+			            <a class="bp-nav__item bp-icon bp-icon--list" href="#!" data-info="Retour à la liste" data-ng-click="backToList($event);">
+			            	<span>Retour à la liste</span>
+			            </a>
+			            <a class="bp-nav__item bp-icon bp-icon--next" href="#!" data-info="Article suivant" data-ng-click="showNext($event);">
+			            	<span>Suivant</span>
+			            </a>
+		        	</nav>
+		</div>
+        		<h2 class="ellipsis">Articles > {{article.title}}</h2>
+    	</div>
+</header>
 <div id="post-1039" class="post type-post status-publish format-standard hentry category-blog">
 	<div class="row-fluid two-cols-layout" style="min-height: 100vh;">
 		<div id="content_wrap">
 			<div class="content-wrap-inn">
-
-				<!-- Header -->
-				<div class="bp-header__main">
-					<h1 class="bp-header__title">
-						{{article.title}}
-					</h1>
-					<nav class="bp-nav">
-						<a class="bp-nav__item bp-icon bp-icon--prev" href="#!" data-info="Article précédent" data-ng-click="showPrevious($event);">
-							<span>Précédent</span>
-						</a>
-						<a class="bp-nav__item bp-icon bp-icon--list" href="#!" data-info="Retour à la liste" data-ng-click="backToList($event);">
-							<span>Retour à la liste</span>
-						</a>
-						<a class="bp-nav__item bp-icon bp-icon--next" href="#!" data-info="Article suivant" data-ng-click="showNext($event);">
-							<span>Suivant</span>
-						</a>
-					</nav>
-				</div>
 
 				<!-- Content -->
 				<div class="pagebuilder-wrap">
@@ -30,15 +30,15 @@
 									<div id="main-title" style="text-align: center;">
 										<div class="item_des bg-theme-color-7" style="padding: 20px 20px 30px 20px;">
 											<div class="post-meta" style="font-size: initial; color: white;">
-												<img class="img-circle" ng-src="{{article.user.avatar}}?dim100x100" alt="{{article.user.username}}" style="width: 80px; height: 80px; margin: -20px 0 20px 0;" />
-												<p>par
+												<img class="img-circle" ng-src="{{article.user.avatar}}?dim100x100" alt="{{article.user.username}}" style="width: 80px; height: 80px; margin: 0 20px 0; border-radius: 2px;" />
+											<p style="display: inline-block;">par
 													<b style="text-transform: uppercase;">
 														{{article.user.username}},
 													</b>
-												</p>
-												<span class="date">
+													<span>
 													le {{article.created | date:"dd MMM yyyy"}}
 												</span>
+												</p>
 												<span class="post-meta-unit tag"></span>
 											</div>
 											<p style="margin: 0 30px 40px 20px; font-size: medium; text-align: justify; color: white;">

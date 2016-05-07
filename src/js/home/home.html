@@ -1,3 +1,11 @@
+<header id="header">
+    	<div class="wrap">
+        		<div class='console-container'>
+            		<span id='text'></span>
+            		<div class='console-underscore' id='console'>&#95;</div>
+        		</div>
+    	</div>
+</header>
 <div id="post-330" class="post-330 page type-page status-publish hentry" ng-init="initialize();" style="height: calc(100vh - 30px);">
     <div class="row-fluid" style="margin-top: 30px;">
         <div id="content_wrap" >
@@ -14,32 +22,46 @@
 				    <img src="http://s10.postimg.org/k9pfyr4yh/Y213_Ec8.jpg">
 				  </div>
 				  <div class="user-image">
-				    <img ng-src="{{global.user.avatar && global.user.avatar + '?dim=100x100' || 'img/Professor.png'}}">
+
+                                                	<div style="
+                                                	position: relative;
+                                                		border: 8px solid #2196F3;
+					    border-radius: 50%;
+					    display: block;
+					    margin: -75px auto 0;
+					    width: 130px;    height: 130px;
+					    color: #2196F3;
+					    background: white;
+					    font-size: 50px;
+					    font-weight: 500;
+					    text-align: center;
+					    vertical-align: middle;
+					    padding-top: 25px;">
+                                                		75%
+                                                	</div>
 				  </div>
 				  <header>
-				    <h1>{{global.user.username}}</h1>
-				    <p>Le fanfaron</p>
+				    <h1>Tu es fanfaron</h1>
 				    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt eaque quae tenetur, suscipit quasi accusantium blanditiis doloribus expedita sapiente enim facilis at ipsa similique, nobis consectetur iusto.</p>
 				   </header>
 				  <div class="card-footer">
 				    	<ul class="stats">
-
-					            <li>
-					            	<a>
-					            		<section class="infrographic pie ux-mod-nobg">
-
-				                                                            <section class="pie-item">
-				                                                                <div style="display: inline; width: 50px; height: 50px;">
-				                                                                    <input class="knob" data-width="50" data-height="50" data-thickness=".03" value="75" data-val="75" data-readonly="true" data-fgcolor="#2196F3" readonly="readonly" style=" vertical-align: middle; margin-left: -92px; border: 0px; font-weight: 300; font-style: normal; font-variant: normal; font-size: 15px; line-height: normal; font-family: Arial; text-align: center; color: rgb(0, 207, 117); padding: 0px;">
-				                                                                </div>
-				                                                            </section>
-		                                                        		</section>
-		                                                        	</a>
-		                                                </li>
+				    		<li>
+					            	<a href='#!/articles'>
+					            		<strong>{{unreadAlbumCount}}</strong>
+					            		<span>Albums</span>
+					            	</a>
+					            </li>
 					            <li>
 					            	<a href='#!/articles'>
 					            		<strong>{{unreadArticleCount}}</strong>
 					            		<span>Articles</span>
+					            	</a>
+					            </li>
+					            <li>
+					            	<a href='#!/articles'>
+					            		<strong>{{unreadVoteCount}}</strong>
+					            		<span>Votes</span>
 					            	</a>
 					            </li>
 				          </ul>
@@ -48,62 +70,25 @@
 			</div>
 		</div>
 
-		<div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20">
-               		<div class='app_inner'>
-               		<div class="tabs-h sidebarCard card">
-                                                            <ul id="myTab-20140404-042250-406" class="nav nav-tabs unstyled table fullwidth links">
-                                                                <li class="active"><a href="#tabs_20140404-042250-4060">Articles</a></li>
-                                                                <li class=""><a href="#tabs_20140404-042250-4061">Agenda</a>
-                                                            </ul>
-                                                            <div class="tab-content ">
-                                                                <div id="tabs_20140404-042250-4060" class="tab-pane active">
-                                                                    <ul class="unstyled content">
-					            <li>
-					              <figure><img src="//i.imgbox.com/acmzfWnu">
-					                <div class="description">
-					                  <p>Urna quam quisque suspendisse eros, mauris augue.</p>
-					                  	<span class="fa fa-comments"></span> 3 Commentaires
-					                </div>
-					              </figure>
-					            </li>
-					            <li>
-					              <figure><img src="//i.imgbox.com/abhgFP2L">
-					                <div class="description">
-					                  <p>Urna quam quisque suspendisse eros, mauris augue.</p>
-					                  <span class="fa fa-comments"></span> 3 Commentaires
-					                </div>
-					              </figure>
-					            </li>
-					            <li>
-					              <figure><img src="//i.imgbox.com/adw49q0r">
-					                <div class="description">
-					                  <p>Urna quam quisque suspendisse eros, mauris augue.</p>
-					                  <span class="fa fa-comments"></span> 3 Commentaires
-					                </div>
-					              </figure>
-					            </li>
-					          </ul>
-                                                                </div>
-                                                                <div id="tabs_20140404-042250-4061" class="tab-pane ">
-                                                                    <ul class="unstyled content">
-					            <li>
-					              <figure><img src="//i.imgbox.com/acmzfWnu">
-					                <div class="description">
-					                  <p>Urna quam quisque suspendisse eros, mauris augue.</p><a><span class="icon-heart"></span>3K Likes</a>
-					                </div>
-					              </figure>
-					            </li>
-					            <li>
-					              <figure><img src="//i.imgbox.com/abhgFP2L">
-					                <div class="description">
-					                  <p>Urna quam quisque suspendisse eros, mauris augue.</p><a><span class="icon-heart"></span>25 Likes</a>
-					                </div>
-					              </figure>
-					            </li>
-					          </ul>
-                                                            </div>
-                                                            </div>
-                                    	</div>
+		<div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20" style="background: white; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); padding: 0;">
+               		<div id="timeline">
+               			<div class="timelineContainer">
+               				<div ng-repeat="item in userDatas.content">
+	               				<p>{{getDateFrom(item)}}</p>
+						<div class="timeline-item">
+							<div class="timeline-icon">
+								<img ng-src="{{item.user.avatar && item.user.avatar + '?dim=50x50' || 'img/Professor.png'}}" alt="{{user.username}}" title="{{user.username}}" style="background: white;">
+							</div>
+							<div class="timeline-content">
+								<h2 style="text-transform: uppercase">{{item.title}}</h2>
+								<p>
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+									Atque, facilis quo maiores magnam modi ab libero praesentium blanditiis.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 

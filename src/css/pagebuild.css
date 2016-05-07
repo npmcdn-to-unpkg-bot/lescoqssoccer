@@ -33,7 +33,7 @@
 .bg-theme-color-4{ background-color:#77c9e1;}
 .bg-theme-color-5{ background-color:#1c1d22;}
 .bg-theme-color-6{ background-color:#b8b69d;}
-.bg-theme-color-7{ background-color:#4CAF50;}
+.bg-theme-color-7{ background-color: rgba(0,0,0, 0.4);}
 .bg-theme-color-8{ background-color:#f3ce22;}
 .bg-theme-color-9{ background-color:#ce671e;}
 .bg-theme-color-10{ background-color:#000000;}
@@ -1065,17 +1065,39 @@ div.container3d:hover .card .face.front{
 -------------------------------------------
 */
 
-.isotope-item.standard .item_topbar:before{ content:"\e621";}
+.standardItem:before{ content:"\e621";}
 .isotope-item.gallery .item_topbar:before{ content:"\e623";}
-.isotope-item.audio .item_topbar:before{ content:"\e626"; }
+.audioItem:before{ content:"\e626"; }
 .isotope-item.image .item_topbar:before{ content:"\e625"; }
-.isotope-item.video .item_topbar:before{ content:"\e620"; }
+.videoItem:before{ content:"\e620"; }
 .isotope-item.link .item_topbar:before{ content:"\e624";}
 .isotope-item.quote .item_topbar:before{ content:"\e622"; }
 
+.quoteItem:before{
+	content: '';
+	background-image: url("../img/vote.jpg");
+	background-size: contain;
+	width: 35px;
+	height: 35px;
+	display: block;
+}
+
+.standardItem:before, .audioItem:before,.videoItem:before{
+    font-family: 'icon';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 35px;
+}
+
 .item_des{ }
 .item_title{ font-size:18px; padding:10px 20px; margin-bottom:-25px; }
-.item-des-p{ padding:0 20px 20px; }
+.item-des-p{ padding:0 20px 40px; }
 .item_link{
 	display:block; width:32px; height:60px; line-height:60px; float:right; margin-right:20px; text-align: center; font-size:24px; color:#fff;
 }
@@ -1228,7 +1250,7 @@ transform: translateX(-40px);
 */
 
 .message-box{
-	position:relative; text-align:justify; padding:20px 60px 20px 60px; background-position: 20px 20px; background-repeat:no-repeat;
+	position:relative; text-align:justify; background-position: 20px 20px; background-repeat:no-repeat;
 	color:#fff;
 }
 .message-box a{
@@ -1253,6 +1275,7 @@ transform: translateX(-40px);
 */
 .nav.nav-tabs{
 	border-bottom-color:white;
+	    margin-bottom: 0;
 }
 .nav-tabs > li{ margin-left:-1px; }
 .nav-tabs > li:first-child{ margin-left:0;}

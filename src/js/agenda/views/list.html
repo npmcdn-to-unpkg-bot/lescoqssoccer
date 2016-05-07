@@ -1,3 +1,8 @@
+<header id="header">
+    	<div class="wrap">
+        		<h2>Agenda</h2>
+    	</div>
+</header>
 <div id="post-116" class="post-116 page type-page status-publish hentry articlesContainer">
 	<div class="row-fluid" style="min-height: 100vh">
 		<div id="content_wrap">
@@ -23,8 +28,8 @@
 											</div>
 										</div>
 
-										<div class="isotope masonry isotope_fade" style="margin: 0px 0px 0px -40px; display: none;">
-											<div class="ev2page-col width6" ng-repeat="userEvent in agenda" style="background: white; border-radius: 2px; box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);">
+										<div class="isotope masonry isotope_fade" style="display: none; width: calc(80vw - 500px);">
+											<div class="ev2page-col" ng-repeat="userEvent in agenda" style="background: white; border-radius: 2px; box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);">
 
 												<img class="img-circle" ng-src="{{userEvent.user.avatar}}?dim100x100" alt="{{userEvent.user.username}}"style="position: absolute; top: 10px; right: 10px;"/>
 
@@ -60,7 +65,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="span4 moudle">
+							<div class="moudle" style="float: right;">
 								<div id="google-map" class="google-map google-map-agenda" ng-if="selectedEvent.location">
 									<google-map
 									center="map.center"

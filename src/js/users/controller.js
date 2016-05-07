@@ -65,9 +65,9 @@ angular.module('mean.users').controller('TeamController', ['$scope', 'Global', '
 	}
 ]);
 
-angular.module('mean.users').controller('UserDetailController', ['$scope','$sce', 'User', 'Albums', 'UserArticles',
+angular.module('mean.users').controller('UserDetailController', ['$scope','$sce', '$modalInstance', 'User', 'Albums', 'UserArticles',
 
-	function($scope, $sce, User, Albums, UserArticles) {
+	function($scope, $sce, $modalInstance, User, Albums, UserArticles) {
 
 		$scope.user = User;
 		$scope.albums = Albums;
@@ -89,6 +89,10 @@ angular.module('mean.users').controller('UserDetailController', ['$scope','$sce'
 
 		$scope.isSpotify = function(link){
 			return link.indexOf('spotify') !== -1;
+		};
+
+		$scope.cancel = function(){
+			$modalInstance.dismiss('cancel');
 		};
 	}
 ]);

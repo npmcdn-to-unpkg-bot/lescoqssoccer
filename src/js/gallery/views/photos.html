@@ -1,15 +1,7 @@
-<!--Page content-->
-<div class="post type-post status-publish format-link has-post-thumbnail hentry category-blog category-uncategorized">
-	<div class="row-fluid two-cols-layout" style="min-height: 100vh;">
-		<div id="content_wrap">
-			<div class="content-wrap-inn">
-
-				<!-- Header -->
-				<div class="bp-header__main">
-			        <h1 class="bp-header__title">
-			        	{{album.name}}
-			        </h1>
-			        <nav class="bp-nav">
+<header id="header">
+    	<div class="wrap">
+        		<div class="bp-header__main">
+        			<nav class="bp-nav">
 			        	<a class="bp-nav__item bp-icon bp-icon--edit" href="#!" data-info="Editer" data-ng-click="update($event);" ng-show="global.user._id === album.user._id">
 			            	<span>Editer</span>
 			            </a>
@@ -28,8 +20,17 @@
 			            <a class="bp-nav__item bp-icon bp-icon--archive" href="#!" data-info="Télécharger" data-ng-click="download($event);">
 			            	<span>Télécharger</span>
 			            </a>
-			        </nav>
-			    </div>
+			 </nav>
+		</div>
+        		<h2 class="ellipsis">Albums > {{album.name}}</h2>
+    	</div>
+</header>
+
+<!--Page content-->
+<div class="post type-post status-publish format-link has-post-thumbnail hentry category-blog category-uncategorized">
+	<div class="row-fluid two-cols-layout" style="min-height: 100vh;">
+		<div id="content_wrap">
+			<div class="content-wrap-inn">
 
 				<!--Photos content-->
 				<div class="pagebuilder-wrap">
