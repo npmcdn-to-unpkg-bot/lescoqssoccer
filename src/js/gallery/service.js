@@ -22,7 +22,7 @@ angular.module('mean.albums').factory('AlbumsCollection', ['$resource',
 ]);
 
 //Articles service used for get articles items count
-angular.module('mean.articles').factory('AlbumsCount', ['$resource',
+angular.module('mean.albums').factory('AlbumsCount', ['$resource',
 	function($resource) {
 		return $resource('albumsCount');
 	}

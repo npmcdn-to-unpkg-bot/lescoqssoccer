@@ -4181,31 +4181,6 @@ li>.ripplelink:hover, li.active>.ripplelink{
     vertical-align: bottom;
 }
 
-/*.pop {
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    min-height: 100vh;
-    background-color: #e0e2e4;
-}
-.pop.ng-enter,
-.pop.ng-leave {
-    -webkit-transition: all 1s ease;
-    transition: all 1s ease;
-}
-.pop.ng-enter {
-    -webkit-transform: scale(0);
-    transform: scale(0);
-}
-.pop.ng-enter-active,
-.pop.ng-leave,
-.pop.ng-leave-active {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-}
-.pop.ng-leave-active {}*/
-
 .sidebar-user-action{
   display: inline-block !important;
   margin-top: 15px;
@@ -4219,7 +4194,7 @@ li>.ripplelink:hover, li.active>.ripplelink{
 
 .chat-wrapper ul {
   margin: 0 auto;
-  max-height: calc(100vh - 330px);
+  max-height: calc(100vh - 300px);
   overflow-x: hidden;
   overflow-y: auto;
   padding-right: 30px;
@@ -5740,7 +5715,7 @@ a.igoNot{
   top: 150px;
   left: 0;
   width: 250px;
-  height: calc(100vh - 150px);
+  height: calc(100vh - 130px);
   background: #1c1d22;
 }
 
@@ -6776,12 +6751,13 @@ h2.ev2shr-title a, h2.ev2page-title a, h2.ev3page-title a {
 }
 
 .login {
-  background: #2B2D42;
-  border-radius: 4px;
+  background: #2196F3;
+  border-radius: 2px;
   width: 300px;
   height: auto;
   margin: 50px auto;
   min-height: 300px;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,0),0 2px 1px -1px rgba(0,0,0,.12);
 }
 
 .login_inner {
@@ -6808,6 +6784,7 @@ h2.ev2shr-title a, h2.ev2page-title a, h2.ev3page-title a {
   -webkit-transform: translateY(-35px);
           transform: translateY(-35px);
   border-radius: 100%;
+  background: white;
 }
 .login_inner__avatar img{
   margin-top: -30px;
@@ -6842,8 +6819,9 @@ h2.ev2shr-title a, h2.ev2page-title a, h2.ev3page-title a {
   width: 100%;
 }
 
-.login_inner input[type="button"] {
-  background: #757575;
+.login_inner input[type="submit"] {
+  background: #dddddd;
+  color: black;
   cursor: pointer;
   text-align: center;
   margin: 2em auto 0 auto;
@@ -7484,7 +7462,7 @@ a.follow:hover {
   max-width: 100%;
   margin: 10px auto 0px auto;
   position: relative;
-     max-height: calc(100vh - 150px);
+     max-height: calc(100vh - 130px);
     overflow-y: auto;
     overflow-x: hidden;
   -webkit-transition: all 0.4s ease;
@@ -7500,7 +7478,7 @@ a.follow:hover {
 .timelineContainer:before {
   content: "";
   width: 3px;
-  height: calc(100% - 150px);
+  height: calc(100% - 130px);
   background: #2196F3;
   position: fixed;
   margin-left: 30px;
