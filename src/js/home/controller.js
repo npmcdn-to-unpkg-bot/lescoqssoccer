@@ -15,6 +15,8 @@ angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Glo
 			content: ""
 		};
 
+		$scope.$parent.menu = null;
+
 		$scope.initialize = function() {
 			$scope.initializeConversations();
 			$scope.updateCounters();

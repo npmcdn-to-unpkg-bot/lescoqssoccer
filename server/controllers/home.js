@@ -116,7 +116,9 @@ var formatUserData = function(userData){
 
 	_.sortBy(formattedDatas.content, function(item){
 		return item.created;
-	})
+	});
+
+	formattedDatas.content.splice(30);
 
 	return formattedDatas;
 };

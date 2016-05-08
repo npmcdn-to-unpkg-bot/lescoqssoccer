@@ -10,6 +10,25 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 		$scope.totalItems = ItemsCount.count;
 		$scope.itemsPerPage = ArticlesCollection.itemsPerPage;
 
+		$scope.$parent.menu = {
+			title: "Articles",
+			items: [{
+				link: '#!/articles/create/standard',
+				info: 'Nouvel article',
+				icon: 'bp-icon--prev'
+			},
+			{
+				link: '#!/articles/create/vidéo',
+				info: 'Nouvelle vidéo',
+				icon: 'bp-icon--list'
+			},
+			{
+				link: '#!/articles/create/audio',
+				info: 'Nouveau son',
+				icon: 'bp-icon--next'
+			}]
+		}
+
 		//Format html content from article content edit by wysiwyg
 		$scope.getFormattedContent = function(html) {
 			return angular.element(html).text();
@@ -150,6 +169,22 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 		$scope.ArticlesCollection = ArticlesCollection;
 		$scope.article = Article;
 
+		$scope.$parent.menu = {
+			title: "Nouvel article",
+			items: [{
+				link: '#!',
+				info: 'Retour',
+				icon: 'bp-icon--prev',
+				callback: $scope.global.back
+			},
+			{
+				link: '#!',
+				info: 'Sauvegarder',
+				icon: 'bp-icon--list',
+				callback: $scope.create
+			}]
+		}
+
 		switch ($scope.article.type) {
 			case "link":
 				$scope.title = $scope.article.title ||"Nouveau lien";
@@ -224,7 +259,6 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 		};
 
 		$scope.create = function() {
-
 			switch ($scope.article.type) {
 				case "link":
 					$scope.article.linkAdress = [{
