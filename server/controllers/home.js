@@ -24,9 +24,7 @@ exports.getAllUserData = function(req, res) {
 
 	Article.find()
 		.sort('-created')
-		.populate('user', 'name username avatar')
-		.populate('comments.user', 'name username avatar')
-		.populate('comments.replies.user', 'name username avatar').exec()
+		.populate('user', '_id name username avatar').exec()
 	.then(function(articles, err) {
 
 		if (err) {
@@ -41,24 +39,7 @@ exports.getAllUserData = function(req, res) {
 
 			return Album.find()
 				.sort('-created')
-				.populate('user').exec();
-		}
-
-	}).then(function(albums, err) {
-
-		if (err) {
-
-			res.render('error', {
-				status: 500
-			});
-
-		} else {
-
-			userData.albums = albums;
-
-			return Album.find()
-				.sort('-created')
-				.populate('user').exec();
+				.populate('user', '_id name username avatar').exec();
 		}
 
 	}).then(function(albums, err) {
@@ -74,11 +55,8 @@ exports.getAllUserData = function(req, res) {
 			userData.albums = albums;
 
 			return UserEvent.find()
-				.sort('startsAt')
-				.populate('user', 'name username avatar')
-				.populate('guest', 'name username avatar')
-				.populate('guestUnavailable', 'name username avatar')
-				.exec();
+				.sort('-created')
+				.populate('user', '_id name username avatar').exec();
 		}
 
 	}).then(function(userEvent, err) {
@@ -95,8 +73,7 @@ exports.getAllUserData = function(req, res) {
 
 			return Suggestion.find({})
 				.sort('-created')
-				.populate('user', 'name username avatar')
-				.exec();
+				.populate('user', '_id name username avatar').exec();
 		}
 
 	}).then(function(suggestions, err) {
@@ -126,18 +103,15 @@ var formatUserData = function(userData){
 	});
 
 	_.each(userData.albums, function(album){
-		album.type = "album";
-		formattedDatas.content.push(album);
+		formattedDatas.content.push(_.defaults({type: "album"}, album._doc));
 	});
 
 	_.each(userData.userEvents, function(userEvent){
-		userEvent.type = "userEvent";
-		formattedDatas.content.push(userEvent);
+		formattedDatas.content.push(_.defaults({type: "userEvent"}, userEvent._doc));
 	});
 
 	_.each(userData.suggestions, function(suggestion){
-		suggestion.type = "suggestion";
-		formattedDatas.content.push(suggestion);
+		formattedDatas.content.push(_.defaults({type: "suggestion"}, suggestion._doc));
 	});
 
 	_.sortBy(formattedDatas.content, function(item){

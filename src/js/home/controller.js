@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'Team', 'UserDatas', 'ConversationService', 'Suggestions', 'ArticleItemsCount', 'AlbumItemsCount', 'UserService',
-	function($scope, Global, Team, UserDatas, ConversationService, Suggestions, ArticleItemsCount, AlbumItemsCount, UserService) {
+angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Global', 'Team', 'UserDatas', 'ConversationService', 'Suggestions', 'ArticleItemsCount', 'AlbumItemsCount', 'UserService',
+	function($scope, $sce, Global, Team, UserDatas, ConversationService, Suggestions, ArticleItemsCount, AlbumItemsCount, UserService) {
 
 		$scope.global = Global;
 		$scope.team = Team;
@@ -18,6 +18,8 @@ angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'T
 		$scope.initialize = function() {
 			$scope.initializeConversations();
 			$scope.updateCounters();
+
+			consoleText(['Hello World.', 'Console Text', 'Made with Love.'], 'text');
 		};
 
 		//Index all conversations in the object $scope.conversations
@@ -131,6 +133,16 @@ angular.module('mean.home').controller('HomeController', ['$scope', 'Global', 'T
 		$scope.getDateFrom = function(item) {
 			var string = moment(item.created).fromNow();
 			return string.charAt(0).toUpperCase() + string.slice(1);
+		};
+
+		//Format html content from article content edit by wysiwyg
+		$scope.getFormattedContent = function(html) {
+			return angular.element(html).text();
+		};
+
+		//Format video and audio url
+		$scope.trustSrc = function(src) {
+			return $sce.trustAsResourceUrl(src);
 		};
 	}
 ]);

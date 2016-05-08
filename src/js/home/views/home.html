@@ -9,6 +9,7 @@
 		</div>
 	</div>
 </header>
+
 <div id="post-330" class="post-330 page type-page status-publish hentry" ng-init="initialize();" style="height: calc(100vh - 30px);">
 	<div class="row-fluid" style="margin-top: 30px;">
 		<div id="content_wrap">
@@ -22,7 +23,7 @@
 										<img src="http://s10.postimg.org/k9pfyr4yh/Y213_Ec8.jpg"/>
 									</div>
 									<div class="user-image">
-										<div style=" position: relative; border: 8px solid #2196F3; border-radius: 50%; display: block; margin: -75px auto 0; width: 130px;    height: 130px; color: #2196F3; background: white; font-size: 50px; font-weight: 500; text-align: center; vertical-align: middle; padding-top: 25px;">
+										<div>
 											75%
 										</div>
 									</div>
@@ -71,31 +72,16 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20" style="background: white; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); padding: 0;">
+
+						<div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20 timelineParent">
 							<div id="timeline">
 								<div class="timelineContainer">
-									<div ng-repeat="item in userDatas.content">
-										<p>
-											{{ getDateFrom(item) }}
-										</p>
-										<div class="timeline-item">
-											<div class="timeline-icon">
-												<img ng-src="{{ item.user.avatar && item.user.avatar + '?dim=50x50' || 'img/Professor.png' }}" alt="{{ user.username }}" title="{{ user.username }}" style="background: white;"/>
-											</div>
-											<div class="timeline-content">
-												<h2 style="text-transform: uppercase">
-													{{ item.title }}
-												</h2>
-												<p>
-													Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-													Atque, facilis quo maiores magnam modi ab libero praesentium blanditiis.
-												</p>
-											</div>
-										</div>
-									</div>
+									<cm-timeline ng-repeat="item in userDatas.content | orderBy:'-created'" type="{{item.type || 'standard'}}">
+									</cm-timeline>
 								</div>
 							</div>
 						</div>
+
 						<div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20" style="overflow: auto; padding: 0;box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12); margin-left: 15px;">
 							<div class="nicescroll">
 								<ul ng-if="!conversation" class="list-group list-group-list" style="max-height: calc(100vh - 130px);">

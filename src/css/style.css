@@ -7446,6 +7446,10 @@ a.follow:hover {
   width: 100%;
 }
 
+.user-image div{
+	position: relative; border: 8px solid #2196F3; border-radius: 50%; display: block; margin: -75px auto 0; width: 130px;    height: 130px; color: #2196F3; background: white; font-size: 50px; font-weight: 500; text-align: center; vertical-align: middle; padding-top: 25px;
+}
+
 .pie-item input[readonly] {
        font-size: 15px !important;
 }
@@ -7456,6 +7460,10 @@ a.follow:hover {
   display: block;
   width: 100%;
   clear: both;
+}
+
+.timelineParent{
+	background: white; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); padding: 0;
 }
 
 #timeline {
@@ -7484,7 +7492,7 @@ a.follow:hover {
   margin-left: 30px;
 }
 
-.timelineContainer>div>p{
+.timelineContainer p:first-child{
 	margin-left: 70px;
 	    font-size: initial;
 }
@@ -7544,6 +7552,8 @@ a.follow:hover {
 }
 
 #timeline .timeline-item .timeline-content h2 {
+	font-size: 20px;
+	line-height: 20px;
   padding: 15px;
   background: #2196F3;
   color: #fff;
@@ -7554,6 +7564,11 @@ a.follow:hover {
   -ms-border-radius: 2px 2px 0 0;
   border-radius: 2px 2px 0 0;
 }
+
+#timeline .timeline-item .timeline-content .three-line-ellipsis, #timeline .timeline-item .timeline-content .videoWrapper, #timeline .timeline-item .timeline-content .soundcloudWrapper {
+	margin-top: 10px;
+}
+
 #timeline .timeline-item .timeline-content:before {
   content: '';
   position: absolute;
