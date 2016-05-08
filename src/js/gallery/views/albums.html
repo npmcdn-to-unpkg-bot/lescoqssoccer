@@ -1,5 +1,12 @@
 <header id="header">
     	<div class="wrap">
+    		<div class="bp-header__main">
+        			<nav class="bp-nav">
+			            <a class="bp-nav__item bp-icon bp-icon--prev" href="#!/albums/create" data-info="Nouvel album">
+			            	<span>Nouveau</span>
+			            </a>
+		        	</nav>
+		</div>
         		<h2>Albums</h2>
     	</div>
 </header>
@@ -37,7 +44,7 @@
 	</section>
 
 	<!--Page content-->
-	<div class="row-fluid" style="min-height: 100vh;">
+	<div class="row-fluid">
 		<div id="content_wrap">
 			<div class="content-wrap-inn">
 
@@ -61,38 +68,37 @@
 
 											<!--Content-->
 											<div class="isotope masonry isotope-liquid-list less-space isotope_fade" data-space="0" data-size="medium" data-width="width4" data-ratio="imagebox-thumb">
-                                                <div class="width2 isotope-item hover-effect" ng-repeat="album in albums">
-                                                    <div class="inside liquid_inside brick-inside">
-                                                        <div class="brick-content brick-hover" style="padding: 20px;">
-                                                            <a class="liquid_list_image" data-postid="{{album._id}}" data-type="image">
-                                                                <div class="brick-hover-mask">
-                                                                    <h3 class="brick-title" style="color: #1c1d22;">
-                                                                    	<i class="fa fa-search"></i>&nbsp;&nbsp;
-																		<b style="text-transform: uppercase;">
-																			{{album.name}}
-																		</b>
-																		<br>
-																		({{album.photoList.length}} photos)
-																	</h3>
-                                                                </div> <img
-                                                                ng-src="{{album.coverPicPath}}?dim=300x300"
-                                                                class="attachment-imagebox-thumb wp-post-image"
-                                                                alt="IMG_4783" style="box-shadow: 0 1px 2px rgba(0,0,0,1.15);">
-                                                            </a>
-                                                        </div>
-                                                    </div>
+								                                                <div class="width2 isotope-item hover-effect" ng-repeat="album in albums">
+								                                                    <div class="inside liquid_inside brick-inside">
+								                                                        <div class="brick-content brick-hover" style="padding: 20px;">
+								                                                            <a class="liquid_list_image" data-postid="{{album._id}}" data-type="image">
+								                                                                <div class="brick-hover-mask">
+								                                                                    <h3 class="brick-title" style="color: #1c1d22;">
+								                                                                    	<i class="fa fa-search"></i>&nbsp;&nbsp;
+														<b style="text-transform: uppercase;">
+														</b>
+														<br>
+														({{album.photoList.length}} photos)
+														</h3>
+								                                                                </div> <img
+								                                                                ng-src="{{album.coverPicPath}}?dim=300x300"
+								                                                                class="attachment-imagebox-thumb wp-post-image"
+								                                                                alt="IMG_4783" style="box-shadow: 0 1px 2px rgba(0,0,0,1.15);">
+								                                                            </a>
+								                                                        </div>
+								                                                </div>
 
-                                                    <!--Loading for album summary-->
-													<div style="display: none; background: white;" class="inside liquid-loading-wrap">
-														<div class="ux-loading"></div>
-														<div class="ux-loading-transform">
-															<div class="loading-dot1">&nbsp;</div>
-															<div class="loading-dot2">&nbsp;</div>
-														</div>
-														<img ng-src="{{album.coverPicPath}}?dim=300x300" class="liquid-hide wp-post-image">
+                                                    								<!--Loading for album summary-->
+												<div style="display: none; background: white;" class="inside liquid-loading-wrap">
+													<div class="ux-loading"></div>
+													<div class="ux-loading-transform">
+														<div class="loading-dot1">&nbsp;</div>
+														<div class="loading-dot2">&nbsp;</div>
 													</div>
-                                                </div>
-                                            </div>
+													<img ng-src="{{album.coverPicPath}}?dim=300x300" class="liquid-hide wp-post-image">
+												</div>
+							                                                </div>
+							                                            </div>
 										</div>
 
 										<!--Pagination-->
@@ -116,17 +122,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
-
-	<!--Add button-->
-	<div class="addButton">
-		<div class="float-bar-inn-wrap">
-		</div>
-		<a href="#!/albums/create">
-		<div id="float-bar-triggler">
-			<i class="float-bar-triggler-inn"></i>
-		</div>
-		</a>
 	</div>
 </div>
 

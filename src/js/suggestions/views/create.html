@@ -1,45 +1,48 @@
-<div class="clearfix filters filter-floating">
-	<div class="filter-floating-triggle hidden-phone" style="top:20px; right: 125px;" ng-click="global.back();">
-		<i class="fa fa-arrow-left"></i>
-	</div>
-	<div class="filter-floating-triggle" style="top:20px; right: 60px;" ng-click="create($event);">
-		<i class="fa fa-save"></i>
-	</div>
-</div>
+<header id="header">
+    	<div class="wrap">
+        		<div class="bp-header__main">
+        			<nav class="bp-nav">
+			            <a class="bp-nav__item bp-icon bp-icon--list" href="#!" data-info="Retour" data-ng-click="global.back();">
+			            	<span>Retour</span>
+			            </a>
+			            <a class="bp-nav__item bp-icon bp-icon--next" href="#!" data-info="Sauvegarder" data-ng-click="create();">
+			            	<span>Sauvegarder</span>
+			            </a>
+		        	</nav>
+		</div>
+        		<h2 class="ellipsis">Nouveau vote</h2>
+    	</div>
+</header>
 
 <div id="post-1039" class="post type-post status-publish format-standard hentry category-blog">
-	<div class="row-fluid two-cols-layout" style="min-height: 799px;">
-		<div id="content_wrap" class="span10" style="margin-left: 9%;">
-			<div class="title-bar-wrap " id="title-bar" style="padding: 50px 0;">
-				<div id="title-wrap">
-					<div class="title-wrap-inn">
-						<div id="main-title">
-							<h1 class="main-title">NOUVEAU VOTE</h1>
+	<div class="row-fluid two-cols-layout">
+		<div id="content_wrap">
+			<div class="content-wrap-inn">
+
+			    	<!-- Content -->
+				<div class="pagebuilder-wrap">
+					<div class="container" style="width: calc(100% - 120px);background: white; margin: 40px 60px; box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12); color: #7b7b7b; border-radius: 2px;">
+						<div id="comments">
+							<div id="respondwrap">
+								<div id="respond" class="comment-respond">
+									<form role="form">
+										<p class="span12" style="margin-left: 0;">
+											<textarea
+											name="content"
+											data-ng-model="content"
+											placeholder="Contenu du vote">
+											</textarea>
+										</p>
+									</form>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
-			<div id="comments">
-				<div id="respondwrap">
-					<div id="respond" class="comment-respond">
-						<form role="form">
-							<p class="span12" style="margin-left: 0;">
-								<textarea
-								name="content"
-								data-ng-model="content"
-								placeholder="Contenu du vote">
-								</textarea>
-							</p>
-						</form>
-					</div>
-				</div>
-			</div>
-
 		</div>
 	</div>
 </div>
 
 <cm-wysiwyg></cm-wysiwyg>
-<cm-page-builder></cm-page-builder>
 <cm-page-builder></cm-page-builder>

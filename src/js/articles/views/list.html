@@ -1,5 +1,18 @@
 <header id="header">
     	<div class="wrap">
+    		<div class="bp-header__main">
+        			<nav class="bp-nav">
+			            <a class="bp-nav__item bp-icon bp-icon--prev" href="#!/articles/create/standard" data-info="Nouvel article">
+			            	<span>Texte</span>
+			            </a>
+			            <a class="bp-nav__item bp-icon bp-icon--list" href="#!/articles/create/vidéo" data-info="Nouvelle vidéo">
+			            	<span>Vidéo</span>
+			            </a>
+			            <a class="bp-nav__item bp-icon bp-icon--next" href="#!/articles/create/audio" data-info="Nouveau son">
+			            	<span>Son</span>
+			            </a>
+		        	</nav>
+		</div>
         		<h2>Articles</h2>
     	</div>
 </header>
@@ -56,30 +69,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
-
-<div id="float-bar">
-	<div class="float-bar-inn-wrap">
-		<div class="float-bar-inn">
-			<div class="float-bar-social-share">
-				<button class="social-share-custom" ng-click="openCreateView('standard')" title="Texte et autres">
-					<i class="fa fa-pencil"></i>
-				</button>
-
-				<button class="social-share-custom" ng-click="openCreateView('video')" title="Vidéo">
-					<i class="fa fa-video-camera"></i>
-				</button>
-
-				<button class="social-share-custom" ng-click="openCreateView('audio')" title="Son">
-					<i class="fa fa-volume-up"></i>
-				</button>
-			</div>
-		</div>
-	</div>
-
-	<div id="float-bar-triggler" class="notClickable">
-		<i class="float-bar-add"></i>
 	</div>
 </div>
 

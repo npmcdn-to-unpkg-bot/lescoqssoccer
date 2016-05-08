@@ -1834,9 +1834,13 @@ textarea:focus,input[type="text"]:focus,input[type="password"]:focus,input[type=
 #comments .comment-author a,h1,h2,h3,h4,h5,h6,.archive-tit a,.blog-item-main h2 a,.item_title a,#sidebar .social_active i:hover,.countdown_amount,.latest-posts-tit a,
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus,.accordion-heading .accordion-toggle,.item_des .item_title a,
 .infrographic.bar .bar-percent,.jqbar.vertical span,.item_title a,.team-item-con-back a,.team-item-con-back i,.team-item-con-h p,.slider-panel-item h2.slider-title a,
-#respondwrap textarea, #respondwrap input, .contactform input[type="text"], .contactform textarea,#respondwrap input#submit:hover,.contactform input[type="submit"]:hover
+#respondwrap textarea, #respondwrap input, .contactform input[type="text"], .contactform textarea,.contactform input[type="submit"]:hover
 {
     color:#000000;
+}
+#respondwrap input#submit:hover{
+	color:#000000;
+	background: #eee;
 }
 li.commlist-unit,
 .gallery-wrap-fullwidth .gallery-info-property,
@@ -2821,12 +2825,10 @@ input:-moz-placeholder { color:white; }
 }
 .reply {
     padding: 5px 10px;
-    background-color: #000000;
     margin-right: -30px;
 }
 .comments.reply {
     padding-left:60px;
-    background-color: #7b7b7b;
     color: white;
     border-radius: 2px;
 }

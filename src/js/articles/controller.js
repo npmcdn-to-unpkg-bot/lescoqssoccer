@@ -34,10 +34,6 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 			$location.path((newPage === 1) ? "/articles" : "/articles/" + newPage);
 		};
 
-		$scope.openCreateView = function(articleType) {
-			window.location = "#!/articles/create/" + articleType;
-		};
-
 		$scope.closeModal = function() {
 			$scope.modalInstance.close();
 		};
