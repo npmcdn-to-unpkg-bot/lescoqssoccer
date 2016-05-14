@@ -1,22 +1,7 @@
-<div class="filter_blog filter_blog width2 isotope-item audio">
+<div class="filter_blog width2 isotope-item audio">
 	<div class="inside" style="margin:40px 0 0 40px;">
-		<div ng-class="{'spotify': isSpotify(article.audioLink)}">
+		<div>
 			<div class="item_des soundcloudWrapperParent">
-				<div class="item_topbar">
-				</div>
-				<div style="width:40px; margin: 0 20px 20px; padding: 20px 0 0;">
-					<p style="margin: 10px 0 10px 50px;position: absolute;">
-						<b style="text-transform: uppercase; font-size: medium;">
-							{{ article.user.username }}
-						</b>
-						, {{ getDateFrom(article) }}
-					</p>
-					<img class="img-circle" ng-src="{{ article.user.avatar }}?dim100x100" alt="{{ article.user.username }}"/>
-				</div>
-				<div class="soundcloudWrapper embed-container">
-					<iframe frameborder="0" allowtransparency='true' ng-src="{{ trustSrc(article.audioLink) }}">
-					</iframe>
-				</div>
 				<div class="item_des">
 					<h2 class="item_title">
 						<a href="#!/articles/view/audio/{{ article._id }}" title="{{ article.title }}">
@@ -25,21 +10,39 @@
 					</h2>
 					<div class="clear">
 					</div>
+					<div class="soundcloudWrapper embed-container">
+						<iframe frameborder="0" allowtransparency='true' ng-src="{{ trustSrc(article.audioLink) }}">
+						</iframe>
+					</div>
 					<div class="tagcloud" style="padding: 0 20px 10px;">
 						<a ng-repeat="category in article.categories" title="{{ category.value }}" style="font-size: 11px;" class="active">
 							{{ category.value }}
+						</a>
+						<a ng-if="article.categories.length === 0" style="font-size: 11px;" class="active">
+							Aucune catégorie associée
 						</a>
 					</div>
 					<div class="clear">
 					</div>
 					<div class="pull-right" style="margin: -40px 20px; font-size: initial;">
 						<span class="pull-right">
+							{{ article.comments.length }}
 							<i class="fa fa-comment">
 							</i>
-							{{ article.comments.length }}
 						</span>
+					</div>
+					<hr/>
+					<div style="width:40px; margin: 0 20px; padding: 0 0 20px;">
+						<p style="margin: 10px 0 10px 50px;position: absolute;">
+							<b style="text-transform: uppercase; font-size: medium;">
+								{{ article.user.username }}
+							</b>
+							, {{ getDateFrom(article) }}
+						</p>
+						<img class="img-circle" ng-src="{{ article.user.avatar }}?dim100x100" alt="{{ article.user.username }}"/>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>

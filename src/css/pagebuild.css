@@ -1097,7 +1097,7 @@ div.container3d:hover .card .face.front{
 
 .item_des{ }
 .item_title{ font-size:18px; padding:10px 20px; margin-bottom:-25px; }
-.item-des-p{ padding:0 20px 40px; }
+.item-des-p{ padding:0 20px 20px; }
 .item_link{
 	display:block; width:32px; height:60px; line-height:60px; float:right; margin-right:20px; text-align: center; font-size:24px; color:#fff;
 }
@@ -1170,7 +1170,7 @@ transform: translateX(-40px);
 
 /*video*/
 .videoWrapper{
-	position: relative; height: 0; padding-bottom: 51.25%; /* 16:9 */
+	position: relative; height: 0; padding-bottom: 51.25%;    border-radius: 2px 2px 0 0; /* 16:9 */
 }
 .videoWrapper iframe {position: absolute;top: 0;left: 0;width:100%;height:100%; border:none; }
 .isotope-item.quote .item_des p{ padding: 20px; }
@@ -1265,7 +1265,7 @@ transform: translateX(-40px);
 .box-type3:before{content: "\e62a"; }
 .box-type2:before{ content: "\e618"; }
 .box-type1:before{content: "\e617"; }
-.message-box .box-close { position:absolute; left:auto; right:20px; top:18px; display:block; }
+.message-box .box-close { position:absolute; left:auto; right:10px; top: 0; display:block; }
 .message-box .box-close i{ cursor:pointer; font-size:24px; margin-top: 0; }
 
 /*
@@ -2258,7 +2258,7 @@ position: relative;width: 100%;display: inline-block;
 ---------------------*/
 
 .liquid-title {
-	width:100%; line-height:30px; font-size:20px; padding: 40px 40px 0 40px; position:relative;
+	width:100%; line-height:30px; font-size:20px; padding: 30px 40px 0 40px; position:relative;
 }
 .liquid-title a{
 	width:100%; display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; opacity:0.8; color:#fafafa;

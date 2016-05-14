@@ -1,14 +1,14 @@
 <div id="albumContainer" class="pageContent" style="margin-top: 40px;">
 
 	<!--Album summary-->
-	<section class="liquid-expand-wrap albumDetailBrick" style="display: none;">
+	<section class="liquid-expand-wrap albumDetailBrick" style="display: none; margin: 21px;">
 		<div style="box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);">
 			<h1 class="liquid-title" style="background: white; color: #333; border-radius: 2px 2px 0 0;">
 				<a ng-href="#!/albums/view/{{selectedAlbum._id}}" title="{{selectedAlbum.name}}" style="text-transform:uppercase; color: #333;">
 				{{selectedAlbum.name}}
 				</a>
 				({{selectedAlbum.photoList.length}} photos)
-				<i class="icon-m-close-thin liquid-item-close" style="color: #333; right: 15px;"></i>
+				<i class="icon-m-close-thin liquid-item-close" style="color: #333;"></i>
 			</h1>
 			<div class="liquid-body" style="background: white; color: #333; padding: 10px 20px 0 40px;">
 				<div class="liquid-body-des" style="margin-bottom: 0;">
@@ -17,7 +17,7 @@
 				<ul class="liquid-body-thumbs clearfix">
 					<li ng-repeat="photo in selectedAlbum.photoList | limitTo:5">
 						<a ng-href="{{photo.filepath}}" title="{{photo.name}}" class="imgwrap" data-lightbox="image1">
-						<img ng-src="{{photo.filepath}}?dim=100x100">
+							<img ng-src="{{photo.filepath}}?dim=100x100">
 						</a>
 					</li>
 				</ul>
@@ -113,4 +113,4 @@
 	</div>
 </div>
 
-<cm-page-builder></cm-page-builder>
+<cm-isotope></cm-isotope>

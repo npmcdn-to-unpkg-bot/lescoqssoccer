@@ -21,8 +21,8 @@
 										</div>
 
 										<div class="Collage effect-parent" style="visibility: hidden;">
-											<a ng-click="showSlider($event, $index)" ng-repeat="photo in album.photoList">
-												<img ng-src="{{photo.filepath}}?dim=300" alt="{{photo.name}}" style="cursor:zoom-in;">
+											<a ng-repeat="photo in album.photoList" ng-href="{{photo.filepath}}" title="{{photo.name}}" class="imgwrap" data-lightbox="image1">
+												<img ng-src="{{photo.filepath}}?dim=300" style="cursor:zoom-in;">
 											</a>
 										</div>
 									</div>
@@ -38,4 +38,3 @@
 	</div>
 </div>
 
-<cm-page-builder></cm-page-builder>

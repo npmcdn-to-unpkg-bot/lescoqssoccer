@@ -1702,9 +1702,6 @@ i.medium{ font-size:24px; }
 .liquid-more{
   background-color: #000000;
 }
-.liquid-title i{
-  font-size: 16px; right: 10px; top:15px;
-}
 .liquid-more-icon i{
   display: none;
 }
@@ -1891,6 +1888,7 @@ h3#reply-title small, #comments .nav-tabs li.active h3#reply-title .logged,#comm
 {
   background-color: #1c1d22;
   border-radius: 2px;
+  padding: 20px;
 }
 
 .modal-dialog .modal-content h1, .modal-dialog .modal-content h2, .modal-dialog .modal-content h3, .modal-dialog .modal-content h4
@@ -2063,7 +2061,7 @@ button#bbp_reply_submit:hover,
 /* Button */
 button, input[type="submit"], input[type="button"]{
   background-color:#2196F3;
-  color:#ccc;
+  color:white;
   border:none;
   border-radius: 2px;
   height:30px;
@@ -2918,7 +2916,48 @@ google-map .angular-google-map-container {
 }
 
 .text-center{
-    text-align: center;
+    text-align: center !important;
+}
+
+.fa-spinner{
+    -webkit-animation-name: spin;
+    -webkit-animation-duration: 4000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-name: spin;
+    -moz-animation-duration: 4000ms;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    -ms-animation-name: spin;
+    -ms-animation-duration: 4000ms;
+    -ms-animation-iteration-count: infinite;
+    -ms-animation-timing-function: linear;
+
+    animation-name: spin;
+    animation-duration: 4000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@-ms-keyframes spin {
+    from { -ms-transform: rotate(0deg); }
+    to { -ms-transform: rotate(360deg); }
+}
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
 }
 
 .uppercase{
@@ -4279,7 +4318,7 @@ li>.ripplelink:hover, li.active>.ripplelink{
     border-top: 7px solid transparent;
     border-bottom: 7px solid transparent;
     border-left: 0;
-    border-right: 7px solid #ccc;
+    border-right: 7px solid #7b7b7b;
 }
 
 .chat-wrapper ul li.current:after {
@@ -7277,8 +7316,11 @@ a.follow:hover {
 
 .articleTileStandard img{
 	height: auto !important;
-	margin-top: 20px;
 	width: 100% !important;
+}
+
+.filter_blog hr{
+	margin-top: 0;
 }
 
 .card {
@@ -7487,7 +7529,9 @@ a.follow:hover {
 
 .timelineContainer p:first-child{
 	margin-left: 70px;
-	    font-size: initial;
+	font-size: initial;
+	margin-bottom: 10px;
+    	font-weight: 500;
 }
 
 #timeline:after {
@@ -7625,4 +7669,9 @@ a.follow:hover {
   #timeline .timeline-item .timeline-icon {
     left: 0;
   }
+}
+
+.ephox-polish-html-switch:before {
+    position: relative;
+    font-family: inherit;
 }

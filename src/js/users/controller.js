@@ -58,14 +58,17 @@ angular.module('mean.users').controller('TeamController', ['$scope', 'Global', '
 			});
 		};
 
-		$scope.getColorClass = function(index){
+		$scope.getColorClass = function(index) {
 			return $scope.colors[index];
 		};
 
+		setTimeout(function() {
+			setUserDisplay();
+		});
 	}
 ]);
 
-angular.module('mean.users').controller('UserDetailController', ['$scope','$sce', '$modalInstance', 'User', 'Albums', 'UserArticles',
+angular.module('mean.users').controller('UserDetailController', ['$scope', '$sce', '$modalInstance', 'User', 'Albums', 'UserArticles',
 
 	function($scope, $sce, $modalInstance, User, Albums, UserArticles) {
 
@@ -77,7 +80,7 @@ angular.module('mean.users').controller('UserDetailController', ['$scope','$sce'
 			return angular.element(html).text();
 		};
 
-		$scope.getImage = function(html){
+		$scope.getImage = function(html) {
 			var img = angular.element(html).find('img').first();
 			return (img.length) ? img.attr('src') : '';
 		};
@@ -87,11 +90,11 @@ angular.module('mean.users').controller('UserDetailController', ['$scope','$sce'
 			return $sce.trustAsResourceUrl(src);
 		};
 
-		$scope.isSpotify = function(link){
+		$scope.isSpotify = function(link) {
 			return link.indexOf('spotify') !== -1;
 		};
 
-		$scope.cancel = function(){
+		$scope.cancel = function() {
 			$modalInstance.dismiss('cancel');
 		};
 	}
@@ -157,9 +160,25 @@ angular.module('mean.users').controller('ProfileController', ['$scope', 'Global'
 			MODEL
 		***/
 		$scope.update = function() {
-			UserService.update($scope.user).then(function(user){
+			UserService.update($scope.user).then(function(user) {
 				$scope.global.user = user;
 			});
+		};
+
+		$scope.$parent.menu = {
+			title: "Profile",
+			items: [{
+				link: '#!',
+				info: 'Retour',
+				icon: 'fa-arrow-left',
+				callback: $scope.global.back
+			},
+			{
+				link: '#!',
+				info: 'Sauvegarder',
+				icon: 'fa-save',
+				callback: $scope.update
+			}]
 		};
 
 		$scope.initSkill();

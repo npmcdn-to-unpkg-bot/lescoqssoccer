@@ -1,4 +1,4 @@
-<div id="post-1039" class="post type-post status-publish format-standard hentry category-blog pageContent">
+<div class="post type-post status-publish format-standard hentry category-blog pageContent">
 	<div class="row-fluid two-cols-layout" style="min-height: 100vh;">
 		<div id="content_wrap">
 			<div class="content-wrap-inn">
@@ -11,9 +11,12 @@
 								<div class="title-wrap-inn">
 									<div id="main-title" style="text-align: center;">
 										<div class="item_des bg-theme-color-7" style="padding: 20px 20px 30px 20px;">
-											<div class="post-meta" style="font-size: initial; color: white;">
+											<h1 class="main-title" style="text-transform: uppercase;">
+												Vote
+											</h1>
+											<div class="post-meta" style="font-size: initial;">
 												<img class="img-circle" ng-src="{{article.user.avatar}}?dim100x100" alt="{{article.user.username}}" style="width: 80px; height: 80px; margin: 0 20px 0; border-radius: 2px;" />
-											<p style="display: inline-block;">par
+											<p style="display: inline-block;">lancé par
 													<b style="text-transform: uppercase;">
 														{{article.user.username}},
 													</b>
@@ -23,7 +26,7 @@
 												</p>
 												<span class="post-meta-unit tag"></span>
 											</div>
-											<p style="margin: 0 30px 40px 20px; font-size: medium; text-align: justify; color: white;">
+											<p style="margin: 30px 30px 40px 20px; font-size: medium; text-align: justify; ">
 												{{article.content}}
 											</p>
 											<div class="iterblock-expt">
@@ -34,10 +37,10 @@
 														</section>
 													</div>
 													<div class="moudle" style="margin-top: 20px;">
-														<a ng-repeat="answer in article.yes" ng-href="#!/users/detail/{{answer.user._id}}">
+														<a ng-repeat="answer in article.yes" ng-href="#!/users/detail/{{answer.user._id}}" style="margin: 0 20px;">
 															<img ng-src="{{answer.user.avatar && answer.user.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{answer.user.username}}" draggable="false" class="img80_80 img-circle" title="{{answer.user.username}}">
 														</a>
-														<p ng-if="article.yes.length === 0;" style="color: white;">
+														<p ng-if="article.yes.length === 0;" style="">
 															Aucun partisan
 														</p>
 													</div>
@@ -47,10 +50,10 @@
 														</section>
 													</div>
 													<div class="moudle" style="margin-top: 20px;">
-														<a ng-repeat="answer in article.no" ng-href="#!/users/detail/{{answer.user._id}}">
+														<a ng-repeat="answer in article.no" ng-href="#!/users/detail/{{answer.user._id}}" style="margin: 0 20px;">
 															<img ng-src="{{answer.user.avatar && answer.user.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{answer.user.username}}" draggable="false" class="img80_80 img-circle" title="{{answer.user.username}}">
 														</a>
-														<p ng-if="article.no.length === 0;" style="color: white;">
+														<p ng-if="article.no.length === 0;" style="">
 															Aucun réfractaire
 														</p>
 													</div>
@@ -61,10 +64,10 @@
 															</section>
 														</div>
 														<div class="moudle" style="margin-top: 20px;">
-															<a ng-repeat="answer in article.blank" ng-href="#!/users/detail/{{answer.user._id}}">
+															<a ng-repeat="answer in article.blank" ng-href="#!/users/detail/{{answer.user._id}}" style="margin: 0 20px;">
 																<img ng-src="{{answer.user.avatar && answer.user.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{answer.user.username}}" draggable="false" class="img80_80 img-circle" title="{{answer.user.username}}">
 															</a>
-															<p ng-if="article.blank.length === 0;" style="color: white;">
+															<p ng-if="article.blank.length === 0;" style="">
 																Pas de suisse
 															</p>
 														</div>
@@ -86,4 +89,3 @@
 	</div>
 </div>
 
-<cm-page-builder></cm-page-builder>

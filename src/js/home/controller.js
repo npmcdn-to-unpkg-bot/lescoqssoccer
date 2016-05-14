@@ -23,7 +23,11 @@ angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Glo
 			$scope.initializeConversations();
 			$scope.updateCounters();
 
-			consoleText(['Hello World.', 'Console Text', 'Made with Love.'], 'text');
+			setTimeout(function(){
+				infographic();
+				progressbar();
+				consoleText(['Hello World.', 'Console Text', 'Made with Love.'], 'text');
+			});
 		};
 
 		//Index all conversations in the object $scope.conversations

@@ -31,6 +31,13 @@
 						{{category.value}}
 					</a>
 				</div>
+				<hr>
+				<div style="width:40px; margin: 0 20px; padding: 0 0 20px;">
+					<p style="margin: 10px 0 10px 50px;position: absolute;">
+						<b style="text-transform: uppercase; font-size: medium;">{{article.user.username}}</b>, {{getDateFrom(article)}}
+					</p>
+					<img class="img-circle" ng-src="{{article.user.avatar}}?dim100x100" alt="{{article.user.username}}"/>
+				</div>
 			</div>
 		</div>
 	</div>

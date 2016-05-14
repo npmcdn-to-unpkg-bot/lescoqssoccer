@@ -142,39 +142,6 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 		//set album like read
 		UserService.addReadAlbum($scope.album._id);
 
-		$scope.showSlider = function(evt, currentIndex) {
-
-			evt.preventDefault();
-			evt.stopPropagation();
-
-			$scope.showModal = true;
-
-			var modalInstance = $modal.open({
-				templateUrl: 'js/gallery/views/photosSlider.html',
-				controller: 'PhotosSliderController',
-				windowClass: "full-screen",
-				resolve: {
-					album: function() {
-						return $scope.album;
-					},
-					currentIndex: function() {
-						return currentIndex;
-					}
-				}
-			});
-
-			modalInstance.result.then(function() {
-
-				$scope.showModal = false;
-				$(window).trigger('resize');
-
-				setTimeout(function() {
-					Galleria.get(0).destroy();
-				}, 500);
-
-			});
-		};
-
 		$scope.edit = function() {
 			$location.path('/albums/edit/' + $scope.album._id);
 		};
@@ -243,11 +210,11 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 		};
 
 		$scope.$watch('album.comments', function(newValue, oldValue) {
-			setTimeout(function() {
-				$('.Collage').collagePlus({
-					'targetHeight': 200
-				});
-			});
+			collage()
+		});
+
+		angular.element($window).bind('resize', function() {
+			collage();
 		});
 
 		$scope.$parent.menu = {
@@ -257,48 +224,32 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 				info: 'Editer',
 				icon: 'fa-edit',
 				callback: $scope.edit
-			},{
+			}, {
 				link: '#!',
 				info: 'Supprimer',
 				icon: 'fa-times',
 				callback: $scope.remove
-			},{
+			}, {
 				link: '#!',
 				info: 'Précédent',
 				icon: 'fa-arrow-left',
 				callback: $scope.showPrevious
-			},
-			{
+			}, {
 				link: '#!',
 				info: 'Retour à la liste',
 				icon: 'fa-list',
 				callback: $scope.backToList
-			},
-			{
+			}, {
 				link: '#!',
 				info: 'Suivant',
 				icon: 'fa-arrow-right',
 				callback: $scope.showNext
-			},{
+			}, {
 				link: '#!',
 				info: 'Télécharger',
 				icon: 'fa-download',
 				callback: $scope.download
 			}]
-		};
-	}
-]);
-
-angular.module('mean.albums').controller('PhotosSliderController', ['$scope', 'Global', '$modalInstance', 'album', 'currentIndex',
-
-	function($scope, Global, $modalInstance, album, currentIndex) {
-
-		$scope.global = Global;
-		$scope.album = album;
-		$scope.current = currentIndex;
-
-		$scope.cancel = function() {
-			$modalInstance.close('cancel');
 		};
 	}
 ]);
@@ -340,17 +291,6 @@ var AlbumData = {
 		return $route.current.params.albumId ? AlbumService.getAlbum($route.current.params.albumId) : {
 			photoList: []
 		};
-	}
-};
-
-var AlbumSliderData = {
-	album: function(AlbumService, $route) {
-		return $route.current.params.albumId ? AlbumService.getAlbum($route.current.params.albumId) : {
-			photoList: []
-		};
-	},
-	currentIndex: function($route) {
-		return $route.current.params.currentIndex;
 	}
 };
 

@@ -72,44 +72,28 @@ function handlePhotoUpload(params, callbacks) {
 			} else {
 
 				var image = gm(newPath);
-				image.resize(300, 300, '^');
+				image.resize(300, '^');
 				image.gravity('Center');
-				image.crop(300, 300);
 				image.quality(0.7);
 				image.autoOrient();
 				image.write(path.resolve(config.root + "/server/" + config.cacheDirectoryX300 + newName), function(err) {
 
 					if (err) {
-						console.log("Error when trying to resize img in 300x300 format" + err);
+						console.log("Error when trying to resize img in 300 format" + err);
 					}
 
-					var image = gm(path.resolve(config.root + "/server/" + config.cacheDirectoryX300 + newName));
-					image.resize(100, 100, '^');
-					image.gravity('Center');
-					image.crop(100, 100);
-					image.quality(0.7);
-					image.autoOrient();
-					image.write(path.resolve(config.root + "/server/" + config.cacheDirectoryX100 + newName), function(err) {
+					//Remove origin file in all case
+					fs.unlink(params.file.path, function(err) {
 
 						if (err) {
-							console.log("Error when trying to resize img in 100x100 format" + err);
+							console.log("Erorr when trying to delete image " + err);
+							callbacks.uploadFailure(err);
+						} else {
+							console.log('Successfully deleted : ' + params.file.path);
+							callbacks.uploadSuccess(newName, oldName);
 						}
 
-						//Remove origin file in all case
-						fs.unlink(params.file.path, function(err) {
-
-							if (err) {
-								console.log("Erorr when trying to delete image " + err);
-								callbacks.uploadFailure(err);
-							} else {
-								console.log('Successfully deleted : ' + params.file.path);
-								callbacks.uploadSuccess(newName, oldName);
-							}
-
-						});
-
 					});
-
 				});
 			}
 		});

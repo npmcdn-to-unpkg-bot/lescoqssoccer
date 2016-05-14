@@ -1,9 +1,18 @@
 'use strict';
 
-angular.module('mean.system').directive('cmPageBuilder', function() {
+angular.module('mean.system').directive('cmLogin', ['$http', '$location', '$window', 'Global', function($http, $location, $window, Global) {
 	return {
 		restrict: 'E',
 		transclude: true,
+		templateUrl: "js/authentication/login.html"
+	}
+}]);
+
+angular.module('mean.system').directive('cmHeader', function() {
+	return {
+		restrict: 'E',
+		transclude: true,
+		templateUrl: "js/appStructure/header.html",
 		link: function($scope, element, attrs) {
 
 			setTimeout(function() {
@@ -12,44 +21,15 @@ angular.module('mean.system').directive('cmPageBuilder', function() {
 				var _page_loading = jQuery('.page-loading');
 				if (_page_loading.length) {
 
-					//** page loading event
-					function ux_page_loading_event(el) {
-						if (el.is('.lightbox')) {} else if (el.is('.liquid_list_image')) {} else {
-							_page_loading.fadeIn(300, function() {
-								_page_loading.addClass('visible');
-							});
-							return false;
-						}
-					}
-
-					if (!Modernizr.touch) {
-
-						//** Module
-						jQuery('.moudle .iterlock-caption a, .moudle .tab-content a, .moudle .accordion-inner a, .moudle .blog-item a, .moudle .isotope a, .moudle .ux-btn, .moudle .post-carousel-item a, .moudle .caroufredsel_wrapper a').click(function() {
-							ux_page_loading_event(jQuery(this));
-						});
-
-						//** Porfolio template
-						jQuery('.related-post-unit a').click(function() {
-							ux_page_loading_event(jQuery(this));
-						});
-
-					}
+					//** Page Loading ended
+					_page_loading.fadeOut(800, function() {
+						_page_loading.removeClass('visible');
+					});
 				}
-
-				imageLoadAndMore($scope);
 			});
 		}
 	}
 });
-
-angular.module('mean.system').directive('cmLogin', ['$http', '$location', '$window', 'Global', function($http, $location, $window, Global) {
-	return {
-		restrict: 'E',
-		transclude: true,
-		templateUrl: "js/authentication/login.html"
-	}
-}]);
 
 angular.module('mean.system').directive('cmSidebar', function() {
 	return {
@@ -61,11 +41,16 @@ angular.module('mean.system').directive('cmSidebar', function() {
 	}
 });
 
-angular.module('mean.system').directive('cmHeader', function() {
+angular.module('mean.system').directive('cmIsotope', function() {
 	return {
 		restrict: 'E',
 		transclude: true,
-		templateUrl: "js/appStructure/header.html"
+		link: function($scope, element, attrs) {
+			setTimeout(function() {
+				var ux_pb = new ThemePageBuilder();
+				ux_pb.init();
+			});
+		}
 	}
 });
 
@@ -109,7 +94,7 @@ angular.module('mean.system').directive('cmTimeline', function() {
 		replace: true,
 		link: function(scope, element, attrs) {
 
-			if(scope.item.type === "standard"){
+			if (scope.item.type === "standard") {
 				scope.item.contentHTML = angular.element(scope.item.content).text();
 			}
 
@@ -130,6 +115,12 @@ angular.module('mean.system').directive('cmBlogPost', function() {
 			scope.contentUrl = 'js/articles/views/' + format + '/' + attrs.type + '.html';
 			attrs.$observe("type", function(postType) {
 				scope.contentUrl = 'js/articles/views/tiles/' + postType + '.html';
+				if (scope.$last) {
+					setTimeout(function() {
+						var ux_pb = new ThemePageBuilder();
+						ux_pb.init();
+					}, 200);
+				}
 			});
 		},
 		template: '<div ng-include="contentUrl"></div>'

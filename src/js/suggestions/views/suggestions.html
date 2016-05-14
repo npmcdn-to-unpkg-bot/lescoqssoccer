@@ -1,103 +1,103 @@
-<div id="post-116" class="post-116 page type-page status-publish hentry articlesContainer pageContent">
-    <div class="row-fluid" style="min-height: 100vh">
-        <div id="content_wrap">
-            <div class="content-wrap-inn">
-
-                <div class="container">
-                    <div class="title-bar-wrap title-centered" id="title-bar" style="padding: 20px 0;">
-                    </div>
-                </div>
-
-                <div class="pagebuilder-wrap">
-                    <div class="container">
-                        <div class="row-fluid">
-                            <div class="span12 moudle">
-                                <div class="row-fluid">
-                                    <div class="container-isotope clear">
-
-                                        <div id="isotope-load">
-                                            <div class="ux-loading"></div>
-                                            <div class="ux-loading-transform">
-                                                <div class="loading-dot1">&nbsp;</div>
-                                                <div class="loading-dot2">&nbsp;</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="isotope masonry isotope_fade" data-size="brick" style="margin: -40px 0px 0px -40px; display: none;">
-                                            <div ng-repeat="suggestion in suggestions" class="isotope-item">
-                                                <div class="filter_blog width2 isotope-item quote">
-                                                    <div class="inside item_des" style="margin:40px 0 0 40px;">
-                                                        <div style="overflow: hidden;">
-                                                            <div class="item_des bg-theme-color-7">
-                                                                <div style="background: #1b2d41; border-radius: 5px 5px 0 0;">
-                                                                    <p style="text-align: center; color: white; font-size: 18px;">
-                                                                        Fin des débats {{getDays(suggestion)}}
-                                                                    </p>
-                                                                </div>
-                                                                <div style="width:40px; margin: 0 20px 5px; padding-top: 20px;">
-                                                                    <p style="margin: -15px 30px; position: absolute;">
-                                                                        <b style="text-transform: uppercase;">{{suggestion.user.name || suggestion.user.username}}</b> a besoin de l'avis des suceurs:
-                                                                    </p>
-                                                                    <img class="img-circle" ng-src="{{suggestion.user.avatar}}?dim=300x300" alt="{{suggestion.user.username}}"/>
-                                                                </div>
-                                                                <p style="margin-top: -10px; font-size: initial;">
-                                                                    {{suggestion.content}}
-                                                                </p>
-                                                                <div ng-if="!hasUserAnswered(suggestion);" style="height: 230px; padding-bottom: 20px;">
-                                                                    <div class="ux-hover-wrap">
-                                                                        <figure class="voteCircle">
-                                                                          <div style="background:rgba(27,45,65,0) !important; position:absolute;" class="mask-a">
-                                                                            <div class="hand" ng-click="vote(suggestion, 1);"></div>
-                                                                            <div class="hand-1" ng-click="vote(suggestion, 2);"></div>
-                                                                            <div class="hand-2" ng-click="vote(suggestion, 3);"></div>
-                                                                          </div>
-                                                                          <div class="mask-b">
-                                                                            <div class="hand"></div>
-                                                                            <div class="hand-1"></div>
-                                                                          </div>
-                                                                        </figure>
-                                                                    </div>
-                                                                </div>
-                                                                <div ng-if="hasUserAnswered(suggestion);" style="background: #1b2d41; border-radius: 0 0 5px 5px;">
-                                                                    <p style="text-align: center; color: white; font-size: 18px;">
-                                                                        A voté!
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div ng-if="suggestions.length === 0">
-                                            <h2 style="text-align: center; margin-top: 50px;">
-                                            Aucun vote en cours
-                                            </h2>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="clearfix pagenums" style="display: none;">
-                        <div class="pagination">
-                            <pagination
-                            previous-text="&#8249; Précédents"
-                            next-text="Suivants &#8250;"
-                            total-items="totalItems"
-                            page="page"
-                            on-select-page="pageChanged(page)"
-                            items-per-page="itemsPerPage">
-                            </pagination>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="post-116 page type-page status-publish hentry articlesContainer pageContent">
+	<div class="row-fluid" style="min-height: 100vh">
+		<div id="content_wrap">
+			<div class="content-wrap-inn">
+				<div class="container">
+					<div class="title-bar-wrap title-centered" id="title-bar" style="padding: 20px 0;">
+					</div>
+				</div>
+				<div class="pagebuilder-wrap">
+					<div class="container">
+						<div class="row-fluid">
+							<div class="span12 moudle">
+								<div class="row-fluid">
+									<div class="container-isotope clear">
+										<div id="isotope-load">
+											<div class="ux-loading">
+											</div>
+											<div class="ux-loading-transform">
+												<div class="loading-dot1">
+													&nbsp;
+												</div>
+												<div class="loading-dot2">
+													&nbsp;
+												</div>
+											</div>
+										</div>
+										<div class="isotope masonry" data-size="brick" style="margin: -40px 0px 0px -40px; display: none;">
+											<div ng-repeat="suggestion in suggestions" class="isotope-item">
+												<div class="filter_blog width2 isotope-item quote">
+													<div class="inside item_des" style="margin:40px 0 0 40px;">
+														<div style="overflow: hidden;">
+															<div class="item_des bg-theme-color-7">
+																<div style="background: #1b2d41; border-radius: 5px 5px 0 0;">
+																	<p style="text-align: center; color: white; font-size: 18px;">
+																		Fin des débats {{ getDays(suggestion) }}
+																	</p>
+																</div>
+																<div style="width:40px; margin: 0 20px 5px; padding-top: 20px;">
+																	<p style="margin: -15px 30px; position: absolute;">
+																		<b style="text-transform: uppercase;">
+																			{{ suggestion.user.name || suggestion.user.username }}
+																		</b>
+																		a besoin de l'avis des suceurs:
+																	</p>
+																	<img class="img-circle" ng-src="{{ suggestion.user.avatar }}?dim=300x300" alt="{{ suggestion.user.username }}"/>
+																</div>
+																<p style="margin-top: -10px; font-size: initial;">
+																	{{ suggestion.content }}
+																</p>
+																<div ng-if="!hasUserAnswered(suggestion);" style="height: 230px; padding-bottom: 20px;">
+																	<div class="ux-hover-wrap">
+																		<figure class="voteCircle">
+																			<div style="background:rgba(27,45,65,0) !important; position:absolute;" class="mask-a">
+																				<div class="hand" ng-click="vote(suggestion, 1);">
+																				</div>
+																				<div class="hand-1" ng-click="vote(suggestion, 2);">
+																				</div>
+																				<div class="hand-2" ng-click="vote(suggestion, 3);">
+																				</div>
+																			</div>
+																			<div class="mask-b">
+																				<div class="hand">
+																				</div>
+																				<div class="hand-1">
+																				</div>
+																			</div>
+																		</figure>
+																	</div>
+																</div>
+																<div ng-if="hasUserAnswered(suggestion);" style="background: #1b2d41; border-radius: 0 0 5px 5px;">
+																	<p style="text-align: center; color: white; font-size: 18px;">
+																		A voté!
+																	</p>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div ng-if="suggestions.length === 0">
+											<h2 style="text-align: center; margin-top: 50px;">
+												Aucun vote en cours
+											</h2>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="clearfix pagenums" style="display: none;">
+						<div class="pagination">
+							<pagination previous-text="&#8249; Précédents" next-text="Suivants &#8250;" total-items="totalItems" page="page" on-select-page="pageChanged(page)" items-per-page="itemsPerPage">
+							</pagination>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-
-<cm-page-builder></cm-page-builder>
+<cm-isotope>
+</cm-isotope>
