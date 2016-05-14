@@ -17,7 +17,7 @@
     	<div class="wrap">
     		<div class="bp-header__main">
         			<nav class="bp-nav">
-			            <a ng-repeat="item in menu.items" ng-class="item.icon" class="bp-nav__item bp-icon" ng-href="{{item.link}}" data-info="{{item.info}}" ng-click="item.callback();">
+			            <a ng-repeat="item in menu.items" ng-class="item.icon" class="bp-nav__item bp-icon fa" ng-href="{{item.link}}" data-info="{{item.info}}" ng-click="item.callback($event);">
 			            	<span>{{item.info}}</span>
 			            </a>
 		        	</nav>

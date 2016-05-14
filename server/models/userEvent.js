@@ -10,6 +10,10 @@ var mongoose = require( 'mongoose' ),
  * Article Schema
  */
 var UserEventSchema = new Schema( {
+	created: {
+		type: Date,
+		default: Date.now
+	},
 	startsAt: {
 		type: Date,
 		default: Date.now

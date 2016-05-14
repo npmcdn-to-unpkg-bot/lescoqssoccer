@@ -18,7 +18,7 @@ exports.getAllUserData = function(req, res) {
 	var userData = {
 		albums: null,
 		articles: null,
-		userEvent: null,
+		userEvents: null,
 		suggestions: null
 	}
 
@@ -96,7 +96,11 @@ var formatUserData = function(userData){
 
 	var formattedDatas = {
 		content: []
-	}
+	};
+
+	var sortedDatas = {
+		content: []
+	};
 
 	_.each(userData.articles, function(article){
 		formattedDatas.content.push(article);
@@ -114,11 +118,11 @@ var formatUserData = function(userData){
 		formattedDatas.content.push(_.defaults({type: "suggestion"}, suggestion._doc));
 	});
 
-	_.sortBy(formattedDatas.content, function(item){
+	sortedDatas.content = _.sortBy(formattedDatas.content, function(item){
 		return item.created;
 	});
 
-	formattedDatas.content.splice(30);
+	sortedDatas.content.slice(0, 30);
 
-	return formattedDatas;
+	return sortedDatas;
 };

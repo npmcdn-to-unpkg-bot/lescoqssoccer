@@ -243,6 +243,21 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 				}
 			}
 		};
+
+		$scope.$parent.menu = {
+			title: "Nouvel évènement",
+			items: [{
+				link: '#!',
+				info: 'Retour',
+				icon: 'fa-arrow-left',
+				callback: $scope.global.back
+			}, {
+				link: '#!',
+				info: 'Sauvegarder',
+				icon: 'fa-save',
+				callback: $scope.create
+			}]
+		};
 	}
 ]);
 
@@ -454,6 +469,15 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 		$(window).bind('resize', function() {
 			$('google-map .angular-google-map-container').css('height', $('#calContainer').css('height'));
 		});
+
+		$scope.$parent.menu = {
+			title: "Rencards",
+			items: [{
+				link: '#!/agenda/create',
+				info: 'Nouvel évènement',
+				icon: 'fa-plus'
+			}]
+		};
 	}
 ]);
 

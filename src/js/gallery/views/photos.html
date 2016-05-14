@@ -1,44 +1,15 @@
-<header id="header">
-    	<div class="wrap">
-        		<div class="bp-header__main">
-        			<nav class="bp-nav">
-			        	<a class="bp-nav__item bp-icon bp-icon--edit" href="#!" data-info="Editer" data-ng-click="update($event);" ng-show="global.user._id === album.user._id">
-			            	<span>Editer</span>
-			            </a>
-			            <a class="bp-nav__item bp-icon bp-icon--trash" href="#!" data-info="Supprimer" data-ng-click="deleteAlbum($event);" ng-show="global.user._id === album.user._id">
-			            	<span>Supprimer</span>
-			            </a>
-			            <a class="bp-nav__item bp-icon bp-icon--prev" href="#!" data-info="Album précédent" data-ng-click="showPrevious($event);">
-			            	<span>Précédent</span>
-			            </a>
-			            <a class="bp-nav__item bp-icon bp-icon--list" href="#!" data-info="Retour à la liste" data-ng-click="global.back();">
-			            	<span>Retour à la liste</span>
-			            </a>
-			            <a class="bp-nav__item bp-icon bp-icon--next" href="#!" data-info="Album suivant" data-ng-click="showNext($event);">
-			            	<span>Suivant</span>
-			            </a>
-			            <a class="bp-nav__item bp-icon bp-icon--archive" href="#!" data-info="Télécharger" data-ng-click="download($event);">
-			            	<span>Télécharger</span>
-			            </a>
-			 </nav>
-		</div>
-        		<h2 class="ellipsis">Albums > {{album.name}}</h2>
-    	</div>
-</header>
-
-<!--Page content-->
-<div class="post type-post status-publish format-link has-post-thumbnail hentry category-blog category-uncategorized">
+<div class="post type-post status-publish format-link has-post-thumbnail hentry category-blog category-uncategorized pageContent">
 	<div class="row-fluid two-cols-layout" style="min-height: 100vh;">
 		<div id="content_wrap">
 			<div class="content-wrap-inn">
 
 				<!--Photos content-->
 				<div class="pagebuilder-wrap">
-					<div class="container" style="width: calc(100% - 120px); background: white; margin: 40px 60px; box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12); color: #7b7b7b; border-radius: 2px; padding: 0 20px;">
+					<div class="container photoContainer">
 						<div class="row-fluid" ng-show="!showModal">
 							<div class="moudle bottom-space-no" style="padding: 0; margin: 20px 0;">
 								<div class="row-fluid">
-									<div class="container-isotope" data-post="20140406-081941-855">
+									<div class="container-isotope">
 
 										<!--Loading-->
 										<div id="isotope-load">
@@ -58,12 +29,10 @@
 								</div>
 							</div>
 						</div>
-
 						<cm-comments update-method="updateMethod();" object="album">
 						</cm-comments>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>

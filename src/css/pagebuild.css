@@ -33,7 +33,7 @@
 .bg-theme-color-4{ background-color:#77c9e1;}
 .bg-theme-color-5{ background-color:#1c1d22;}
 .bg-theme-color-6{ background-color:#b8b69d;}
-.bg-theme-color-7{ background-color: rgba(0,0,0, 0.4);}
+.bg-theme-color-7{ background-color: #f7f7f7;;}
 .bg-theme-color-8{ background-color:#f3ce22;}
 .bg-theme-color-9{ background-color:#ce671e;}
 .bg-theme-color-10{ background-color:#000000;}
@@ -476,6 +476,7 @@ Isotope
 }
 
 .isotope {
+    overflow: visible !important;
   -webkit-transition-property: height, width;
      -moz-transition-property: height, width;
       -ms-transition-property: height, width;
@@ -856,7 +857,7 @@ div.container3d:hover .card .face.front{
 	position: relative; width: 100%; height: 100%;
 }
 .brick-content{
-	position: relative; overflow: hidden; border-radius: 2px;
+	position: relative; overflow: hidden; border-radius: 2px;margin: 20px;
 }
 .brick-link{
 	height: 100%; width: 100%;
@@ -976,7 +977,6 @@ div.container3d:hover .card .face.front{
    -o-transform: scale(1) translate(0, -50%);
    -ms-transform: scale(1) translate(0, -50%);
    transform: scale(1) translate(0, -50%);
-       margin: -20px 40px 0 0;
 }
 .brick-with-img .brick-hover:hover .brick-hover-mask .brick-excerpt,
 .isotope-liquid-list .hover-effect .brick-hover:hover .brick-hover-mask .brick-excerpt {

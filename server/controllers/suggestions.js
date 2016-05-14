@@ -109,7 +109,7 @@ exports.all = function(req, res) {
 			} else {
 				res.jsonp(suggestions);
 			}
-	});
+		});
 };
 
 /**
@@ -136,25 +136,31 @@ exports.getItemsCount = function(req, res) {
 };
 
 /**
-* Create article from ended suggestion to see results
-**/
+ * Create article from ended suggestion to see results
+ **/
 exports.closeVotes = function(req, res) {
-	
-	var article, yes = [], no = [], blank = [];
+
+	var article, yes = [],
+		no = [],
+		blank = [];
 	var date = moment().subtract(1, 'days').toISOString();
 
-	Suggestion.find({'created': {"$lt": date}})
+	Suggestion.find({
+			'created': {
+				"$lt": date
+			}
+		})
 		.sort('-created')
 		.exec(function(err, suggestions) {
-			
+
 			if (err) {
 
 				console.warn('Error when to fetch suggestions ' + err);
-				
+
 			} else {
 
-				_.each(suggestions, function(suggestion){
-					
+				_.each(suggestions, function(suggestion) {
+
 					article = new Article({
 						title: "Vote",
 						user: suggestion.user,
@@ -163,21 +169,21 @@ exports.closeVotes = function(req, res) {
 						comments: []
 					});
 
-					_.each(suggestion.yes, function(userId, ohers){
+					_.each(suggestion.yes, function(userId, ohers) {
 						yes.push({
 							user: userId
 						});
 					});
 					article.yes = yes;
 
-					_.each(suggestion.blank, function(userId){
+					_.each(suggestion.blank, function(userId) {
 						blank.push({
 							user: userId
 						});
 					});
 					article.blank = blank;
 
-					_.each(suggestion.no, function(userId){
+					_.each(suggestion.no, function(userId) {
 						no.push({
 							user: userId
 						});
@@ -201,5 +207,5 @@ exports.closeVotes = function(req, res) {
 					});
 				});
 			}
-	});
+		});
 };

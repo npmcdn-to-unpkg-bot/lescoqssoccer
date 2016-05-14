@@ -2,13 +2,13 @@
 	<p>
 		{{ getDateFrom(item) }}
 	</p>
-	<div class="timeline-item">
+	<div class="timeline-item album">
 		<div class="timeline-icon">
 			<img ng-src="{{ item.user.avatar && item.user.avatar + '?dim=50x50' || 'img/Professor.png' }}" alt="{{ user.username }}" title="{{ user.username }}" style="background: white;"/>
 		</div>
 		<a href="#!/albums/view/{{item._id}}">
 			<div class="timeline-content">
-				<h2>
+				<h2 style="background: #00BCD4;">
 					{{ user.username }} a ajouté un album : {{ item.name }}
 				</h2>
 				<ul class="liquid-body-thumbs clearfix">

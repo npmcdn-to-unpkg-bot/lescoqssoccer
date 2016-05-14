@@ -44,7 +44,6 @@ angular.module('mean.suggestions').controller('SuggestionController', ['$scope',
 				});
 
 			} else {
-
 				var modalInstance = $modal.open({
 					templateUrl: 'js/suggestions/views/votedModal.html',
 					controller: 'votedCtrl',
@@ -52,7 +51,6 @@ angular.module('mean.suggestions').controller('SuggestionController', ['$scope',
 						SuggestionId: suggestion._id
 					}
 				});
-				
 			}
 		};
 
@@ -71,6 +69,15 @@ angular.module('mean.suggestions').controller('SuggestionController', ['$scope',
 		$scope.getDays = function(suggestion){
 			return moment(suggestion.created).add(1, 'months').fromNow();
 		};
+
+		$scope.$parent.menu = {
+			title: "Votes",
+			items: [{
+				link: '#!/suggestions/create',
+				info: 'Nouveau vote',
+				icon: 'fa-plus'
+			}]
+		};
 	}
 ]);
 
@@ -86,7 +93,6 @@ angular.module('mean.suggestions').controller('CreateSuggestionController', ['$s
 			evt.stopPropagation();
 
 			if ($scope.content !== "") {
-
 				var suggestion = {
 					content: $scope.content,
 					yes: [],
@@ -100,6 +106,22 @@ angular.module('mean.suggestions').controller('CreateSuggestionController', ['$s
 				});
 			}
 		};
+
+		$scope.$parent.menu = {
+			title: "Nouveau vote",
+			items: [{
+				link: '#!',
+				info: 'Retour',
+				icon: 'fa-arrow-left',
+				callback: $scope.global.back
+			},
+			{
+				link: '#!',
+				info: 'Sauvegarder',
+				icon: 'fa-save',
+				callback: $scope.create
+			}]
+		};
 	}
 ]);
 
@@ -108,7 +130,7 @@ angular.module('mean.suggestions').controller('votedCtrl', ['$scope', '$modalIns
 	function($scope, $modalInstance, UserService, SuggestionId) {
 
 		$scope.ok = function(result) {
-			
+
 			//set vote like read
 			UserService.addReadVote(SuggestionId);
 
@@ -136,7 +158,7 @@ var SuggestionsData = {
 	Page: function($route) {
 		return ($route.current.params.page) ? $route.current.params.page : 1;
 	},
-	
+
 	ItemsCount: function(SuggestionsCollection) {
 		return SuggestionsCollection.getItemsCount();
 	}

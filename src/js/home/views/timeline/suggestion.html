@@ -1,0 +1,28 @@
+<div>
+	<p>
+		{{ getDateFrom(item) }}
+	</p>
+	<div class="timeline-item suggestion">
+		<div class="timeline-icon">
+			<img ng-src="{{ item.user.avatar && item.user.avatar + '?dim=50x50' || 'img/Professor.png' }}" alt="{{ user.username }}" title="{{ user.username }}" style="background: white;"/>
+		</div>
+		<a href="#!/suggestions">
+			<div class="timeline-content">
+				<h2 style="background: #1b2d41;">
+					<b style="text-transform: uppercase; font-size: medium;">
+						{{ item.user.username }}
+					</b> demande à l'assemblée des suceurs:
+				</h2>
+				<div class="three-line-ellipsis item_des bg-theme-color-7" style="margin: 0 -20px -20px;">
+					<p style="padding: 0; margin-left: 10px;" class="three-line-ellipsis">
+						{{ item.content }}
+					</p>
+					<div style="text-align: center; line-height: 50px; font-size: 16px; font-weight: 500;">
+						Aller voter&nbsp;
+						<i class="icon-m-right-arrow-curved"></i>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>
+</div>

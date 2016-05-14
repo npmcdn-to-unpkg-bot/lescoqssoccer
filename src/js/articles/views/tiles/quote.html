@@ -3,12 +3,12 @@
 		<div>
 			<div class="item_des bg-theme-color-7" style="padding-top: 20px;">
 				<div style="width:40px; margin: 0px 20px 0; padding-bottom: 20px;">
-					<p style="margin: -10px 50px -10px 30px; position: absolute; color: white;">
+					<p style="margin: -10px 0 -10px 30px; position: absolute; ">
 						Vote de <b style="text-transform: uppercase; font-size: medium;">{{article.user.username}}</b>, {{getDateFrom(article)}}
 					</p>
 					<img class="img-circle" ng-src="{{article.user.avatar}}?dim100x100" alt="{{article.user.username}}"/>
 				</div>
-				<p style="color: white; padding: 0 20px 0;" class="three-line-ellipsis">
+				<p style=" padding: 0 20px 0;" class="three-line-ellipsis">
 					{{article.content}}
 				</p>
 				<div class="iterblock-expt">
@@ -76,7 +76,7 @@
 		</div>
 	</div>
 	<div style="text-align: center; line-height: 50px; margin-top: -10px;">
-		<a ng-href="#!/articles/view/quote/{{article._id}}" class="liquid-more-icon " title="{{article.name}}" style="color: white;">
+		<a ng-href="#!/articles/view/quote/{{article._id}}" class="liquid-more-icon " title="{{article.name}}">
 			<i class="icon-m-right-arrow-curved"></i>
 			Voir le détail du vote
 		</a>

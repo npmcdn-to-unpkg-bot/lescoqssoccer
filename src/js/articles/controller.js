@@ -10,25 +10,6 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 		$scope.totalItems = ItemsCount.count;
 		$scope.itemsPerPage = ArticlesCollection.itemsPerPage;
 
-		$scope.$parent.menu = {
-			title: "Articles",
-			items: [{
-				link: '#!/articles/create/standard',
-				info: 'Nouvel article',
-				icon: 'bp-icon--prev'
-			},
-			{
-				link: '#!/articles/create/vidéo',
-				info: 'Nouvelle vidéo',
-				icon: 'bp-icon--list'
-			},
-			{
-				link: '#!/articles/create/audio',
-				info: 'Nouveau son',
-				icon: 'bp-icon--next'
-			}]
-		}
-
 		//Format html content from article content edit by wysiwyg
 		$scope.getFormattedContent = function(html) {
 			return angular.element(html).text();
@@ -67,6 +48,25 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 			} else {
 				return Math.round(suggestion[option].length / (suggestion.yes.length + suggestion.no.length + suggestion.blank.length) * 100);
 			}
+		};
+
+		$scope.$parent.menu = {
+			title: "Articles",
+			items: [{
+				link: '#!/articles/create/standard',
+				info: 'Nouvel article',
+				icon: 'fa-list-alt'
+			},
+			{
+				link: '#!/articles/create/vidéo',
+				info: 'Nouvelle vidéo',
+				icon: 'fa-video-camera'
+			},
+			{
+				link: '#!/articles/create/audio',
+				info: 'Nouveau son',
+				icon: 'fa-volume-up'
+			}]
 		};
 	}
 ]);
@@ -159,6 +159,43 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 			var next = $scope.ArticlesCollection.getNext($scope.article);
 			$location.path("/articles/view/" + next.type + "/" + next._id).replace();
 		};
+
+		$scope.$parent.menu = {
+			title: "Articles > " + $scope.article.title,
+			items: [{
+				link: '#!',
+				info: 'Précédent',
+				icon: 'fa-arrow-left',
+				callback: $scope.showPrevious
+			},
+			{
+				link: '#!',
+				info: 'Retour à la liste',
+				icon: 'fa-list',
+				callback: $scope.backToList
+			},
+			{
+				link: '#!',
+				info: 'Suivant',
+				icon: 'fa-arrow-right',
+				callback: $scope.showNext
+			}]
+		};
+
+		if($scope.article.type !== "quote"){
+			$scope.$parent.menu.items.unshift({
+				link: '#!',
+				info: 'Supprimer',
+				icon: 'fa-times',
+				callback: $scope.remove
+			});
+			$scope.$parent.menu.items.unshift({
+				link: '#!',
+				info: 'Editer',
+				icon: 'fa-edit',
+				callback: $scope.edit
+			});
+		};
 	}
 ]);
 
@@ -168,22 +205,6 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 		$scope.global = Global;
 		$scope.ArticlesCollection = ArticlesCollection;
 		$scope.article = Article;
-
-		$scope.$parent.menu = {
-			title: "Nouvel article",
-			items: [{
-				link: '#!',
-				info: 'Retour',
-				icon: 'bp-icon--prev',
-				callback: $scope.global.back
-			},
-			{
-				link: '#!',
-				info: 'Sauvegarder',
-				icon: 'bp-icon--list',
-				callback: $scope.create
-			}]
-		}
 
 		switch ($scope.article.type) {
 			case "link":
@@ -284,7 +305,7 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 					}
 					break;
 				case "standard":
-					$scope.article.content = textboxio.get('#mytextarea')[0].content.get();
+					$scope.article.content = $.parseHTML(textboxio.get('#mytextarea')[0].content.get());
 					break;
 			}
 
@@ -313,6 +334,22 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 					}
 				});
 			}
+		};
+
+		$scope.$parent.menu = {
+			title: "Nouvel article",
+			items: [{
+				link: '#!',
+				info: 'Retour',
+				icon: 'fa-arrow-left',
+				callback: $scope.global.back
+			},
+			{
+				link: '#!',
+				info: 'Sauvegarder',
+				icon: 'fa-save',
+				callback: $scope.create
+			}]
 		};
 	}
 ]);

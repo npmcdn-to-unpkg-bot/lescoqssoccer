@@ -7,6 +7,8 @@ angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Glo
 		$scope.team = Team;
 		$scope.userDatas = UserDatas;
 
+		console.warn($scope.userDatas.content);
+
 		//Chat
 		$scope.conversationService = ConversationService;
 		$scope.conversations = {};

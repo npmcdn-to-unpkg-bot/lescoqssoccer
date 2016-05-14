@@ -6,26 +6,40 @@ var Schema = mongoose.Schema;
 
 // Album Schema
 var albumSchema = new Schema({
-	name: { type: String, required: true},
-	description: { type: String},
-	order: { type: Number},
-	enabled: { type: Boolean},
-	coverPicPath: { type: String},
-	photoList  : [ new Schema({
+	created: {
+		type: Date,
+		default: Date.now
+	},
+	name: {
+		type: String,
+		required: true
+	},
+	description: {
+		type: String
+	},
+	order: {
+		type: Number
+	},
+	enabled: {
+		type: Boolean
+	},
+	coverPicPath: {
+		type: String
+	},
+	photoList: [new Schema({
 		id: {
 			type: String
 		},
 		filepath: {
 			type: String
 		},
-		name:{
+		name: {
 			type: String
 		}
-	}) ],
-	user: {type : mongoose.Schema.ObjectId, ref : 'User'},
-	created: {
-		type: Date,
-		default: Date.now
+	})],
+	user: {
+		type: mongoose.Schema.ObjectId,
+		ref: 'User'
 	},
 	comments: [new Schema({
 		created: {
