@@ -1,27 +1,39 @@
-<!-- Page Loading -->
+<!--
+	Page Loading
+-->
 <div class="page-loading visible">
-    	<div class="page-loading-inn">
-       		<div class="page-loading-transform">
-            		<img src="img/coq.png" style="height: 80px; margin-top: -80px;">
-            		<div class="site-loading-logo centered-ux">LES COQS SOCCER</div>
-            		<div class="ux-loading"></div>
+	<div class="page-loading-inn">
+		<div class="page-loading-transform">
+			<img src="img/coq.png" style="height: 80px; margin-top: -80px;"/>
+			<div class="site-loading-logo centered-ux">
+				LES COQS SOCCER
+			</div>
+			<div class="ux-loading">
+			</div>
 			<div class="ux-loading-transform">
-    				<div class="loading-dot1">&nbsp;</div>
-    				<div class="loading-dot2">&nbsp;</div>
+				<div class="loading-dot1">
+					&nbsp;
+				</div>
+				<div class="loading-dot2">
+					&nbsp;
+				</div>
 			</div>
 		</div>
-    	</div>
+	</div>
 </div>
-
 <header id="header">
-    	<div class="wrap">
-    		<div class="bp-header__main">
-        			<nav class="bp-nav">
-			            <a ng-repeat="item in menu.items" ng-class="item.icon" class="bp-nav__item bp-icon fa" ng-href="{{item.link}}" data-info="{{item.info}}" ng-click="item.callback($event);">
-			            	<span>{{item.info}}</span>
-			            </a>
-		        	</nav>
+	<div class="wrap">
+		<div class="bp-header__main">
+			<nav class="bp-nav">
+				<a ng-repeat="item in menu.items" ng-class="item.icon" class="bp-nav__item bp-icon fa" ng-href="{{ item.link }}" data-info="{{ item.info }}" ng-click="item.callback($event);">
+					<span>
+						{{ item.info }}
+					</span>
+				</a>
+			</nav>
 		</div>
-        		<h2>{{menu.title}}</h2>
-    	</div>
+		<h2>
+			{{ menu.title }}
+		</h2>
+	</div>
 </header>

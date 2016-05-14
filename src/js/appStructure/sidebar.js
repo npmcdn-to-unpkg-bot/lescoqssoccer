@@ -45,6 +45,12 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 			id: "issues",
 			link: "#!/issues",
 			icon: "buggs.jpg"
+		},
+		{
+			name: "Boite à idée",
+			id: "ideaBox",
+			link: "#!/",
+			icon: "buggs.jpg"
 		}];
 
 		$scope.isCurrentPath = function(item) {

@@ -1,41 +1,38 @@
 <aside>
 	<nav id="nav-container" class="sidebar_hide">
-
 		<a ng-href="#!/users/profile" class="docs-logo" href="/">
-		        	<img ng-src="{{global.user.avatar || 'img/Professor.png'}}" alt="">
-		        	<h1 class="docs-logotype">{{global.user.username}}</h1>
+			<img ng-src="{{ global.user.avatar || 'img/Professor.png' }}" alt=""/>
+			<h1 class="docs-logotype">
+				{{ global.user.username }}
+			</h1>
 		</a>
-
 		<div class="menu-container">
-			<a ng-repeat="item in home" ng-href='{{item.link}}'>
+			<a ng-repeat="item in home" ng-href='{{ item.link }}'>
 				<h2 class='list-item' style="margin-top: -10px;">
-					{{item.name}}
+					{{ item.name }}
 				</h2>
 			</a>
 			<h2 class='list-item-title'>
 				Contenus
 			</h2>
-			<a ng-repeat="item in menu1" ng-href='{{item.link}}'>
+			<a ng-repeat="item in menu1" ng-href='{{ item.link }}'>
 				<h2 class='list-item'>
-					{{item.name}}
+					{{ item.name }}
 				</h2>
 			</a>
 			<h2 class='list-item-title'>
-				Paramètres
+				Autre
 			</h2>
-			<a ng-repeat="item in menu2" ng-href='{{item.link}}'>
+			<a ng-repeat="item in menu2" ng-href='{{ item.link }}'>
 				<h2 class='list-item'>
-					{{item.name}}
+					{{ item.name }}
 				</h2>
 			</a>
 		</div>
-
 		<a href="/signout">
 			<h2 class='list-item-disonnect'>
 				Déconnexion
 			</h2>
 		</a>
-
-		<!-- <div class="navBackground"></div> -->
 	</nav>
 </aside>
