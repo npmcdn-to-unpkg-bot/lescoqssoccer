@@ -182,6 +182,37 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 			});
 		};
 
+		$scope.showUserDetail = function(evt, user) {
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			$modal.open({
+				templateUrl: 'js/users/views/modal/userDetail.html',
+				controller: 'UserDetailController',
+				windowClass: 'userDetailPopup',
+				resolve: {
+
+					User: function(UserService) {
+						return UserService.findOne(user._id);
+					},
+
+					Albums: function(AlbumService) {
+						return AlbumService.getAlbumsByUser(user._id).then(function(albums) {
+							return albums;
+						});
+					},
+
+					UserArticles: function(ArticlesCollection) {
+						return ArticlesCollection.getArticlesByUser(user._id).then(function(articles) {
+							return articles;
+						});
+					},
+
+				}
+			});
+		};
+
 		$scope.backToList = function(evt) {
 			evt.preventDefault();
 			evt.stopPropagation();

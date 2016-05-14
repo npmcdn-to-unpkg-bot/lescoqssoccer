@@ -50,6 +50,37 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 			}
 		};
 
+		$scope.showUserDetail = function(evt, user) {
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			$modal.open({
+				templateUrl: 'js/users/views/modal/userDetail.html',
+				controller: 'UserDetailController',
+				windowClass: 'userDetailPopup',
+				resolve: {
+
+					User: function(UserService) {
+						return UserService.findOne(user._id);
+					},
+
+					Albums: function(AlbumService) {
+						return AlbumService.getAlbumsByUser(user._id).then(function(albums) {
+							return albums;
+						});
+					},
+
+					UserArticles: function(ArticlesCollection) {
+						return ArticlesCollection.getArticlesByUser(user._id).then(function(articles) {
+							return articles;
+						});
+					},
+
+				}
+			});
+		};
+
 		$scope.$parent.menu = {
 			title: "Articles",
 			items: [{
@@ -134,6 +165,37 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 					$location.path("/articles");
 				});
 
+			});
+		};
+
+		$scope.showUserDetail = function(evt, user) {
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			$modal.open({
+				templateUrl: 'js/users/views/modal/userDetail.html',
+				controller: 'UserDetailController',
+				windowClass: 'userDetailPopup',
+				resolve: {
+
+					User: function(UserService) {
+						return UserService.findOne(user._id);
+					},
+
+					Albums: function(AlbumService) {
+						return AlbumService.getAlbumsByUser(user._id).then(function(albums) {
+							return albums;
+						});
+					},
+
+					UserArticles: function(ArticlesCollection) {
+						return ArticlesCollection.getArticlesByUser(user._id).then(function(articles) {
+							return articles;
+						});
+					},
+
+				}
 			});
 		};
 

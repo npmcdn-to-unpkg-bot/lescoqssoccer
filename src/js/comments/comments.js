@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.system').controller( 'CommentController', ['$scope', 'Global', "$attrs",
-	 function($scope, Global, $attrs){
+angular.module('mean.system').controller( 'CommentController', ['$scope', 'Global', '$attrs', '$modal',
+	 function($scope, Global, $attrs, $modal){
 
 	 	$scope.global = Global;
 	 	$scope.currentReplyId;
@@ -61,6 +61,39 @@ angular.module('mean.system').controller( 'CommentController', ['$scope', 'Globa
 					$scope.object = newObject;
 				});
 			}
+		};
+
+		$scope.showUserDetail = function(evt, user) {
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			console.warn(user)
+
+			$modal.open({
+				templateUrl: 'js/users/views/modal/userDetail.html',
+				controller: 'UserDetailController',
+				windowClass: 'userDetailPopup',
+				resolve: {
+
+					User: function(UserService) {
+						return UserService.findOne(user._id);
+					},
+
+					Albums: function(AlbumService) {
+						return AlbumService.getAlbumsByUser(user._id).then(function(albums) {
+							return albums;
+						});
+					},
+
+					UserArticles: function(ArticlesCollection) {
+						return ArticlesCollection.getArticlesByUser(user._id).then(function(articles) {
+							return articles;
+						});
+					},
+
+				}
+			});
 		};
 	}
 ] );

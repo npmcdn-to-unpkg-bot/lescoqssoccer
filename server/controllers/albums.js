@@ -16,9 +16,11 @@ exports.findAllAlbums = function(req, res) {
 
 	Album.find(query)
 		.sort('-created')
+		.populate('comments.user', '_id name username avatar')
+		.populate('comments.replies.user', '_id name username avatar')
+		.populate('user', '_id name username avatar')
 		.limit(perPage)
-		.skip(perPage * page)
-		.populate('user').exec(function(err, albums) {
+		.skip(perPage * page).exec(function(err, albums) {
 			res.send(albums);
 		});
 };

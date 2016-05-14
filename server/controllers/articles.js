@@ -13,8 +13,8 @@ var mongoose = require('mongoose'),
 exports.article = function(req, res, next, id) {
 	Article.findOne({"_id":id})
 		.populate('user', 'name username avatar')
-		.populate('comments.user', 'name username avatar')
-		.populate('comments.replies.user', 'name username avatar')
+		.populate('comments.user', '_id name username avatar')
+		.populate('comments.replies.user', '_id name username avatar')
 		.populate('yes.user', 'name username avatar')
 		.populate('no.user', 'name username avatar')
 		.populate('blank.user', 'name username avatar').exec(function(err, article) {
@@ -106,8 +106,8 @@ exports.all = function(req, res) {
 		.sort('-created')
 		.limit(perPage)
 		.skip(perPage * page)
-		.populate('user', 'name username avatar')
-		.populate('comments.user', 'name username avatar')
+		.populate('user', '_id name username avatar')
+		.populate('comments.user', '_id name username avatar')
 		.populate('comments.replies.user', 'name username avatar').exec(function(err, articles) {
 
 			if (err) {

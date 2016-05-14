@@ -8,7 +8,7 @@
 
 			<ul id="conversationList" ng-if="object.comments.length>0" style="padding-top: 20px; padding-right: 10px; max-height: inherit;">
 				<li ng-repeat="comment in object.comments | reverse" style="float: inherit;">
-					<img ng-src="{{comment.user.avatar || global.user.avatar}}?dim100x100" alt="{{item.user.name || item.user.username}}">
+					<img ng-src="{{comment.user.avatar || global.user.avatar}}?dim100x100" alt="{{comment.user.name || comment.user.username}}" style="cursor: pointer;" ng-click="showUserDetail($event, comment.user);">
 					<b style="text-transform: uppercase;">{{comment.user.username || global.user.username}}</b><i>, le {{comment.created | date:dateFormat}}</i>
 					<p>
 						{{comment.content}}
@@ -17,7 +17,7 @@
 					<div>
 						<ul style="padding-top: 20px; padding-right: 10px;">
 							<li ng-repeat="reply in comment.replies | orderBy:'-created'" class="current" style="box-shadow: none;">
-								<img ng-src="{{reply.user.avatar || global.user.avatar}}?dim100x100" alt="{{reply.user.username || global.user.username}}" class="img-circle" style="position: absolute;right: -80px;left: inherit;">
+								<img ng-src="{{reply.user.avatar || global.user.avatar}}?dim100x100" alt="{{reply.user.username || global.user.username}}" class="img-circle" style="position: absolute;right: -80px;left: inherit; margin-top: 0; cursor: pointer;" ng-click="showUserDetail($event, comment.user);">
 								<b style="text-transform: uppercase;">{{reply.user.username || global.user.username}}</b><i>, le {{reply.created | date:dateFormat}}</i>
 								<p>
 									{{reply.content}}

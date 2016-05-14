@@ -18,7 +18,7 @@
 										<h1 class="main-title" style="text-transform: uppercase;">
 											{{article.title}}
 										</h1>
-										<div class="post-meta" style="font-size: initial;">
+										<div class="post-meta" style="font-size: initial;cursor: pointer;" ng-click="showUserDetail($event, article.user);">
 											<img class="img-circle" ng-src="{{article.user.avatar}}?dim100x100" alt="{{article.user.username}}" style="width: 80px; height: 80px; margin: -20px 0 20px 0;" />
 											<p>par
 												<b style="text-transform: uppercase;">
