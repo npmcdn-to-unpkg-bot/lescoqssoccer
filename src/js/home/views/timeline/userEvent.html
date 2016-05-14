@@ -3,44 +3,46 @@
 		{{ getDateFrom(item) }}
 	</p>
 	<div class="timeline-item agenda">
-		<div class="timeline-icon">
+		<div class="timeline-icon" ng-click="showUserDetail($event, item.user);">
 			<img ng-src="{{ item.user.avatar && item.user.avatar + '?dim=50x50' || 'img/Professor.png' }}" alt="{{ item.user.username }}" title="{{ item.user.username }}" style="background: white;"/>
 		</div>
-		<div class="timeline-content">
-			<h2 style="background: #F44336;">
-				<i class="fa fa-calendar"></i>&nbsp;
-				{{ item.title }}
-			</h2>
-			<div class="three-line-ellipsis item_des" style="margin: 0 -20px -20px;">
-				<div class="evwdg" style="height: 130px;">
-					<div class="evwdg-data">
-						<div class="evwdg-day">
-							{{ item.startsAt | date:"dd" }}
+		<a href="#!/agenda">
+			<div class="timeline-content">
+				<h2 style="background: #F44336;">
+					<i class="fa fa-calendar"></i>&nbsp;
+					{{ item.title }}
+				</h2>
+				<div class="three-line-ellipsis item_des" style="margin: 0 -20px -20px;">
+					<div class="evwdg" style="height: 130px;">
+						<div class="evwdg-data">
+							<div class="evwdg-day">
+								{{ item.startsAt | date:"dd" }}
+							</div>
+							<div class="evwdg-month">
+								{{ item.startsAt | date:"MMM" }}
+							</div>
+							<div class="evwdg-year">
+								{{ item.startsAt | date:"yyyy" }}
+							</div>
 						</div>
-						<div class="evwdg-month">
-							{{ item.startsAt | date:"MMM" }}
+						<div class="evwdg-title">
+							<p>
+								{{ item.content }}
+							</p>
 						</div>
-						<div class="evwdg-year">
-							{{ item.startsAt | date:"yyyy" }}
-						</div>
-					</div>
-					<div class="evwdg-title">
-						<p>
-							{{ item.content }}
-						</p>
-					</div>
-					<div class="evwdg-status">
-						<div class="ev2page-tickets">
-							<a class="igo" href="#!" ng-click="addMeToEvent($event, userEvent);">
-								Je viens
-							</a>
-							<a class="igoNot" href="#!" ng-click="notAddMeToEvent($event, userEvent);">
-								Je peux pas
-							</a>
+						<div class="evwdg-status">
+							<div class="ev2page-tickets">
+								<a class="igo" href="#!" ng-click="addMeToEvent($event, userEvent);">
+									Je viens
+								</a>
+								<a class="igoNot" href="#!" ng-click="notAddMeToEvent($event, userEvent);">
+									Je peux pas
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</a>
 	</div>
 </div>

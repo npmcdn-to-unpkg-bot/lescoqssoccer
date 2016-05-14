@@ -3,7 +3,7 @@
 		{{ getDateFrom(item) }}
 	</p>
 	<div class="timeline-item suggestion">
-		<div class="timeline-icon">
+		<div class="timeline-icon" ng-click="showUserDetail($event, item.user);">
 			<img ng-src="{{ item.user.avatar && item.user.avatar + '?dim=50x50' || 'img/Professor.png' }}" alt="{{ user.username }}" title="{{ user.username }}" style="background: white;"/>
 		</div>
 		<a href="#!/articles/view/quote/{{item._id}}">

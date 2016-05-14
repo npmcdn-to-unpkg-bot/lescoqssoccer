@@ -62,9 +62,10 @@ angular.module('mean.users').controller('TeamController', ['$scope', 'Global', '
 			return $scope.colors[index];
 		};
 
-		setTimeout(function() {
-			setUserDisplay();
-		});
+		$scope.$parent.menu = {
+			title: "Les copaings",
+			items: []
+		};
 	}
 ]);
 

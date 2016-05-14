@@ -7319,6 +7319,10 @@ a.follow:hover {
 	width: 100% !important;
 }
 
+.userDetailPopup .modal-content{
+	padding: 0 !important;
+}
+
 .filter_blog hr{
 	margin-top: 0;
 }
@@ -7558,6 +7562,7 @@ a.follow:hover {
   margin-left: 6px;
     border-radius: 2px;
     box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,0),0 2px 1px -1px rgba(0,0,0,.12);
+    cursor: pointer;
 }
 #timeline .timeline-item .timeline-icon svg {
   position: relative;
