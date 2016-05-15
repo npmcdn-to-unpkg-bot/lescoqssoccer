@@ -26,10 +26,8 @@ exports.suggestion = function(req, res, next, id) {
  * Create a suggestion
  */
 exports.create = function(req, res) {
-
 	var suggestion = new Suggestion(req.body);
 	suggestion.user = req.user;
-
 	suggestion.save(function(err) {
 		console.log(err);
 		if (err) {
@@ -47,9 +45,7 @@ exports.create = function(req, res) {
  * Update a suggestion
  */
 exports.update = function(req, res) {
-
 	var suggestion = req.suggestion;
-
 	suggestion = _.extend(suggestion, req.body);
 	suggestion.save(function(err) {
 		if (err) {
@@ -68,7 +64,6 @@ exports.update = function(req, res) {
  */
 exports.destroy = function(req, res) {
 	var suggestion = req.suggestion;
-
 	suggestion.remove(function(err) {
 		if (err) {
 			return res.send('users/signup', {
@@ -100,7 +95,7 @@ exports.all = function(req, res) {
 		.sort('-created')
 		.limit(perPage)
 		.skip(perPage * page)
-		.populate('user', 'name username avatar')
+		.populate('user', '_id name username avatar')
 		.exec(function(err, suggestions) {
 			if (err) {
 				res.render('error', {
@@ -116,21 +111,15 @@ exports.all = function(req, res) {
  * Count of suggestions
  */
 exports.getItemsCount = function(req, res) {
-
 	Suggestion.count({}).exec(function(err, count) {
-
 		if (err) {
-
 			res.render('error', {
 				status: 500
 			});
-
 		} else {
-
 			res.jsonp({
 				count: count
 			});
-
 		}
 	});
 };
@@ -143,7 +132,7 @@ exports.closeVotes = function(req, res) {
 	var article, yes = [],
 		no = [],
 		blank = [];
-	var date = moment().subtract(1, 'days').toISOString();
+	var date = moment().subtract(1, 'months').toISOString();
 
 	Suggestion.find({
 			'created': {
@@ -154,11 +143,8 @@ exports.closeVotes = function(req, res) {
 		.exec(function(err, suggestions) {
 
 			if (err) {
-
 				console.warn('Error when to fetch suggestions ' + err);
-
 			} else {
-
 				_.each(suggestions, function(suggestion) {
 
 					article = new Article({

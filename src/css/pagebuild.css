@@ -3041,7 +3041,7 @@ opacity:1}
   -ms-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
-  border-radius: 0 0 5px 5px;
+  border-radius: 0 0 2px 2px;
 }
 .material-card.mc-active .img-container > img {
   height: 60px;
@@ -3228,7 +3228,8 @@ opacity:1}
   -ms-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
-  border-radius: 2px 5px 0 0;
+  border-radius: 2px 2px 0 0;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
 }
 .material-card.mc-active .img-container {
   -webkit-border-radius: 2px;

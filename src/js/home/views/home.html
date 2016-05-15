@@ -100,8 +100,8 @@
 													{{ (conversation.conversation.messages.length>0) ? (conversation.conversation.messages.slice(-1).pop().user.username || "moi") + ": " + conversation.conversation.messages.slice(-1).pop().content : "Pas encore de message" }}
 												</div>
 											</div>
-											<div class="media-right media-middle" ng-if="getUnreadMessageCount(conversation.userId)> 0" style="background: red;    border-radius: 50%;">
-												<span style="color: white; display: flex; font-weight: 600; padding: 0px 15px 0 5px;">
+											<div class="media-right media-middle"  ng-if="getUnreadMessageCount(conversation.userId)> 0" style="background: red; border-radius: 50%; position: absolute; right: 10px;    top: 20px; height: padding; padding: 5px 0px 5px 5px;">
+												<span style="color: white; display: flex; font-weight: 600; padding: 0px 10px 0 5px;">
 													{{ getUnreadMessageCount(conversation.userId); }}
 												</span>
 											</div>

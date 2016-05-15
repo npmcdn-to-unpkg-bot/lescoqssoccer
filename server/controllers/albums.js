@@ -16,8 +16,6 @@ exports.findAllAlbums = function(req, res) {
 
 	Album.find(query)
 		.sort('-created')
-		.populate('comments.user', '_id name username avatar')
-		.populate('comments.replies.user', '_id name username avatar')
 		.populate('user', '_id name username avatar')
 		.limit(perPage)
 		.skip(perPage * page).exec(function(err, albums) {
@@ -27,11 +25,14 @@ exports.findAllAlbums = function(req, res) {
 
 exports.findAlbumById = function(req, res) {
 	Album.findOne({
-		_id: req.params.id
-	}).populate('user').exec(function(err, album) {
-		if (err) console.log("error finding album: " + err);
-		res.send(album);
-	})
+			_id: req.params.id
+		})
+		.populate('comments.user', '_id name username avatar')
+		.populate('comments.replies.user', '_id name username avatar')
+		.populate('user').exec(function(err, album) {
+			if (err) console.log("error finding album: " + err);
+			res.send(album);
+		})
 };
 
 exports.addAlbum = function(req, res) {

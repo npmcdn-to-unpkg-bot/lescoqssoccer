@@ -361,13 +361,6 @@ jQuery(document).ready(function($){
 			});
 		}
 	});
-
-	jQuery(window).resize(function() {
-		jQuery(".progress-wrap").each(function() {
-			var me = jQuery(this);
-			moveProgressBar(me);
-		});
-	});
 });
 
 /*********************************************
@@ -1146,6 +1139,9 @@ function ThemeIsotope(){
 			}
 
 			_this.addClass('isotope_fade');
+			setTimeout(function(){
+				progressbar();
+			}, 500);
 			_this.siblings('#isotope-load').fadeOut(300);
 		});
 	}
@@ -1186,6 +1182,13 @@ function progressbar() {
 	$(".progress-wrap").each(function() {
 		var me = jQuery(this);
 		moveProgressBar(me);
+	});
+
+	jQuery(window).resize(function() {
+		jQuery(".progress-wrap").each(function() {
+			var me = jQuery(this);
+			moveProgressBar(me);
+		});
 	});
 }
 

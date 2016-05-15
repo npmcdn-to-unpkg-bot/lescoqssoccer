@@ -68,8 +68,6 @@ angular.module('mean.system').controller( 'CommentController', ['$scope', 'Globa
 			evt.preventDefault();
 			evt.stopPropagation();
 
-			console.warn(user)
-
 			$modal.open({
 				templateUrl: 'js/users/views/modal/userDetail.html',
 				controller: 'UserDetailController',
