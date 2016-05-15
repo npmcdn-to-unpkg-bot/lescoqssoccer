@@ -114,26 +114,32 @@ var migrateSuggestions = function() {
 	});
 };
 
-var addParameters = function(){
+var addParameters = function() {
 	var parameter = new Parameter({
-		articleCategories : [{
+		articleCategories: [{
 			id: "1",
-			value: "Info"
+			value: "Info",
+			active: true
 		}, {
 			id: "2",
-			value: "Connerie"
+			value: "Connerie",
+			active: true
 		}, {
 			id: "3",
-			value: "Sport"
+			value: "Sport",
+			active: true
 		}, {
 			id: "4",
-			value: "Art"
+			value: "Art",
+			active: true
 		}, {
 			id: "5",
-			value: "Trompette"
+			value: "Trompette",
+			active: true
 		}, {
 			id: "6",
-			value: "Poney"
+			value: "Poney",
+			active: true
 		}]
 	});
 	parameter.save(function(err) {

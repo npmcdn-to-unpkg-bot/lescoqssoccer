@@ -19,6 +19,9 @@ var ParameterSchema = new Schema({
 			type: String,
 			default: '',
 			trim: true
+		},
+		active: {
+			type: Boolean
 		}
 	}]
 });

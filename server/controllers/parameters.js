@@ -28,7 +28,7 @@ exports.getAllParameters = function(req, res) {
  * Create parameters
  */
 exports.create = function(_parameter) {
-	var parameter = new Parameter(_parameter);
+	var parameter = new Parameters(_parameter);
 	parameter.save(function(err) {
 		if (err) {
 			console.warn("Error when adding params: " + err);
@@ -42,16 +42,21 @@ exports.create = function(_parameter) {
  * Update parameters
  */
 exports.update = function(req, res) {
-	var parameters = req.parameters;
+	var parameters = new Parameters(req.parameters);
 	parameters = _.extend(parameters, req.body);
-	Parameters.save(function(err) {
-		if (err) {
-			return res.send('users/signup', {
-				errors: err.errors,
-				parameters: parameters
-			});
-		} else {
-			res.jsonp(parameters);
+	Parameters.update({_id: parameters._id}, {
+		$set: {
+			articleCategories: parameters.articleCategories
 		}
+	}, function(err, affectedRows) {
+
+		if (err) {
+			console.warn("err: " + err);
+		} else {
+			res.jsonp({
+				message: "Parameter update"
+			})
+		}
+
 	});
 };

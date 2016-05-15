@@ -47,15 +47,15 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 			icon: "buggs.jpg"
 		},
 		{
-			name: "Boite à idée",
-			id: "ideaBox",
-			link: "#!/",
+			name: "Paramètres",
+			id: "parameters",
+			link: "#!/parameters",
 			icon: "buggs.jpg"
 		},
 		{
-			name: "Configuration du site",
-			id: "parameters",
-			link: "#!/parameters",
+			name: "Profile",
+			id: "profile",
+			link: "#!/users/profile",
 			icon: "buggs.jpg"
 		}];
 

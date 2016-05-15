@@ -1786,12 +1786,17 @@ transform: none!important;
   color:#de3926;
 }
 
-.pagenums a:hover,.pagenums .current,.page-numbers.current, .tagcloud a:hover,.tagcloud a.active,.related-post-wrap h3:before,.header-slider-item-more:hover,
+.pagenums a:hover,.pagenums .current,.page-numbers.current, .tagcloud a.active,.related-post-wrap h3:before,.header-slider-item-more:hover,
 .process-bar,.testimenials:hover,.testimenials:hover .arrow-bg,
 .sidebar_widget .widget_uxconatactform input#idi_send:hover,input.idi_send:hover,.page-numbers:hover,#bbp-user-navigation li a:hover
 {
   background-color:#de3926;
   color: #FFFFFF;
+}
+
+.tagcloud a:hover{
+	background-color:#bbb;
+  	color: black;
 }
 textarea:focus,input[type="text"]:focus,input[type="password"]:focus,input[type="datetime"]:focus,input[type="datetime-local"]:focus,input[type="date"]:focus,input[type="month"]:focus,input[type="time"]:focus,input[type="week"]:focus,input[type="number"]:focus,input[type="email"]:focus,input[type="url"]:focus,input[type="search"]:focus,input[type="tel"]:focus,input[type="color"]:focus,.uneditable-input:focus,
 .sidebar_widget .widget_uxconatactform textarea:focus,.sidebar_widget .widget_uxconatactform input[type="text"]:focus,#respondwrap textarea:focus,#respondwrap input:focus
@@ -2670,7 +2675,7 @@ A library of transitions for revealing the loaded images
     color: #bbbbbb;
 }
 
-.standardContainer, .suggestionCreationContainer, .photoContainer{
+.standardContainer, .suggestionCreationContainer, .photoContainer, .parameterContainer{
 	width: calc(100% - 120px);background: white; margin: 40px 60px; box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12); color: #7b7b7b; border-radius: 2px;
 }
 

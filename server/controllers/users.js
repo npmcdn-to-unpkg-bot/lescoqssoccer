@@ -49,13 +49,17 @@ exports.signout = function(req, res) {
 exports.session = function(req, res) {
 
 	//Update the last connection date of user when creating session
-	User.update({_id: req.user._id}, 
-		{$set: { 
+	User.update({
+		_id: req.user._id
+	}, {
+		$set: {
 			lastConnectionDate: new Date(),
 			previousConnectionDate: req.user.lastConnectionDate
-		}}, 
-		{upsert: false}, function(err){
-			res.redirect('/');
+		}
+	}, {
+		upsert: false
+	}, function(err) {
+		res.redirect('/');
 	});
 };
 
@@ -63,29 +67,29 @@ exports.session = function(req, res) {
  * Before call session
  */
 exports.isFutureSessionValid = function(req, res) {
-	
-	passport.authenticate('local', function(err, user, info) {
-	    
-	    if (err) {
-	    	return res.jsonp({
-	    		authenticate: false,
-	    		error: err,
-	    		info: info
-	    	}); 
-	    }
 
-	    if (!user) {
-	    	return res.jsonp({
-		    	authenticate: false,
-		    	error: 101,
-		    	info: info
-		    }); 
+	passport.authenticate('local', function(err, user, info) {
+
+		if (err) {
+			return res.jsonp({
+				authenticate: false,
+				error: err,
+				info: info
+			});
 		}
 
-	    return res.jsonp({
-	    	authenticate: true,
-	    	error: null
-	    }); 
+		if (!user) {
+			return res.jsonp({
+				authenticate: false,
+				error: 101,
+				info: info
+			});
+		}
+
+		return res.jsonp({
+			authenticate: true,
+			error: null
+		});
 
 
 	})(req, res);
@@ -214,7 +218,7 @@ exports.calculatePopularity = function() {
 			console.warn("err: " + err);
 		} else {
 
-			_.each(users, function(user){
+			_.each(users, function(user) {
 				var newVal = "30";
 				user.popularity = newVal;
 			});

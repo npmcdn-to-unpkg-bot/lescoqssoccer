@@ -1,13 +1,38 @@
-angular.module('mean.system').controller('ParametersController', ['$scope', 'Global', 'Parameters', 'ParametersService',
+angular.module('mean.system').controller('ParametersController', ['$scope', 'Global', '$modal', 'Parameters', 'ParametersService',
 
-	function($scope, Global, Parameters, ParametersService) {
+	function($scope, Global, $modal, Parameters, ParametersService) {
 
 		$scope.global = Global;
 		$scope.parameters = Parameters[0];
 
-		$scope.update = function(){
-			ParametersService.update($scope.parameters).then(function(newParams){
-				console.warn(newParams);
+		$scope.addCategorie = function() {
+			if ($scope.newCategorieLabel !== "") {
+				$scope.parameters.articleCategories.push({
+					id: $scope.parameters.articleCategories.length + 1,
+					value: $scope.newCategorieLabel
+				});
+			}
+		};
+
+		$scope.toggleCategory = function(evt, category) {
+			if (evt) {
+				evt.preventDefault();
+				evt.stopPropagation();
+			}
+			category.active = !category.active;
+		};
+
+		$scope.update = function(evt) {
+			if (evt) {
+				evt.preventDefault();
+				evt.stopPropagation();
+			}
+
+			ParametersService.update($scope.parameters).then(function(newParams) {
+				var modalInstance = $modal.open({
+					templateUrl: 'js/parameters/views/saveModal.html',
+					controller: 'saveCtrl'
+				});
 			});
 		};
 
@@ -18,8 +43,7 @@ angular.module('mean.system').controller('ParametersController', ['$scope', 'Glo
 				info: 'Retour',
 				icon: 'fa-arrow-left',
 				callback: $scope.global.back
-			},
-			{
+			}, {
 				link: '#!',
 				info: 'Sauvegarder',
 				icon: 'fa-save',
@@ -27,6 +51,15 @@ angular.module('mean.system').controller('ParametersController', ['$scope', 'Glo
 			}]
 		};
 	}
+]);
+
+angular.module('mean.system').controller('saveCtrl', ['$scope', '$modalInstance',
+	function($scope, $modalInstance) {
+		$scope.ok = function(result) {
+			$modalInstance.close(result);
+		};
+	}
+
 ]);
 
 var ParametersData = {

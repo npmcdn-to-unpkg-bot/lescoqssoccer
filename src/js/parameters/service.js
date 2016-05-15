@@ -4,8 +4,13 @@
 angular.module('mean.system').factory('Parameters', ['$resource',
 	function($resource) {
 		return $resource('parameters', {
+			parameterId: '@_id'
+		},{
 			update: {
-				method: 'PUT'
+				method: 'PUT',
+				params: {
+					articleId: '@parameterId'
+				}
 			},
 			query: {
 				method: 'GET',
@@ -24,8 +29,8 @@ angular.module('mean.system').service('ParametersService', ['Global', 'Parameter
 					ParametersService.parameters = parameters[0];
 				}).$promise;
 			},
-			update: function(parameters) {
-				return Parameters.update({}, parameters, function(data) {
+			update: function(_parameters) {
+				return Parameters.update({}, _parameters, function(data) {
 					return data;
 				}).$promise;
 			},
