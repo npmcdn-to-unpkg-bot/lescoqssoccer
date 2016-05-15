@@ -116,6 +116,13 @@ angular.module('mean').config(['$routeProvider',
 			templateUrl: 'js/issues/issues.html'
 		}).
 
+		/** PARAMETERS ****/
+		when('/parameters', {
+			templateUrl: 'js/parameters/views/parameters.html',
+			controller: 'ParametersController',
+			resolve: ParametersData
+		}).
+
 		/** USERS ****/
 		when('/users', {
 			templateUrl: 'js/users/views/list.html',

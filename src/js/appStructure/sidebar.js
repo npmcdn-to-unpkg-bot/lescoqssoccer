@@ -51,17 +51,20 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 			id: "ideaBox",
 			link: "#!/",
 			icon: "buggs.jpg"
+		},
+		{
+			name: "Configuration du site",
+			id: "parameters",
+			link: "#!/parameters",
+			icon: "buggs.jpg"
 		}];
 
 		$scope.isCurrentPath = function(item) {
-
 			var cur_path = "#!" + $location.path().substr(0, item.id.length + 1);
 			return (cur_path.indexOf(item.id) !== -1) || (item.id.indexOf('albums') !== -1 && cur_path.indexOf('gallery') !== -1);
-
 		};
 
 		$scope.closeSidebar = function(evt, item) {
-
 		};
 	}
 ]);

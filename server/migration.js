@@ -48,6 +48,7 @@ var Article = mongoose.model('Article'),
 	Album = mongoose.model('Album'),
 	Conversation = mongoose.model('Conversation'),
 	UserEvent = mongoose.model('UserEvent'),
+	Parameter = mongoose.model('Parameter'),
 	User = mongoose.model('User');
 
 /*
@@ -113,4 +114,36 @@ var migrateSuggestions = function() {
 	});
 };
 
+var addParameters = function(){
+	var parameter = new Parameter({
+		articleCategories : [{
+			id: "1",
+			value: "Info"
+		}, {
+			id: "2",
+			value: "Connerie"
+		}, {
+			id: "3",
+			value: "Sport"
+		}, {
+			id: "4",
+			value: "Art"
+		}, {
+			id: "5",
+			value: "Trompette"
+		}, {
+			id: "6",
+			value: "Poney"
+		}]
+	});
+	parameter.save(function(err) {
+		if (err) {
+			console.warn("Error when adding params: " + err);
+		} else {
+			console.warn("Successfuly add params");
+		}
+	});
+};
+
 migrateSuggestions();
+addParameters();
