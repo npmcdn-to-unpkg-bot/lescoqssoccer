@@ -2430,7 +2430,7 @@ position: absolute; top:50%; margin-bottom:auto; margin-top:auto;
 	border-radius: 70px; line-height: 140px; font-size: 60px;
 }
 .testimonial-thum img{
-	width: 100%; border-radius: 70px;
+	width: 100%; border-radius: 2px;
 }
 .testimonial-wrap blockquote{
 	padding-left: 0;

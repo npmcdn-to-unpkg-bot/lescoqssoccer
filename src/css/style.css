@@ -1399,7 +1399,7 @@ h3#reply-title{
 .entry .contactform input,
 #respond input,
 .contactform input[type="text"] {
-  width:100%; max-width:none; height:40px; padding:7px 10px 7px 0; margin-bottom:20px; font-size: 14px;
+  width:100%; max-width:none; height:40px; padding:7px 10px 7px 5px; margin-bottom:20px; font-size: 14px;
 }
 .contactform input[type="submit"],
 #respond input#submit,
