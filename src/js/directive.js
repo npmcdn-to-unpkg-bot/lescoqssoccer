@@ -93,7 +93,6 @@ angular.module('mean.system').directive('cmTimeline', function() {
 		restrict: 'E',
 		replace: true,
 		link: function(scope, element, attrs) {
-
 			if (scope.item.type === "standard") {
 				scope.item.contentHTML = angular.element(scope.item.content).text();
 			}

@@ -266,9 +266,25 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 
 		$scope.global = Global;
 		$scope.agenda = Agenda;
+		 $scope.agenda = {
+            url: "http://www.google.com/calendar/feeds/usa__en%40holiday.calendar.google.com/public/basic",
+            className: 'gcal-event',           // an option!
+            currentTimezone: 'America/Chicago' // an option!
+    };
 		$scope.agendaCollection = AgendaCollection;
 		$scope.eventTypes = eventTypes;
 		$scope.dateNow = new Date();
+
+		//Calendar config
+		$scope.calendarView = 'month';
+		$scope.calendarDay = new Date();
+		$scope.calendarTitle = '';
+
+		$scope.selectEvent = function(albumId) {
+
+			$scope.selectedEvent = $scope.agenda[0];
+			$scope.$apply();
+		};
 
 		$scope.map = {
 			control: {

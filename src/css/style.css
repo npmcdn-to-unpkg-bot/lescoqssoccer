@@ -4623,7 +4623,7 @@ text-align: center;
 
 #albumContainer{
   padding: 0 60px;
-  margin-top: 40px;
+  margin-top: 100px;
 }
 
 .voteCircle {
@@ -5585,17 +5585,15 @@ a.igoNot{
 }
 
 .pageContent{
-    position: fixed;
-    top: 60px;
-    left: 20%;
+    margin-top: 60px;
     height: calc(100vh - 60px);
-    width: 80%;
+    width: 100%;
     overflow: auto;
 }
 
-.homeContainer{
+/*.homeContainer{
     overflow: hidden;
-}
+}*/
 /* ================= SIDEBAR  ================== */
 .leftcontainer {
     width: calc(100% - 80px);

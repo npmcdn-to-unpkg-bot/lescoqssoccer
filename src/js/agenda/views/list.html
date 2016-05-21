@@ -1,5 +1,42 @@
-<div class="post-116 page type-page status-publish hentry articlesContainer pageContent">
-	<div class="row-fluid" style="min-height: 100vh">
+<div id="agendaContainer" class="agendaContainer pageContent">
+
+	<section class="liquid-expand-wrap albumDetailBrick" style="display: none; margin: 21px;">
+		<div style="box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);">
+			<div class="ev2page-col" ng-repeat="userEvent in agenda" style="background: white; border-radius: 2px; box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);">
+				<img class="img-circle" ng-src="{{userEvent.user.avatar}}?dim100x100" alt="{{userEvent.user.username}}"style="position: absolute; top: 10px; right: 10px;"/>
+
+			            <div class="ev2page-data">
+			                  	<div class="ev2page-day">{{userEvent.startsAt | date:"dd"}}</div>
+			                  	<div class="ev2page-month">{{userEvent.startsAt | date:"MMM"}}</div>
+			                  	<div class="ev2page-year">{{userEvent.startsAt | date:"yyyy"}}</div>
+			            </div>
+
+			            <div>
+			               	<h2 class="ev2page-title">
+			               		<a href="#!/agenda/view/{{userEvent._id}}">
+			               			{{userEvent.title}}
+			               		</a>
+			               	</h2>
+			            </div>
+
+			            <p class="three-line-ellipsis" style="font-size: 20px;"> {{userEvent.content}}</p>
+
+			            <div class="ev2page-tickets">
+			               	<a class="igo" href="#!" ng-click="addMeToEvent($event, userEvent);">
+			               		Je viens
+			               	</a>
+			               	<a class="igoNot" href="#!" ng-click="notAddMeToEvent($event, userEvent);">
+			               		Peux pas
+			               	</a>
+			            </div>
+			            <div class="ev2page-week">
+			            	{{userEvent.startsAt | date:"EEEE"}}
+			            </div>
+			</div>
+		</div>
+	</section>
+
+	<div class="row-fluid">
 		<div id="content_wrap">
 			<div class="content-wrap-inn">
 				<div class="pagebuilder-wrap">
@@ -16,62 +53,63 @@
 												<div class="loading-dot2">&nbsp;</div>
 											</div>
 										</div>
+										<div class="isotope masonry isotope-liquid-list less-space isotope_fade" data-space="0" data-size="medium" data-width="width4" data-ratio="imagebox-thumb">
 
-										<div class="isotope masonry isotope_fade" style="display: none; width: calc(80vw - 500px);">
-											<div class="ev2page-col" ng-repeat="userEvent in agenda" style="background: white; border-radius: 2px; box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);">
+											<div class="ev2page-col width2 isotope-item hover-effect" ng-repeat="userEvent in agenda" style="background: white; border-radius: 2px; box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);">
+												<a class="liquid_list_image" data-postid="{{userEvent._id}}" data-type="image">
+													<!-- <img class="img-circle" ng-src="{{userEvent.user.avatar}}?dim100x100" alt="{{userEvent.user.username}}"style="position: absolute; top: 10px; right: 10px;"/>
+ -->
+												            <div class="ev2page-data">
+												                  	<div class="ev2page-day">{{userEvent.startsAt | date:"dd"}}</div>
+												                  	<div class="ev2page-month">{{userEvent.startsAt | date:"MMM"}}</div>
+												                  	<div class="ev2page-year">{{userEvent.startsAt | date:"yyyy"}}</div>
+												            </div>
 
-												<img class="img-circle" ng-src="{{userEvent.user.avatar}}?dim100x100" alt="{{userEvent.user.username}}"style="position: absolute; top: 10px; right: 10px;"/>
+												            <div>
+												               	<h2 class="ev2page-title">
+												               		<a href="#!/agenda/view/{{userEvent._id}}">
+												               			{{userEvent.title}}
+												               		</a>
+												               	</h2>
+												            </div>
 
-											            <div class="ev2page-data">
-											                  	<div class="ev2page-day">{{userEvent.startsAt | date:"dd"}}</div>
-											                  	<div class="ev2page-month">{{userEvent.startsAt | date:"MMM"}}</div>
-											                  	<div class="ev2page-year">{{userEvent.startsAt | date:"yyyy"}}</div>
-											            </div>
+												            <p class="three-line-ellipsis" style="font-size: 20px;"> {{userEvent.content}}</p>
 
-											            <div>
-											               	<h2 class="ev2page-title">
-											               		<a href="#!/agenda/view/{{userEvent._id}}">
-											               			{{userEvent.title}}
-											               		</a>
-											               	</h2>
-											            </div>
+												            <div class="ev2page-tickets">
+												               	<a class="igo" href="#!" ng-click="addMeToEvent($event, userEvent);">
+												               		Je viens
+												               	</a>
+												               	<a class="igoNot" href="#!" ng-click="notAddMeToEvent($event, userEvent);">
+												               		Peux pas
+												               	</a>
+												            </div>
 
-											            <p class="three-line-ellipsis" style="font-size: 20px;"> {{userEvent.content}}</p>
-
-											            <div class="ev2page-tickets">
-											               	<a class="igo" href="#!" ng-click="addMeToEvent($event, userEvent);">
-											               		Je viens
-											               	</a>
-											               	<a class="igoNot" href="#!" ng-click="notAddMeToEvent($event, userEvent);">
-											               		Peux pas
-											               	</a>
-											            </div>
-											            <div class="ev2page-week">
-											            	{{userEvent.startsAt | date:"EEEE"}}
-											            </div>
+												</a>
 											</div>
+											<div style="display: none; background: white;" class="inside liquid-loading-wrap">
+													<div class="ux-loading"></div>
+													<div class="ux-loading-transform">
+														<div class="loading-dot1">&nbsp;</div>
+														<div class="loading-dot2">&nbsp;</div>
+													</div>
+													<img ng-src="{{userEvent.user.avatar}}?dim=300x300" class="liquid-hide wp-post-image">
+												</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div class="moudle" style="float: right;">
-								<div id="google-map" class="google-map google-map-agenda" ng-if="selectedEvent.location">
-									<google-map
-									center="map.center"
-									zoom="map.zoom"
-									draggable="true"
-									dragging="map.dragging"
-									bounds="map.bounds"
-									events="map.events"
-									options="map.options"
-									control="map.control">
-										<marker
-											icon="'img/icons/pin.png'"
-											coords="marker"
-											animation="google.maps.Animation.DROP">
-										</marker>
-									</google-map>
-								</div>
+							<div class="span6 moudle">
+								<mwl-calendar
+								view="calendarView"
+								current-day="calendarDay"
+								events="agenda"
+								view-title="calendarTitle"
+								on-event-click="eventClick($event, calendarEvent)"
+								on-event-drop="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+								edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
+								delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
+								auto-open="true">
+								</mwl-calendar>
 							</div>
 						</div>
 					</div>

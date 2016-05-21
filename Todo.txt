@@ -1,0 +1,10 @@
+------ BUGS ------
+
+- Fix previous and next when initialize view on detail page
+- Fix console display when user description is too large
+- Fix article content when article content is unformatted
+
+- Agenda view
+- User points
+
+- Euro paris

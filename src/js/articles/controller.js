@@ -261,12 +261,13 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 	}
 ]);
 
-angular.module('mean.articles').controller('CreateArticleController', ['$scope', '$location', 'Global', 'ArticlesCollection', 'FileUploader', 'Article', '$modal',
-	function($scope, $location, Global, ArticlesCollection, FileUploader, Article, $modal) {
+angular.module('mean.articles').controller('CreateArticleController', ['$scope', '$location', 'Global', 'ArticlesCollection', 'FileUploader', 'Article', '$modal', 'Parameters',
+	function($scope, $location, Global, ArticlesCollection, FileUploader, Article, $modal, Parameters) {
 
 		$scope.global = Global;
 		$scope.ArticlesCollection = ArticlesCollection;
 		$scope.article = Article;
+		$scope.categories = Parameters[0].articleCategories;
 
 		switch ($scope.article.type) {
 			case "link":
@@ -281,29 +282,6 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 				$scope.linkAdress = $scope.article.audioLink;
 				break;
 		};
-
-		/***
-		CATEGORIES
-		***/
-		$scope.categories = [{
-			id: "1",
-			value: "Info"
-		}, {
-			id: "2",
-			value: "Connerie"
-		}, {
-			id: "3",
-			value: "Sport"
-		}, {
-			id: "4",
-			value: "Art"
-		}, {
-			id: "5",
-			value: "Trompette"
-		}, {
-			id: "6",
-			value: "Poney"
-		}];
 
 		$scope.toggleCategory = function(category, evt) {
 
@@ -451,7 +429,6 @@ angular.module('mean.articles').controller('noTitleArticleModalCtrl', ['$scope',
 ]);
 
 var ArticlesData = {
-
 	Articles: function(ArticlesCollection, $route) {
 		var page = $route.current.params.page || 1;
 		return ArticlesCollection.load(page);
@@ -462,16 +439,17 @@ var ArticlesData = {
 	ItemsCount: function(ArticlesCollection) {
 		return ArticlesCollection.getItemsCount();
 	}
-
 };
 
 var ArticleDetailData = {
-
 	Article: function(ArticlesCollection, $route, $location) {
 		return ($route.current.params.id) ? ArticlesCollection.findOne($route.current.params.id) : {
 			type: $location.path().split("/").pop(),
 			categories: [],
 			content: ""
 		};
+	},
+	Parameters: function(ParametersService) {
+		return ParametersService.load();
 	}
 };

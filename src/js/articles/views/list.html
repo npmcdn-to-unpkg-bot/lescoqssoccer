@@ -1,44 +1,37 @@
-<div class="post-116 page type-page status-publish hentry articlesContainer pageContent">
-	<div class="row-fluid" style="min-height: 100vh">
+<div class="articlesContainer pageContent">
+	<div class="row-fluid">
 		<div id="content_wrap">
 			<div class="content-wrap-inn">
-
 				<div class="pagebuilder-wrap" style="margin-top: 40px;">
 					<div class="container">
 						<div class="row-fluid">
 							<div class="span12 moudle">
 								<div class="row-fluid">
 									<div class="container-isotope clear">
-
 										<div id="isotope-load">
-											<div class="ux-loading"></div>
+											<div class="ux-loading">
+											</div>
 											<div class="ux-loading-transform">
-												<div class="loading-dot1">&nbsp;</div>
-												<div class="loading-dot2">&nbsp;</div>
+												<div class="loading-dot1">
+													&nbsp;
+												</div>
+												<div class="loading-dot2">
+													&nbsp;
+												</div>
 											</div>
 										</div>
-
 										<div class="isotope masonry" data-size="brick" style="margin: -40px 0px 0px -40px; display: none;">
-											<cm-blog-post ng-repeat="article in articles" type="{{article.type || 'standard'}}" format="tiles">
+											<cm-blog-post ng-repeat="article in articles" type="{{ article.type || 'standard' }}" format="tiles">
 											</cm-blog-post>
 										</div>
-
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-
-					<!--Pagination-->
 					<div class="clearfix pagenums" style="display: none;">
 						<div class="pagination">
-							<pagination
-							previous-text="<<"
-							next-text=">>"
-							total-items="totalItems"
-							page="page"
-							on-select-page="pageChanged(page)"
-							items-per-page="itemsPerPage">
+							<pagination previous-text=" <<" next-text=">> " total-items="totalItems" page="page" on-select-page="pageChanged(page)" items-per-page="itemsPerPage">
 							</pagination>
 						</div>
 					</div>

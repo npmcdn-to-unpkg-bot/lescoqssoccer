@@ -23,7 +23,8 @@ var ArticleSchema = new Schema({
 	},
 	content: {
 		type: String,
-		trim: true
+		trim: true,
+		default: ''
 	},
 	description: {
 		type: String

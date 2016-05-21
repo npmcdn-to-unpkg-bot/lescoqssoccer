@@ -47,6 +47,7 @@
 											<a
 											href="#!"
 											ng-repeat="category in categories"
+											ng-if-"category.active"
 											title="{{category.value}}"
 											style="font-size: 11px;"
 											ng-click="toggleCategory(category,$event)"

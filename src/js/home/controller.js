@@ -20,8 +20,7 @@ angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Glo
 		$scope.initialize = function() {
 			$scope.initializeConversations();
 			$scope.updateCounters();
-
-			consoleText(['Cool cool cool.', 'Ca déchire sa race'], 'text');
+			$scope.initConsole();
 		};
 
 		//Index all conversations in the object $scope.conversations
@@ -62,6 +61,23 @@ angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Glo
 
 		};
 
+		$scope.initConsole = function() {
+			var consoleTextArray = [];
+			_.each(Team, function(user) {
+				if (user.presentation) {
+					var username = user.username;
+					consoleTextArray.push(username.charAt(0).toUpperCase() + username.slice(1) + ": " + user.presentation);
+				}
+			});
+			consoleText(consoleTextArray, 'text');
+		};
+
+		$scope.updateCounters = function() {
+			$scope.getUnreadArticleCount();
+			$scope.getUnreadVoteCount();
+			$scope.getUnreadAlbumCount();
+		};
+
 		$scope.selectUser = function(evt, userId) {
 
 			if (evt) {
@@ -76,7 +92,6 @@ angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Glo
 		};
 
 		$scope.sendMessage = function() {
-
 			if ($scope.message.content !== "") {
 
 				$scope.conversation.messages.push({
@@ -105,19 +120,12 @@ angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Glo
 					}).length;
 				}
 			}
-
 			return 0;
 		};
 
 		//Close the view dialog and go back to the view list
 		$scope.closeDialog = function() {
 			$scope.conversation = null;
-		};
-
-		$scope.updateCounters = function() {
-			$scope.getUnreadArticleCount();
-			$scope.getUnreadVoteCount();
-			$scope.getUnreadAlbumCount();
 		};
 
 		$scope.getUnreadArticleCount = function() {
@@ -231,8 +239,6 @@ angular.module('mean.home').controller('PointRulesController', ['$scope', '$moda
 		};
 	}
 ]);
-
-
 
 var HomeData = {
 

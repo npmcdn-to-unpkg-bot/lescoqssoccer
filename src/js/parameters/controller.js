@@ -53,13 +53,21 @@ angular.module('mean.system').controller('ParametersController', ['$scope', 'Glo
 	}
 ]);
 
+angular.module('mean.system').controller('issuesCtrl', ['$scope',
+	function($scope) {
+		$scope.$parent.menu = {
+			title: "Bugs",
+			items: []
+		};
+	}
+]);
+
 angular.module('mean.system').controller('saveCtrl', ['$scope', '$modalInstance',
 	function($scope, $modalInstance) {
 		$scope.ok = function(result) {
 			$modalInstance.close(result);
 		};
 	}
-
 ]);
 
 var ParametersData = {
