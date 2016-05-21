@@ -15,7 +15,10 @@ angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Glo
 			content: ""
 		};
 
-		$scope.$parent.menu = null;
+		$scope.$parent.menu = {
+			title: "Accueil",
+			items: []
+		};
 
 		$scope.initialize = function() {
 			$scope.initializeConversations();
@@ -69,7 +72,10 @@ angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Glo
 					consoleTextArray.push(username.charAt(0).toUpperCase() + username.slice(1) + ": " + user.presentation);
 				}
 			});
-			consoleText(consoleTextArray, 'text');
+
+			setTimeout(function(){
+				consoleText(consoleTextArray, 'text');
+			}, 500);
 		};
 
 		$scope.updateCounters = function() {

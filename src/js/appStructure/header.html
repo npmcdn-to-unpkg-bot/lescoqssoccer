@@ -1,6 +1,4 @@
-<!--
-	Page Loading
--->
+<!-- Page Loading -->
 <div class="page-loading visible">
 	<div class="page-loading-inn">
 		<div class="page-loading-transform">
@@ -21,6 +19,7 @@
 		</div>
 	</div>
 </div>
+<!-- Application header -->
 <header id="header">
 	<div class="wrap">
 		<div class="bp-header__main">
@@ -32,8 +31,15 @@
 				</a>
 			</nav>
 		</div>
-		<h2>
+		<h2 ng-if="menu.title !== 'Accueil'">
 			{{ menu.title }}
 		</h2>
+		<div class='console-container' ng-if="menu.title === 'Accueil'">
+			<div class="ellipsis" id='text'>
+			</div>
+			<div class='console-underscore' id='console'>
+				&#95;
+			</div>
+		</div>
 	</div>
 </header>

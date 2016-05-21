@@ -1801,7 +1801,7 @@ transform: none!important;
 textarea:focus,input[type="text"]:focus,input[type="password"]:focus,input[type="datetime"]:focus,input[type="datetime-local"]:focus,input[type="date"]:focus,input[type="month"]:focus,input[type="time"]:focus,input[type="week"]:focus,input[type="number"]:focus,input[type="email"]:focus,input[type="url"]:focus,input[type="search"]:focus,input[type="tel"]:focus,input[type="color"]:focus,.uneditable-input:focus,
 .sidebar_widget .widget_uxconatactform textarea:focus,.sidebar_widget .widget_uxconatactform input[type="text"]:focus,#respondwrap textarea:focus,#respondwrap input:focus
 {
-  border-color:#de3926; outline:0;
+  border-color:#2196F3; outline:0;
 }
 
 
@@ -6960,7 +6960,7 @@ h2.ev2shr-title a, h2.ev2page-title a, h2.ev3page-title a {
 
 .console-container {
   font-family:Khula;
-  font-size:4em;
+  font-size:2em;
   text-align:center;
   display:block;
   color:black;
@@ -6969,13 +6969,18 @@ h2.ev2shr-title a, h2.ev2page-title a, h2.ev3page-title a {
   left:0;
   right:0;
   margin: auto;
-  margin-top: -10px;
 }
+
+#text{
+    display: inline-block;
+}
+
 .console-underscore {
   display:inline-block;
   position:relative;
   top:-0.14em;
   left:10px;
+  margin-top: -10px;
 }
 
 body .left {
@@ -7512,7 +7517,6 @@ a.follow:hover {
 #timeline {
   max-width: 100%;
   margin: 10px auto 0px auto;
-  position: relative;
      max-height: calc(100vh - 130px);
     overflow-y: auto;
     overflow-x: hidden;
@@ -7523,18 +7527,18 @@ a.follow:hover {
 }
 
 .timelineContainer{
-	height: calc(100vh - 130px);
+	height: 100%;
     display: block;
 }
 
 .timelineContainer:before {
   content: "";
   width: 3px;
-  height: 100%;
+  height: calc(100% - 10px);
   background: #2196F3;
     position: absolute;
     left: 30px;
-    top: 0;
+    top: 10px;
 }
 
 .timelineContainer p:first-child{
