@@ -7523,16 +7523,18 @@ a.follow:hover {
 }
 
 .timelineContainer{
-	height: 100%;
+	height: calc(100vh - 130px);
+    display: block;
 }
 
 .timelineContainer:before {
   content: "";
   width: 3px;
-  height: calc(100% - 130px);
+  height: 100%;
   background: #2196F3;
-  position: fixed;
-  margin-left: 30px;
+    position: absolute;
+    left: 30px;
+    top: 0;
 }
 
 .timelineContainer p:first-child{

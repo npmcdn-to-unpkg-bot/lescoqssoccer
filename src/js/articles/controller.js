@@ -12,11 +12,11 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 
 		//Format html content from article content edit by wysiwyg
 		$scope.getFormattedContent = function(html) {
-			return angular.element(html).text();
+			return angular.element("<div>" + html + "</div>").text();
 		};
 
 		$scope.getImage = function(html) {
-			var img = angular.element(html).find('img').first();
+			var img = angular.element("<div>" + html + "</div>").find('img').first();
 			return (img.length) ? img.attr('src') : '';
 		};
 
