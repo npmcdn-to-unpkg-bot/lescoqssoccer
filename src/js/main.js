@@ -838,10 +838,9 @@ function ThemePageBuilder() {
 		el.click(function() {
 			var _this = jQuery(this);
 			player_wrap.jPlayer("stop");
-			if(angular.element('#albumContainer').leng){
+			if(angular.element('#albumContainer').length){
 				angular.element('#albumContainer').scope().selectAlbum(_this.attr("data-postid"));
 			} else {
-				console.warn("inside");
 				angular.element('#agendaContainer').scope().selectEvent(_this.attr("data-postid"));
 			}
 
