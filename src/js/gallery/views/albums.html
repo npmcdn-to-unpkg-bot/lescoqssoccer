@@ -1,8 +1,8 @@
 <div id="albumContainer" class="pageContent">
 
 	<!--Album summary-->
-	<section class="liquid-expand-wrap albumDetailBrick" style="display: none; margin: 21px;">
-		<div style="box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);">
+	<section class="liquid-expand-wrap albumDetailBrick" style="display: none; margin: 21px; box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);">
+		<div>
 			<h1 class="liquid-title" style="background: white; color: #333; border-radius: 2px 2px 0 0;">
 				<a ng-href="#!/albums/view/{{selectedAlbum._id}}" title="{{selectedAlbum.name}}" style="text-transform:uppercase; color: #333;">
 				{{selectedAlbum.name}}
@@ -53,7 +53,7 @@
 											</div>
 
 											<!--Content-->
-											<div class="isotope masonry isotope-liquid-list less-space isotope_fade" data-space="0" data-size="medium" data-width="width4" data-ratio="imagebox-thumb" style="    margin: -20px; width: calc(100% + 40px);">
+											<div class="isotope masonry isotope-liquid-list less-space isotope_fade" data-space="0" data-size="medium" data-width="width4" data-ratio="imagebox-thumb" style="margin: -20px; width: calc(100% + 40px);">
 								                                                <div class="width2 isotope-item hover-effect" ng-repeat="album in albums">
 								                                                    <div class="inside liquid_inside brick-inside">
 								                                                        <div class="brick-content brick-hover">
@@ -75,7 +75,7 @@
 								                                                </div>
 
                                                     								<!--Loading for album summary-->
-												<div style="display: none; background: white;" class="inside liquid-loading-wrap">
+												<div style="display: none; background: white; box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);" class="inside liquid-loading-wrap">
 													<div class="ux-loading"></div>
 													<div class="ux-loading-transform">
 														<div class="loading-dot1">&nbsp;</div>

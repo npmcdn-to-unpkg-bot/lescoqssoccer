@@ -270,17 +270,6 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 		$scope.eventTypes = eventTypes;
 		$scope.dateNow = new Date();
 
-		//Calendar config
-		$scope.calendarView = 'month';
-		$scope.calendarDay = new Date();
-		$scope.calendarTitle = '';
-
-		$scope.selectEvent = function(albumId) {
-
-			$scope.selectedEvent = $scope.agenda[0];
-			$scope.$apply();
-		};
-
 		$scope.map = {
 			control: {
 				refresh: true
@@ -474,7 +463,13 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 		};
 
 		if ($scope.agenda.length > 0) {
-			$scope.setSelectedEvent(null, $scope.agenda[$scope.agenda.length-1]);
+			if($route.current.params.eventId){
+				$scope.setSelectedEvent(null, _.filter($scope.agenda, function(uEvent){
+					return uEvent._id === $route.current.params.eventId;
+				})[0]);
+			} else {
+				$scope.setSelectedEvent(null, $scope.agenda[$scope.agenda.length-1]);
+			}
 		}
 
 		$(window).bind('resize', function() {

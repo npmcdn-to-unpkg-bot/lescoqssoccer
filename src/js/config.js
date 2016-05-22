@@ -29,6 +29,11 @@ angular.module('mean').config(['$routeProvider',
 			controller: 'CreateAgendaController',
 			resolve: EventDetailData
 		}).
+		when('/agenda/:eventId', {
+			templateUrl: 'js/agenda/views/list.html',
+			controller: 'ListController',
+			resolve: EventsData
+		}).
 		when('/agenda/edit/:eventId', {
 			templateUrl: 'js/agenda/views/create.html',
 			controller: 'CreateAgendaController',

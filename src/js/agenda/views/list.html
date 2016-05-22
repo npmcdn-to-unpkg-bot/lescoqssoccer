@@ -1,122 +1,98 @@
 <div id="agendaContainer" class="pageContent">
-	<section class="liquid-expand-wrap albumDetailBrick" style="display: none; margin: 21px;">
-		<div style="box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);">
-			<div class="ev2page-col" ng-repeat="userEvent in agenda" style="background: white; border-radius: 2px; box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);">
-				<img class="img-circle" ng-src="{{ userEvent.user.avatar }}?dim100x100" alt="{{ userEvent.user.username }}"style="position: absolute; top: 10px; right: 10px;"/>
-				<div class="ev2page-data">
-					<div class="ev2page-day">
-						{{ userEvent.startsAt | date:"dd" }}
-					</div>
-					<div class="ev2page-month">
-						{{ userEvent.startsAt | date:"MMM" }}
-					</div>
-					<div class="ev2page-year">
-						{{ userEvent.startsAt | date:"yyyy" }}
-					</div>
-				</div>
-				<div>
-					<h2 class="ev2page-title">
-						<a href="#!/agenda/view/{{ userEvent._id }}">
-							{{ userEvent.title }}
-						</a>
-					</h2>
-				</div>
-				<p class="three-line-ellipsis" style="font-size: 20px;">
-					{{ userEvent.content }}
-				</p>
-				<div class="ev2page-tickets">
-					<a class="igo" href="#!" ng-click="addMeToEvent($event, userEvent);">
-						Je viens
-					</a>
-					<a class="igoNot" href="#!" ng-click="notAddMeToEvent($event, userEvent);">
-						Peux pas
-					</a>
-				</div>
-				<div class="ev2page-week">
-					{{ userEvent.startsAt | date:"EEEE" }}
-				</div>
-			</div>
-		</div>
-	</section>
 	<div class="row-fluid">
 		<div id="content_wrap">
 			<div class="content-wrap-inn">
 				<div class="pagebuilder-wrap">
 					<div class="fullwrap_moudle">
-						<div class="row-fluid">
-							<div class="fullwidth-wrap" data-speed="19">
-								<div class="row-fluid">
-									<div class="span6 moudle bottom-space-no" style="min-height: 300px;">
-										<div class="container-isotope clear">
-											<div id="isotope-load">
-												<div class="ux-loading">
-												</div>
-												<div class="ux-loading-transform">
-													<div class="loading-dot1">
-														&nbsp;
-													</div>
-													<div class="loading-dot2">
-														&nbsp;
-													</div>
-												</div>
+						<div class="fullwidth-wrap">
+							<div class="span4 item_des post-bgcolor-default">
+								<div class="ev2page-col">
+									<div>
+										<h2 class="ev2page-title" style="padding: 20px 20px 5px 20px; background: #2196F3;">
+											<div class="ev2page-week">
+												{{ selectedEvent.startsAt | date:"EEEE" }}
 											</div>
-											<div class="isotope masonry isotope-liquid-list less-space isotope_fade" data-space="0" data-size="medium" data-width="width4" data-ratio="imagebox-thumb">
-												<div class="ev2page-col width2 isotope-item hover-effect" ng-repeat="userEvent in agenda" style="background: white; border-radius: 2px; box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);">
-													<a class="liquid_list_image" data-postid="{{ userEvent._id }}" data-type="image">
-													-->
-													<div class="ev2page-data">
-														<div class="ev2page-day">
-															{{ userEvent.startsAt | date:"dd" }}
-														</div>
-														<div class="ev2page-month">
-															{{ userEvent.startsAt | date:"MMM" }}
-														</div>
-														<div class="ev2page-year">
-															{{ userEvent.startsAt | date:"yyyy" }}
-														</div>
-													</div>
-													<div>
-														<h2 class="ev2page-title">
-															{{ userEvent.title }}
-														</h2>
-													</div>
-													<p class="three-line-ellipsis" style="font-size: 20px;">
-														{{ userEvent.content }}
-													</p>
-													<div class="ev2page-tickets">
-														<a class="igo" href="#!" ng-click="addMeToEvent($event, userEvent);">
-															Je viens
-														</a>
-														<a class="igoNot" href="#!" ng-click="notAddMeToEvent($event, userEvent);">
-															Peux pas
-														</a>
-													</div>
-												</a>
+											<div style="color: #ccc;">
+												{{ selectedEvent.startsAt | date:"dd MMM yyyy" }}
 											</div>
-											<div style="display: none; background: white;" class="inside liquid-loading-wrap">
-												<div class="ux-loading">
-												</div>
-												<div class="ux-loading-transform">
-													<div class="loading-dot1">
-														&nbsp;
-													</div>
-													<div class="loading-dot2">
-														&nbsp;
-													</div>
-												</div>
-												<img ng-src="{{ userEvent.user.avatar }}?dim=300x300" class="liquid-hide wp-post-image"/>
+											<p style="margin-top: 30px; color: white;">
+												{{ selectedEvent.title }}
+											</p>
+										</h2>
+										<div class="three-line-ellipsis" style="font-size: 20px; padding: 20px;">
+											{{ selectedEvent.content }}
+										</div>
+										<div id="google-map" class="google-map google-map-agenda" ng-if="selectedEvent.location">
+											<google-map center="map.center" zoom="map.zoom" draggable="true" dragging="map.dragging" bounds="map.bounds" events="map.events" options="map.options" control="map.control">
+												<marker icon="'img/icons/pin.png'" coords="marker" animation="google.maps.Animation.DROP">
+												</marker>
+											</google-map>
+										</div>
+										<div class="ev2page-tickets" style="margin-top: 30px; text-align: center; padding-top: 20px;">
+											<a class="igo" href="#!" ng-click="addMeToEvent($event, selectedEvent);">
+												Je viens
+											</a>
+											<a class="igoNot" href="#!" ng-click="notAddMeToEvent($event, selectedEvent);">
+												Je peux pas
+											</a>
+										</div>
+									</div>
+								</div>
+								<hr/>
+								<div style="width:40px; margin: 0 20px; padding: 0 0 20px; cursor: pointer;" ng-click="showUserDetail($event, selectedEvent.user);">
+									<p style="margin: 10px 0 10px 50px;position: absolute;">
+										lancé par
+										<b style="text-transform: uppercase; font-size: medium;">
+											{{ selectedEvent.user.username }}
+										</b>
+									</p>
+									<img class="img-circle" ng-src="{{ selectedEvent.user.avatar }}?dim100x100" alt="{{ selectedEvent.user.username }}" style="height: 40px;"/>
+								</div>
+							</div>
+							<div class="span8 moudle">
+								<div class="container-isotope clear">
+									<div id="isotope-load">
+										<div class="ux-loading">
+										</div>
+										<div class="ux-loading-transform">
+											<div class="loading-dot1">
+												&nbsp;
+											</div>
+											<div class="loading-dot2">
+												&nbsp;
 											</div>
 										</div>
 									</div>
-
-									<div class="span6 moudle">
-										<mwl-calendar view="calendarView" current-day="calendarDay" events="agenda" view-title="calendarTitle" on-event-click="eventClick($event, calendarEvent)" on-event-drop="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd" edit-event-html="'  <i class=\'glyphicon glyphicon-pencil\'> </i> '" delete-event-html="'  <i class=\'glyphicon glyphicon-remove\'> </i> '" auto-open="true">
-										</mwl-calendar>
-									</div>
-									<div class="clearfix pagenums" style="display: none;">
-										<div class="pagination">
-											<pagination previous-text="  <<" next-text=">> " total-items="totalItems" page="page" on-select-page="pageChanged(page)" items-per-page="itemsPerPage">
-											</pagination>
+									<div class="isotope masonry" data-size="medium" data-width="width2" style="margin: -20px 0px 0px -20px;">
+										<div class="ev2page-col width2 isotope-item hover-effect" ng-repeat="userEvent in agenda" ng-click="setSelectedEvent($event, userEvent);">
+											<div class="inside" style="margin:20px 0 0 20px;" ng-class="{'active': userEvent._id === selectedEvent._id}">
+												<div class="ev2page-data">
+													<div class="ev2page-day">
+														{{ userEvent.startsAt | date:"dd" }}
+													</div>
+													<div class="ev2page-month">
+														{{ userEvent.startsAt | date:"MMM" }}
+													</div>
+													<div class="ev2page-year">
+														{{ userEvent.startsAt | date:"yyyy" }}
+													</div>
+												</div>
+												<div style="padding: 20px;">
+													<h2 class="ev2page-title two-line-ellipsis" style="height: 60px;">
+														{{ userEvent.title }}
+													</h2>
+													<hr/>
+													<div style="width:40px; margin: 0 60px;cursor: pointer;" ng-click="showUserDetail($event, selectedEvent.user);">
+														<p style="margin: 10px 0 10px 50px;position: absolute;">
+															lancé par
+															<b style="text-transform: uppercase; font-size: medium;">
+																{{ selectedEvent.user.username }}
+															</b>
+														</p>
+														<img class="img-circle" ng-src="{{ selectedEvent.user.avatar }}?dim100x100" alt="{{ selectedEvent.user.username }}" style="height: 40px;"/>
+													</div>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -127,7 +103,6 @@
 			</div>
 		</div>
 	</div>
-</div>
 </div>
 <cm-isotope>
 </cm-isotope>

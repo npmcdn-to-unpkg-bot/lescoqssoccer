@@ -840,8 +840,6 @@ function ThemePageBuilder() {
 			player_wrap.jPlayer("stop");
 			if(angular.element('#albumContainer').length){
 				angular.element('#albumContainer').scope().selectAlbum(_this.attr("data-postid"));
-			} else {
-				angular.element('#agendaContainer').scope().selectEvent(_this.attr("data-postid"));
 			}
 
 			var _this_liquid_handler = jQuery('.liquid_handler');
@@ -1234,6 +1232,7 @@ function consoleText(words, id, colors) {
 	var x = 1;
 	var waiting = false;
 	var target = document.getElementById(id);
+	var maxLetterCount = 70;
 
 	if (target) {
 		target.setAttribute('style', 'color:' + colors[0])
@@ -1242,7 +1241,6 @@ function consoleText(words, id, colors) {
 
 			if (letterCount === 0 && waiting === false) {
 				waiting = true;
-				target.innerHTML = words[0].substring(0, letterCount)
 				window.setTimeout(function() {
 					var usedColor = colors.shift();
 					colors.push(usedColor);
@@ -1261,7 +1259,11 @@ function consoleText(words, id, colors) {
 					waiting = false;
 				}, 1000)
 			} else if (waiting === false) {
-				target.innerHTML = words[0].substring(0, letterCount)
+				if(words[0].substring(0, letterCount).length > maxLetterCount){
+					target.innerHTML = words[0].substring(letterCount - maxLetterCount, letterCount)
+				} else {
+					target.innerHTML = words[0].substring(0, letterCount)
+				}
 				letterCount += x;
 			}
 		}, 120);
