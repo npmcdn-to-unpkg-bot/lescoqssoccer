@@ -11,6 +11,12 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 			id: "home",
 			link: "#!/home",
 			icon: "home.jpg"
+		},
+		{
+			name: "Euro",
+			id: "euro",
+			link: "#!/euro",
+			icon: "home.jpg"
 		}];
 
 		$scope.menu1 = [{

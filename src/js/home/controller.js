@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Global', '$modal', 'Team', 'UserDatas', 'ConversationService', 'Suggestions', 'ArticleItemsCount', 'AlbumItemsCount', 'UserService',
-	function($scope, $sce, Global, $modal, Team, UserDatas, ConversationService, Suggestions, ArticleItemsCount, AlbumItemsCount, UserService) {
+angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Global', '$modal', 'Team', 'UserDatas', 'ConversationService', 'UserService',
+	function($scope, $sce, Global, $modal, Team, UserDatas, ConversationService, UserService) {
 
 		$scope.global = Global;
 		$scope.team = Team;
@@ -22,7 +22,6 @@ angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Glo
 
 		$scope.initialize = function() {
 			$scope.initializeConversations();
-			$scope.updateCounters();
 			$scope.initConsole();
 		};
 
@@ -78,12 +77,6 @@ angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Glo
 			}, 500);
 		};
 
-		$scope.updateCounters = function() {
-			$scope.getUnreadArticleCount();
-			$scope.getUnreadVoteCount();
-			$scope.getUnreadAlbumCount();
-		};
-
 		$scope.selectUser = function(evt, userId) {
 
 			if (evt) {
@@ -132,18 +125,6 @@ angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Glo
 		//Close the view dialog and go back to the view list
 		$scope.closeDialog = function() {
 			$scope.conversation = null;
-		};
-
-		$scope.getUnreadArticleCount = function() {
-			$scope.unreadArticleCount = ArticleItemsCount.count - Global.user.readArticles.length;
-		};
-
-		$scope.getUnreadVoteCount = function() {
-			$scope.unreadVoteCount = _.difference(_.pluck(Suggestions.all, '_id'), $scope.global.user.readVotes).length;
-		};
-
-		$scope.getUnreadAlbumCount = function() {
-			$scope.unreadAlbumCount = AlbumItemsCount.count - Global.user.readAlbums.length;
 		};
 
 		$scope.getDateFrom = function(item) {
@@ -247,7 +228,6 @@ angular.module('mean.home').controller('PointRulesController', ['$scope', '$moda
 ]);
 
 var HomeData = {
-
 	Team: function(Users) {
 		return Users.query({}, function(users) {
 			return users;
@@ -260,18 +240,5 @@ var HomeData = {
 
 	Conversations: function(Global, ConversationService, $route) {
 		return ConversationService.load();
-	},
-
-	Suggestions: function(SuggestionsCollection) {
-		return SuggestionsCollection.load();
-	},
-
-	ArticleItemsCount: function(ArticlesCollection) {
-		return ArticlesCollection.getItemsCount();
-	},
-
-	AlbumItemsCount: function(AlbumService) {
-		return AlbumService.getItemsCount();
 	}
-
 };

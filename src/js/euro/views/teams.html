@@ -1,0 +1,28 @@
+<div class="post type-post status-publish format-standard hentry category-blog pageContent">
+	<div class="row-fluid two-cols-layout">
+		<div id="content_wrap">
+			<div class="content-wrap-inn">
+				<div class="pagebuilder-wrap">
+					<div class="container parameterContainer">
+						<div id="comments">
+							<div id="respondwrap">
+								<div id="respond" class="comment-respond">
+									<form role="form">
+										<div class="span12 tagcloud" style="margin-left: 0; margin-bottom: 60px;">
+											<h4 class="widget-title" style="margin: 10px 0 30px 0;">
+												Choisis ton vainqueur
+											</h4>
+											<a href="#!" ng-repeat="team in teams" style="font-size: 30px; background: rgb(33, 150, 243);" ng-class="{'active' : category.active}" ng-click="selectTeam($event, team);">
+												{{ team.name }}
+											</a>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

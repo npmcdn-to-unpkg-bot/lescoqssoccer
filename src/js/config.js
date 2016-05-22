@@ -13,6 +13,13 @@ angular.module('mean').config(['$routeProvider',
 			resolve: HomeData
 		}).
 
+		/** SPECIAL: EURO ****/
+		when('/euro', {
+			templateUrl: 'js/euro/views/teams.html',
+			controller: 'EuroController',
+			resolve: EuroData
+		}).
+
 		/** AGENDA ****/
 		when('/agenda', {
 			templateUrl: 'js/agenda/views/list.html',
