@@ -2,9 +2,20 @@
 	<div class="row-fluid" style="margin-top: 30px;">
 		<div id="content_wrap">
 			<div class="content-wrap-inn bottom-space">
-				<div class="container responsive-ux" style="padding: 0 30px; max-width: inherit;">
+				<div class="container responsive-ux" style="padding: 0 30px;">
 					<div class="row-fluid">
-						<div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20" style="margin-left: -15px;">
+
+						<div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20 timelineParent" style="margin-left: -15px;">
+							<div id="timeline">
+								<div class="timelineContainer">
+									<cm-timeline ng-repeat="item in userDatas.content | orderBy:'-created'" type="{{ item.type || 'standard' }}">
+									</cm-timeline>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20">
 							<div class='app_inner'>
 								<div class="profile-card user-card card">
 									<div class="banner">
@@ -34,15 +45,6 @@
 											</li>
 										</ul>
 									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20 timelineParent">
-							<div id="timeline">
-								<div class="timelineContainer">
-									<cm-timeline ng-repeat="item in userDatas.content | orderBy:'-created'" type="{{ item.type || 'standard' }}">
-									</cm-timeline>
 								</div>
 							</div>
 						</div>
