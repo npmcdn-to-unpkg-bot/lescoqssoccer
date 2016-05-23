@@ -7718,3 +7718,45 @@ a.follow:hover {
 .item_des .pull-right {
     font-weight: 500;
 }
+
+.ruleCard h1{
+	color: black !important;
+}
+
+.ruleCard h3{
+	text-align: left;
+	color: black !important;
+}
+
+.ruleCard p{
+	text-align: justify;
+}
+
+.ruleCard h1{
+	margin-bottom: 30px !important;
+}
+
+.ruleCard header{
+	margin-top: 40px;
+}
+
+.matchList span{
+	font-size: 15px;
+}
+
+.matchList input{
+	margin-top: -10px;
+}
+
+.matchItem{
+	box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
+	    margin-bottom: 20px;
+	    display: flex;
+	    padding: 10px;
+	    height: 70px;
+}
+
+.matchRow{
+	text-transform: uppercase;
+	color: black;
+}

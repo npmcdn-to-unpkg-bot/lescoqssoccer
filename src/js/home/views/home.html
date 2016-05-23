@@ -8,7 +8,7 @@
 						<div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20 timelineParent" style="margin-left: -15px;">
 							<div id="timeline">
 								<div class="timelineContainer">
-									<cm-timeline ng-repeat="item in userDatas.content | orderBy:'-created'" type="{{ item.type || 'standard' }}">
+									<cm-timeline ng-repeat="item in timelineContent | orderBy:'-created'" type="{{ item.type || 'standard' }}">
 									</cm-timeline>
 								</div>
 							</div>

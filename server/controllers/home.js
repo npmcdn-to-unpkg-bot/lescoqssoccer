@@ -7,6 +7,7 @@ var mongoose = require('mongoose'),
 	Article = mongoose.model('Article'),
 	Album = mongoose.model('Album'),
 	UserEvent = mongoose.model('UserEvent'),
+	User = mongoose.model('User'),
 	Suggestion = mongoose.model('Suggestion'),
 	_ = require('lodash');
 
@@ -20,79 +21,94 @@ exports.getAllUserData = function(req, res) {
 		articles: null,
 		userEvents: null,
 		suggestions: null
+	};
+
+	var responseObject = {
+		content: [],
+		users: null
 	}
 
 	Article.find()
 		.sort('-created')
 		.populate('user', '_id name username avatar').exec()
-	.then(function(articles, err) {
+		.then(function(articles, err) {
 
-		if (err) {
+			if (err) {
 
-			res.render('error', {
-				status: 500
-			});
+				res.render('error', {
+					status: 500
+				});
 
-		} else {
+			} else {
 
-			userData.articles = articles;
+				userData.articles = articles;
 
-			return Album.find()
-				.sort('-created')
-				.populate('user', '_id name username avatar').exec();
-		}
+				return Album.find()
+					.sort('-created')
+					.populate('user', '_id name username avatar').exec();
+			}
 
-	}).then(function(albums, err) {
+		}).then(function(albums, err) {
 
-		if (err) {
+			if (err) {
 
-			res.render('error', {
-				status: 500
-			});
+				res.render('error', {
+					status: 500
+				});
 
-		} else {
+			} else {
 
-			userData.albums = albums;
+				userData.albums = albums;
 
-			return UserEvent.find()
-				.sort('-created')
-				.populate('user', '_id name username avatar').exec();
-		}
+				return UserEvent.find()
+					.sort('-created')
+					.populate('user', '_id name username avatar').exec();
+			}
 
-	}).then(function(userEvent, err) {
+		}).then(function(userEvent, err) {
 
-		if (err) {
+			if (err) {
 
-			res.render('error', {
-				status: 500
-			});
+				res.render('error', {
+					status: 500
+				});
 
-		} else {
+			} else {
 
-			userData.userEvents = userEvent;
+				userData.userEvents = userEvent;
 
-			return Suggestion.find({})
-				.sort('-created')
-				.populate('user', '_id name username avatar').exec();
-		}
+				return Suggestion.find({})
+					.sort('-created')
+					.populate('user', '_id name username avatar').exec();
+			}
 
-	}).then(function(suggestions, err) {
+		}).then(function(suggestions, err) {
 
-		if (err) {
+			if (err) {
 
-			res.render('error', {
-				status: 500
-			});
+				res.render('error', {
+					status: 500
+				});
 
-		} else {
+			} else {
+				return User.find({}, '-password -salt -hashed_password -__v -provider').exec();
+			}
+		}).then(function(users, err) {
+			if (err) {
+				res.render('error', {
+					status: 500
+				});
+			} else {
 
-			userData.suggestions = suggestions;
-			res.jsonp(formatUserData(userData));
-		}
-	});
+				responseObject.users = users;
+				var formattedDatas = formatUserData(userData);
+				responseObject.content = formattedDatas.content;
+				res.jsonp(responseObject);
+			}
+		});
 };
 
-var formatUserData = function(userData){
+var formatUserData = function(userData) {
 
 	var formattedDatas = {
 		content: []
@@ -102,23 +118,29 @@ var formatUserData = function(userData){
 		content: []
 	};
 
-	_.each(userData.articles, function(article){
+	_.each(userData.articles, function(article) {
 		formattedDatas.content.push(article);
 	});
 
-	_.each(userData.albums, function(album){
-		formattedDatas.content.push(_.defaults({type: "album"}, album._doc));
+	_.each(userData.albums, function(album) {
+		formattedDatas.content.push(_.defaults({
+			type: "album"
+		}, album._doc));
 	});
 
-	_.each(userData.userEvents, function(userEvent){
-		formattedDatas.content.push(_.defaults({type: "userEvent"}, userEvent._doc));
+	_.each(userData.userEvents, function(userEvent) {
+		formattedDatas.content.push(_.defaults({
+			type: "userEvent"
+		}, userEvent._doc));
 	});
 
-	_.each(userData.suggestions, function(suggestion){
-		formattedDatas.content.push(_.defaults({type: "suggestion"}, suggestion._doc));
+	_.each(userData.suggestions, function(suggestion) {
+		formattedDatas.content.push(_.defaults({
+			type: "suggestion"
+		}, suggestion._doc));
 	});
 
-	sortedDatas.content = _.sortBy(formattedDatas.content, function(item){
+	sortedDatas.content = _.sortBy(formattedDatas.content, function(item) {
 		return item.created;
 	});
 

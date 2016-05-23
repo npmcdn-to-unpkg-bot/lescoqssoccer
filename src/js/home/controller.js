@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Global', '$modal', 'Team', 'UserDatas', 'ConversationService', 'UserService',
-	function($scope, $sce, Global, $modal, Team, UserDatas, ConversationService, UserService) {
+angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Global', '$modal', 'UserDatas', 'ConversationService', 'UserService',
+	function($scope, $sce, Global, $modal, UserDatas, ConversationService, UserService) {
 
 		$scope.global = Global;
-		$scope.team = Team;
-		$scope.userDatas = UserDatas;
+		$scope.team = UserDatas.users;
+		$scope.timelineContent = UserDatas.content;
 
 		//Chat
 		$scope.conversationService = ConversationService;
@@ -36,7 +36,7 @@ angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Glo
 				userId: 'all'
 			};
 
-			_.each(Team, function(user) {
+			_.each($scope.team, function(user) {
 				if ($scope.global.user._id !== user._id) {
 					$scope.conversations[user._id] = {
 						conversation: $scope.conversationService.getConversation($scope.global.user._id, user._id),
@@ -65,7 +65,7 @@ angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Glo
 
 		$scope.initConsole = function() {
 			var consoleTextArray = [];
-			_.each(Team, function(user) {
+			_.each($scope.team, function(user) {
 				if (user.presentation) {
 					var username = user.username;
 					consoleTextArray.push(username.charAt(0).toUpperCase() + username.slice(1) + ": " + user.presentation);
@@ -228,16 +228,9 @@ angular.module('mean.home').controller('PointRulesController', ['$scope', '$moda
 ]);
 
 var HomeData = {
-	Team: function(Users) {
-		return Users.query({}, function(users) {
-			return users;
-		}).$promise;
-	},
-
 	UserDatas: function(HomeCollection) {
 		return HomeCollection.getUserDatas();
 	},
-
 	Conversations: function(Global, ConversationService, $route) {
 		return ConversationService.load();
 	}
