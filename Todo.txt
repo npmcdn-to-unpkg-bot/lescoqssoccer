@@ -1,5 +1,15 @@
 ------ BUGS ------
 - Fix previous and next when initialize view on detail page
+- Restore login
+
+------ IMPROVEMENTS ------
+- Change sideBar
 
 ------ STORIES ------
-- Euro functionality / user points
+- Euro functionality :
+ - [Server] Script of matchs imports
+ - [Server] Cron of user points
+ - [Client] Template for match
+ - [Client] Add bet
+ - [Client] Save favorite team
+ - [Client] Update rules

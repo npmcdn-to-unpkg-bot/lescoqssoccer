@@ -1,10 +1,11 @@
 'use strict';
 
-angular.module('mean.system').controller('EuroController', ['$scope', '$location', 'Global', 'Teams',
-	function($scope, $location, Global, Teams) {
+angular.module('mean.euro').controller('EuroController', ['$scope', '$location', 'Global', 'Teams', 'MatchService', 'Matchs',
+	function($scope, $location, Global, Teams, MatchService, Matchs) {
 
 		$scope.global = Global;
 		$scope.teams = Teams;
+		$scope.matchs = Matchs;
 
 		$scope.selectTeam = function(evt, team) {
 			if (evt) {
@@ -13,8 +14,47 @@ angular.module('mean.system').controller('EuroController', ['$scope', '$location
 			}
 		};
 
+		$scope.selectTeam = function(){
+
+		};
+
+		$scope.updateBet = function(){
+
+		};
+
+		$scope.save = function() {
+
+		};
+
 		$scope.$parent.menu = {
 			title: "Euro",
+			items: [{
+				link: '#!',
+				info: 'Retour',
+				icon: 'fa-arrow-left',
+				callback: $scope.global.back
+			}, {
+				link: '#!',
+				info: 'Sauvegarder',
+				icon: 'fa-save',
+				callback: $scope.create
+			}]
+		};
+	}
+]);
+
+angular.module('mean.euro').controller('MatchController', ['$scope', '$location', 'Global', 'Match', 'MatchService',
+	function($scope, $location, Global, Teams, Match, MatchService) {
+
+		$scope.global = Global;
+		$scope.match = Match;
+
+		$scope.updateMethod = function() {
+			return MatchService.updateMatch($scope.match);
+		};
+
+		$scope.$parent.menu = {
+			title: "Euro / ",
 			items: [{
 				link: '#!',
 				info: 'Retour',
@@ -26,6 +66,11 @@ angular.module('mean.system').controller('EuroController', ['$scope', '$location
 ]);
 
 var EuroData = {
+
+	Matchs: function(MatchService){
+		return MatchService.load();
+	},
+
 	Teams: function() {
 		return [{
 			"code": "FRA",
@@ -100,5 +145,11 @@ var EuroData = {
 			"code": "HUN",
 			"name": "Hongrie"
 		}]
+	}
+};
+
+var MatchData = {
+	Match: function($route, MatchService) {
+		return MatchService.getMatch($route.current.params.matchId);
 	}
 };

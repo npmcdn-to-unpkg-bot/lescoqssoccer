@@ -21,7 +21,7 @@
 												La liste des matchs
 											</h4>
 											<div ng-repeat="team in teams" class="matchList">
-												<div class="matchItem">
+												<a class="matchItem" href="#!/euro/matchId">
 													<span class="span3">Friday, June 10th, 21:00</span>
 													<span class="span2">	Group A</span>
 													<span class="span4 matchRow">{{ team.name }} : Roumanie</span>
@@ -29,7 +29,7 @@
 														<input type="number" min="0" placeholder="Score 1" style="width: 45%" />
 														: <input type="number" min="0" placeholder="Score 2" style="width: 45%"/>
 													</span>
-												</div>
+												</a>
 											</div>
 										</div>
 									</form>

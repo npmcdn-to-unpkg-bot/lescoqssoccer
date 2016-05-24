@@ -34,6 +34,10 @@ angular.module('mean.system').controller( 'CommentController', ['$scope', 'Globa
 		$scope.addComment = function() {
 
 			if ($scope.newComment !== "") {
+
+				if(!$scope.object.comments){
+					$scope.object.comments = [];
+				}
 				$scope.object.comments.push({
 					user: $scope.global.user._id,
 					content: $scope.newComment,

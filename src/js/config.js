@@ -19,6 +19,11 @@ angular.module('mean').config(['$routeProvider',
 			controller: 'EuroController',
 			resolve: EuroData
 		}).
+		when('/euro/:matchId', {
+			templateUrl: 'js/euro/views/match.html',
+			controller: 'MatchController',
+			resolve: MatchData
+		}).
 
 		/** AGENDA ****/
 		when('/agenda', {
