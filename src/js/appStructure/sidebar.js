@@ -6,63 +6,56 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 
 		$scope.global = Global;
 
-		$scope.home = [{
+		$scope.menu1 = [{
 			name: "Accueil",
 			id: "home",
 			link: "#!/home",
-			icon: "home.jpg"
-		},
-		{
+			icon: "fa-home"
+		}, {
 			name: "Euro",
 			id: "euro",
 			link: "#!/euro",
-			icon: "home.jpg"
-		}];
-
-		$scope.menu1 = [{
+			icon: ""
+		}, {
 			name: "Articles",
 			id: "articles",
 			link: "#!/articles",
-			icon: "articles.jpg"
+			icon: "fa-list-alt"
 		}, {
 			name: "Rencards",
 			link: "#!/agenda",
 			id: "agenda",
-			icon: "agenda.jpg"
+			icon: "fa-time"
 		}, {
 			name: "Photos",
 			link: "#!/albums",
 			id: "albums",
 			icon: "articles.jpg"
-		},{
+		}, {
 			name: "Copaings",
 			link: "#!/users",
 			id: "users",
 			icon: "articles.jpg"
-		},{
+		}, {
 			name: "Votes",
 			id: "suggestions",
 			link: "#!/suggestions",
 			icon: "suggestions.jpg"
-		}];
-
-		$scope.menu2 = [{
+		}, {
 			name: "Bugs",
 			id: "issues",
 			link: "#!/issues",
 			icon: "buggs.jpg"
-		},
-		{
+		}, {
 			name: "Paramètres",
 			id: "parameters",
 			link: "#!/parameters",
 			icon: "buggs.jpg"
-		},
-		{
+		}, {
 			name: "Profile",
 			id: "profile",
 			link: "#!/users/profile",
-			icon: "buggs.jpg"
+			icon: "fa-user"
 		}];
 
 		$scope.isCurrentPath = function(item) {
@@ -70,7 +63,6 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 			return (cur_path.indexOf(item.id) !== -1) || (item.id.indexOf('albums') !== -1 && cur_path.indexOf('gallery') !== -1);
 		};
 
-		$scope.closeSidebar = function(evt, item) {
-		};
+		$scope.closeSidebar = function(evt, item) {};
 	}
 ]);

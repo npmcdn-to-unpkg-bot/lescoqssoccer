@@ -5,7 +5,7 @@
 				<div class="container responsive-ux" style="padding: 0 30px;">
 					<div class="row-fluid">
 
-						<div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20 timelineParent" style="margin-left: -15px;">
+						<div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20">
 							<div id="timeline">
 								<div class="timelineContainer">
 									<cm-timeline ng-repeat="item in timelineContent | orderBy:'-created'" type="{{ item.type || 'standard' }}">
@@ -49,7 +49,7 @@
 							</div>
 						</div>
 
-						<div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20" style="overflow: auto; padding: 0;box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12); margin-left: 15px;">
+						<div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20">
 							<div class="nicescroll">
 								<ul ng-if="!conversation" class="list-group list-group-list" style="max-height: calc(100vh - 130px);">
 									<li class="list-group-item" ng-repeat="conversation in conversations | orderConversations: 'conversation'" ng-click="selectUser($event, conversation.userId)">
@@ -95,7 +95,7 @@
 									<div ng-if="conversation" class="message-comment" style="padding-right: 20px;padding-top: 10px;">
 										<textarea placeholder="Ecrire un message" ng-model="message.content" ng-enter="sendMessage()" style="height: 110px; width: 100%; margin-bottom: 10px;"/>
 										</textarea>
-										<button class="pull-right" style="margin-bottom: 20px; color: white;" ng-click="sendMessage();">
+										<button style="margin-bottom: 20px; color: white;" ng-click="sendMessage();">
 											<i class="fa fa-comment">
 											</i>
 											Envoyer

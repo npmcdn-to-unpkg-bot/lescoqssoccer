@@ -1,38 +1,13 @@
-<aside>
-	<nav id="nav-container" class="sidebar_hide">
-		<a ng-href="#!/users/profile" class="docs-logo" href="/">
-			<img ng-src="{{ global.user.avatar || 'img/Professor.png' }}" alt=""/>
-			<h1 class="docs-logotype">
-				{{ global.user.username }}
-			</h1>
-		</a>
-		<div class="menu-container">
-			<a ng-repeat="item in home" ng-href='{{ item.link }}' style="margin-top: -10px;">
-				<h2 class='list-item'>
-					{{ item.name }}
-				</h2>
+<nav id="sidebar">
+	<ul class="dots">
+		<li ng-repeat="item in menu1">
+			<a ng-href='{{ item.link }}'>
+				<span class="fa" ng-class="item.icon">
+					<mark>
+						23
+					</mark>
+				</span>
 			</a>
-			<h2 class='list-item-title'>
-				Contenus
-			</h2>
-			<a ng-repeat="item in menu1" ng-href='{{ item.link }}'>
-				<h2 class='list-item'>
-					{{ item.name }}
-				</h2>
-			</a>
-			<h2 class='list-item-title'>
-				Autre
-			</h2>
-			<a ng-repeat="item in menu2" ng-href='{{ item.link }}'>
-				<h2 class='list-item'>
-					{{ item.name }}
-				</h2>
-			</a>
-		</div>
-		<a href="/signout">
-			<h2 class='list-item-disonnect'>
-				Déconnexion
-			</h2>
-		</a>
-	</nav>
-</aside>
+		</li>
+	</ul>
+</nav>

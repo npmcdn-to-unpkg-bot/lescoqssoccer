@@ -13,3 +13,4 @@
  - [Client] Add bet
  - [Client] Save favorite team
  - [Client] Update rules
+ - [Client] Euro admin page
