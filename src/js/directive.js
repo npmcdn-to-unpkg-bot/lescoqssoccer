@@ -34,10 +34,22 @@ angular.module('mean.system').directive('cmHeader', function() {
 angular.module('mean.system').directive('cmSidebar', function() {
 	return {
 		restrict: 'E',
-		transclude: true,
 		controller: 'SidebarController',
 		templateUrl: "js/appStructure/sidebar.html",
-		replace: true
+		replace: true,
+		resolve: {
+			Suggestions: function(SuggestionsCollection) {
+				return SuggestionsCollection.load();
+			},
+
+			ArticleItemsCount: function(ArticlesCollection) {
+				return ArticlesCollection.getItemsCount();
+			},
+
+			AlbumItemsCount: function(AlbumService) {
+				return AlbumService.getItemsCount();
+			}
+		}
 	}
 });
 

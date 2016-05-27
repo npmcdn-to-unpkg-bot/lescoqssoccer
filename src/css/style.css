@@ -4172,13 +4172,12 @@ li>.ripplelink:hover, li.active>.ripplelink{
 .chat-wrapper ul li {
   margin-bottom: 20px;
   padding: 10px 20px;
-  background-color: rgba(255, 255, 255, 0.65);
+  background-color: #f7f7f7;
   position: relative;
   border-radius: 3px;
   font: 1em/1.6 "arial";
   clear: both;
   text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.35);
-  box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
 }
 
 .chat-wrapper ul li:not(.current) {
@@ -4240,14 +4239,14 @@ li>.ripplelink:hover, li.active>.ripplelink{
     border-top: 7px solid transparent;
     border-bottom: 7px solid transparent;
     border-left: 0;
-    border-right: 7px solid #7b7b7b;
+    border-right: 7px solid #f7f7f7;
 }
 
 .chat-wrapper ul li.current:after {
     content: '';
     position: absolute;
     top: 14px;
-    right: -7px;
+    right: -6px;
     width: 0;
     height: 0;
     border-top: 7px solid transparent;
@@ -6087,10 +6086,8 @@ body {
   font-size: 1.15em;
   font-weight: bold;
   position: absolute;
-      top: 160%;
-    margin-left: -50px;
-  width: 600%;
-  text-align: left;
+      margin-top: 60px;
+    margin-left: -100%;
   pointer-events: none;
   color: #2196F3;
 }
@@ -7433,7 +7430,7 @@ a.follow:hover {
 
 #timeline {
   max-width: 100%;
-  margin: 10px auto 0px auto;
+  margin: auto 0px auto;
      max-height: calc(100vh - 130px);
     overflow-y: auto;
     overflow-x: hidden;
@@ -7457,7 +7454,7 @@ a.follow:hover {
   height: calc(100% - 10px);
   background: #2196F3;
     position: absolute;
-    left: 30px;
+        left: 45px;
     top: 10px;
 }
 
@@ -7776,9 +7773,6 @@ ul.dots > li:hover > a > span > mark.tada {
 ul.dots > li:hover > a > span > mark.wobble {
   -webkit-animation-name: wobble;
           animation-name: wobble;
-}
-li {
-  list-style-type: circle;
 }
 
 code {
