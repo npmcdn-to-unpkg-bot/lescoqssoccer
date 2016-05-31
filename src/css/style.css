@@ -223,7 +223,7 @@ input[type="text"].textboxsearch,
 */
 
 #sidebar{
-  position:fixed; z-index:999; left:-240px; top:0; height:100%; width:300px;
+  position:fixed;left:-240px; top:0; height:100%; width:300px;
 }
 .sidebar-main.sidebar_hide{
   padding-right: 60px;
@@ -1941,14 +1941,6 @@ h3#reply-title small, #comments .nav-tabs li.active h3#reply-title .logged,#comm
   font-family: 'Playfair Display', 'serif'; font-weight: 700;
 }
 
-/*  Menu BAR */
-/* Left Menu Bar Bg Color */
-#sidebar,.site-loading,.page-loading,
-#navi ul li ul.sub-menu li,
-#navi ul li:hover,
-.brick-grey {
-  background-color: #1c1d22;
-}
 
 /* Menu Item Text Color */
 #navi a,#mobile-advanced a,.menu-icon i,#navi ul li ul.sub-menu:before,
@@ -6035,8 +6027,8 @@ body {
   font-weight: 700;
   line-height: 1.2;
   position: absolute;
-  top: 1.5em;
-  right: 0;
+  top: 0;
+  left: 4em;
   width: 50vw;
   padding: 0.8em 1em;
   text-align: right;
@@ -7658,7 +7650,7 @@ nav#sidebar {
   background-color: #2196F3;
   position: fixed;
   width: 100px;
-  height: 100%;
+  height: calc(100% + 20px);
       overflow: auto;
 }
 ul.dots * {
@@ -7681,9 +7673,6 @@ ul.dots li {
   position: relative;
   width: 100%;
   padding: 10px 0 ;
-}
-ul.dots li:hover {
-  background: #2c3e50;
 }
 ul.dots li span {
   display: block;

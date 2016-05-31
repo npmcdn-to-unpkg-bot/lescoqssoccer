@@ -1,80 +1,79 @@
 'use strict';
 
-angular.module('mean.system').controller('SidebarController', ['$scope', 'Global', '$location', 'Suggestions',
+angular.module('mean.system').controller('SidebarController', ['$scope', 'Global', '$location', 'Suggestions', 'ArticlesCollection', 'AlbumService',
 
-	function($scope, Global, $location, Suggestions) {
+	function($scope, Global, $location, Suggestions, ArticlesCollection, AlbumService) {
 
 		$scope.global = Global;
 
-		$scope.getUnreadArticleCount = function(){
-			$scope.unreadArticleCount = ArticleItemsCount.count - Global.user.readArticles.length;
+		$scope.updateBadges = function() {
+			$scope.unreadArticleCount = ArticlesCollection.getItemsCount().then(function(data) {
+				$scope.unreadArticleCount = data.count - $scope.global.user.readArticles.length;
+			}).then(function() {
+
+				AlbumService.getItemsCount().then(function(data) {
+
+					$scope.unreadAlbumCount = data.count - $scope.global.user.readAlbums.length;
+					$scope.unreadVoteCount = _.difference(_.pluck(Suggestions.all, '_id'), $scope.global.user.readVotes).length;
+
+					$scope.menu1 = [{
+						name: "Accueil",
+						id: "home",
+						link: "#!/home",
+						icon: "fa-home",
+						notificationNumber: 0
+					}, {
+						name: "Euro",
+						id: "euro",
+						link: "#!/euro",
+						icon: "fa-futbol-o",
+						notificationNumber: 0
+					}, {
+						name: "Articles",
+						id: "articles",
+						link: "#!/articles",
+						icon: "fa-list-alt",
+						notificationNumber: $scope.unreadArticleCount
+					}, {
+						name: "Rencards",
+						link: "#!/agenda",
+						id: "agenda",
+						icon: "fa-calendar-o",
+						notificationNumber: 0
+					}, {
+						name: "Photos",
+						link: "#!/albums",
+						id: "albums",
+						icon: "fa-file-image-o",
+						notificationNumber: $scope.unreadAlbumCount
+					}, {
+						name: "Copaings",
+						link: "#!/users",
+						id: "users",
+						icon: "fa-users",
+						notificationNumber: 0
+					}, {
+						name: "Votes",
+						id: "suggestions",
+						link: "#!/suggestions",
+						icon: "fa-hand-paper-o",
+						notificationNumber: $scope.unreadVoteCount
+					}, {
+						name: "Bugs",
+						id: "issues",
+						link: "#!/issues",
+						icon: "fa-bug",
+						notificationNumber: 0
+					}];
+				})
+			})
 		};
 
-		$scope.getUnreadVoteCount = function(){
-			$scope.unreadVoteCount = _.difference(_.pluck(Suggestions.all, '_id'), $scope.global.user.readVotes).length;
-		};
+		$scope.updateBadges();
 
-		$scope.getUnreadAlbumCount = function(){
-			$scope.unreadAlbumCount = AlbumItemsCount.count - Global.user.readAlbums.length;
-		};
-
-		$scope.menu1 = [{
-			name: "Accueil",
-			id: "home",
-			link: "#!/home",
-			icon: "fa-home",
-			notificationNumber: 0
-		}, {
-			name: "Euro",
-			id: "euro",
-			link: "#!/euro",
-			icon: "fa-futbol-o",
-			notificationNumber: 0
-		}, {
-			name: "Articles",
-			id: "articles",
-			link: "#!/articles",
-			icon: "fa-list-alt",
-			notificationNumber: $scope.unreadArticleCount
-		}, {
-			name: "Rencards",
-			link: "#!/agenda",
-			id: "agenda",
-			icon: "fa-calendar-o",
-			notificationNumber: 0
-		}, {
-			name: "Photos",
-			link: "#!/albums",
-			id: "albums",
-			icon: "fa-file-image-o",
-			notificationNumber: $scope.getUnreadAlbumCount
-		}, {
-			name: "Copaings",
-			link: "#!/users",
-			id: "users",
-			icon: "fa-users",
-			notificationNumber: 0
-		}, {
-			name: "Votes",
-			id: "suggestions",
-			link: "#!/suggestions",
-			icon: "fa-hand-paper-o",
-			notificationNumber: $scope.getUnreadVoteCount
-		}, {
-			name: "Bugs",
-			id: "issues",
-			link: "#!/issues",
-			icon: "fa-bug",
-			notificationNumber: 0
-		},
-		// {
-		// 	name: "Paramètres",
-		// 	id: "parameters",
-		// 	link: "#!/parameters",
-		// 	icon: "fa-gears",
-		// 	notificationNumber: 0
-		// }
-		];
+		// $scope.$watch('global.user', function(newValue, oldValue) {
+		// 	$scope.updateBadges();
+		// });
 
 		$scope.isCurrentPath = function(item) {
 			var cur_path = "#!" + $location.path().substr(0, item.id.length + 1);
@@ -88,13 +87,5 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 var SidebarData = {
 	Suggestions: function(SuggestionsCollection) {
 		return SuggestionsCollection.load();
-	},
-
-	ArticleItemsCount: function(ArticlesCollection) {
-		return ArticlesCollection.getItemsCount();
-	},
-
-	AlbumItemsCount: function(AlbumService) {
-		return AlbumService.getItemsCount();
 	}
 }

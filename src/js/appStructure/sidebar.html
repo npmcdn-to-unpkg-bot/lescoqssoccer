@@ -1,12 +1,12 @@
 <nav id="sidebar">
-	<ul class="dots">
+	<ul class="dots" style="height: 100%;">
 		<li style="padding: 10px; margin: auto;">
 			<a href='#!/users/profile'>
 				<img style="border-radius: 50%; width: 80px; height: 80px;" ng-src="{{ global.user.avatar }}?dim100x100 || 'img/Professor.png' }}"/>
 			</a>
 		</li>
 		<li ng-repeat="item in menu1">
-			<a ng-href='{{ item.link }}'>
+			<a ng-href='{{ item.link }}' title="{{item.name}}">
 				<span class="fa" ng-class="item.icon">
 					<mark ng-if="item.notificationNumber > 0">
 						{{item.notificationNumber}}
@@ -14,7 +14,7 @@
 				</span>
 			</a>
 		</li>
-		<li>
+		<li style="position: absolute; bottom: 0;">
 			<a href='/signout'>
 				<span class="fa fa-power-off">
 				</span>
