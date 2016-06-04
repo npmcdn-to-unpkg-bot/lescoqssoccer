@@ -13,21 +13,6 @@ angular.module('mean.system').directive('cmHeader', function() {
 		restrict: 'E',
 		transclude: true,
 		templateUrl: "js/appStructure/header.html",
-		link: function($scope, element, attrs) {
-
-			setTimeout(function() {
-
-				//** Page Loading
-				var _page_loading = jQuery('.page-loading');
-				if (_page_loading.length) {
-
-					//** Page Loading ended
-					_page_loading.fadeOut(800, function() {
-						_page_loading.removeClass('visible');
-					});
-				}
-			});
-		}
 	}
 });
 

@@ -4,8 +4,8 @@
 			<div class="content-wrap-inn">
 				<div class="pagebuilder-wrap">
 					<div class="fullwrap_moudle">
-						<div class="fullwidth-wrap">
-							<div class="span4 item_des post-bgcolor-default">
+						<div class="fullwidth-wrap" ng-if="agenda.length > 0">
+							<div class="span4 item_des post-bgcolor-default" ng-click="showAgendaDetail();" style="cursor: pointer;">
 								<div class="ev2page-col">
 									<div>
 										<h2 class="ev2page-title" style="padding: 20px 20px 5px 20px; background: #2196F3;">
@@ -97,6 +97,9 @@
 									</div>
 								</div>
 							</div>
+						</div>
+						<div class="fullwidth-wrap" ng-if="agenda.length === 0">
+							<h1 style="color: #aaa; text-align: center;">Pas d'évènements à venir</h1>
 						</div>
 					</div>
 				</div>

@@ -6079,7 +6079,8 @@ body {
   font-weight: bold;
   position: absolute;
       margin-top: 60px;
-    margin-left: -100%;
+          width: 300px;
+    margin-left: -150px;
   pointer-events: none;
   color: #2196F3;
 }

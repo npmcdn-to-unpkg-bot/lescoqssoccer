@@ -1,9 +1,10 @@
 ------ BUGS ------
 - Fix previous and next when initialize view on detail page
 - Restore login
+- Fix agenda comments
 
 ------ IMPROVEMENTS ------
-- Change sideBar
+--
 
 ------ STORIES ------
 - Euro functionality :

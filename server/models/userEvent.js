@@ -72,7 +72,35 @@ var UserEventSchema = new Schema( {
 	}],
 	guestUnavailable: [{
 		type : mongoose.Schema.ObjectId, ref : 'User'
-	}]
+	}],
+	comments: [new Schema({
+		created: {
+			type: Date,
+			default: Date.now
+		},
+		user: {
+			type: Schema.Types.ObjectId,
+			ref: 'User'
+		},
+		content: {
+			type: String,
+			default: ''
+		},
+		replies: [new Schema({
+			created: {
+				type: Date,
+				default: Date.now
+			},
+			user: {
+				type: Schema.Types.ObjectId,
+				ref: 'User'
+			},
+			content: {
+				type: String,
+				default: ''
+			}
+		})]
+	})]
 } );
 
 /**
@@ -88,7 +116,7 @@ var UserEventSchema = new Schema( {
 UserEventSchema.statics.load = function ( id, cb ) {
 	this.findOne( {
 		_id: id
-	} ).populate( 'userEvent', 'name username' ).exec( cb );
+	} ).populate( 'userEvent', 'name username avatar' ).exec( cb );
 };
 
 module.exports = mongoose.model( 'UserEvent', UserEventSchema );

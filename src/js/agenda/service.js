@@ -8,10 +8,16 @@ angular.module('mean.agenda').factory('UserEvent', ['$resource',
 		return $resource('userEvent/:userEventId', {
 			userEventId: '@_id'
 		}, {
-			update: {
-				method: 'PUT'
+			'save': {
+				method: 'POST'
 			},
-			query: {
+			'update': {
+				method: 'PUT',
+				params: {
+					userEventId: '@userEventId'
+				}
+			},
+			'query': {
 				method: 'GET',
 				isArray: true
 			},
@@ -51,7 +57,9 @@ angular.module('mean.agenda').service('AgendaCollection', ['Global', 'UserEvent'
 			},
 
 			update: function(userEvent) {
-				return UserEvent.update({}, userEvent, function(userEvent) {
+				return UserEvent.update({
+					userEventId: userEvent._id
+				}, userEvent, function(userEvent) {
 					return userEvent;
 				}).$promise;
 			},
@@ -62,7 +70,7 @@ angular.module('mean.agenda').service('AgendaCollection', ['Global', 'UserEvent'
 				}).$promise;
 			},
 
-			addMeToEvent : function(evt, userEvent) {
+			addMeToEvent: function(evt, userEvent) {
 
 				if (evt) {
 					evt.preventDefault();
@@ -82,8 +90,7 @@ angular.module('mean.agenda').service('AgendaCollection', ['Global', 'UserEvent'
 						userEvent.guestUnavailable.splice(indexOfUser, 1);
 					}
 
-					AgendaCollection.update(userEvent).then(function(newUserEvent) {
-					});
+					AgendaCollection.update(userEvent).then(function(newUserEvent) {});
 				}
 			}
 		}

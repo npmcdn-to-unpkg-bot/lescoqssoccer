@@ -3,27 +3,33 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
-	UserEvent = mongoose.model('UserEvent'),
-	_ = require('lodash');
+var mongoose = require('mongoose');
+var UserEvent = mongoose.model('UserEvent');
+var _ = require('lodash');
 
 /**
  * Find event by id
  */
-exports.userEvent = function(req, res, next, id) {
-	UserEvent.load(id, function(err, userEvent) {
-		if (err) return next(err);
-		if (!userEvent) return next(new Error('Failed to load event ' + id));
-		req.userEvent = userEvent;
-		next();
-	});
+exports.show = function(req, res) {
+	UserEvent.findOne({
+			"_id": req.params.userEventId
+		})
+		.populate('user', '_id name username avatar')
+		.populate('guest', '_id name username avatar')
+		.populate('guestUnavailable', '_id name username avatar')
+		.populate('comments.user', '_id name username avatar')
+		.populate('comments.replies.user', '_id name username avatar')
+		.exec(function(err, userEvent) {
+			if (err) return next(err);
+			if (!userEvent) return next(new Error('Failed to load event ' + userEventId));
+			res.jsonp(userEvent);
+		});
 };
 
 /**
  * Create a userEvent
  */
 exports.create = function(req, res) {
-
 	var userEvent = new UserEvent(req.body);
 	userEvent.user = req.user;
 
@@ -42,11 +48,11 @@ exports.create = function(req, res) {
 /**
  * Update a userEvent
  */
-exports.update = function(req, res) {
-
+exports.update = function(req, res, next) {
 	UserEvent.load(req.body._id, function(err, userEvent) {
 		if (err) return next(err);
 
+		delete req.body.user
 		userEvent = _.extend(userEvent, req.body);
 		userEvent.guest = _.pluck(req.body.guest, '_id');
 		userEvent.guestUnavailable = _.pluck(req.body.guestUnavailable, '_id');
@@ -71,7 +77,6 @@ exports.update = function(req, res) {
  */
 exports.destroy = function(req, res) {
 	var userEvent = req.userEvent;
-
 	userEvent.remove(function(err) {
 		if (err) {
 			return res.send('users/signup', {
@@ -85,17 +90,14 @@ exports.destroy = function(req, res) {
 };
 
 /**
- * Show an userEvent
- */
-exports.show = function(req, res) {
-	res.jsonp(req.userEvent);
-};
-
-/**
  * List of userEvent
  */
 exports.all = function(req, res) {
-	UserEvent.find()
+	UserEvent.find({
+			startsAt: {
+				"$gte": new Date()
+			}
+		})
 		.sort('startsAt')
 		.limit(40)
 		.populate('user', 'name username avatar')
