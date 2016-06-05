@@ -14,8 +14,8 @@ var hasAuthorization = function ( req, res, next ) {
 
 module.exports = function ( app ) {
 	app.post( '/matchs', matchs.addMatch );
-	app.get( '/matchs', matchs.findAllMatchs );
 	app.get( '/matchs/:id', matchs.findMatchById );
+	app.get( '/matchs', matchs.findAllMatchs );
 	app.put( '/matchs/:id', matchs.updateMatch );
 	app.post( '/matchs/:id', matchs.updateMatch );
 	app.delete( '/matchs/:id', matchs.deleteMatch );

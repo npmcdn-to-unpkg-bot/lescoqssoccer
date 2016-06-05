@@ -26,13 +26,8 @@ angular.module('mean.system').directive('cmSidebar', function() {
 			Suggestions: function(SuggestionsCollection) {
 				return SuggestionsCollection.load();
 			},
-
-			ArticleItemsCount: function(ArticlesCollection) {
-				return ArticlesCollection.getItemsCount();
-			},
-
-			AlbumItemsCount: function(AlbumService) {
-				return AlbumService.getItemsCount();
+			Agenda: function(AgendaCollection) {
+				return AgendaCollection.load();
 			}
 		}
 	}

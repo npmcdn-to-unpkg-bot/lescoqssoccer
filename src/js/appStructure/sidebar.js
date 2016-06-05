@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('mean.system').controller('SidebarController', ['$scope', 'Global', '$location', 'Suggestions', 'ArticlesCollection', 'AlbumService',
+angular.module('mean.system').controller('SidebarController', ['$scope', 'Global', '$location', 'Suggestions', 'ArticlesCollection', 'AlbumService', 'AgendaCollection',
 
-	function($scope, Global, $location, Suggestions, ArticlesCollection, AlbumService) {
+	function($scope, Global, $location, Suggestions, ArticlesCollection, AlbumService, AgendaCollection) {
 
 		$scope.global = Global;
 
@@ -15,6 +15,9 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 
 					$scope.unreadAlbumCount = data.count - $scope.global.user.readAlbums.length;
 					$scope.unreadVoteCount = _.difference(_.pluck(Suggestions.all, '_id'), $scope.global.user.readVotes).length;
+					$scope.unreadAgendaCount = _.filter(AgendaCollection.all, function(userEvent){
+						return !_.contains(_.pluck(userEvent.guest, "_id"), $scope.global.user._id);
+					}).length;
 
 					$scope.menu1 = [{
 						name: "Accueil",
@@ -39,7 +42,7 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 						link: "#!/agenda",
 						id: "agenda",
 						icon: "fa-calendar-o",
-						notificationNumber: 0
+						notificationNumber: $scope.unreadAgendaCount
 					}, {
 						name: "Photos",
 						link: "#!/albums",
@@ -79,13 +82,5 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 			var cur_path = "#!" + $location.path().substr(0, item.id.length + 1);
 			return (cur_path.indexOf(item.id) !== -1) || (item.id.indexOf('albums') !== -1 && cur_path.indexOf('gallery') !== -1);
 		};
-
-		$scope.closeSidebar = function(evt, item) {};
 	}
 ]);
-
-var SidebarData = {
-	Suggestions: function(SuggestionsCollection) {
-		return SuggestionsCollection.load();
-	}
-}

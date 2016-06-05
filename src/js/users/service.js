@@ -26,7 +26,7 @@ angular.module('mean.users').factory('Conversations', ['$resource',
 			'save': {
 				method: 'POST'
 			},
-			update: {
+			'update': {
 				method: 'PUT'
 			},
 			'query': {
@@ -77,7 +77,6 @@ angular.module('mean.users').service('UserService', ['Global', 'Users',
 			},
 
 			updateConversation: function(conversationId){
-				
 				if(!Global.user.conversations){
 					Global.user.conversations = [];
 				}
@@ -144,18 +143,15 @@ angular.module('mean.users').service('ConversationService', ['Conversations',
 					conversations = _.filter(ConversationService.all, function(conversation){
 						return conversation.users.length === 0;
 					});
-
 					conversation = (conversations.length > 0) ? conversations[0] : {
 						users: [],
 						messages: []
 					};
-
 				} else {
 					conversations = _.filter(ConversationService.all, function(conversation) {
 						usersIds = _.pluck(conversation.users, "_id");
 						return _.contains(usersIds, user1) && _.contains(usersIds, user2);
 					});
-
 					conversation = (conversations.length > 0) ? conversations[0] : {
 						users: [user1, user2],
 						messages: []
@@ -174,21 +170,16 @@ angular.module('mean.users').service('ConversationService', ['Conversations',
 			},
 
 			addOrUpdate: function(conversation) {
-
 				if (!conversation._id) {
-
 					return Conversations.save({}, conversation, function(data) {
 						return data;
 					}).$promise;
-
 				} else {
-
 					return Conversations.update({
 						conversationId: conversation._id
 					}, conversation, function(data) {
 						return data;
 					}).$promise;
-
 				}
 			}
 		};

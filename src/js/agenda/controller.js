@@ -307,7 +307,11 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 		};
 
 		$scope.showAgendaDetail = function() {
-			$location.path("/agenda/view/" + $scope.selectedEvent._id);
+			if($scope.selectedEvent.subType === "euroMatch"){
+				$location.path("/euro/" + $scope.selectedEvent.matchId);
+			} else {
+				$location.path("/agenda/view/" + $scope.selectedEvent._id);
+			}
 		};
 
 		$scope.setSelectedEvent = function(evt, userEvent) {
@@ -319,7 +323,7 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 
 			if (userEvent) {
 				$scope.selectedEvent = userEvent;
-				$scope.showAddMe = $scope.selectedEvent.user._id !== $scope.global.user._id && !_.contains(_.pluck($scope.selectedEvent.guest, '_id'), $scope.global.user._id);
+				$scope.showAddMe = $scope.selectedEvent.user && $scope.selectedEvent.user._id !== $scope.global.user._id && !_.contains(_.pluck($scope.selectedEvent.guest, '_id'), $scope.global.user._id);
 
 				//center map on new event
 				if ($scope.selectedEvent.location) {
@@ -472,7 +476,7 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 					return uEvent._id === $route.current.params.eventId;
 				})[0]);
 			} else {
-				$scope.setSelectedEvent(null, $scope.agenda[$scope.agenda.length - 1]);
+				$scope.setSelectedEvent(null, $scope.agenda[0]);
 			}
 		}
 

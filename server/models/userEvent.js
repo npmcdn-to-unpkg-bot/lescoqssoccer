@@ -73,6 +73,13 @@ var UserEventSchema = new Schema( {
 	guestUnavailable: [{
 		type : mongoose.Schema.ObjectId, ref : 'User'
 	}],
+	subType: {
+		type: String,
+		default: 'classic'
+	},
+	matchId: {
+		type: String
+	},
 	comments: [new Schema({
 		created: {
 			type: Date,

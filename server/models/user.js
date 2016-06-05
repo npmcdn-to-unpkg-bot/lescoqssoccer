@@ -48,21 +48,27 @@ var UserSchema = new Schema( {
 	coins: Number,
 	presentation: String,
 	popularity: Number,
-	readArticles: { 
-		type : Array , 
-		"default" : [] 
+	readArticles: {
+		type : Array ,
+		"default" : []
 	},
 	conversations: [{
 		conversationId: String,
-		lastUpdate: Date 
+		lastUpdate: Date
 	}],
-	readVotes: { 
-		type : Array , 
-		"default" : [] 
+	readVotes: {
+		type : Array ,
+		"default" : []
 	},
-	readAlbums: { 
-		type : Array , 
-		"default" : [] 
+	readAlbums: {
+		type : Array ,
+		"default" : []
+	},
+	favoriteEuroTeam: {
+		type: String
+	},
+	euroPoints: {
+		type: Number
 	}
 } );
 

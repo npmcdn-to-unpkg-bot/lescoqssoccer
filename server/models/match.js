@@ -19,11 +19,17 @@ var MatchSchema = new Schema({
 		type: String,
 		trim: true
 	},
-	statsAt: {
+	startsAt: {
 		type: Date
 	},
 	type: {
 		type: String
+	},
+	scoreHome:{
+		type: Number
+	},
+	scoreAway:{
+		type: Number
 	},
 	bets: [new Schema({
 		created: {

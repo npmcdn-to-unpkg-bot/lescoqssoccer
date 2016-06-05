@@ -38,8 +38,11 @@
 										<ul class="stats">
 											<li>
 												<a href='#!/euro'>
-													<span>
+													<span ng-if="!global.user.favoriteEuroTeam">
 														Choisis ton Equipe
+													</span>
+													<span ng-if="global.user.favoriteEuroTeam">
+														Aller parier >
 													</span>
 												</a>
 											</li>

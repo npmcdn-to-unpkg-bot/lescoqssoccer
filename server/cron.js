@@ -3,12 +3,14 @@
 var CronJob = require('cron').CronJob;
 var users = require('./controllers/users');
 var suggestions = require('./controllers/suggestions');
+var matchs = require('./controllers/match');
 
 exports.startCron = function() {
+	// Runs every sunday at 00h30
 	new CronJob('00 30 00 * * 7', function() {
-			// Runs every sunday at 00h30
-			users.incrementUsersPoints();
-			users.calculatePopularity();
+			//users.incrementUsersPoints();
+			//users.calculatePopularity();
+			match.updateUserScores();
 			suggestions.closeVotes();
 		}, function() {
 			// This function is executed when the job stops

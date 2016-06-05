@@ -7638,13 +7638,35 @@ a.follow:hover {
 	box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
 	    margin-bottom: 20px;
 	    display: flex;
-	    padding: 10px;
-	    height: 70px;
+	     padding: 25px 10px;
+	    height: 125px;
+}
+
+.toBet{
+	background-color: red !important;
 }
 
 .matchRow{
 	text-transform: uppercase;
 	color: black;
+}
+
+.teamItem{
+	font-size: 30px;
+	background: #bbb;
+	color: white;
+	display: inline-block;
+	margin-bottom: 8px;
+	margin-right: 3px;
+	padding: 5px 8px;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	transition: all 0.5s;
+}
+
+.teamItem.active, .teamItem:hover{
+	background: red;
+	color: white;
 }
 
 nav#sidebar {

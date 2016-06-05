@@ -37,6 +37,7 @@ angular.module('mean.agenda').service('AgendaCollection', ['Global', 'UserEvent'
 
 			load: function() {
 				return UserEvent.query({}, function(userEvents) {
+					AgendaCollection.all = userEvents;
 					return userEvents;
 				}).$promise;
 			},

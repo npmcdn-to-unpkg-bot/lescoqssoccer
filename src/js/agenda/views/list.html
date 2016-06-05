@@ -5,15 +5,18 @@
 				<div class="pagebuilder-wrap">
 					<div class="fullwrap_moudle">
 						<div class="fullwidth-wrap" ng-if="agenda.length > 0">
-							<div class="span4 item_des post-bgcolor-default" ng-click="showAgendaDetail();" style="cursor: pointer;">
+							<div class="span4 item_des post-bgcolor-default" ng-click="showAgendaDetail();" style="cursor: pointer; position: fixed;">
 								<div class="ev2page-col">
 									<div>
 										<h2 class="ev2page-title" style="padding: 20px 20px 5px 20px; background: #2196F3;">
 											<div class="ev2page-week">
 												{{ selectedEvent.startsAt | date:"EEEE" }}
 											</div>
-											<div style="color: #ccc;">
+											<div style="color: #ccc;" ng-if="selectedEvent.subType !== 'euroMatch'">
 												{{ selectedEvent.startsAt | date:"dd MMM yyyy" }}
+											</div>
+											<div style="color: #ccc;" ng-if="selectedEvent.subType === 'euroMatch'">
+												{{ selectedEvent.startsAt | date:"dd MMM yyyy, à HH:mm" }}
 											</div>
 											<p style="margin-top: 30px; color: white;">
 												{{ selectedEvent.title }}
@@ -22,13 +25,13 @@
 										<div class="three-line-ellipsis" style="font-size: 20px; padding: 0 20px 0; margin-bottom: 20px;">
 											{{ selectedEvent.content }}
 										</div>
-										<div id="google-map" class="google-map google-map-agenda" ng-if="selectedEvent.location">
+										<div ng-if="selectedEvent.subType !== 'euroMatch'" id="google-map" class="google-map google-map-agenda" ng-if="selectedEvent.location">
 											<google-map center="map.center" zoom="map.zoom" draggable="true" dragging="map.dragging" bounds="map.bounds" events="map.events" options="map.options" control="map.control">
 												<marker icon="'img/icons/pin.png'" coords="marker" animation="google.maps.Animation.DROP">
 												</marker>
 											</google-map>
 										</div>
-										<div class="ev2page-tickets" style="margin-top: 30px; text-align: center; padding-top: 20px;">
+										<div ng-if="selectedEvent.subType !== 'euroMatch'" class="ev2page-tickets" style="margin-top: 30px; text-align: center; padding-top: 20px;">
 											<a class="igo" href="#!" ng-click="addMeToEvent($event, selectedEvent);">
 												Je viens
 											</a>
@@ -38,8 +41,8 @@
 										</div>
 									</div>
 								</div>
-								<hr/>
-								<div style="width:40px; margin: 0 20px; padding: 0 0 20px; cursor: pointer;" ng-click="showUserDetail($event, selectedEvent.user);">
+								<hr ng-if="selectedEvent.subType !== 'euroMatch'"/>
+								<div ng-if="selectedEvent.subType !== 'euroMatch'" style="width:40px; margin: 0 20px; padding: 0 0 20px; cursor: pointer;" ng-click="showUserDetail($event, selectedEvent.user);">
 									<p style="margin: 10px 0 10px 50px;position: absolute;">
 										lancé par
 										<b style="text-transform: uppercase; font-size: medium;">
@@ -49,7 +52,7 @@
 									<img class="img-circle" ng-src="{{ selectedEvent.user.avatar }}?dim100x100" alt="{{ selectedEvent.user.username }}" style="height: 40px;"/>
 								</div>
 							</div>
-							<div class="span8 moudle">
+							<div class="span8 moudle offset4" style="padding-left: 40px;">
 								<div class="container-isotope clear">
 									<div id="isotope-load">
 										<div class="ux-loading">
@@ -63,7 +66,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="isotope masonry" data-size="medium" data-width="width2" style="margin: -20px 0px 0px -20px;">
+									<div class="isotope masonry" data-size="large" data-width="width4" style="margin: -20px 0px 0px -20px;">
 										<div class="ev2page-col width2 isotope-item hover-effect" ng-repeat="userEvent in agenda" ng-click="setSelectedEvent($event, userEvent);">
 											<div class="inside" style="margin:20px 0 0 20px;" ng-class="{'active': userEvent._id === selectedEvent._id}">
 												<div class="ev2page-data">
@@ -82,14 +85,19 @@
 														{{ userEvent.title }}
 													</h2>
 													<hr/>
-													<div style="width:40px; margin: 0 60px;cursor: pointer;" ng-click="showUserDetail($event, selectedEvent.user);">
+													<div ng-if="userEvent.subType == 'euroMatch'" style="margin: 0 60px;cursor: pointer;" ng-click="showUserDetail($event, selectedEvent.user);">
+														<p>
+															{{userEvent.content}}
+														</p>
+													</div>
+													<div ng-if="userEvent.subType !== 'euroMatch'" style="width:40px; margin: 0 60px;cursor: pointer;" ng-click="showUserDetail($event, userEvent.user);">
 														<p style="margin: 10px 0 10px 50px;position: absolute;">
 															lancé par
 															<b style="text-transform: uppercase; font-size: medium;">
-																{{ selectedEvent.user.username }}
+																{{ userEvent.user.username }}
 															</b>
 														</p>
-														<img class="img-circle" ng-src="{{ selectedEvent.user.avatar }}?dim100x100" alt="{{ selectedEvent.user.username }}" style="height: 40px;"/>
+														<img class="img-circle" ng-src="{{ userEvent.user.avatar }}?dim100x100" alt="{{ userEvent.user.username }}" style="height: 40px;"/>
 													</div>
 												</div>
 											</div>
