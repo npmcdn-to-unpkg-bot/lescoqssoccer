@@ -1,17 +1,13 @@
 ------ BUGS ------
 - Fix previous and next when initialize view on detail page
 - Restore login
-- Fix agenda comments
 
 ------ IMPROVEMENTS ------
 --
 
 ------ STORIES ------
 - Euro functionality :
- - [Server] Script of matchs imports
  - [Server] Cron of user points
  - [Client] Template for match
- - [Client] Add bet
- - [Client] Save favorite team
- - [Client] Update rules
  - [Client] Euro admin page
+ - [Client] Update rules

@@ -35,7 +35,7 @@
 														<input id="{{match._id}}_home" type="number" min="0" placeholder="Score 1" style="width: 45%;     text-align: center;" ng-value="getBet(match).homeScore"/>
 														:
 														<input id="{{match._id}}_away" type="number" min="0" placeholder="Score 2" style="width: 45%;     text-align: center;" ng-value="getBet(match).awayScore"/>
-														<input ng-click="updateBet($event, match);" type="button" value="Parier"
+														<input ng-click="updateBet($event, match);" type="button" ng-value="(getBet(match).empty) ? 'Parier' :'Changer le pari'"
 														ng-class="{'toBet': getBet(match).empty}"/>
 													</span>
 												</div>

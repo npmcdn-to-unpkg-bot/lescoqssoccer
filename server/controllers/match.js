@@ -55,6 +55,7 @@ exports.updateMatch = function(req, res) {
 
 			match = _.extend(match, req.body);
 			match.save(function(err, match, numAffected) {
+				console.warn(err)
 				if (err) {
 					console.log("Error when trying to save match: " + err);
 				}

@@ -7640,6 +7640,11 @@ a.follow:hover {
 	    display: flex;
 	     padding: 25px 10px;
 	    height: 125px;
+	    background: #ddd;
+}
+
+.matchItem:hover{
+	opacity: .5;
 }
 
 .toBet{
