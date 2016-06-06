@@ -1,51 +1,46 @@
 <div class="message-box" style="text-align:center;">
 	<p class="box-close" style="position: absolute;top:10px;right:30px;z-index: 1000;">
-		<i class="icon-m-close-thin liquid-item-close" style="color: black;z-index: 8040; right: 0; top: 10px; cursor: pointer;position: absolute;font-size: 18px;" ng-click="cancel();">
+		<i class="icon-m-close-thin liquid-item-close" style="color: white;z-index: 8040; right: 0; top: 10px; cursor: pointer;position: absolute;font-size: 18px;" ng-click="cancel();">
 		</i>
 	</p>
 	<div class='app_inner'>
 		<div class="profile-card user-card card ruleCard">
 			<div class="banner">
+				<img src="img/logo-euro-2016-france-Rogne1.jpg"/>
 			</div>
-			<header>
-				<h1 style="color: black;">
-					Le jeux des pronosctics
-				</h1>
-				<h3>
-					What are the rules?
+			<header style="margin-top: 0;">
+				<h3 style="margin-top: 20px;">
+					Les règles?
 				</h3>
 				<p>
-					You cannot win or lose anything here. This is only for fun.
-					You may only make bets for a whole match, not only for a half.
-					You can make bets for every match that is not started already.
-					No one, except you, will see your bet until the match starts.
-					You get points if you made a bet for a match and the match is over.
-					You win the game if you are rank 1 on the highscore list after the final match.
+					On peut (et on doit) parier sur chacun des matchs de l'euro, et ceci avant qu'il ait démarrer.
+					Personne, à part toi ne peut voir les paris des autres avant le début du match.
+					Tu marque des points une fois que le match est terminé et que le score est entré sur le site par une personne de confiance (à définir, même si quelques uns sont déjà visés :) ). Tous les soirs, les points seront mis à jour automatiquement après la rentré des scores rééls.
 				</p>
 				<h3>
-					How do I score?
+					Les points
 				</h3>
 				<p>
-					You get  for a correct bet OR
-					You get  for the correct goal difference OR
-					You get  for the correct winner OR
-					You get zero points in any other case or if you did not make a bet
-				</p>
-				<h3>
-					Legal rules
-				</h3>
-				<p>
-					You may not change your name to anything offensive.
-					The game master may exclude you from the game at any time.
-					Recourse to the courts is not permitted.
+					15 points pour le pays vainqueur.
+					<br/>
+					5 points pour un score exact.
+					<br/>
+					2 points pour le bon vainqueur.
+					<br/>
+					1 point (peut se cumuler) si tu as une différence de but inférieure à deux.
+					<br/>
+					0 points pour un pari raté.
 				</p>
 			</header>
 			<div class="card-footer">
 				<ul class="stats">
 					<li>
 						<a href='#!/euro'>
-							<span>
+							<span ng-if="!global.user.favoriteEuroTeam">
 								Choisis ton Equipe
+							</span>
+							<span ng-if="global.user.favoriteEuroTeam">
+								Aller parier>
 							</span>
 						</a>
 					</li>

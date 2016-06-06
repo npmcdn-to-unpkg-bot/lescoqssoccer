@@ -19,6 +19,11 @@ angular.module('mean').config(['$routeProvider',
 			controller: 'EuroController',
 			resolve: EuroData
 		}).
+		when('/euro/admin', {
+			templateUrl: 'js/euro/views/admin.html',
+			controller: 'AdminMatchController',
+			resolve: AdminEuroData
+		}).
 		when('/euro/:matchId', {
 			templateUrl: 'js/euro/views/match.html',
 			controller: 'MatchController',
@@ -41,15 +46,15 @@ angular.module('mean').config(['$routeProvider',
 			controller: 'CreateAgendaController',
 			resolve: EventDetailData
 		}).
-		when('/agenda/:eventId', {
-			templateUrl: 'js/agenda/views/list.html',
-			controller: 'ListController',
-			resolve: EventsData
-		}).
 		when('/agenda/edit/:eventId', {
 			templateUrl: 'js/agenda/views/create.html',
 			controller: 'CreateAgendaController',
 			resolve: EventDetailData
+		}).
+		when('/agenda/:eventId', {
+			templateUrl: 'js/agenda/views/list.html',
+			controller: 'ListController',
+			resolve: EventsData
 		}).
 
 		/** ARTICLES ****/

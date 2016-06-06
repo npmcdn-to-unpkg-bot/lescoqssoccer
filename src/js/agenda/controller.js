@@ -307,8 +307,8 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 		};
 
 		$scope.showAgendaDetail = function() {
-			if($scope.selectedEvent.subType === "euroMatch"){
-				$location.path("/euro/" + $scope.selectedEvent.matchId);
+			if ($scope.selectedEvent.subType === "euroMatch") {
+				// $location.path("/euro/" + $scope.selectedEvent.matchId);
 			} else {
 				$location.path("/agenda/view/" + $scope.selectedEvent._id);
 			}
@@ -418,54 +418,6 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 
 		};
 
-		$scope.deleteEvent = function(evt, userEvent) {
-
-			if (evt) {
-				evt.preventDefault();
-				evt.stopPropagation();
-			}
-
-			var modalInstance = $modal.open({
-				templateUrl: 'js/agenda/views/modal/deleteAgendaModal.html',
-				controller: 'deleteAgendaModalCtrl',
-				resolve: {
-					userEvent: function() {
-						return userEvent;
-					}
-				}
-			});
-
-			modalInstance.result.then(function() {
-
-				$scope.agendaCollection.remove(userEvent).then(function(newUserEvent) {
-					$location.path("/agenda");
-				});
-
-			});
-
-		};
-
-		// $scope.openCalendar = function(evt) {
-
-		// 	evt.preventDefault();
-		// 	evt.stopPropagation();
-
-		// 	$modal.open({
-		// 		templateUrl: 'js/agenda/views/modal/calendar.html',
-		// 		controller: 'calendarCtrl',
-		// 		windowClass: 'calendarPopup',
-		// 		size: "lg",
-		// 		resolve: {
-		// 			Agenda: function() {
-		// 				return $scope.agenda;
-		// 			},
-		// 			EventClick: function() {
-		// 				return $scope.setSelectedEvent;
-		// 			}
-		// 		}
-		// 	});
-		// };
-
 		$scope.getFormattedDate = function(date) {
 			return $filter('date')(date, "dd MMM yyyy");
 		};
@@ -491,9 +443,9 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 	}
 ]);
 
-angular.module('mean.agenda').controller('AgendaDetailController', ['$scope', 'Global', 'event', 'AgendaCollection',
+angular.module('mean.agenda').controller('AgendaDetailController', ['$scope', 'Global', '$location', '$modal', 'event', 'AgendaCollection',
 
-	function($scope, Global, Event, AgendaCollection) {
+	function($scope, Global, $location, $modal, Event, AgendaCollection) {
 
 		$scope.userEvent = Event;
 		$scope.eventTypes = eventTypes;
@@ -612,6 +564,41 @@ angular.module('mean.agenda').controller('AgendaDetailController', ['$scope', 'G
 
 		};
 
+		$scope.edit = function(evt) {
+			if (evt) {
+				evt.preventDefault();
+				evt.stopPropagation();
+			}
+
+			$location.path('/agenda/edit/' + $scope.userEvent._id);
+		};
+
+		$scope.deleteEvent = function(evt) {
+			if (evt) {
+				evt.preventDefault();
+				evt.stopPropagation();
+			}
+
+			var modalInstance = $modal.open({
+				templateUrl: 'js/agenda/views/modal/deleteAgendaModal.html',
+				controller: 'deleteAgendaModalCtrl',
+				resolve: {
+					userEvent: function() {
+						return $scope.userEvent;
+					}
+				}
+			});
+
+			modalInstance.result.then(function() {
+
+				$scope.agendaCollection.remove($scope.userEvent).then(function(newUserEvent) {
+					$location.path("/agenda");
+				});
+
+			});
+		};
+
+
 		$scope.$parent.menu = {
 			title: "Rencards / " + $scope.userEvent.title,
 			items: [{
@@ -619,6 +606,16 @@ angular.module('mean.agenda').controller('AgendaDetailController', ['$scope', 'G
 				info: 'Retour',
 				icon: 'fa-arrow-left',
 				callback: $scope.global.back
+			}, {
+				link: '#!',
+				info: 'Editer',
+				icon: 'fa-edit',
+				callback: $scope.edit
+			}, {
+				link: '#!',
+				info: 'Supprimer',
+				icon: 'fa-times',
+				callback: $scope.deleteEvent
 			}]
 		};
 	}

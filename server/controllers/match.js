@@ -53,6 +53,21 @@ exports.updateMatch = function(req, res) {
 			delete req.body._id;
 			delete req.body.user;
 
+			var bets = [];
+			_.each(req.body.bets, function(bet) {
+				if (bet.user._id) {
+					bets.push({
+						_id: bet._id,
+						awayScore: bet.awayScore,
+						created: bet.created,
+						homeScore: bet.homeScore,
+						user: bet.user._id
+					})
+				} else {
+					bets.push(bet);
+				}
+			});
+			req.body.bets = bets;
 			match = _.extend(match, req.body);
 			match.save(function(err, match, numAffected) {
 				console.warn(err)

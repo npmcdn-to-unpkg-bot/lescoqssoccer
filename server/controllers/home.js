@@ -129,9 +129,11 @@ var formatUserData = function(userData) {
 	});
 
 	_.each(userData.userEvents, function(userEvent) {
-		formattedDatas.content.push(_.defaults({
-			type: "userEvent"
-		}, userEvent._doc));
+		if (userEvent._doc.subType !== "euroMatch") {
+			formattedDatas.content.push(_.defaults({
+				type: "userEvent"
+			}, userEvent._doc));
+		}
 	});
 
 	_.each(userData.suggestions, function(suggestion) {

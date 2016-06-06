@@ -76,7 +76,7 @@ exports.update = function(req, res, next) {
  * Delete an userEvent
  */
 exports.destroy = function(req, res) {
-	var userEvent = req.userEvent;
+	var userEvent = new UserEvent(req.userEvent);
 	userEvent.remove(function(err) {
 		if (err) {
 			return res.send('users/signup', {

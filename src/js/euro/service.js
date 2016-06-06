@@ -6,11 +6,11 @@ angular.module('mean.euro').factory('MatchsCollection', ['$resource',
 		return $resource('matchs/:id/', {
 			id: '@_id'
 		}, {
-			query: {
+			"query": {
 				method: 'GET',
 				isArray: true
 			},
-			update: {
+			"update": {
 				method: 'PUT',
 				params: {
 					_id: '@_id'
@@ -37,6 +37,13 @@ angular.module('mean.euro').service('MatchService', ['MatchsCollection',
 			},
 
 			load: function() {
+				return MatchsCollection.query({}, function(matchs) {
+					MatchService.all = matchs;
+					return matchs;
+				}).$promise;
+			},
+
+			getEndedMatchs: function() {
 				return MatchsCollection.query({}, function(matchs) {
 					MatchService.all = matchs;
 					return matchs;

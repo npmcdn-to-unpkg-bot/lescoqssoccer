@@ -65,6 +65,7 @@ angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Glo
 
 		$scope.initConsole = function() {
 			var consoleTextArray = [];
+			consoleTextArray.push("Salut les suceurs, voici la nouvelle version du site, ici défilera les petits messages de chacun, pour changer ton message, va dans ton profil. A+")
 			_.each($scope.team, function(user) {
 				if (user.presentation) {
 					var username = user.username;
