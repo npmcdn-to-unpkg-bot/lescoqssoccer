@@ -8,6 +8,5 @@
 ------ STORIES ------
 - Euro functionality :
  - [Server] Cron of user points
+ - [Server] Api get end match
  - [Client] Template for match
- - [Client] Euro admin page
- - [Client] Update rules

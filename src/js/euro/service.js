@@ -44,10 +44,10 @@ angular.module('mean.euro').service('MatchService', ['MatchsCollection',
 			},
 
 			getEndedMatchs: function() {
-				return MatchsCollection.query({}, function(matchs) {
-					MatchService.all = matchs;
-					return matchs;
-				}).$promise;
+				// return MatchsCollection.query({}, function(matchs) {
+				// 	return matchs;
+				// }).$promise;
+				return [];
 			},
 
 			getMatchsByUser: function(userId) {

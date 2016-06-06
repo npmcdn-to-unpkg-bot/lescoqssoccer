@@ -342,8 +342,7 @@ var MatchData = {
 
 var AdminEuroData = {
 	Matchs: function(MatchService) {
-		return MatchService.load();
-		// return MatchService.getEndedMatchs();
+		return MatchService.getEndedMatchs();
 	},
 
 	Teams: function() {
