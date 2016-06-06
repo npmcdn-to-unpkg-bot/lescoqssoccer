@@ -63,7 +63,7 @@ angular.module('mean.users').controller('TeamController', ['$scope', 'Global', '
 		};
 
 		$scope.$parent.menu = {
-			title: "Les copaings",
+			title: "Le classement de l'euro",
 			items: []
 		};
 	}

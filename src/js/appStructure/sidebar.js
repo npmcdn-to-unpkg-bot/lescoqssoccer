@@ -15,7 +15,7 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 
 					$scope.unreadAlbumCount = data.count - $scope.global.user.readAlbums.length;
 					$scope.unreadVoteCount = _.difference(_.pluck(Suggestions.all, '_id'), $scope.global.user.readVotes).length;
-					$scope.unreadAgendaCount = _.filter(AgendaCollection.all, function(userEvent){
+					$scope.unreadAgendaCount = _.filter(AgendaCollection.all, function(userEvent) {
 						return !_.contains(_.pluck(userEvent.guest, "_id"), $scope.global.user._id);
 					}).length;
 
@@ -30,6 +30,12 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 						id: "euro",
 						link: "#!/euro",
 						icon: "fa-futbol-o",
+						notificationNumber: 0
+					}, {
+						name: "Copaings",
+						link: "#!/users",
+						id: "users",
+						icon: "fa-users",
 						notificationNumber: 0
 					}, {
 						name: "Articles",
@@ -49,12 +55,6 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 						id: "albums",
 						icon: "fa-file-image-o",
 						notificationNumber: $scope.unreadAlbumCount
-					}, {
-						name: "Copaings",
-						link: "#!/users",
-						id: "users",
-						icon: "fa-users",
-						notificationNumber: 0
 					}, {
 						name: "Votes",
 						id: "suggestions",
