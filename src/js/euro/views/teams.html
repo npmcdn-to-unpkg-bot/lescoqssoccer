@@ -90,17 +90,17 @@
 																</span>
 															</div>
 															<div style="margin-top: 10px;">
-																<span style="width: 49.5%;    display: inline-block;">
+																<span style="width: 49%;    display: inline-block;">
 																	{{ getTeamName(match.home) }}
 																</span>
-																<span style="width: 49.5%;    display: inline-block;">
+																<span style="width: 49%;    display: inline-block;">
 																	{{ getTeamName(match.away) }}
 																</span>
 															</div>
 														</div>
 														<div style="text-align:center; margin-top: 20px;">
-															<input id="{{ match._id }}_home" type="number" min="0" placeholder="Score 1" style="width: 49.5%;     text-align: center;" ng-value="getBet(match).homeScore"/>
-															<input id="{{ match._id }}_away" type="number" min="0" placeholder="Score 2" style="width: 49.5%;     text-align: center;" ng-value="getBet(match).awayScore"/>
+															<input id="{{ match._id }}_home" type="number" min="0" placeholder="Score 1" style="width: 49%;     text-align: center;" ng-value="getBet(match).homeScore"/>
+															<input id="{{ match._id }}_away" type="number" min="0" placeholder="Score 2" style="width: 49%;     text-align: center;" ng-value="getBet(match).awayScore"/>
 															<input ng-click="updateBet($event, match);" type="button" ng-value="(getBet(match).empty) ? 'Parier' :'Changer le pari'" ng-class="{'toBet': getBet(match).empty}"
 															ng-if="isBetAuthorize(match)"/>
 														</div>
