@@ -4,25 +4,14 @@ var Match = mongoose.model('Match');
 var User = mongoose.model('User');
 
 exports.findAllMatchs = function(req, res) {
-	var query = (req.query.userId) ? {
-		user: req.query.userId
+
+	var query = (req.query.endedMatch === "true") ? {
+		startsAt: {
+			"$lt": new Date()
+		}
 	} : {};
 
 	Match.find(query)
-		.sort('startsAt')
-		.populate('bets.user', '_id name username avatar')
-		.populate('user', '_id name username avatar')
-		.exec(function(err, matchs) {
-			res.send(matchs);
-		});
-};
-
-exports.findEndMatchs = function(req, res) {
-	Match.find({
-			startsAt: {
-				"$gte": new Date()
-			}
-		})
 		.sort('startsAt')
 		.populate('bets.user', '_id name username avatar')
 		.populate('user', '_id name username avatar')

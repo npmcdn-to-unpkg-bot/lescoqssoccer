@@ -8,6 +8,9 @@
 							<div id="title-wrap">
 								<div class="title-wrap-inn">
 									<div id="main-title" style="text-align: center;">
+										<h2 style="margin-bottom: 20px; color: #2196F3">
+											{{ userEvent.startsAt | date:"dd MMM yyyy" }}
+										</h2>
 										<h1 class="main-title" style="text-transform: uppercase;">
 											{{ userEvent.title }}
 										</h1>
@@ -39,6 +42,36 @@
 							<a class="igoNot" href="#!" ng-click="notAddMeToEvent($event, userEvent);">
 								Je peux pas
 							</a>
+						</div>
+						<div class="row-fluid" style="margin-top: 40px;">
+							<section class="infrographic bar ux-mod-nobg">
+								<h1 style="text-transform: uppercase; margin-bottom: 20px;">
+									Ils sont chaud bouillants
+								</h1>
+							</section>
+						</div>
+						<div class="moudle" style="margin-top: 20px;">
+							<a ng-repeat="guest in userEvent.guest" ng-href="#!/users/detail/{{ guest._id }}" style="margin: 0 20px;">
+								<img ng-src="{{ guest.avatar && guest.avatar + '?dim=300x300' || 'img/Professor.png' }}" alt="{{ guest.username }}" draggable="false" class="img80_80 img-circle" title="{{ guest.user.username }}"/>
+							</a>
+							<p ng-if="userEvent.guest.length === 0;">
+								Personne, désolé vieux!
+							</p>
+						</div>
+						<div class="row-fluid">
+							<section class="infrographic bar ux-mod-nobg">
+								<h1 style="text-transform: uppercase; margin-bottom: 20px;">
+									Ils ont piscine ce jour là
+								</h1>
+							</section>
+						</div>
+						<div class="moudle" style="margin-top: 20px;">
+							<a ng-repeat="guest in userEvent.guestUnavailable" ng-href="#!/users/detail/{{ guest.user._id }}" style="margin: 0 20px;">
+								<img ng-src="{{ guest.avatar && guest.avatar + '?dim=300x300' || 'img/Professor.png' }}" alt="{{ guest.username }}" draggable="false" class="img80_80 img-circle" title="{{ guest.user.username }}"/>
+							</a>
+							<p ng-if="userEvent.guestUnavailable.length === 0;">
+								Personne
+							</p>
 						</div>
 						<div id="google-map" class="google-map google-map-agenda" style="padding: 0; margin: 30px 0;">
 							<google-map center="map.center" zoom="map.zoom" draggable="true" dragging="map.dragging" bounds="map.bounds" events="map.events" options="map.options" control="map.control">
