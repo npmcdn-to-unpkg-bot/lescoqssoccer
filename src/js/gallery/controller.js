@@ -241,10 +241,14 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 		};
 
 		$scope.$watch('album.comments', function(newValue, oldValue) {
-			collage()
+			collage();
 		});
 
 		angular.element($window).bind('resize', function() {
+			collage();
+		});
+
+		$('.photoContainer').imagesLoaded(function() {
 			collage();
 		});
 
