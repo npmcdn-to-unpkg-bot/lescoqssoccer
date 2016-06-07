@@ -6700,11 +6700,21 @@ h2.ev2shr-title a, h2.ev2page-title a, h2.ev3page-title a {
 .login {
   background: #2196F3;
   border-radius: 2px;
-  width: 300px;
+  min-width: 350px;
+  max-width: 500px;
+  width: 50%;
   height: auto;
   margin: 50px auto;
-  min-height: 300px;
+  min-height: 400px;
   box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,0),0 2px 1px -1px rgba(0,0,0,.12);
+}
+
+.login label{
+	text-align: left;
+	font-size: 20px;
+	color: white;
+	font-weight: 400;
+	margin-bottom: 10px;
 }
 
 .login_inner {
@@ -6749,7 +6759,7 @@ h2.ev2shr-title a, h2.ev2page-title a, h2.ev3page-title a {
   opacity: 0;
   display: none;
 }
-.login_inner input {
+.login_inner input[type="password"], .login_inner input[type="email"], .login_inner input[type="text"] {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -6757,9 +6767,10 @@ h2.ev2shr-title a, h2.ev2page-title a, h2.ev3page-title a {
   border-top: none;
   border-right: none;
   border-left: none;
-  border-bottom: 1px solid #33354e;
+  border: 1px solid white;
+  background: white;
   padding: 1.1em;
-  color: #FFF;
+  color: black;
   outline: none;
   text-align: left;
   font-size: initial;
@@ -6773,8 +6784,12 @@ h2.ev2shr-title a, h2.ev2page-title a, h2.ev3page-title a {
   text-align: center;
   margin: 2em auto 0 auto;
   padding: 20px;
-  width: 75%;
+  width: 49%;
   line-height: 0px;
+}
+.login_inner input[type="button"] {
+  width: 49%;
+  margin-top: 20px;
 }
 
 .loggedin {

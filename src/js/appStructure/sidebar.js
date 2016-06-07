@@ -32,12 +32,12 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 						icon: "fa-futbol-o",
 						notificationNumber: 0
 					}, {
-						name: "Copaings",
-						link: "#!/users",
-						id: "users",
-						icon: "fa-users",
-						notificationNumber: 0
-					}, {
+					// 	name: "Copaings",
+					// 	link: "#!/users",
+					// 	id: "users",
+					// 	icon: "fa-users",
+					// 	notificationNumber: 0
+					// }, {
 						name: "Articles",
 						id: "articles",
 						link: "#!/articles",

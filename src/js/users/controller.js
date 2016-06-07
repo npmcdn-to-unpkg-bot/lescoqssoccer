@@ -64,7 +64,12 @@ angular.module('mean.users').controller('TeamController', ['$scope', 'Global', '
 
 		$scope.$parent.menu = {
 			title: "Le classement de l'euro",
-			items: []
+			items: [{
+				link: '#!',
+				info: 'Retour',
+				icon: 'fa-arrow-left',
+				callback: $scope.global.back
+			}]
 		};
 	}
 ]);

@@ -1,18 +1,66 @@
 <div class="site-loading-logo centered-ux" style="margin: 50px 0 120px 0; text-align: center; color: #757575;">
 	LES COQS SOCCER
 </div>
-<div class='login'>
-	<input type="button" ng-click="showLogin();" ng-if="errorMessage" value="Retour au formulaire" style="text-align: center; margin: 20px 80px; background: #757575;">
-	</input>
-
+<div class='login' ng-if="!signup">
 	<div class='login_inner'>
-	  	<form class="formSignin" name="form" action="users/session" method="POST">
-	   		<div class='login_inner__avatar'>
-	   			<img src="img/coq.png">
-	   		</div>
-			<input ng-model='email' name="email" placeholder='Email' type='email' style="border-radius: 2px 2px 0 0;">
-			<input ng-model='password' name="password" placeholder='Mot de passe' type='password' style="border-radius: 0 0 2px 2px;">
-			<input type='submit' value='Connexion'>
-	  	</form>
+		<form class="formSignin" name="formSignin" action="users/session" method="POST">
+			<div class='login_inner__avatar'>
+				<img src="img/coq.png"/>
+			</div>
+			<div>
+				<label>
+					Email
+				</label>
+				<input ng-model='email' name="email" placeholder='Email' type='email' style="border-radius: 2px 2px 0 0;"/>
+			</div>
+			<div style="margin-top: 20px;">
+				<label>
+					Mot de passe
+				</label>
+				<input ng-model='password' name="password" placeholder='Mot de passe' type='password' style="border-radius: 0 0 2px 2px;"/>
+			</div>
+			<div>
+				<input type='button' value='Inscription' ng-click="showSignup();"/>
+				<input type='submit' value='Connexion'/>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class='login' ng-if="signup">
+	<div class='login_inner'>
+		<form class="formSignin" name="formSignup" action="/users" method="POST">
+			<div class='login_inner__avatar'>
+				<img src="img/coq.png"/>
+			</div>
+			<div>
+				<label>
+					Nom d'utilisateur
+				</label>
+				<input name="username" placeholder="Nom d'utilisateur" type='text' style="border-radius: 2px 2px 0 0;"/>
+			</div>
+			<div style="margin-top: 20px;">
+				<label>
+					Email
+				</label>
+				<input name="email" placeholder='Email' type='email' style="border-radius: 2px 2px 0 0;"/>
+			</div>
+			<div style="margin-top: 20px;">
+				<label>
+					Mot de passe
+				</label>
+				<input name="password" placeholder='Mot de passe' type='password' style="border-radius: 0 0 2px 2px;"/>
+			</div>
+			<div style="margin-top: 20px;">
+				<label>
+					Confirmation
+				</label>
+				<input name="confirm" placeholder='Confirmation' type='password' style="border-radius: 0 0 2px 2px;"/>
+			</div>
+			<div>
+				<input type='button' value='Connexion' ng-click="showSignin();"/>
+				<input type='submit' value='Inscription'/>
+			</div>
+		</form>
 	</div>
 </div>

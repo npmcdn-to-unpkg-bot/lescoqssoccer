@@ -4,7 +4,17 @@ angular.module('mean.system').directive('cmLogin', ['$http', '$location', '$wind
 	return {
 		restrict: 'E',
 		transclude: true,
-		templateUrl: "js/authentication/login.html"
+		templateUrl: "js/authentication/login.html",
+		link: function($scope, element, attrs){
+			$scope.signup = false;
+			$scope.showSignup = function(){
+				$scope.signup = true;
+			};
+
+			$scope.showSignin = function(){
+				$scope.signup = false;
+			};
+		}
 	}
 }]);
 

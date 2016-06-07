@@ -2,6 +2,7 @@
 - Fix previous and next when initialize view on detail page
 - Agenda delete
 - Agenda addMeToEvent statut
+ -Agenda list de qui viens ou non
 
 ------ IMPROVEMENTS ------
 --
@@ -11,4 +12,3 @@
  - [Server] Cron of user points
  - [Server] Api get end match
  - [Client] Template for match
- - [Client] Restore login

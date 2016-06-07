@@ -17,6 +17,20 @@ exports.findAllMatchs = function(req, res) {
 		});
 };
 
+exports.findEndMatchs = function(req, res) {
+	Match.find({
+			startsAt: {
+				"$gte": new Date()
+			}
+		})
+		.sort('startsAt')
+		.populate('bets.user', '_id name username avatar')
+		.populate('user', '_id name username avatar')
+		.exec(function(err, matchs) {
+			res.send(matchs);
+		});
+};
+
 exports.findMatchById = function(req, res) {
 	Match.findOne({
 			_id: req.params.id
@@ -100,8 +114,6 @@ exports.updateUserScores = function() {
 		})
 		.sort('-created')
 		.exec(function(err, matchs) {
-
-
 
 			User.find({}).exec(function(err, users) {
 				if (err) {
