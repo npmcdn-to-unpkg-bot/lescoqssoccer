@@ -3,9 +3,12 @@
 - Agenda delete
 - Agenda addMeToEvent statut
 - Agenda addMeToEvent save
+- Gestion des droits au niveau édition / suppressions
 
 ------ IMPROVEMENTS ------
---
+- Perfs on home
+- Display of images
+- Edition / suppression dans espace utilisateur
 
 ------ STORIES ------
 - Euro functionality :

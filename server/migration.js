@@ -73,49 +73,6 @@ var migrateArticles = function() {
 	});
 };
 
-/*
-	Script de migration pour les suggestions, afin de remplacer l'id du user par une référence vers l'object id
-*/
-var migrateSuggestions = function() {
-	Suggestion.find().exec(function(err, suggestions) {
-		_.each(suggestions, function(suggestion) {
-
-			var yes = [];
-			var no = [];
-			var blank = [];
-
-			_.each(suggestion.yes, function(userId, ohers) {
-				yes.push({
-					user: userId
-				});
-			});
-			suggestion.yes = yes;
-
-			_.each(suggestion.blank, function(userId) {
-				blank.push({
-					user: userId
-				});
-			});
-			suggestion.blank = blank;
-
-			_.each(suggestion.no, function(userId) {
-				no.push({
-					user: userId
-				});
-			});
-			suggestion.no = no;
-
-			suggestion.save(function(err) {
-				if (err) {
-					console.warn(err);
-				} else {
-					console.warn("Mise à jour de la suggestion : " + JSON.stringify(suggestion));
-				}
-			});
-		});
-	});
-};
-
 var addParameters = function() {
 	var parameter = new Parameter({
 		articleCategories: [{
@@ -205,6 +162,5 @@ var getNameOfCountryCode = function(teams, code){
 	return name;
 };
 
-// migrateSuggestions();
 // addParameters();
-addMatchs();
+// addMatchs();

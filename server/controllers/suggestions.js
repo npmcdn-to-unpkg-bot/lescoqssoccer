@@ -176,6 +176,10 @@ exports.closeVotes = function(req, res) {
 					});
 					article.no = no;
 
+					no = [];
+					yes = [];
+					blank = [];
+
 					article.save(function(err) {
 
 						if (err) {
