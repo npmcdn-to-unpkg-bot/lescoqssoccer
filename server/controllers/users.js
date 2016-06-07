@@ -5,7 +5,8 @@
  */
 var mongoose = require('mongoose'),
 	_ = require('lodash'),
-	User = mongoose.model('User');
+	User = mongoose.model('User'),
+	passport = require('passport');
 
 /**
  * Auth callback
@@ -46,7 +47,45 @@ exports.signout = function(req, res) {
  * Session
  */
 exports.session = function(req, res) {
-	res.redirect('/');
+	//Update the last connection date of user when creating session
+	User.update({
+		_id: req.user._id
+	}, {
+		$set: {
+			lastConnectionDate: new Date(),
+			previousConnectionDate: req.user.lastConnectionDate
+		}
+	}, {
+		upsert: false
+	}, function(err) {
+		res.redirect('/');
+	});
+};
+
+/**
+ * Before call session
+ */
+exports.isFutureSessionValid = function(req, res) {
+	passport.authenticate('local', function(err, user, info) {
+		if (err) {
+			return res.jsonp({
+				authenticate: false,
+				error: err,
+				info: info
+			});
+		}
+		if (!user) {
+			return res.jsonp({
+				authenticate: false,
+				error: 101,
+				info: info
+			});
+		}
+		return res.jsonp({
+			authenticate: true,
+			error: null
+		});
+	})(req, res);
 };
 
 /**
@@ -81,10 +120,7 @@ exports.create = function(req, res, next) {
 };
 
 exports.update = function(req, res, next) {
-
-	var user = req.user;
-
-	user = _.extend(user, req.body);
+	var user = _.extend(req.user, req.body);
 	user.save(function(err) {
 		if (err) {
 			return res.send('users/signup', {
@@ -119,7 +155,6 @@ exports.user = function(req, res, next, id) {
 };
 
 exports.findOne = function(req, res) {
-
 	res.jsonp(req.profile);
 };
 
@@ -127,7 +162,6 @@ exports.findOne = function(req, res) {
  * Return all users
  */
 exports.team = function(req, res) {
-
 	User.find({}, '-password -salt -hashed_password -__v -provider').exec(function(err, users) {
 		if (err) {
 			res.render('error', {
@@ -137,28 +171,23 @@ exports.team = function(req, res) {
 			res.jsonp(users);
 		}
 	});
-
 };
 
 /**
  * Increment coins of all users (call by cron)
  ***/
 exports.incrementUsersPoints = function() {
-
 	User.update({}, {
 		$inc: {
 			coins: 10
 		}
 	}, function(err, affectedRows) {
-
 		if (err) {
 			console.warn("err: " + err);
 		} else {
 			console.warn("Count of updated users " + affectedRows);
 		}
-
 	});
-
 };
 
 
@@ -166,18 +195,15 @@ exports.incrementUsersPoints = function() {
  * Calculate popularity of users (call by cron)
  ***/
 exports.calculatePopularity = function() {
-
 	User.find({}).exec(function(err, users) {
-
 		if (err) {
 			console.warn("err: " + err);
 		} else {
 
-			_.each(users, function(user){
+			_.each(users, function(user) {
 				var newVal = "30";
 				user.popularity = newVal;
 			});
 		}
 	});
-
 };

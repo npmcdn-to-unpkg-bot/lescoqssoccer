@@ -1,4 +1,4 @@
-Community-organizer
+Lescoqssoccer
 ===================
 
 Demo app with agenda, articles, photos manager, user account...
@@ -21,3 +21,4 @@ Build with AngularJs and Node.js
 * UI Bootstrap - Defined as bower module in the [bower.json](bower.json) file.
 
 ## License
+MIT

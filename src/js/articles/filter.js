@@ -16,3 +16,16 @@ angular.module('mean.articles').filter('reverse', function() {
     return items.slice().reverse();
   };
 });
+
+angular.module('mean.system').filter('orderConversations', function() {
+  return function(items, field, reverse) {
+    var filtered = [];
+    angular.forEach(items, function(item) {
+      filtered.push(item);
+    });
+    filtered.sort(function (a, b) {
+      return (a.conversation.messages.length > b.conversation.messages.length || a.userId === "all" ? -1 : 1);
+    });
+    return filtered;
+  };
+});

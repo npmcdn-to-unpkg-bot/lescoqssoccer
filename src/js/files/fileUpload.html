@@ -5,7 +5,7 @@
 	</p>
 
 	<h4>Sélectionne les photos à ajouter</h4>
-	<div class="col-md-3" style="text-align: center; margin-top: 20px;">
+	<div style="text-align: center; margin-top: 20px;">
 
 		<div ng-show="uploader.isHTML5">
 			<div class="well my-drop-zone"
@@ -15,8 +15,8 @@
 				Déposer des images
 			</div>
 		</div>
-		<button class="button pointer">
-		<label for="upload-profile-picture" class="label-upload-profile-picture" style="margin: inherit;">
+		<button class="button pointer" style="background: #ddd;">
+		<label for="upload-profile-picture" class="label-upload-profile-picture" style="margin: inherit; background: #ddd;">
 			Parcourir
 			<input
 			nv-file-select
@@ -28,8 +28,8 @@
 		</button>
 	</div>
 
-	<div class="col-md-9" style="margin-bottom: 40px" ng-show="uploader.queue.length > 0">
-		<table class="table">
+	<div ng-show="uploader.queue.length > 0">
+		<table class="table" style="margin: 40px 0;">
 			<thead>
 				<tr>
 					<th width="50%">Nom</th>

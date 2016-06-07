@@ -1,45 +1,28 @@
-<div class="clearfix filters filter-floating">
-	<div class="filter-floating-triggle hidden-phone" style="top:20px; right: 125px;" ng-click="global.back();">
-		<i class="fa fa-arrow-left"></i>
-	</div>
-	<div class="filter-floating-triggle" style="top:20px; right: 60px;" ng-click="create($event);">
-		<i class="fa fa-save"></i>
-	</div>
-</div>
-
-<div id="post-1039" class="post type-post status-publish format-standard hentry category-blog">
-	<div class="row-fluid two-cols-layout" style="min-height: 799px;">
-		<div id="content_wrap" class="span10" style="margin-left: 9%;">
-			<div class="title-bar-wrap " id="title-bar" style="padding: 50px 0;">
-				<div id="title-wrap">
-					<div class="title-wrap-inn">
-						<div id="main-title">
-							<h1 class="main-title">NOUVEAU VOTE</h1>
+<div class="post type-post status-publish format-standard hentry category-blog pageContent">
+	<div class="row-fluid two-cols-layout">
+		<div id="content_wrap">
+			<div class="content-wrap-inn">
+				<div class="pagebuilder-wrap">
+					<div class="container suggestionCreationContainer">
+						<div id="comments">
+							<div id="respondwrap">
+								<div id="respond" class="comment-respond">
+									<form role="form">
+										<p class="span12" style="margin-left: 0;">
+											<textarea
+											name="content"
+											data-ng-model="content"
+											placeholder="La proposition de vote aux suceurs..."
+											style="height: 150px;">
+											</textarea>
+										</p>
+									</form>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
-			<div id="comments">
-				<div id="respondwrap">
-					<div id="respond" class="comment-respond">
-						<form role="form">
-							<p class="span12" style="margin-left: 0;">
-								<textarea
-								name="content"
-								data-ng-model="content"
-								placeholder="Contenu du vote">
-								</textarea>
-							</p>
-						</form>
-					</div>
-				</div>
-			</div>
-
 		</div>
 	</div>
 </div>
-
-<cm-wysiwyg></cm-wysiwyg>
-<cm-page-builder></cm-page-builder>
-<cm-page-builder></cm-page-builder>

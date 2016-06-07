@@ -17,6 +17,6 @@ module.exports = {
 
 	//File upload
 	uploadDirectory: "public/img/users/",
-	cacheDirectoryX300: "public/.cache/crop/300x300/img/users/",
+	cacheDirectoryX300: "public/.cache/crop/300/img/users/",
 	cacheDirectoryX100: "public/.cache/crop/100x100/img/users/"
 }

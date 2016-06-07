@@ -1,0 +1,20 @@
+<div>
+	<p>
+		{{ getDateFrom(item) }}
+	</p>
+	<div class="timeline-item">
+		<div class="timeline-icon" ng-click="showUserDetail($event, item.user);">
+			<img ng-src="{{ item.user.avatar && item.user.avatar + '?dim=50x50' || 'img/Professor.png' }}" alt="{{ item.user.username }}" title="{{ item.user.username }}" style="background: white;"/>
+		</div>
+		<a href="#!/articles/view/standard/{{item._id}}">
+			<div class="timeline-content">
+				<h2>
+					{{ item.title }}
+				</h2>
+				<div class="three-line-ellipsis">
+					{{item.contentHTML}}
+				</div>
+			</div>
+		</a>
+	</div>
+</div>

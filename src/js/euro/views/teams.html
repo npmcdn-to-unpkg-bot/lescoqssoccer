@@ -1,0 +1,122 @@
+<div class="pageContent">
+	<div class="row-fluid two-cols-layout">
+		<div id="content_wrap">
+			<div class="content-wrap-inn">
+				<div class="pagebuilder-wrap">
+					<div class="container parameterContainer">
+						<div id="comments">
+							<div>
+								<div id="respond" class="comment-respond">
+									<form role="form">
+										<div class="col-md-12" style="text-align:center;">
+											<a href="#!/users" style="font-size: 20px; margin-bottom: 30px;display:block;">
+												Pour le classement c'est par là ->
+											</a>
+										</div>
+										<div class="col-md-6 col-sm-6 col-xs-12 moudle bottom-space-60" style="margin-left: 0; padding-left:0;">
+											<div class='item_des'>
+												<div class="profile-card user-card card ruleCard">
+													<div class="banner">
+														<img src="img/logo-euro-2016-france-Rogne1.jpg"/>
+													</div>
+													<header>
+														<h4 style="background: #eee" ng-if="global.user.isEuroAdmin">
+															On dirait que c'est à toi qu'est confiée la lourde tâche de rentrer les scores?!
+															<a href="#!/euro/admin">
+																C'est par là :)
+															</a>
+														</h4>
+														<h3 style="margin: 20px 0;">
+															Les règles?
+														</h3>
+														<p>
+															On peut (et on doit) parier sur chacun des matchs de l'euro, et ceci avant qu'il ait démarrer.
+															Personne, à part toi ne peut voir les paris des autres avant le début du match.
+															Tu marque des points une fois que le match est terminé et que le score est entré sur le site par une personne de confiance (à définir, même si quelques uns sont déjà visés :) ). Tous les soirs, les points seront mis à jour automatiquement après la rentré des scores rééls.
+														</p>
+														<h3 style="margin: 20px 0;">
+															Les points
+														</h3>
+														<p>
+															15 points pour le pays vainqueur.
+															<br/>
+															5 points pour un score exact.
+															<br/>
+															2 points pour le bon vainqueur.
+															<br/>
+															1 point (peut se cumuler) si tu as une différence de but inférieure à deux.
+															<br/>
+															0 points pour un pari raté.
+														</p>
+														<h3 style="margin: 20px 0;">
+															Mais qu'est-ce qu'on gagne?
+														</h3>
+														<p>
+															A définir, toutes les propositions sont les bienvenus (flemme de créer un endroit pour ça^ pour l'instant on en discute sur
+															<a href="#!/home">le chat "Tout le monde" en page d'accueil)</a>
+														</p>
+													</header>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6 col-sm-6 col-xs-12 bottom-space-60" style="margin-left: 0;">
+											<h4 class="widget-title" style="margin: 10px 0 30px 0;">
+												Choisis déjà ton vainqueur final
+											</h4>
+											<a href="#!" ng-repeat="team in teams" ng-class="{'active' : global.user.favoriteEuroTeam === team.code}" ng-click="selectTeam($event, team);" class="teamItem">
+												{{ team.name }}
+											</a>
+										</div>
+										<div class="span12 bottom-space-60" style="margin-left: 0;">
+											<h4 class="widget-title" style="margin: 10px 0 30px 0;">
+												Les paris
+											</h4>
+											<div class="isotope masonry" data-size="large" data-width="width2" style="margin: -20px 0px 0px -20px;">
+												<div class="width2 isotope-item hover-effect" ng-repeat="match in matchs">
+													<div class="inside item_des" style="margin:20px; padding: 20px;" ng-class="{'hadBetContainer': !getBet(match).empty}">
+														<div style="font-size: large; font-weight: 600;">
+															{{ match.startsAt | date:"dd MMM yyyy, à HH:mm" }}
+														</div>
+														<div style="font-size: large; font-weight: 400;">
+															Group {{ match.type }}
+														</div>
+														<div class="matchRow" style="text-align:center; margin-top: 20px;">
+															<div>
+																<span style="width: 49%;    display: inline-block;">
+																	<img ng-src="img/euro/{{ match.home }}.png"/>
+																</span>
+																<span style="width: 49%;    display: inline-block;">
+																	<img ng-src="img/euro/{{ match.away }}.png"/>
+																</span>
+															</div>
+															<div style="margin-top: 10px;">
+																<span style="width: 49.5%;    display: inline-block;">
+																	{{ getTeamName(match.home) }}
+																</span>
+																<span style="width: 49.5%;    display: inline-block;">
+																	{{ getTeamName(match.away) }}
+																</span>
+															</div>
+														</div>
+														<div style="text-align:center; margin-top: 20px;">
+															<input id="{{ match._id }}_home" type="number" min="0" placeholder="Score 1" style="width: 49.5%;     text-align: center;" ng-value="getBet(match).homeScore"/>
+															<input id="{{ match._id }}_away" type="number" min="0" placeholder="Score 2" style="width: 49.5%;     text-align: center;" ng-value="getBet(match).awayScore"/>
+															<input ng-click="updateBet($event, match);" type="button" ng-value="(getBet(match).empty) ? 'Parier' :'Changer le pari'" ng-class="{'toBet': getBet(match).empty}"
+															ng-if="isBetAuthorize(match)"/>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<cm-isotope>
+</cm-isotope>

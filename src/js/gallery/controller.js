@@ -13,7 +13,6 @@ angular.module('mean.albums').controller('AlbumDetailController', ['$location', 
 			evt.stopPropagation();
 
 			if ($scope.album.name && $scope.album.name !== "" && $scope.album.photoList.length > 0) {
-
 				if (!$scope.album.coverPicPath) {
 					$scope.album.coverPicPath = $scope.album.photoList[0].filepath;
 				}
@@ -27,11 +26,8 @@ angular.module('mean.albums').controller('AlbumDetailController', ['$location', 
 						$location.path('/albums/view/' + data._id);
 					});
 				}
-
 			} else {
-
 				$scope.showInfo = true;
-
 			}
 		};
 
@@ -79,6 +75,21 @@ angular.module('mean.albums').controller('AlbumDetailController', ['$location', 
 		$scope.hideInfo = function() {
 			$scope.showInfo = false;
 		};
+
+		$scope.$parent.menu = {
+			title: "Nouvel album",
+			items: [{
+				link: '#!',
+				info: 'Retour',
+				icon: 'fa-arrow-left',
+				callback: $scope.global.back
+			}, {
+				link: '#!',
+				info: 'Sauvegarder',
+				icon: 'fa-save',
+				callback: $scope.saveAlbum
+			}]
+		};
 	}
 ]);
 
@@ -109,50 +120,33 @@ angular.module('mean.albums').controller('AlbumsController', ['$scope', 'Global'
 
 			$scope.$apply();
 		};
+
+		$scope.$parent.menu = {
+			title: "Albums",
+			items: [{
+				link: '#!/albums/create',
+				info: 'Nouvel album',
+				icon: 'fa-plus'
+			}]
+		};
 	}
 ]);
 
-angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global', '$location', '$http', '$window', '$modal', 'AlbumService', 'album',
+angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global', '$location', '$http', '$window', '$modal', 'AlbumService', 'album', 'UserService',
 
-	function($scope, Global, $location, $http, $window, $modal, AlbumService, album) {
+	function($scope, Global, $location, $http, $window, $modal, AlbumService, album, UserService) {
 
 		$scope.global = Global;
 		$scope.album = album;
 
-		$scope.showSlider = function(evt, currentIndex) {
+		//set album like read
+		UserService.addReadAlbum($scope.album._id);
 
-			evt.preventDefault();
-			evt.stopPropagation();
-
-			$scope.showModal = true;
-
-			var modalInstance = $modal.open({
-				templateUrl: 'js/gallery/views/photosSlider.html',
-				controller: 'PhotosSliderController',
-				windowClass: "full-screen",
-				resolve: {
-					album: function() {
-						return $scope.album;
-					},
-					currentIndex: function() {
-						return currentIndex;
-					}
-				}
-			});
-
-			modalInstance.result.then(function() {
-
-				$scope.showModal = false;
-				$(window).trigger('resize');
-
-				setTimeout(function() {
-					Galleria.get(0).destroy();
-				}, 500);
-
-			});
+		$scope.edit = function() {
+			$location.path('/albums/edit/' + $scope.album._id);
 		};
 
-		$scope.deleteAlbum = function(evt) {
+		$scope.remove = function(evt) {
 
 			evt.preventDefault();
 			evt.stopPropagation();
@@ -168,14 +162,10 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 			});
 
 			modalInstance.result.then(function() {
-
-				// Delete the album and either update album list or redirect to it
 				AlbumService.deleteAlbum($scope.album).then(function() {
 					$location.path('/albums');
 				});
-
 			});
-
 		};
 
 		$scope.download = function(evt) {
@@ -192,23 +182,105 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 			});
 		};
 
-		$scope.update = function() {
-			$location.path('/albums/edit/' + $scope.album._id);
-		}
+		$scope.showUserDetail = function(evt, user) {
 
-	}
-]);
+			evt.preventDefault();
+			evt.stopPropagation();
 
-angular.module('mean.albums').controller('PhotosSliderController', ['$scope', 'Global', '$modalInstance', 'album', 'currentIndex',
+			$modal.open({
+				templateUrl: 'js/users/views/modal/userDetail.html',
+				controller: 'UserDetailController',
+				windowClass: 'userDetailPopup',
+				resolve: {
 
-	function($scope, Global, $modalInstance, album, currentIndex) {
+					User: function(UserService) {
+						return UserService.findOne(user._id);
+					},
 
-		$scope.global = Global;
-		$scope.album = album;
-		$scope.current = currentIndex;
+					Albums: function(AlbumService) {
+						return AlbumService.getAlbumsByUser(user._id).then(function(albums) {
+							return albums;
+						});
+					},
 
-		$scope.cancel = function() {
-			$modalInstance.close('cancel');
+					UserArticles: function(ArticlesCollection) {
+						return ArticlesCollection.getArticlesByUser(user._id).then(function(articles) {
+							return articles;
+						});
+					},
+
+				}
+			});
+		};
+
+		$scope.backToList = function(evt) {
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			$location.path("/albums").replace();
+		};
+
+		$scope.showPrevious = function(evt) {
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			var previous = AlbumService.getPrevious($scope.album);
+			$location.path("/albums/view/" + previous._id).replace();
+		};
+
+		$scope.showNext = function(evt) {
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			var next = AlbumService.getNext($scope.album);
+			$location.path("/albums/view/" + next._id).replace();
+		};
+
+		$scope.updateMethod = function() {
+			return AlbumService.updateAlbum($scope.album);
+		};
+
+		$scope.$watch('album.comments', function(newValue, oldValue) {
+			collage()
+		});
+
+		angular.element($window).bind('resize', function() {
+			collage();
+		});
+
+		$scope.$parent.menu = {
+			title: "Albums > " + $scope.album.name,
+			items: [{
+				link: '#!',
+				info: 'Editer',
+				icon: 'fa-edit',
+				callback: $scope.edit
+			}, {
+				link: '#!',
+				info: 'Supprimer',
+				icon: 'fa-times',
+				callback: $scope.remove
+			}, {
+				link: '#!',
+				info: 'Précédent',
+				icon: 'fa-arrow-left',
+				callback: $scope.showPrevious
+			}, {
+				link: '#!',
+				info: 'Retour à la liste',
+				icon: 'fa-list',
+				callback: $scope.backToList
+			}, {
+				link: '#!',
+				info: 'Suivant',
+				icon: 'fa-arrow-right',
+				callback: $scope.showNext
+			}, {
+				link: '#!',
+				info: 'Télécharger',
+				icon: 'fa-download',
+				callback: $scope.download
+			}]
 		};
 	}
 ]);
@@ -250,17 +322,6 @@ var AlbumData = {
 		return $route.current.params.albumId ? AlbumService.getAlbum($route.current.params.albumId) : {
 			photoList: []
 		};
-	}
-};
-
-var AlbumSliderData = {
-	album: function(AlbumService, $route) {
-		return $route.current.params.albumId ? AlbumService.getAlbum($route.current.params.albumId) : {
-			photoList: []
-		};
-	},
-	currentIndex: function($route) {
-		return $route.current.params.currentIndex;
 	}
 };
 
