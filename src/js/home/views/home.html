@@ -54,7 +54,7 @@
 
 						<div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20">
 							<div class="nicescroll">
-								<ul ng-if="!conversation" class="list-group list-group-list" style="margin-bottom: 30px;">
+								<ul ng-if="!conversation" class="list-group list-group-list">
 									<li class="list-group-item" ng-repeat="conversation in conversations | orderConversations: 'conversation'" ng-click="selectUser($event, conversation.userId)">
 										<div class="media">
 											<div class="media-left media-middle">
