@@ -155,7 +155,7 @@ exports.closeVotes = function(req, res) {
 						comments: []
 					});
 
-					_.each(suggestion.yes, function(userId, ohers) {
+					_.each(suggestion.yes, function(userId) {
 						yes.push({
 							user: userId
 						});

@@ -143,7 +143,7 @@ var formatUserData = function(userData) {
 	});
 
 	sortedDatas.content = _.sortBy(formattedDatas.content, function(item) {
-		return item.created;
+		return item.created || item.startsAt;
 	});
 
 	sortedDatas.content.slice(0, 30);
