@@ -2,7 +2,6 @@
 	<div class="row-fluid two-cols-layout" style="min-height: 100vh;">
 		<div id="content_wrap">
 			<div class="content-wrap-inn">
-
 				<!-- Content -->
 				<div class="pagebuilder-wrap">
 					<div class="container" style="width: calc(100% - 120px);background: white; margin: 40px 60px; box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12); color: #7b7b7b; border-radius: 2px;">
@@ -15,62 +14,68 @@
 												Vote
 											</h1>
 											<div class="post-meta" style="font-size: initial;cursor: pointer;" ng-click="showUserDetail($event, article.user);">
-												<img class="img-circle" ng-src="{{article.user.avatar}}?dim100x100" alt="{{article.user.username}}" style="width: 80px; height: 80px; margin: 0 20px 0; border-radius: 2px;" />
-											<p style="display: inline-block;">lancé par
+												<img class="img-circle" ng-src="{{ article.user.avatar }}?dim100x100" alt="{{ article.user.username }}" style="width: 80px; height: 80px; margin: 0 20px 0; border-radius: 2px;"/>
+												<p style="display: inline-block;">
+													lancé par
 													<b style="text-transform: uppercase;">
-														{{article.user.username}},
+														{{ article.user.username }},
 													</b>
 													<span>
-													le {{article.created | date:"dd MMM yyyy"}}
-												</span>
+														le {{ article.created | date:"dd MMM yyyy" }}
+													</span>
 												</p>
-												<span class="post-meta-unit tag"></span>
+												<span class="post-meta-unit tag">
+												</span>
 											</div>
 											<p style="margin: 30px 30px 40px 20px; font-size: medium; text-align: justify; ">
-												{{article.content}}
+												{{ article.content }}
 											</p>
 											<div class="iterblock-expt">
 												<div class="suggestionsResult" style="margin: 0; padding: 0px 30px 0 20px;">
 													<div class="row-fluid">
 														<section class="infrographic bar ux-mod-nobg">
-															<h1 style="text-transform: uppercase; margin-bottom: 20px;">Les suceurs</h1>
+															<h1 style="text-transform: uppercase; margin-bottom: 20px;">
+																Les suceurs
+															</h1>
 														</section>
 													</div>
 													<div class="moudle" style="margin-top: 20px;">
-														<a ng-repeat="answer in article.yes" ng-href="#!/users/detail/{{answer.user._id}}" style="margin: 0 20px;">
-															<img ng-src="{{answer.user.avatar && answer.user.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{answer.user.username}}" draggable="false" class="img80_80 img-circle" title="{{answer.user.username}}">
+														<a ng-repeat="answer in article.yes" style="margin: 0 20px;">
+															<img ng-src="{{ answer.user.avatar && answer.user.avatar + '?dim=300x300' || 'img/Professor.png' }}" alt="{{ answer.user.username }}" draggable="false" class="img80_80 img-circle" title="{{ answer.user.username }}"/>
 														</a>
 														<p ng-if="article.yes.length === 0;" style="">
-															Aucun partisan
-														</p>
-													</div>
-													<div class="row-fluid">
-														<section class="infrographic bar ux-mod-nobg">
-															<h1 style="text-transform: uppercase; margin-bottom: 20px;">Les contres</h1>
-														</section>
-													</div>
-													<div class="moudle" style="margin-top: 20px;">
-														<a ng-repeat="answer in article.no" ng-href="#!/users/detail/{{answer.user._id}}" style="margin: 0 20px;">
-															<img ng-src="{{answer.user.avatar && answer.user.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{answer.user.username}}" draggable="false" class="img80_80 img-circle" title="{{answer.user.username}}">
-														</a>
-														<p ng-if="article.no.length === 0;" style="">
-															Aucun réfractaire
+															Aucun suceurs
 														</p>
 													</div>
 													<div class="row-fluid">
 														<section class="infrographic bar ux-mod-nobg">
 															<h1 style="text-transform: uppercase; margin-bottom: 20px;">
-																Les suisses</h1>
-															</section>
-														</div>
-														<div class="moudle" style="margin-top: 20px;">
-															<a ng-repeat="answer in article.blank" ng-href="#!/users/detail/{{answer.user._id}}" style="margin: 0 20px;">
-																<img ng-src="{{answer.user.avatar && answer.user.avatar + '?dim=300x300' || 'img/Professor.png'}}" alt="{{answer.user.username}}" draggable="false" class="img80_80 img-circle" title="{{answer.user.username}}">
-															</a>
-															<p ng-if="article.blank.length === 0;" style="">
-																Pas de suisse
-															</p>
-														</div>
+																Les contres
+															</h1>
+														</section>
+													</div>
+													<div class="moudle" style="margin-top: 20px;">
+														<a ng-repeat="answer in article.no" style="margin: 0 20px;">
+															<img ng-src="{{ answer.user.avatar && answer.user.avatar + '?dim=300x300' || 'img/Professor.png' }}" alt="{{ answer.user.username }}" draggable="false" class="img80_80 img-circle" title="{{ answer.user.username }}"/>
+														</a>
+														<p ng-if="article.no.length === 0;" style="">
+															Aucun contre
+														</p>
+													</div>
+													<div class="row-fluid">
+														<section class="infrographic bar ux-mod-nobg">
+															<h1 style="text-transform: uppercase; margin-bottom: 20px;">
+																Les suisses
+															</h1>
+														</section>
+													</div>
+													<div class="moudle" style="margin-top: 20px;">
+														<a ng-repeat="answer in article.blank" style="margin: 0 20px;">
+															<img ng-src="{{ answer.user.avatar && answer.user.avatar + '?dim=300x300' || 'img/Professor.png' }}" alt="{{ answer.user.username }}" draggable="false" class="img80_80 img-circle" title="{{ answer.user.username }}"/>
+														</a>
+														<p ng-if="article.blank.length === 0;" style="">
+															Aucun suisse
+														</p>
 													</div>
 												</div>
 											</div>
@@ -78,14 +83,13 @@
 									</div>
 								</div>
 							</div>
-
-							<cm-comments update-method="updateMethod();" object="article">
-							</cm-comments>
 						</div>
+						<cm-comments update-method="updateMethod();" object="article">
+						</cm-comments>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
+</div>
