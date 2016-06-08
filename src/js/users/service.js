@@ -82,8 +82,7 @@ angular.module('mean.users').service('UserService', ['Global', 'Users',
 				}
 
 				var conversation = _.findWhere(Global.user.conversations, {conversationId: conversationId});
-
-				if(conversation){
+				if(conversation && conversation.conversationId){
 					conversation.lastUpdate = new Date();
 				} else{
 					Global.user.conversations.push({
