@@ -112,7 +112,7 @@ angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Glo
 			var currentConversation = $scope.conversations[userId].conversation;
 			if (currentConversation.messages.length > 0 && currentConversation.messages.slice(-1).pop().user._id !== $scope.global.user._id && currentConversation.messages.slice(-1).pop().user !== $scope.global.user._id) {
 				var conversation = _.findWhere($scope.global.user.conversations, {
-					_id: currentConversation._id
+					conversationId: currentConversation._id
 				});
 				if (conversation) {
 					return _.filter($scope.conversations[userId].conversation.messages, function(message) {
