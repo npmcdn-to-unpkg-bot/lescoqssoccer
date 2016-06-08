@@ -4,7 +4,6 @@
 			<div class="content-wrap-inn bottom-space">
 				<div class="container responsive-ux" style="padding: 0 30px;">
 					<div class="row-fluid">
-
 						<div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20">
 							<div id="timeline">
 								<div class="timelineContainer">
@@ -13,8 +12,6 @@
 								</div>
 							</div>
 						</div>
-
-
 						<div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20">
 							<div class='app_inner'>
 								<div class="profile-card user-card card">
@@ -23,7 +20,7 @@
 									</div>
 									<div class="user-image" ng-click="showPointsRulesPopUp($event);" style="cursor: pointer;">
 										<div>
-											{{global.user.euroPoints || 0}} pts
+											{{ global.user.euroPoints || 0 }} pts
 										</div>
 									</div>
 									<header>
@@ -42,7 +39,7 @@
 														Choisis ton Equipe
 													</span>
 													<span ng-if="global.user.favoriteEuroTeam">
-														Aller parier >
+														Aller parier>
 													</span>
 												</a>
 											</li>
@@ -51,10 +48,9 @@
 								</div>
 							</div>
 						</div>
-
 						<div class="col-md-4 col-sm-6 col-xs-12 moudle bottom-space-20">
 							<div class="nicescroll">
-								<ul ng-if="!conversation" class="list-group list-group-list">
+								<ul ng-if="!conversation" class="list-group list-group-list" style="max-height: calc(100vh - 120px);  overflow: auto;">
 									<li class="list-group-item" ng-repeat="conversation in conversations | orderConversations: 'conversation'" ng-click="selectUser($event, conversation.userId)">
 										<div class="media">
 											<div class="media-left media-middle">

@@ -7435,11 +7435,13 @@ a.follow:hover {
   width: 100%;
   clear: both;
 }
-
+*::-webkit-scrollbar {
+    display: none;
+}
 #timeline {
   max-width: 100%;
   margin: auto 0px auto;
-     max-height: calc(100vh - 130px);
+     max-height: calc(100vh - 120px);
     overflow-y: auto;
     overflow-x: hidden;
   -webkit-transition: all 0.4s ease;
