@@ -25,6 +25,9 @@ var MatchSchema = new Schema({
 	type: {
 		type: String
 	},
+	scoresUpdated: {
+		type: Boolean	
+	},
 	scoreHome:{
 		type: Number
 	},
