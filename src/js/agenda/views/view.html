@@ -35,13 +35,19 @@
 						<div class="three-line-ellipsis" style="font-size: 20px; margin: 30px 0;">
 							{{ userEvent.content }}
 						</div>
-						<div class="ev2page-tickets" style="margin-top: 30px; text-align: center; padding-top: 20px;">
+						<div class="ev2page-tickets" style="margin-top: 30px; text-align: center; padding-top: 20px;" ng-if="!isUserPresent(userEvent) && !isUserAbsent(userEvent)">
 							<a class="igo" href="#!" ng-click="addMeToEvent($event, userEvent);">
 								Je viens
 							</a>
 							<a class="igoNot" href="#!" ng-click="notAddMeToEvent($event, userEvent);">
 								Je peux pas
 							</a>
+						</div>
+						<div ng-if="isUserPresent(userEvent)" style="font-size: x-large; text-align: center; background: #43bc46; color: white; width: 200px; margin: auto; border-radius: 2px;">
+							Je serai là
+						</div>
+						<div ng-if="isUserAbsent(userEvent)" style="font-size: x-large; text-align: center; background: #de3926; color: white; width: 200px; margin: auto; border-radius: 2px;">
+							Je passe mon tour
 						</div>
 						<div class="row-fluid" style="margin-top: 40px;">
 							<section class="infrographic bar ux-mod-nobg">

@@ -6495,8 +6495,9 @@ h2.ev2shr-title a, h2.ev2page-title a, h2.ev3page-title a {
     text-decoration: none;
     color: #fff;
     padding: 5px 8px 5px 8px;
-    border-radius: 3px;
+    border-radius: 2px;
     margin: 0 10px 0 0;
+        font-size: large;
 }
 
 .ev2shr-tickets a {
