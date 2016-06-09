@@ -19,7 +19,6 @@ exports.userEvent = function(req, res, next) {
 		.populate('comments.replies.user', '_id name username avatar')
 		.exec(function(err, userEvent) {
 			if (err) return next(err);
-			if (!userEvent) return next(new Error('Failed to load userEvent ' + id));
 			req.userEvent = userEvent;
 			next();
 		});
@@ -39,7 +38,6 @@ exports.show = function(req, res) {
 		.populate('comments.replies.user', '_id name username avatar')
 		.exec(function(err, userEvent) {
 			if (err) return next(err);
-			if (!userEvent) return next(new Error('Failed to load event ' + userEventId));
 			res.jsonp(userEvent);
 		});
 };

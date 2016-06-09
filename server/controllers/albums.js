@@ -14,7 +14,6 @@ exports.album = function(req, res, next) {
 		.populate('comments.replies.user', '_id name username avatar')
 		.populate('user').exec(function(err, album) {
 			if (err) return next(err);
-			if (!album) return next(new Error('Failed to load album ' + id));
 			req.album = album;
 			next();
 		})

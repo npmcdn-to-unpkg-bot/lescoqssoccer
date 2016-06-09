@@ -12,3 +12,6 @@
 - Euro functionality :
  - [Server] Cron of user points
  - [Client] Template for match
+
+------ UTILS -------
+lib/quickThumb modifiée pour ajouter autoOrient()
