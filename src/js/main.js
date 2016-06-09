@@ -1276,7 +1276,8 @@ function collage() {
 
 	setTimeout(function() {
 		$('.Collage').collagePlus({
-			'targetHeight': 300
+			'targetHeight': 300,
+			'effect' : "effect-1"
 		});
 	}, 200);
 }
