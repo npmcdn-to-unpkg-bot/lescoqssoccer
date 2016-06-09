@@ -1013,15 +1013,15 @@ function ThemeIsotope(){
 
 			case 'brick':
 				if (container.width() > 1440) {
-					width = Math.floor(container.width() / 6);
+					width = Math.floor(container.width() / 4);
 				} else if (container.width() > 1365) {
-					width = Math.floor(container.width() / 3);
+					width = Math.floor(container.width() / 4);
 				} else if (container.width() > 1279) {
 					width = Math.floor(container.width() / 3);
 				} else if (container.width() > 900) {
 					width = Math.floor(container.width() / 3);
 				} else if (container.width() > 767) {
-					width = Math.floor(container.width() / 3);
+					width = Math.floor(container.width() / 2);
 				} else if (container.width() > 479) {
 					width = Math.floor(container.width() / 2);
 				} else {

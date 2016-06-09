@@ -4,7 +4,7 @@
 			<div class="content-wrap-inn">
 				<div class="pagebuilder-wrap">
 					<div class="fullwrap_moudle">
-						<div class="fullwidth-wrap" ng-if="agenda.length > 0">
+						<div class="fullwidth-wrap" ng-if="agenda.length> 0">
 							<div class="span4 item_des post-bgcolor-default" ng-click="showAgendaDetail();" style="cursor: pointer; position: fixed;">
 								<div class="ev2page-col">
 									<div>
@@ -25,19 +25,26 @@
 										<div class="three-line-ellipsis" style="font-size: 20px; padding: 0 20px 0; margin-bottom: 20px;">
 											{{ selectedEvent.content }}
 										</div>
-										<div ng-if="selectedEvent.subType !== 'euroMatch'" id="google-map" class="google-map google-map-agenda" ng-if="selectedEvent.location">
-											<google-map center="map.center" zoom="map.zoom" draggable="true" dragging="map.dragging" bounds="map.bounds" events="map.events" options="map.options" control="map.control">
-												<marker icon="'img/icons/pin.png'" coords="marker" animation="google.maps.Animation.DROP">
-												</marker>
-											</google-map>
-										</div>
-										<div ng-if="selectedEvent.subType !== 'euroMatch'" class="ev2page-tickets" style="margin-top: 30px; text-align: center; padding-top: 20px;">
+
+										<div ng-if="selectedEvent.subType !== 'euroMatch' && !isUserPresent(selectedEvent) && !isUserAbsent(selectedEvent)" class="ev2page-tickets" style="margin: 30px; text-align: center; padding-top: 20px;">
 											<a class="igo" href="#!" ng-click="addMeToEvent($event, selectedEvent);">
 												Je viens
 											</a>
 											<a class="igoNot" href="#!" ng-click="notAddMeToEvent($event, selectedEvent);">
 												Je peux pas
 											</a>
+										</div>
+										<div ng-if="isUserPresent(selectedEvent)" style="font-size: x-large; text-align: center; background: #43bc46; color: white; width: 200px; margin: auto; border-radius: 2px;margin-bottom: 30px;">
+											Je serai là
+										</div>
+										<div ng-if="isUserAbsent(selectedEvent)" style="font-size: x-large; text-align: center; background: #de3926; color: white; width: 200px; margin: auto; border-radius: 2px;margin-bottom: 30px;">
+											Je passe mon tour
+										</div>
+										<div ng-if="selectedEvent.subType !== 'euroMatch'" id="google-map" class="google-map google-map-agenda" ng-if="selectedEvent.location">
+											<google-map center="map.center" zoom="map.zoom" draggable="true" dragging="map.dragging" bounds="map.bounds" events="map.events" options="map.options" control="map.control">
+												<marker icon="'img/icons/pin.png'" coords="marker" animation="google.maps.Animation.DROP">
+												</marker>
+											</google-map>
 										</div>
 									</div>
 								</div>
@@ -87,7 +94,7 @@
 													<hr/>
 													<div ng-if="userEvent.subType == 'euroMatch'" style="margin: 0 60px;cursor: pointer;" ng-click="showUserDetail($event, selectedEvent.user);">
 														<p>
-															{{userEvent.content}}
+															{{ userEvent.content }}
 														</p>
 													</div>
 													<div ng-if="userEvent.subType !== 'euroMatch'" style="width:40px; margin: 0 60px;cursor: pointer;" ng-click="showUserDetail($event, userEvent.user);">
@@ -107,7 +114,9 @@
 							</div>
 						</div>
 						<div class="fullwidth-wrap" ng-if="agenda.length === 0">
-							<h1 style="color: #aaa; text-align: center;">Pas d'évènements à venir</h1>
+							<h1 style="color: #aaa; text-align: center;">
+								Pas d'évènements à venir
+							</h1>
 						</div>
 					</div>
 				</div>

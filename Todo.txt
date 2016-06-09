@@ -1,17 +1,14 @@
 ------ BUGS ------
 - Fix previous and next when initialize view on detail page
-- Agenda addMeToEvent statut
-- Gestion des droits au niveau édition / suppressions
 
 ------ IMPROVEMENTS ------
 - Perfs on home
-- Display of images
-- Edition / suppression dans espace utilisateur
+- (Display of images) => Pour la taille réel
+- Edition / suppression dans espace utilisateur ou - Gestion des droits au niveau édition / suppressions
+- Commentaires: only update comment object on client
 
 ------ STORIES ------
-- Euro functionality :
- - [Server] Cron of user points
- - [Client] Template for match
+- Implements chat with socket.io
 
 ------ UTILS -------
 lib/quickThumb modifiée pour ajouter autoOrient()

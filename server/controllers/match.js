@@ -52,8 +52,6 @@ exports.findMatchById = function(req, res) {
 exports.addMatch = function(req, res) {
 	var newMatch = req.body;
 	newMatch.user = req.user;
-
-	console.log("Adding Match: " + JSON.stringify(newMatch));
 	Match.create(newMatch, function(err, match) {
 		if (err) console.log("error: " + err);
 		res.send(match);
@@ -112,14 +110,18 @@ exports.updateUserScores = function() {
 		if (err) {
 			console.warn("Error when trying to fetch matchs: " + err)
 		} else {
-			_.each(matchs, function() {
-				if (match.scoreHome && match.scoreAway) {
+			_.each(matchs, function(match) {
 
+				if (match.scoreHome !== undefined && match.scoreAway !== undefined) {
+
+					console.warn("Match to update")
 					_.each(_users, function(user) {
 						if (!user.euroPoints) {
 							user.euroPoints = 0;
 						}
+
 						var userPointOfMatch = getPointsFromMatch(match, user);
+						console.warn(userPointOfMatch);
 						user.euroPoints += userPointOfMatch;
 					});
 
@@ -128,6 +130,8 @@ exports.updateUserScores = function() {
 						if (err) {
 							console.warn("Error when trying to update match... " + match.home + " - " + match.away);
 							canUpdateUsers = false;
+						} else {
+							console.warn("Match updated succefully");
 						}
 					})
 
@@ -142,7 +146,7 @@ exports.updateUserScores = function() {
 						if (err) {
 							console.warn("Error when trying to update user scores : " + err);
 						} else {
-							console.warn("User " + use.username + " has been updated successfully");
+							console.warn("User " + user.username + " has been updated successfully");
 						}
 					})
 				});
@@ -152,7 +156,7 @@ exports.updateUserScores = function() {
 
 };
 
-exports.getPointsFromMatch = function(match, user) {
+var getPointsFromMatch = function(match, user) {
 
 	// Points distribution
 	var MAX_GOAL_DIFFERENCE = 2;
@@ -171,11 +175,12 @@ exports.getPointsFromMatch = function(match, user) {
 	var scoreHome = match.scoreHome;
 	var scoreAway = match.scoreAway;
 	var winner = (scoreHome > scoreAway) ? 1 : ((scoreHome < scoreAway) ? 2 : -1);
-	var goalDifference = Math.abs(scoreHome - scoreAway);
+	var goalDifference = scoreHome - scoreAway;
 
-	var userBet = _.findWhere(match.bets, {
-		user: user._id
-	});
+	var userBet = _.filter(match.bets, function(bet) {
+		return bet.user.toString() === user._id.toString()
+	})[0];
+
 	if (userBet) {
 
 		console.warn("User has bet on the match");
@@ -183,7 +188,7 @@ exports.getPointsFromMatch = function(match, user) {
 		var userScoreHome = userBet.homeScore;
 		var userScoreAway = userBet.awayScore;
 		var userWinner = (userScoreHome > userScoreAway) ? 1 : ((userScoreHome < userScoreAway) ? 2 : -1);
-		var userGoalDifference = Math.abs(userScoreHome - userScoreAway);
+		var userGoalDifference = userScoreHome - userScoreAway;
 
 		if (userScoreHome === scoreHome && userScoreAway === scoreAway) {
 			points += GOOD_SCORE;
@@ -193,7 +198,7 @@ exports.getPointsFromMatch = function(match, user) {
 				points += GOOD_WINNER;
 			}
 
-			if (Math.abs(goalDifference - userGoalDifference) <= MAX_GOAL_DIFFERENCE) {
+			if (Math.abs(goalDifference) - Math.abs(userGoalDifference) < MAX_GOAL_DIFFERENCE) {
 				points += ACCEPTED_GOAL_DIFFERENCE;
 			}
 		}

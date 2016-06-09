@@ -354,6 +354,14 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 			$scope.setSelectedEvent(null, $scope.agenda[index]);
 		};
 
+		$scope.isUserPresent = function(userEvent){
+			return _.contains(_.pluck(userEvent.guest, "_id"), $scope.global.user._id);
+		};
+
+		$scope.isUserAbsent = function(userEvent){
+			return _.contains(_.pluck(userEvent.guestUnavailable, "_id"), $scope.global.user._id);
+		};
+
 		$scope.notAddMeToEvent = function(evt, userEvent) {
 
 			if (evt) {
@@ -498,6 +506,14 @@ angular.module('mean.agenda').controller('AgendaDetailController', ['$scope', 'G
 
 		$scope.updateMethod = function() {
 			return $scope.agendaCollection.update($scope.userEvent);
+		};
+
+		$scope.isUserPresent = function(userEvent){
+			return userEvent.guest && _.contains(_.pluck(userEvent.guest, "_id"), $scope.global.user._id);
+		};
+
+		$scope.isUserAbsent = function(userEvent){
+			return userEvent.guestUnavailable && _.contains(_.pluck(userEvent.guestUnavailable, "_id"), $scope.global.user._id);
 		};
 
 		$scope.notAddMeToEvent = function(evt) {

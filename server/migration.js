@@ -4,8 +4,8 @@
 var express = require('express'),
 	fs = require('fs'),
 	passport = require('passport'),
-	logger = require('mean-logger'),
-	matchs = require('./controllers/match');
+	logger = require('mean-logger');
+
 // Load configurations
 // Set the node enviornment variable if not set before
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
@@ -162,6 +162,5 @@ var getNameOfCountryCode = function(teams, code){
 	return name;
 };
 
-matchs.updateUserScores();
 // addParameters();
-// addMatchs();
+addMatchs();

@@ -99,10 +99,16 @@
 															</div>
 														</div>
 														<div style="text-align:center; margin-top: 20px;">
-															<input id="{{ match._id }}_home" type="number" min="0" placeholder="Score 1" style="width: 49%;     text-align: center;" ng-value="getBet(match).homeScore"/>
-															<input id="{{ match._id }}_away" type="number" min="0" placeholder="Score 2" style="width: 49%;     text-align: center;" ng-value="getBet(match).awayScore"/>
+															<input id="{{ match._id }}_home" type="number" min="0" placeholder="Score 1" style="width: 49%;text-align: center;" ng-value="getBet(match).homeScore" ng-disabled="!isBetAuthorize(match)"/>
+															<input id="{{ match._id }}_away" type="number" min="0" placeholder="Score 2" style="width: 49%;text-align: center;" ng-value="getBet(match).awayScore" ng-disabled="!isBetAuthorize(match)"/>
 															<input ng-click="updateBet($event, match);" type="button" ng-value="(getBet(match).empty) ? 'Parier' :'Changer le pari'" ng-class="{'toBet': getBet(match).empty}"
 															ng-if="isBetAuthorize(match)"/>
+															<a ng-href="#!/euro/{{match._id}}" ng-if="hasResults(match)">
+																Voir le résultat
+															</a>
+															<div ng-if="!isBetAuthorize(match) && !hasResults(match)">
+																Match terminé, en attente des résultats
+															</div>
 														</div>
 													</div>
 												</div>

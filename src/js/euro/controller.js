@@ -77,6 +77,10 @@ angular.module('mean.euro').controller('EuroController', ['$scope', '$location',
 			return moment(match.startsAt).isAfter(new Date());
 		};
 
+		$scope.hasResults = function(match){
+			return match.scoreHome !== undefined && match.scoreAway !== undefined;
+		};
+
 		$scope.$parent.menu = {
 			title: "Euro",
 			items: [{
