@@ -19,7 +19,6 @@ exports.article = function(req, res, next, id) {
 		.populate('no.user', 'name username avatar')
 		.populate('blank.user', 'name username avatar').exec(function(err, article) {
 			if (err) return next(err);
-			if (!article) return next(new Error('Failed to load article ' + id));
 			req.article = article;
 			next();
 	});

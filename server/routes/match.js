@@ -19,4 +19,7 @@ module.exports = function ( app ) {
 	app.put( '/matchs/:id', matchs.updateMatch );
 	app.post( '/matchs/:id', matchs.updateMatch );
 	app.delete( '/matchs/:id', matchs.deleteMatch );
+
+	// Finish with setting up the matchId param
+	app.param('id', matchs.match);
 };

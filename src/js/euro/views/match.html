@@ -4,7 +4,88 @@
 			<div class="content-wrap-inn">
 				<div class="pagebuilder-wrap">
 					<div class="container parameterContainer">
-						<div>{{title}}</div>
+						<div class="inside item_des" style="padding: 20px; max-width: 600px; margin: auto; margin-top: 20px;">
+							<div style="font-size: large; font-weight: 600;">
+								{{ match.startsAt | date:"dd MMM yyyy, à HH:mm" }}
+							</div>
+							<div style="font-size: large; font-weight: 400;">
+								Group {{ match.type }}
+							</div>
+							<div class="matchRow" style="text-align:center; margin-top: 20px;">
+								<div style="font-size: x-large; margin-bottom: 20px;">
+									Score final
+								</div>
+								<div>
+									<span style="width: 49%;    display: inline-block;">
+										<img ng-src="img/euro/{{ match.home }}.png"/>
+									</span>
+									<span style="width: 49%;    display: inline-block;">
+										<img ng-src="img/euro/{{ match.away }}.png"/>
+									</span>
+								</div>
+								<div style="margin-top: 10px;">
+									<span style="width: 49%;    display: inline-block;">
+										{{ getTeamName(match.home) }}
+									</span>
+									<span style="width: 49%;    display: inline-block;">
+										{{ getTeamName(match.away) }}
+									</span>
+								</div>
+							</div>
+							<div style="text-align:center; margin-top: 20px;">
+								<span style="width: 49%; display: inline-block; text-align: center;">
+									<input id="{{ match._id }}_home" type="number" min="0" placeholder="Score 1" style="width: 80px;  text-align: center;    font-size: xx-large; padding-left: 20px;" ng-value="match.scoreHome" ng-disabled="true"/>
+								</span>
+								<span style="width: 49%; display: inline-block; text-align: center;">
+									<input id="{{ match._id }}_away" type="number" min="0" placeholder="Score 2" style="width: 80px; text-align: center;    font-size: xx-large; padding-left: 20px;" ng-value="match.scoreAway" ng-disabled="true"/>
+								</span>
+							</div>
+						</div>
+						<h3 class="comment-reply-title" style="color: #7b7b7b; margin-top: 20px;">
+							Les paris
+						</h3>
+						<div class="isotope masonry" data-size="large" data-width="width2" style="margin: -20px 0px 0px -20px;">
+							<div class="width2 isotope-item hover-effect" ng-repeat="bet in match.bets">
+								<div class="inside item_des" style="margin:20px; padding: 20px;">
+									<div class="post-meta" style="font-size: initial;cursor: pointer; text-align:center;" ng-click="showUserDetail($event, bet.user);">
+										<img class="img-circle" ng-src="{{ bet.user.avatar }}?dim100x100 || 'img/Professor.png'" alt="{{ bet.user.username }}" style="width: 50px; height: 50px; border-radius: 2px;"/>
+										<p style="display: inline-block;">
+											<b style="text-transform: uppercase;">
+												{{ bet.user.username }}
+											</b>
+										</p>
+										<span class="post-meta-unit tag">
+										</span>
+									</div>
+									<div class="matchRow" style="text-align:center; margin-top: 20px;">
+										<div>
+											<span style="width: 49%; display: inline-block;">
+												<img ng-src="img/euro/{{ match.home }}.png"/>
+											</span>
+											<span style="width: 49%; display: inline-block;">
+												<img ng-src="img/euro/{{ match.away }}.png"/>
+											</span>
+										</div>
+										<div style="margin-top: 10px;">
+											<span style="width: 49%;    display: inline-block;">
+												{{ getTeamName(match.home) }}
+											</span>
+											<span style="width: 49%;    display: inline-block;">
+												{{ getTeamName(match.away) }}
+											</span>
+										</div>
+									</div>
+									<div style="text-align:center; margin-top: 20px;">
+										<span style="width: 49%; display: inline-block; text-align: center;">
+											<input type="number" min="0" style="width: 80px;  text-align: center; font-size: xx-large; padding-left: 20px;" ng-value="bet.homeScore" ng-disabled="true"/>
+										</span>
+										<span style="width: 49%; display: inline-block; text-align: center;">
+											<input type="number" min="0" style="width: 80px; text-align: center; font-size: xx-large; padding-left: 20px;" ng-value="bet.awayScore" ng-disabled="true"/>
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
 						<cm-comments update-method="updateMethod();" object="match">
 						</cm-comments>
 					</div>
@@ -13,3 +94,5 @@
 		</div>
 	</div>
 </div>
+<cm-isotope>
+</cm-isotope>
