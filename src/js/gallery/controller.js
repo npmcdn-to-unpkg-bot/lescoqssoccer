@@ -240,9 +240,9 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 			return AlbumService.updateAlbum($scope.album);
 		};
 
-		$scope.$watch('album.comments', function(newValue, oldValue) {
-			collage();
-		});
+		// $scope.$watch('album.comments', function(newValue, oldValue) {
+		// 	collage();
+		// });
 
 		angular.element($window).bind('resize', function() {
 			collage();

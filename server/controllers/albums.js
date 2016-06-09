@@ -6,6 +6,20 @@ var config = require('../../config/config');
 var archiver = require('archiver');
 var Album = mongoose.model('Album');
 
+exports.album = function(req, res, next) {
+	Album.findOne({
+			_id: req.params.id
+		})
+		.populate('comments.user', '_id name username avatar')
+		.populate('comments.replies.user', '_id name username avatar')
+		.populate('user').exec(function(err, album) {
+			if (err) return next(err);
+			if (!album) return next(new Error('Failed to load album ' + id));
+			req.album = album;
+			next();
+		})
+};
+
 exports.findAllAlbums = function(req, res) {
 
 	var perPage = req.query.perPage;
@@ -48,16 +62,12 @@ exports.addAlbum = function(req, res) {
 };
 
 exports.updateAlbum = function(req, res) {
-	Album.findById(req.params.id, function(err, album) {
-		delete req.body._id;
-		delete req.body.user;
-		if (err) console.log("error: " + err)
-		_.extend(album, req.body);
-		album.save(function(err, album, numAffected) {
-			if (err) console.log("Error saving album: " + err)
-			console.log(numAffected + " documents updated.")
-			res.send(album);
-		});
+	var album = req.album;
+	album = _.extend(album, req.body);
+	album.save(function(err, album, numAffected) {
+		if (err) console.log("Error saving album: " + err)
+		console.log(numAffected + " documents updated.")
+		res.send(album);
 	});
 };
 

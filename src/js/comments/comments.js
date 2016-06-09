@@ -47,6 +47,7 @@ angular.module('mean.system').controller( 'CommentController', ['$scope', 'Globa
 				$scope.updateMethod().then(function(newObject) {
 					$scope.object = newObject;
 					$scope.newComment = "";
+					$(window).trigger('resize');
 				});
 			}
 		};

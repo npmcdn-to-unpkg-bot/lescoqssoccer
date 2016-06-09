@@ -4,7 +4,6 @@
 - Agenda addMeToEvent statut
 - Agenda addMeToEvent save
 - Gestion des droits au niveau édition / suppressions
-- Article > quote : supprimer lien vers user/profile
 
 ------ IMPROVEMENTS ------
 - Perfs on home

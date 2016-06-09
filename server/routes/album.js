@@ -29,4 +29,6 @@ module.exports = function ( app ) {
 	app.post('/download/:id', albums.download);
 	app.get('/file/:id', albums.getZipFile);
 
+	// Finish with setting up the albumId param
+	app.param('id', albums.album);
 };
