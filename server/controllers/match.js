@@ -1,3 +1,4 @@
+
 var mongoose = require('mongoose');
 var _ = require('underscore');
 var Match = mongoose.model('Match');
@@ -95,25 +96,119 @@ exports.deleteMatch = function(req, res) {
 
 exports.updateUserScores = function() {
 	var query = {};
+	var _users = [];
+	var canUpdateUsers = true;
 
-	Match.find({
-			startsAt: {
-				"$gte": new Date()
-			}
-		})
-		.sort('-created')
-		.exec(function(err, matchs) {
+	User.find({}).exec().then(function(users, err) {
+		if (err) {
+			console.warn("Error when trying to fetch users: " + err);
+		} else {
 
-			User.find({}).exec(function(err, users) {
-				if (err) {
-					console.warn("err: " + err);
-				} else {
+			// keep users in array to updates
+			_users = users;
 
-					_.each(users, function(user) {
-						var newVal = "30";
-						user.popularity = newVal;
+			//fetch matchs
+			return Match.find({
+					startsAt: {
+						"$gte": new Date()
+					},
+					scoresUpdated: { $exists: false }
+				})
+				.sort('-created')
+				.exec()
+
+		}
+	}).then(function(matchs, err){
+		if(err){
+			console.warn("Error when trying to fetch matchs: " + err)
+		} else {
+			_.each(matchs, function(){
+				if(match.scoreHome && match.scoreAway){
+
+					_.each(_users, function(user) {
+						if(!user.euroPoints){
+							user.euroPoints = 0;
+						}
+						var userPointOfMatch = getPointsFromMatch(match, user);
+						user.euroPoints += userPointOfMatch;
 					});
+
+					match.scoresUpdated = true;
+					match.save(function(error){
+						if(err){
+							console.warn("Error when trying to update match... " + match.home + " - " + match.away);
+							canUpdateUsers = false;
+						}
+					})
+
+				} else {
+					console.warn("Match: " + match.home + " - " + match.away + " has no scores yet!")
 				}
 			});
-		});
+
+			if(canUpdateUsers) {
+				_.each(_users, function(user) {
+					user.save(function(err){
+						if(err){
+							console.warn("Error when trying to update user scores : " + err);
+						} else {
+							console.warn("User " + use.username + " has been updated successfully");
+						}
+					})
+				});
+			}
+		}
+	});
+
+};
+
+exports.getPointsFromMatch = function(match, user){
+
+	// Points distribution
+	var MAX_GOAL_DIFFERENCE = 2;
+
+	var GOOD_SCORE = 5;
+	var GOOD_WINNER = 2;
+	var ACCEPTED_GOAL_DIFFERENCE = 1;
+
+	/* Winner code:
+	 1 for home team
+	 2 for away team
+	 -1 for nul score
+	*/
+
+	var points = 0;
+	var scoreHome = match.scoreHome;
+	var scoreAway = match.scoreAway;
+	var winner = (scoreHome > scoreAway) ? 1 : ((scoreHome < scoreAway) ? 2 : -1);
+	var goalDifference = Math.abs(scoreHome - scoreAway);
+
+	var userBet = _.findWhere(match.bets, {user: user._id});
+	if(userBet){
+
+		console.warn("User has bet on the match");
+
+		var userScoreHome = userBet.homeScore;
+		var userScoreAway = userBet.awayScore;
+		var userWinner = (userScoreHome > userScoreAway) ? 1 : ((userScoreHome < userScoreAway) ? 2 : -1);
+		var userGoalDifference = Math.abs(userScoreHome - userScoreAway);
+
+		if(userScoreHome === scoreHome && userScoreAway === scoreAway){
+			points += GOOD_SCORE;
+		} else {
+
+			if(userWinner === winner){
+				points += GOOD_WINNER;
+			}
+
+			if(Math.abs(goalDifference - userGoalDifference) <= MAX_GOAL_DIFFERENCE) {
+				points += ACCEPTED_GOAL_DIFFERENCE;
+			}
+		}
+
+	} else {
+		console.warn("User has not bet on the match");
+	}
+
+	return points;
 };
