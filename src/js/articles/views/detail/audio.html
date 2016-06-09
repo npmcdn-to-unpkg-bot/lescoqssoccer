@@ -19,7 +19,7 @@
 											{{article.title}}
 										</h1>
 										<div class="post-meta" style="font-size: initial;cursor: pointer;" ng-click="showUserDetail($event, article.user);">
-											<img class="img-circle" ng-src="{{article.user.avatar}}?dim100x100" alt="{{article.user.username}}" style="width: 80px; height: 80px; margin: -20px 0 20px 0;" />
+											<img class="img-circle" ng-src="{{article.user.avatar}}?dim100x100" alt="{{article.user.username}}" style="width: 50px; height: 50px; margin: -20px 0 20px 0;" />
 											<p>par
 												<b style="text-transform: uppercase;">
 													{{article.user.username}},
@@ -42,7 +42,7 @@
 								ng-src="{{trustSrc(article.audioLink)}}">
 								</iframe>
 							</div>
-							<p style="margin-top: 20px;">{{article.description}}</p>
+							<p style="margin-top: 20px; font-size: x-large;">{{article.description}}</p>
 						</div>
 
 						<cm-comments update-method="updateMethod();" object="article">

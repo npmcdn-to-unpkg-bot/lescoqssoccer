@@ -18,4 +18,7 @@ module.exports = function(app) {
 	app.post('/userEvent', authorization.requiresLogin, userEvents.create);
 	app.put('/userEvent/:userEventId', userEvents.update);
 	app.del('/userEvent/:userEventId', userEvents.destroy);
+
+	// Finish with setting up the userEventId param
+	app.param('userEventId', userEvents.userEvent);
 };

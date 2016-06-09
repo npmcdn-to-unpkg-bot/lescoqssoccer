@@ -16,7 +16,7 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 					$scope.unreadAlbumCount = data.count - $scope.global.user.readAlbums.length;
 					$scope.unreadVoteCount = _.difference(_.pluck(Suggestions.all, '_id'), $scope.global.user.readVotes).length;
 					$scope.unreadAgendaCount = _.filter(AgendaCollection.all, function(userEvent) {
-						return !_.contains(_.pluck(userEvent.guest, "_id"), $scope.global.user._id);
+						return !_.contains(_.pluck(userEvent.guest, "_id"), $scope.global.user._id) && !userEvent.subType === "euroMatch";
 					}).length;
 
 					$scope.menu1 = [{

@@ -1,8 +1,6 @@
 ------ BUGS ------
 - Fix previous and next when initialize view on detail page
-- Agenda delete
 - Agenda addMeToEvent statut
-- Agenda addMeToEvent save
 - Gestion des droits au niveau édition / suppressions
 
 ------ IMPROVEMENTS ------

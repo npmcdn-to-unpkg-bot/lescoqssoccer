@@ -1271,13 +1271,13 @@ function consoleText(words, id, colors) {
 }
 
 function collage() {
-	$('.Collage').css('visibility', 'visible');
-	$('#isotope-load').fadeOut();
-
 	setTimeout(function() {
 		$('.Collage').collagePlus({
 			'targetHeight': 300,
 			'effect' : "effect-1"
 		});
-	}, 200);
+
+		$('.Collage').css('visibility', 'visible');
+		$('#isotope-load').fadeOut();
+	}, 1000);
 }
