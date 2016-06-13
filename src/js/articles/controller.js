@@ -334,7 +334,6 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 					} else {
 						$scope.article.videoLink = $scope.linkAdress;
 					}
-					$scope.article.videoLink.replace('embed', 'v');
 					break;
 				case "audio":
 					if($scope.linkAdress.indexOf('iframe') !== -1){
@@ -345,7 +344,7 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 					}
 					break;
 				case "standard":
-					$scope.article.content = $.parseHTML(textboxio.get('#mytextarea')[0].content.get());
+					$scope.article.content = textboxio.get('#mytextarea')[0].content.get();
 					break;
 			}
 
