@@ -45,9 +45,9 @@ angular.module('mean.system').controller( 'CommentController', ['$scope', 'Globa
 				});
 
 				$scope.updateMethod().then(function(newObject) {
-					$scope.object = newObject;
+					$scope.object.comments = newObject.comments;
+					$scope.object.__v = newObject.__v;
 					$scope.newComment = "";
-					$(window).trigger('resize');
 				});
 			}
 		};
@@ -63,7 +63,8 @@ angular.module('mean.system').controller( 'CommentController', ['$scope', 'Globa
 
 				$scope.hideAnswerForm();
 				$scope.updateMethod().then(function(newObject) {
-					$scope.object = newObject;
+					$scope.object.comments = newObject.comments;
+					$scope.object.__v = newObject.__v;
 				});
 			}
 		};

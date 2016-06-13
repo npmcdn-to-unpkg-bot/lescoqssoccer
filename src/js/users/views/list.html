@@ -6,8 +6,8 @@
 					<div class="row active-with-click">
 						<div class="span12 bottom-space-60" style="margin-left: 40px;">
 							<div class="isotope masonry" data-size="large" data-width="width2" style="margin: -20px 0px 0px -20px;">
-								<div class="width2 isotope-item hover-effect" ng-repeat="user in team | orderBy:user.euroPoints">
-									<div class="inside" style="padding: 20px;">
+								<div class="width2 isotope-item hover-effect" ng-repeat="user in team" style="text-align: center;">
+									<div class="inside ranking" style="padding: 20px;" data-count="{{ $index + 1 }}">
 										<div class="profile-card user-card card item_des">
 											<div class="banner">
 												<img src="img/logo-euro-2016-france-Rogne1.jpg"/>
@@ -17,13 +17,10 @@
 											</div>
 											<header>
 												<h1 style="color: black;">
-													{{ user.username }}
+													{{ user.euroPoints || 0 }} pts
 												</h1>
 												<p style="font-size: 20px; font-weight: 500">
-													{{ user.euroPoints || 0 }} pts
-												</p>
-												<p style="font-size: 20px; font-weight: 500; color: red;">
-													Classement : {{ $index + 1 }}
+													{{ user.username }}
 												</p>
 											</header>
 										</div>
@@ -37,5 +34,6 @@
 		</div>
 	</div>
 </div>
+
 <cm-isotope>
 </cm-isotope>
