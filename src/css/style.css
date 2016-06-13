@@ -7436,7 +7436,7 @@ a.follow:hover {
   width: 100%;
   clear: both;
 }
-*::-webkit-scrollbar {
+.homeContainer::-webkit-scrollbar {
     display: none;
 }
 #timeline {
