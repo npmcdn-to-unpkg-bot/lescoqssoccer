@@ -89,7 +89,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 				icon: 'fa-list-alt'
 			},
 			{
-				link: '#!/articles/create/vidéo',
+				link: '#!/articles/create/video',
 				info: 'Nouvelle vidéo',
 				icon: 'fa-video-camera'
 			},
