@@ -162,7 +162,7 @@ exports.findOne = function(req, res) {
  * Return all users
  */
 exports.team = function(req, res) {
-	User.find({}, '-password -salt -hashed_password -__v -provider').exec(function(err, users) {
+	User.find({}, '-password -salt -hashed_password -__v -provider').sort('-euroPoints').exec(function(err, users) {
 		if (err) {
 			res.render('error', {
 				status: 500

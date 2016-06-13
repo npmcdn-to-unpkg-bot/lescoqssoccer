@@ -7410,15 +7410,16 @@ a.follow:hover {
   display: block;
   height: auto;
   width: 100%;
+  opacity: .3;
 }
 
 .profile-card .user-image img {
   border: 8px solid #2196F3;
   border-radius: 50%;
-  display: block;
   margin: -75px auto 0;
   max-width: 150px;
   width: 100%;
+  position: relative;
 }
 
 .user-image div{
@@ -8198,4 +8199,21 @@ code {
     -webkit-transform: none;
             transform: none;
   }
+}
+
+.ranking:before{
+    content: attr(data-count);
+    display: inline-block;
+    width: 3.5em;
+    height: 3.5em;
+    text-align: center;
+    position: relative;
+    top: 1.5em;
+    border-radius: 50%;
+    padding-top: 1em;
+    background: red;
+    color: #f3f3f3;
+    font-size: x-large;
+    z-index: 2;
+    font-weight: 700;
 }

@@ -61,11 +61,16 @@ exports.addMatch = function(req, res) {
 exports.updateMatch = function(req, res) {
 	var match = req.match;
 	match = _.extend(match, req.body);
-	match.save(function(err, match, numAffected) {
+	match.save(function(err) {
 		console.warn(err)
 		if (err) {
 			console.log("Error when trying to save match: " + err);
 		}
+
+		if(match.scoreHome !== undefined && match.scoreAway !== undefined){
+			updateUserScores();
+		}
+
 		res.send(match);
 	});
 };
@@ -80,7 +85,7 @@ exports.deleteMatch = function(req, res) {
 	})
 };
 
-exports.updateUserScores = function() {
+var updateUserScores = function() {
 	var query = {};
 	var _users = [];
 	var canUpdateUsers = true;
@@ -96,7 +101,7 @@ exports.updateUserScores = function() {
 			//fetch matchs
 			return Match.find({
 					startsAt: {
-						"$gte": new Date()
+						"$lt": new Date()
 					},
 					scoresUpdated: {
 						$exists: false
@@ -198,7 +203,7 @@ var getPointsFromMatch = function(match, user) {
 				points += GOOD_WINNER;
 			}
 
-			if (Math.abs(goalDifference) - Math.abs(userGoalDifference) < MAX_GOAL_DIFFERENCE) {
+			if (goalDifference === userGoalDifference) {
 				points += ACCEPTED_GOAL_DIFFERENCE;
 			}
 		}

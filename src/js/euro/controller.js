@@ -1,11 +1,12 @@
 'use strict';
 
-angular.module('mean.euro').controller('EuroController', ['$scope', '$location', 'Global', '$modal', 'Teams', 'MatchService', 'Matchs', 'UserService',
-	function($scope, $location, Global, $modal, Teams, MatchService, Matchs, UserService) {
+angular.module('mean.euro').controller('EuroController', ['$scope', '$location', 'Global', '$modal', 'Teams', 'MatchService', 'Matchs', 'UserService', 'Team',
+	function($scope, $location, Global, $modal, Teams, MatchService, Matchs, UserService, Team) {
 
 		$scope.global = Global;
 		$scope.teams = Teams;
 		$scope.matchs = Matchs;
+		$scope.team = Team;
 
 		$scope.getTeamName = function(code) {
 			return _.findWhere($scope.teams, {
@@ -79,6 +80,18 @@ angular.module('mean.euro').controller('EuroController', ['$scope', '$location',
 
 		$scope.hasResults = function(match){
 			return match.scoreHome !== undefined && match.scoreAway !== undefined;
+		};
+
+		$scope.showPointsRulesPopUp = function(evt) {
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			$modal.open({
+				templateUrl: 'js/home/views/modal/pointRules.html',
+				controller: 'PointRulesController',
+				windowClass: 'userDetailPopup'
+			});
 		};
 
 		$scope.$parent.menu = {
@@ -181,6 +194,10 @@ angular.module('mean.suggestions').controller('betCtrl', ['$scope', '$modalInsta
 ]);
 
 var EuroData = {
+	Team: function(UserService) {
+		return UserService.load();
+	},
+
 	Matchs: function(MatchService) {
 		return MatchService.load();
 	},

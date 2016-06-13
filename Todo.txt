@@ -5,7 +5,6 @@
 - Perfs on home
 - (Display of images) => Pour la taille réel
 - Edition / suppression dans espace utilisateur ou - Gestion des droits au niveau édition / suppressions
-- Commentaires: only update comment object on client
 
 ------ STORIES ------
 - Implements chat with socket.io
