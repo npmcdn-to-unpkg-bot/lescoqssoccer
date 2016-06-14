@@ -2337,7 +2337,7 @@ position: absolute; top:50%; margin-bottom:auto; margin-top:auto;
 }
 .loading-dot1, .loading-dot2 {
   width: 65%; height: 65%;  display: inline-block; position: absolute; top: 0; border-radius: 100%;
-  background-color:#000000;
+  background-color:#2196F3;
   -webkit-animation: loading 1.0s infinite ease-in-out;
   animation: loading 1.0s infinite ease-in-out;
 }
