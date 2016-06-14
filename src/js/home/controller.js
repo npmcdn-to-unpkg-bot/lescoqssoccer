@@ -22,7 +22,10 @@ angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Glo
 
 		$scope.initialize = function() {
 			$scope.initializeConversations();
-			$scope.initConsole();
+			setTimeout(function(){
+				$scope.initConsole();
+				$('#isotope-load').fadeOut();
+			}, 500);
 		};
 
 		//Index all conversations in the object $scope.conversations
@@ -73,9 +76,7 @@ angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Glo
 				}
 			});
 
-			setTimeout(function(){
-				consoleText(consoleTextArray, 'text');
-			}, 500);
+			consoleText(consoleTextArray, 'text');
 		};
 
 		$scope.selectUser = function(evt, userId) {
