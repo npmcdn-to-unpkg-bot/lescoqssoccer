@@ -55,14 +55,9 @@ function handlePhotoUpload(params, callbacks) {
 	var newName = photoId + "." + params.file.path.split('.').pop();
 	var newPath = path.resolve(config.root + "/server/" + config.uploadDirectory + newName);
 
-	fs.readFile(params.file.path, function(err, data) {
-
-		if (err) {
-			callbacks.uploadFailure(err);
-		}
-
-		//Move file to users directory and rename it with uuid
-		fs.writeFile(newPath, data, function(err) {
+	gm(params.file.path)
+		.autoOrient()
+		.write(newPath, function(err) {
 
 			if (err) {
 
@@ -97,7 +92,6 @@ function handlePhotoUpload(params, callbacks) {
 				});
 			}
 		});
-	});
 };
 
 var guid = (function() {

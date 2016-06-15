@@ -9,7 +9,7 @@
 		<a href="#!/articles/view/audio/{{ item._id }}">
 			<div class="timeline-content">
 				<h2>
-					{{ user.username }} a ajouté un son : {{ item.title }}
+					Nouveau son : {{ item.title }}
 				</h2>
 				<div class="soundcloudWrapper embed-container">
 					<iframe frameborder="0" allowtransparency='true' ng-src="{{ trustSrc(item.audioLink) }}">

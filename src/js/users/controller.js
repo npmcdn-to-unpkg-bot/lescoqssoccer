@@ -172,7 +172,7 @@ angular.module('mean.users').controller('ProfileController', ['$scope', 'Global'
 		};
 
 		$scope.$parent.menu = {
-			title: "Profile",
+			title: "Profil",
 			items: [{
 				link: '#!',
 				info: 'Retour',

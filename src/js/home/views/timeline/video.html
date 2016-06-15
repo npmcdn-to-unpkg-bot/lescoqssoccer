@@ -9,7 +9,7 @@
 		<a href="#!/articles/view/video/{{ item._id }}">
 			<div class="timeline-content">
 				<h2>
-					{{ user.username }} a ajouté une vidéo : {{ item.title }}
+					Nouvelle vidéo : {{ item.title }}
 				</h2>
 				<div ng-if="item.videoLink" class="videoWrapper vimeo">
 					<iframe ng-src="{{ trustSrc(item.videoLink + '?showinfo=0') }}" width="100%" height="auto" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true">
