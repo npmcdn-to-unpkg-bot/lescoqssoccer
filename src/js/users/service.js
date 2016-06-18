@@ -1,16 +1,16 @@
-'use strict';
+"use strict";
 
 //user service used for user REST endpoint
-angular.module('mean.users').factory('Users', ['$resource',
+angular.module("mean.users").factory("Users", ["$resource",
 	function($resource) {
-		return $resource('users/:userId', {
-			userId: '@_id'
+		return $resource("users/:userId", {
+			userId: "@_id"
 		}, {
 			update: {
-				method: 'PUT'
+				method: "PUT"
 			},
-			'query': {
-				method: 'GET',
+			"query": {
+				method: "GET",
 				isArray: true
 			},
 		})
@@ -18,26 +18,26 @@ angular.module('mean.users').factory('Users', ['$resource',
 ]);
 
 //user service used for user REST endpoint
-angular.module('mean.users').factory('Conversations', ['$resource',
+angular.module("mean.users").factory("Conversations", ["$resource",
 	function($resource) {
-		return $resource('conversation/:conversationId', {
-			conversationId: '@_id'
+		return $resource("conversation/:conversationId", {
+			conversationId: "@_id"
 		}, {
-			'save': {
-				method: 'POST'
+			"save": {
+				method: "POST"
 			},
-			'update': {
-				method: 'PUT'
+			"update": {
+				method: "PUT"
 			},
-			'query': {
-				method: 'GET',
+			"query": {
+				method: "GET",
 				isArray: true
 			},
 		})
 	}
 ]);
 
-angular.module('mean.users').service('UserService', ['Global', 'Users',
+angular.module("mean.users").service("UserService", ["Global", "Users",
 
 	function(Global, Users) {
 
@@ -119,7 +119,7 @@ angular.module('mean.users').service('UserService', ['Global', 'Users',
 	}
 ]);
 
-angular.module('mean.users').service('ConversationService', ['Conversations',
+angular.module("mean.users").service("ConversationService", ["Conversations",
 
 	function(Conversations) {
 

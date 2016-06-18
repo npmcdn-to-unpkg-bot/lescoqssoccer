@@ -1,22 +1,22 @@
-'use strict';
+"use strict";
 
-angular.module('mean.euro').factory('MatchsCollection', ['$resource',
+angular.module("mean.euro").factory("MatchsCollection", ["$resource",
 	function($resource) {
 
-		return $resource('matchs/:id/', {
-			id: '@_id',
+		return $resource("matchs/:id/", {
+			id: "@_id",
 		}, {
 			"query": {
-				method: 'GET',
+				method: "GET",
 				isArray: true,
 				params: {
-					endedMatch: '@endedMatch'
+					endedMatch: "@endedMatch"
 				}
 			},
 			"update": {
-				method: 'PUT',
+				method: "PUT",
 				params: {
-					_id: '@_id'
+					_id: "@_id"
 				}
 			}
 		});
@@ -24,7 +24,7 @@ angular.module('mean.euro').factory('MatchsCollection', ['$resource',
 	}
 ]);
 
-angular.module('mean.euro').service('MatchService', ['MatchsCollection',
+angular.module("mean.euro").service("MatchService", ["MatchsCollection",
 	function(MatchsCollection) {
 
 		var MatchService = {

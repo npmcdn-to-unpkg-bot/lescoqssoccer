@@ -1,27 +1,27 @@
-'use strict';
+"use strict";
 
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
-	_ = require('lodash'),
-	User = mongoose.model('User'),
-	passport = require('passport');
+var mongoose = require("mongoose"),
+	_ = require("lodash"),
+	User = mongoose.model("User"),
+	passport = require("passport");
 
 /**
  * Auth callback
  */
 exports.authCallback = function(req, res) {
-	res.redirect('/');
+	res.redirect("/");
 };
 
 /**
  * Show login form
  */
 exports.signin = function(req, res) {
-	res.render('users/signin', {
-		title: 'Signin',
-		message: req.flash('error')
+	res.render("users/signin", {
+		title: "Signin",
+		message: req.flash("error")
 	});
 };
 
@@ -29,8 +29,8 @@ exports.signin = function(req, res) {
  * Show sign up form
  */
 exports.signup = function(req, res) {
-	res.render('users/signup', {
-		title: 'Sign up',
+	res.render("users/signup", {
+		title: "Sign up",
 		user: new User()
 	});
 };
@@ -40,7 +40,7 @@ exports.signup = function(req, res) {
  */
 exports.signout = function(req, res) {
 	req.logout();
-	res.redirect('/');
+	res.redirect("/");
 };
 
 /**
@@ -58,7 +58,7 @@ exports.session = function(req, res) {
 	}, {
 		upsert: false
 	}, function(err) {
-		res.redirect('/');
+		res.redirect("/");
 	});
 };
 
@@ -66,7 +66,7 @@ exports.session = function(req, res) {
  * Before call session
  */
 exports.isFutureSessionValid = function(req, res) {
-	passport.authenticate('local', function(err, user, info) {
+	passport.authenticate("local", function(err, user, info) {
 		if (err) {
 			return res.jsonp({
 				authenticate: false,
@@ -95,7 +95,7 @@ exports.create = function(req, res, next) {
 	var user = new User(req.body);
 	var message = null;
 
-	user.provider = 'local';
+	user.provider = "local";
 	user.save(function(err) {
 		if (err) {
 			switch (err.code) {
@@ -107,14 +107,14 @@ exports.create = function(req, res, next) {
 					message = "Veuillez renseigner l'ensemble des champs";
 			}
 
-			return res.render('users/signup', {
+			return res.render("users/signup", {
 				message: message,
 				user: user
 			});
 		}
 		req.logIn(user, function(err) {
 			if (err) return next(err);
-			return res.redirect('/');
+			return res.redirect("/");
 		});
 	});
 };
@@ -123,7 +123,7 @@ exports.update = function(req, res, next) {
 	var user = _.extend(req.user, req.body);
 	user.save(function(err) {
 		if (err) {
-			return res.send('users/signup', {
+			return res.send("users/signup", {
 				errors: err.errors,
 				user: user
 			});
@@ -148,7 +148,7 @@ exports.user = function(req, res, next, id) {
 		_id: id
 	}).exec(function(err, user) {
 		if (err) return next(err);
-		if (!user) return next(new Error('Failed to load User ' + id));
+		if (!user) return next(new Error("Failed to load User " + id));
 		req.profile = user;
 		next();
 	});
@@ -162,9 +162,9 @@ exports.findOne = function(req, res) {
  * Return all users
  */
 exports.team = function(req, res) {
-	User.find({}, '-password -salt -hashed_password -__v -provider').sort('-euroPoints').exec(function(err, users) {
+	User.find({}, "-password -salt -hashed_password -__v -provider").sort("-euroPoints").exec(function(err, users) {
 		if (err) {
-			res.render('error', {
+			res.render("error", {
 				status: 500
 			});
 		} else {

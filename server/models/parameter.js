@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
+var mongoose = require("mongoose"),
 	Schema = mongoose.Schema;
 
 
@@ -17,7 +17,7 @@ var ParameterSchema = new Schema({
 		},
 		value: {
 			type: String,
-			default: '',
+			default: "",
 			trim: true
 		},
 		active: {
@@ -35,4 +35,4 @@ ParameterSchema.statics.load = function(id, cb) {
 	}).exec(cb);
 };
 
-mongoose.model('Parameter', ParameterSchema);
+mongoose.model("Parameter", ParameterSchema);

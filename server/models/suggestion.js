@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
+var mongoose = require("mongoose"),
 	Schema = mongoose.Schema;
 
 
@@ -17,12 +17,12 @@ var SuggestionSchema = new Schema({
 	},
 	content: {
 		type: String,
-		default: '',
+		default: "",
 		trim: true
 	},
 	user: {
 		type: Schema.ObjectId,
-		ref: 'User'
+		ref: "User"
 	},
 	yes: [],
 	no: [],
@@ -35,7 +35,7 @@ var SuggestionSchema = new Schema({
 SuggestionSchema.statics.load = function(id, cb) {
 	this.findOne({
 		_id: id
-	}).populate('user', 'name username avatar').exec(cb);
+	}).populate("user", "name username avatar").exec(cb);
 };
 
-mongoose.model('Suggestion', SuggestionSchema);
+mongoose.model("Suggestion", SuggestionSchema);

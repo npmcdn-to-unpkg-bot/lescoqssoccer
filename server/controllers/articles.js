@@ -1,23 +1,23 @@
-'use strict';
+"use strict";
 
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
-	Article = mongoose.model('Article'),
-	_ = require('lodash');
+var mongoose = require("mongoose"),
+	Article = mongoose.model("Article"),
+	_ = require("lodash");
 
 /**
  * Find article by id
  */
 exports.article = function(req, res, next, id) {
 	Article.findOne({"_id":id})
-		.populate('user', 'name username avatar')
-		.populate('comments.user', '_id name username avatar')
-		.populate('comments.replies.user', '_id name username avatar')
-		.populate('yes.user', 'name username avatar')
-		.populate('no.user', 'name username avatar')
-		.populate('blank.user', 'name username avatar').exec(function(err, article) {
+		.populate("user", "name username avatar")
+		.populate("comments.user", "_id name username avatar")
+		.populate("comments.replies.user", "_id name username avatar")
+		.populate("yes.user", "name username avatar")
+		.populate("no.user", "name username avatar")
+		.populate("blank.user", "name username avatar").exec(function(err, article) {
 			if (err) return next(err);
 			req.article = article;
 			next();
@@ -33,7 +33,7 @@ exports.create = function(req, res) {
 	article.save(function(err) {
 
 		if (err) {
-			return res.send('users/signup', {
+			return res.send("users/signup", {
 				errors: err.errors,
 				article: article
 			});
@@ -51,7 +51,7 @@ exports.update = function(req, res) {
 	article = _.extend(article, req.body);
 	article.save(function(err) {
 		if (err) {
-			return res.send('users/signup', {
+			return res.send("users/signup", {
 				errors: err.errors,
 				article: article
 			});
@@ -68,7 +68,7 @@ exports.destroy = function(req, res) {
 	var article = req.article;
 	article.remove(function(err) {
 		if (err) {
-			return res.send('users/signup', {
+			return res.send("users/signup", {
 				errors: err.errors,
 				article: article
 			});
@@ -96,16 +96,16 @@ exports.all = function(req, res) {
 	} : {};
 
 	Article.find(query)
-		.sort('-created')
+		.sort("-created")
 		.limit(perPage)
 		.skip(perPage * page)
-		.populate('user', '_id name username avatar')
-		.populate('comments.user', '_id name username avatar')
-		.populate('comments.replies.user', 'name username avatar').exec(function(err, articles) {
+		.populate("user", "_id name username avatar")
+		.populate("comments.user", "_id name username avatar")
+		.populate("comments.replies.user", "name username avatar").exec(function(err, articles) {
 
 			if (err) {
 
-				res.render('error', {
+				res.render("error", {
 					status: 500
 				});
 
@@ -124,7 +124,7 @@ exports.getItemsCount = function(req, res) {
 
 		if (err) {
 
-			res.render('error', {
+			res.render("error", {
 				status: 500
 			});
 

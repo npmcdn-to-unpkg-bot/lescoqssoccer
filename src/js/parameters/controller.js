@@ -1,4 +1,6 @@
-angular.module('mean.system').controller('ParametersController', ['$scope', 'Global', '$modal', 'Parameters', 'ParametersService',
+"use strict";
+
+angular.module("mean.system").controller("ParametersController", ["$scope", "Global", "$modal", "Parameters", "ParametersService",
 
 	function($scope, Global, $modal, Parameters, ParametersService) {
 
@@ -30,8 +32,8 @@ angular.module('mean.system').controller('ParametersController', ['$scope', 'Glo
 
 			ParametersService.update($scope.parameters).then(function(newParams) {
 				var modalInstance = $modal.open({
-					templateUrl: 'js/parameters/views/saveModal.html',
-					controller: 'saveCtrl'
+					templateUrl: "js/parameters/views/saveModal.html",
+					controller: "saveCtrl"
 				});
 			});
 		};
@@ -39,21 +41,21 @@ angular.module('mean.system').controller('ParametersController', ['$scope', 'Glo
 		$scope.$parent.menu = {
 			title: "Paramètres",
 			items: [{
-				link: '#!',
-				info: 'Retour',
-				icon: 'fa-arrow-left',
+				link: "#!",
+				info: "Retour",
+				icon: "fa-arrow-left",
 				callback: $scope.global.back
 			}, {
-				link: '#!',
-				info: 'Sauvegarder',
-				icon: 'fa-save',
+				link: "#!",
+				info: "Sauvegarder",
+				icon: "fa-save",
 				callback: $scope.update
 			}]
 		};
 	}
 ]);
 
-angular.module('mean.system').controller('issuesCtrl', ['$scope',
+angular.module("mean.system").controller("issuesCtrl", ["$scope",
 	function($scope) {
 		$scope.$parent.menu = {
 			title: "Bugs",
@@ -62,7 +64,7 @@ angular.module('mean.system').controller('issuesCtrl', ['$scope',
 	}
 ]);
 
-angular.module('mean.system').controller('saveCtrl', ['$scope', '$modalInstance',
+angular.module("mean.system").controller("saveCtrl", ["$scope", "$modalInstance",
 	function($scope, $modalInstance) {
 		$scope.ok = function(result) {
 			$modalInstance.close(result);

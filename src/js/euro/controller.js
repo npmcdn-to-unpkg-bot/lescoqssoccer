@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-angular.module('mean.euro').controller('EuroController', ['$scope', '$location', 'Global', '$modal', 'Teams', 'MatchService', 'Matchs', 'UserService', 'Team',
+angular.module("mean.euro").controller("EuroController", ["$scope", "$location", "Global", "$modal", "Teams", "MatchService", "Matchs", "UserService", "Team",
 	function($scope, $location, Global, $modal, Teams, MatchService, Matchs, UserService, Team) {
 
 		$scope.global = Global;
@@ -67,8 +67,8 @@ angular.module('mean.euro').controller('EuroController', ['$scope', '$location',
 
 			MatchService.updateMatch(match).then(function() {
 				var modalInstance = $modal.open({
-					templateUrl: 'js/euro/views/betModal.html',
-					controller: 'betCtrl',
+					templateUrl: "js/euro/views/betModal.html",
+					controller: "betCtrl",
 					scope: $scope
 				});
 			});
@@ -88,25 +88,25 @@ angular.module('mean.euro').controller('EuroController', ['$scope', '$location',
 			evt.stopPropagation();
 
 			$modal.open({
-				templateUrl: 'js/home/views/modal/pointRules.html',
-				controller: 'PointRulesController',
-				windowClass: 'userDetailPopup'
+				templateUrl: "js/home/views/modal/pointRules.html",
+				controller: "PointRulesController",
+				windowClass: "userDetailPopup"
 			});
 		};
 
 		$scope.$parent.menu = {
 			title: "Euro",
 			items: [{
-				link: '#!',
-				info: 'Retour',
-				icon: 'fa-arrow-left',
+				link: "#!",
+				info: "Retour",
+				icon: "fa-arrow-left",
 				callback: $scope.global.back
 			}]
 		};
 	}
 ]);
 
-angular.module('mean.euro').controller('MatchController', ['$scope', '$location', 'Global', 'Teams', 'Match', 'MatchService',
+angular.module("mean.euro").controller("MatchController", ["$scope", "$location", "Global", "Teams", "Match", "MatchService",
 	function($scope, $location, Global, Teams, Match, MatchService) {
 
 		$scope.global = Global;
@@ -127,16 +127,16 @@ angular.module('mean.euro').controller('MatchController', ['$scope', '$location'
 		$scope.$parent.menu = {
 			title: "Euro / ",
 			items: [{
-				link: '#!',
-				info: 'Retour',
-				icon: 'fa-arrow-left',
+				link: "#!",
+				info: "Retour",
+				icon: "fa-arrow-left",
 				callback: $scope.global.back
 			}]
 		};
 	}
 ]);
 
-angular.module('mean.euro').controller('AdminMatchController', ['$scope', '$location', 'Global', '$modal', 'Teams', 'Matchs', 'MatchService',
+angular.module("mean.euro").controller("AdminMatchController", ["$scope", "$location", "Global", "$modal", "Teams", "Matchs", "MatchService",
 	function($scope, $location, Global, $modal, Teams, Matchs, MatchService) {
 
 		$scope.global = Global;
@@ -159,8 +159,8 @@ angular.module('mean.euro').controller('AdminMatchController', ['$scope', '$loca
 			match.scoreAway = $("#" + match._id + "_away").val();
 			MatchService.updateMatch(match).then(function() {
 				var modalInstance = $modal.open({
-					templateUrl: 'js/euro/views/scoreUpdatedModal.html',
-					controller: 'betCtrl',
+					templateUrl: "js/euro/views/scoreUpdatedModal.html",
+					controller: "betCtrl",
 					scope: $scope
 				});
 			});
@@ -169,16 +169,16 @@ angular.module('mean.euro').controller('AdminMatchController', ['$scope', '$loca
 		$scope.$parent.menu = {
 			title: "Euro scores",
 			items: [{
-				link: '#!',
-				info: 'Retour',
-				icon: 'fa-arrow-left',
+				link: "#!",
+				info: "Retour",
+				icon: "fa-arrow-left",
 				callback: $scope.global.back
 			}]
 		};
 	}
 ]);
 
-angular.module('mean.suggestions').controller('betCtrl', ['$scope', '$modalInstance',
+angular.module("mean.suggestions").controller("betCtrl", ["$scope", "$modalInstance",
 
 	function($scope, $modalInstance) {
 
@@ -187,7 +187,7 @@ angular.module('mean.suggestions').controller('betCtrl', ['$scope', '$modalInsta
 		};
 
 		$scope.cancel = function() {
-			$modalInstance.dismiss('cancel');
+			$modalInstance.dismiss("cancel");
 		};
 	}
 

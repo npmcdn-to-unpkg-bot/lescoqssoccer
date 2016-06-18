@@ -1,11 +1,11 @@
-'use strict';
+"use strict";
 
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
-	Conversation = mongoose.model('Conversation'),
-	_ = require('lodash');
+var mongoose = require("mongoose"),
+	Conversation = mongoose.model("Conversation"),
+	_ = require("lodash");
 
 /**
  * Find conversation by id
@@ -13,7 +13,7 @@ var mongoose = require('mongoose'),
 exports.conversation = function(req, res, next, id) {
 	Conversation.load(id, function(err, conversation) {
 		if (err) return next(err);
-		if (!conversation) return next(new Error('Failed to load conversation ' + id));
+		if (!conversation) return next(new Error("Failed to load conversation " + id));
 		req.conversation = conversation;
 		next();
 	});
@@ -29,7 +29,7 @@ exports.create = function(req, res) {
 
 		if (err) {
 			console.log("Error when create conversation: " + err);
-			return res.send('users/signup', {
+			return res.send("users/signup", {
 				errors: err.errors,
 				conversation: conversation
 			});
@@ -50,7 +50,7 @@ exports.update = function(req, res) {
 		conversation.messages.push(req.body.messages[req.body.messages.length - 1]);
 		conversation.save(function(err) {
 			if (err) {
-				return res.send('users/signup', {
+				return res.send("users/signup", {
 					errors: err.errors,
 					conversation: conversation
 				});
@@ -70,7 +70,7 @@ exports.destroy = function(req, res) {
 	var conversation = req.conversation;
 	conversation.remove(function(err) {
 		if (err) {
-			return res.send('users/signup', {
+			return res.send("users/signup", {
 				errors: err.errors,
 				conversation: conversation
 			});
@@ -104,12 +104,12 @@ exports.all = function(req, res) {
 				users: []
 			}
 		]})
-		.sort('-created')
-		.populate('users')
-		.populate('messages.user').exec(function(err, conversations) {
+		.sort("-created")
+		.populate("users")
+		.populate("messages.user").exec(function(err, conversations) {
 
 			if (err) {
-				res.send('error', {
+				res.send("error", {
 					status: 500
 				});
 			} else {

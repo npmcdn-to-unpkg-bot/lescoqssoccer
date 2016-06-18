@@ -1,0 +1,20 @@
+<div>
+	<p>
+		{{ getDateFrom(item) }}
+	</p>
+	<div class="timeline-item comment">
+		<div class="timeline-icon" ng-click="showUserDetail($event, item.user);">
+			<img ng-src="{{ item.user.avatar && item.user.avatar + '?dim=50x50' || 'img/Professor.png' }}" alt="{{ user.username }}" title="{{ user.username }}" style="background: white;"/>
+		</div>
+		<a ng-href="{{ getLinkFromComment(item) }}">
+			<div class="timeline-content" style="padding: 20px 20px 0;">
+				<h2 style="background: #f7f7f7; color: black;">
+					<b style="text-transform: uppercase; font-size: medium;">
+						{{ item.user.username }}
+					</b>
+					a commenté {{ getTypeFromComment(item) }}
+				</h2>
+			</div>
+		</a>
+	</div>
+</div>

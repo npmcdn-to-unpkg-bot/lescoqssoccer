@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
 /**
  * Module dependencies.
  */
-var mongoose = require( 'mongoose' ),
+var mongoose = require( "mongoose" ),
 	Schema = mongoose.Schema;
 
 /**
@@ -25,17 +25,17 @@ var UserEventSchema = new Schema( {
 	},
 	title: {
 		type: String,
-		default: '',
+		default: "",
 		trim: true
 	},
 	content: {
 		type: String,
-		default: '',
+		default: "",
 		trim: true
 	},
 	user: {
 		type: Schema.ObjectId,
-		ref: 'User'
+		ref: "User"
 	},
 	type: {
 		type: String,
@@ -68,14 +68,14 @@ var UserEventSchema = new Schema( {
 		}
 	},
 	guest: [{
-		type : mongoose.Schema.ObjectId, ref : 'User'
+		type : mongoose.Schema.ObjectId, ref : "User"
 	}],
 	guestUnavailable: [{
-		type : mongoose.Schema.ObjectId, ref : 'User'
+		type : mongoose.Schema.ObjectId, ref : "User"
 	}],
 	subType: {
 		type: String,
-		default: 'classic'
+		default: "classic"
 	},
 	matchId: {
 		type: String
@@ -87,11 +87,11 @@ var UserEventSchema = new Schema( {
 		},
 		user: {
 			type: Schema.Types.ObjectId,
-			ref: 'User'
+			ref: "User"
 		},
 		content: {
 			type: String,
-			default: ''
+			default: ""
 		},
 		replies: [new Schema({
 			created: {
@@ -100,11 +100,11 @@ var UserEventSchema = new Schema( {
 			},
 			user: {
 				type: Schema.Types.ObjectId,
-				ref: 'User'
+				ref: "User"
 			},
 			content: {
 				type: String,
-				default: ''
+				default: ""
 			}
 		})]
 	})]
@@ -113,9 +113,9 @@ var UserEventSchema = new Schema( {
 /**
  * Validations
  */
-// UserEventSchema.path('content').validate(function(title) {
+// UserEventSchema.path("content").validate(function(title) {
 //     return title.length;
-// }, 'Content cannot be blank');
+// }, "Content cannot be blank");
 
 /**
  * Statics
@@ -123,7 +123,7 @@ var UserEventSchema = new Schema( {
 UserEventSchema.statics.load = function ( id, cb ) {
 	this.findOne( {
 		_id: id
-	} ).populate( 'userEvent', 'name username avatar' ).exec( cb );
+	} ).populate( "userEvent", "name username avatar" ).exec( cb );
 };
 
-module.exports = mongoose.model( 'UserEvent', UserEventSchema );
+module.exports = mongoose.model( "UserEvent", UserEventSchema );

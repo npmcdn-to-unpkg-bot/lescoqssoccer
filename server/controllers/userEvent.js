@@ -1,22 +1,22 @@
-'use strict';
+"use strict";
 
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose');
-var UserEvent = mongoose.model('UserEvent');
-var _ = require('lodash');
+var mongoose = require("mongoose");
+var UserEvent = mongoose.model("UserEvent");
+var _ = require("lodash");
 
 
 exports.userEvent = function(req, res, next) {
 	UserEvent.findOne({
 			"_id": req.params.userEventId
 		})
-		.populate('user', '_id name username avatar')
-		.populate('guest', '_id name username avatar')
-		.populate('guestUnavailable', '_id name username avatar')
-		.populate('comments.user', '_id name username avatar')
-		.populate('comments.replies.user', '_id name username avatar')
+		.populate("user", "_id name username avatar")
+		.populate("guest", "_id name username avatar")
+		.populate("guestUnavailable", "_id name username avatar")
+		.populate("comments.user", "_id name username avatar")
+		.populate("comments.replies.user", "_id name username avatar")
 		.exec(function(err, userEvent) {
 			if (err) return next(err);
 			req.userEvent = userEvent;
@@ -31,11 +31,11 @@ exports.show = function(req, res) {
 	UserEvent.findOne({
 			"_id": req.params.userEventId
 		})
-		.populate('user', '_id name username avatar')
-		.populate('guest', '_id name username avatar')
-		.populate('guestUnavailable', '_id name username avatar')
-		.populate('comments.user', '_id name username avatar')
-		.populate('comments.replies.user', '_id name username avatar')
+		.populate("user", "_id name username avatar")
+		.populate("guest", "_id name username avatar")
+		.populate("guestUnavailable", "_id name username avatar")
+		.populate("comments.user", "_id name username avatar")
+		.populate("comments.replies.user", "_id name username avatar")
 		.exec(function(err, userEvent) {
 			if (err) return next(err);
 			res.jsonp(userEvent);
@@ -50,7 +50,7 @@ exports.create = function(req, res) {
 	userEvent.user = req.user;
 	userEvent.save(function(err) {
 		if (err) {
-			return res.send('agenda', {
+			return res.send("agenda", {
 				errors: err.errors,
 				userEvent: userEvent
 			});
@@ -69,7 +69,7 @@ exports.update = function(req, res) {
 	userEvent.save(function(err) {
 		if (err) {
 			console.warn(err);
-			return res.send('users/signup', {
+			return res.send("users/signup", {
 				errors: err.errors,
 				userEvent: userEvent
 			});
@@ -87,7 +87,7 @@ exports.destroy = function(req, res) {
 	var userEvent = new UserEvent(req.userEvent);
 	userEvent.remove(function(err) {
 		if (err) {
-			return res.send('users/signup', {
+			return res.send("users/signup", {
 				errors: err.errors,
 				userEvent: userEvent
 			});
@@ -106,14 +106,14 @@ exports.all = function(req, res) {
 				"$gte": new Date()
 			}
 		})
-		.sort('startsAt')
+		.sort("startsAt")
 		.limit(40)
-		.populate('user', 'name username avatar')
-		.populate('guest', 'name username avatar')
-		.populate('guestUnavailable', 'name username avatar')
+		.populate("user", "name username avatar")
+		.populate("guest", "name username avatar")
+		.populate("guestUnavailable", "name username avatar")
 		.exec(function(err, userEvent) {
 			if (err) {
-				res.render('error', {
+				res.render("error", {
 					status: 500
 				});
 			} else {

@@ -1,19 +1,19 @@
-'use strict';
+"use strict";
 
-angular.module('mean.albums').factory('AlbumsCollection', ['$resource',
+angular.module("mean.albums").factory("AlbumsCollection", ["$resource",
 	function($resource) {
 
-		return $resource('albums/:id/', {
-			id: '@_id'
+		return $resource("albums/:id/", {
+			id: "@_id"
 		}, {
 			query: {
-				method: 'GET',
+				method: "GET",
 				isArray: true
 			},
 			update: {
-				method: 'PUT',
+				method: "PUT",
 				params: {
-					_id: '@_id'
+					_id: "@_id"
 				}
 			}
 		});
@@ -22,23 +22,23 @@ angular.module('mean.albums').factory('AlbumsCollection', ['$resource',
 ]);
 
 //Articles service used for get articles items count
-angular.module('mean.albums').factory('AlbumsCount', ['$resource',
+angular.module("mean.albums").factory("AlbumsCount", ["$resource",
 	function($resource) {
-		return $resource('albumsCount');
+		return $resource("albumsCount");
 	}
 ]);
 
-angular.module('mean.albums').factory('Photos', ['$resource',
+angular.module("mean.albums").factory("Photos", ["$resource",
 	function($resource) {
 
-		return $resource('photos/:id/', {
-			id: '@_id'
+		return $resource("photos/:id/", {
+			id: "@_id"
 		}, {
 			uploadPhoto: {
-				method: 'POST',
-				url: '/upload/photo',
+				method: "POST",
+				url: "/upload/photo",
 				headers: {
-					'Content-Type': undefined
+					"Content-Type": undefined
 				},
 				transformRequest: angular.identity
 			}
@@ -46,7 +46,7 @@ angular.module('mean.albums').factory('Photos', ['$resource',
 	}
 ]);
 
-angular.module('mean.albums').service('AlbumService', ['AlbumsCollection', 'Photos', 'AlbumsCount',
+angular.module("mean.albums").service("AlbumService", ["AlbumsCollection", "Photos", "AlbumsCount",
 	function(AlbumsCollection, Photos, AlbumsCount) {
 
 		var AlbumService = {

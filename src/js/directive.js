@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
-angular.module('mean.system').directive('cmLogin', ['$http', '$location', '$window', 'Global', function($http, $location, $window, Global) {
+angular.module("mean.system").directive("cmLogin", ["$http", "$location", "$window", "Global", function($http, $location, $window, Global) {
 	return {
-		restrict: 'E',
+		restrict: "E",
 		transclude: true,
 		templateUrl: "js/authentication/login.html",
 		link: function($scope, element, attrs){
@@ -18,18 +18,18 @@ angular.module('mean.system').directive('cmLogin', ['$http', '$location', '$wind
 	}
 }]);
 
-angular.module('mean.system').directive('cmHeader', function() {
+angular.module("mean.system").directive("cmHeader", function() {
 	return {
-		restrict: 'E',
+		restrict: "E",
 		transclude: true,
 		templateUrl: "js/appStructure/header.html",
 	}
 });
 
-angular.module('mean.system').directive('cmSidebar', function() {
+angular.module("mean.system").directive("cmSidebar", function() {
 	return {
-		restrict: 'E',
-		controller: 'SidebarController',
+		restrict: "E",
+		controller: "SidebarController",
 		templateUrl: "js/appStructure/sidebar.html",
 		replace: true,
 		resolve: {
@@ -43,9 +43,9 @@ angular.module('mean.system').directive('cmSidebar', function() {
 	}
 });
 
-angular.module('mean.system').directive('cmIsotope', function() {
+angular.module("mean.system").directive("cmIsotope", function() {
 	return {
-		restrict: 'E',
+		restrict: "E",
 		transclude: true,
 		link: function($scope, element, attrs) {
 			setTimeout(function() {
@@ -56,7 +56,7 @@ angular.module('mean.system').directive('cmIsotope', function() {
 	}
 });
 
-angular.module('mean.system').directive('ngEnter', function() {
+angular.module("mean.system").directive("ngEnter", function() {
 	return function(scope, element, attrs) {
 		element.bind("keydown keypress", function(event) {
 			if (event.which === 13) {
@@ -69,9 +69,9 @@ angular.module('mean.system').directive('ngEnter', function() {
 	};
 });
 
-angular.module('mean.system').directive('cmWysiwyg', function() {
+angular.module("mean.system").directive("cmWysiwyg", function() {
 	return {
-		restrict: 'E',
+		restrict: "E",
 		transclude: true,
 		link: function($scope, element, attrs) {
 			setTimeout(function() {
@@ -79,20 +79,20 @@ angular.module('mean.system').directive('cmWysiwyg', function() {
 				var config = {
 					paste: {
 						// Override default paste behavior, removing all inline styles
-						style: 'clean'
+						style: "clean"
 					}
 				};
 
-				var editor = textboxio.replace('#mytextarea', config);
+				var editor = textboxio.replace("#mytextarea", config);
 				editor.content.set($scope.article.content);
 			});
 		}
 	}
 });
 
-angular.module('mean.system').directive('cmTimeline', function() {
+angular.module("mean.system").directive("cmTimeline", function() {
 	return {
-		restrict: 'E',
+		restrict: "E",
 		replace: true,
 		link: function(scope, element, attrs) {
 			if (scope.item.type === "standard") {
@@ -100,22 +100,22 @@ angular.module('mean.system').directive('cmTimeline', function() {
 			}
 
 			attrs.$observe("type", function(postType) {
-				scope.contentUrl = 'js/home/views/timeline/' + postType + '.html';
+				scope.contentUrl = "js/home/views/timeline/" + postType + ".html";
 			});
 		},
-		template: '<div ng-include="contentUrl"></div>'
+		template: "<div ng-include='contentUrl'></div>"
 	}
 });
 
-angular.module('mean.system').directive('cmBlogPost', function() {
+angular.module("mean.system").directive("cmBlogPost", function() {
 	return {
-		restrict: 'E',
+		restrict: "E",
 		replace: true,
 		link: function(scope, element, attrs) {
 			var format = attrs.format;
-			scope.contentUrl = 'js/articles/views/' + format + '/' + attrs.type + '.html';
+			scope.contentUrl = "js/articles/views/" + format + "/" + attrs.type + ".html";
 			attrs.$observe("type", function(postType) {
-				scope.contentUrl = 'js/articles/views/tiles/' + postType + '.html';
+				scope.contentUrl = "js/articles/views/tiles/" + postType + ".html";
 				if (scope.$last) {
 					setTimeout(function() {
 						var ux_pb = new ThemePageBuilder();
@@ -124,18 +124,18 @@ angular.module('mean.system').directive('cmBlogPost', function() {
 				}
 			});
 		},
-		template: '<div ng-include="contentUrl"></div>'
+		template: "<div ng-include='contentUrl'></div>"
 	}
 });
 
-angular.module('mean.system').directive('cmComments', function() {
+angular.module("mean.system").directive("cmComments", function() {
 	return {
-		restrict: 'E',
+		restrict: "E",
 		templateUrl: "js/comments/comments.html",
 		scope: {
 			updateMethod: "&",
 			object: "="
 		},
-		controller: 'CommentController'
+		controller: "CommentController"
 	}
 });

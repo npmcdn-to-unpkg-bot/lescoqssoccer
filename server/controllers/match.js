@@ -1,16 +1,16 @@
-var mongoose = require('mongoose');
-var _ = require('underscore');
-var Match = mongoose.model('Match');
-var User = mongoose.model('User');
+var mongoose = require("mongoose");
+var _ = require("underscore");
+var Match = mongoose.model("Match");
+var User = mongoose.model("User");
 
 exports.match = function(req, res, next) {
 	Match.findOne({
 			_id: req.params.id
 		})
-		.populate('bets.user', '_id name username avatar')
-		.populate('comments.user', '_id name username avatar')
-		.populate('comments.replies.user', '_id name username avatar')
-		.populate('user', '_id name username avatar')
+		.populate("bets.user", "_id name username avatar")
+		.populate("comments.user", "_id name username avatar")
+		.populate("comments.replies.user", "_id name username avatar")
+		.populate("user", "_id name username avatar")
 		.exec(function(err, match) {
 			if (err) return next(err);
 			req.match = match;
@@ -27,9 +27,9 @@ exports.findAllMatchs = function(req, res) {
 	} : {};
 
 	Match.find(query)
-		.sort('startsAt')
-		.populate('bets.user', '_id name username avatar')
-		.populate('user', '_id name username avatar')
+		.sort("startsAt")
+		.populate("bets.user", "_id name username avatar")
+		.populate("user", "_id name username avatar")
 		.exec(function(err, matchs) {
 			res.send(matchs);
 		});
@@ -39,10 +39,10 @@ exports.findMatchById = function(req, res) {
 	Match.findOne({
 			_id: req.params.id
 		})
-		.populate('bets.user', '_id name username avatar')
-		.populate('comments.user', '_id name username avatar')
-		.populate('comments.replies.user', '_id name username avatar')
-		.populate('user', '_id name username avatar')
+		.populate("bets.user", "_id name username avatar")
+		.populate("comments.user", "_id name username avatar")
+		.populate("comments.replies.user", "_id name username avatar")
+		.populate("user", "_id name username avatar")
 		.exec(function(err, match) {
 			if (err) console.log("error finding match: " + err);
 			res.send(match);
@@ -107,7 +107,7 @@ var updateUserScores = function() {
 						$exists: false
 					}
 				})
-				.sort('-created')
+				.sort("-created")
 				.exec()
 
 		}
@@ -182,9 +182,10 @@ var getPointsFromMatch = function(match, user) {
 	var winner = (scoreHome > scoreAway) ? 1 : ((scoreHome < scoreAway) ? 2 : -1);
 	var goalDifference = scoreHome - scoreAway;
 
-	var userBet = _.filter(match.bets, function(bet) {
+	var _userbets = _.filter(match.bets, function(bet) {
 		return bet.user.toString() === user._id.toString()
 	})[0];
+	 var userBet = (_userbets.length) ? _userbets[_userbets.length-1] : null
 
 	if (userBet) {
 

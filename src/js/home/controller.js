@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Global', '$modal', 'UserDatas', 'ConversationService', 'UserService',
+angular.module("mean.home").controller("HomeController", ["$scope", "$sce", "Global", "$modal", "UserDatas", "ConversationService", "UserService",
 	function($scope, $sce, Global, $modal, UserDatas, ConversationService, UserService) {
 
 		$scope.global = Global;
@@ -22,9 +22,9 @@ angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Glo
 
 		$scope.initialize = function() {
 			$scope.initializeConversations();
-			setTimeout(function(){
+			setTimeout(function() {
 				$scope.initConsole();
-				$('#isotope-load').fadeOut();
+				$("#isotope-load").fadeOut();
 			}, 500);
 		};
 
@@ -36,7 +36,7 @@ angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Glo
 				conversation: $scope.conversationService.getConversation("all"),
 				username: "Tout le monde",
 				avatar: "img/coq.png",
-				userId: 'all'
+				userId: "all"
 			};
 
 			_.each($scope.team, function(user) {
@@ -76,7 +76,7 @@ angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Glo
 				}
 			});
 
-			consoleText(consoleTextArray, 'text');
+			consoleText(consoleTextArray, "text");
 		};
 
 		$scope.selectUser = function(evt, userId) {
@@ -150,9 +150,9 @@ angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Glo
 			evt.stopPropagation();
 
 			$modal.open({
-				templateUrl: 'js/users/views/modal/userDetail.html',
-				controller: 'UserDetailController',
-				windowClass: 'userDetailPopup',
+				templateUrl: "js/users/views/modal/userDetail.html",
+				controller: "UserDetailController",
+				windowClass: "userDetailPopup",
 				resolve: {
 
 					User: function(UserService) {
@@ -181,15 +181,57 @@ angular.module('mean.home').controller('HomeController', ['$scope', '$sce', 'Glo
 			evt.stopPropagation();
 
 			$modal.open({
-				templateUrl: 'js/home/views/modal/pointRules.html',
-				controller: 'PointRulesController',
-				windowClass: 'userDetailPopup'
+				templateUrl: "js/home/views/modal/pointRules.html",
+				controller: "PointRulesController",
+				windowClass: "userDetailPopup"
 			});
+		};
+
+		$scope.getLinkFromComment = function(comment) {
+			switch (comment.contentType) {
+				case "standard":
+					return "#!/articles/view/standard/" + comment.contentId;
+				case "audio":
+					return "#!/articles/view/audio/" + comment.contentId;
+				case "video":
+					return "#!/articles/view/video/" + comment.contentId;
+				case "quote":
+					return "#!/articles/view/quote/" + comment.contentId;
+				case "match":
+					return "#!/euro/view/" + comment.contentId;
+				case "userEvent":
+					return "#!/agenda/view/" + comment.contentId;
+				case "album":
+					return "#!/albums/view/" + comment.contentId;
+				default:
+					break;
+			};
+		};
+
+		$scope.getTypeFromComment = function(comment) {
+			switch (comment.contentType) {
+				case "standard":
+					return "un article";
+				case "audio":
+					return "un son";
+				case "video":
+					return "une vidéo";
+				case "quote":
+					return "un résultat de vote";
+				case "match":
+					return "un match";
+				case "userEvent":
+					return "un évènement";
+				case "album":
+					return "un album";
+				default:
+					break;
+			};
 		};
 	}
 ]);
 
-angular.module('mean.home').controller('UserDetailController', ['$scope', '$sce', '$modalInstance', 'User', 'Albums', 'UserArticles',
+angular.module("mean.home").controller("UserDetailController", ["$scope", "$sce", "$modalInstance", "User", "Albums", "UserArticles",
 
 	function($scope, $sce, $modalInstance, User, Albums, UserArticles) {
 
@@ -202,8 +244,8 @@ angular.module('mean.home').controller('UserDetailController', ['$scope', '$sce'
 		};
 
 		$scope.getImage = function(html) {
-			var img = angular.element(html).find('img').first();
-			return (img.length) ? img.attr('src') : '';
+			var img = angular.element(html).find("img").first();
+			return (img.length) ? img.attr("src") : "";
 		};
 
 		//Format video and audio url
@@ -212,19 +254,19 @@ angular.module('mean.home').controller('UserDetailController', ['$scope', '$sce'
 		};
 
 		$scope.isSpotify = function(link) {
-			return link.indexOf('spotify') !== -1;
+			return link.indexOf("spotify") !== -1;
 		};
 
 		$scope.cancel = function() {
-			$modalInstance.dismiss('cancel');
+			$modalInstance.dismiss("cancel");
 		};
 	}
 ]);
 
-angular.module('mean.home').controller('PointRulesController', ['$scope', '$modalInstance',
+angular.module("mean.home").controller("PointRulesController", ["$scope", "$modalInstance",
 	function($scope, $modalInstance) {
 		$scope.cancel = function() {
-			$modalInstance.dismiss('cancel');
+			$modalInstance.dismiss("cancel");
 		};
 	}
 ]);

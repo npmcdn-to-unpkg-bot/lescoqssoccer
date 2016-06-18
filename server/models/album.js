@@ -1,6 +1,6 @@
 // imports
-var mongoose = require('mongoose');
-var _ = require('underscore');
+var mongoose = require("mongoose");
+var _ = require("underscore");
 
 var Schema = mongoose.Schema;
 
@@ -39,7 +39,7 @@ var albumSchema = new Schema({
 	})],
 	user: {
 		type: mongoose.Schema.ObjectId,
-		ref: 'User'
+		ref: "User"
 	},
 	comments: [new Schema({
 		created: {
@@ -48,11 +48,11 @@ var albumSchema = new Schema({
 		},
 		user: {
 			type: Schema.Types.ObjectId,
-			ref: 'User'
+			ref: "User"
 		},
 		content: {
 			type: String,
-			default: ''
+			default: ""
 		},
 		replies: [new Schema({
 			created: {
@@ -61,15 +61,15 @@ var albumSchema = new Schema({
 			},
 			user: {
 				type: Schema.Types.ObjectId,
-				ref: 'User'
+				ref: "User"
 			},
 			content: {
 				type: String,
-				default: ''
+				default: ""
 			}
 		})]
 	})]
 });
 
 // Export album model
-module.exports = mongoose.model('Album', albumSchema);
+module.exports = mongoose.model("Album", albumSchema);

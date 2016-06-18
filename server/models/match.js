@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
+var mongoose = require("mongoose"),
 	Schema = mongoose.Schema;
 
 
@@ -26,7 +26,7 @@ var MatchSchema = new Schema({
 		type: String
 	},
 	scoresUpdated: {
-		type: Boolean	
+		type: Boolean
 	},
 	scoreHome:{
 		type: Number
@@ -47,7 +47,7 @@ var MatchSchema = new Schema({
 		},
 		user: {
 			type: Schema.Types.ObjectId,
-			ref: 'User'
+			ref: "User"
 		}
 	})],
 	comments: [new Schema({
@@ -57,11 +57,11 @@ var MatchSchema = new Schema({
 		},
 		user: {
 			type: Schema.Types.ObjectId,
-			ref: 'User'
+			ref: "User"
 		},
 		content: {
 			type: String,
-			default: ''
+			default: ""
 		},
 		replies: [new Schema({
 			created: {
@@ -70,11 +70,11 @@ var MatchSchema = new Schema({
 			},
 			user: {
 				type: Schema.Types.ObjectId,
-				ref: 'User'
+				ref: "User"
 			},
 			content: {
 				type: String,
-				default: ''
+				default: ""
 			}
 		})]
 	})]
@@ -89,4 +89,4 @@ MatchSchema.statics.load = function(id, cb) {
 	}).exec(cb);
 };
 
-mongoose.model('Match', MatchSchema);
+mongoose.model("Match", MatchSchema);

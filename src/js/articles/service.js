@@ -1,22 +1,22 @@
-'use strict';
+"use strict";
 
 //Articles service used for Articles REST endpoint
-angular.module('mean.articles').factory('Articles', ['$resource',
+angular.module("mean.articles").factory("Articles", ["$resource",
 	function($resource) {
-		return $resource('articles/:articleId', {
-			articleId: '@_id'
+		return $resource("articles/:articleId", {
+			articleId: "@_id"
 		}, {
-			'save': {
-				method: 'POST'
+			"save": {
+				method: "POST"
 			},
-			'update': {
-				method: 'PUT',
+			"update": {
+				method: "PUT",
 				params: {
-					articleId: '@articleId'
+					articleId: "@articleId"
 				}
 			},
-			'query': {
-				method: 'GET',
+			"query": {
+				method: "GET",
 				isArray: true
 			}
 		});
@@ -24,9 +24,9 @@ angular.module('mean.articles').factory('Articles', ['$resource',
 ]);
 
 //Articles service used for get articles items count
-angular.module('mean.articles').factory('ArticlesCount', ['$resource',
+angular.module("mean.articles").factory("ArticlesCount", ["$resource",
 	function($resource) {
-		return $resource('articlesCount');
+		return $resource("articlesCount");
 	}
 ]);
 
@@ -34,7 +34,7 @@ angular.module('mean.articles').factory('ArticlesCount', ['$resource',
 /**
  * ArticleModel service
  **/
-angular.module('mean.articles').service('ArticlesCollection', ['Articles', 'ArticlesCount',
+angular.module("mean.articles").service("ArticlesCollection", ["Articles", "ArticlesCount",
 
 	function(Articles, ArticlesCount) {
 

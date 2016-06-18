@@ -1,26 +1,26 @@
-'use strict';
+"use strict";
 
 //user service used for user REST endpoint
-angular.module('mean.system').factory('Parameters', ['$resource',
+angular.module("mean.system").factory("Parameters", ["$resource",
 	function($resource) {
-		return $resource('parameters', {
-			parameterId: '@_id'
+		return $resource("parameters", {
+			parameterId: "@_id"
 		},{
 			update: {
-				method: 'PUT',
+				method: "PUT",
 				params: {
-					articleId: '@parameterId'
+					articleId: "@parameterId"
 				}
 			},
 			query: {
-				method: 'GET',
+				method: "GET",
 				isArray: true
 			},
 		})
 	}
 ]);
 
-angular.module('mean.system').service('ParametersService', ['Global', 'Parameters',
+angular.module("mean.system").service("ParametersService", ["Global", "Parameters",
 	function(Global, Parameters) {
 		var ParametersService = {
 			parameters: [],

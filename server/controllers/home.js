@@ -1,15 +1,16 @@
-'use strict';
+"use strict";
 
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
-	Article = mongoose.model('Article'),
-	Album = mongoose.model('Album'),
-	UserEvent = mongoose.model('UserEvent'),
-	User = mongoose.model('User'),
-	Suggestion = mongoose.model('Suggestion'),
-	_ = require('lodash');
+var mongoose = require("mongoose"),
+	Article = mongoose.model("Article"),
+	Album = mongoose.model("Album"),
+	UserEvent = mongoose.model("UserEvent"),
+	User = mongoose.model("User"),
+	Suggestion = mongoose.model("Suggestion"),
+	Comment = mongoose.model("Comment"),
+	_ = require("lodash");
 
 /**
  * User data
@@ -20,7 +21,8 @@ exports.getAllUserData = function(req, res) {
 		albums: null,
 		articles: null,
 		userEvents: null,
-		suggestions: null
+		suggestions: null,
+		comments: null
 	};
 
 	var responseObject = {
@@ -29,13 +31,13 @@ exports.getAllUserData = function(req, res) {
 	}
 
 	Article.find()
-		.sort('-created')
-		.populate('user', '_id name username avatar').exec()
+		.sort("-created")
+		.populate("user", "_id name username avatar").exec()
 		.then(function(articles, err) {
 
 			if (err) {
 
-				res.render('error', {
+				res.render("error", {
 					status: 500
 				});
 
@@ -44,15 +46,15 @@ exports.getAllUserData = function(req, res) {
 				userData.articles = articles;
 
 				return Album.find()
-					.sort('-created')
-					.populate('user', '_id name username avatar').exec();
+					.sort("-created")
+					.populate("user", "_id name username avatar").exec();
 			}
 
 		}).then(function(albums, err) {
 
 			if (err) {
 
-				res.render('error', {
+				res.render("error", {
 					status: 500
 				});
 
@@ -61,15 +63,15 @@ exports.getAllUserData = function(req, res) {
 				userData.albums = albums;
 
 				return UserEvent.find()
-					.sort('-created')
-					.populate('user', '_id name username avatar').exec();
+					.sort("-created")
+					.populate("user", "_id name username avatar").exec();
 			}
 
 		}).then(function(userEvent, err) {
 
 			if (err) {
 
-				res.render('error', {
+				res.render("error", {
 					status: 500
 				});
 
@@ -78,29 +80,44 @@ exports.getAllUserData = function(req, res) {
 				userData.userEvents = userEvent;
 
 				return Suggestion.find({})
-					.sort('-created')
-					.populate('user', '_id name username avatar').exec();
+					.sort("-created")
+					.populate("user", "_id name username avatar").exec();
 			}
 
 		}).then(function(suggestions, err) {
 
 			if (err) {
 
-				res.render('error', {
+				res.render("error", {
 					status: 500
 				});
 
 			} else {
-				return User.find({}, '-password -salt -hashed_password -__v -provider').exec();
+				return User.find({}, "-password -salt -hashed_password -__v -provider").exec();
 			}
+
 		}).then(function(users, err) {
 			if (err) {
-				res.render('error', {
+				res.render("error", {
 					status: 500
 				});
 			} else {
 
 				responseObject.users = users;
+				return Comment.find({}).populate("user", "_id name username avatar").exec();
+			}
+
+		}).then(function(comments, err) {
+
+			if (err) {
+
+				res.render("error", {
+					status: 500
+				});
+
+			} else {
+
+				userData.comments = comments;
 				var formattedDatas = formatUserData(userData);
 				responseObject.content = formattedDatas.content;
 				res.jsonp(responseObject);
@@ -126,6 +143,12 @@ var formatUserData = function(userData) {
 		formattedDatas.content.push(_.defaults({
 			type: "album"
 		}, album._doc));
+	});
+
+	_.each(userData.comments, function(comment) {
+		formattedDatas.content.push(_.defaults({
+			type: "comment"
+		}, comment._doc));
 	});
 
 	_.each(userData.userEvents, function(userEvent) {

@@ -1,16 +1,16 @@
-'use strict';
+"use strict";
 
 //Articles service used for Articles REST endpoint
-angular.module('mean.system').factory('Home', ['$resource',
+angular.module("mean.system").factory("Home", ["$resource",
 	function($resource) {
-		return $resource('home');
+		return $resource("home");
 	}
 ]);
 
 /**
  * ArticleModel service
  **/
-angular.module('mean.system').service('HomeCollection', ['Home',
+angular.module("mean.system").service("HomeCollection", ["Home",
 
 	function(Home) {
 
