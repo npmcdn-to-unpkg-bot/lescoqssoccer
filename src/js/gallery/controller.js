@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-angular.module('mean.albums').controller('AlbumDetailController', ['$location', '$scope', 'Global', '$modal', 'AlbumService', 'album', 'FileUploader',
+angular.module("mean.albums").controller("AlbumDetailController", ["$location", "$scope", "Global", "$modal", "AlbumService", "album", "FileUploader",
 
 	function($location, $scope, Global, $modal, AlbumService, album, FileUploader) {
 
@@ -19,11 +19,11 @@ angular.module('mean.albums').controller('AlbumDetailController', ['$location', 
 
 				if ($scope.album._id) {
 					AlbumService.updateAlbum($scope.album).then(function(data) {
-						$location.path('/albums/view/' + data._id);
+						$location.path("/albums/view/" + data._id);
 					});
 				} else {
 					AlbumService.saveAlbum($scope.album).then(function(data) {
-						$location.path('/albums/view/' + data._id);
+						$location.path("/albums/view/" + data._id);
 					});
 				}
 			} else {
@@ -34,23 +34,23 @@ angular.module('mean.albums').controller('AlbumDetailController', ['$location', 
 		$scope.uploadFiles = function() {
 
 			var modalInstance = $modal.open({
-				templateUrl: 'js/files/fileUpload.html',
-				controller: 'modalInstanceCtrl',
+				templateUrl: "js/files/fileUpload.html",
+				controller: "modalInstanceCtrl",
 				scope: $scope
 			});
 
 			// create a uploader with options
 			$scope.uploader = new FileUploader({
 				scope: $scope,
-				url: '/upload/photo',
+				url: "/upload/photo",
 				autoUpload: true,
 				formData: [{
-					key: 'value'
+					key: "value"
 				}]
 			});
 
 			$scope.uploader.onCompleteItem = function(item, response, status, headers) {
-				console.info('Complete', item, response);
+				console.info("Complete", item, response);
 
 				$scope.album.photoList.push({
 					id: $scope.global.guid(),
@@ -61,10 +61,10 @@ angular.module('mean.albums').controller('AlbumDetailController', ['$location', 
 			};
 
 			$scope.uploader.onCompleteAll = function(event, items) {
-				console.info('Complete all', items);
+				console.info("Complete all", items);
 
-				$(window).trigger('resize');
-				modalInstance.dismiss('cancel');
+				$(window).trigger("resize");
+				modalInstance.dismiss("cancel");
 			};
 		};
 
@@ -79,21 +79,21 @@ angular.module('mean.albums').controller('AlbumDetailController', ['$location', 
 		$scope.$parent.menu = {
 			title: "Nouvel album",
 			items: [{
-				link: '#!',
-				info: 'Retour',
-				icon: 'fa-arrow-left',
+				link: "#!",
+				info: "Retour",
+				icon: "fa-arrow-left",
 				callback: $scope.global.back
 			}, {
-				link: '#!',
-				info: 'Sauvegarder',
-				icon: 'fa-save',
+				link: "#!",
+				info: "Sauvegarder",
+				icon: "fa-save",
 				callback: $scope.saveAlbum
 			}]
 		};
 	}
 ]);
 
-angular.module('mean.albums').controller('AlbumsController', ['$scope', 'Global', 'AlbumService', 'albums', 'Page', 'ItemsCount',
+angular.module("mean.albums").controller("AlbumsController", ["$scope", "Global", "AlbumService", "albums", "Page", "ItemsCount",
 
 	function($scope, Global, AlbumService, albums, Page, ItemsCount) {
 
@@ -124,15 +124,15 @@ angular.module('mean.albums').controller('AlbumsController', ['$scope', 'Global'
 		$scope.$parent.menu = {
 			title: "Albums",
 			items: [{
-				link: '#!/albums/create',
-				info: 'Nouvel album',
-				icon: 'fa-plus'
+				link: "#!/albums/create",
+				info: "Nouvel album",
+				icon: "fa-plus"
 			}]
 		};
 	}
 ]);
 
-angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global', '$location', '$http', '$window', '$modal', 'AlbumService', 'album', 'UserService',
+angular.module("mean.albums").controller("PhotosController", ["$scope", "Global", "$location", "$http", "$window", "$modal", "AlbumService", "album", "UserService",
 
 	function($scope, Global, $location, $http, $window, $modal, AlbumService, album, UserService) {
 
@@ -143,7 +143,7 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 		UserService.addReadAlbum($scope.album._id);
 
 		$scope.edit = function() {
-			$location.path('/albums/edit/' + $scope.album._id);
+			$location.path("/albums/edit/" + $scope.album._id);
 		};
 
 		$scope.remove = function(evt) {
@@ -152,8 +152,8 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 			evt.stopPropagation();
 
 			var modalInstance = $modal.open({
-				templateUrl: 'js/gallery/views/modal/deleteAlbumModal.html',
-				controller: 'deleteAlbumModalCtrl',
+				templateUrl: "js/gallery/views/modal/deleteAlbumModal.html",
+				controller: "deleteAlbumModalCtrl",
 				resolve: {
 					album: function() {
 						return $scope.album;
@@ -163,7 +163,7 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 
 			modalInstance.result.then(function() {
 				AlbumService.deleteAlbum($scope.album).then(function() {
-					$location.path('/albums');
+					$location.path("/albums");
 				});
 			});
 		};
@@ -173,9 +173,9 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 			evt.preventDefault();
 			evt.stopPropagation();
 
-			$http.post('/download/' + $scope.album._id).success(function(data) {
+			$http.post("/download/" + $scope.album._id).success(function(data) {
 				if (data.success) {
-					$window.open('/file/' + $scope.album._id, "_blank");
+					$window.open("/file/" + $scope.album._id, "_blank");
 				}
 			}).error(function(data) {
 				// Handle Error
@@ -188,9 +188,9 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 			evt.stopPropagation();
 
 			$modal.open({
-				templateUrl: 'js/users/views/modal/userDetail.html',
-				controller: 'UserDetailController',
-				windowClass: 'userDetailPopup',
+				templateUrl: "js/users/views/modal/userDetail.html",
+				controller: "UserDetailController",
+				windowClass: "userDetailPopup",
 				resolve: {
 
 					User: function(UserService) {
@@ -240,52 +240,52 @@ angular.module('mean.albums').controller('PhotosController', ['$scope', 'Global'
 			return AlbumService.updateAlbum($scope.album);
 		};
 
-		angular.element($window).bind('resize', function() {
+		angular.element($window).bind("resize", function() {
 			collage();
 		});
 
-		$('.photoContainer').imagesLoaded(function() {
+		$(".photoContainer").imagesLoaded(function() {
 			collage();
 		});
 
 		$scope.$parent.menu = {
 			title: "Albums > " + $scope.album.name,
 			items: [{
-				link: '#!',
-				info: 'Editer',
-				icon: 'fa-edit',
+				link: "#!",
+				info: "Editer",
+				icon: "fa-edit",
 				callback: $scope.edit
 			}, {
-				link: '#!',
-				info: 'Supprimer',
-				icon: 'fa-times',
+				link: "#!",
+				info: "Supprimer",
+				icon: "fa-times",
 				callback: $scope.remove
 			}, {
-				link: '#!',
-				info: 'Précédent',
-				icon: 'fa-arrow-left',
+				link: "#!",
+				info: "Précédent",
+				icon: "fa-arrow-left",
 				callback: $scope.showPrevious
 			}, {
-				link: '#!',
-				info: 'Retour à la liste',
-				icon: 'fa-list',
+				link: "#!",
+				info: "Retour à la liste",
+				icon: "fa-list",
 				callback: $scope.backToList
 			}, {
-				link: '#!',
-				info: 'Suivant',
-				icon: 'fa-arrow-right',
+				link: "#!",
+				info: "Suivant",
+				icon: "fa-arrow-right",
 				callback: $scope.showNext
 			}, {
-				link: '#!',
-				info: 'Télécharger',
-				icon: 'fa-download',
+				link: "#!",
+				info: "Télécharger",
+				icon: "fa-download",
 				callback: $scope.download
 			}]
 		};
 	}
 ]);
 
-angular.module('mean.albums').controller('modalInstanceCtrl', ['$scope', '$modalInstance',
+angular.module("mean.albums").controller("modalInstanceCtrl", ["$scope", "$modalInstance",
 
 	function($scope, $modalInstance) {
 
@@ -294,13 +294,13 @@ angular.module('mean.albums').controller('modalInstanceCtrl', ['$scope', '$modal
 		};
 
 		$scope.cancel = function() {
-			$(window).trigger('resize');
-			$modalInstance.dismiss('cancel');
+			$(window).trigger("resize");
+			$modalInstance.dismiss("cancel");
 		};
 	}
 ]);
 
-angular.module('mean.albums').controller('deleteAlbumModalCtrl', ['$scope', '$modalInstance', 'album',
+angular.module("mean.albums").controller("deleteAlbumModalCtrl", ["$scope", "$modalInstance", "album",
 
 	function($scope, $modalInstance, album) {
 
@@ -311,7 +311,7 @@ angular.module('mean.albums').controller('deleteAlbumModalCtrl', ['$scope', '$mo
 		};
 
 		$scope.cancel = function() {
-			$modalInstance.dismiss('cancel');
+			$modalInstance.dismiss("cancel");
 		};
 	}
 ]);
@@ -327,7 +327,7 @@ var AlbumData = {
 
 var AlbumsData = {
 	albums: function(AlbumService, $route, $location) { //return all albums only if URL /albums/* but not /albums/add
-		return (RegExp('\/albums').test($location.path()) && $route.current.params.view !== 'add') ? AlbumService.getAllAlbums() : [];
+		return (RegExp("\/albums").test($location.path()) && $route.current.params.view !== "add") ? AlbumService.getAllAlbums() : [];
 	},
 	Page: function($route) {
 		return ($route.current.params.page) ? $route.current.params.page : 1;

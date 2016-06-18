@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Global', '$location', '$sce', '$modal', 'ArticlesCollection', 'Articles', 'Page', 'ItemsCount',
+angular.module("mean.articles").controller("ArticlesController", ["$scope", "Global", "$location", "$sce", "$modal", "ArticlesCollection", "Articles", "Page", "ItemsCount",
 	function($scope, Global, $location, $sce, $modal, ArticlesCollection, Articles, Page, ItemsCount) {
 
 		$scope.global = Global;
@@ -16,8 +16,8 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 		};
 
 		$scope.getImage = function(html) {
-			var img = angular.element("<div>" + html + "</div>").find('img').first();
-			return (img.length) ? img.attr('src') : '';
+			var img = angular.element("<div>" + html + "</div>").find("img").first();
+			return (img.length) ? img.attr("src") : "";
 		};
 
 		//Format video and audio url
@@ -39,7 +39,7 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 		};
 
 		$scope.isSpotify = function(link) {
-			return link.indexOf('spotify') !== -1;
+			return link.indexOf("spotify") !== -1;
 		};
 
 		$scope.getSuggestionAnswerLength = function(suggestion, option) {
@@ -56,9 +56,9 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 			evt.stopPropagation();
 
 			$modal.open({
-				templateUrl: 'js/users/views/modal/userDetail.html',
-				controller: 'UserDetailController',
-				windowClass: 'userDetailPopup',
+				templateUrl: "js/users/views/modal/userDetail.html",
+				controller: "UserDetailController",
+				windowClass: "userDetailPopup",
 				resolve: {
 
 					User: function(UserService) {
@@ -84,25 +84,25 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', 'Glo
 		$scope.$parent.menu = {
 			title: "Articles",
 			items: [{
-				link: '#!/articles/create/standard',
-				info: 'Nouvel article',
-				icon: 'fa-list-alt'
+				link: "#!/articles/create/standard",
+				info: "Nouvel article",
+				icon: "fa-list-alt"
 			},
 			{
-				link: '#!/articles/create/video',
-				info: 'Nouvelle vidéo',
-				icon: 'fa-video-camera'
+				link: "#!/articles/create/video",
+				info: "Nouvelle vidéo",
+				icon: "fa-video-camera"
 			},
 			{
-				link: '#!/articles/create/audio',
-				info: 'Nouveau son',
-				icon: 'fa-volume-up'
+				link: "#!/articles/create/audio",
+				info: "Nouveau son",
+				icon: "fa-volume-up"
 			}]
 		};
 	}
 ]);
 
-angular.module('mean.articles').controller('ArticleDetailController', ['$scope', '$location', '$sce', '$modal', 'Global', 'ArticlesCollection', 'Article', 'UserService',
+angular.module("mean.articles").controller("ArticleDetailController", ["$scope", "$location", "$sce", "$modal", "Global", "ArticlesCollection", "Article", "UserService",
 	function($scope, $location, $sce, $modal, Global, ArticlesCollection, Article, UserService) {
 
 		$scope.global = Global;
@@ -149,8 +149,8 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 			evt.stopPropagation();
 
 			var modalInstance = $modal.open({
-				templateUrl: 'js/articles/views/modal/deleteArticleModal.html',
-				controller: 'deleteArticleModalCtrl',
+				templateUrl: "js/articles/views/modal/deleteArticleModal.html",
+				controller: "deleteArticleModalCtrl",
 				resolve: {
 					article: function() {
 						return $scope.article;
@@ -174,9 +174,9 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 			evt.stopPropagation();
 
 			$modal.open({
-				templateUrl: 'js/users/views/modal/userDetail.html',
-				controller: 'UserDetailController',
-				windowClass: 'userDetailPopup',
+				templateUrl: "js/users/views/modal/userDetail.html",
+				controller: "UserDetailController",
+				windowClass: "userDetailPopup",
 				resolve: {
 
 					User: function(UserService) {
@@ -225,43 +225,43 @@ angular.module('mean.articles').controller('ArticleDetailController', ['$scope',
 		$scope.$parent.menu = {
 			title: "Articles > " + $scope.article.title,
 			items: [{
-				link: '#!',
-				info: 'Précédent',
-				icon: 'fa-arrow-left',
+				link: "#!",
+				info: "Précédent",
+				icon: "fa-arrow-left",
 				callback: $scope.showPrevious
 			},
 			{
-				link: '#!',
-				info: 'Retour à la liste',
-				icon: 'fa-list',
+				link: "#!",
+				info: "Retour à la liste",
+				icon: "fa-list",
 				callback: $scope.backToList
 			},
 			{
-				link: '#!',
-				info: 'Suivant',
-				icon: 'fa-arrow-right',
+				link: "#!",
+				info: "Suivant",
+				icon: "fa-arrow-right",
 				callback: $scope.showNext
 			}]
 		};
 
 		if($scope.article.type !== "quote"){
 			$scope.$parent.menu.items.unshift({
-				link: '#!',
-				info: 'Supprimer',
-				icon: 'fa-times',
+				link: "#!",
+				info: "Supprimer",
+				icon: "fa-times",
 				callback: $scope.remove
 			});
 			$scope.$parent.menu.items.unshift({
-				link: '#!',
-				info: 'Editer',
-				icon: 'fa-edit',
+				link: "#!",
+				info: "Editer",
+				icon: "fa-edit",
 				callback: $scope.edit
 			});
 		};
 	}
 ]);
 
-angular.module('mean.articles').controller('CreateArticleController', ['$scope', '$location', 'Global', 'ArticlesCollection', 'FileUploader', 'Article', '$modal', 'Parameters',
+angular.module("mean.articles").controller("CreateArticleController", ["$scope", "$location", "Global", "ArticlesCollection", "FileUploader", "Article", "$modal", "Parameters",
 	function($scope, $location, Global, ArticlesCollection, FileUploader, Article, $modal, Parameters) {
 
 		$scope.global = Global;
@@ -308,10 +308,10 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 		***/
 		$scope.uploader = new FileUploader({
 			scope: $scope,
-			url: '/upload/photo',
+			url: "/upload/photo",
 			autoUpload: true,
 			formData: [{
-				key: 'value'
+				key: "value"
 			}]
 		});
 
@@ -328,23 +328,23 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 					}];
 					break;
 				case "video":
-					if($scope.linkAdress.indexOf('iframe') !== -1){
+					if($scope.linkAdress.indexOf("iframe") !== -1){
 						var src = angular.element($scope.linkAdress);
-						$scope.article.videoLink = src.attr('src');
+						$scope.article.videoLink = src.attr("src");
 					} else {
 						$scope.article.videoLink = $scope.linkAdress;
 					}
 					break;
 				case "audio":
-					if($scope.linkAdress.indexOf('iframe') !== -1){
+					if($scope.linkAdress.indexOf("iframe") !== -1){
 						var src = angular.element($scope.linkAdress);
-						$scope.article.audioLink = src.attr('src');
+						$scope.article.audioLink = src.attr("src");
 					} else {
 						$scope.article.audioLink = $scope.linkAdress;
 					}
 					break;
 				case "standard":
-					$scope.article.content = textboxio.get('#mytextarea')[0].content.get();
+					$scope.article.content = textboxio.get("#mytextarea")[0].content.get();
 					break;
 			}
 
@@ -364,8 +364,8 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 				}
 			} else {
 				var modalInstance = $modal.open({
-					templateUrl: 'js/articles/views/modal/noTitleArticleModalCtrl.html',
-					controller: 'noTitleArticleModalCtrl',
+					templateUrl: "js/articles/views/modal/noTitleArticleModalCtrl.html",
+					controller: "noTitleArticleModalCtrl",
 					resolve: {
 						article: function() {
 							return $scope.article;
@@ -378,22 +378,22 @@ angular.module('mean.articles').controller('CreateArticleController', ['$scope',
 		$scope.$parent.menu = {
 			title: "Nouvel article",
 			items: [{
-				link: '#!',
-				info: 'Retour',
-				icon: 'fa-arrow-left',
+				link: "#!",
+				info: "Retour",
+				icon: "fa-arrow-left",
 				callback: $scope.global.back
 			},
 			{
-				link: '#!',
-				info: 'Sauvegarder',
-				icon: 'fa-save',
+				link: "#!",
+				info: "Sauvegarder",
+				icon: "fa-save",
 				callback: $scope.create
 			}]
 		};
 	}
 ]);
 
-angular.module('mean.articles').controller('deleteArticleModalCtrl', ['$scope', '$modalInstance', 'article',
+angular.module("mean.articles").controller("deleteArticleModalCtrl", ["$scope", "$modalInstance", "article",
 
 	function($scope, $modalInstance, article) {
 
@@ -404,13 +404,13 @@ angular.module('mean.articles').controller('deleteArticleModalCtrl', ['$scope', 
 		};
 
 		$scope.cancel = function() {
-			$modalInstance.dismiss('cancel');
+			$modalInstance.dismiss("cancel");
 		};
 	}
 
 ]);
 
-angular.module('mean.articles').controller('noTitleArticleModalCtrl', ['$scope', '$modalInstance', 'article',
+angular.module("mean.articles").controller("noTitleArticleModalCtrl", ["$scope", "$modalInstance", "article",
 
 	function($scope, $modalInstance, article) {
 
@@ -421,7 +421,7 @@ angular.module('mean.articles').controller('noTitleArticleModalCtrl', ['$scope',
 		};
 
 		$scope.cancel = function() {
-			$modalInstance.dismiss('cancel');
+			$modalInstance.dismiss("cancel");
 		};
 	}
 

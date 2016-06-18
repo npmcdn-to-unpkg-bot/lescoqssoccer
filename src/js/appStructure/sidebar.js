@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-angular.module('mean.system').controller('SidebarController', ['$scope', 'Global', '$location', 'Suggestions', 'ArticlesCollection', 'AlbumService', 'AgendaCollection',
+angular.module("mean.system").controller("SidebarController", ["$scope", "Global", "$location", "Suggestions", "ArticlesCollection", "AlbumService", "AgendaCollection",
 
 	function($scope, Global, $location, Suggestions, ArticlesCollection, AlbumService, AgendaCollection) {
 
@@ -17,7 +17,7 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 				AlbumService.getItemsCount().then(function(data) {
 					$scope.albumCount = data.count;
 					$scope.unreadAlbumCount = data.count - $scope.global.user.readAlbums.length;
-					$scope.unreadVoteCount = _.difference(_.pluck(Suggestions.all, '_id'), $scope.global.user.readVotes).length;
+					$scope.unreadVoteCount = _.difference(_.pluck(Suggestions.all, "_id"), $scope.global.user.readVotes).length;
 					$scope.unreadAgendaCount = _.filter(AgendaCollection.all, function(userEvent) {
 						return !_.contains(_.pluck(userEvent.guest, "_id"), $scope.global.user._id) && !userEvent.subType === "euroMatch";
 					}).length;
@@ -30,7 +30,7 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 		$scope.updateBadges = function() {
 			$scope.unreadArticleCount = $scope.articleCount - $scope.global.user.readArticles.length;
 			$scope.unreadAlbumCount = $scope.albumCount - $scope.global.user.readAlbums.length;
-			$scope.unreadVoteCount = _.difference(_.pluck(Suggestions.all, '_id'), $scope.global.user.readVotes).length;
+			$scope.unreadVoteCount = _.difference(_.pluck(Suggestions.all, "_id"), $scope.global.user.readVotes).length;
 			$scope.unreadAgendaCount = _.filter(AgendaCollection.all, function(userEvent) {
 				return !_.contains(_.pluck(userEvent.guest, "_id"), $scope.global.user._id) && !userEvent.subType === "euroMatch";
 			}).length;
@@ -92,13 +92,13 @@ angular.module('mean.system').controller('SidebarController', ['$scope', 'Global
 
 		$scope.loadBadges();
 
-		$scope.$watch('global.user', function(newValue, oldValue) {
+		$scope.$watch("global.user", function(newValue, oldValue) {
 			$scope.updateBadges();
 		});
 
 		$scope.isCurrentPath = function(item) {
 			var cur_path = "#!" + $location.path().substr(0, item.id.length + 1);
-			return (cur_path.indexOf(item.id) !== -1) || (item.id.indexOf('albums') !== -1 && cur_path.indexOf('gallery') !== -1);
+			return (cur_path.indexOf(item.id) !== -1) || (item.id.indexOf("albums") !== -1 && cur_path.indexOf("gallery") !== -1);
 		};
 	}
 ]);

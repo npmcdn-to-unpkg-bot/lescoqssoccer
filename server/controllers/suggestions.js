@@ -1,13 +1,13 @@
-'use strict';
+"use strict";
 
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
-	Suggestion = mongoose.model('Suggestion'),
-	Article = mongoose.model('Article'),
-	moment = require('moment'),
-	_ = require('lodash');
+var mongoose = require("mongoose"),
+	Suggestion = mongoose.model("Suggestion"),
+	Article = mongoose.model("Article"),
+	moment = require("moment"),
+	_ = require("lodash");
 
 
 /**
@@ -16,7 +16,7 @@ var mongoose = require('mongoose'),
 exports.suggestion = function(req, res, next, id) {
 	Suggestion.load(id, function(err, suggestion) {
 		if (err) return next(err);
-		if (!suggestion) return next(new Error('Failed to load suggestion ' + id));
+		if (!suggestion) return next(new Error("Failed to load suggestion " + id));
 		req.suggestion = suggestion;
 		next();
 	});
@@ -31,7 +31,7 @@ exports.create = function(req, res) {
 	suggestion.save(function(err) {
 		console.log(err);
 		if (err) {
-			return res.send('users/signup', {
+			return res.send("users/signup", {
 				errors: err.errors,
 				suggestion: suggestion
 			});
@@ -49,7 +49,7 @@ exports.update = function(req, res) {
 	suggestion = _.extend(suggestion, req.body);
 	suggestion.save(function(err) {
 		if (err) {
-			return res.send('users/signup', {
+			return res.send("users/signup", {
 				errors: err.errors,
 				suggestion: suggestion
 			});
@@ -66,7 +66,7 @@ exports.destroy = function(req, res) {
 	var suggestion = req.suggestion;
 	suggestion.remove(function(err) {
 		if (err) {
-			return res.send('users/signup', {
+			return res.send("users/signup", {
 				errors: err.errors,
 				suggestion: suggestion
 			});
@@ -92,13 +92,13 @@ exports.all = function(req, res) {
 	var page = req.query.page;
 
 	Suggestion.find({})
-		.sort('-created')
+		.sort("-created")
 		.limit(perPage)
 		.skip(perPage * page)
-		.populate('user', '_id name username avatar')
+		.populate("user", "_id name username avatar")
 		.exec(function(err, suggestions) {
 			if (err) {
-				res.render('error', {
+				res.render("error", {
 					status: 500
 				});
 			} else {
@@ -113,7 +113,7 @@ exports.all = function(req, res) {
 exports.getItemsCount = function(req, res) {
 	Suggestion.count({}).exec(function(err, count) {
 		if (err) {
-			res.render('error', {
+			res.render("error", {
 				status: 500
 			});
 		} else {
@@ -132,18 +132,18 @@ exports.closeVotes = function(req, res) {
 	var article, yes = [],
 		no = [],
 		blank = [];
-	var date = moment().subtract(1, 'months').toISOString();
+	var date = moment().subtract(1, "months").toISOString();
 
 	Suggestion.find({
-			'created': {
+			"created": {
 				"$lt": date
 			}
 		})
-		.sort('-created')
+		.sort("-created")
 		.exec(function(err, suggestions) {
 
 			if (err) {
-				console.warn('Error when to fetch suggestions ' + err);
+				console.warn("Error when to fetch suggestions " + err);
 			} else {
 				_.each(suggestions, function(suggestion) {
 
@@ -188,7 +188,7 @@ exports.closeVotes = function(req, res) {
 
 							suggestion.remove(function(err) {
 								if (err) {
-									console.warn('Error when trying to remove suggestion ' + err);
+									console.warn("Error when trying to remove suggestion " + err);
 								} else {
 									console.warn("Suggestion removed with success");
 								}

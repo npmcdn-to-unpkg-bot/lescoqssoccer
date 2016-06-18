@@ -1,195 +1,195 @@
-'use strict';
+"use strict";
 
 //Setting up route
-angular.module('mean').config(['$routeProvider',
+angular.module("mean").config(["$routeProvider",
 
 	function($routeProvider) {
 		$routeProvider.
 
 		/** HOME ****/
-		when('/home', {
-			templateUrl: 'js/home/views/home.html',
-			controller: 'HomeController',
+		when("/home", {
+			templateUrl: "js/home/views/home.html",
+			controller: "HomeController",
 			resolve: HomeData
 		}).
 
 		/** SPECIAL: EURO ****/
-		when('/euro', {
-			templateUrl: 'js/euro/views/teams.html',
-			controller: 'EuroController',
+		when("/euro", {
+			templateUrl: "js/euro/views/teams.html",
+			controller: "EuroController",
 			resolve: EuroData
 		}).
-		when('/euro/admin', {
-			templateUrl: 'js/euro/views/admin.html',
-			controller: 'AdminMatchController',
+		when("/euro/admin", {
+			templateUrl: "js/euro/views/admin.html",
+			controller: "AdminMatchController",
 			resolve: AdminEuroData
 		}).
-		when('/euro/:matchId', {
-			templateUrl: 'js/euro/views/match.html',
-			controller: 'MatchController',
+		when("/euro/view/:matchId", {
+			templateUrl: "js/euro/views/match.html",
+			controller: "MatchController",
 			resolve: MatchData
 		}).
 
 		/** AGENDA ****/
-		when('/agenda', {
-			templateUrl: 'js/agenda/views/list.html',
-			controller: 'ListController',
+		when("/agenda", {
+			templateUrl: "js/agenda/views/list.html",
+			controller: "ListController",
 			resolve: EventsData
 		}).
-		when('/agenda/view/:eventId', {
-			templateUrl: 'js/agenda/views/view.html',
-			controller: 'AgendaDetailController',
+		when("/agenda/view/:eventId", {
+			templateUrl: "js/agenda/views/view.html",
+			controller: "AgendaDetailController",
 			resolve: EventDetailData
 		}).
-		when('/agenda/create', {
-			templateUrl: 'js/agenda/views/create.html',
-			controller: 'CreateAgendaController',
+		when("/agenda/create", {
+			templateUrl: "js/agenda/views/create.html",
+			controller: "CreateAgendaController",
 			resolve: EventDetailData
 		}).
-		when('/agenda/edit/:eventId', {
-			templateUrl: 'js/agenda/views/create.html',
-			controller: 'CreateAgendaController',
+		when("/agenda/edit/:eventId", {
+			templateUrl: "js/agenda/views/create.html",
+			controller: "CreateAgendaController",
 			resolve: EventDetailData
 		}).
-		when('/agenda/:eventId', {
-			templateUrl: 'js/agenda/views/list.html',
-			controller: 'ListController',
+		when("/agenda/:eventId", {
+			templateUrl: "js/agenda/views/list.html",
+			controller: "ListController",
 			resolve: EventsData
 		}).
 
 		/** ARTICLES ****/
-		when('/articles', {
-			templateUrl: 'js/articles/views/list.html',
-			controller: 'ArticlesController',
+		when("/articles", {
+			templateUrl: "js/articles/views/list.html",
+			controller: "ArticlesController",
 			resolve: ArticlesData
 		}).
-		when('/articles/create/:view', {
+		when("/articles/create/:view", {
 			templateUrl: function(params){
-				return (params.view === "standard") ? 'js/articles/views/creation/standard.html' : 'js/articles/views/creation/others.html';
+				return (params.view === "standard") ? "js/articles/views/creation/standard.html" : "js/articles/views/creation/others.html";
 			},
-			controller: 'CreateArticleController',
+			controller: "CreateArticleController",
 			resolve: ArticleDetailData
 		}).
-		when('/articles/:page', {
-			templateUrl: 'js/articles/views/list.html',
-			controller: 'ArticlesController',
+		when("/articles/:page", {
+			templateUrl: "js/articles/views/list.html",
+			controller: "ArticlesController",
 			resolve: ArticlesData
 		}).
-		when('/articles/view/:view/:id', {
+		when("/articles/view/:view/:id", {
 			templateUrl: function(params){
-				return 'js/articles/views/detail/' + params.view + '.html';
+				return "js/articles/views/detail/" + params.view + ".html";
 			},
-			controller: 'ArticleDetailController',
+			controller: "ArticleDetailController",
 			resolve: ArticleDetailData
 		}).
-		when('/articles/edit/:view/:id', {
+		when("/articles/edit/:view/:id", {
 			templateUrl: function(params){
-				return (params.view === "standard") ? 'js/articles/views/creation/standard.html' : 'js/articles/views/creation/others.html';
+				return (params.view === "standard") ? "js/articles/views/creation/standard.html" : "js/articles/views/creation/others.html";
 			},
-			controller: 'CreateArticleController',
+			controller: "CreateArticleController",
 			resolve: ArticleDetailData
 		}).
 
 		/** ALBUMS ****/
-		when('/albums', {
-			templateUrl: 'js/gallery/views/albums.html',
-			controller: 'AlbumsController',
+		when("/albums", {
+			templateUrl: "js/gallery/views/albums.html",
+			controller: "AlbumsController",
 			resolve: AlbumsData
 		}).
-		when('/albums/view/:albumId', {
-			templateUrl: 'js/gallery/views/photos.html',
-			controller: 'PhotosController',
+		when("/albums/view/:albumId", {
+			templateUrl: "js/gallery/views/photos.html",
+			controller: "PhotosController",
 			resolve: AlbumData
 		}).
-		when('/albums/create', {
-			templateUrl:'js/gallery/views/create.html',
-			controller: 'AlbumDetailController',
+		when("/albums/create", {
+			templateUrl:"js/gallery/views/create.html",
+			controller: "AlbumDetailController",
 			resolve: AlbumData
 		}).
-		when('/albums/edit/:albumId', {
-			templateUrl: 'js/gallery/views/create.html',
-			controller: 'AlbumDetailController',
+		when("/albums/edit/:albumId", {
+			templateUrl: "js/gallery/views/create.html",
+			controller: "AlbumDetailController",
 			resolve: AlbumData
 		}).
-		when('/albums/:page', {
-			templateUrl: 'js/gallery/views/albums.html',
-			controller: 'AlbumsController',
+		when("/albums/:page", {
+			templateUrl: "js/gallery/views/albums.html",
+			controller: "AlbumsController",
 			resolve: AlbumsData
 		}).
 
 		/** SUGGESTIONS ****/
-		when('/suggestions', {
-			templateUrl: 'js/suggestions/views/suggestions.html',
-			controller: 'SuggestionController',
+		when("/suggestions", {
+			templateUrl: "js/suggestions/views/suggestions.html",
+			controller: "SuggestionController",
 			resolve: SuggestionsData
 		}).
-		when('/suggestions/create', {
-			templateUrl: 'js/suggestions/views/create.html',
-			controller: 'CreateSuggestionController',
+		when("/suggestions/create", {
+			templateUrl: "js/suggestions/views/create.html",
+			controller: "CreateSuggestionController",
 		}).
-		when('/suggestions/:page', {
-			templateUrl: 'js/suggestions/views/suggestions.html',
-			controller: 'SuggestionController',
+		when("/suggestions/:page", {
+			templateUrl: "js/suggestions/views/suggestions.html",
+			controller: "SuggestionController",
 			resolve: SuggestionsData
 		}).
 
 		/** ISSUES ****/
-		when('/issues', {
-			templateUrl: 'js/issues/issues.html',
+		when("/issues", {
+			templateUrl: "js/issues/issues.html",
 			controller: "issuesCtrl"
 		}).
 
 		/** PARAMETERS ****/
-		when('/parameters', {
-			templateUrl: 'js/parameters/views/parameters.html',
-			controller: 'ParametersController',
+		when("/parameters", {
+			templateUrl: "js/parameters/views/parameters.html",
+			controller: "ParametersController",
 			resolve: ParametersData
 		}).
 
 		/** USERS ****/
-		when('/users', {
-			templateUrl: 'js/users/views/list.html',
-			controller: 'TeamController',
+		when("/users", {
+			templateUrl: "js/users/views/list.html",
+			controller: "TeamController",
 			resolve: TeamData
 		}).
-		when('/users/detail/:id', {
-			templateUrl: 'js/users/views/detail.html',
-			controller: 'UserDetailController',
+		when("/users/detail/:id", {
+			templateUrl: "js/users/views/detail.html",
+			controller: "UserDetailController",
 			resolve: UserDetailData
 		}).
-		when('/users/profile', {
-			templateUrl: 'js/users/views/profile.html',
-			controller: 'ProfileController',
+		when("/users/profile", {
+			templateUrl: "js/users/views/profile.html",
+			controller: "ProfileController",
 			resolve: ProfileData
 		}).
 
 		/** DEFAULT ****/
-		when('/', {
-			redirectTo: 'home'
+		when("/", {
+			redirectTo: "home"
 		}).
 		otherwise({
-			redirectTo: 'home'
+			redirectTo: "home"
 		});
 	}
 ]);
 
 //Setting HTML5 Location Mode
-angular.module('mean').config(['$locationProvider',
+angular.module("mean").config(["$locationProvider",
 	function($locationProvider) {
-		$locationProvider.hashPrefix('!');
+		$locationProvider.hashPrefix("!");
 	}
 ]);
 
-angular.module('mean').config(['$translateProvider',
+angular.module("mean").config(["$translateProvider",
 	function($translateProvider) {
 
 		$translateProvider.useStaticFilesLoader({
-			prefix: 'translations/translation_',
-			suffix: '.json'
+			prefix: "translations/translation_",
+			suffix: ".json"
 		});
 
-		$translateProvider.preferredLanguage('fr');
-		moment.locale('fr', {
+		$translateProvider.preferredLanguage("fr");
+		moment.locale("fr", {
 		    months : "janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre".split("_"),
 		    monthsShort : "janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.".split("_"),
 		    weekdays : "dimanche_lundi_mardi_mercredi_jeudi_vendredi_samedi".split("_"),
@@ -205,11 +205,11 @@ angular.module('mean').config(['$translateProvider',
 		    },
 		    calendar : {
 		        sameDay: "[Aujourd'hui à] LT",
-		        nextDay: '[Demain à] LT',
-		        nextWeek: 'dddd [à] LT',
-		        lastDay: '[Hier à] LT',
-		        lastWeek: 'dddd [dernier à] LT',
-		        sameElse: 'L'
+		        nextDay: "[Demain à] LT",
+		        nextWeek: "dddd [à] LT",
+		        lastDay: "[Hier à] LT",
+		        lastWeek: "dddd [dernier à] LT",
+		        sameElse: "L"
 		    },
 		    relativeTime : {
 		        future : "dans %s",
@@ -228,11 +228,11 @@ angular.module('mean').config(['$translateProvider',
 		    },
 		    ordinalParse : /\d{1,2}(er|ème)/,
 		    ordinal : function (number) {
-		        return number + (number === 1 ? 'er' : 'ème');
+		        return number + (number === 1 ? "er" : "ème");
 		    },
 		    meridiemParse: /PD|MD/,
 		    isPM: function (input) {
-		        return input.charAt(0) === 'M';
+		        return input.charAt(0) === "M";
 		    },
 		    // in case the meridiem units are not separated around 12, then implement
 		    // this function (look at locale/id.js for an example)
@@ -240,7 +240,7 @@ angular.module('mean').config(['$translateProvider',
 		    //     return /* 0-23 hour, given meridiem token and hour 1-12 */
 		    // },
 		    meridiem : function (hours, minutes, isLower) {
-		        return hours < 12 ? 'PD' : 'MD';
+		        return hours < 12 ? "PD" : "MD";
 		    },
 		    week : {
 		        dow : 1, // Monday is the first day of the week.

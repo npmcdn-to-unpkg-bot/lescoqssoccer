@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
+var mongoose = require("mongoose"),
 	Schema = mongoose.Schema;
 
 
@@ -15,7 +15,7 @@ var CommunitySchema = new Schema({
 	users: [{
 		user: {
 			type: Schema.ObjectId,
-			ref: 'User'
+			ref: "User"
 		}
 	}]
 });
@@ -26,7 +26,7 @@ var CommunitySchema = new Schema({
 CommunitySchema.statics.load = function(id, cb) {
 	this.findOne({
 		_id: id
-	}).populate('user', 'name username').exec(cb);
+	}).populate("user", "name username").exec(cb);
 };
 
-mongoose.model('Community', CommunitySchema);
+mongoose.model("Community", CommunitySchema);

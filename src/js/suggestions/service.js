@@ -1,22 +1,22 @@
-'use strict';
+"use strict";
 
 //Suggestions service used for suggestions REST endpoint
-angular.module('mean.suggestions').factory('Suggestions', ['$resource',
+angular.module("mean.suggestions").factory("Suggestions", ["$resource",
 	function($resource) {
-		return $resource('suggestions/:suggestionId', {
-			suggestionId: '@_id'
+		return $resource("suggestions/:suggestionId", {
+			suggestionId: "@_id"
 		}, {
-			'save': {
-				method: 'POST'
+			"save": {
+				method: "POST"
 			},
-			'update': {
-				method: 'PUT',
+			"update": {
+				method: "PUT",
 				params: {
-					suggestionId: '@suggestionId'
+					suggestionId: "@suggestionId"
 				}
 			},
-			'query': {
-				method: 'GET',
+			"query": {
+				method: "GET",
 				isArray: true
 			}
 		});
@@ -24,16 +24,16 @@ angular.module('mean.suggestions').factory('Suggestions', ['$resource',
 ]);
 
 //Articles service used for get suggestions items count
-angular.module('mean.suggestions').factory('SuggestionsCount', ['$resource',
+angular.module("mean.suggestions").factory("SuggestionsCount", ["$resource",
 	function($resource) {
-		return $resource('suggestionsCount');
+		return $resource("suggestionsCount");
 	}
 ]);
 
 /**
  * suggestionModel service
  **/
-angular.module('mean.suggestions').service('SuggestionsCollection', ['Global', 'Suggestions', 'SuggestionsCount',
+angular.module("mean.suggestions").service("SuggestionsCollection", ["Global", "Suggestions", "SuggestionsCount",
 	function(Global, Suggestions, SuggestionsCount) {
 
 		var SuggestionsCollection = {

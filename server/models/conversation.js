@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
+var mongoose = require("mongoose"),
 	Schema = mongoose.Schema;
 
 /**
@@ -16,7 +16,7 @@ var ConversationSchema = new Schema({
 	},
 	users: [{
 		type: mongoose.Schema.Types.ObjectId,
-		ref: 'User',
+		ref: "User",
 		require: false
 	}],
 	messages: [new Schema({
@@ -26,11 +26,11 @@ var ConversationSchema = new Schema({
 		},
 		user: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: 'User'
+			ref: "User"
 		},
 		content: {
 			type: String,
-			default: ''
+			default: ""
 		}
 	})]
 });
@@ -41,7 +41,7 @@ var ConversationSchema = new Schema({
 ConversationSchema.statics.load = function(id, cb) {
 	this.findOne({
 		_id: id
-	}).populate('user').exec(cb);
+	}).populate("user").exec(cb);
 };
 
-mongoose.model('Conversation', ConversationSchema);
+mongoose.model("Conversation", ConversationSchema);

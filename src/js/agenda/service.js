@@ -1,26 +1,26 @@
-'use strict';
+"use strict";
 
 /**
  * Agenda resource
  **/
-angular.module('mean.agenda').factory('UserEvent', ['$resource',
+angular.module("mean.agenda").factory("UserEvent", ["$resource",
 	function($resource) {
-		return $resource('userEvent/:userEventId', {
-			userEventId: '@_id'
+		return $resource("userEvent/:userEventId", {
+			userEventId: "@_id"
 		}, {
-			'save': {
-				method: 'POST'
+			"save": {
+				method: "POST"
 			},
-			'update': {
-				method: 'PUT',
+			"update": {
+				method: "PUT",
 				params: {
-					userEventId: '@userEventId'
+					userEventId: "@userEventId"
 				}
 			},
-			'query': {
-				method: 'GET',
+			"query": {
+				method: "GET",
 				isArray: true
-			},
+			}
 		});
 	}
 ]);
@@ -28,7 +28,7 @@ angular.module('mean.agenda').factory('UserEvent', ['$resource',
 /**
  * Agenda service
  **/
-angular.module('mean.agenda').service('AgendaCollection', ['Global', 'UserEvent',
+angular.module("mean.agenda").service("AgendaCollection", ["Global", "UserEvent",
 	function(Global, UserEvent) {
 
 		var AgendaCollection = {

@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-angular.module('mean.suggestions').controller('SuggestionController', ['$scope', '$location', 'Global', 'Suggestions', 'SuggestionsCollection', 'Page', 'ItemsCount', '$modal',
+angular.module("mean.suggestions").controller("SuggestionController", ["$scope", "$location", "Global", "Suggestions", "SuggestionsCollection", "Page", "ItemsCount", "$modal",
 	function($scope, $location, Global, Suggestions, SuggestionsCollection, Page, ItemsCount, $modal) {
 
 		$scope.global = Global;
@@ -35,8 +35,8 @@ angular.module('mean.suggestions').controller('SuggestionController', ['$scope',
 
 				SuggestionsCollection.update(suggestion).then(function(suggestion) {
 					var modalInstance = $modal.open({
-						templateUrl: 'js/suggestions/views/votedModal.html',
-						controller: 'votedCtrl',
+						templateUrl: "js/suggestions/views/votedModal.html",
+						controller: "votedCtrl",
 						resolve: {
 							SuggestionId: suggestion._id
 						}
@@ -45,8 +45,8 @@ angular.module('mean.suggestions').controller('SuggestionController', ['$scope',
 
 			} else {
 				var modalInstance = $modal.open({
-					templateUrl: 'js/suggestions/views/votedModal.html',
-					controller: 'votedCtrl',
+					templateUrl: "js/suggestions/views/votedModal.html",
+					controller: "votedCtrl",
 					resolve: {
 						SuggestionId: suggestion._id
 					}
@@ -67,21 +67,21 @@ angular.module('mean.suggestions').controller('SuggestionController', ['$scope',
 		};
 
 		$scope.getDays = function(suggestion){
-			return moment(suggestion.created).add(1, 'months').fromNow();
+			return moment(suggestion.created).add(1, "months").fromNow();
 		};
 
 		$scope.$parent.menu = {
 			title: "Votes",
 			items: [{
-				link: '#!/suggestions/create',
-				info: 'Nouveau vote',
-				icon: 'fa-plus'
+				link: "#!/suggestions/create",
+				info: "Nouveau vote",
+				icon: "fa-plus"
 			}]
 		};
 	}
 ]);
 
-angular.module('mean.suggestions').controller('CreateSuggestionController', ['$scope', '$location', 'Global', 'Suggestions', 'SuggestionsCollection',
+angular.module("mean.suggestions").controller("CreateSuggestionController", ["$scope", "$location", "Global", "Suggestions", "SuggestionsCollection",
 	function($scope, $location, Global, Suggestions, SuggestionsCollection) {
 
 		$scope.global = Global;
@@ -110,22 +110,22 @@ angular.module('mean.suggestions').controller('CreateSuggestionController', ['$s
 		$scope.$parent.menu = {
 			title: "Nouveau vote",
 			items: [{
-				link: '#!',
-				info: 'Retour',
-				icon: 'fa-arrow-left',
+				link: "#!",
+				info: "Retour",
+				icon: "fa-arrow-left",
 				callback: $scope.global.back
 			},
 			{
-				link: '#!',
-				info: 'Sauvegarder',
-				icon: 'fa-save',
+				link: "#!",
+				info: "Sauvegarder",
+				icon: "fa-save",
 				callback: $scope.create
 			}]
 		};
 	}
 ]);
 
-angular.module('mean.suggestions').controller('votedCtrl', ['$scope', '$modalInstance', 'UserService', 'SuggestionId',
+angular.module("mean.suggestions").controller("votedCtrl", ["$scope", "$modalInstance", "UserService", "SuggestionId",
 
 	function($scope, $modalInstance, UserService, SuggestionId) {
 
@@ -142,7 +142,7 @@ angular.module('mean.suggestions').controller('votedCtrl', ['$scope', '$modalIns
 			//set vote like read
 			UserService.addReadVote(SuggestionId);
 
-			$modalInstance.dismiss('cancel');
+			$modalInstance.dismiss("cancel");
 		};
 	}
 

@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
+var mongoose = require("mongoose"),
 	Schema = mongoose.Schema;
 /**
  * Article Schema
@@ -14,17 +14,17 @@ var ArticleSchema = new Schema({
 	},
 	title: {
 		type: String,
-		default: '',
+		default: "",
 		trim: true
 	},
 	type: {
 		type: String,
-		default: 'standard'
+		default: "standard"
 	},
 	content: {
 		type: String,
 		trim: true,
-		default: ''
+		default: ""
 	},
 	description: {
 		type: String
@@ -50,7 +50,7 @@ var ArticleSchema = new Schema({
 		},
 		user: {
 			type: Schema.Types.ObjectId,
-			ref: 'User'
+			ref: "User"
 		}})
 	],
 	no: [new Schema({
@@ -60,7 +60,7 @@ var ArticleSchema = new Schema({
 		},
 		user: {
 			type: Schema.Types.ObjectId,
-			ref: 'User'
+			ref: "User"
 		}})
 	],
 	blank: [new Schema({
@@ -70,17 +70,17 @@ var ArticleSchema = new Schema({
 		},
 		user: {
 			type: Schema.Types.ObjectId,
-			ref: 'User'
+			ref: "User"
 		}})
 	],
 	categories: [new Schema({
 		id: {
 			type: String,
-			default: ''
+			default: ""
 		},
 		value: {
 			type: String,
-			default: ''
+			default: ""
 		}
 	})],
 	image: {
@@ -88,7 +88,7 @@ var ArticleSchema = new Schema({
 	},
 	user: {
 		type: Schema.ObjectId,
-		ref: 'User'
+		ref: "User"
 	},
 	comments: [new Schema({
 		created: {
@@ -97,11 +97,11 @@ var ArticleSchema = new Schema({
 		},
 		user: {
 			type: Schema.Types.ObjectId,
-			ref: 'User'
+			ref: "User"
 		},
 		content: {
 			type: String,
-			default: ''
+			default: ""
 		},
 		replies: [new Schema({
 			created: {
@@ -110,11 +110,11 @@ var ArticleSchema = new Schema({
 			},
 			user: {
 				type: Schema.Types.ObjectId,
-				ref: 'User'
+				ref: "User"
 			},
 			content: {
 				type: String,
-				default: ''
+				default: ""
 			}
 		})]
 	})]
@@ -122,20 +122,20 @@ var ArticleSchema = new Schema({
 /**
  * Validations
  */
-ArticleSchema.path('title').validate(function(title) {
+ArticleSchema.path("title").validate(function(title) {
 	return title.length;
-}, 'Title cannot be blank');
+}, "Title cannot be blank");
 /**
  * Statics
  */
 ArticleSchema.statics.load = function(id, cb) {
 	this.findOne({
 		_id: id
-	}).populate('user', 'name username').populate('comments.user', 'name username avatar', null, {
+	}).populate("user", "name username").populate("comments.user", "name username avatar", null, {
 		sort: {
-			'created': -1
+			"created": -1
 		}
 	}).exec(cb);
 };
 
-mongoose.model('Article', ArticleSchema);
+mongoose.model("Article", ArticleSchema);

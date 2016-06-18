@@ -4,7 +4,13 @@
 var express = require('express'),
 	fs = require('fs'),
 	passport = require('passport'),
-	logger = require('mean-logger');
+	logger = require('mean-logger'),
+	qt = require('quickthumb'),
+	gm = require('gm').subClass({
+		imageMagick: true
+	}),
+	fs = require('fs'),
+	path = require("path");
 
 // Load configurations
 // Set the node enviornment variable if not set before
@@ -125,7 +131,7 @@ var addMatchs = function() {
 				var homeName = getNameOfCountryCode(teams, match.home);
 				var awayName = getNameOfCountryCode(teams, match.away);
 				var userEvent = new UserEvent({
-					title:  homeName + " - " + awayName,
+					title: homeName + " - " + awayName,
 					type: 'inverse',
 					eventType: "other",
 					content: "Match de l'euro 2016 du groupe " + match.type,
@@ -151,10 +157,10 @@ var addMatchs = function() {
 	});
 };
 
-var getNameOfCountryCode = function(teams, code){
+var getNameOfCountryCode = function(teams, code) {
 	var name = "";
-	_.each(teams, function(team){
-		if(team.code == code){
+	_.each(teams, function(team) {
+		if (team.code == code) {
 			name = team.name;
 		}
 	});
@@ -162,5 +168,33 @@ var getNameOfCountryCode = function(teams, code){
 	return name;
 };
 
+var rotateImage = function() {
+	var oldPath = path.resolve(config.root + "/server/public/img/users/")
+	fs.readdir(oldPath, function(err, items) {
+		if (items) {
+			_.each(items, function(item) {
+				var name =  item;
+				var newPath = path.resolve(config.root + "/server/public/img/tmp/" + name);
+				gm(path.resolve(config.root + "/server/public/img/users/" + name))
+					.autoOrient()
+					.write(newPath, function(err) {
+
+						if (err) {
+							console.log("Error when trying to move new image " + err);
+						} else {
+							console.log("Rotate image ");
+						}
+					});
+			});
+
+			console.warn("End process of image traitment!");
+		}
+	});
+};
+
+var cleanParis = function() {}
+
 // addParameters();
-addMatchs();
+// addMatchs();
+// cleanParis();
+// rotateImage();

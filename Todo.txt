@@ -5,6 +5,7 @@
 - Perfs on home
 - Edition / suppression dans espace utilisateur ou - Gestion des droits au niveau édition / suppressions
 - Back fonctionne pas sur safari
+- Script de migration des images et des compteurs et points des users
 
 ------ STORIES ------
 - Implements chat with socket.io

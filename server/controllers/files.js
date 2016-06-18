@@ -1,21 +1,21 @@
-var fs = require('fs');
+var fs = require("fs");
 var path = require("path");
-var config = require('../../config/config');
-var qt = require('quickthumb');
-var gm = require('gm').subClass({
+var config = require("../../config/config");
+var qt = require("quickthumb");
+var gm = require("gm").subClass({
 	imageMagick: true
 });
 
 exports.uploadPhoto = function(req, res) {
-	console.info('inside uploadPhoto'); // <-- never reached using IE9
+	console.info("inside uploadPhoto"); // <-- never reached using IE9
 
 	var callbacks = {
 
 		uploadSuccess: function(newName, oldName) {
-			console.log('inside uploadSuccess');
+			console.log("inside uploadSuccess");
 
 			res.writeHead(200, {
-				'Content-Type': 'application/json'
+				"Content-Type": "application/json"
 			});
 
 			res.end(JSON.stringify({
@@ -25,14 +25,14 @@ exports.uploadPhoto = function(req, res) {
 			}));
 		},
 		uploadFailure: function(err) {
-			console.log('inside uploadFailure');
+			console.log("inside uploadFailure");
 
 			res.writeHead(400, {
-				'Content-Type': 'text/plain'
+				"Content-Type": "text/plain"
 			});
 
 			res.end(JSON.stringify({
-				err: 100, //Mettre en place des messages d'erreur
+				err: 100, //Mettre en place des messages d"erreur
 				path: null
 			}))
 
@@ -43,16 +43,16 @@ exports.uploadPhoto = function(req, res) {
 };
 
 function handlePhotoUpload(params, callbacks) {
-	console.log('inside handlePhotoUpload'); // <-- never reached using IE9
+	console.log("inside handlePhotoUpload"); // <-- never reached using IE9
 
-	if (params.file.type !== 'image/png' && params.file.type !== 'image/jpeg' && params.file.type !== 'image/gif') {
-		callbacks.uploadFailure('Wrong file type');
+	if (params.file.type !== "image/png" && params.file.type !== "image/jpeg" && params.file.type !== "image/gif") {
+		callbacks.uploadFailure("Wrong file type");
 		return;
 	}
 
 	var oldName = params.file.name;
 	var photoId = guid();
-	var newName = photoId + "." + params.file.path.split('.').pop();
+	var newName = photoId + "." + params.file.path.split(".").pop();
 	var newPath = path.resolve(config.root + "/server/" + config.uploadDirectory + newName);
 
 	gm(params.file.path)
@@ -67,8 +67,8 @@ function handlePhotoUpload(params, callbacks) {
 			} else {
 
 				var image = gm(newPath);
-				image.resize(300, '^');
-				image.gravity('Center');
+				image.resize(300, "^");
+				image.gravity("Center");
 				image.quality(0.7);
 				image.autoOrient();
 				image.write(path.resolve(config.root + "/server/" + config.cacheDirectoryX300 + newName), function(err) {
@@ -84,7 +84,7 @@ function handlePhotoUpload(params, callbacks) {
 							console.log("Erorr when trying to delete image " + err);
 							callbacks.uploadFailure(err);
 						} else {
-							console.log('Successfully deleted : ' + params.file.path);
+							console.log("Successfully deleted : " + params.file.path);
 							callbacks.uploadSuccess(newName, oldName);
 						}
 
@@ -99,6 +99,6 @@ var guid = (function() {
 		return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
 	}
 	return function() {
-		return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+		return s4() + s4() + "-" + s4() + "-" + s4() + "-" + s4() + "-" + s4() + s4() + s4();
 	};
 })();

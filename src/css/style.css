@@ -7564,6 +7564,10 @@ a.follow:hover {
     border-right: 7px solid #2196F3;
 }
 
+#timeline .timeline-item.comment .timeline-content:before {
+    border-right: 7px solid #f7f7f7 !important;
+}
+
 #timeline .timeline-item.agenda .timeline-content:before {
     border-right: 7px solid #F44336 !important;
 }

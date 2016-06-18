@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-angular.module('mean.users').controller('TeamController', ['$scope', 'Global', 'Team', '$modal', 'Users', 'AlbumService', 'ArticlesCollection',
+angular.module("mean.users").controller("TeamController", ["$scope", "Global", "Team", "$modal", "Users", "AlbumService", "ArticlesCollection",
 	function($scope, Global, Team, $modal, Users, AlbumService, ArticlesCollection) {
 
 		$scope.global = Global;
@@ -33,9 +33,9 @@ angular.module('mean.users').controller('TeamController', ['$scope', 'Global', '
 			evt.stopPropagation();
 
 			$modal.open({
-				templateUrl: 'js/users/views/modal/userDetail.html',
-				controller: 'UserDetailController',
-				windowClass: 'userDetailPopup',
+				templateUrl: "js/users/views/modal/userDetail.html",
+				controller: "UserDetailController",
+				windowClass: "userDetailPopup",
 				resolve: {
 
 					User: function(UserService) {
@@ -65,16 +65,16 @@ angular.module('mean.users').controller('TeamController', ['$scope', 'Global', '
 		$scope.$parent.menu = {
 			title: "Le classement de l'euro",
 			items: [{
-				link: '#!',
-				info: 'Retour',
-				icon: 'fa-arrow-left',
+				link: "#!",
+				info: "Retour",
+				icon: "fa-arrow-left",
 				callback: $scope.global.back
 			}]
 		};
 	}
 ]);
 
-angular.module('mean.users').controller('UserDetailController', ['$scope', '$sce', '$modalInstance', 'User', 'Albums', 'UserArticles',
+angular.module("mean.users").controller("UserDetailController", ["$scope", "$sce", "$modalInstance", "User", "Albums", "UserArticles",
 
 	function($scope, $sce, $modalInstance, User, Albums, UserArticles) {
 
@@ -87,8 +87,8 @@ angular.module('mean.users').controller('UserDetailController', ['$scope', '$sce
 		};
 
 		$scope.getImage = function(html) {
-			var img = angular.element(html).find('img').first();
-			return (img.length) ? img.attr('src') : '';
+			var img = angular.element(html).find("img").first();
+			return (img.length) ? img.attr("src") : "";
 		};
 
 		//Format video and audio url
@@ -97,16 +97,16 @@ angular.module('mean.users').controller('UserDetailController', ['$scope', '$sce
 		};
 
 		$scope.isSpotify = function(link) {
-			return link.indexOf('spotify') !== -1;
+			return link.indexOf("spotify") !== -1;
 		};
 
 		$scope.cancel = function() {
-			$modalInstance.dismiss('cancel');
+			$modalInstance.dismiss("cancel");
 		};
 	}
 ]);
 
-angular.module('mean.users').controller('ProfileController', ['$scope', 'Global', 'User', 'UserService', '$translate', 'FileUploader',
+angular.module("mean.users").controller("ProfileController", ["$scope", "Global", "User", "UserService", "$translate", "FileUploader",
 
 	function($scope, Global, User, UserService, $translate, FileUploader) {
 
@@ -118,15 +118,15 @@ angular.module('mean.users').controller('ProfileController', ['$scope', 'Global'
 		***/
 		$scope.uploader = new FileUploader({
 			scope: $scope,
-			url: '/upload/photo',
+			url: "/upload/photo",
 			autoUpload: true,
 			formData: [{
-				key: 'value'
+				key: "value"
 			}]
 		});
 
 		$scope.uploader.onCompleteItem = function(item, response, status, headers) {
-			console.info('Complete', item, response);
+			console.info("Complete", item, response);
 			$scope.user.avatar = response.path;
 		};
 
@@ -174,15 +174,15 @@ angular.module('mean.users').controller('ProfileController', ['$scope', 'Global'
 		$scope.$parent.menu = {
 			title: "Profil",
 			items: [{
-				link: '#!',
-				info: 'Retour',
-				icon: 'fa-arrow-left',
+				link: "#!",
+				info: "Retour",
+				icon: "fa-arrow-left",
 				callback: $scope.global.back
 			},
 			{
-				link: '#!',
-				info: 'Sauvegarder',
-				icon: 'fa-save',
+				link: "#!",
+				info: "Sauvegarder",
+				icon: "fa-save",
 				callback: $scope.update
 			}]
 		};

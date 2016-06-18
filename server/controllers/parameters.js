@@ -1,11 +1,11 @@
-'use strict';
+"use strict";
 
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
-	Parameters = mongoose.model('Parameter'),
-	_ = require('lodash');
+var mongoose = require("mongoose"),
+	Parameters = mongoose.model("Parameter"),
+	_ = require("lodash");
 
 /**
  * Get all parameters
@@ -15,7 +15,7 @@ exports.getAllParameters = function(req, res) {
 	Parameters.find().exec()
 		.then(function(parameters, err) {
 			if (err) {
-				res.render('error', {
+				res.render("error", {
 					status: 500
 				});
 			} else {

@@ -1,18 +1,18 @@
-var mongoose = require('mongoose');
-var _ = require('underscore');
-var fs = require('fs');
+var mongoose = require("mongoose");
+var _ = require("underscore");
+var fs = require("fs");
 var path = require("path");
-var config = require('../../config/config');
-var archiver = require('archiver');
-var Album = mongoose.model('Album');
+var config = require("../../config/config");
+var archiver = require("archiver");
+var Album = mongoose.model("Album");
 
 exports.album = function(req, res, next) {
 	Album.findOne({
 			_id: req.params.id
 		})
-		.populate('comments.user', '_id name username avatar')
-		.populate('comments.replies.user', '_id name username avatar')
-		.populate('user').exec(function(err, album) {
+		.populate("comments.user", "_id name username avatar")
+		.populate("comments.replies.user", "_id name username avatar")
+		.populate("user").exec(function(err, album) {
 			if (err) return next(err);
 			req.album = album;
 			next();
@@ -28,8 +28,8 @@ exports.findAllAlbums = function(req, res) {
 	} : {};
 
 	Album.find(query)
-		.sort('-created')
-		.populate('user', '_id name username avatar')
+		.sort("-created")
+		.populate("user", "_id name username avatar")
 		.limit(perPage)
 		.skip(perPage * page).exec(function(err, albums) {
 			res.send(albums);
@@ -40,9 +40,9 @@ exports.findAlbumById = function(req, res) {
 	Album.findOne({
 			_id: req.params.id
 		})
-		.populate('comments.user', '_id name username avatar')
-		.populate('comments.replies.user', '_id name username avatar')
-		.populate('user').exec(function(err, album) {
+		.populate("comments.user", "_id name username avatar")
+		.populate("comments.replies.user", "_id name username avatar")
+		.populate("user").exec(function(err, album) {
 			if (err) console.log("error finding album: " + err);
 			res.send(album);
 		})
@@ -102,7 +102,7 @@ exports.download = function(req, res) {
 	var src = [];
 	var id = req.params.id, // ID will be used when creating the archive
 		output = fs.createWriteStream(path.resolve(config.root + "/server/public/temp_files/" + id + ".zip")), // Create a write stream for the archive
-		archive = archiver('zip'); // Set our archive to zip format
+		archive = archiver("zip"); // Set our archive to zip format
 
 	Album.findOne({
 		_id: id
@@ -113,17 +113,17 @@ exports.download = function(req, res) {
 
 		//add each photo of the album to the archive
 		_.each(album.photoList, function(entry) {
-			src.push(entry.filepath.split('public/img/users/').pop());
+			src.push(entry.filepath.split("public/img/users/").pop());
 		});
 
 		archive.bulk([{
-			cwd: path.resolve(config.root + '/server/public/img/users/'),
+			cwd: path.resolve(config.root + "/server/public/img/users/"),
 			src: src,
 			dest: album.name,
 			expand: true
 		}]);
 
-		archive.on('end', function() {
+		archive.on("end", function() {
 			return res.json({
 				success: true
 			});
@@ -136,7 +136,7 @@ exports.download = function(req, res) {
 exports.getZipFile = function(req, res) {
 
 	var error = false; // Set a flag to check for errors in downloading the file
-	var filePath = path.resolve(config.root + '/server/public/temp_files/' + req.params.id + '.zip'); // Store the path to the file
+	var filePath = path.resolve(config.root + "/server/public/temp_files/" + req.params.id + ".zip"); // Store the path to the file
 
 	var stream = fs.createReadStream(filePath, {
 		bufferSize: 64 * 1024
@@ -144,12 +144,12 @@ exports.getZipFile = function(req, res) {
 
 	stream.pipe(res);
 
-	stream.on('error', function(err) // Error when downloading...
+	stream.on("error", function(err) // Error when downloading...
 		{
 			error = true;
 		});
 
-	stream.on('close', function() // Finished downloading...
+	stream.on("close", function() // Finished downloading...
 		{
 			if (!error) // If no errors occured
 			{
@@ -167,7 +167,7 @@ exports.getItemsCount = function(req, res) {
 
 		if (err) {
 
-			res.render('error', {
+			res.render("error", {
 				status: 500
 			});
 
