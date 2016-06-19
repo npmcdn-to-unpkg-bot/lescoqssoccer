@@ -85,7 +85,7 @@ angular.module("mean.albums").service("AlbumService", ["AlbumsCollection", "Phot
 				var index = 0;
 				for(var i=0; i < AlbumService.all.length; i++){
 					if(album._id === AlbumService.all[i]._id) index = i;
-				};
+				}
 
 				return (index - 1 > 0) ? AlbumService.all[index - 1] : AlbumService.all[0];
 			},

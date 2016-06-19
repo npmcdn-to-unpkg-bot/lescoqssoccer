@@ -205,7 +205,7 @@ angular.module("mean.home").controller("HomeController", ["$scope", "$sce", "Glo
 					return "#!/albums/view/" + comment.contentId;
 				default:
 					break;
-			};
+			}
 		};
 
 		$scope.getTypeFromComment = function(comment) {

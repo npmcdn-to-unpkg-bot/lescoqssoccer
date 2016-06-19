@@ -92,7 +92,7 @@ function handlePhotoUpload(params, callbacks) {
 				});
 			}
 		});
-};
+}
 
 var guid = (function() {
 	function s4() {

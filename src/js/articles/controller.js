@@ -25,7 +25,7 @@ angular.module("mean.articles").controller("ArticlesController", ["$scope", "Glo
 			return $sce.trustAsResourceUrl(src);
 		};
 
-		$scope.getDateFrom = function(article){
+		$scope.getDateFrom = function(article) {
 			return moment(article.created).fromNow();
 		};
 
@@ -43,7 +43,7 @@ angular.module("mean.articles").controller("ArticlesController", ["$scope", "Glo
 		};
 
 		$scope.getSuggestionAnswerLength = function(suggestion, option) {
-			if(suggestion.yes.length + suggestion.no.length + suggestion.blank.length === 0){
+			if (suggestion.yes.length + suggestion.no.length + suggestion.blank.length === 0) {
 				return 0;
 			} else {
 				return Math.round(suggestion[option].length / (suggestion.yes.length + suggestion.no.length + suggestion.blank.length) * 100);
@@ -87,13 +87,11 @@ angular.module("mean.articles").controller("ArticlesController", ["$scope", "Glo
 				link: "#!/articles/create/standard",
 				info: "Nouvel article",
 				icon: "fa-list-alt"
-			},
-			{
+			}, {
 				link: "#!/articles/create/video",
 				info: "Nouvelle vidéo",
 				icon: "fa-video-camera"
-			},
-			{
+			}, {
 				link: "#!/articles/create/audio",
 				info: "Nouveau son",
 				icon: "fa-volume-up"
@@ -124,14 +122,14 @@ angular.module("mean.articles").controller("ArticleDetailController", ["$scope",
 		};
 
 		$scope.getSuggestionAnswerLength = function(suggestion, option) {
-			if(suggestion.yes.length + suggestion.no.length + suggestion.blank.length === 0){
+			if (suggestion.yes.length + suggestion.no.length + suggestion.blank.length === 0) {
 				return 0;
 			} else {
 				return Math.round(suggestion[option].length / (suggestion.yes.length + suggestion.no.length + suggestion.blank.length) * 100);
 			}
 		};
 
-		$scope.updateMethod = function(){
+		$scope.updateMethod = function() {
 			return $scope.ArticlesCollection.update($scope.article);
 		};
 
@@ -229,14 +227,12 @@ angular.module("mean.articles").controller("ArticleDetailController", ["$scope",
 				info: "Précédent",
 				icon: "fa-arrow-left",
 				callback: $scope.showPrevious
-			},
-			{
+			}, {
 				link: "#!",
 				info: "Retour à la liste",
 				icon: "fa-list",
 				callback: $scope.backToList
-			},
-			{
+			}, {
 				link: "#!",
 				info: "Suivant",
 				icon: "fa-arrow-right",
@@ -244,7 +240,7 @@ angular.module("mean.articles").controller("ArticleDetailController", ["$scope",
 			}]
 		};
 
-		if($scope.article.type !== "quote"){
+		if ($scope.article.type !== "quote") {
 			$scope.$parent.menu.items.unshift({
 				link: "#!",
 				info: "Supprimer",
@@ -257,7 +253,7 @@ angular.module("mean.articles").controller("ArticleDetailController", ["$scope",
 				icon: "fa-edit",
 				callback: $scope.edit
 			});
-		};
+		}
 	}
 ]);
 
@@ -271,7 +267,7 @@ angular.module("mean.articles").controller("CreateArticleController", ["$scope",
 
 		switch ($scope.article.type) {
 			case "link":
-				$scope.title = $scope.article.title ||"Nouveau lien";
+				$scope.title = $scope.article.title || "Nouveau lien";
 				break;
 			case "video":
 				$scope.title = $scope.article.title || "Nouvelle vidéo";
@@ -328,7 +324,7 @@ angular.module("mean.articles").controller("CreateArticleController", ["$scope",
 					}];
 					break;
 				case "video":
-					if($scope.linkAdress.indexOf("iframe") !== -1){
+					if ($scope.linkAdress.indexOf("iframe") !== -1) {
 						var src = angular.element($scope.linkAdress);
 						$scope.article.videoLink = src.attr("src");
 					} else {
@@ -336,7 +332,7 @@ angular.module("mean.articles").controller("CreateArticleController", ["$scope",
 					}
 					break;
 				case "audio":
-					if($scope.linkAdress.indexOf("iframe") !== -1){
+					if ($scope.linkAdress.indexOf("iframe") !== -1) {
 						var src = angular.element($scope.linkAdress);
 						$scope.article.audioLink = src.attr("src");
 					} else {
@@ -382,8 +378,7 @@ angular.module("mean.articles").controller("CreateArticleController", ["$scope",
 				info: "Retour",
 				icon: "fa-arrow-left",
 				callback: $scope.global.back
-			},
-			{
+			}, {
 				link: "#!",
 				info: "Sauvegarder",
 				icon: "fa-save",
