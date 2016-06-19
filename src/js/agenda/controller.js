@@ -74,10 +74,10 @@ angular.module("mean.agenda").controller("CreateAgendaController", ["$scope", "$
 		};
 
 		$scope.userEvent = event || {
-			title: ",
+			title: "",
 			type: "inverse",
 			eventType: $scope.eventTypes[2].identifier,
-			content: ",
+			content: "",
 			startsAt: $scope.startsAt,
 			endsAt: $scope.endsAt,
 			editable: false,
@@ -111,7 +111,7 @@ angular.module("mean.agenda").controller("CreateAgendaController", ["$scope", "$
 		$scope.formats = ["dd-MMMM-yyyy", "yyyy/MM/dd", "dd.MM.yyyy", "shortDate"];
 		$scope.format = $scope.formats[2];
 		$scope.dateOptions = {
-			"year-format": ""yy"",
+			"year-format": "yy",
 			"starting-day": 1
 		};
 
