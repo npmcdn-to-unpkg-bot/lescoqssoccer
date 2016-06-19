@@ -65,8 +65,10 @@ angular.module("mean.agenda").service("AgendaCollection", ["Global", "UserEvent"
 				}).$promise;
 			},
 
-			remove: function(userEvent, callback) {
-				return UserEvent.delete({}, userEvent, function(userEvent) {
+			remove: function(userEventId) {
+				return UserEvent.delete({
+					userEventId: userEventId
+				}, function(userEvent) {
 					return userEvent;
 				}).$promise;
 			},

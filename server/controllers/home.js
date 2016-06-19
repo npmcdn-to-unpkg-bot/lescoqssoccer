@@ -17,6 +17,10 @@ var mongoose = require("mongoose"),
  */
 exports.getAllUserData = function(req, res) {
 
+	var query = (req.query.userId === "true") ? {
+		user: req.query.userId
+	} : {};
+
 	var userData = {
 		albums: null,
 		articles: null,
@@ -30,7 +34,7 @@ exports.getAllUserData = function(req, res) {
 		users: null
 	}
 
-	Article.find()
+	Article.find(query)
 		.sort("-created")
 		.populate("user", "_id name username avatar").exec()
 		.then(function(articles, err) {
@@ -45,7 +49,7 @@ exports.getAllUserData = function(req, res) {
 
 				userData.articles = articles;
 
-				return Album.find()
+				return Album.find(query)
 					.sort("-created")
 					.populate("user", "_id name username avatar").exec();
 			}
@@ -62,7 +66,7 @@ exports.getAllUserData = function(req, res) {
 
 				userData.albums = albums;
 
-				return UserEvent.find()
+				return UserEvent.find(query)
 					.sort("-created")
 					.populate("user", "_id name username avatar").exec();
 			}
@@ -79,7 +83,7 @@ exports.getAllUserData = function(req, res) {
 
 				userData.userEvents = userEvent;
 
-				return Suggestion.find({})
+				return Suggestion.find(query)
 					.sort("-created")
 					.populate("user", "_id name username avatar").exec();
 			}
@@ -104,7 +108,7 @@ exports.getAllUserData = function(req, res) {
 			} else {
 
 				responseObject.users = users;
-				return Comment.find({}).populate("user", "_id name username avatar").exec();
+				return Comment.find().populate("user", "_id name username avatar").exec();
 			}
 
 		}).then(function(comments, err) {
@@ -118,8 +122,7 @@ exports.getAllUserData = function(req, res) {
 			} else {
 
 				userData.comments = comments;
-				var formattedDatas = formatUserData(userData);
-				responseObject.content = formattedDatas.content;
+				responseObject.content = formatUserData(userData);
 				res.jsonp(responseObject);
 			}
 		});
@@ -169,7 +172,5 @@ var formatUserData = function(userData) {
 		return item.created || item.startsAt;
 	});
 
-	sortedDatas.content.slice(0, 30);
-
-	return sortedDatas;
+	return sortedDatas.content.slice(sortedDatas.content.length - 31, sortedDatas.content.length - 1);
 };

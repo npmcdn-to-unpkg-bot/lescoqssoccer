@@ -7432,7 +7432,7 @@ a.follow:hover {
 }
 
 @import "http://fonts.googleapis.com/css?family=Dosis:300,400,500,600,700";
-#timeline .timeline-item:after, #timeline .timeline-item:before {
+.timeline-item:after, .timeline-item:before {
   content: '';
   display: block;
   width: 100%;
@@ -7455,13 +7455,24 @@ a.follow:hover {
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     padding: 0;
 }
+#profileTimeline {
+  max-width: 100%;
+  margin: auto 0px auto;
+    overflow-x: hidden;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+      background: white;
+    padding: 0;
+}
 
 .timelineContainer{
 	height: 100%;
     display: block;
 }
 
-.timelineContainer:before {
+#timeline .timelineContainer:before {
   content: "";
   width: 3px;
   height: calc(100% - 10px);
@@ -7478,20 +7489,21 @@ a.follow:hover {
     	font-weight: 500;
 }
 
-#timeline:after {
+#timeline:after, #profileTimeline:after {
   content: "";
   clear: both;
   display: table;
   width: 100%;
 }
-#timeline .timeline-item {
+.timeline-item {
   margin-bottom: 50px;
   position: relative;
       max-width: 100%;
     overflow-x: hidden;
         padding-bottom: 2px;
+            padding-left: 1px;
 }
-#timeline .timeline-item .timeline-icon {
+.timeline-item .timeline-icon {
   background: #2196F3;
   width: 50px;
   height: 50px;
@@ -7504,7 +7516,19 @@ a.follow:hover {
     box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,0),0 2px 1px -1px rgba(0,0,0,.12);
     cursor: pointer;
 }
-#timeline .timeline-item .timeline-icon svg {
+.timeline-action{
+	font-size: large;
+	display: inline-block;
+}
+
+.timeline-action a{
+	color: white;
+	    font-size: larger;
+    border: 1px solid;
+    border-radius: 50%;
+    padding: 10px;
+}
+.timeline-item .timeline-icon svg {
   position: relative;
   top: 14px;
   left: 14px;
@@ -7528,12 +7552,31 @@ a.follow:hover {
   -ms-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
-#timeline .timeline-item .timeline-content:hover, #timeline .timeline-item .timeline-content.read {
+#profile-timeline .timeline-item .timeline-content {
+  width: calc(100% - 2px);
+  margin-right: 5px;
+  background: #fff;
+  padding: 20px;
+  float: left;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  -ms-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.timeline-item .timeline-content:hover, .timeline-item .timeline-content.read {
 	opacity: .7;
 	cursor: pointer;
 }
 
-#timeline .timeline-item .timeline-content h2 {
+.timeline-item .timeline-content h2 {
 	font-size: 20px;
 	line-height: 20px;
   padding: 15px;
@@ -7547,7 +7590,7 @@ a.follow:hover {
   border-radius: 2px 2px 0 0;
 }
 
-#timeline .timeline-item .timeline-content .three-line-ellipsis, #timeline .timeline-item .timeline-content .videoWrapper, #timeline .timeline-item .timeline-content .soundcloudWrapper {
+.timeline-item .timeline-content .three-line-ellipsis, .timeline-item .timeline-content .videoWrapper, .timeline-item .timeline-content .soundcloudWrapper {
 	margin-top: 10px;
 }
 

@@ -120,8 +120,10 @@ angular.module("mean.albums").service("AlbumService", ["AlbumsCollection", "Phot
 				}).$promise;
 			},
 
-			deleteAlbum: function(album) {
-				return AlbumsCollection.delete({}, album, function(data) {
+			deleteAlbum: function(albumId) {
+				return AlbumsCollection.delete({
+					id: albumId
+				}, function(data) {
 					return data;
 				}).$promise;
 			},

@@ -5,27 +5,6 @@ angular.module("mean.users").controller("TeamController", ["$scope", "Global", "
 
 		$scope.global = Global;
 		$scope.team = Team;
-		$scope.colors = {
-			0: "Red",
-			1: "Pink",
-			2: "Purple",
-			3: "Deep-Purple",
-			4: "Indigo",
-			5: "Blue",
-			6: "Light-Blue",
-			7: "Cyan",
-			8: "Teal",
-			9: "Green",
-			10: "Light-Green",
-			11: "Lime",
-			12: "Yellow",
-			13: "Amber",
-			14: "Orange",
-			15: "Deep-Orange",
-			16: "Brown",
-			17: "Grey",
-			18: "Blue-Grey"
-		};
 
 		$scope.showUserDetail = function(evt, user) {
 
@@ -37,29 +16,21 @@ angular.module("mean.users").controller("TeamController", ["$scope", "Global", "
 				controller: "UserDetailController",
 				windowClass: "userDetailPopup",
 				resolve: {
-
 					User: function(UserService) {
 						return UserService.findOne(user._id);
 					},
-
 					Albums: function(AlbumService) {
 						return AlbumService.getAlbumsByUser(user._id).then(function(albums) {
 							return albums;
 						});
 					},
-
 					UserArticles: function(ArticlesCollection) {
 						return ArticlesCollection.getArticlesByUser(user._id).then(function(articles) {
 							return articles;
 						});
-					},
-
+					}
 				}
 			});
-		};
-
-		$scope.getColorClass = function(index) {
-			return $scope.colors[index];
 		};
 
 		$scope.$parent.menu = {
@@ -106,12 +77,13 @@ angular.module("mean.users").controller("UserDetailController", ["$scope", "$sce
 	}
 ]);
 
-angular.module("mean.users").controller("ProfileController", ["$scope", "Global", "User", "UserService", "$translate", "FileUploader",
+angular.module("mean.users").controller("ProfileController", ["$scope", "Global", "$sce", "$modal", "User", "UserService", "$translate", "FileUploader", "UserContents", "AgendaCollection", "ArticlesCollection", "AlbumService",
 
-	function($scope, Global, User, UserService, $translate, FileUploader) {
+	function($scope, Global, $sce, $modal, User, UserService, $translate, FileUploader, UserContents, AgendaCollection, ArticlesCollection, AlbumService) {
 
 		$scope.global = Global;
 		$scope.user = User;
+		$scope.userContents = UserContents.content;
 
 		/***
 			AVATAR
@@ -171,6 +143,83 @@ angular.module("mean.users").controller("ProfileController", ["$scope", "Global"
 			});
 		};
 
+		//Format html content from article content edit by wysiwyg
+		$scope.getFormattedContent = function(html) {
+			return angular.element(html).text();
+		};
+
+		//Format video and audio url
+		$scope.trustSrc = function(src) {
+			return $sce.trustAsResourceUrl(src);
+		};
+
+		$scope.deleteEvent = function(evt, userEvent) {
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			var modalInstance = $modal.open({
+				templateUrl: "js/agenda/views/modal/deleteAgendaModal.html",
+				controller: "deleteAgendaModalCtrl",
+				resolve: {
+					userEvent: function() {
+						return userEvent;
+					}
+				}
+			});
+
+			modalInstance.result.then(function() {
+				AgendaCollection.remove(userEvent._id).then(function(){
+					$scope.removeItem(userEvent);
+				});
+			});
+		};
+
+		$scope.deleteArticle = function(evt, article) {
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			var modalInstance = $modal.open({
+				templateUrl: "js/articles/views/modal/deleteArticleModal.html",
+				controller: "deleteArticleModalCtrl",
+				resolve: {
+					article: function() {
+						return article;
+					}
+				}
+			});
+
+			modalInstance.result.then(function() {
+				ArticlesCollection.remove(article._id).then(function(){
+					$scope.removeItem(article);
+				});
+			});
+		};
+
+		$scope.deleteAlbum = function(evt, album) {
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			var modalInstance = $modal.open({
+				templateUrl: "js/gallery/views/modal/deleteAlbumModal.html",
+				controller: "deleteAlbumModalCtrl",
+				resolve: {
+					album: function() {
+						return album;
+					}
+				}
+			});
+
+			modalInstance.result.then(function() {
+				AlbumService.deleteAlbum(album._id).then(function(){
+					$scope.removeItem(album);
+				});
+			});
+		};
+
+		$scope.removeItem = function(item){
+			$scope.userContents.splice($scope.userContents.indexOf(item), 1);
+		};
+
 		$scope.$parent.menu = {
 			title: "Profil",
 			items: [{
@@ -178,8 +227,7 @@ angular.module("mean.users").controller("ProfileController", ["$scope", "Global"
 				info: "Retour",
 				icon: "fa-arrow-left",
 				callback: $scope.global.back
-			},
-			{
+			}, {
 				link: "#!",
 				info: "Sauvegarder",
 				icon: "fa-save",
@@ -191,16 +239,64 @@ angular.module("mean.users").controller("ProfileController", ["$scope", "Global"
 	}
 ]);
 
-var TeamData = {
+angular.module("mean.albums").controller("deleteAlbumModalCtrl", ["$scope", "$modalInstance", "album",
 
+	function($scope, $modalInstance, album) {
+
+		$scope.album = album;
+
+		$scope.ok = function(result) {
+			$modalInstance.close(result);
+		};
+
+		$scope.cancel = function() {
+			$modalInstance.dismiss("cancel");
+		};
+	}
+]);
+
+
+angular.module("mean.articles").controller("deleteAgendaModalCtrl", ["$scope", "$modalInstance", "userEvent",
+
+	function($scope, $modalInstance, userEvent) {
+
+		$scope.userEvent = userEvent;
+
+		$scope.ok = function(result) {
+			$modalInstance.close(result);
+		};
+
+		$scope.cancel = function() {
+			$modalInstance.dismiss("cancel");
+		};
+	}
+
+]);
+
+angular.module("mean.articles").controller("deleteArticleModalCtrl", ["$scope", "$modalInstance", "article",
+
+	function($scope, $modalInstance, article) {
+
+		$scope.article = article;
+
+		$scope.ok = function(result) {
+			$modalInstance.close(result);
+		};
+
+		$scope.cancel = function() {
+			$modalInstance.dismiss("cancel");
+		};
+	}
+
+]);
+
+var TeamData = {
 	Team: function(UserService) {
 		return UserService.load();
 	}
-
 };
 
 var UserDetailData = {
-
 	User: function(UserService, $route) {
 		return UserService.findOne($route.current.params.id);
 	},
@@ -211,14 +307,15 @@ var UserDetailData = {
 
 	UserArticles: function(ArticlesCollection, $route) {
 		return ArticlesCollection.getArticlesByUser($route.current.params.id);
-	},
-
+	}
 };
 
 var ProfileData = {
-
 	User: function(UserService, Global) {
 		return UserService.findOne(Global.user._id);
-	}
+	},
 
+	UserContents: function(HomeCollection) {
+		return HomeCollection.getUserDatasFromId();
+	}
 };

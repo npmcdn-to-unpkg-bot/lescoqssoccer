@@ -5,13 +5,13 @@ angular.module("mean.system").directive("cmLogin", ["$http", "$location", "$wind
 		restrict: "E",
 		transclude: true,
 		templateUrl: "js/authentication/login.html",
-		link: function($scope, element, attrs){
+		link: function($scope, element, attrs) {
 			$scope.signup = false;
-			$scope.showSignup = function(){
+			$scope.showSignup = function() {
 				$scope.signup = true;
 			};
 
-			$scope.showSignin = function(){
+			$scope.showSignin = function() {
 				$scope.signup = false;
 			};
 		}
@@ -102,6 +102,25 @@ angular.module("mean.system").directive("cmTimeline", function() {
 			attrs.$observe("type", function(postType) {
 				scope.contentUrl = "js/home/views/timeline/" + postType + ".html";
 			});
+		},
+		template: "<div ng-include='contentUrl'></div>"
+	}
+});
+
+angular.module("mean.system").directive("cmProfileTimeline", function() {
+	return {
+		restrict: "E",
+		replace: true,
+		link: function(scope, element, attrs) {
+			if (scope.item.type !== "comment" && scope.item.type !== "quote") {
+				if (scope.item.type === "standard") {
+					scope.item.contentHTML = angular.element("<div>" + scope.item.content + "</div>").text();
+				}
+
+				attrs.$observe("type", function(postType) {
+					scope.contentUrl = "js/users/views/timeline/" + postType + ".html";
+				});
+			}
 		},
 		template: "<div ng-include='contentUrl'></div>"
 	}

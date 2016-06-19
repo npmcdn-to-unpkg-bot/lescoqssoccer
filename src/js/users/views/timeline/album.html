@@ -1,0 +1,25 @@
+<div>
+	<div class="timeline-item album">
+		<div class="timeline-content">
+			<h2 style="background: #00BCD4;">
+				<div class="timeline-action">
+					<a class="fa fa-edit" ng-href="#!/albums/edit/{{ item._id }}">
+					</a>
+					<a class="fa fa-times" ng-href="#" ng-click="deleteAlbum($event, item);">
+					</a>
+				</div>
+				&nbsp;
+				{{ item.name }}
+			</h2>
+			<a href="#!/albums/view/{{ item._id }}">
+				<ul class="liquid-body-thumbs clearfix">
+					<li ng-repeat="photo in item.photoList | limitTo:5">
+						<a ng-href="{{ photo.filepath }}" title="{{ photo.name }}" class="imgwrap" data-lightbox="image1">
+							<img ng-src="{{ photo.filepath }}?dim=100x100"/>
+						</a>
+					</li>
+				</ul>
+			</a>
+		</div>
+	</div>
+</div>

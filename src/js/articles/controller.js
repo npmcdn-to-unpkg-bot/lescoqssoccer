@@ -133,39 +133,6 @@ angular.module("mean.articles").controller("ArticleDetailController", ["$scope",
 			return $scope.ArticlesCollection.update($scope.article);
 		};
 
-		$scope.edit = function(evt) {
-
-			evt.preventDefault();
-			evt.stopPropagation();
-
-			$location.path("/articles/edit/" + $scope.article.type + "/" + $scope.article._id);
-		};
-
-		$scope.remove = function(evt) {
-
-			evt.preventDefault();
-			evt.stopPropagation();
-
-			var modalInstance = $modal.open({
-				templateUrl: "js/articles/views/modal/deleteArticleModal.html",
-				controller: "deleteArticleModalCtrl",
-				resolve: {
-					article: function() {
-						return $scope.article;
-					}
-				}
-			});
-
-			modalInstance.result.then(function() {
-
-				// Delete the article and redirect to article list
-				$scope.ArticlesCollection.remove($scope.article).then(function(response) {
-					$location.path("/articles");
-				});
-
-			});
-		};
-
 		$scope.showUserDetail = function(evt, user) {
 
 			evt.preventDefault();
@@ -176,23 +143,19 @@ angular.module("mean.articles").controller("ArticleDetailController", ["$scope",
 				controller: "UserDetailController",
 				windowClass: "userDetailPopup",
 				resolve: {
-
 					User: function(UserService) {
 						return UserService.findOne(user._id);
 					},
-
 					Albums: function(AlbumService) {
 						return AlbumService.getAlbumsByUser(user._id).then(function(albums) {
 							return albums;
 						});
 					},
-
 					UserArticles: function(ArticlesCollection) {
 						return ArticlesCollection.getArticlesByUser(user._id).then(function(articles) {
 							return articles;
 						});
-					},
-
+					}
 				}
 			});
 		};
@@ -239,21 +202,6 @@ angular.module("mean.articles").controller("ArticleDetailController", ["$scope",
 				callback: $scope.showNext
 			}]
 		};
-
-		if ($scope.article.type !== "quote") {
-			$scope.$parent.menu.items.unshift({
-				link: "#!",
-				info: "Supprimer",
-				icon: "fa-times",
-				callback: $scope.remove
-			});
-			$scope.$parent.menu.items.unshift({
-				link: "#!",
-				info: "Editer",
-				icon: "fa-edit",
-				callback: $scope.edit
-			});
-		}
 	}
 ]);
 
@@ -386,23 +334,6 @@ angular.module("mean.articles").controller("CreateArticleController", ["$scope",
 			}]
 		};
 	}
-]);
-
-angular.module("mean.articles").controller("deleteArticleModalCtrl", ["$scope", "$modalInstance", "article",
-
-	function($scope, $modalInstance, article) {
-
-		$scope.article = article;
-
-		$scope.ok = function(result) {
-			$modalInstance.close(result);
-		};
-
-		$scope.cancel = function() {
-			$modalInstance.dismiss("cancel");
-		};
-	}
-
 ]);
 
 angular.module("mean.articles").controller("noTitleArticleModalCtrl", ["$scope", "$modalInstance", "article",
