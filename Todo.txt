@@ -4,7 +4,6 @@
 - Migrer images
 
 
-
 ------ IMPROVEMENTS ------
 
 
