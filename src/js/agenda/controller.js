@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$location', '$route', 'Global', 'AgendaCollection', 'event', '$modal',
+angular.module("mean.agenda").controller("CreateAgendaController", ["$scope", "$location", "$route", "Global", "AgendaCollection", "event", "$modal",
 	function($scope, $location, $route, Global, AgendaCollection, event, $modal) {
 
 		$scope.agendaCollection = AgendaCollection;
@@ -8,17 +8,17 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 		$scope.startsAt = $scope.endsAt = ($route.current && $route.current.params.startDate) ? new Date($route.current.params.startDate) : new Date();
 
 		$scope.eventRepeater = [{
-			'identifier': undefined,
-			'value': 'Pas répéter'
+			"identifier": undefined,
+			"value": "Pas répéter"
 		}, {
-			'identifier': 'week',
-			'value': 'Toutes les semaines'
+			"identifier": "week",
+			"value": "Toutes les semaines"
 		}, {
-			'identifier': 'month',
-			'value': 'Tous les mois'
+			"identifier": "month",
+			"value": "Tous les mois"
 		}, {
-			'identifier': 'year',
-			'value': 'Tous les ans'
+			"identifier": "year",
+			"value": "Tous les ans"
 		}];
 
 		/***
@@ -27,7 +27,7 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 		$scope.defaultLocation = {
 			lat: 45.71226,
 			lng: 5.08080,
-			adress: 'Montcul'
+			adress: "Montcul"
 		};
 
 		$scope.map = {
@@ -74,10 +74,10 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 		};
 
 		$scope.userEvent = event || {
-			title: '',
-			type: 'inverse',
+			title: ",
+			type: "inverse",
 			eventType: $scope.eventTypes[2].identifier,
-			content: '',
+			content: ",
 			startsAt: $scope.startsAt,
 			endsAt: $scope.endsAt,
 			editable: false,
@@ -108,11 +108,11 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 		 ***/
 
 		//Config
-		$scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+		$scope.formats = ["dd-MMMM-yyyy", "yyyy/MM/dd", "dd.MM.yyyy", "shortDate"];
 		$scope.format = $scope.formats[2];
 		$scope.dateOptions = {
-			'year-format': "'yy'",
-			'starting-day': 1
+			"year-format": ""yy"",
+			"starting-day": 1
 		};
 
 		//Close ones if other is already open
@@ -121,7 +121,7 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 			$event.preventDefault();
 			$event.stopPropagation();
 
-			if (datepicker === 'startsAt') {
+			if (datepicker === "startsAt") {
 				$scope.openedStartDate = !$scope.openedStartDate;
 				$scope.openedEndDate = false;
 			} else {
@@ -131,13 +131,13 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 		};
 
 		//Update min value for end date of userEvent if startDate increase
-		$scope.$watch('userEvent.startsAt', function(newValue, oldValue) {
+		$scope.$watch("userEvent.startsAt", function(newValue, oldValue) {
 			if (newValue > $scope.userEvent.endsAt) {
 				$scope.userEvent.endsAt = $scope.userEvent.startsAt;
 			}
 		});
 
-		$scope.$watch('userEvent.endsAt', function(newValue, oldValue) {
+		$scope.$watch("userEvent.endsAt", function(newValue, oldValue) {
 			if (newValue < $scope.userEvent.startsAt) {
 				$scope.userEvent.startsAt = $scope.userEvent.endsAt;
 			}
@@ -162,8 +162,8 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 
 					if (showModal) {
 						$modal.open({
-							templateUrl: 'js/agenda/views/modal/unknownLocation.html',
-							controller: 'unknowLocationCtrl'
+							templateUrl: "js/agenda/views/modal/unknownLocation.html",
+							controller: "unknowLocationCtrl"
 						});
 					}
 
@@ -178,7 +178,7 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 				if (!this.geocoder) this.geocoder = new google.maps.Geocoder();
 
 				this.geocoder.geocode({
-					'address': this.search
+					"address": this.search
 				}, function(results, status) {
 
 					if (status == google.maps.GeocoderStatus.OK) {
@@ -195,8 +195,8 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 					} else {
 
 						$modal.open({
-							templateUrl: 'js/agenda/views/modal/unknownLocation.html',
-							controller: 'unknowLocationCtrl'
+							templateUrl: "js/agenda/views/modal/unknownLocation.html",
+							controller: "unknowLocationCtrl"
 						});
 					}
 
@@ -219,7 +219,7 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 
 					},
 					function(err) {
-						console.debug('ERROR(' + err.code + '): ' + err.message);
+						console.debug("ERROR(" + err.code + "): " + err.message);
 
 						$scope.gotoLocation($scope.defaultLocation.lat, $scope.defaultLocation.lng);
 						$scope.search = $scope.defaultLocation.adress;
@@ -247,21 +247,21 @@ angular.module('mean.agenda').controller('CreateAgendaController', ['$scope', '$
 		$scope.$parent.menu = {
 			title: "Nouvel évènement",
 			items: [{
-				link: '#!',
-				info: 'Retour',
-				icon: 'fa-arrow-left',
+				link: "#!",
+				info: "Retour",
+				icon: "fa-arrow-left",
 				callback: $scope.global.back
 			}, {
-				link: '#!',
-				info: 'Sauvegarder',
-				icon: 'fa-save',
+				link: "#!",
+				info: "Sauvegarder",
+				icon: "fa-save",
 				callback: $scope.create
 			}]
 		};
 	}
 ]);
 
-angular.module('mean.agenda').controller('ListController', ['$scope', '$routeParams', '$filter', '$location', '$route', 'Global', 'Agenda', 'AgendaCollection', '$modal',
+angular.module("mean.agenda").controller("ListController", ["$scope", "$routeParams", "$filter", "$location", "$route", "Global", "Agenda", "AgendaCollection", "$modal",
 	function($scope, $routeParams, $filter, $location, $route, Global, Agenda, AgendaCollection, $modal) {
 
 		$scope.global = Global;
@@ -323,7 +323,7 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 
 			if (userEvent) {
 				$scope.selectedEvent = userEvent;
-				$scope.showAddMe = $scope.selectedEvent.user && $scope.selectedEvent.user._id !== $scope.global.user._id && !_.contains(_.pluck($scope.selectedEvent.guest, '_id'), $scope.global.user._id);
+				$scope.showAddMe = $scope.selectedEvent.user && $scope.selectedEvent.user._id !== $scope.global.user._id && !_.contains(_.pluck($scope.selectedEvent.guest, "_id"), $scope.global.user._id);
 
 				//center map on new event
 				if ($scope.selectedEvent.location) {
@@ -340,7 +340,7 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 
 				}
 
-				$(window).trigger('resize');
+				$(window).trigger("resize");
 			}
 		};
 
@@ -388,8 +388,8 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 
 			} else {
 				$modal.open({
-					templateUrl: 'js/agenda/views/modal/alreadyHere.html',
-					controller: 'alreadyHereCtrl'
+					templateUrl: "js/agenda/views/modal/alreadyHere.html",
+					controller: "alreadyHereCtrl"
 				});
 			}
 		};
@@ -419,15 +419,15 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 				});
 			} else {
 				$modal.open({
-					templateUrl: 'js/agenda/views/modal/alreadyHere.html',
-					controller: 'alreadyHereCtrl'
+					templateUrl: "js/agenda/views/modal/alreadyHere.html",
+					controller: "alreadyHereCtrl"
 				});
 			}
 
 		};
 
 		$scope.getFormattedDate = function(date) {
-			return $filter('date')(date, "dd MMM yyyy");
+			return $filter("date")(date, "dd MMM yyyy");
 		};
 
 		if ($scope.agenda.length > 0) {
@@ -443,15 +443,15 @@ angular.module('mean.agenda').controller('ListController', ['$scope', '$routePar
 		$scope.$parent.menu = {
 			title: "Rencards",
 			items: [{
-				link: '#!/agenda/create',
-				info: 'Nouvel évènement',
-				icon: 'fa-plus'
+				link: "#!/agenda/create",
+				info: "Nouvel évènement",
+				icon: "fa-plus"
 			}]
 		};
 	}
 ]);
 
-angular.module('mean.agenda').controller('AgendaDetailController', ['$scope', 'Global', '$location', '$modal', 'event', 'AgendaCollection',
+angular.module("mean.agenda").controller("AgendaDetailController", ["$scope", "Global", "$location", "$modal", "event", "AgendaCollection",
 
 	function($scope, Global, $location, $modal, Event, AgendaCollection) {
 
@@ -542,8 +542,8 @@ angular.module('mean.agenda').controller('AgendaDetailController', ['$scope', 'G
 
 			} else {
 				$modal.open({
-					templateUrl: 'js/agenda/views/modal/alreadyHere.html',
-					controller: 'alreadyHereCtrl'
+					templateUrl: "js/agenda/views/modal/alreadyHere.html",
+					controller: "alreadyHereCtrl"
 				});
 			}
 		};
@@ -573,8 +573,8 @@ angular.module('mean.agenda').controller('AgendaDetailController', ['$scope', 'G
 				});
 			} else {
 				$modal.open({
-					templateUrl: 'js/agenda/views/modal/alreadyHere.html',
-					controller: 'alreadyHereCtrl'
+					templateUrl: "js/agenda/views/modal/alreadyHere.html",
+					controller: "alreadyHereCtrl"
 				});
 			}
 
@@ -586,7 +586,7 @@ angular.module('mean.agenda').controller('AgendaDetailController', ['$scope', 'G
 				evt.stopPropagation();
 			}
 
-			$location.path('/agenda/edit/' + $scope.userEvent._id);
+			$location.path("/agenda/edit/" + $scope.userEvent._id);
 		};
 
 		$scope.deleteEvent = function(evt) {
@@ -596,8 +596,8 @@ angular.module('mean.agenda').controller('AgendaDetailController', ['$scope', 'G
 			}
 
 			var modalInstance = $modal.open({
-				templateUrl: 'js/agenda/views/modal/deleteAgendaModal.html',
-				controller: 'deleteAgendaModalCtrl',
+				templateUrl: "js/agenda/views/modal/deleteAgendaModal.html",
+				controller: "deleteAgendaModalCtrl",
 				resolve: {
 					userEvent: function() {
 						return $scope.userEvent;
@@ -618,35 +618,35 @@ angular.module('mean.agenda').controller('AgendaDetailController', ['$scope', 'G
 		$scope.$parent.menu = {
 			title: "Rencards / " + $scope.userEvent.title,
 			items: [{
-				link: '#!',
-				info: 'Retour',
-				icon: 'fa-arrow-left',
+				link: "#!",
+				info: "Retour",
+				icon: "fa-arrow-left",
 				callback: $scope.global.back
 			}, {
-				link: '#!',
-				info: 'Editer',
-				icon: 'fa-edit',
+				link: "#!",
+				info: "Editer",
+				icon: "fa-edit",
 				callback: $scope.edit
 			}, {
-				link: '#!',
-				info: 'Supprimer',
-				icon: 'fa-times',
+				link: "#!",
+				info: "Supprimer",
+				icon: "fa-times",
 				callback: $scope.deleteEvent
 			}]
 		};
 	}
 ]);
 
-angular.module('mean.agenda').controller('calendarCtrl', ['$scope', '$modalInstance', 'Agenda', 'EventClick',
+angular.module("mean.agenda").controller("calendarCtrl", ["$scope", "$modalInstance", "Agenda", "EventClick",
 
 	function($scope, $modalInstance, Agenda, EventClick) {
 
 		$scope.agenda = Agenda;
 
 		//Calendar config
-		$scope.calendarView = 'month';
+		$scope.calendarView = "month";
 		$scope.calendarDay = new Date();
-		$scope.calendarTitle = '';
+		$scope.calendarTitle = "";
 
 		$scope.eventClick = function(evt, userEvent) {
 
@@ -655,12 +655,12 @@ angular.module('mean.agenda').controller('calendarCtrl', ['$scope', '$modalInsta
 		};
 
 		$scope.cancel = function() {
-			$modalInstance.dismiss('cancel');
+			$modalInstance.dismiss("cancel");
 		};
 	}
 ]);
 
-angular.module('mean.agenda').controller('unknowLocationCtrl', ['$scope', '$modalInstance',
+angular.module("mean.agenda").controller("unknowLocationCtrl", ["$scope", "$modalInstance",
 
 	function($scope, $modalInstance) {
 
@@ -669,12 +669,12 @@ angular.module('mean.agenda').controller('unknowLocationCtrl', ['$scope', '$moda
 		};
 
 		$scope.cancel = function() {
-			$modalInstance.dismiss('cancel');
+			$modalInstance.dismiss("cancel");
 		};
 	}
 ]);
 
-angular.module('mean.agenda').controller('alreadyHereCtrl', ['$scope', '$modalInstance',
+angular.module("mean.agenda").controller("alreadyHereCtrl", ["$scope", "$modalInstance",
 
 	function($scope, $modalInstance) {
 
@@ -683,13 +683,13 @@ angular.module('mean.agenda').controller('alreadyHereCtrl', ['$scope', '$modalIn
 		};
 
 		$scope.cancel = function() {
-			$modalInstance.dismiss('cancel');
+			$modalInstance.dismiss("cancel");
 		};
 	}
 ]);
 
 
-angular.module('mean.articles').controller('deleteAgendaModalCtrl', ['$scope', '$modalInstance', 'userEvent',
+angular.module("mean.articles").controller("deleteAgendaModalCtrl", ["$scope", "$modalInstance", "userEvent",
 
 	function($scope, $modalInstance, userEvent) {
 
@@ -700,7 +700,7 @@ angular.module('mean.articles').controller('deleteAgendaModalCtrl', ['$scope', '
 		};
 
 		$scope.cancel = function() {
-			$modalInstance.dismiss('cancel');
+			$modalInstance.dismiss("cancel");
 		};
 	}
 
@@ -719,23 +719,23 @@ var EventsData = {
 };
 
 var eventTypes = [{
-	identifier: 'restaurant',
-	name: 'Resto',
+	identifier: "restaurant",
+	name: "Resto",
 	image: "img/photos/office2-thumb.jpg"
 }, {
-	identifier: 'holidays',
-	name: 'Vacances',
+	identifier: "holidays",
+	name: "Vacances",
 	image: "img/photos/office3-thumb.jpg"
 }, {
-	identifier: 'party',
-	name: 'Soirée',
+	identifier: "party",
+	name: "Soirée",
 	image: "img/photos/office6-thumb.jpg"
 }, {
-	identifier: 'weekend',
-	name: 'Week-end',
+	identifier: "weekend",
+	name: "Week-end",
 	image: "img/photos/office5-thumb.jpg"
 }, {
-	identifier: 'other',
-	name: 'Autres',
+	identifier: "other",
+	name: "Autres",
 	image: "img/photos/office6-thumb.jpg"
 }];

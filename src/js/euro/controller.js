@@ -78,7 +78,7 @@ angular.module("mean.euro").controller("EuroController", ["$scope", "$location",
 			return moment(match.startsAt).isAfter(new Date());
 		};
 
-		$scope.hasResults = function(match){
+		$scope.hasResults = function(match) {
 			return match.scoreHome !== undefined && match.scoreAway !== undefined;
 		};
 
@@ -203,79 +203,7 @@ var EuroData = {
 	},
 
 	Teams: function() {
-		return [{
-			"code": "FRA",
-			"name": "France"
-		}, {
-			"code": "ROU",
-			"name": "Roumanie"
-		}, {
-			"code": "ALB",
-			"name": "Albanie"
-		}, {
-			"code": "SUI",
-			"name": "Suisse"
-		}, {
-			"code": "ENG",
-			"name": "Angleterre"
-		}, {
-			"code": "RUS",
-			"name": "Russie"
-		}, {
-			"code": "WAL",
-			"name": "Pays de Galles"
-		}, {
-			"code": "SVK",
-			"name": "Slovaquie"
-		}, {
-			"code": "GER",
-			"name": "Allemagne"
-		}, {
-			"code": "UKR",
-			"name": "Ukraine"
-		}, {
-			"code": "POL",
-			"name": "Pologne"
-		}, {
-			"code": "NIR",
-			"name": "Irlande du Nord"
-		}, {
-			"code": "ESP",
-			"name": "Espagne"
-		}, {
-			"code": "CZE",
-			"name": "Republique Tchèque"
-		}, {
-			"code": "TUR",
-			"name": "Turquie"
-		}, {
-			"code": "CRO",
-			"name": "Croatie"
-		}, {
-			"code": "BEL",
-			"name": "Belgique"
-		}, {
-			"code": "ITA",
-			"name": "Italie"
-		}, {
-			"code": "IRL",
-			"name": "République d'Irlande"
-		}, {
-			"code": "SWE",
-			"name": "Suède"
-		}, {
-			"code": "POR",
-			"name": "Portugale"
-		}, {
-			"code": "ISL",
-			"name": "Islande"
-		}, {
-			"code": "AUT",
-			"name": "Autriche"
-		}, {
-			"code": "HUN",
-			"name": "Hongrie"
-		}]
+		return _teams;
 	}
 };
 
@@ -285,79 +213,7 @@ var MatchData = {
 	},
 
 	Teams: function() {
-		return [{
-			"code": "FRA",
-			"name": "France"
-		}, {
-			"code": "ROU",
-			"name": "Roumanie"
-		}, {
-			"code": "ALB",
-			"name": "Albanie"
-		}, {
-			"code": "SUI",
-			"name": "Suisse"
-		}, {
-			"code": "ENG",
-			"name": "Angleterre"
-		}, {
-			"code": "RUS",
-			"name": "Russie"
-		}, {
-			"code": "WAL",
-			"name": "Pays de Galles"
-		}, {
-			"code": "SVK",
-			"name": "Slovaquie"
-		}, {
-			"code": "GER",
-			"name": "Allemagne"
-		}, {
-			"code": "UKR",
-			"name": "Ukraine"
-		}, {
-			"code": "POL",
-			"name": "Pologne"
-		}, {
-			"code": "NIR",
-			"name": "Irlande du Nord"
-		}, {
-			"code": "ESP",
-			"name": "Espagne"
-		}, {
-			"code": "CZE",
-			"name": "Republique Tchèque"
-		}, {
-			"code": "TUR",
-			"name": "Turquie"
-		}, {
-			"code": "CRO",
-			"name": "Croatie"
-		}, {
-			"code": "BEL",
-			"name": "Belgique"
-		}, {
-			"code": "ITA",
-			"name": "Italie"
-		}, {
-			"code": "IRL",
-			"name": "République d'Irlande"
-		}, {
-			"code": "SWE",
-			"name": "Suède"
-		}, {
-			"code": "POR",
-			"name": "Portugale"
-		}, {
-			"code": "ISL",
-			"name": "Islande"
-		}, {
-			"code": "AUT",
-			"name": "Autriche"
-		}, {
-			"code": "HUN",
-			"name": "Hongrie"
-		}]
+		return _teams;
 	}
 };
 
@@ -367,78 +223,80 @@ var AdminEuroData = {
 	},
 
 	Teams: function() {
-		return [{
-			"code": "FRA",
-			"name": "France"
-		}, {
-			"code": "ROU",
-			"name": "Roumanie"
-		}, {
-			"code": "ALB",
-			"name": "Albanie"
-		}, {
-			"code": "SUI",
-			"name": "Suisse"
-		}, {
-			"code": "ENG",
-			"name": "Angleterre"
-		}, {
-			"code": "RUS",
-			"name": "Russie"
-		}, {
-			"code": "WAL",
-			"name": "Pays de Galles"
-		}, {
-			"code": "SVK",
-			"name": "Slovaquie"
-		}, {
-			"code": "GER",
-			"name": "Allemagne"
-		}, {
-			"code": "UKR",
-			"name": "Ukraine"
-		}, {
-			"code": "POL",
-			"name": "Pologne"
-		}, {
-			"code": "NIR",
-			"name": "Irlande du Nord"
-		}, {
-			"code": "ESP",
-			"name": "Espagne"
-		}, {
-			"code": "CZE",
-			"name": "Republique Tchèque"
-		}, {
-			"code": "TUR",
-			"name": "Turquie"
-		}, {
-			"code": "CRO",
-			"name": "Croatie"
-		}, {
-			"code": "BEL",
-			"name": "Belgique"
-		}, {
-			"code": "ITA",
-			"name": "Italie"
-		}, {
-			"code": "IRL",
-			"name": "République d'Irlande"
-		}, {
-			"code": "SWE",
-			"name": "Suède"
-		}, {
-			"code": "POR",
-			"name": "Portugale"
-		}, {
-			"code": "ISL",
-			"name": "Islande"
-		}, {
-			"code": "AUT",
-			"name": "Autriche"
-		}, {
-			"code": "HUN",
-			"name": "Hongrie"
-		}]
+		return _teams;
 	}
 };
+
+var _teams = [{
+	"code": "FRA",
+	"name": "France"
+}, {
+	"code": "ROU",
+	"name": "Roumanie"
+}, {
+	"code": "ALB",
+	"name": "Albanie"
+}, {
+	"code": "SUI",
+	"name": "Suisse"
+}, {
+	"code": "ENG",
+	"name": "Angleterre"
+}, {
+	"code": "RUS",
+	"name": "Russie"
+}, {
+	"code": "WAL",
+	"name": "Pays de Galles"
+}, {
+	"code": "SVK",
+	"name": "Slovaquie"
+}, {
+	"code": "GER",
+	"name": "Allemagne"
+}, {
+	"code": "UKR",
+	"name": "Ukraine"
+}, {
+	"code": "POL",
+	"name": "Pologne"
+}, {
+	"code": "NIR",
+	"name": "Irlande du Nord"
+}, {
+	"code": "ESP",
+	"name": "Espagne"
+}, {
+	"code": "CZE",
+	"name": "Republique Tchèque"
+}, {
+	"code": "TUR",
+	"name": "Turquie"
+}, {
+	"code": "CRO",
+	"name": "Croatie"
+}, {
+	"code": "BEL",
+	"name": "Belgique"
+}, {
+	"code": "ITA",
+	"name": "Italie"
+}, {
+	"code": "IRL",
+	"name": "République d'Irlande"
+}, {
+	"code": "SWE",
+	"name": "Suède"
+}, {
+	"code": "POR",
+	"name": "Portugale"
+}, {
+	"code": "ISL",
+	"name": "Islande"
+}, {
+	"code": "AUT",
+	"name": "Autriche"
+}, {
+	"code": "HUN",
+	"name": "Hongrie"
+}];

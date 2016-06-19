@@ -78,7 +78,7 @@ angular.module("mean.articles").service("ArticlesCollection", ["Articles", "Arti
 				var index = 0;
 				for(var i=0; i < ArticlesCollection.all.length; i++){
 					if(article._id === ArticlesCollection.all[i]._id) index = i;
-				};
+				}
 
 				return (index - 1 > 0) ? ArticlesCollection.all[index - 1] : ArticlesCollection.all[0];
 			},

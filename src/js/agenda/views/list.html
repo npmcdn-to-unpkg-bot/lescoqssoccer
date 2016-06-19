@@ -5,7 +5,7 @@
 				<div class="pagebuilder-wrap">
 					<div class="fullwrap_moudle">
 						<div class="fullwidth-wrap" ng-if="agenda.length> 0">
-							<div class="span4 item_des post-bgcolor-default" ng-click="showAgendaDetail();" style="cursor: pointer; position: fixed;">
+							<div class="span4 item_des post-bgcolor-default" ng-click="showAgendaDetail();" style="cursor: pointer; position: absolute;">
 								<div class="ev2page-col">
 									<div>
 										<h2 class="ev2page-title" style="padding: 20px 20px 5px 20px; background: #2196F3;">
@@ -50,7 +50,7 @@
 								</div>
 								<hr ng-if="selectedEvent.subType !== 'euroMatch'"/>
 								<div ng-if="selectedEvent.subType !== 'euroMatch'" style="width:40px; margin: 0 20px; padding: 0 0 20px; cursor: pointer;" ng-click="showUserDetail($event, selectedEvent.user);">
-									<p style="margin: 10px 0 10px 50px;position: absolute;">
+									<p style="margin: -20px 0 10px 50px;position: fixed;">
 										lancé par
 										<b style="text-transform: uppercase; font-size: medium;">
 											{{ selectedEvent.user.username }}
