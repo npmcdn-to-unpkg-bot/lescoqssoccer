@@ -18,7 +18,7 @@ module.exports = function(app) {
 	app.get("/articles", articles.all);
 	app.post("/articles", authorization.requiresLogin, articles.create);
 	app.put("/articles/:articleId", authorization.requiresLogin, articles.update);
-	app.del("/articles/:articleId", authorization.requiresLogin, hasAuthorization, articles.destroy);
+	app.delete("/articles/:articleId", authorization.requiresLogin, articles.destroy);
 
 	//get articles count
 	app.get("/articlesCount", articles.getItemsCount);

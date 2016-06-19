@@ -1,0 +1,22 @@
+<div>
+	<div class="timeline-item">
+		<div class="timeline-content">
+			<h2>
+				<div class="timeline-action">
+					<a class="fa fa-edit" ng-href="#!/articles/edit/video/{{ item._id }}">
+					</a>
+					<a class="fa fa-times" ng-href="#" ng-click="deleteArticle($event, item);">
+					</a>
+				</div>
+				&nbsp;
+				{{ item.title }}
+			</h2>
+			<a href="#!/articles/view/video/{{ item._id }}">
+				<div ng-if="item.videoLink" class="videoWrapper vimeo">
+					<iframe ng-src="{{ trustSrc(item.videoLink + '?showinfo=0') }}" width="100%" height="auto" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true">
+					</iframe>
+				</div>
+			</a>
+		</div>
+	</div>
+</div>

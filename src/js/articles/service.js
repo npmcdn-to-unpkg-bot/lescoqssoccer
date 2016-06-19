@@ -76,8 +76,8 @@ angular.module("mean.articles").service("ArticlesCollection", ["Articles", "Arti
 			getPrevious: function(article) {
 
 				var index = 0;
-				for(var i=0; i < ArticlesCollection.all.length; i++){
-					if(article._id === ArticlesCollection.all[i]._id) index = i;
+				for (var i = 0; i < ArticlesCollection.all.length; i++) {
+					if (article._id === ArticlesCollection.all[i]._id) index = i;
 				}
 
 				return (index - 1 > 0) ? ArticlesCollection.all[index - 1] : ArticlesCollection.all[0];
@@ -86,8 +86,8 @@ angular.module("mean.articles").service("ArticlesCollection", ["Articles", "Arti
 			getNext: function(article) {
 
 				var index = 0;
-				for(var i=0; i < ArticlesCollection.all.length; i++){
-					if(article._id === ArticlesCollection.all[i]._id) index = i;
+				for (var i = 0; i < ArticlesCollection.all.length; i++) {
+					if (article._id === ArticlesCollection.all[i]._id) index = i;
 				};
 
 				return (index + 1 > ArticlesCollection.all.length - 1) ? ArticlesCollection.all[ArticlesCollection.all.length - 1] : ArticlesCollection.all[index + 1];
@@ -115,8 +115,10 @@ angular.module("mean.articles").service("ArticlesCollection", ["Articles", "Arti
 				}).$promise;
 			},
 
-			remove: function(article) {
-				return Articles.delete({}, article, function(data) {
+			remove: function(articleId) {
+				return Articles.delete({
+					articleId: articleId
+				}, function(data) {
 					return data;
 				}).$promise;
 			}

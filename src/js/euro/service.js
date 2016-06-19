@@ -2,9 +2,8 @@
 
 angular.module("mean.euro").factory("MatchsCollection", ["$resource",
 	function($resource) {
-
 		return $resource("matchs/:id/", {
-			id: "@_id",
+			id: "@_id"
 		}, {
 			"query": {
 				method: "GET",

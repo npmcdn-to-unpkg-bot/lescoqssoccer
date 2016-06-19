@@ -1,0 +1,35 @@
+<div>
+	<div class="timeline-item agenda">
+		<div class="timeline-content">
+			<h2 style="background: #F44336;">
+				<div class="timeline-action">
+					<a class="fa fa-edit" ng-href="#!/agenda/edit/{{ item._id }}">
+					</a>
+					<a class="fa fa-times" ng-href="#" ng-click="deleteEvent($event, item);">
+					</a>
+				</div>
+				&nbsp;
+				{{ item.title }}
+			</h2>
+			<a href="#!/agenda/{{ item._id }}">
+				<div class="three-line-ellipsis item_des" style="margin: 0 -20px -20px;">
+					<div class="evwdg" style="height: 85px;">
+						<div class="evwdg-data">
+							<div class="evwdg-day">
+								{{ item.startsAt | date:"dd" }}
+							</div>
+							<div class="evwdg-month">
+								{{ item.startsAt | date:"MMM" }}
+							</div>
+						</div>
+						<div class="evwdg-title">
+							<div class="three-line-ellipsis" style="">
+								{{ item.content }}
+							</div>
+						</div>
+					</div>
+				</div>
+			</a>
+		</div>
+	</div>
+</div>

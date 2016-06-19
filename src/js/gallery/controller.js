@@ -142,32 +142,6 @@ angular.module("mean.albums").controller("PhotosController", ["$scope", "Global"
 		//set album like read
 		UserService.addReadAlbum($scope.album._id);
 
-		$scope.edit = function() {
-			$location.path("/albums/edit/" + $scope.album._id);
-		};
-
-		$scope.remove = function(evt) {
-
-			evt.preventDefault();
-			evt.stopPropagation();
-
-			var modalInstance = $modal.open({
-				templateUrl: "js/gallery/views/modal/deleteAlbumModal.html",
-				controller: "deleteAlbumModalCtrl",
-				resolve: {
-					album: function() {
-						return $scope.album;
-					}
-				}
-			});
-
-			modalInstance.result.then(function() {
-				AlbumService.deleteAlbum($scope.album).then(function() {
-					$location.path("/albums");
-				});
-			});
-		};
-
 		$scope.download = function(evt) {
 
 			evt.preventDefault();
@@ -252,16 +226,6 @@ angular.module("mean.albums").controller("PhotosController", ["$scope", "Global"
 			title: "Albums > " + $scope.album.name,
 			items: [{
 				link: "#!",
-				info: "Editer",
-				icon: "fa-edit",
-				callback: $scope.edit
-			}, {
-				link: "#!",
-				info: "Supprimer",
-				icon: "fa-times",
-				callback: $scope.remove
-			}, {
-				link: "#!",
 				info: "Précédent",
 				icon: "fa-arrow-left",
 				callback: $scope.showPrevious
@@ -295,22 +259,6 @@ angular.module("mean.albums").controller("modalInstanceCtrl", ["$scope", "$modal
 
 		$scope.cancel = function() {
 			$(window).trigger("resize");
-			$modalInstance.dismiss("cancel");
-		};
-	}
-]);
-
-angular.module("mean.albums").controller("deleteAlbumModalCtrl", ["$scope", "$modalInstance", "album",
-
-	function($scope, $modalInstance, album) {
-
-		$scope.album = album;
-
-		$scope.ok = function(result) {
-			$modalInstance.close(result);
-		};
-
-		$scope.cancel = function() {
 			$modalInstance.dismiss("cancel");
 		};
 	}

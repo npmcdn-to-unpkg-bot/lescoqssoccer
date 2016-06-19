@@ -25,7 +25,6 @@
 										<div class="three-line-ellipsis" style="font-size: 20px; padding: 0 20px 0; margin-bottom: 20px;">
 											{{ selectedEvent.content }}
 										</div>
-
 										<div ng-if="selectedEvent.subType !== 'euroMatch' && !isUserPresent(selectedEvent) && !isUserAbsent(selectedEvent)" class="ev2page-tickets" style="margin: 30px; text-align: center;">
 											<a class="igo" href="#!" ng-click="addMeToEvent($event, selectedEvent);">
 												Je viens
@@ -50,7 +49,7 @@
 								</div>
 								<hr ng-if="selectedEvent.subType !== 'euroMatch'"/>
 								<div ng-if="selectedEvent.subType !== 'euroMatch'" style="width:40px; margin: 0 20px; padding: 0 0 20px; cursor: pointer;" ng-click="showUserDetail($event, selectedEvent.user);">
-									<p style="margin: -20px 0 10px 50px;position: fixed;">
+									<p style="margin: -20px 0 10px 50px;position: absolute; bottom: 20px;">
 										lancé par
 										<b style="text-transform: uppercase; font-size: medium;">
 											{{ selectedEvent.user.username }}
