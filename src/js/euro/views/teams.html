@@ -55,9 +55,9 @@
 									<a href="#!" ng-repeat="team in teams" class="teamItem" ng-class="{'active' : global.user.favoriteEuroTeam === team.code}" ng-click="selectTeam($event, team);">
 										{{ team.name }}
 									</a>
-									<a href="#!" ng-if="!global.user.favoriteEuroTeam" class="teamItem active">
+									<!-- <a href="#!" ng-if="!global.user.favoriteEuroTeam" class="teamItem active">
 										Trop tard
-									</a>
+									</a> -->
 								</div>
 								<div class="span12 bottom-space-60" style="margin-left: 0; margin-top: 20px;">
 									<h4 class="widget-title" style="margin: 10px 0 30px 0;">
