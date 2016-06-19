@@ -55,10 +55,7 @@ angular.module("mean.system").controller("CommentController", ["$scope", "Global
 						user: $scope.global.user._id,
 						contentType: $scope.getTypeFromItem(),
 						contentId: $scope.object._id
-					}).then(function(comment) {
-						console.warn("Succesfully add comment object :");
-						console.warn(comment)
-					});
+					})
 				});
 			}
 		};
@@ -76,6 +73,13 @@ angular.module("mean.system").controller("CommentController", ["$scope", "Global
 				$scope.updateMethod().then(function(newObject) {
 					$scope.object.comments = newObject.comments;
 					$scope.object.__v = newObject.__v;
+
+					// add comment object
+					CommentService.saveComment({
+						user: $scope.global.user._id,
+						contentType: $scope.getTypeFromItem(),
+						contentId: $scope.object._id
+					})
 				});
 			}
 		};
