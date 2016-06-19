@@ -17,7 +17,7 @@ var mongoose = require("mongoose"),
  */
 exports.getAllUserData = function(req, res) {
 
-	var query = (req.query.userId === "true") ? {
+	var query = (req.query.userId) ? {
 		user: req.query.userId
 	} : {};
 
@@ -38,68 +38,46 @@ exports.getAllUserData = function(req, res) {
 		.sort("-created")
 		.populate("user", "_id name username avatar").exec()
 		.then(function(articles, err) {
-
 			if (err) {
-
 				res.render("error", {
 					status: 500
 				});
-
 			} else {
-
 				userData.articles = articles;
-
 				return Album.find(query)
 					.sort("-created")
 					.populate("user", "_id name username avatar").exec();
 			}
-
 		}).then(function(albums, err) {
-
 			if (err) {
-
 				res.render("error", {
 					status: 500
 				});
-
 			} else {
-
 				userData.albums = albums;
-
 				return UserEvent.find(query)
 					.sort("-created")
 					.populate("user", "_id name username avatar").exec();
 			}
-
 		}).then(function(userEvent, err) {
-
 			if (err) {
-
 				res.render("error", {
 					status: 500
 				});
-
 			} else {
-
 				userData.userEvents = userEvent;
-
 				return Suggestion.find(query)
 					.sort("-created")
 					.populate("user", "_id name username avatar").exec();
 			}
-
 		}).then(function(suggestions, err) {
-
 			if (err) {
-
 				res.render("error", {
 					status: 500
 				});
-
 			} else {
 				return User.find({}, "-password -salt -hashed_password -__v -provider").exec();
 			}
-
 		}).then(function(users, err) {
 			if (err) {
 				res.render("error", {
@@ -108,19 +86,14 @@ exports.getAllUserData = function(req, res) {
 			} else {
 
 				responseObject.users = users;
-				return Comment.find().populate("user", "_id name username avatar").exec();
+				return Comment.find({}).populate("user", "_id name username avatar").exec();
 			}
-
 		}).then(function(comments, err) {
-
 			if (err) {
-
 				res.render("error", {
 					status: 500
 				});
-
 			} else {
-
 				userData.comments = comments;
 				responseObject.content = formatUserData(userData);
 				res.jsonp(responseObject);
@@ -172,5 +145,5 @@ var formatUserData = function(userData) {
 		return item.created || item.startsAt;
 	});
 
-	return sortedDatas.content.slice(sortedDatas.content.length - 31, sortedDatas.content.length - 1);
+	return sortedDatas.content.slice(sortedDatas.content.length - 31, sortedDatas.content.length);
 };
