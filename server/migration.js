@@ -232,8 +232,170 @@ var reInitEuroPoints = function() {
 	});
 };
 
+var addReadContents = function() {
+	var articleIds = [];
+	var albumIds = [];
+
+	Article.find().exec(function(err, articles) {
+		articleIds = _.pluck(articles, "_id");
+		Album.find().exec(function(err, albums) {
+			albumIds = _.pluck(albums,  "_id");
+			User.find({}).exec(function(err, users) {
+				if (err) {
+					console.warn("Error")
+				} else {
+					_.each(users, function(user) {
+						user.readArticles = articleIds;
+						user.readAlbums = albumIds;
+						user.save(function(err) {
+							if (err) {
+								console.warn("error when trying to save user");
+							} else {
+								console.warn("user updated");
+							}
+						});
+					});
+				}
+			});
+		});
+	});
+};
+
+var updateUserScores = function() {
+	var query = {};
+	var _users = [];
+	var canUpdateUsers = true;
+
+	User.find({}).exec().then(function(users, err) {
+		if (err) {
+			console.warn("Error when trying to fetch users: " + err);
+		} else {
+
+			// keep users in array to updates
+			_users = users;
+
+			//fetch matchs
+			return Match.find({
+					startsAt: {
+						"$lt": new Date()
+					},
+					scoresUpdated: {
+						$exists: false
+					}
+				})
+				.sort("-created")
+				.exec()
+
+		}
+	}).then(function(matchs, err) {
+		if (err) {
+			console.warn("Error when trying to fetch matchs: " + err)
+		} else {
+			_.each(matchs, function(match) {
+
+				if (match.scoreHome !== undefined && match.scoreAway !== undefined) {
+
+					console.warn("Match to update")
+					_.each(_users, function(user) {
+						if (!user.euroPoints) {
+							user.euroPoints = 0;
+						}
+
+						var userPointOfMatch = getPointsFromMatch(match, user);
+						console.warn(userPointOfMatch);
+						user.euroPoints += userPointOfMatch;
+					});
+
+					match.scoresUpdated = true;
+					match.save(function(error) {
+						if (err) {
+							console.warn("Error when trying to update match... " + match.home + " - " + match.away);
+							canUpdateUsers = false;
+						} else {
+							console.warn("Match updated succefully");
+						}
+					})
+
+				} else {
+					console.warn("Match: " + match.home + " - " + match.away + " has no scores yet!")
+				}
+			});
+
+			if (canUpdateUsers) {
+				_.each(_users, function(user) {
+					user.save(function(err) {
+						if (err) {
+							console.warn("Error when trying to update user scores : " + err);
+						} else {
+							console.warn("User " + user.username + " has been updated successfully");
+						}
+					})
+				});
+			}
+		}
+	});
+
+};
+
+var getPointsFromMatch = function(match, user) {
+
+	// Points distribution
+	var MAX_GOAL_DIFFERENCE = 2;
+
+	var GOOD_SCORE = 5;
+	var GOOD_WINNER = 2;
+	var ACCEPTED_GOAL_DIFFERENCE = 1;
+
+	/* Winner code:
+	 1 for home team
+	 2 for away team
+	 -1 for nul score
+	*/
+
+	var points = 0;
+	var scoreHome = match.scoreHome;
+	var scoreAway = match.scoreAway;
+	var winner = (scoreHome > scoreAway) ? 1 : ((scoreHome < scoreAway) ? 2 : -1);
+	var goalDifference = scoreHome - scoreAway;
+
+	var _userbets = _.filter(match.bets, function(bet) {
+		return bet.user.toString() === user._id.toString()
+	});
+	 var userBet = (_userbets.length > 0) ? _userbets[_userbets.length-1] : null
+
+	if (userBet) {
+
+		console.warn("User has bet on the match");
+
+		var userScoreHome = userBet.homeScore;
+		var userScoreAway = userBet.awayScore;
+		var userWinner = (userScoreHome > userScoreAway) ? 1 : ((userScoreHome < userScoreAway) ? 2 : -1);
+		var userGoalDifference = userScoreHome - userScoreAway;
+
+		if (userScoreHome === scoreHome && userScoreAway === scoreAway) {
+			points += GOOD_SCORE;
+		} else {
+
+			if (userWinner === winner) {
+				points += GOOD_WINNER;
+			}
+
+			if (goalDifference === userGoalDifference) {
+				points += ACCEPTED_GOAL_DIFFERENCE;
+			}
+		}
+
+	} else {
+		console.warn("User has not bet on the match");
+	}
+
+	return points;
+};
+
 // addParameters();
 // addMatchs();
 // rotateImage();
 
 reInitEuroPoints();
+// addReadContents();
+// updateUserScores();
