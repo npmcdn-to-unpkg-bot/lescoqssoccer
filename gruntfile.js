@@ -1,31 +1,31 @@
-'use strict';
+"use strict";
 
 module.exports = function (grunt) {
 	// Project Configuration
 	grunt.initConfig({
-		pkg: grunt.file.readJSON('package.json'),
+		pkg: grunt.file.readJSON("package.json"),
 		watch: {
 			jade: {
-				files: ['server/views/**'],
+				files: ["server/views/**"],
 				options: {
 					livereload: true,
 				},
 			},
 			js: {
-				files: ['gruntfile.js', 'server.js', 'server/**/*.js', 'src/js/**', 'test/**/*.js'],
-				tasks: ['jshint'],
+				files: ["gruntfile.js", "server.js", "server/**/*.js", "src/js/**", "test/**/*.js"],
+				tasks: ["jshint"],
 				options: {
 					livereload: true,
 				},
 			},
 			html: {
-				files: ['src/**'],
+				files: ["src/**"],
 				options: {
 					livereload: true,
 				},
 			},
 			css: {
-				files: ['src/css/**'],
+				files: ["src/css/**"],
 				options: {
 					livereload: true
 				}
@@ -33,7 +33,7 @@ module.exports = function (grunt) {
 		},
 		jshint: {
 			all: {
-				src: ['gruntfile.js', 'server/server.js', 'server/**/*.js', 'src/js/**', 'test/**/*.js'],
+				src: ["gruntfile.js", "server/server.js", "server/**/*.js", "src/js/**", "test/**/*.js"],
 				options: {
 					jshintrc: true
 				}
@@ -42,11 +42,11 @@ module.exports = function (grunt) {
 		nodemon: {
 			dev: {
 				options: {
-					file: 'server/server.js',
+					file: "server/server.js",
 					args: [],
-					ignoredFiles: ['src/**'],
-					watchedExtensions: ['js'],
-					nodeArgs: ['--debug'],
+					ignoredFiles: ["src/**"],
+					watchedExtensions: ["js"],
+					nodeArgs: ["--debug"],
 					delayTime: 1,
 					env: {
 						PORT: 80
@@ -56,45 +56,45 @@ module.exports = function (grunt) {
 			}
 		},
 		concurrent: {
-			tasks: ['nodemon', 'watch'],
+			tasks: ["nodemon", "watch"],
 			options: {
 				logConcurrentOutput: true
 			}
 		},
 		mochaTest: {
 			options: {
-				reporter: 'spec',
-				require: 'server/server.js'
+				reporter: "spec",
+				require: "server/server.js"
 			},
-			src: ['test/mocha/**/*.js']
+			src: ["test/mocha/**/*.js"]
 		},
 		env: {
 			test: {
-				NODE_ENV: 'test'
+				NODE_ENV: "test"
 			}
 		},
 		karma: {
 			unit: {
-				configFile: 'test/karma/karma.conf.js'
+				configFile: "test/karma/karma.conf.js"
 			}
 		}
 	});
 
 	//Load NPM tasks
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-contrib-jshint');
-	grunt.loadNpmTasks('grunt-mocha-test');
-	grunt.loadNpmTasks('grunt-karma');
-	grunt.loadNpmTasks('grunt-nodemon');
-	grunt.loadNpmTasks('grunt-concurrent');
-	grunt.loadNpmTasks('grunt-env');
+	grunt.loadNpmTasks("grunt-contrib-watch");
+	grunt.loadNpmTasks("grunt-contrib-jshint");
+	grunt.loadNpmTasks("grunt-mocha-test");
+	grunt.loadNpmTasks("grunt-karma");
+	grunt.loadNpmTasks("grunt-nodemon");
+	grunt.loadNpmTasks("grunt-concurrent");
+	grunt.loadNpmTasks("grunt-env");
 
 	//Making grunt default to force in order not to break the project.
-	grunt.option('force', true);
+	grunt.option("force", true);
 
 	//Default task(s).
-	grunt.registerTask('default', ['jshint', 'concurrent']);
+	grunt.registerTask("default", ["jshint", "concurrent"]);
 
 	//Test task.
-	grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
+	grunt.registerTask("test", ["env:test", "mochaTest", "karma:unit"]);
 };

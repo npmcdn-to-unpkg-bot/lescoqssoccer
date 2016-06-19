@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
 //Global service for global variables
-angular.module('mean.system').factory('Global', ['$window',
+angular.module("mean.system").factory("Global", ["$window",
 
 	function($window) {
 		var _this = this;

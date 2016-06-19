@@ -1,4 +1,4 @@
-angular.module('mean.agenda').filter('getByIdentifier', function() {
+angular.module("mean.agenda").filter("getByIdentifier", function() {
 	return function(input, id) {
 		var i = 0,
 			len = input.length;
@@ -11,7 +11,7 @@ angular.module('mean.agenda').filter('getByIdentifier', function() {
 	}
 });
 
-angular.module('mean.agenda').filter('getNameByIdentifier', function() {
+angular.module("mean.agenda").filter("getNameByIdentifier", function() {
 	return function(input, id) {
 		var i = 0,
 			len = input.length;
@@ -24,7 +24,7 @@ angular.module('mean.agenda').filter('getNameByIdentifier', function() {
 	}
 });
 
-angular.module('mean.agenda').filter('getImageByIdentifier', function() {
+angular.module("mean.agenda").filter("getImageByIdentifier", function() {
 	return function(input, id) {
 		var i = 0,
 			len = input.length;
@@ -38,7 +38,7 @@ angular.module('mean.agenda').filter('getImageByIdentifier', function() {
 	}
 });
 
-angular.module('mean.agenda').filter('limitToCustom', function() {
+angular.module("mean.agenda").filter("limitToCustom", function() {
 	return function(input, limit, begin) {
 
 		begin = (begin < 0 && begin >= -input.length) ? input.length + begin : begin;

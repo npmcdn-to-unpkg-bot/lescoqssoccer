@@ -1,17 +1,17 @@
-'use strict';
+"use strict";
 
 /**
  * Module dependencies.
  */
-var express = require('express'),
-	mongoStore = require('connect-mongo')(express),
-	flash = require('connect-flash'),
-	helpers = require('view-helpers'),
-	config = require('./config'),
-	qt = require('quickthumb');
+var express = require("express"),
+	mongoStore = require("connect-mongo")(express),
+	flash = require("connect-flash"),
+	helpers = require("view-helpers"),
+	config = require("./config"),
+	qt = require("quickthumb");
 
 module.exports = function(app, passport, db) {
-	app.set('showStackError', true);
+	app.set("showStackError", true);
 
 	// Prettify HTML
 	app.locals.pretty = true;
@@ -20,7 +20,7 @@ module.exports = function(app, passport, db) {
 	// To ensure that all assets and data are compressed (utilize bandwidth)
 	app.use(express.compress({
 		filter: function(req, res) {
-			return (/json|text|javascript|css/).test(res.getHeader('Content-Type'));
+			return (/json|text|javascript|css/).test(res.getHeader("Content-Type"));
 		},
 		// Levels are specified in a range of 0 to 9, where-as 0 is
 		// no compression and 9 is best compression, but slowest
@@ -28,13 +28,13 @@ module.exports = function(app, passport, db) {
 	}));
 
 	// Only use logger for development environment
-	if (process.env.NODE_ENV === 'development') {
-		app.use(express.logger('dev'));
+	if (process.env.NODE_ENV === "development") {
+		app.use(express.logger("dev"));
 	}
 
 	// Set views path, template engine and default layout
-	app.set('views', config.root + '/server/views');
-	app.set('view engine', 'jade');
+	app.set("views", config.root + "/server/views");
+	app.set("view engine", "jade");
 
 	// Enable jsonp
 	app.enable("jsonp callback");
@@ -46,12 +46,12 @@ module.exports = function(app, passport, db) {
 
 		// Request body parsing middleware should be above methodOverride
 		app.use(express.urlencoded({
-			limit: '50mb',
+			limit: "50mb",
 			extended: true
 		}));
 
 		app.use(express.json({
-			limit: '50mb'
+			limit: "50mb"
 		}));
 
 		app.use(express.methodOverride());
@@ -59,7 +59,7 @@ module.exports = function(app, passport, db) {
 			uploadDir: config.root + "/server/" + config.uploadDirectory
 		}));
 
-		app.use('/public', qt.static(config.root + '/server/public'));
+		app.use("/public", qt.static(config.root + "/server/public"));
 
 		// Express/Mongo session storage
 		app.use(express.session({
@@ -85,7 +85,7 @@ module.exports = function(app, passport, db) {
 
 		// Setting the fav icon and static folder
 		app.use(express.favicon());
-		app.use(express.static(config.root + '/src'));
+		app.use(express.static(config.root + "/src"));
 
 		// Assume "not found" in the error msgs is a 404. this is somewhat
 		// silly, but valid, you can do whatever you like, set properties,
@@ -93,13 +93,13 @@ module.exports = function(app, passport, db) {
 		app.use(function(err, req, res, next) {
 
 			// Treat as 404
-			if (~err.message.indexOf('not found')) return next();
+			if (~err.message.indexOf("not found")) return next();
 
 			// Log it
 			console.error(err.stack);
 
 			// Error page
-			res.status(500).render('500', {
+			res.status(500).render("500", {
 				error: err.stack
 			});
 
@@ -107,9 +107,9 @@ module.exports = function(app, passport, db) {
 
 		// Assume 404 since no middleware responded
 		app.use(function(req, res, next) {
-			res.status(404).render('404', {
+			res.status(404).render("404", {
 				url: req.originalUrl,
-				error: 'Not found'
+				error: "Not found"
 			});
 		});
 

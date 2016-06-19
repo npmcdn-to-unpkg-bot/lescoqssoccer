@@ -3,14 +3,13 @@
  */
 var express = require('express'),
 	fs = require('fs'),
+	path = require("path"),
 	passport = require('passport'),
 	logger = require('mean-logger'),
 	qt = require('quickthumb'),
 	gm = require('gm').subClass({
 		imageMagick: true
-	}),
-	fs = require('fs'),
-	path = require("path");
+	});
 
 // Load configurations
 // Set the node enviornment variable if not set before
@@ -57,6 +56,7 @@ var Article = mongoose.model('Article'),
 	Parameter = mongoose.model('Parameter'),
 	User = mongoose.model('User'),
 	Match = mongoose.model('Match'),
+	Comment = mongoose.model('Comment'),
 	EuroData = require('./euro.json');
 
 /*
@@ -173,7 +173,7 @@ var rotateImage = function() {
 	fs.readdir(oldPath, function(err, items) {
 		if (items) {
 			_.each(items, function(item) {
-				var name =  item;
+				var name = item;
 				var newPath = path.resolve(config.root + "/server/public/img/tmp/" + name);
 				gm(path.resolve(config.root + "/server/public/img/users/" + name))
 					.autoOrient()
@@ -192,9 +192,48 @@ var rotateImage = function() {
 	});
 };
 
-var cleanParis = function() {}
+var reInitEuroPoints = function() {
+	User.find({}).exec(function(err, users) {
+		if (err) {
+			res.render("error", {
+				status: 500
+			});
+		} else {
+			_.each(users, function(user) {
+				user.euroPoints = 0;
+				user.save(function(err) {
+					if (err) {
+						console.warn("error when trying to save user");
+					} else {
+						console.warn("user saved");
+					}
+				});
+			});
+		}
+	});
+
+	Match.find({}).exec(function(err, matchs) {
+		if (err) {
+			res.render("error", {
+				status: 500
+			});
+		} else {
+			_.each(matchs, function(match) {
+				match.scoresUpdated = undefined;
+				match.save(function(err) {
+					if (err) {
+						console.warn("error when trying to save match");
+					} else {
+						console.warn("match saved");
+					}
+				});
+			});
+		}
+	});
+};
 
 // addParameters();
 // addMatchs();
-// cleanParis();
 // rotateImage();
+
+reInitEuroPoints();
