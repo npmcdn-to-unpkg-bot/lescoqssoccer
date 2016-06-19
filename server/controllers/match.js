@@ -184,8 +184,8 @@ var getPointsFromMatch = function(match, user) {
 
 	var _userbets = _.filter(match.bets, function(bet) {
 		return bet.user.toString() === user._id.toString()
-	})[0];
-	 var userBet = (_userbets.length) ? _userbets[_userbets.length-1] : null
+	});
+	 var userBet = (_userbets.length > 0) ? _userbets[_userbets.length-1] : null
 
 	if (userBet) {
 

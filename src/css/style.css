@@ -6678,6 +6678,7 @@ h2.ev2shr-title a, h2.ev2page-title a, h2.ev3page-title a {
 .evwdg-title {
     top: 0px;
     left: 15px;
+    padding-right: 20px;
     position: relative;
     font-size: 16px;
     }
