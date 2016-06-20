@@ -4,7 +4,7 @@
 			<div class="item_des post-bgcolor-default">
 				<div ng-if="getImage(article.content) !== ''" class="articleTileStandard">
 					<a href="#!/articles/view/standard/{{ article._id }}" title="{{ article.title }}">
-						<img alt="{{ article.title }}" ng-src="{{ getImage(article.content) }}" class="isotope-list-thumb"/>
+						<img alt="{{ article.title }}" ng-src="{{ getImage(article.content) }}" class="isotope-list-thumb" style="visibility: hidden;" />
 					</a>
 				</div>
 				<h2 class="item_title two-line-ellipsis">

@@ -66,7 +66,7 @@ angular.module("mean.albums").service("AlbumService", ["AlbumsCollection", "Phot
 			getAll: function() {
 				return AlbumsCollection.query({}, function(albums) {
 					AlbumService.all = albums;
-					return albums.length;
+					return albums;
 				}).$promise;
 			},
 

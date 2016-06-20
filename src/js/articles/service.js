@@ -46,7 +46,7 @@ angular.module("mean.articles").service("ArticlesCollection", ["Articles",
 			getAll: function() {
 				return Articles.query({}, function(articles) {
 					ArticlesCollection.all = articles;
-					return articles.length;
+					return articles;
 				}).$promise;
 			},
 
@@ -61,7 +61,6 @@ angular.module("mean.articles").service("ArticlesCollection", ["Articles",
 			},
 
 			getPrevious: function(article) {
-
 				var index = 0;
 				for (var i = 0; i < ArticlesCollection.all.length; i++) {
 					if (article._id === ArticlesCollection.all[i]._id) index = i;
@@ -71,7 +70,6 @@ angular.module("mean.articles").service("ArticlesCollection", ["Articles",
 			},
 
 			getNext: function(article) {
-
 				var index = 0;
 				for (var i = 0; i < ArticlesCollection.all.length; i++) {
 					if (article._id === ArticlesCollection.all[i]._id) index = i;

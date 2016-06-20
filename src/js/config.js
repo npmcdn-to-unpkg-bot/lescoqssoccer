@@ -103,12 +103,12 @@ angular.module("mean").config(["$routeProvider",
 		}).
 		when("/albums/create", {
 			templateUrl:"js/albums/views/create.html",
-			controller: "AlbumDetailController",
+			controller: "CreateAlbumController",
 			resolve: AlbumData
 		}).
 		when("/albums/edit/:albumId", {
 			templateUrl: "js/albums/views/create.html",
-			controller: "AlbumDetailController",
+			controller: "CreateAlbumController",
 			resolve: AlbumData
 		}).
 		when("/albums/:page", {

@@ -1,7 +1,8 @@
 ------ BUGS ------
-- Fix previous and next when initialize view on detail page
 - Back fonctionne pas sur safari
 - Migrer images
+- Clean "null" in readVote array
+- Add update / delete suggestions
 
 
 ------ IMPROVEMENTS ------
@@ -13,7 +14,7 @@
 ------ STORIES ------
 - Implements chat with socket.io
 - Anniversaires
-
+- Boite à idée
 
 
 
