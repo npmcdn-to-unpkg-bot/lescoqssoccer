@@ -157,26 +157,3 @@ exports.getZipFile = function(req, res) {
 			}
 		});
 };
-
-/**
- * Count of albums
- */
-exports.getItemsCount = function(req, res) {
-
-	Album.count({}).exec(function(err, count) {
-
-		if (err) {
-
-			res.render("error", {
-				status: 500
-			});
-
-		} else {
-
-			res.jsonp({
-				count: count
-			});
-
-		}
-	});
-};

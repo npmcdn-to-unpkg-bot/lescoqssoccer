@@ -1,0 +1,53 @@
+<div class="nicescroll">
+	<ul ng-if="!conversation" class="list-group list-group-list" style="max-height: calc(100vh - 120px);  overflow: auto;">
+		<li class="list-group-item" ng-repeat="conversation in conversations | orderConversations: 'conversation'" ng-click="selectUser($event, conversation.userId)">
+			<div class="media">
+				<div class="media-left media-middle">
+					<a href="#!">
+						<img ng-src="{{ conversation.avatar && conversation.avatar + '?dim=300x300' || 'img/Professor.png' }}" alt="conversation.username" class="img-circle border-white" width="40" style="max-width: inherit; "/>
+					</a>
+				</div>
+				<div class="media-body media-middle ellipsis">
+					<a href="#!" class="ellipsis" style="color: #1c1d22; text-transform: uppercase; font-weight: 700;">
+						{{ conversation.username }}
+					</a>
+					<div class="ellipsis" style="max-height: 15px;line-height: 15px; white-space: initial;">
+						{{ (conversation.conversation.messages.length>0) ? (conversation.conversation.messages.slice(-1).pop().user.username || "moi") + ": " + conversation.conversation.messages.slice(-1).pop().content : "Pas encore de message" }}
+					</div>
+				</div>
+				<div class="media-right media-middle"  ng-if="conversation.unReadMessageCount> 0" style="background: red; border-radius: 50%; position: absolute; right: 10px; top: 20px; height: padding; padding: 5px 0px 5px 5px;">
+					<span style="color: white; display: flex; font-weight: 600; padding: 0px 10px 0 5px;">
+						{{ conversation.unReadMessageCount }}
+					</span>
+				</div>
+			</div>
+		</li>
+	</ul>
+	<div id="respondwrap" class="chat-wrapper" ng-if="conversation">
+		<i class="icon-m-close-thin liquid-item-close" style="background:white; color: black;z-index: 8040; color: #333; right: 20px; top: 10px; cursor: pointer;position: absolute;font-size: 18px;" ng-click="closeDialog();">
+		</i>
+		<ul id="conversationList">
+			<li ng-repeat="item in conversation.messages | orderBy:'created'" ng-class="{'current': item.user === global.user._id || item.user._id === global.user._id}">
+				<img ng-src="{{ item.user.avatar && item.user.avatar + '?dim=300x300' || global.user.avatar + '?dim=300x300' || 'img/Professor.png' }}" alt="{{ item.user.name || item.user.username }}"/>
+				<p>
+					<b>
+						{{ item.user.username || global.user.username }}
+					</b>
+					: {{ item.content }}
+				</p>
+			</li>
+		</ul>
+		<h4 ng-if="conversation.messages.length === 0" style="margin-top: 20px; text-align: center;font-size: medium;">
+			Aucun message
+		</h4>
+		<div ng-if="conversation" class="message-comment" style="padding-right: 20px;padding-top: 10px;">
+			<textarea placeholder="Ecrire un message" ng-model="message.content" ng-enter="sendMessage()" style="height: 110px; width: 100%; margin-bottom: 10px;"/>
+			</textarea>
+			<button style="margin-bottom: 20px; color: white;" ng-click="sendMessage();">
+				<i class="fa fa-comment">
+				</i>
+				Envoyer
+			</button>
+		</div>
+	</div>
+</div>

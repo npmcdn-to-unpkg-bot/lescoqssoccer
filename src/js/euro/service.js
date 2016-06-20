@@ -19,13 +19,11 @@ angular.module("mean.euro").factory("MatchsCollection", ["$resource",
 				}
 			}
 		});
-
 	}
 ]);
 
 angular.module("mean.euro").service("MatchService", ["MatchsCollection",
 	function(MatchsCollection) {
-
 		var MatchService = {
 
 			all: [],

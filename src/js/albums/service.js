@@ -2,7 +2,6 @@
 
 angular.module("mean.albums").factory("AlbumsCollection", ["$resource",
 	function($resource) {
-
 		return $resource("albums/:id/", {
 			id: "@_id"
 		}, {
@@ -21,16 +20,8 @@ angular.module("mean.albums").factory("AlbumsCollection", ["$resource",
 	}
 ]);
 
-//Articles service used for get articles items count
-angular.module("mean.albums").factory("AlbumsCount", ["$resource",
-	function($resource) {
-		return $resource("albumsCount");
-	}
-]);
-
 angular.module("mean.albums").factory("Photos", ["$resource",
 	function($resource) {
-
 		return $resource("photos/:id/", {
 			id: "@_id"
 		}, {
@@ -46,8 +37,8 @@ angular.module("mean.albums").factory("Photos", ["$resource",
 	}
 ]);
 
-angular.module("mean.albums").service("AlbumService", ["AlbumsCollection", "Photos", "AlbumsCount",
-	function(AlbumsCollection, Photos, AlbumsCount) {
+angular.module("mean.albums").service("AlbumService", ["AlbumsCollection", "Photos",
+	function(AlbumsCollection, Photos) {
 
 		var AlbumService = {
 
@@ -62,13 +53,20 @@ angular.module("mean.albums").service("AlbumService", ["AlbumsCollection", "Phot
 				}).$promise;
 			},
 
-			getAllAlbums: function(page) {
+			load: function(page) {
 				return AlbumsCollection.query({
 					page: page - 1,
 					perPage: AlbumService.itemsPerPage
 				}, function(albums) {
 					AlbumService.all = albums;
 					return albums;
+				}).$promise;
+			},
+
+			getAll: function() {
+				return AlbumsCollection.query({}, function(albums) {
+					AlbumService.all = albums;
+					return albums.length;
 				}).$promise;
 			},
 

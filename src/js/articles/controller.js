@@ -1,13 +1,13 @@
 "use strict";
 
-angular.module("mean.articles").controller("ArticlesController", ["$scope", "Global", "$location", "$sce", "$modal", "ArticlesCollection", "Articles", "Page", "ItemsCount",
-	function($scope, Global, $location, $sce, $modal, ArticlesCollection, Articles, Page, ItemsCount) {
+angular.module("mean.articles").controller("ArticlesController", ["$scope", "Global", "$location", "$sce", "$modal", "ArticlesCollection", "Articles", "Page",
+	function($scope, Global, $location, $sce, $modal, ArticlesCollection, Articles, Page) {
 
 		$scope.global = Global;
 		$scope.articles = Articles;
 
 		$scope.page = parseInt(Page);
-		$scope.totalItems = ItemsCount.count;
+		$scope.totalItems = ArticlesCollection.all.length;
 		$scope.itemsPerPage = ArticlesCollection.itemsPerPage;
 
 		//Format html content from article content edit by wysiwyg
@@ -360,9 +360,6 @@ var ArticlesData = {
 	},
 	Page: function($route) {
 		return $route.current.params.page || 1;
-	},
-	ItemsCount: function(ArticlesCollection) {
-		return ArticlesCollection.getItemsCount();
 	}
 };
 

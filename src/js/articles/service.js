@@ -23,43 +23,30 @@ angular.module("mean.articles").factory("Articles", ["$resource",
 	}
 ]);
 
-//Articles service used for get articles items count
-angular.module("mean.articles").factory("ArticlesCount", ["$resource",
-	function($resource) {
-		return $resource("articlesCount");
-	}
-]);
-
-
 /**
  * ArticleModel service
  **/
-angular.module("mean.articles").service("ArticlesCollection", ["Articles", "ArticlesCount",
-
-	function(Articles, ArticlesCount) {
+angular.module("mean.articles").service("ArticlesCollection", ["Articles",
+	function(Articles) {
 
 		var ArticlesCollection = {
 
 			all: [],
 			itemsPerPage: 12,
-			currentPage: 0,
 
 			load: function(page) {
-
-				ArticlesCollection.currentPage = page;
-
 				return Articles.query({
 					page: page - 1,
 					perPage: ArticlesCollection.itemsPerPage
 				}, function(articles) {
-					ArticlesCollection.all = articles;
 					return articles;
 				}).$promise;
 			},
 
-			getItemsCount: function() {
-				return ArticlesCount.get({}, function(result) {
-					return result;
+			getAll: function() {
+				return Articles.query({}, function(articles) {
+					ArticlesCollection.all = articles;
+					return articles.length;
 				}).$promise;
 			},
 

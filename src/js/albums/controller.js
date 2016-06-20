@@ -34,7 +34,7 @@ angular.module("mean.albums").controller("AlbumDetailController", ["$location", 
 		$scope.uploadFiles = function() {
 
 			var modalInstance = $modal.open({
-				templateUrl: "js/files/fileUpload.html",
+				templateUrl: "js/albums/views/modal/fileUpload.html",
 				controller: "modalInstanceCtrl",
 				scope: $scope
 			});
@@ -93,15 +93,15 @@ angular.module("mean.albums").controller("AlbumDetailController", ["$location", 
 	}
 ]);
 
-angular.module("mean.albums").controller("AlbumsController", ["$scope", "Global", "AlbumService", "albums", "Page", "ItemsCount",
+angular.module("mean.albums").controller("AlbumsController", ["$scope", "Global", "AlbumService", "albums", "Page",
 
-	function($scope, Global, AlbumService, albums, Page, ItemsCount) {
+	function($scope, Global, AlbumService, albums, Page) {
 
 		$scope.global = Global;
 		$scope.albums = albums;
 
 		$scope.page = parseInt(Page);
-		$scope.totalItems = ItemsCount.count;
+		$scope.totalItems = AlbumService.all.length;
 		$scope.itemsPerPage = AlbumService.itemsPerPage;
 
 		$scope.pageChanged = function(newPage) {
@@ -275,12 +275,9 @@ var AlbumData = {
 
 var AlbumsData = {
 	albums: function(AlbumService, $route, $location) { //return all albums only if URL /albums/* but not /albums/add
-		return (RegExp("\/albums").test($location.path()) && $route.current.params.view !== "add") ? AlbumService.getAllAlbums() : [];
+		return (RegExp("\/albums").test($location.path()) && $route.current.params.view !== "add") ? AlbumService.load(($route.current.params.page) ? $route.current.params.page : 1) : [];
 	},
 	Page: function($route) {
 		return ($route.current.params.page) ? $route.current.params.page : 1;
-	},
-	ItemsCount: function(AlbumService) {
-		return AlbumService.getItemsCount();
 	}
 };

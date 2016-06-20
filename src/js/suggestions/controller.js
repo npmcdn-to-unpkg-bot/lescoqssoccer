@@ -1,14 +1,14 @@
 "use strict";
 
-angular.module("mean.suggestions").controller("SuggestionController", ["$scope", "$location", "Global", "Suggestions", "SuggestionsCollection", "Page", "ItemsCount", "$modal",
-	function($scope, $location, Global, Suggestions, SuggestionsCollection, Page, ItemsCount, $modal) {
+angular.module("mean.suggestions").controller("SuggestionController", ["$scope", "$location", "Global", "Suggestions", "SuggestionsCollection", "Page", "$modal",
+	function($scope, $location, Global, Suggestions, SuggestionsCollection, Page, $modal) {
 
 		$scope.global = Global;
 		$scope.suggestions = Suggestions;
 
 		//Manage pagination
 		$scope.page = parseInt(Page);
-		$scope.totalItems = ItemsCount.count;
+		$scope.totalItems = SuggestionsCollection.all.length;
 		$scope.itemsPerPage = SuggestionsCollection.itemsPerPage;
 
 		$scope.pageChanged = function(newPage) {
@@ -38,7 +38,9 @@ angular.module("mean.suggestions").controller("SuggestionController", ["$scope",
 						templateUrl: "js/suggestions/views/votedModal.html",
 						controller: "votedCtrl",
 						resolve: {
-							SuggestionId: suggestion._id
+							SuggestionId: function() {
+								return suggestion._id;
+							}
 						}
 					});
 				});
@@ -48,14 +50,16 @@ angular.module("mean.suggestions").controller("SuggestionController", ["$scope",
 					templateUrl: "js/suggestions/views/votedModal.html",
 					controller: "votedCtrl",
 					resolve: {
-						SuggestionId: suggestion._id
+						SuggestionId: function() {
+							return suggestion._id;
+						}
 					}
 				});
 			}
 		};
 
 		$scope.getSuggestionAnswerLength = function(suggestion, option) {
-			if(suggestion.yes.length + suggestion.no.length + suggestion.blank.length === 0){
+			if (suggestion.yes.length + suggestion.no.length + suggestion.blank.length === 0) {
 				return 0;
 			} else {
 				return Math.round(suggestion[option].length / (suggestion.yes.length + suggestion.no.length + suggestion.blank.length) * 100);
@@ -66,7 +70,7 @@ angular.module("mean.suggestions").controller("SuggestionController", ["$scope",
 			return _.contains(_.union(suggestion.yes, suggestion.no, suggestion.blank), $scope.global.user._id);
 		};
 
-		$scope.getDays = function(suggestion){
+		$scope.getDays = function(suggestion) {
 			return moment(suggestion.created).add(1, "months").fromNow();
 		};
 
@@ -114,8 +118,7 @@ angular.module("mean.suggestions").controller("CreateSuggestionController", ["$s
 				info: "Retour",
 				icon: "fa-arrow-left",
 				callback: $scope.global.back
-			},
-			{
+			}, {
 				link: "#!",
 				info: "Sauvegarder",
 				icon: "fa-save",
@@ -149,18 +152,11 @@ angular.module("mean.suggestions").controller("votedCtrl", ["$scope", "$modalIns
 ]);
 
 var SuggestionsData = {
-
 	Suggestions: function(SuggestionsCollection, $route) {
 		var page = $route.current.params.page || 1;
 		return SuggestionsCollection.load(page);
 	},
-
 	Page: function($route) {
 		return ($route.current.params.page) ? $route.current.params.page : 1;
-	},
-
-	ItemsCount: function(SuggestionsCollection) {
-		return SuggestionsCollection.getItemsCount();
 	}
-
 };

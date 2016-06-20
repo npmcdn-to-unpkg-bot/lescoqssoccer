@@ -4,7 +4,7 @@ angular.module("mean.system").directive("cmLogin", ["$http", "$location", "$wind
 	return {
 		restrict: "E",
 		transclude: true,
-		templateUrl: "js/authentication/login.html",
+		templateUrl: "js/app/views/login.html",
 		link: function($scope, element, attrs) {
 			$scope.signup = false;
 			$scope.showSignup = function() {
@@ -22,7 +22,7 @@ angular.module("mean.system").directive("cmHeader", function() {
 	return {
 		restrict: "E",
 		transclude: true,
-		templateUrl: "js/appStructure/header.html",
+		templateUrl: "js/app/header.html",
 	}
 });
 
@@ -30,16 +30,8 @@ angular.module("mean.system").directive("cmSidebar", function() {
 	return {
 		restrict: "E",
 		controller: "SidebarController",
-		templateUrl: "js/appStructure/sidebar.html",
-		replace: true,
-		resolve: {
-			Suggestions: function(SuggestionsCollection) {
-				return SuggestionsCollection.load();
-			},
-			Agenda: function(AgendaCollection) {
-				return AgendaCollection.load();
-			}
-		}
+		templateUrl: "js/app/sidebar/sidebar.html",
+		replace: true
 	}
 });
 
@@ -118,7 +110,7 @@ angular.module("mean.system").directive("cmProfileTimeline", function() {
 				}
 
 				attrs.$observe("type", function(postType) {
-					scope.contentUrl = "js/users/views/timeline/" + postType + ".html";
+					scope.contentUrl = "js/app/profile/views/timeline/" + postType + ".html";
 				});
 			}
 		},
@@ -150,11 +142,20 @@ angular.module("mean.system").directive("cmBlogPost", function() {
 angular.module("mean.system").directive("cmComments", function() {
 	return {
 		restrict: "E",
-		templateUrl: "js/comments/comments.html",
+		templateUrl: "js/app/comments/comments.html",
 		scope: {
 			updateMethod: "&",
 			object: "="
 		},
 		controller: "CommentController"
+	}
+});
+
+angular.module("mean.system").directive("cmConversations", function() {
+	return {
+		restrict: "E",
+		transclude: true,
+		templateUrl: "js/app/chat/chat.html",
+		controller: "ChatController"
 	}
 });
