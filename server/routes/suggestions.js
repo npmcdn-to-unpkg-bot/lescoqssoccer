@@ -20,9 +20,6 @@ module.exports = function(app) {
 	app.put("/suggestions/:suggestionId", authorization.requiresLogin, suggestions.update);
 	app.del("/suggestions/:suggestionId", authorization.requiresLogin, suggestions.destroy);
 
-	//get suggestions count
-	app.get("/suggestionsCount", suggestions.getItemsCount);
-
 	// Finish with setting up the suggestionId param
 	app.param("suggestionId", suggestions.suggestion);
 };

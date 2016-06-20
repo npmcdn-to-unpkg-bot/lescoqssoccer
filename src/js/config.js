@@ -92,27 +92,27 @@ angular.module("mean").config(["$routeProvider",
 
 		/** ALBUMS ****/
 		when("/albums", {
-			templateUrl: "js/gallery/views/albums.html",
+			templateUrl: "js/albums/views/albums.html",
 			controller: "AlbumsController",
 			resolve: AlbumsData
 		}).
 		when("/albums/view/:albumId", {
-			templateUrl: "js/gallery/views/photos.html",
+			templateUrl: "js/albums/views/albumDetail.html",
 			controller: "PhotosController",
 			resolve: AlbumData
 		}).
 		when("/albums/create", {
-			templateUrl:"js/gallery/views/create.html",
+			templateUrl:"js/albums/views/create.html",
 			controller: "AlbumDetailController",
 			resolve: AlbumData
 		}).
 		when("/albums/edit/:albumId", {
-			templateUrl: "js/gallery/views/create.html",
+			templateUrl: "js/albums/views/create.html",
 			controller: "AlbumDetailController",
 			resolve: AlbumData
 		}).
 		when("/albums/:page", {
-			templateUrl: "js/gallery/views/albums.html",
+			templateUrl: "js/albums/views/albums.html",
 			controller: "AlbumsController",
 			resolve: AlbumsData
 		}).
@@ -135,7 +135,7 @@ angular.module("mean").config(["$routeProvider",
 
 		/** ISSUES ****/
 		when("/issues", {
-			templateUrl: "js/issues/issues.html",
+			templateUrl: "js/parameters/views/issues.html",
 			controller: "issuesCtrl"
 		}).
 
@@ -158,7 +158,7 @@ angular.module("mean").config(["$routeProvider",
 			resolve: UserDetailData
 		}).
 		when("/users/profile", {
-			templateUrl: "js/users/views/profile.html",
+			templateUrl: "js/app/profile/views/profile.html",
 			controller: "ProfileController",
 			resolve: ProfileData
 		}).

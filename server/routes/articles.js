@@ -20,10 +20,6 @@ module.exports = function(app) {
 	app.put("/articles/:articleId", authorization.requiresLogin, articles.update);
 	app.delete("/articles/:articleId", authorization.requiresLogin, articles.destroy);
 
-	//get articles count
-	app.get("/articlesCount", articles.getItemsCount);
-
 	// Finish with setting up the articleId param
 	app.param("articleId", articles.article);
-
 };

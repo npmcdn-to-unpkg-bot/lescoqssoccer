@@ -11,7 +11,9 @@ var mongoose = require("mongoose"),
  * Find article by id
  */
 exports.article = function(req, res, next, id) {
-	Article.findOne({"_id":id})
+	Article.findOne({
+			"_id": id
+		})
 		.populate("user", "name username avatar")
 		.populate("comments.user", "_id name username avatar")
 		.populate("comments.replies.user", "_id name username avatar")
@@ -21,7 +23,7 @@ exports.article = function(req, res, next, id) {
 			if (err) return next(err);
 			req.article = article;
 			next();
-	});
+		});
 };
 
 /**
@@ -113,27 +115,4 @@ exports.all = function(req, res) {
 				res.jsonp(articles);
 			}
 		});
-};
-
-/**
- * Count of articles
- */
-exports.getItemsCount = function(req, res) {
-
-	Article.count({}).exec(function(err, count) {
-
-		if (err) {
-
-			res.render("error", {
-				status: 500
-			});
-
-		} else {
-
-			res.jsonp({
-				count: count
-			});
-
-		}
-	});
 };

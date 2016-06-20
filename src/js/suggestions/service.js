@@ -23,41 +23,29 @@ angular.module("mean.suggestions").factory("Suggestions", ["$resource",
 	}
 ]);
 
-//Articles service used for get suggestions items count
-angular.module("mean.suggestions").factory("SuggestionsCount", ["$resource",
-	function($resource) {
-		return $resource("suggestionsCount");
-	}
-]);
-
 /**
  * suggestionModel service
  **/
-angular.module("mean.suggestions").service("SuggestionsCollection", ["Global", "Suggestions", "SuggestionsCount",
-	function(Global, Suggestions, SuggestionsCount) {
-
+angular.module("mean.suggestions").service("SuggestionsCollection", ["Global", "Suggestions",
+	function(Global, Suggestions) {
 		var SuggestionsCollection = {
 
 			all: [],
 			itemsPerPage: 12,
-			currentPage: 0,
 
 			load: function(page) {
-
-				SuggestionsCollection.currentPage = page;
-
 				return Suggestions.query({
 					perPage: SuggestionsCollection.itemsPerPage,
 					page: page - 1
-				}, function(suggestion) {
-					Suggestions.all = suggestion;
-					return suggestion;
+				}, function(suggestions) {
+					return suggestions;
 				}).$promise;
 			},
 
-			getItemsCount: function() {
-				return SuggestionsCount.get({}, function(result) {
-					return result;
+			getAll: function() {
+				return Suggestions.query({}, function(suggestions) {
+					SuggestionsCollection.all = suggestions;
+					return suggestions.length;
 				}).$promise;
 			},
 

@@ -108,23 +108,6 @@ exports.all = function(req, res) {
 };
 
 /**
- * Count of suggestions
- */
-exports.getItemsCount = function(req, res) {
-	Suggestion.count({}).exec(function(err, count) {
-		if (err) {
-			res.render("error", {
-				status: 500
-			});
-		} else {
-			res.jsonp({
-				count: count
-			});
-		}
-	});
-};
-
-/**
  * Create article from ended suggestion to see results
  **/
 exports.closeVotes = function(req, res) {

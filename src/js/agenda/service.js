@@ -1,8 +1,5 @@
 "use strict";
 
-/**
- * Agenda resource
- **/
 angular.module("mean.agenda").factory("UserEvent", ["$resource",
 	function($resource) {
 		return $resource("userEvent/:userEventId", {
@@ -25,9 +22,6 @@ angular.module("mean.agenda").factory("UserEvent", ["$resource",
 	}
 ]);
 
-/**
- * Agenda service
- **/
 angular.module("mean.agenda").service("AgendaCollection", ["Global", "UserEvent",
 	function(Global, UserEvent) {
 
@@ -74,7 +68,6 @@ angular.module("mean.agenda").service("AgendaCollection", ["Global", "UserEvent"
 			},
 
 			addMeToEvent: function(evt, userEvent) {
-
 				if (evt) {
 					evt.preventDefault();
 					evt.stopPropagation();

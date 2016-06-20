@@ -1,3 +1,5 @@
+"use strict";
+
 angular.module("mean.agenda").filter("getByIdentifier", function() {
 	return function(input, id) {
 		var i = 0,
