@@ -1,37 +1,15 @@
 ------ BUGS ------
 - Back fonctionne pas sur safari
 - Migrer images
-- Clean "null" in readVote array
-- Add update / delete suggestions
 
 
 ------ IMPROVEMENTS ------
-
-
-
 
 
 ------ STORIES ------
 - Implements chat with socket.io
 - Anniversaires
 - Boite à idée
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ------ UTILS -------

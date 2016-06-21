@@ -18,7 +18,7 @@ module.exports = function(app) {
 	app.post("/suggestions", authorization.requiresLogin, suggestions.create);
 	app.get("/suggestions/:suggestionId", suggestions.show);
 	app.put("/suggestions/:suggestionId", authorization.requiresLogin, suggestions.update);
-	app.del("/suggestions/:suggestionId", authorization.requiresLogin, suggestions.destroy);
+	app.delete("/suggestions/:suggestionId", authorization.requiresLogin, suggestions.destroy);
 
 	// Finish with setting up the suggestionId param
 	app.param("suggestionId", suggestions.suggestion);

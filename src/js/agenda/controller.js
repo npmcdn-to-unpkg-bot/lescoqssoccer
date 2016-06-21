@@ -91,14 +91,25 @@ angular.module("mean.agenda").controller("CreateAgendaController", ["$scope", "$
 			guest: []
 		};
 
-		$scope.create = function() {
-			if ($scope.userEvent._id) {
-				$scope.agendaCollection.update($scope.userEvent).then(function(newUserEvent) {
-					$location.path("/agenda");
-				});
+		$scope.create = function(evt) {
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			if ($scope.userEvent.title) {
+				if ($scope.userEvent._id) {
+					$scope.agendaCollection.update($scope.userEvent).then(function(newUserEvent) {
+						$location.path("/agenda");
+					});
+				} else {
+					$scope.agendaCollection.add($scope.userEvent).then(function(userEvent) {
+						$location.path("/agenda");
+					});
+				}
 			} else {
-				$scope.agendaCollection.add($scope.userEvent).then(function(userEvent) {
-					$location.path("/agenda");
+				var modalInstance = $modal.open({
+					templateUrl: "js/articles/views/modal/noTitleArticleModalCtrl.html",
+					controller: "noTitleEventModalCtrl"
 				});
 			}
 		};
@@ -633,6 +644,18 @@ angular.module("mean.agenda").controller("alreadyHereCtrl", ["$scope", "$modalIn
 
 	function($scope, $modalInstance) {
 
+		$scope.ok = function(result) {
+			$modalInstance.close(result);
+		};
+
+		$scope.cancel = function() {
+			$modalInstance.dismiss("cancel");
+		};
+	}
+]);
+
+angular.module("mean.system").controller("noTitleEventModalCtrl", ["$scope", "$modalInstance",
+	function($scope, $modalInstance) {
 		$scope.ok = function(result) {
 			$modalInstance.close(result);
 		};

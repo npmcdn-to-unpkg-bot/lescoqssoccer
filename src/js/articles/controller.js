@@ -269,7 +269,11 @@ angular.module("mean.articles").controller("CreateArticleController", ["$scope",
 			$scope.article.image = response.path;
 		};
 
-		$scope.create = function() {
+		$scope.create = function(evt) {
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
 			switch ($scope.article.type) {
 				case "link":
 					$scope.article.linkAdress = [{
@@ -319,12 +323,7 @@ angular.module("mean.articles").controller("CreateArticleController", ["$scope",
 			} else {
 				var modalInstance = $modal.open({
 					templateUrl: "js/articles/views/modal/noTitleArticleModalCtrl.html",
-					controller: "noTitleArticleModalCtrl",
-					resolve: {
-						article: function() {
-							return $scope.article;
-						}
-					}
+					controller: "noTitleArticleModalCtrl"
 				});
 			}
 		};
@@ -346,12 +345,8 @@ angular.module("mean.articles").controller("CreateArticleController", ["$scope",
 	}
 ]);
 
-angular.module("mean.articles").controller("noTitleArticleModalCtrl", ["$scope", "$modalInstance", "article",
-
-	function($scope, $modalInstance, article) {
-
-		$scope.article = article;
-
+angular.module("mean.system").controller("noTitleArticleModalCtrl", ["$scope", "$modalInstance",
+	function($scope, $modalInstance) {
 		$scope.ok = function(result) {
 			$modalInstance.close(result);
 		};
@@ -360,7 +355,6 @@ angular.module("mean.articles").controller("noTitleArticleModalCtrl", ["$scope",
 			$modalInstance.dismiss("cancel");
 		};
 	}
-
 ]);
 
 var ArticlesData = {

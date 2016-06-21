@@ -76,6 +76,7 @@ exports.getAllUserData = function(req, res) {
 					status: 500
 				});
 			} else {
+				userData.suggestions = suggestions;
 				return User.find({}, "-password -salt -hashed_password -__v -provider").exec();
 			}
 		}).then(function(users, err) {
