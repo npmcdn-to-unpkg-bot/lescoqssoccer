@@ -72,7 +72,8 @@ var UserSchema = new Schema({
 	},
 	isEuroAdmin: {
 		type: Boolean
-	}
+	},
+	exclude: Boolean
 });
 
 /**
