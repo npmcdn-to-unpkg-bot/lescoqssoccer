@@ -1,7 +1,8 @@
 ------ BUGS ------
 - Back fonctionne pas sur safari
 - Migrer images
-
+- Add end date in vote creation
+- Uglify and minify js
 
 ------ IMPROVEMENTS ------
 
