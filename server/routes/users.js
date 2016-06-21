@@ -6,7 +6,7 @@ var users = require( "../controllers/users" );
 module.exports = function ( app, passport ) {
 
 	app.get( "/signin", users.signin );
-	app.get( "/signup", users.signup );
+	// app.get( "/signup", users.signup );
 	app.get( "/signout", users.signout );
 
 	app.get( "/users", users.team );
@@ -14,7 +14,7 @@ module.exports = function ( app, passport ) {
 	app.get( "/users/:userId", users.findOne );
 
 	// Setting up the users api
-	app.post( "/users", users.create );
+	// app.post( "/users", users.create );
 
 	app.put( "/users/:userId", users.update );
 

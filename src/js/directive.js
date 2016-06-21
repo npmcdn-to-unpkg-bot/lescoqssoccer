@@ -7,9 +7,9 @@ angular.module("mean.system").directive("cmLogin", ["$http", "$location", "$wind
 		templateUrl: "js/app/login.html",
 		link: function($scope, element, attrs) {
 			$scope.signup = false;
-			$scope.showSignup = function() {
-				$scope.signup = true;
-			};
+			// $scope.showSignup = function() {
+			// 	$scope.signup = true;
+			// };
 
 			$scope.showSignin = function() {
 				$scope.signup = false;
