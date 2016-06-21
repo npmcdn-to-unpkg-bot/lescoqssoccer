@@ -91,28 +91,39 @@ exports.show = function(req, res) {
  * List of articles
  */
 exports.all = function(req, res) {
-	var perPage = req.query.perPage;
-	var page = req.query.page;
+
 	var query = (req.query.userId) ? {
 		user: req.query.userId
 	} : {};
 
-	Article.find(query)
-		.sort("-created")
-		.limit(perPage)
-		.skip(perPage * page)
-		.populate("user", "_id name username avatar")
-		.populate("comments.user", "_id name username avatar")
-		.populate("comments.replies.user", "name username avatar").exec(function(err, articles) {
-
-			if (err) {
-
-				res.render("error", {
-					status: 500
-				});
-
-			} else {
-				res.jsonp(articles);
-			}
-		});
+	if (req.query.page) {
+		var perPage = req.query.perPage;
+		var page = req.query.page;
+		Article.find(query)
+			.sort("-created")
+			.limit(perPage)
+			.skip(perPage * page)
+			.populate("user", "_id name username avatar")
+			.populate("comments.user", "_id name username avatar")
+			.populate("comments.replies.user", "name username avatar").exec(function(err, articles) {
+				if (err) {
+					res.render("error", {
+						status: 500
+					});
+				} else {
+					res.jsonp(articles);
+				}
+			});
+	} else {
+		Article.find(query)
+			.sort("-created").exec(function(err, articles) {
+				if (err) {
+					res.render("error", {
+						status: 500
+					});
+				} else {
+					res.jsonp(articles);
+				}
+			});
+	}
 };

@@ -1,8 +1,47 @@
 "use strict";
 
-angular.module("mean.albums").controller("AlbumDetailController", ["$location", "$scope", "Global", "$modal", "AlbumService", "album", "FileUploader",
+angular.module("mean.albums").controller("AlbumsController", ["$scope", "Global", "AlbumService", "albums", "Page",
 
-	function($location, $scope, Global, $modal, AlbumService, album, FileUploader) {
+	function($scope, Global, AlbumService, albums, Page) {
+
+		$scope.global = Global;
+		$scope.albums = albums;
+
+		$scope.page = parseInt(Page);
+		$scope.totalItems = AlbumService.all.length;
+		$scope.itemsPerPage = AlbumService.itemsPerPage;
+
+		$scope.pageChanged = function(newPage) {
+			if (newPage === 1) {
+				$location.path("/albums");
+			} else {
+				$location.path("/albums/" + newPage);
+			}
+		};
+
+		$scope.selectAlbum = function(albumId) {
+
+			$scope.selectedAlbum = _.filter(albums, function(album) {
+				return album._id === albumId;
+			})[0];
+
+			$scope.$apply();
+		};
+
+		$scope.$parent.menu = {
+			title: "Albums",
+			items: [{
+				link: "#!/albums/create",
+				info: "Nouvel album",
+				icon: "fa-plus"
+			}]
+		};
+	}
+]);
+
+angular.module("mean.albums").controller("CreateAlbumController", ["$location", "$scope", "Global", "$modal", "AlbumService", "album", "FileUploader", "UserService",
+
+	function($location, $scope, Global, $modal, AlbumService, album, FileUploader, UserService) {
 
 		$scope.global = Global;
 		$scope.album = album;
@@ -88,45 +127,6 @@ angular.module("mean.albums").controller("AlbumDetailController", ["$location", 
 				info: "Sauvegarder",
 				icon: "fa-save",
 				callback: $scope.saveAlbum
-			}]
-		};
-	}
-]);
-
-angular.module("mean.albums").controller("AlbumsController", ["$scope", "Global", "AlbumService", "albums", "Page",
-
-	function($scope, Global, AlbumService, albums, Page) {
-
-		$scope.global = Global;
-		$scope.albums = albums;
-
-		$scope.page = parseInt(Page);
-		$scope.totalItems = AlbumService.all.length;
-		$scope.itemsPerPage = AlbumService.itemsPerPage;
-
-		$scope.pageChanged = function(newPage) {
-			if (newPage === 1) {
-				$location.path("/albums");
-			} else {
-				$location.path("/albums/" + newPage);
-			}
-		};
-
-		$scope.selectAlbum = function(albumId) {
-
-			$scope.selectedAlbum = _.filter(albums, function(album) {
-				return album._id === albumId;
-			})[0];
-
-			$scope.$apply();
-		};
-
-		$scope.$parent.menu = {
-			title: "Albums",
-			items: [{
-				link: "#!/albums/create",
-				info: "Nouvel album",
-				icon: "fa-plus"
 			}]
 		};
 	}

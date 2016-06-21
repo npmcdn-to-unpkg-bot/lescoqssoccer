@@ -10,6 +10,12 @@ angular.module("mean.articles").controller("ArticlesController", ["$scope", "Glo
 		$scope.totalItems = ArticlesCollection.all.length;
 		$scope.itemsPerPage = ArticlesCollection.itemsPerPage;
 
+		if (ArticlesCollection.all.length === 0) {
+			ArticlesCollection.getAll().then(function(articles){
+				$scope.totalItems = ArticlesCollection.all.length;
+			});
+		}
+
 		//Format html content from article content edit by wysiwyg
 		$scope.getFormattedContent = function(html) {
 			return angular.element("<div>" + html + "</div>").text();
@@ -205,8 +211,8 @@ angular.module("mean.articles").controller("ArticleDetailController", ["$scope",
 	}
 ]);
 
-angular.module("mean.articles").controller("CreateArticleController", ["$scope", "$location", "Global", "ArticlesCollection", "FileUploader", "Article", "$modal", "Parameters",
-	function($scope, $location, Global, ArticlesCollection, FileUploader, Article, $modal, Parameters) {
+angular.module("mean.articles").controller("CreateArticleController", ["$scope", "$location", "Global", "ArticlesCollection", "FileUploader", "Article", "$modal", "Parameters", "UserService",
+	function($scope, $location, Global, ArticlesCollection, FileUploader, Article, $modal, Parameters, UserService) {
 
 		$scope.global = Global;
 		$scope.ArticlesCollection = ArticlesCollection;
@@ -263,7 +269,11 @@ angular.module("mean.articles").controller("CreateArticleController", ["$scope",
 			$scope.article.image = response.path;
 		};
 
-		$scope.create = function() {
+		$scope.create = function(evt) {
+
+			evt.preventDefault();
+			evt.stopPropagation();
+
 			switch ($scope.article.type) {
 				case "link":
 					$scope.article.linkAdress = [{
@@ -296,12 +306,16 @@ angular.module("mean.articles").controller("CreateArticleController", ["$scope",
 				if (!$scope.article._id) {
 
 					$scope.ArticlesCollection.add($scope.article).then(function(response) {
+						//set article like read
+						UserService.addReadArticle(response._id);
 						$location.path("/articles");
 					});
 
 				} else {
 
 					$scope.ArticlesCollection.update($scope.article).then(function() {
+						//set article like read
+						UserService.addReadArticle($scope.article._id);
 						$location.path("/articles");
 					});
 
@@ -309,12 +323,7 @@ angular.module("mean.articles").controller("CreateArticleController", ["$scope",
 			} else {
 				var modalInstance = $modal.open({
 					templateUrl: "js/articles/views/modal/noTitleArticleModalCtrl.html",
-					controller: "noTitleArticleModalCtrl",
-					resolve: {
-						article: function() {
-							return $scope.article;
-						}
-					}
+					controller: "noTitleArticleModalCtrl"
 				});
 			}
 		};
@@ -336,12 +345,8 @@ angular.module("mean.articles").controller("CreateArticleController", ["$scope",
 	}
 ]);
 
-angular.module("mean.articles").controller("noTitleArticleModalCtrl", ["$scope", "$modalInstance", "article",
-
-	function($scope, $modalInstance, article) {
-
-		$scope.article = article;
-
+angular.module("mean.system").controller("noTitleArticleModalCtrl", ["$scope", "$modalInstance",
+	function($scope, $modalInstance) {
 		$scope.ok = function(result) {
 			$modalInstance.close(result);
 		};
@@ -350,7 +355,6 @@ angular.module("mean.articles").controller("noTitleArticleModalCtrl", ["$scope",
 			$modalInstance.dismiss("cancel");
 		};
 	}
-
 ]);
 
 var ArticlesData = {

@@ -5,20 +5,23 @@ angular.module("mean.system").controller("SidebarController", ["$scope", "Global
 	function($scope, Global, $location, SuggestionsCollection, ArticlesCollection, AlbumService, AgendaCollection) {
 
 		$scope.global = Global;
-		$scope.articleCount = 0;
-		$scope.albumCount = 0;
+		$scope.articlesIds = [];
+		$scope.albumsIds = [];
 
 		$scope.loadBadges = function() {
-			$scope.unreadArticleCount = ArticlesCollection.getAll().then(function(data) {
-				$scope.articleCount = data;
-				$scope.unreadArticleCount = data - $scope.global.user.readArticles.length;
+			ArticlesCollection.getAll().then(function(articles) {
+
+				$scope.articlesIds = _.pluck(articles, "_id");
+				$scope.unreadArticleCount = _.difference($scope.articlesIds, $scope.global.user.readArticles).length;
+
 			}).then(function() {
-				AlbumService.getAll().then(function(data) {
-					$scope.albumCount = data;
-					$scope.unreadAlbumCount = data - $scope.global.user.readAlbums.length;
+
+				AlbumService.getAll().then(function(albums) {
+
+					$scope.albumsIds = _.pluck(albums, "_id");
+					$scope.unreadAlbumCount = _.difference($scope.albumsIds, $scope.global.user.readAlbums).length;
 
 					SuggestionsCollection.getAll().then(function() {
-
 						$scope.unreadVoteCount = _.difference(_.pluck(SuggestionsCollection.all, "_id"), $scope.global.user.readVotes).length;
 
 						AgendaCollection.load().then(function() {
@@ -35,8 +38,8 @@ angular.module("mean.system").controller("SidebarController", ["$scope", "Global
 		};
 
 		$scope.updateBadges = function() {
-			$scope.unreadArticleCount = $scope.articleCount - $scope.global.user.readArticles.length;
-			$scope.unreadAlbumCount = $scope.albumCount - $scope.global.user.readAlbums.length;
+			$scope.unreadArticleCount = _.difference($scope.articlesIds, $scope.global.user.readArticles).length;
+			$scope.unreadAlbumCount = _.difference($scope.albumsIds, $scope.global.user.readAlbums).length;
 			$scope.unreadVoteCount = _.difference(_.pluck(SuggestionsCollection.all, "_id"), $scope.global.user.readVotes).length;
 			$scope.unreadAgendaCount = _.filter(AgendaCollection.all, function(userEvent) {
 				return !_.contains(_.pluck(userEvent.guest, "_id"), $scope.global.user._id) &&

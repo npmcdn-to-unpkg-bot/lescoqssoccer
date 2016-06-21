@@ -85,28 +85,33 @@ angular.module("mean.suggestions").controller("SuggestionController", ["$scope",
 	}
 ]);
 
-angular.module("mean.suggestions").controller("CreateSuggestionController", ["$scope", "$location", "Global", "Suggestions", "SuggestionsCollection",
-	function($scope, $location, Global, Suggestions, SuggestionsCollection) {
+angular.module("mean.suggestions").controller("CreateSuggestionController", ["$scope", "$location", "Global", "Suggestion", "SuggestionsCollection", "$modal",
+	function($scope, $location, Global, Suggestion, SuggestionsCollection, $modal) {
 
 		$scope.global = Global;
-		$scope.suggestions = Suggestions;
+		$scope.suggestion = Suggestion;
 
 		$scope.create = function(evt) {
 
 			evt.preventDefault();
 			evt.stopPropagation();
 
-			if ($scope.content !== "") {
-				var suggestion = {
-					content: $scope.content,
-					yes: [],
-					no: [],
-					blank: []
-				};
-
-				SuggestionsCollection.add(suggestion).then(function() {
-					$scope.content = "";
-					$location.path("/suggestions");
+			if ($scope.suggestion.content !== "") {
+				if ($scope.suggestion._id) {
+					SuggestionsCollection.update($scope.suggestion).then(function() {
+						$scope.content = "";
+						$location.path("/suggestions");
+					});
+				} else {
+					SuggestionsCollection.add($scope.suggestion).then(function() {
+						$scope.content = "";
+						$location.path("/suggestions");
+					});
+				}
+			} else {
+				var modalInstance = $modal.open({
+					templateUrl: "js/articles/views/modal/noTitleArticleModalCtrl.html",
+					controller: "noTitleModalCtrl"
 				});
 			}
 		};
@@ -129,26 +134,31 @@ angular.module("mean.suggestions").controller("CreateSuggestionController", ["$s
 ]);
 
 angular.module("mean.suggestions").controller("votedCtrl", ["$scope", "$modalInstance", "UserService", "SuggestionId",
-
 	function($scope, $modalInstance, UserService, SuggestionId) {
-
 		$scope.ok = function(result) {
-
 			//set vote like read
 			UserService.addReadVote(SuggestionId);
-
 			$modalInstance.close(result);
 		};
 
 		$scope.cancel = function() {
-
 			//set vote like read
 			UserService.addReadVote(SuggestionId);
-
 			$modalInstance.dismiss("cancel");
 		};
 	}
+]);
 
+angular.module("mean.system").controller("noTitleModalCtrl", ["$scope", "$modalInstance",
+	function($scope, $modalInstance) {
+		$scope.ok = function(result) {
+			$modalInstance.close(result);
+		};
+
+		$scope.cancel = function() {
+			$modalInstance.dismiss("cancel");
+		};
+	}
 ]);
 
 var SuggestionsData = {
@@ -158,5 +168,16 @@ var SuggestionsData = {
 	},
 	Page: function($route) {
 		return ($route.current.params.page) ? $route.current.params.page : 1;
+	}
+};
+
+var SuggestionData = {
+	Suggestion: function(SuggestionsCollection, $route) {
+		return ($route.current.params.id) ? SuggestionsCollection.findOne($route.current.params.id) : {
+			content: "",
+			yes: [],
+			no: [],
+			blank: []
+		};
 	}
 };

@@ -49,6 +49,14 @@ angular.module("mean.suggestions").service("SuggestionsCollection", ["Global", "
 				}).$promise;
 			},
 
+			findOne: function(suggestionId) {
+				return Suggestions.get({
+					suggestionId: suggestionId
+				}, function(suggestion) {
+					return suggestion;
+				}).$promise;
+			},
+
 			add: function(suggestion) {
 				return Suggestions.save({}, suggestion, function(data) {
 					return data;
@@ -63,8 +71,10 @@ angular.module("mean.suggestions").service("SuggestionsCollection", ["Global", "
 				}).$promise;
 			},
 
-			remove: function(suggestion) {
-				return Suggestions.delete({}, suggestion, function(data) {
+			remove: function(suggestionId) {
+				return Suggestions.delete({
+					suggestionId: suggestionId
+				}, function(data) {
 					return data;
 				}).$promise;
 			}

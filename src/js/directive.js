@@ -4,7 +4,7 @@ angular.module("mean.system").directive("cmLogin", ["$http", "$location", "$wind
 	return {
 		restrict: "E",
 		transclude: true,
-		templateUrl: "js/app/views/login.html",
+		templateUrl: "js/app/login.html",
 		link: function($scope, element, attrs) {
 			$scope.signup = false;
 			$scope.showSignup = function() {
@@ -131,6 +131,8 @@ angular.module("mean.system").directive("cmBlogPost", function() {
 					setTimeout(function() {
 						var ux_pb = new ThemePageBuilder();
 						ux_pb.init();
+
+						$(".isotope-list-thumb").css("visibility", "visible");
 					}, 200);
 				}
 			});

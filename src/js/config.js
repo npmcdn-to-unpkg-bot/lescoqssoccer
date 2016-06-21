@@ -103,12 +103,12 @@ angular.module("mean").config(["$routeProvider",
 		}).
 		when("/albums/create", {
 			templateUrl:"js/albums/views/create.html",
-			controller: "AlbumDetailController",
+			controller: "CreateAlbumController",
 			resolve: AlbumData
 		}).
 		when("/albums/edit/:albumId", {
 			templateUrl: "js/albums/views/create.html",
-			controller: "AlbumDetailController",
+			controller: "CreateAlbumController",
 			resolve: AlbumData
 		}).
 		when("/albums/:page", {
@@ -126,6 +126,12 @@ angular.module("mean").config(["$routeProvider",
 		when("/suggestions/create", {
 			templateUrl: "js/suggestions/views/create.html",
 			controller: "CreateSuggestionController",
+			resolve: SuggestionData
+		}).
+		when("/suggestions/edit/:id", {
+			templateUrl: "js/suggestions/views/create.html",
+			controller: "CreateSuggestionController",
+			resolve: SuggestionData
 		}).
 		when("/suggestions/:page", {
 			templateUrl: "js/suggestions/views/suggestions.html",

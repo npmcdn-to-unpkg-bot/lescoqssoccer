@@ -17,9 +17,9 @@ angular.module("mean.system").factory("Global", ["$window",
 	}
 ]);
 
-angular.module("mean.system").controller("ProfileController", ["$scope", "Global", "$sce", "$modal", "User", "UserService", "$translate", "FileUploader", "UserContents", "AgendaCollection", "ArticlesCollection", "AlbumService",
+angular.module("mean.system").controller("ProfileController", ["$scope", "Global", "$sce", "$modal", "User", "UserService", "$translate", "FileUploader", "UserContents", "AgendaCollection", "ArticlesCollection", "AlbumService", "SuggestionsCollection",
 
-	function($scope, Global, $sce, $modal, User, UserService, $translate, FileUploader, UserContents, AgendaCollection, ArticlesCollection, AlbumService) {
+	function($scope, Global, $sce, $modal, User, UserService, $translate, FileUploader, UserContents, AgendaCollection, ArticlesCollection, AlbumService, SuggestionsCollection) {
 
 		$scope.global = Global;
 		$scope.user = User;
@@ -110,6 +110,27 @@ angular.module("mean.system").controller("ProfileController", ["$scope", "Global
 			modalInstance.result.then(function() {
 				AgendaCollection.remove(userEvent._id).then(function(){
 					$scope.removeItem(userEvent);
+				});
+			});
+		};
+
+		$scope.deleteSuggestion = function(evt, suggestion) {
+			evt.preventDefault();
+			evt.stopPropagation();
+
+			var modalInstance = $modal.open({
+				templateUrl: "js/users/views/modal/deleteContent.html",
+				controller: "deleteContentModalCtrl",
+				resolve: {
+					content: function() {
+						return suggestion;
+					}
+				}
+			});
+
+			modalInstance.result.then(function() {
+				SuggestionsCollection.remove(suggestion._id).then(function(){
+					$scope.removeItem(suggestion);
 				});
 			});
 		};
