@@ -22,16 +22,16 @@ exports.getAllUserData = function(req, res) {
 	} : {};
 
 	var userData = {
-		albums: null,
-		articles: null,
-		userEvents: null,
-		suggestions: null,
-		comments: null
+		albums: [],
+		articles: [],
+		userEvents: [],
+		suggestions: [],
+		comments: []
 	};
 
 	var responseObject = {
 		content: [],
-		users: null
+		users: []
 	}
 
 	Article.find(query)
@@ -95,7 +95,9 @@ exports.getAllUserData = function(req, res) {
 					status: 500
 				});
 			} else {
-				userData.comments = comments;
+				if (!req.query.userId) {
+					userData.comments = comments;
+				}
 				responseObject.content = formatUserData(userData);
 				res.jsonp(responseObject);
 			}
@@ -146,5 +148,5 @@ var formatUserData = function(userData) {
 		return item.created || item.startsAt;
 	});
 
-	return sortedDatas.content.slice(sortedDatas.content.length - 31, sortedDatas.content.length);
+	return sortedDatas.content.slice(Math.max(sortedDatas.content.length - 31, 0), sortedDatas.content.length);
 };
