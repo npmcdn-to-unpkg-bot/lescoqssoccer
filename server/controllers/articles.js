@@ -103,9 +103,7 @@ exports.all = function(req, res) {
 			.sort("-created")
 			.limit(perPage)
 			.skip(perPage * page)
-			.populate("user", "_id name username avatar")
-			.populate("comments.user", "_id name username avatar")
-			.populate("comments.replies.user", "name username avatar").exec(function(err, articles) {
+			.populate("user", "_id name username avatar").exec(function(err, articles) {
 				if (err) {
 					res.render("error", {
 						status: 500
@@ -116,7 +114,9 @@ exports.all = function(req, res) {
 			});
 	} else {
 		Article.find(query)
-			.sort("-created").exec(function(err, articles) {
+			.select('_id type')
+			.sort("-created")
+			.exec(function(err, articles) {
 				if (err) {
 					res.render("error", {
 						status: 500
