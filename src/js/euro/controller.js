@@ -94,6 +94,11 @@ angular.module("mean.euro").controller("EuroController", ["$scope", "$location",
 			});
 		};
 
+		$scope.showOldMatch = function() {
+			$scope.showMatch = true;
+			$(window).trigger('resize');
+		};
+
 		$scope.$parent.menu = {
 			title: "Euro",
 			items: [{
