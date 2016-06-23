@@ -33,7 +33,6 @@ exports.create = function(req, res) {
 	var article = new Article(req.body);
 	article.user = req.user;
 	article.save(function(err) {
-
 		if (err) {
 			return res.send("users/signup", {
 				errors: err.errors,

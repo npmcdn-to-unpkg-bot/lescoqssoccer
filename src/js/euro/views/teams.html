@@ -50,27 +50,33 @@
 								</div>
 								<div class="col-md-12 col-sm-6 col-xs-12 bottom-space-60" style="margin-left: 0; padding: 0;">
 									<h4 class="widget-title" style="margin: 10px 0 30px 0;">
-										Choisis ton vainqueur final:
+										Ton vainqueur final:
 									</h4>
-									<a href="#!" ng-repeat="team in teams" class="teamItem" ng-class="{'active' : global.user.favoriteEuroTeam === team.code}" ng-click="selectTeam($event, team);">
-										{{ team.name }}
+									<a href="#!" class="teamItem active">
+										{{ getTeamName(global.user.favoriteEuroTeam) }}
 									</a>
-									<!-- <a href="#!" ng-if="!global.user.favoriteEuroTeam" class="teamItem active">
+									<a href="#!" ng-if="!global.user.favoriteEuroTeam" class="teamItem active">
 										Trop tard
-									</a> -->
+									</a>
 								</div>
 								<div class="span12 bottom-space-60" style="margin-left: 0; margin-top: 20px;">
 									<h4 class="widget-title" style="margin: 10px 0 30px 0;">
 										Les paris
 									</h4>
+									<div class="widget-title" style="margin: 10px 0 30px 0; font-size: medium; cursor: pointer;" ng-click="showOldMatch();">
+										Afficher les anciens matchs
+									</div>
 									<div class="isotope masonry" data-size="large" data-width="width2" style="margin: -20px 0px 0px -20px;">
-										<div class="width2 isotope-item hover-effect" ng-repeat="match in matchs">
+										<div class="width2 isotope-item hover-effect" ng-repeat="match in matchs" ng-show="match.type === 'R16' || showMatch">
 											<div class="inside item_des" style="margin:20px; padding: 20px;" ng-class="{'hadBetContainer': !getBet(match).empty}">
 												<div style="font-size: large; font-weight: 600;">
 													{{ match.startsAt | date:"dd MMM yyyy, à HH:mm" }}
 												</div>
-												<div style="font-size: large; font-weight: 400;">
+												<div ng-if="match.type !== 'R16'" style="font-size: large; font-weight: 400;">
 													Group {{ match.type }}
+												</div>
+												<div ng-if="match.type === 'R16'" style="font-size: large; font-weight: 400;">
+													Quart de finale
 												</div>
 												<div class="matchRow" style="text-align:center; margin-top: 20px;">
 													<div>
