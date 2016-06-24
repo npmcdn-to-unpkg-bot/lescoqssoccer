@@ -34,7 +34,7 @@ exports.getAllUserData = function(req, res) {
 		users: []
 	}
 
-	Article.find(query, "-comments")
+	Article.find(query, "-comments -yes -no -blank")
 		.sort("-created")
 		.populate("user", "_id name username avatar").exec()
 		.then(function(articles, err) {
@@ -77,7 +77,7 @@ exports.getAllUserData = function(req, res) {
 				});
 			} else {
 				userData.suggestions = suggestions;
-				return User.find({}, "-password -salt -hashed_password -__v -provider -readAlbums -readVotes -conversations").exec();
+				return User.find({}, "-password -salt -hashed_password -__v -provider -readAlbums -readArticles -readVotes -conversations").exec();
 			}
 		}).then(function(users, err) {
 			if (err) {
