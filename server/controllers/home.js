@@ -34,7 +34,7 @@ exports.getAllUserData = function(req, res) {
 		users: []
 	}
 
-	Article.find(query)
+	Article.find(query, "-comments -yes -no -blank")
 		.sort("-created")
 		.populate("user", "_id name username avatar").exec()
 		.then(function(articles, err) {
@@ -44,7 +44,7 @@ exports.getAllUserData = function(req, res) {
 				});
 			} else {
 				userData.articles = articles;
-				return Album.find(query)
+				return Album.find(query, "-comments")
 					.sort("-created")
 					.populate("user", "_id name username avatar").exec();
 			}
@@ -55,7 +55,7 @@ exports.getAllUserData = function(req, res) {
 				});
 			} else {
 				userData.albums = albums;
-				return UserEvent.find(query)
+				return UserEvent.find(query, "-comments")
 					.sort("-created")
 					.populate("user", "_id name username avatar").exec();
 			}
@@ -77,7 +77,7 @@ exports.getAllUserData = function(req, res) {
 				});
 			} else {
 				userData.suggestions = suggestions;
-				return User.find({}, "-password -salt -hashed_password -__v -provider").exec();
+				return User.find({}, "-password -salt -hashed_password -__v -provider -readAlbums -readArticles -readVotes -conversations").exec();
 			}
 		}).then(function(users, err) {
 			if (err) {
