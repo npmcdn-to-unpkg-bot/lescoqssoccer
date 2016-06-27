@@ -17,9 +17,9 @@ angular.module("mean.home").controller("HomeController", ["$scope", "$sce", "Glo
 				var consoleTextArray = "";
 				// consoleTextArray.push("Salut les suceurs, voici la nouvelle version du site, ici défilera les petits messages de chacun, pour changer ton message, va dans ton profil. A+")
 				_.each($scope.team, function(user) {
-					if (user.presentation) {
+					if (user.presentation && user.presentation !== "") {
 						var username = user.username;
-						consoleTextArray += username.charAt(0).toUpperCase() + username.slice(1) + ": " + user.presentation + " ";
+						consoleTextArray += username.charAt(0).toUpperCase() + username.slice(1) + ": " + user.presentation + "   ...   ";
 					}
 				});
 				$("#consoleMarquee").html(consoleTextArray);

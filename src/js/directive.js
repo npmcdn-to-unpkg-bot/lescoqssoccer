@@ -72,6 +72,12 @@ angular.module("mean.system").directive("cmWysiwyg", function() {
 					paste: {
 						// Override default paste behavior, removing all inline styles
 						style: "clean"
+					},
+					images: {
+						upload: {
+							url: '/upload/photo',
+							basePath: '/'
+						}
 					}
 				};
 

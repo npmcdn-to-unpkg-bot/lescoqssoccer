@@ -21,7 +21,8 @@ exports.uploadPhoto = function(req, res) {
 			res.end(JSON.stringify({
 				err: null,
 				path: config.uploadDirectory + newName,
-				name: oldName
+				name: oldName,
+				location: config.uploadDirectory + newName
 			}));
 		},
 		uploadFailure: function(err) {
@@ -39,23 +40,25 @@ exports.uploadPhoto = function(req, res) {
 		}
 	};
 
+	console.warn(req)
 	handlePhotoUpload(req.files, callbacks);
 };
 
 function handlePhotoUpload(params, callbacks) {
 	console.log("inside handlePhotoUpload"); // <-- never reached using IE9
 
-	if (params.file.type !== "image/png" && params.file.type !== "image/jpeg" && params.file.type !== "image/gif") {
+	if (params.file && params.file.type !== "image/png" && params.file.type !== "image/jpeg" && params.file.type !== "image/gif") {
 		callbacks.uploadFailure("Wrong file type");
 		return;
 	}
 
-	var oldName = params.file.name;
+	var oldImage = params.file || params.image;
+	var oldName = oldImage.name || oldImage.name;
 	var photoId = guid();
-	var newName = photoId + "." + params.file.path.split(".").pop();
+	var newName = photoId + "." + oldImage.path.split(".").pop();
 	var newPath = path.resolve(config.root + "/server/" + config.uploadDirectory + newName);
 
-	gm(params.file.path)
+	gm(oldImage.path)
 		.autoOrient()
 		.write(newPath, function(err) {
 
@@ -78,13 +81,13 @@ function handlePhotoUpload(params, callbacks) {
 					}
 
 					//Remove origin file in all case
-					fs.unlink(params.file.path, function(err) {
+					fs.unlink(oldImage.path, function(err) {
 
 						if (err) {
 							console.log("Erorr when trying to delete image " + err);
 							callbacks.uploadFailure(err);
 						} else {
-							console.log("Successfully deleted : " + params.file.path);
+							console.log("Successfully deleted : " + oldImage.path);
 							callbacks.uploadSuccess(newName, oldName);
 						}
 

@@ -114,16 +114,15 @@ angular.module("mean.system").controller("CommentController", ["$scope", "Global
 		};
 
 		$scope.getTypeFromItem = function() {
-			if ($scope.object.type && $scope.object.description) {
-				return $scope.object.type;
-			} else if ($scope.object.photoList) {
+			if ($scope.object.photoList) {
 				return "album";
 			} else if ($scope.object.bets) {
 				return "match";
 			} else if ($scope.object.eventType) {
 				return "userEvent";
+			} else {
+				return $scope.object.type;
 			}
-			return ""
 		};
 	}
 ]);
