@@ -81,8 +81,8 @@ angular.module("mean.system").directive("cmWysiwyg", function() {
 					}
 				};
 
-				var editor = textboxio.replace("#mytextarea", config);
-				editor.content.set($scope.article.content);
+				$scope.editor = textboxio.replace("#mytextarea", config);
+				$scope.editor.content.set($scope.article.content);
 			});
 		}
 	}
