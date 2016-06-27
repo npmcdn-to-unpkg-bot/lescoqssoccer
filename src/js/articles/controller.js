@@ -11,7 +11,7 @@ angular.module("mean.articles").controller("ArticlesController", ["$scope", "Glo
 		$scope.itemsPerPage = ArticlesCollection.itemsPerPage;
 
 		if (ArticlesCollection.all.length === 0) {
-			ArticlesCollection.getAll().then(function(articles){
+			ArticlesCollection.getAll().then(function(articles) {
 				$scope.totalItems = ArticlesCollection.all.length;
 			});
 		}
@@ -305,19 +305,49 @@ angular.module("mean.articles").controller("CreateArticleController", ["$scope",
 			if ($scope.article.title) {
 				if (!$scope.article._id) {
 
-					$scope.ArticlesCollection.add($scope.article).then(function(response) {
-						//set article like read
-						UserService.addReadArticle(response._id);
-						$location.path("/articles");
-					});
+					if ($scope.editor) {
+						var modalInstance = $modal.open({
+							templateUrl: "js/articles/views/modal/waitFile.html",
+							scope: $scope
+						});
+						setTimeout(function() {
+							$scope.editor.content.uploadImages(function() {
+								$scope.ArticlesCollection.add($scope.article).then(function(response) {
+									//set article like read
+									modalInstance.dismiss();
+									UserService.addReadArticle(response._id);
+									$location.path("/articles");
+								});
+							});
+						}, 500);
+					} else {
+						$scope.ArticlesCollection.add($scope.article).then(function(response) {
+							//set article like read
+							UserService.addReadArticle(response._id);
+							$location.path("/articles");
+						});
+					}
 
 				} else {
 
-					$scope.ArticlesCollection.update($scope.article).then(function() {
-						//set article like read
-						UserService.addReadArticle($scope.article._id);
-						$location.path("/articles");
-					});
+					if ($scope.editor) {
+						var modalInstance = $modal.open({
+							templateUrl: "js/articles/views/modal/waitFile.html"
+						});
+						setTimeout(function() {
+							$scope.editor.content.uploadImages(function() {
+								$scope.ArticlesCollection.update($scope.article).then(function() {
+									//set article like read
+									modalInstance.dismiss();
+									$location.path("/articles");
+								});
+							});
+						}, 500);
+					} else {
+						$scope.ArticlesCollection.update($scope.article).then(function() {
+							$location.path("/articles");
+						});
+					}
 
 				}
 			} else {
