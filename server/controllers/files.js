@@ -40,7 +40,6 @@ exports.uploadPhoto = function(req, res) {
 		}
 	};
 
-	console.warn(req)
 	handlePhotoUpload(req.files, callbacks);
 };
 
