@@ -5493,10 +5493,8 @@ a.igoNot{
 }
 
 .pageContent{
-    margin-top: 60px;
-    height: calc(100vh - 60px);
+    padding-top: 60px;
     width: 100%;
-    overflow: auto;
 }
 
 /*.homeContainer{
