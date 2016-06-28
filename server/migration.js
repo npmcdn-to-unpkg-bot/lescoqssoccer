@@ -58,7 +58,8 @@ var Article = mongoose.model('Article'),
 	Match = mongoose.model('Match'),
 	Comment = mongoose.model('Comment'),
 	EuroData = require('./euro.json'),
-	EuroDataQF = require('./euro_qf.json');
+	EuroDataR16 = require('./euro_qf.json'),
+	EuroDataQF = require('./euro_qf_2.json');
 
 /*
 Script de migration pour remplacer l'url des videos youtube de embed => v
