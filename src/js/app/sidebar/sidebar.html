@@ -2,7 +2,7 @@
 	<ul class="dots" style="height: 100%;">
 		<li style="padding: 10px; margin: auto;">
 			<a href='#!/users/profile'>
-				<img style="border-radius: 50%; width: 80px; height: 80px;" ng-src="{{global.user.avatar?dim=80x80 || 'img/Professor.png'}}"/>
+				<img style="border-radius: 50%; width: 80px; height: 80px;" ng-src="{{ global.user.avatar && global.user.avatar + '?dim=80x80' || 'img/Professor.png' }}"/>
 			</a>
 		</li>
 		<li ng-repeat="item in menu1">
