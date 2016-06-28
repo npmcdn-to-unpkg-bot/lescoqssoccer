@@ -7607,7 +7607,7 @@ a.follow:hover {
 }
 
 #timeline .timeline-item.comment .timeline-content:before {
-    border-right: 7px solid #f7f7f7 !important;
+    border-right: 7px solid #F7F7A8 !important;
 }
 
 #timeline .timeline-item.agenda .timeline-content:before {
