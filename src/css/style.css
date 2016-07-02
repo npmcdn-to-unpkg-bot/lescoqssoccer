@@ -7537,17 +7537,8 @@ a.follow:hover {
   float: right;
   background: #fff;
   padding: 20px;
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-  -ms-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
   border-radius: 2px;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 #profile-timeline .timeline-item .timeline-content {
@@ -7556,17 +7547,8 @@ a.follow:hover {
   background: #fff;
   padding: 20px;
   float: left;
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-  -ms-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
   border-radius: 2px;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 .timeline-item .timeline-content:hover, .timeline-item .timeline-content.read {
@@ -7575,16 +7557,13 @@ a.follow:hover {
 }
 
 .timeline-item .timeline-content h2 {
-	font-size: 20px;
-	line-height: 20px;
+  font-size: 20px;
+  line-height: 20px;
   padding: 15px;
   background: #2196F3;
   color: #fff;
   margin: -20px -20px 0 -20px;
   font-weight: 300;
-  -webkit-border-radius: 2px 2px 0 0;
-  -moz-border-radius: 2px 2px 0 0;
-  -ms-border-radius: 2px 2px 0 0;
   border-radius: 2px 2px 0 0;
 }
 
@@ -7607,7 +7586,7 @@ a.follow:hover {
 }
 
 #timeline .timeline-item.comment .timeline-content:before {
-    border-right: 7px solid #f7f7f7 !important;
+    border-right: 7px solid #F7F7A8 !important;
 }
 
 #timeline .timeline-item.agenda .timeline-content:before {
@@ -8267,4 +8246,16 @@ code {
 
 .ranking:first-child:before{
 	background-color: rgba(255,0,0,0.8);
+}
+
+.exclude + img{
+	opacity: .4;
+}
+
+.exclude{
+	position: absolute;
+    font-size: 40px;
+    left: 20px;
+    color: red;
+        z-index: 2;
 }

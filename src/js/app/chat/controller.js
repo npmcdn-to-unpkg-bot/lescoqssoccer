@@ -36,6 +36,10 @@ angular.module("mean.system").controller("ChatController", ["$scope", "Global", 
 							userId: user._id
 						};
 
+						if (user.exclude) {
+							$scope.conversations[user._id].exclude = user.exclude
+						}
+
 						$scope.conversations[user._id].unReadMessageCount = $scope.getUnreadMessageCount(user._id);
 					}
 				});
