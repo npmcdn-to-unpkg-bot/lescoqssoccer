@@ -67,7 +67,7 @@ exports.updateMatch = function(req, res) {
 			console.log("Error when trying to save match: " + err);
 		}
 
-		if(match.scoreHome !== undefined && match.scoreAway !== undefined){
+		if (match.scoreHome !== undefined && match.scoreAway !== undefined) {
 			updateUserScores();
 		}
 
@@ -185,7 +185,7 @@ var getPointsFromMatch = function(match, user) {
 	var _userbets = _.filter(match.bets, function(bet) {
 		return bet.user.toString() === user._id.toString()
 	});
-	 var userBet = (_userbets.length > 0) ? _userbets[_userbets.length-1] : null
+	var userBet = (_userbets.length > 0) ? _userbets[_userbets.length - 1] : null
 
 	if (userBet) {
 
@@ -211,6 +211,14 @@ var getPointsFromMatch = function(match, user) {
 
 	} else {
 		console.warn("User has not bet on the match");
+	}
+
+	if (match.type === "SF") {
+		return points * 2;
+	}
+
+	if (match.type === "FINALE") {
+		return points * 3;
 	}
 
 	return points;
