@@ -5,7 +5,7 @@
 				<div class="pagebuilder-wrap">
 					<div class="fullwrap_moudle">
 						<div class="fullwidth-wrap" ng-if="agenda.length> 0">
-							<div class="col-md-4 item_des post-bgcolor-default" ng-click="showAgendaDetail();" style="cursor: pointer; padding: 0;">
+							<div class="col-md-4 item_des post-bgcolor-default" ng-click="showAgendaDetail();" style="cursor: pointer; padding: 0; margin-bottom: 1px;">
 								<div class="ev2page-col">
 									<div>
 										<h2 class="ev2page-title" style="padding: 20px 20px 5px 20px; background: #2196F3;">
@@ -54,7 +54,7 @@
 											{{ selectedEvent.user.username }}
 										</b>
 									</p>
-									<img class="img-circle" ng-src="{{ selectedEvent.user.avatar }}?dim100x100" alt="{{ selectedEvent.user.username }}" style="margin-top: -60px; height: 40px;"/>
+									<img class="img-circle" ng-src="{{ selectedEvent.user.avatar }}?dim40x40" alt="{{ selectedEvent.user.username }}" style="margin-top: -60px; height: 40px;width: 40px;"/>
 								</div>
 							</div>
 							<div class="col-md-8 moudle" style="padding-left: 40px;">

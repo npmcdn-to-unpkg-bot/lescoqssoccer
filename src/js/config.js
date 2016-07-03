@@ -142,12 +142,6 @@ angular.module("mean").config(["$routeProvider",
 		/** ISSUES ****/
 		when("/issues", {
 			templateUrl: "js/parameters/views/issues.html",
-			controller: "issuesCtrl"
-		}).
-
-		/** PARAMETERS ****/
-		when("/parameters", {
-			templateUrl: "js/parameters/views/parameters.html",
 			controller: "ParametersController",
 			resolve: ParametersData
 		}).

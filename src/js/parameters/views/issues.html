@@ -8,36 +8,96 @@
 							<div class="container">
 								<div class="row-fluid">
 									<div class="span12 item_des moudle bouncdein-down-translate bottom-space-no"  style="background: white; padding: 0 40px 40px; margin-top: 40px;">
-										<h1 class="main-title" style="text-transform: uppercase; text-align: center;">ça plante !!!</h1>
-										<div class="item_des bg-theme-color-8" style="padding: 30px;color: white; width: 70%; margin: auto;">
-											<i class="icon-m-quote-left center-ux" style="margin-bottom: 20px;font-size: 48px; height: 60px;"></i>
-											<p><span class="dropcap">E</span>n informatique, environ 90% des problèmes se situent entre la chaise et le clavier.
-											</p>
-											<br>
-											<p class="pull-right" style="text-transform: uppercase;    margin-top: -20px;">-- UNE ÉTUDE SÉRIEUSE</p>
-										</div>
-										<p style="margin: 30px 0; text-align: justify;">
-										<span class="dropcap" style="line-height: 39px;">S</span>i par hasard tu te retrouves dans les 10% des cas restant, premièrement vérifie que tu n'es pas le premier cas. Si après vérification il s'avère que le tocard qui a fait ce site a laissé des bugs, note le pour qu'il te laisse espérer qu'un jour il le corrigera. Pour répertorier les buggs ("issue" en anglais, yeah nigga), cliques sur le lien ci-dessous:
-										</p>
-										<div data-animation="rorate" class="iocnbox icon_left ux-mod-nobg">
-											<a name="20140417-073411-934-1" class="20140417-073411-934-1"></a>
-											<div class="icon_wrap">
-												<i class="fa fa-github-square"></i>
+										<div class="tab-wrap">
+											<input type="radio" name="tabs" id="tab1" checked/>
+											<div class="tab-label-content" id="tab1-content">
+												<label for="tab1">
+													Paramètres
+												</label>
+												<div class="tab-content">
+													<form role="form">
+														<div class="span12 tagcloud" style="margin-left: 0; margin-bottom: 10px;">
+															<h4 class="widget-title" style="margin-top: 10px;">
+																Categories des articles
+															</h4>
+															<p style="margin-bottom: 20px;">
+																Clique sur une catégorie pour la désactiver (elle ne sera alors plus sélectionnable pour la création d'article)
+															</p>
+															<a href="#!" ng-repeat="category in parameters.articleCategories" nf-if="category.active" title="{{ category.value }}" style="font-size: 11px;" ng-class="{'active' : category.active}" ng-click="toggleCategory($event, category);">
+																{{ category.value }}
+															</a>
+														</div>
+														<p class="span9" style="margin-bottom: 20px; margin-left: 0;">
+															<input name="newCategorie" type="text" data-ng-model="newCategorieLabel" class="requiredFieldcomm" size="30" aria-required="true" tabindex="1" placeholder="Nouvelle catégorie"/>
+															<input type="button" ng-click="addCategorie();" value="Ajouter"/>
+														</p>
+													</form>
+												</div>
 											</div>
-											<div class="icon_text">
-												<a href="https://github.com/alexrosepizant/community-organizer/issues" data-mce-href="https://github.com/alexrosepizant/community-organizer/issues" target="_blank">
-												<h3 style="padding-top: 10px;">OUVRIR UN BUG</h3>
-												</a>
+											<input type="radio" name="tabs" id="tab2"/>
+											<div class="tab-label-content" id="tab2-content">
+												<label for="tab2">
+													Les bugs
+												</label>
+												<div class="tab-content" style="left: -100%;">
+													<div class="item_des bg-theme-color-8" style="padding: 30px;color: white; width: 70%;     max-width: 450px; margin: auto;">
+														<i class="icon-m-quote-left center-ux" style="margin-bottom: 20px;font-size: 48px; height: 40px;">
+														</i>
+														<p>
+															<span class="dropcap">
+																E
+															</span>
+															n informatique, environ 90% des problèmes se situent entre la chaise et le clavier.
+														</p>
+														<br/>
+														<p class="pull-right" style="text-transform: uppercase;    margin-top: -10px;">
+															-- UNE ÉTUDE SÉRIEUSE
+														</p>
+													</div>
+													<p style="margin: 30px 0; text-align: justify;">
+														<span class="dropcap" style="line-height: 39px;">
+															S
+														</span>
+														i par hasard tu te retrouves dans les 10% des cas restant, premièrement vérifie que tu n'es pas le premier cas. Si après vérification il s'avère que le tocard qui a fait ce site a laissé des bugs, note le pour qu'il te laisse espérer qu'un jour il le corrigera. Pour répertorier les buggs ("issue" en anglais, yeah nigga), cliques sur le lien ci-dessous:
+													</p>
+													<div data-animation="rorate" class="iocnbox icon_left ux-mod-nobg">
+														<a name="20140417-073411-934-1" class="20140417-073411-934-1">
+														</a>
+														<div class="icon_wrap">
+															<i class="fa fa-github-square">
+															</i>
+														</div>
+														<div class="icon_text">
+															<a href="https://github.com/alexrosepizant/community-organizer/issues" data-mce-href="https://github.com/alexrosepizant/community-organizer/issues" target="_blank">
+																<h3 style="padding-top: 10px;">
+																	OUVRIR UN BUG
+																</h3>
+															</a>
+														</div>
+														<!--End icon_text-->
+													</div>
+													<p style="margin-top: 40px;">
+														Cliquer sur le bouton "New issue", en haut à gauche, et se connecter avec les identifiants et décrire le bug le plus précisément possible et attendre qu'il soit corrigé.
+														<br/>
+														<hr/>
+														Nom d'utilisateur:
+														<b>
+															lescoqssoccer
+														</b>
+														<br/>
+														<br/>
+														Mot de passe:
+														<b>
+															coqburn38
+														</b>
+														<br/>
+														<br/>
+													</p>
+												</div>
 											</div>
-											<!--End icon_text-->
+											<div class="slide">
+											</div>
 										</div>
-										<p style="margin-top: 40px;">
-												Cliquer sur le bouton "New issue", en haut à gauche, et se connecter avec ces identifiants: <br/><br/>
-												Nom d'utilisateur: lescoqssoccer <br/>
-												Mot de passe: coqburn38
-												<br/><br/>
-												Décrire le bug le plus précisément possible et attendre qu'il soit corrigé.
-												</p>
 									</div>
 								</div>
 							</div>
@@ -47,4 +107,5 @@
 			</div>
 		</div>
 	</div>
+</div>
 </div>
