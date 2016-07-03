@@ -105,7 +105,7 @@ exports.all = function(req, res) {
 			}
 		]})
 		.sort("-created")
-		.populate("users")
+		.populate("users", "_id name username avatar exclude")
 		.populate("messages.user").exec(function(err, conversations) {
 
 			if (err) {

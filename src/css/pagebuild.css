@@ -34,7 +34,7 @@
 .bg-theme-color-5{ background-color:#1c1d22;}
 .bg-theme-color-6{ background-color:#b8b69d;}
 .bg-theme-color-7{ background-color: #f7f7f7;;}
-.bg-theme-color-8{ background-color:#f3ce22;}
+.bg-theme-color-8{ background-color: #FFD600;}
 .bg-theme-color-9{ background-color:#ce671e;}
 .bg-theme-color-10{ background-color:#000000;}
 
@@ -1252,12 +1252,13 @@ transform: translateX(-40px);
 .message-box{
 	position:relative; text-align:justify; background-position: 20px 20px; background-repeat:no-repeat;
 	color:#fff;
+	    border-radius: 2px;
 }
 .message-box a{
 	color:#fff;
 }
 .message-box.box-bgcolor1{ background-color:#ff836a; }
-.message-box.box-bgcolor2{ background-color:#FFC107; }
+.message-box.box-bgcolor2{ background-color: #FFD600;}
 .message-box.box-bgcolor3{ background-color:#65b5ff; }
 .message-box.box-bgcolor4{ background-color:#43bc46; }
 .message-box:before{ position:absolute; left: 20px; font-size:24px;}

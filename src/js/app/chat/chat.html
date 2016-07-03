@@ -4,7 +4,8 @@
 			<div class="media">
 				<div class="media-left media-middle">
 					<a href="#!">
-						<img ng-src="{{ conversation.avatar && conversation.avatar + '?dim=40x40' || 'img/Professor.png' }}" alt="conversation.username" class="img-circle border-white" width="40" style="max-width: inherit; "/>
+						<i class="fa fa-times exclude" ng-if="conversation.exclude"></i>
+						<img ng-src="{{ conversation.avatar && conversation.avatar + '?dim=300x300' || 'img/Professor.png' }}" alt="conversation.username" class="img-circle border-white" width="40" style="max-width: inherit; "/>
 					</a>
 				</div>
 				<div class="media-body media-middle ellipsis">

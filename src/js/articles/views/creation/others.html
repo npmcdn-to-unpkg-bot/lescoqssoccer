@@ -7,14 +7,18 @@
 				<div class="pagebuilder-wrap">
 					<div class="container" style="width: calc(100% - 120px);background: white; margin: 40px 60px; box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12); color: #7b7b7b; border-radius: 2px;">
 						<div id="comments">
-							<div id="respondwrap">
+							<div>
 								<div id="respond" class="comment-respond">
 									<form role="form">
 										<div class="span12 moudle bottom-space-50" style="margin-left: 0;">
 											<div class="message-box box-bgcolor2 box-type2" style="padding: 20px 20px 0;">
 											<p style="margin-left: 45px;">Ici c'est pour partager des vidéos ou des sons, testé entre autre avec youtube, viméo, spotify, soundclound et deezer. Par contre mettez bien le "code embed" du lien et pas directement l'adresse copier-collé. Sur tous ces sites vous pouvez faire clic droit sur la vidéo et "copier le code embed".</p>
 											<br>
-											<b style="margin-left: 45px;">Exemple: <br><pre style="margin-left: 45px;">< iframe src='https://player.vimeo.com/video/93059735' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></pre></b>.
+											<b>Exemple
+												<br>
+												<br>
+												<pre><code class="language-html">&lt;iframe src='https://player.vimeo.com/video/93059735' webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;</code></pre>
+												</b>.
 											</p>
 											</div>
 										</div>
@@ -51,9 +55,16 @@
 											title="{{category.value}}"
 											style="font-size: 11px;"
 											ng-click="toggleCategory(category,$event)"
-											ng-class="{'active' : isActive(category)}">
+											ng-class="{'active' : isActive(category)}"
+											ng-if="category.active">
 												{{category.value}}
 											</a>
+										</div>
+										<div class="span12" style="margin: -20px 0 20px;">
+											<a href="#!/issues">
+												Ajouter une catégorie
+											</a>
+											(attention les données seront perdues)
 										</div>
 										<p class="span9" style="margin-left: 0;">
 										<textarea

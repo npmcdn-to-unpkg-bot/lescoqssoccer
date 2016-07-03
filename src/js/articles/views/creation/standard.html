@@ -2,8 +2,7 @@
 	<div class="row-fluid two-cols-layout">
 		<div id="content_wrap">
 			<div class="content-wrap-inn">
-
-			    	<!-- Content -->
+				<!-- Content -->
 				<div class="pagebuilder-wrap">
 					<div class="container" style="width: calc(100% - 120px);background: white; margin: 40px 60px; box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12); color: #7b7b7b; border-radius: 2px;">
 						<div id="comments">
@@ -11,32 +10,25 @@
 								<div id="respond" class="comment-respond">
 									<form role="form">
 										<p class="span6" style="margin-bottom: 20px;">
-											<input
-											name="title"
-											type="text"
-											data-ng-model="article.title"
-											class="requiredFieldcomm"
-											size="30"
-											aria-required="true"
-											tabindex="1"
-											placeholder="TITRE">
+											<input name="title" type="text" data-ng-model="article.title" class="requiredFieldcomm" size="30" aria-required="true" tabindex="1" placeholder="TITRE"/>
 										</p>
 										<div class="span12 tagcloud" style="margin-left: 0;">
 											<h4 class="widget-title" style="margin-top: 10px;">
 												Categories
 											</h4>
-											<a
-											href="#!"
-											ng-repeat="category in categories"
-											title="{{category.value}}"
-											style="font-size: 11px;"
-											ng-click="toggleCategory(category,$event)"
-											ng-class="{'active' : isActive(category)}">
-												{{category.value}}
+											<a href="#!" ng-repeat="category in categories" title="{{ category.value }}" style="font-size: 11px;" ng-click="toggleCategory(category,$event)" ng-class="{'active' : isActive(category)}" ng-if="category.active">
+												{{ category.value }}
 											</a>
 										</div>
+										<div class="span12" style="margin: -20px 0 20px;">
+											<a href="#!/issues">
+												Ajouter une catégorie
+											</a>
+											(attention les données seront perdues)
+										</div>
 										<p class="span12" style="margin-left: 0;">
-											<textarea id="mytextarea"></textarea>
+											<textarea id="mytextarea">
+											</textarea>
 										</p>
 									</form>
 								</div>
@@ -48,5 +40,5 @@
 		</div>
 	</div>
 </div>
-
-<cm-wysiwyg></cm-wysiwyg>
+<cm-wysiwyg>
+</cm-wysiwyg>
