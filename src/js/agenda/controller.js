@@ -549,6 +549,7 @@ angular.module("mean.agenda").controller("AgendaDetailController", ["$scope", "G
 
 				$scope.agendaCollection.update($scope.userEvent).then(function(newUserEvent) {
 					// Update
+					$scope.userEvent = newUserEvent;
 				});
 
 			} else {
@@ -581,6 +582,7 @@ angular.module("mean.agenda").controller("AgendaDetailController", ["$scope", "G
 
 				$scope.agendaCollection.update($scope.userEvent).then(function(newUserEvent) {
 					//Update
+					$scope.userEvent = newUserEvent;
 				});
 			} else {
 				$modal.open({
