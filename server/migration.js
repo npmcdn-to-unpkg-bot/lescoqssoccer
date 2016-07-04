@@ -59,7 +59,8 @@ var Article = mongoose.model('Article'),
 	Comment = mongoose.model('Comment'),
 	EuroData = require('./euro.json'),
 	EuroDataR16 = require('./euro_qf.json'),
-	EuroDataQF = require('./euro_qf_2.json');
+	EuroDataQF = require('./euro_qf_2.json'),
+	EuroDatasSF = require('./euro_SF.json');
 
 /*
 Script de migration pour remplacer l'url des videos youtube de embed => v
@@ -119,7 +120,7 @@ var addParameters = function() {
 };
 
 var addMatchs = function() {
-	var matchs = EuroDataQF.matchs;
+	var matchs = EuroDatasSF.matchs;
 	var teams = EuroData.teams;
 	var currentMatch;
 	var userEvent;

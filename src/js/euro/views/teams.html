@@ -67,7 +67,7 @@
 										Afficher les anciens matchs
 									</div>
 									<div class="isotope masonry" data-size="large" data-width="width2" style="margin: -20px 0px 0px -20px;">
-										<div class="width2 isotope-item hover-effect" ng-repeat="match in matchs" ng-show="match.type === 'QF' || showMatch">
+										<div class="width2 isotope-item hover-effect" ng-repeat="match in matchs" ng-show="match.type === 'SF' || showMatch">
 											<div class="inside item_des" style="margin:20px; padding: 20px;" ng-class="{'hadBetContainer': !getBet(match).empty}">
 												<div style="font-size: large; font-weight: 600;">
 													{{ match.startsAt | date:"dd MMM yyyy, à HH:mm" }}
