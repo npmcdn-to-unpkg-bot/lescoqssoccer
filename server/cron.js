@@ -7,8 +7,8 @@ var matchs = require('./controllers/match');
 
 exports.startCron = function() {
 
-	// Runs every sunday at 00h30
-	var job = new CronJob('00 30 00 * * 7', function() {
+	// Runs every day at 00h30
+	var job = new CronJob('00 30 00 * * *', function() {
 			//users.incrementUsersPoints();
 			//users.calculatePopularity();
 			suggestions.closeVotes();
