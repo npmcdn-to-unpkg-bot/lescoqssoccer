@@ -67,12 +67,12 @@
 										Afficher les anciens matchs
 									</div>
 									<div class="isotope masonry" data-size="large" data-width="width2" style="margin: -20px 0px 0px -20px;">
-										<div class="width2 isotope-item hover-effect" ng-repeat="match in matchs" ng-show="match.type === 'SF' || showMatch">
+										<div class="width2 isotope-item hover-effect" ng-repeat="match in matchs" ng-show="match.type === 'FINALE' || showMatch">
 											<div class="inside item_des" style="margin:20px; padding: 20px;" ng-class="{'hadBetContainer': !getBet(match).empty}">
 												<div style="font-size: large; font-weight: 600;">
 													{{ match.startsAt | date:"dd MMM yyyy, à HH:mm" }}
 												</div>
-												<div ng-if="match.type !== 'R16' && match.type !== 'QF' && match.type !== 'SF'" style="font-size: large; font-weight: 400;">
+												<div ng-if="match.type !== 'R16' && match.type !== 'QF' && match.type !== 'SF' && match.type !== 'FINALE'" style="font-size: large; font-weight: 400;">
 													Group {{ match.type }}
 												</div>
 												<div ng-if="match.type === 'R16'" style="font-size: large; font-weight: 400;">
@@ -83,6 +83,9 @@
 												</div>
 												<div ng-if="match.type === 'SF'" style="font-size: large; font-weight: 400;">
 													Demi-finale
+												</div>
+												<div ng-if="match.type === 'FINALE'" style="font-size: large; font-weight: 400;">
+													Finale
 												</div>
 												<div class="matchRow" style="text-align:center; margin-top: 20px;">
 													<div>
