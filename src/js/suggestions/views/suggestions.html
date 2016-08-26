@@ -8,7 +8,7 @@
 							<div class="span12 moudle" style="margin-top: 40px;">
 								<div class="row-fluid">
 									<div class="container-isotope clear">
-										<div id="isotope-load">
+										<div id="isotope-load" ng-if="suggestions.length > 0">
 											<div class="ux-loading">
 											</div>
 											<div class="ux-loading-transform">
@@ -74,17 +74,17 @@
 												</div>
 											</div>
 										</div>
-										<div ng-if="suggestions.length === 0">
-											<h2 style="text-align: center; margin-top: 50px;">
+										<div class="fullwidth-wrap" ng-if="suggestions.length === 0">
+											<h1 style="color: #aaa; text-align: center; margin-top: 40px;">
 												Aucun vote en cours
-											</h2>
+											</h1>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="clearfix pagenums" style="display: none;">
+					<div class="clearfix pagenums" style="display: none;" ng-if="suggestions.length > 0">
 						<div class="pagination">
 							<pagination previous-text="&#8249; Précédents" next-text="Suivants &#8250;" total-items="totalItems" page="page" on-select-page="pageChanged(page)" items-per-page="itemsPerPage">
 							</pagination>

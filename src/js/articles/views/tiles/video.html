@@ -34,11 +34,11 @@
 				<div style="width:40px; margin: 0 20px; padding: 0 0 20px; cursor: pointer;" ng-click="showUserDetail($event, article.user);">
 					<p style="margin: 10px 0 10px 50px;position: absolute;">
 						<b style="text-transform: uppercase; font-size: medium;">
-							{{ article.user.username }}
+							{{ article.user.username }},
 						</b>
-						, {{ getDateFrom(article) }}
+						{{ getDateFrom(article) }}
 					</p>
-					<img class="img-circle" ng-src="{{ article.user.avatar }}?dim100x100" alt="{{ article.user.username }}"/>
+					<img class="img-circle" ng-src="{{ article.user.avatar }}?dim=40x40" alt="{{ article.user.username }}"/>
 				</div>
 			</div>
 		</div>

@@ -89,11 +89,11 @@
 						<p style="margin: -10px 0 10px 40px;position: absolute;">
 							lancé par
 							<b style="text-transform: uppercase; font-size: medium;">
-								{{ article.user.username }}
+								{{ article.user.username }},
 							</b>
-							, résultat du vote {{ getDateFrom(article) }}
+							résultat du vote {{ getDateFrom(article) }}
 						</p>
-						<img class="img-circle" ng-src="{{ article.user.avatar }}?dim100x100" alt="{{ article.user.username }}"/>
+						<img class="img-circle" ng-src="{{ article.user.avatar }}?dim=40x40" alt="{{ article.user.username }}"/>
 					</div>
 				</div>
 			</div>
